@@ -1,0 +1,2 @@
+tuning_id,tuning_name,description,reuse_policy
+ZHENG_DIAO,正调,仙翁操MVP默认调弦,direct_reuse_when_same_qinist_qin_tuning

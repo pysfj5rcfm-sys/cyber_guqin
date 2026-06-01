@@ -1,0 +1,2 @@
+piece_id,title,piece_type,source_type,version,total_phrases,total_events,tuning_id,status,notes
+XWC,仙翁操,traditional_jianzipu,user_input,v1.0,10,51,ZHENG_DIAO,mvp_active,赛博古琴v1.0首个MVP曲目

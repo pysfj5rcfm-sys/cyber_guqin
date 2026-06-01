@@ -1,0 +1,11 @@
+phrase_id,piece_id,section_id,phrase_no,phrase_type,motif_id,cadence_weight,tempo_zone,notes
+XWC_P01,XWC,A,1,opening,MOTIF_A,medium,normal,开端句
+XWC_P02,XWC,A,2,repetition,MOTIF_A_VAR,medium,normal,第一句变化重复
+XWC_P03,XWC,A,3,development,MOTIF_A_VAR,medium,normal,移位展开
+XWC_P04,XWC,A,4,development,MOTIF_A_VAR,medium,normal,继续移位
+XWC_P05,XWC,A,5,development_cadential,MOTIF_A_VAR,high,normal,下行小收束
+XWC_P06,XWC,B,6,transition,MOTIF_B,medium,slightly_forward,短句转接
+XWC_P07,XWC,B,7,answer,MOTIF_B_VAR,medium,slightly_forward,与第六句呼应
+XWC_P08,XWC,C,8,turning,MOTIF_C,high,expanded,出现上七九拖音
+XWC_P09,XWC,C,9,special_technique,MOTIF_D,high,expanded,注撞掐起特殊技法
+XWC_P10,XWC,D,10,harmonic_closing,MOTIF_E,high,clear,泛音收束段

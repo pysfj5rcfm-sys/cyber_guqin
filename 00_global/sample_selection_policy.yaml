@@ -1,0 +1,92 @@
+sample_selection_policy:
+  version: v1.1
+
+  default_pressed_note:
+    description: 谱面未明示绰注时，三曼按音默认优先绰按。
+    when:
+      primary_sound_type: 按音
+      notation_pre_action: none
+      gesture_family:
+        - pressed_pluck
+        - post_motion
+        - compound_both_hands
+    prefer:
+      - realization_pre_action: chuo
+        realization_vibrato: none
+      - realization_pre_action: none
+        realization_vibrato: none
+
+  explicit_zhu:
+    description: 谱面明示注时，优先注按。
+    when:
+      notation_pre_action: zhu
+    prefer:
+      - realization_pre_action: zhu
+      - realization_pre_action: none
+
+  explicit_chuo:
+    description: 谱面明示绰时，优先绰按。
+    when:
+      notation_pre_action: chuo
+    prefer:
+      - realization_pre_action: chuo
+      - realization_pre_action: none
+
+  explicit_nao:
+    description: 谱面明示猱时，优先带猱样本。
+    when:
+      notation_vibrato: nao
+    prefer:
+      - realization_vibrato: nao
+      - realization_vibrato: none
+
+  explicit_yin:
+    description: 谱面明示吟时，优先带吟样本。
+    when:
+      notation_vibrato: yin
+    prefer:
+      - realization_vibrato: yin
+      - realization_vibrato: none
+
+  open_or_harmonic:
+    when:
+      primary_sound_type:
+        - 散音
+        - 泛音
+    prefer:
+      - realization_variant: straight
+
+  left_hand_sound:
+    when:
+      gesture_family: left_hand_sound
+    prefer_sample_type:
+      - context
+      - atomic
+
+  open_pressed_harmony:
+    when:
+      gesture_family: open_pressed_harmony
+    prefer_sample_type:
+      - phrase
+      - context
+      - atomic
+    warning_if_atomic_only: true
+
+  compound_pressed_motion:
+    when:
+      sound_profile: compound_pressed_motion
+    prefer_sample_type:
+      - context
+      - atomic
+    warning_if_atomic_only: true
+
+  context_required:
+    when:
+      requires_context_sample: true
+    prefer_sample_type:
+      - context
+      - atomic
+
+  anti_repeat:
+    avoid_same_sample_for_same_gesture_within_phrase: true
+    rotate_takes: true

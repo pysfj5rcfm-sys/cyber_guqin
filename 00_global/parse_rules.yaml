@@ -1,0 +1,14 @@
+parse_rules:
+  - 简化输入可映射到 normalized_input
+  - 绰 / 注 记为发声前动作，但默认绰不进入 score_event
+  - 谱面明示注必须保留
+  - 上 / 下 / 进复 / 退复 / 撞 / 反撞 作为 post_motion component
+  - 撞 / 反撞 属于 micro_returning_slide
+  - 进复 / 退复 不可拆
+  - 掐起 / 罨 / 带起 属于 left_hand_sound
+  - 泼 / 剌 / 滚 / 拂 是可独立右手序列动作
+  - 放合 / 应合 属于 open_pressed_harmony
+  - 分开 属于 compound_both_hands + compound_pressed_motion
+  - 复合泛音仍属于 primary_sound_type=泛音
+  - 特殊指法通过 gesture_components 展开
+  - 本轮 parse_rules 仅为文档，不由脚本强制解析

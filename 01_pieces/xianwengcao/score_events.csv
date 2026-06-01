@@ -1,0 +1,52 @@
+event_id,piece_id,phrase_id,event_no,raw_input,normalized_input,gesture_id,notation_pre_action,notation_vibrato,event_role,context_dependency,inherited_from_event_id,parse_status,notes
+XWC_P01_N01,XWC,XWC_P01,1,散音挑七弦,散挑七,SAN_TIAO_7,none,none,phrase_start,none,,confirmed,
+XWC_P01_N02,XWC,XWC_P01,2,散音勾五弦,散勾五,SAN_GOU_5,none,none,phrase_middle,none,,confirmed,
+XWC_P01_N03,XWC,XWC_P01,3,散音挑七弦,散挑七,SAN_TIAO_7,none,none,phrase_middle,none,,confirmed,
+XWC_P01_N04,XWC,XWC_P01,4,按音名指十徽勾五弦,名十勾五,AN_RING_10_GOU_5,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P02_N01,XWC,XWC_P02,1,散音挑七弦,散挑七,SAN_TIAO_7,none,none,phrase_start,none,,confirmed,
+XWC_P02_N02,XWC,XWC_P02,2,散音勾五弦,散勾五,SAN_GOU_5,none,none,phrase_middle,none,,confirmed,
+XWC_P02_N03,XWC,XWC_P02,3,散音挑六弦,散挑六,SAN_TIAO_6,none,none,phrase_middle,none,,confirmed,
+XWC_P02_N04,XWC,XWC_P02,4,按音名指十徽勾四弦,名十勾四,AN_RING_10_GOU_4,none,none,phrase_middle,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P02_N05,XWC,XWC_P02,5,散音挑七弦,散挑七,SAN_TIAO_7,none,none,phrase_middle,none,,confirmed,
+XWC_P02_N06,XWC,XWC_P02,6,按音大指九徽勾四弦,大九勾四,AN_THUMB_9_GOU_4,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P03_N01,XWC,XWC_P03,1,散音挑六弦,散挑六,SAN_TIAO_6,none,none,phrase_start,none,,confirmed,
+XWC_P03_N02,XWC,XWC_P03,2,散音勾四弦,散勾四,SAN_GOU_4,none,none,phrase_middle,none,,confirmed,
+XWC_P03_N03,XWC,XWC_P03,3,散音挑五弦,散挑五,SAN_TIAO_5,none,none,phrase_middle,none,,confirmed,
+XWC_P03_N04,XWC,XWC_P03,4,按音名指注十徽八勾三弦,名十徽八勾三,AN_RING_10_8_GOU_3,zhu,none,phrase_middle,none,,confirmed,谱面明示注；渲染优先 zhu realization
+XWC_P03_N05,XWC,XWC_P03,5,散音挑六弦,散挑六,SAN_TIAO_6,none,none,phrase_middle,none,,confirmed,
+XWC_P03_N06,XWC,XWC_P03,6,按音大指九徽勾三弦,大九勾三,AN_THUMB_9_GOU_3,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P04_N01,XWC,XWC_P04,1,散音挑五弦,散挑五,SAN_TIAO_5,none,none,phrase_start,none,,confirmed,
+XWC_P04_N02,XWC,XWC_P04,2,散音勾三弦,散勾三,SAN_GOU_3,none,none,phrase_middle,none,,confirmed,
+XWC_P04_N03,XWC,XWC_P04,3,散音挑四弦,散挑四,SAN_TIAO_4,none,none,phrase_middle,none,,confirmed,
+XWC_P04_N04,XWC,XWC_P04,4,按音名指十徽勾二弦,名十勾二,AN_RING_10_GOU_2,none,none,phrase_middle,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P04_N05,XWC,XWC_P04,5,散音挑五弦,散挑五,SAN_TIAO_5,none,none,phrase_middle,none,,confirmed,
+XWC_P04_N06,XWC,XWC_P04,6,按音大指九徽勾二弦,大九勾二,AN_THUMB_9_GOU_2,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P05_N01,XWC,XWC_P05,1,散音挑四弦,散挑四,SAN_TIAO_4,none,none,phrase_start,none,,confirmed,
+XWC_P05_N02,XWC,XWC_P05,2,散音勾二弦,散勾二,SAN_GOU_2,none,none,phrase_middle,none,,confirmed,
+XWC_P05_N03,XWC,XWC_P05,3,散音挑三弦,散挑三,SAN_TIAO_3,none,none,phrase_middle,none,,confirmed,
+XWC_P05_N04,XWC,XWC_P05,4,按音名指十徽勾一弦,名十勾一,AN_RING_10_GOU_1,none,none,phrase_middle,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P05_N05,XWC,XWC_P05,5,散音挑四弦,散挑四,SAN_TIAO_4,none,none,phrase_middle,none,,confirmed,
+XWC_P05_N06,XWC,XWC_P05,6,按音大指九徽勾一弦,大九勾一,AN_THUMB_9_GOU_1,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P06_N01,XWC,XWC_P06,1,散音挑四弦,散挑四,SAN_TIAO_4,none,none,phrase_start,none,,confirmed,
+XWC_P06_N02,XWC,XWC_P06,2,按音大指九徽勾一弦,大九勾一,AN_THUMB_9_GOU_1,none,none,phrase_middle,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P06_N03,XWC,XWC_P06,3,散音挑五弦,散挑五,SAN_TIAO_5,none,none,phrase_middle,none,,confirmed,
+XWC_P06_N04,XWC,XWC_P06,4,按音大指九徽勾二弦,大九勾二,AN_THUMB_9_GOU_2,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P07_N01,XWC,XWC_P07,1,散音挑六弦,散挑六,SAN_TIAO_6,none,none,phrase_start,none,,confirmed,
+XWC_P07_N02,XWC,XWC_P07,2,按音大指九徽勾三弦,大九勾三,AN_THUMB_9_GOU_3,none,none,phrase_middle,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P07_N03,XWC,XWC_P07,3,散音挑七弦,散挑七,SAN_TIAO_7,none,none,phrase_middle,none,,confirmed,
+XWC_P07_N04,XWC,XWC_P07,4,按音大指九徽勾四弦,大九勾四,AN_THUMB_9_GOU_4,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P08_N01,XWC,XWC_P08,1,按音大指九徽勾五弦,大九勾五,AN_THUMB_9_GOU_5,none,none,phrase_start,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P08_N02,XWC,XWC_P08,2,按音大指九徽勾六上七九,大九勾六上七九,AN_THUMB_9_GOU_6_SHANG_79,none,none,phrase_middle,none,,confirmed,上七九为谱面明示实音拖音；默认可优先 chuo realization
+XWC_P08_N03,XWC,XWC_P08,3,散音挑七弦,散挑七,SAN_TIAO_7,none,none,phrase_middle,none,,confirmed,
+XWC_P08_N04,XWC,XWC_P08,4,按音大指九徽勾四弦,大九勾四,AN_THUMB_9_GOU_4,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P09_N01,XWC,XWC_P09,1,按音大指注九徽勾四撞,大九勾四撞,AN_THUMB_9_GOU_4_ZHUANG,zhu,none,phrase_start,none,,confirmed,谱面明示注与撞；渲染优先 zhu realization
+XWC_P09_N02,XWC,XWC_P09,2,按音名指十徽掐起,名十掐起,AN_RING_10_QIAQI,none,none,special,inherit_previous,XWC_P09_N01,confirmed_with_inherited_context,左手发音，需上下文采样
+XWC_P09_N03,XWC,XWC_P09,3,散音挑六弦,散挑六,SAN_TIAO_6,none,none,phrase_middle,none,,confirmed,
+XWC_P09_N04,XWC,XWC_P09,4,按音名指十徽勾四弦,名十勾四,AN_RING_10_GOU_4,none,none,phrase_end,none,,confirmed,谱面未明示绰；三曼默认可优先 chuo realization
+XWC_P10_N01,XWC,XWC_P10,1,泛音食指七徽勾四弦,泛食七勾四,FAN_SHI_7_GOU_4,none,none,phrase_start,none,,confirmed,
+XWC_P10_N02,XWC,XWC_P10,2,泛音食指七徽挑七弦,泛食七挑七,FAN_SHI_7_TIAO_7,none,none,phrase_middle,none,,confirmed,
+XWC_P10_N03,XWC,XWC_P10,3,泛音食指七徽挑六弦,泛食七挑六,FAN_SHI_7_TIAO_6,none,none,phrase_middle,none,,confirmed,
+XWC_P10_N04,XWC,XWC_P10,4,泛音食指七徽挑四弦,泛食七挑四,FAN_SHI_7_TIAO_4,none,none,phrase_middle,none,,confirmed,
+XWC_P10_N05,XWC,XWC_P10,5,泛音中指七徽勾一弦,泛中七勾一,FAN_ZHONG_7_GOU_1,none,none,phrase_middle,none,,confirmed,
+XWC_P10_N06,XWC,XWC_P10,6,泛音大指七徽擘六弦,泛大七擘六,FAN_DA_7_BO_6,none,none,phrase_middle,none,,confirmed,bo=擘
+XWC_P10_N07,XWC,XWC_P10,7,泛音大指七徽中指七徽撮六一,泛大七中七撮六一,FAN_DA7_ZHONG7_CUO_6_1,none,none,phrase_end,none,,confirmed,复合泛音撮音；primary_sound_type仍为泛音

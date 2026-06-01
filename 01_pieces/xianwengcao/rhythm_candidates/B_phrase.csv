@@ -1,0 +1,52 @@
+candidate_id,event_id,event_start,total_duration,pre_attack_duration,attack_time,post_motion_start,post_motion_duration,release_tail,after_gap,dynamic,reason
+B_phrase,XWC_P01_N01,0.000,1.050,0.000,0.000,0.000,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P01_N02,1.130,1.050,0.000,1.130,1.130,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P01_N03,2.260,1.050,0.000,2.260,2.260,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P01_N04,3.390,1.530,0.000,3.390,3.390,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P02_N01,5.250,1.050,0.000,5.250,5.250,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P02_N02,6.380,1.050,0.000,6.380,6.380,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P02_N03,7.510,1.050,0.000,7.510,7.510,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P02_N04,8.640,1.350,0.000,8.640,8.640,0.000,0.300,0.080,mp,B_phrase base 按音
+B_phrase,XWC_P02_N05,10.070,1.050,0.000,10.070,10.070,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P02_N06,11.200,1.530,0.000,11.200,11.200,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P03_N01,13.060,1.050,0.000,13.060,13.060,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P03_N02,14.190,1.050,0.000,14.190,14.190,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P03_N03,15.320,1.050,0.000,15.320,15.320,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P03_N04,16.450,1.350,0.120,16.570,16.570,0.000,0.300,0.080,mp,B_phrase base 按音
+B_phrase,XWC_P03_N05,17.880,1.050,0.000,17.880,17.880,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P03_N06,19.010,1.530,0.000,19.010,19.010,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P04_N01,20.870,1.050,0.000,20.870,20.870,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P04_N02,22.000,1.050,0.000,22.000,22.000,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P04_N03,23.130,1.050,0.000,23.130,23.130,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P04_N04,24.260,1.350,0.000,24.260,24.260,0.000,0.300,0.080,mp,B_phrase base 按音
+B_phrase,XWC_P04_N05,25.690,1.050,0.000,25.690,25.690,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P04_N06,26.820,1.530,0.000,26.820,26.820,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P05_N01,28.680,1.050,0.000,28.680,28.680,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P05_N02,29.810,1.050,0.000,29.810,29.810,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P05_N03,30.940,1.050,0.000,30.940,30.940,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P05_N04,32.070,1.350,0.000,32.070,32.070,0.000,0.300,0.080,mp,B_phrase base 按音
+B_phrase,XWC_P05_N05,33.500,1.050,0.000,33.500,33.500,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P05_N06,34.630,1.530,0.000,34.630,34.630,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P06_N01,36.490,1.050,0.000,36.490,36.490,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P06_N02,37.620,1.350,0.000,37.620,37.620,0.000,0.300,0.080,mp,B_phrase base 按音
+B_phrase,XWC_P06_N03,39.050,1.050,0.000,39.050,39.050,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P06_N04,40.180,1.530,0.000,40.180,40.180,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P07_N01,42.040,1.050,0.000,42.040,42.040,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P07_N02,43.170,1.350,0.000,43.170,43.170,0.000,0.300,0.080,mp,B_phrase base 按音
+B_phrase,XWC_P07_N03,44.600,1.050,0.000,44.600,44.600,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P07_N04,45.730,1.530,0.000,45.730,45.730,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P08_N01,47.590,1.350,0.000,47.590,47.590,0.000,0.300,0.080,mp,B_phrase base 按音
+B_phrase,XWC_P08_N02,49.020,2.100,0.000,49.020,49.020,0.750,0.300,0.080,mp,B_phrase base 按音; 上七九 post motion expanded
+B_phrase,XWC_P08_N03,51.200,1.050,0.000,51.200,51.200,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P08_N04,52.330,1.530,0.000,52.330,52.330,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P09_N01,54.190,1.670,0.120,54.310,54.310,0.320,0.300,0.080,mp,B_phrase base 按音; 撞 micro returning slide
+B_phrase,XWC_P09_N02,55.940,1.350,0.000,55.940,55.940,0.000,0.300,0.040,mp,B_phrase base 按音; 掐起承接前音
+B_phrase,XWC_P09_N03,57.330,1.050,0.000,57.330,57.330,0.000,0.300,0.080,mp,B_phrase base 散音
+B_phrase,XWC_P09_N04,58.460,1.530,0.000,58.460,58.460,0.000,0.300,0.330,mp,B_phrase base 按音; phrase_end breath
+B_phrase,XWC_P10_N01,60.320,1.050,0.000,60.320,60.320,0.000,0.300,0.080,mp,B_phrase base 泛音; 泛音段更规整
+B_phrase,XWC_P10_N02,61.450,1.050,0.000,61.450,61.450,0.000,0.300,0.080,mp,B_phrase base 泛音; 泛音段更规整
+B_phrase,XWC_P10_N03,62.580,1.050,0.000,62.580,62.580,0.000,0.300,0.080,mp,B_phrase base 泛音; 泛音段更规整
+B_phrase,XWC_P10_N04,63.710,1.050,0.000,63.710,63.710,0.000,0.300,0.080,mp,B_phrase base 泛音; 泛音段更规整
+B_phrase,XWC_P10_N05,64.840,1.050,0.000,64.840,64.840,0.000,0.300,0.080,mp,B_phrase base 泛音; 泛音段更规整
+B_phrase,XWC_P10_N06,65.970,1.050,0.000,65.970,65.970,0.000,0.300,0.080,mp,B_phrase base 泛音; 泛音段更规整
+B_phrase,XWC_P10_N07,67.100,1.050,0.000,67.100,67.100,0.000,0.300,0.330,mp,B_phrase base 泛音; phrase_end breath; 泛音段更规整

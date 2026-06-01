@@ -1,0 +1,52 @@
+candidate_id,event_id,event_start,total_duration,pre_attack_duration,attack_time,post_motion_start,post_motion_duration,release_tail,after_gap,dynamic,reason
+D_teaching,XWC_P01_N01,0.000,1.000,0.000,0.000,0.000,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P01_N02,1.080,1.000,0.000,1.080,1.080,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P01_N03,2.160,1.000,0.000,2.160,2.160,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P01_N04,3.240,1.330,0.000,3.240,3.240,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P02_N01,4.900,1.000,0.000,4.900,4.900,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P02_N02,5.980,1.000,0.000,5.980,5.980,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P02_N03,7.060,1.000,0.000,7.060,7.060,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P02_N04,8.140,1.150,0.000,8.140,8.140,0.000,0.300,0.080,mp,D_teaching base 按音
+D_teaching,XWC_P02_N05,9.370,1.000,0.000,9.370,9.370,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P02_N06,10.450,1.330,0.000,10.450,10.450,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P03_N01,12.110,1.000,0.000,12.110,12.110,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P03_N02,13.190,1.000,0.000,13.190,13.190,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P03_N03,14.270,1.000,0.000,14.270,14.270,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P03_N04,15.350,1.150,0.120,15.470,15.470,0.000,0.300,0.080,mp,D_teaching base 按音
+D_teaching,XWC_P03_N05,16.580,1.000,0.000,16.580,16.580,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P03_N06,17.660,1.330,0.000,17.660,17.660,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P04_N01,19.320,1.000,0.000,19.320,19.320,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P04_N02,20.400,1.000,0.000,20.400,20.400,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P04_N03,21.480,1.000,0.000,21.480,21.480,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P04_N04,22.560,1.150,0.000,22.560,22.560,0.000,0.300,0.080,mp,D_teaching base 按音
+D_teaching,XWC_P04_N05,23.790,1.000,0.000,23.790,23.790,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P04_N06,24.870,1.330,0.000,24.870,24.870,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P05_N01,26.530,1.000,0.000,26.530,26.530,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P05_N02,27.610,1.000,0.000,27.610,27.610,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P05_N03,28.690,1.000,0.000,28.690,28.690,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P05_N04,29.770,1.150,0.000,29.770,29.770,0.000,0.300,0.080,mp,D_teaching base 按音
+D_teaching,XWC_P05_N05,31.000,1.000,0.000,31.000,31.000,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P05_N06,32.080,1.330,0.000,32.080,32.080,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P06_N01,33.740,1.000,0.000,33.740,33.740,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P06_N02,34.820,1.150,0.000,34.820,34.820,0.000,0.300,0.080,mp,D_teaching base 按音
+D_teaching,XWC_P06_N03,36.050,1.000,0.000,36.050,36.050,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P06_N04,37.130,1.330,0.000,37.130,37.130,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P07_N01,38.790,1.000,0.000,38.790,38.790,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P07_N02,39.870,1.150,0.000,39.870,39.870,0.000,0.300,0.080,mp,D_teaching base 按音
+D_teaching,XWC_P07_N03,41.100,1.000,0.000,41.100,41.100,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P07_N04,42.180,1.330,0.000,42.180,42.180,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P08_N01,43.840,1.150,0.000,43.840,43.840,0.000,0.300,0.080,mp,D_teaching base 按音
+D_teaching,XWC_P08_N02,45.070,1.900,0.000,45.070,45.070,0.750,0.300,0.080,mp,D_teaching base 按音; 上七九 post motion expanded
+D_teaching,XWC_P08_N03,47.050,1.000,0.000,47.050,47.050,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P08_N04,48.130,1.330,0.000,48.130,48.130,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P09_N01,49.790,1.470,0.120,49.910,49.910,0.320,0.300,0.080,mp,D_teaching base 按音; 撞 micro returning slide
+D_teaching,XWC_P09_N02,51.340,1.150,0.000,51.340,51.340,0.000,0.300,0.040,mp,D_teaching base 按音; 掐起承接前音
+D_teaching,XWC_P09_N03,52.530,1.000,0.000,52.530,52.530,0.000,0.300,0.080,mp,D_teaching base 散音
+D_teaching,XWC_P09_N04,53.610,1.330,0.000,53.610,53.610,0.000,0.300,0.330,mp,D_teaching base 按音; phrase_end breath
+D_teaching,XWC_P10_N01,55.270,1.050,0.000,55.270,55.270,0.000,0.300,0.080,mp,D_teaching base 泛音; 泛音段更规整
+D_teaching,XWC_P10_N02,56.400,1.050,0.000,56.400,56.400,0.000,0.300,0.080,mp,D_teaching base 泛音; 泛音段更规整
+D_teaching,XWC_P10_N03,57.530,1.050,0.000,57.530,57.530,0.000,0.300,0.080,mp,D_teaching base 泛音; 泛音段更规整
+D_teaching,XWC_P10_N04,58.660,1.050,0.000,58.660,58.660,0.000,0.300,0.080,mp,D_teaching base 泛音; 泛音段更规整
+D_teaching,XWC_P10_N05,59.790,1.050,0.000,59.790,59.790,0.000,0.300,0.080,mp,D_teaching base 泛音; 泛音段更规整
+D_teaching,XWC_P10_N06,60.920,1.050,0.000,60.920,60.920,0.000,0.300,0.080,mp,D_teaching base 泛音; 泛音段更规整
+D_teaching,XWC_P10_N07,62.050,1.050,0.000,62.050,62.050,0.000,0.300,0.330,mp,D_teaching base 泛音; phrase_end breath; 泛音段更规整

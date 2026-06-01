@@ -1,0 +1,74 @@
+ontology_version: v1.1
+project: Cyber Guqin
+description: 古琴指法本体，用于防止 gesture、component、sample realization 混淆。
+
+core_principles:
+  - sound_type 固定为 散音 / 按音 / 泛音。
+  - 复杂技法通过 sound_profile、gesture_family、gesture_components 表达，不新增第四音型。
+  - score_events 记录曲中事件。
+  - gesture_templates 记录指法模板总览。
+  - gesture_components 记录动作组件序列。
+  - sample_assets 记录三曼实际采样实现。
+  - 默认绰、默认吟猱属于 realization，不默认进入 gesture_id。
+  - 谱面明示注、绰、吟、猱需进入 notation_pre_action 或 notation_vibrato。
+  - 上、下、进复、退复、撞、反撞属于 post_motion。
+  - 撞、反撞属于 micro_returning_slide，不使用 percussive。
+  - 进复、退复是不可拆原子，不拆为进+复或退+复。
+  - 泼、剌、滚、拂是可独立右手序列动作；泼剌、滚拂是组合名。
+  - 掐起、罨、带起属于 left_hand_sound。
+  - 放合、应合属于 open_pressed_harmony。
+  - 分开属于 compound_both_hands 家族下的 compound_pressed_motion，不属于 open_pressed_harmony。
+  - 分开由三个组件构成：抹、上、注挑回原音位；注已包含回归本音方向，不另列下。
+
+sound_type:
+  - 散音
+  - 按音
+  - 泛音
+
+sound_profile:
+  single: 单一发声
+  simultaneous_strings: 多弦同时发声
+  harmonic_compound: 复合泛音
+  right_hand_sequence: 右手序列
+  left_hand_sound: 左手发音
+  post_motion: 发声后走手
+  vibrato: 吟猱韵声
+  open_pressed_harmony: 散按和声 / 散按应合
+  compound_pressed_motion: 复合按音动作链
+  compound_both_hands: 双手复合
+
+gesture_family:
+  single_pluck: 单次右手拨弦
+  pressed_pluck: 按音右手拨弦
+  harmonic_pluck: 泛音右手拨弦
+  simultaneous_pluck: 同时拨多弦
+  right_hand_sequence: 右手序列
+  left_hand_sound: 左手发音
+  post_motion: 发声后走手
+  vibrato: 吟猱韵声
+  open_pressed_harmony: 散按和声 / 散按应合
+  compound_both_hands: 复杂双手复合
+  tempo_expression: 速度/停顿/句法符号
+
+important_internal_names:
+  bo: 擘
+  po: 泼
+  la: 剌
+  po_la: 泼剌
+  gun: 滚
+  fu: 拂
+  gun_fu: 滚拂
+  yan: 罨
+  qiaqi: 掐起
+  fenkai: 分开
+
+fenkai_design:
+  zh: 分开
+  gesture_family: compound_both_hands
+  sound_profile: compound_pressed_motion
+  component_count: 3
+  components:
+    - mo_attack
+    - shang_motion
+    - zhu_tiao_return_attack
+  note: 注挑回原音位已经包含回归本音方向，不另列下。

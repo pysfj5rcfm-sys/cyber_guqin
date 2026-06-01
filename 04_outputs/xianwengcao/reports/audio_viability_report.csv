@@ -1,0 +1,23 @@
+check_id,candidate_id,status,message
+render_events_exists,,pass,render_events.csv exists
+wav_readable,A_even,pass,wav readable duration=62.81s
+rhythm_coverage,A_even,pass,rhythm rows=51
+render_coverage,A_even,pass,render rows=51
+missing_sample,A_even,pass,missing samples=0
+repeat_sample,A_even,pass,consecutive same gesture/sample repeats=0
+wav_readable,B_phrase,pass,wav readable duration=70.15s
+rhythm_coverage,B_phrase,pass,rhythm rows=51
+render_coverage,B_phrase,pass,render rows=51
+missing_sample,B_phrase,pass,missing samples=0
+repeat_sample,B_phrase,pass,consecutive same gesture/sample repeats=0
+wav_readable,C_sanban,pass,wav readable duration=84.28s
+rhythm_coverage,C_sanban,pass,rhythm rows=51
+render_coverage,C_sanban,pass,render rows=51
+missing_sample,C_sanban,pass,missing samples=0
+repeat_sample,C_sanban,pass,consecutive same gesture/sample repeats=0
+wav_readable,D_teaching,pass,wav readable duration=65.10s
+rhythm_coverage,D_teaching,pass,rhythm rows=51
+render_coverage,D_teaching,pass,render rows=51
+missing_sample,D_teaching,pass,missing samples=0
+repeat_sample,D_teaching,pass,consecutive same gesture/sample repeats=0
+duration_difference,,pass,A/B/C/D total durations differ

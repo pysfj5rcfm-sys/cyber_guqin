@@ -1,0 +1,12 @@
+gesture_family,zh_name,description,examples,requires_components,default_requires_context_sample
+single_pluck,单次右手拨弦,右手一次拨弦发声,散挑七/散勾五,false,false
+pressed_pluck,按音右手拨弦,左手按弦右手拨弦,名十勾五,false,false
+harmonic_pluck,泛音右手拨弦,左手轻触泛音点右手拨弦,泛食七挑七,false,false
+simultaneous_pluck,同时拨多弦,同时拨两弦或多弦,撮/大撮/小撮,true,preferred
+right_hand_sequence,右手序列,右手连续或扫弦动作,滚/拂/泼/剌/轮/锁,true,preferred
+left_hand_sound,左手发音,左手动作直接发声,掐起/罨/带起,true,true
+post_motion,发声后走手,按音发声后的运动,上/下/进复/退复/撞/反撞,true,preferred
+vibrato,吟猱韵声,按音后的韵声修饰,吟/猱,true,preferred
+open_pressed_harmony,散按和声,散音与按音相应,放合/应合,true,true
+compound_both_hands,复杂双手复合,左右手复合动作,分开/掐撮三声,true,true
+tempo_expression,节奏句法符号,不直接发声但影响节奏,少息/大息/急/缓,false,false

@@ -1,0 +1,22 @@
+alias_rules:
+  right_hand_basic:
+    劈: 擘
+    pi: bo
+
+  right_hand_sequence:
+    拨: 泼
+    撥: 泼
+    拨剌: 泼剌
+    撥剌: 泼剌
+
+  left_hand_sound:
+    掩: 罨
+    虚掩: 虚罨
+    搯起: 掐起
+    对起: 掐起
+    对过: 掐起
+    对按: 掐起
+
+  spelling:
+    pola: po_la
+    gunfu: gun_fu

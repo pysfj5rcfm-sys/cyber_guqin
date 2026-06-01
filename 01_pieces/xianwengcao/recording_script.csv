@@ -1,0 +1,72 @@
+script_id,recording_id,order_no,event_id,event_range,gesture_id,normalized_name,expected_sample_type,realization_variant,realization_pre_action,realization_vibrato,recommended_pause_s,need_full_decay,notes
+RS_XWC_001_001,RS_XWC_001,1,XWC_P01_N01,,SAN_TIAO_7,散挑七,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_002,RS_XWC_001,2,XWC_P01_N02,,SAN_GOU_5,散勾五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_003,RS_XWC_001,3,XWC_P01_N03,,SAN_TIAO_7,散挑七,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_004,RS_XWC_001,4,XWC_P01_N04,,AN_RING_10_GOU_5,名十勾五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_005,RS_XWC_001,5,XWC_P01_N04,,AN_RING_10_GOU_5,名十勾五,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_006,RS_XWC_001,6,XWC_P02_N01,,SAN_TIAO_7,散挑七,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_007,RS_XWC_001,7,XWC_P02_N02,,SAN_GOU_5,散勾五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_008,RS_XWC_001,8,XWC_P02_N03,,SAN_TIAO_6,散挑六,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_009,RS_XWC_001,9,XWC_P02_N04,,AN_RING_10_GOU_4,名十勾四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_010,RS_XWC_001,10,XWC_P02_N04,,AN_RING_10_GOU_4,名十勾四,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_011,RS_XWC_001,11,XWC_P02_N05,,SAN_TIAO_7,散挑七,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_012,RS_XWC_001,12,XWC_P02_N06,,AN_THUMB_9_GOU_4,大九勾四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_013,RS_XWC_001,13,XWC_P02_N06,,AN_THUMB_9_GOU_4,大九勾四,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_014,RS_XWC_001,14,XWC_P03_N01,,SAN_TIAO_6,散挑六,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_015,RS_XWC_001,15,XWC_P03_N02,,SAN_GOU_4,散勾四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_016,RS_XWC_001,16,XWC_P03_N03,,SAN_TIAO_5,散挑五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_017,RS_XWC_001,17,XWC_P03_N04,,AN_RING_10_8_GOU_3,名十徽八勾三,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_018,RS_XWC_001,18,XWC_P03_N04,,AN_RING_10_8_GOU_3,名十徽八勾三,atomic,zhu,zhu,none,1.5,true,谱面明示注
+RS_XWC_001_019,RS_XWC_001,19,XWC_P03_N05,,SAN_TIAO_6,散挑六,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_020,RS_XWC_001,20,XWC_P03_N06,,AN_THUMB_9_GOU_3,大九勾三,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_021,RS_XWC_001,21,XWC_P03_N06,,AN_THUMB_9_GOU_3,大九勾三,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_022,RS_XWC_001,22,XWC_P04_N01,,SAN_TIAO_5,散挑五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_023,RS_XWC_001,23,XWC_P04_N02,,SAN_GOU_3,散勾三,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_024,RS_XWC_001,24,XWC_P04_N03,,SAN_TIAO_4,散挑四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_025,RS_XWC_001,25,XWC_P04_N04,,AN_RING_10_GOU_2,名十勾二,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_026,RS_XWC_001,26,XWC_P04_N04,,AN_RING_10_GOU_2,名十勾二,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_027,RS_XWC_001,27,XWC_P04_N05,,SAN_TIAO_5,散挑五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_028,RS_XWC_001,28,XWC_P04_N06,,AN_THUMB_9_GOU_2,大九勾二,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_029,RS_XWC_001,29,XWC_P04_N06,,AN_THUMB_9_GOU_2,大九勾二,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_030,RS_XWC_001,30,XWC_P05_N01,,SAN_TIAO_4,散挑四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_031,RS_XWC_001,31,XWC_P05_N02,,SAN_GOU_2,散勾二,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_032,RS_XWC_001,32,XWC_P05_N03,,SAN_TIAO_3,散挑三,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_033,RS_XWC_001,33,XWC_P05_N04,,AN_RING_10_GOU_1,名十勾一,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_034,RS_XWC_001,34,XWC_P05_N04,,AN_RING_10_GOU_1,名十勾一,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_035,RS_XWC_001,35,XWC_P05_N05,,SAN_TIAO_4,散挑四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_036,RS_XWC_001,36,XWC_P05_N06,,AN_THUMB_9_GOU_1,大九勾一,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_037,RS_XWC_001,37,XWC_P05_N06,,AN_THUMB_9_GOU_1,大九勾一,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_038,RS_XWC_001,38,XWC_P06_N01,,SAN_TIAO_4,散挑四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_039,RS_XWC_001,39,XWC_P06_N02,,AN_THUMB_9_GOU_1,大九勾一,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_040,RS_XWC_001,40,XWC_P06_N02,,AN_THUMB_9_GOU_1,大九勾一,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_041,RS_XWC_001,41,XWC_P06_N03,,SAN_TIAO_5,散挑五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_042,RS_XWC_001,42,XWC_P06_N04,,AN_THUMB_9_GOU_2,大九勾二,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_043,RS_XWC_001,43,XWC_P06_N04,,AN_THUMB_9_GOU_2,大九勾二,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_044,RS_XWC_001,44,XWC_P07_N01,,SAN_TIAO_6,散挑六,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_045,RS_XWC_001,45,XWC_P07_N02,,AN_THUMB_9_GOU_3,大九勾三,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_046,RS_XWC_001,46,XWC_P07_N02,,AN_THUMB_9_GOU_3,大九勾三,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_047,RS_XWC_001,47,XWC_P07_N03,,SAN_TIAO_7,散挑七,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_048,RS_XWC_001,48,XWC_P07_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_049,RS_XWC_001,49,XWC_P07_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_050,RS_XWC_001,50,XWC_P08_N01,,AN_THUMB_9_GOU_5,大九勾五,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_051,RS_XWC_001,51,XWC_P08_N01,,AN_THUMB_9_GOU_5,大九勾五,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_052,RS_XWC_001,52,XWC_P08_N02,,AN_THUMB_9_GOU_6_SHANG_79,大九勾六上七九,atomic,straight,none,none,2.5,true,baseline straight
+RS_XWC_001_053,RS_XWC_001,53,XWC_P08_N02,,AN_THUMB_9_GOU_6_SHANG_79,大九勾六上七九,atomic,chuo,chuo,none,2.5,true,普通按音默认绰 realization
+RS_XWC_001_054,RS_XWC_001,54,XWC_P08_N03,,SAN_TIAO_7,散挑七,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_055,RS_XWC_001,55,XWC_P08_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_056,RS_XWC_001,56,XWC_P08_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_057,RS_XWC_001,57,XWC_P09_N01,,AN_THUMB_9_GOU_4_ZHUANG,大九勾四撞,atomic,straight,none,none,2.5,true,baseline straight
+RS_XWC_001_058,RS_XWC_001,58,XWC_P09_N01,,AN_THUMB_9_GOU_4_ZHUANG,大九勾四撞,atomic,zhu,zhu,none,2.5,true,谱面明示注
+RS_XWC_001_059,RS_XWC_001,59,XWC_P09_N02,,AN_RING_10_QIAQI,名十掐起,atomic,atomic,none,none,2.5,true,掐起 atomic dummy
+RS_XWC_001_060,RS_XWC_001,60,XWC_P09_N02,,AN_RING_10_QIAQI,名十掐起,context,context,none,none,3.0,true,掐起 context dummy
+RS_XWC_001_061,RS_XWC_001,61,XWC_P09_N03,,SAN_TIAO_6,散挑六,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_062,RS_XWC_001,62,XWC_P09_N04,,AN_RING_10_GOU_4,名十勾四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_063,RS_XWC_001,63,XWC_P09_N04,,AN_RING_10_GOU_4,名十勾四,atomic,chuo,chuo,none,1.5,true,普通按音默认绰 realization
+RS_XWC_001_064,RS_XWC_001,64,XWC_P10_N01,,FAN_SHI_7_GOU_4,泛食七勾四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_065,RS_XWC_001,65,XWC_P10_N02,,FAN_SHI_7_TIAO_7,泛食七挑七,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_066,RS_XWC_001,66,XWC_P10_N03,,FAN_SHI_7_TIAO_6,泛食七挑六,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_067,RS_XWC_001,67,XWC_P10_N04,,FAN_SHI_7_TIAO_4,泛食七挑四,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_068,RS_XWC_001,68,XWC_P10_N05,,FAN_ZHONG_7_GOU_1,泛中七勾一,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_069,RS_XWC_001,69,XWC_P10_N06,,FAN_DA_7_BO_6,泛大七擘六,atomic,straight,none,none,1.5,true,baseline straight
+RS_XWC_001_070,RS_XWC_001,70,XWC_P10_N07,,FAN_DA7_ZHONG7_CUO_6_1,泛大七中七撮六一,atomic,straight,none,none,2.5,true,baseline straight
+RS_XWC_001_071,RS_XWC_001,71,XWC_P09_N02,XWC_P09_N01_to_N02,AN_RING_10_QIAQI,名十掐起,context,context,none,none,3.0,true,撞到掐起建议上下文录制

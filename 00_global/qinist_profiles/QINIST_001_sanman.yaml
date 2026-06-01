@@ -1,0 +1,21 @@
+qinist_id: QINIST_001
+qinist_name: 三曼
+profile_version: v1.0
+
+style_keywords:
+  - 上滑拖音充分
+  - 泛音段偏规整
+  - 掐起重视上下文承接
+  - 避免机械拼接感
+
+rhythm_preferences:
+  phrase_end_breath: medium_to_long
+  post_shang_expansion: medium_to_long
+  harmonic_section_regularness: high
+
+technique_preferences:
+  chuo_zhu: natural_not_exaggerated
+  qiaqi: context_connected
+  cuo: clean_and_balanced
+
+phase_0_note: 当前文件仅为三曼风格档案初始占位，不代表已训练模型。

@@ -1,0 +1,59 @@
+component_name,zh_name,component_category,hand,standard_internal_name,aliases,description
+bo,擘,pluck,right,bo,劈|pi,大指向内拨弦；内部标准为 bo，劈/pi 仅 alias
+tuo,托,pluck,right,tuo,,大指向外拨弦
+mo,抹,pluck,right,mo,,食指向内拨弦
+tiao,挑,pluck,right,tiao,,食指向外拨弦
+gou,勾,pluck,right,gou,,中指向内拨弦
+ti,剔,pluck,right,ti,,中指向外拨弦
+da,打,pluck,right,da,,名指向内拨弦
+zhai,摘,pluck,right,zhai,,名指向外拨弦
+cuo,撮,simultaneous_pluck,right,cuo,,同时拨二弦
+xiao_cuo,小撮,simultaneous_pluck,right,xiao_cuo,,小撮
+da_cuo,大撮,simultaneous_pluck,right,da_cuo,,大撮
+li,历,right_sequence,right,li,,连挑二弦或数弦
+juan,蠲,right_sequence,right,juan,,同弦连续抹勾
+lun,轮,right_sequence,right,lun,,连续摘剔挑
+ban_lun,半轮,right_sequence,right,ban_lun,,半轮
+suo,锁,right_sequence,right,suo,瑣,连续拨弦节型
+bei_suo,背锁,right_sequence,right,bei_suo,,背锁
+duan_suo,短锁,right_sequence,right,duan_suo,,短锁
+chang_suo,长锁,right_sequence,right,chang_suo,,长锁
+shuang_tan,双弹,right_sequence,right,shuang_tan,,双弹
+gun,滚,right_sequence,right,gun,,高到低连摘数弦
+fu,拂,right_sequence,right,fu,,低到高连抹数弦
+po,泼,right_sequence,right,po,拨|撥,内部标准为泼 po；拨/撥作为外部 alias
+la,剌,right_sequence,right,la,,剌
+po_la,泼剌,compound_sequence,right,po_la,拨剌|撥剌,组合名，由 po + la 组成
+gun_fu,滚拂,compound_sequence,right,gun_fu,,组合名，由 gun + fu 组成
+chuo,绰,pre_slide,left,chuo,,发声前从下方趋向本音
+zhu,注,pre_slide,left,zhu,,发声前从上方趋向本音
+da_chuo,大绰,pre_slide,left,da_chuo,,大幅绰
+da_zhu,大注,pre_slide,left,da_zhu,,大幅注
+xiao_chuo,小绰,pre_slide,left,xiao_chuo,,小幅绰
+xiao_zhu,小注,pre_slide,left,xiao_zhu,,小幅注
+shang,上,single_slide,left,shang,,发声后上滑
+xia,下,single_slide,left,xia,,发声后下滑
+jinfu,进复,returning_slide,left,jinfu,,整体动作，不拆
+tuifu,退复,returning_slide,left,tuifu,,整体动作，不拆
+yinshang,引上,slow_slide,left,yinshang,,缓慢上行
+tangxia,淌下,slow_slide,left,tangxia,,缓慢下行
+wanglai,往来,repeated_motion,left,wanglai,,往来动作
+zhuang,撞,micro_returning_slide,left,zhuang,,小幅进复，落点偏虚
+fan_zhuang,反撞,micro_returning_slide,left,fan_zhuang,,小幅退复，落点偏虚
+yin,吟,vibrato,left,yin,,吟
+nao,猱,vibrato,left,nao,,猱
+yin_nao,吟猱,vibrato,left,yin_nao,,吟猱
+qiaqi,掐起,left_sound,left,qiaqi,搯起|对起|对过|对按,左手发音
+zhuaqi,抓起,left_sound,left,zhuaqi,,左手发音
+daiqi,带起,left_sound,left,daiqi,,左手发音
+yan,罨,left_sound,left,yan,掩,左手发音；掩为 alias
+xu_yan,虚罨,left_sound,left,xu_yan,虚掩,左手发音
+tuichu,推出,left_sound,left,tuichu,,左手发音
+tongsheng,同声,open_pressed_harmony,both,tongsheng,,散按相应
+yinghe,应合,open_pressed_harmony,both,yinghe,,散音与按音相应
+fanghe,放合,open_pressed_harmony,both,fanghe,,散按和声关系
+fenkai,分开,compound_both_hands,both,fenkai,,复合按音动作链：抹+上+注挑回原音位
+zhu_tiao_return_attack,注挑回原音位,pressed_pluck,both,zhu_tiao_return_attack,,注挑回原音位；不另列下
+qia_cuo_sheng,掐撮声,compound_both_hands,both,qia_cuo_sheng,,掐起与撮的复合
+qia_cuo_sansheng,掐撮三声,compound_both_hands,both,qia_cuo_sansheng,,复杂双手复合
+daruan,打圆,compound_both_hands,both,daruan,,多音复合

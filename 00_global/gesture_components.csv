@@ -1,0 +1,32 @@
+gesture_id,component_order,component_role,component_hand,component_category,component_name,component_sound_type,harmonic_role,relation_to_other_component,left_finger,right_finger,right_action,string_no,string_sequence,string_sequence_direction,hui,hui_target,motion_amplitude,motion_returns,is_sound_producing,is_notation_required,notes
+SAN_TIAO_7,1,attack,right,single_pluck,tiao,散音,single,,,index,tiao,7,,,,,,false,true,false,ordinary attack component
+SAN_GOU_5,1,attack,right,single_pluck,gou,散音,single,,,middle,gou,5,,,,,,false,true,false,ordinary attack component
+SAN_TIAO_6,1,attack,right,single_pluck,tiao,散音,single,,,index,tiao,6,,,,,,false,true,false,ordinary attack component
+SAN_GOU_4,1,attack,right,single_pluck,gou,散音,single,,,middle,gou,4,,,,,,false,true,false,ordinary attack component
+SAN_TIAO_5,1,attack,right,single_pluck,tiao,散音,single,,,index,tiao,5,,,,,,false,true,false,ordinary attack component
+SAN_GOU_3,1,attack,right,single_pluck,gou,散音,single,,,middle,gou,3,,,,,,false,true,false,ordinary attack component
+SAN_TIAO_4,1,attack,right,single_pluck,tiao,散音,single,,,index,tiao,4,,,,,,false,true,false,ordinary attack component
+SAN_GOU_2,1,attack,right,single_pluck,gou,散音,single,,,middle,gou,2,,,,,,false,true,false,ordinary attack component
+SAN_TIAO_3,1,attack,right,single_pluck,tiao,散音,single,,,index,tiao,3,,,,,,false,true,false,ordinary attack component
+AN_RING_10_GOU_5,1,attack,right,pressed_pluck,gou,按音,single,,ring,middle,gou,5,,,10,,,false,true,false,ordinary attack component
+AN_RING_10_GOU_4,1,attack,right,pressed_pluck,gou,按音,single,,ring,middle,gou,4,,,10,,,false,true,false,ordinary attack component
+AN_RING_10_8_GOU_3,1,attack,right,pressed_pluck,gou,按音,single,,ring,middle,gou,3,,,10.8,,,false,true,false,ordinary attack component
+AN_RING_10_GOU_2,1,attack,right,pressed_pluck,gou,按音,single,,ring,middle,gou,2,,,10,,,false,true,false,ordinary attack component
+AN_RING_10_GOU_1,1,attack,right,pressed_pluck,gou,按音,single,,ring,middle,gou,1,,,10,,,false,true,false,ordinary attack component
+AN_THUMB_9_GOU_1,1,attack,right,pressed_pluck,gou,按音,single,,thumb,middle,gou,1,,,9,,,false,true,false,ordinary attack component
+AN_THUMB_9_GOU_2,1,attack,right,pressed_pluck,gou,按音,single,,thumb,middle,gou,2,,,9,,,false,true,false,ordinary attack component
+AN_THUMB_9_GOU_3,1,attack,right,pressed_pluck,gou,按音,single,,thumb,middle,gou,3,,,9,,,false,true,false,ordinary attack component
+AN_THUMB_9_GOU_4,1,attack,right,pressed_pluck,gou,按音,single,,thumb,middle,gou,4,,,9,,,false,true,false,ordinary attack component
+AN_THUMB_9_GOU_5,1,attack,right,pressed_pluck,gou,按音,single,,thumb,middle,gou,5,,,9,,,false,true,false,ordinary attack component
+AN_THUMB_9_GOU_6_SHANG_79,1,attack,right,pressed_pluck,gou,按音,,,thumb,middle,gou,6,,,9,,,false,true,false,大指九徽勾六
+AN_THUMB_9_GOU_6_SHANG_79,2,post_motion,left,single_slide,shang,按音,,,thumb,,,6,,,9,7.9,large,false,true,true,上至七徽九分
+AN_THUMB_9_GOU_4_ZHUANG,1,attack,right,pressed_pluck,gou,按音,,,thumb,middle,gou,4,,,9,,,false,true,false,大指九徽勾四
+AN_THUMB_9_GOU_4_ZHUANG,2,post_motion,left,micro_returning_slide,zhuang,按音,,,thumb,,,4,,,9,,micro,true,true,true,撞；小幅进复，落点偏虚
+AN_RING_10_QIAQI,1,left_sound,left,left_sound,qiaqi,按音,,,ring,,,,,,10,,,false,true,true,掐起 requires context sample
+FAN_SHI_7_GOU_4,1,attack,right,harmonic_pluck,gou,泛音,single,,index,middle,gou,4,,,7,,,false,true,false,ordinary attack component
+FAN_SHI_7_TIAO_7,1,attack,right,harmonic_pluck,tiao,泛音,single,,index,index,tiao,7,,,7,,,false,true,false,ordinary attack component
+FAN_SHI_7_TIAO_6,1,attack,right,harmonic_pluck,tiao,泛音,single,,index,index,tiao,6,,,7,,,false,true,false,ordinary attack component
+FAN_SHI_7_TIAO_4,1,attack,right,harmonic_pluck,tiao,泛音,single,,index,index,tiao,4,,,7,,,false,true,false,ordinary attack component
+FAN_ZHONG_7_GOU_1,1,attack,right,harmonic_pluck,gou,泛音,single,,middle,middle,gou,1,,,7,,,false,true,false,ordinary attack component
+FAN_DA_7_BO_6,1,attack,right,harmonic_pluck,bo,泛音,single,,thumb,thumb,bo,6,,,7,,,false,true,false,ordinary attack component
+FAN_DA7_ZHONG7_CUO_6_1,1,attack,right,simultaneous_pluck,cuo,泛音,compound,simultaneous,thumb+middle,thumb+middle,cuo,,6+1,simultaneous,7,,,false,true,true,复合泛音撮音

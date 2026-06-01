@@ -1,0 +1,26 @@
+schema_contract_version: v1.1
+
+core_rules:
+  - sound_type 只能是 散音 / 按音 / 泛音。
+  - primary_sound_type 只能是 散音 / 按音 / 泛音。
+  - 复杂技法通过 sound_profile、gesture_family、gesture_components 表达。
+  - score_events 只记录曲中事件。
+  - gesture_templates 记录模板总览。
+  - gesture_components 记录动作组件。
+  - sample_assets 记录三曼实际采样实现。
+  - 默认绰不写入 gesture_id。
+  - 谱面明示注必须写入 notation_pre_action=zhu。
+  - 谱面明示绰写入 notation_pre_action=chuo。
+  - 谱面明示吟猱写入 notation_vibrato。
+  - 上、下、进复、退复、撞、反撞写入 gesture_components。
+  - 撞、反撞属于 micro_returning_slide。
+  - 不使用 percussive 字段。
+  - 进复、退复不可拆。
+  - bo=擘，po=泼，la=剌。
+  - 泼剌=po_la，滚拂=gun_fu，但底层组件拆开。
+  - 掐起、罨、带起属于 left_hand_sound。
+  - 放合、应合属于 open_pressed_harmony。
+  - 分开属于 compound_both_hands，sound_profile=compound_pressed_motion，组件为 抹、上、注挑回原音位。
+  - 名十掐起属于 按音，gesture_family=left_hand_sound，context_dependency=inherit_previous。
+  - 泛大七中七撮六一属于 泛音，gesture_family=simultaneous_pluck，is_composite=true。
+  - 本轮 Phase 0.1 只使用 dummy sample，不使用真实采样。

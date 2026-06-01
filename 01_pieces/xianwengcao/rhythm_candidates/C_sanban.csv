@@ -1,0 +1,52 @@
+candidate_id,event_id,event_start,total_duration,pre_attack_duration,attack_time,post_motion_start,post_motion_duration,release_tail,after_gap,dynamic,reason
+C_sanban,XWC_P01_N01,0.000,1.250,0.000,0.000,0.000,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P01_N02,1.330,1.250,0.000,1.330,1.330,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P01_N03,2.660,1.250,0.000,2.660,2.660,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P01_N04,3.990,2.000,0.000,3.990,3.990,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P02_N01,6.320,1.250,0.000,6.320,6.320,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P02_N02,7.650,1.250,0.000,7.650,7.650,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P02_N03,8.980,1.250,0.000,8.980,8.980,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P02_N04,10.310,1.650,0.000,10.310,10.310,0.000,0.300,0.080,mp,C_sanban base 按音
+C_sanban,XWC_P02_N05,12.040,1.250,0.000,12.040,12.040,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P02_N06,13.370,2.000,0.000,13.370,13.370,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P03_N01,15.700,1.250,0.000,15.700,15.700,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P03_N02,17.030,1.250,0.000,17.030,17.030,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P03_N03,18.360,1.250,0.000,18.360,18.360,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P03_N04,19.690,1.650,0.120,19.810,19.810,0.000,0.300,0.080,mp,C_sanban base 按音
+C_sanban,XWC_P03_N05,21.420,1.250,0.000,21.420,21.420,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P03_N06,22.750,2.000,0.000,22.750,22.750,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P04_N01,25.080,1.250,0.000,25.080,25.080,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P04_N02,26.410,1.250,0.000,26.410,26.410,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P04_N03,27.740,1.250,0.000,27.740,27.740,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P04_N04,29.070,1.650,0.000,29.070,29.070,0.000,0.300,0.080,mp,C_sanban base 按音
+C_sanban,XWC_P04_N05,30.800,1.250,0.000,30.800,30.800,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P04_N06,32.130,2.000,0.000,32.130,32.130,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P05_N01,34.460,1.250,0.000,34.460,34.460,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P05_N02,35.790,1.250,0.000,35.790,35.790,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P05_N03,37.120,1.250,0.000,37.120,37.120,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P05_N04,38.450,1.650,0.000,38.450,38.450,0.000,0.300,0.080,mp,C_sanban base 按音
+C_sanban,XWC_P05_N05,40.180,1.250,0.000,40.180,40.180,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P05_N06,41.510,2.000,0.000,41.510,41.510,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P06_N01,43.840,1.250,0.000,43.840,43.840,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P06_N02,45.170,1.650,0.000,45.170,45.170,0.000,0.300,0.080,mp,C_sanban base 按音
+C_sanban,XWC_P06_N03,46.900,1.250,0.000,46.900,46.900,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P06_N04,48.230,2.000,0.000,48.230,48.230,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P07_N01,50.560,1.250,0.000,50.560,50.560,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P07_N02,51.890,1.650,0.000,51.890,51.890,0.000,0.300,0.080,mp,C_sanban base 按音
+C_sanban,XWC_P07_N03,53.620,1.250,0.000,53.620,53.620,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P07_N04,54.950,2.000,0.000,54.950,54.950,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P08_N01,57.280,1.650,0.000,57.280,57.280,0.000,0.300,0.080,mp,C_sanban base 按音
+C_sanban,XWC_P08_N02,59.010,2.900,0.000,59.010,59.010,1.250,0.300,0.080,mp,C_sanban base 按音; 上七九 post motion expanded
+C_sanban,XWC_P08_N03,61.990,1.250,0.000,61.990,61.990,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P08_N04,63.320,2.000,0.000,63.320,63.320,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P09_N01,65.650,1.970,0.120,65.770,65.770,0.320,0.300,0.080,mp,C_sanban base 按音; 撞 micro returning slide
+C_sanban,XWC_P09_N02,67.700,1.650,0.000,67.700,67.700,0.000,0.300,0.040,mp,C_sanban base 按音; 掐起承接前音
+C_sanban,XWC_P09_N03,69.390,1.250,0.000,69.390,69.390,0.000,0.300,0.080,mp,C_sanban base 散音
+C_sanban,XWC_P09_N04,70.720,2.000,0.000,70.720,70.720,0.000,0.300,0.330,mp,C_sanban base 按音; phrase_end breath
+C_sanban,XWC_P10_N01,73.050,1.200,0.000,73.050,73.050,0.000,0.300,0.080,mp,C_sanban base 泛音; 泛音段更规整
+C_sanban,XWC_P10_N02,74.330,1.200,0.000,74.330,74.330,0.000,0.300,0.080,mp,C_sanban base 泛音; 泛音段更规整
+C_sanban,XWC_P10_N03,75.610,1.200,0.000,75.610,75.610,0.000,0.300,0.080,mp,C_sanban base 泛音; 泛音段更规整
+C_sanban,XWC_P10_N04,76.890,1.200,0.000,76.890,76.890,0.000,0.300,0.080,mp,C_sanban base 泛音; 泛音段更规整
+C_sanban,XWC_P10_N05,78.170,1.200,0.000,78.170,78.170,0.000,0.300,0.080,mp,C_sanban base 泛音; 泛音段更规整
+C_sanban,XWC_P10_N06,79.450,1.200,0.000,79.450,79.450,0.000,0.300,0.080,mp,C_sanban base 泛音; 泛音段更规整
+C_sanban,XWC_P10_N07,80.730,1.550,0.000,80.730,80.730,0.000,0.300,0.330,mp,C_sanban base 泛音; phrase_end breath; 泛音段更规整
