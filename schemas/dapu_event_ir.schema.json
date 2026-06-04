@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cyber Guqin Dapu Event IR",
+  "type": "object",
+  "required": ["event_id", "work_id", "event_group_id", "source_token", "normalized_token", "primary_sound_type", "gesture_family", "source_status", "needs_review", "components"],
+  "properties": {
+    "event_id": { "type": "string" },
+    "work_id": { "type": "string" },
+    "event_group_id": { "type": "string" },
+    "source_token": { "type": "string" },
+    "normalized_token": { "type": "string" },
+    "position": { "type": "object" },
+    "primary_sound_type": { "type": "string", "enum": ["散音", "按音", "泛音"] },
+    "sound_profile": { "type": "string" },
+    "gesture_family": { "type": "string" },
+    "gesture_id_candidate": { "type": "string" },
+    "notation_pre_action": { "type": "string", "enum": ["none", "chuo", "zhu"] },
+    "notation_vibrato": { "type": "string", "enum": ["none", "yin", "nao", "yin_nao"] },
+    "context_dependency": { "type": "string" },
+    "inherits_string_from_event_id": { "type": ["string", "null"] },
+    "inherits_position_from_event_id": { "type": ["string", "null"] },
+    "inherits_right_hand_from_event_id": { "type": ["string", "null"] },
+    "source_status": { "type": "string", "enum": ["manual_input", "ocr_candidate", "verified", "legacy_v1", "unknown"] },
+    "needs_review": { "type": "boolean" },
+    "certainty": { "type": "number", "minimum": 0, "maximum": 1 },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["component_order", "component_role", "component_hand", "component_category", "component_name", "component_sound_type", "is_sound_producing"],
+        "properties": {
+          "component_order": { "type": "integer" },
+          "component_role": { "type": "string" },
+          "component_hand": { "type": "string", "enum": ["left", "right", "both", "none"] },
+          "component_category": { "type": "string" },
+          "component_name": { "type": "string" },
+          "component_sound_type": { "type": "string", "enum": ["散音", "按音", "泛音", "none"] },
+          "string_no": { "type": ["integer", "null"] },
+          "string_sequence": { "type": ["array", "null"], "items": { "type": "integer" } },
+          "hui": { "type": ["string", "number", "null"] },
+          "hui_target": { "type": ["string", "number", "null"] },
+          "motion_returns": { "type": "boolean" },
+          "is_sound_producing": { "type": "boolean" },
+          "is_notation_required": { "type": "boolean" },
+          "virtual_or_weak": { "type": "boolean" },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "notes": { "type": "string" },
+    "source_refs": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

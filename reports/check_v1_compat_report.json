@@ -1,0 +1,111 @@
+{
+  "checker": "check_v1_compat.py",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+    "minimal patch recommended for first-class Dapu Event IR fields"
+  ],
+  "authority_files_present": [
+    "00_global/alias_rules.yaml",
+    "00_global/gesture_component_lexicon.csv",
+    "00_global/gesture_family_catalog.csv",
+    "00_global/guqin_fingering_ontology.yaml",
+    "00_global/sample_selection_policy.yaml",
+    "00_global/schema_contract.yaml",
+    "06_docs/GESTURE_ONTOLOGY.md"
+  ],
+  "v1_headers": {
+    "score_events": [
+      "context_dependency",
+      "event_id",
+      "event_no",
+      "event_role",
+      "gesture_id",
+      "inherited_from_event_id",
+      "normalized_input",
+      "notation_pre_action",
+      "notation_vibrato",
+      "notes",
+      "parse_status",
+      "phrase_id",
+      "piece_id",
+      "raw_input"
+    ],
+    "recording_script": [
+      "event_id",
+      "event_range",
+      "expected_sample_type",
+      "gesture_id",
+      "need_full_decay",
+      "normalized_name",
+      "notes",
+      "order_no",
+      "realization_pre_action",
+      "realization_variant",
+      "realization_vibrato",
+      "recommended_pause_s",
+      "recording_id",
+      "script_id"
+    ],
+    "sample_assets": [
+      "attack_marker_ms",
+      "bit_depth",
+      "dynamic",
+      "extraction_method",
+      "file_path",
+      "gesture_id",
+      "notes",
+      "perceptual_offset_ms",
+      "qin_id",
+      "qinist_id",
+      "quality_status",
+      "realization_pre_action",
+      "realization_variant",
+      "realization_vibrato",
+      "sample_id",
+      "sample_rate",
+      "sample_type",
+      "source_event_id",
+      "source_event_range",
+      "source_recording_id",
+      "source_segment_id",
+      "source_type",
+      "tail_ms",
+      "take",
+      "tuning_id"
+    ]
+  },
+  "mapping": {
+    "direct_score_event_fields": {
+      "event_id": "event_id",
+      "source_token": "raw_input",
+      "normalized_token": "normalized_input",
+      "gesture_id_candidate": "gesture_id",
+      "notation_pre_action": "notation_pre_action",
+      "notation_vibrato": "notation_vibrato",
+      "context_dependency": "context_dependency",
+      "source_status": "parse_status"
+    },
+    "minimal_patch_recommended_fields": [
+      "certainty",
+      "components",
+      "event_group_id",
+      "gesture_family",
+      "inherits_position_from_event_id",
+      "inherits_right_hand_from_event_id",
+      "inherits_string_from_event_id",
+      "needs_review",
+      "position",
+      "primary_sound_type",
+      "sound_profile"
+    ]
+  },
+  "non_invasive_confirmations": {
+    "phase": "Phase S0 Skills Foundation",
+    "v1_mainline_modified": false,
+    "recording_tasks_modified": false,
+    "recording_script_ingest_executed": false,
+    "render_audio_modified": false,
+    "smoke_test_modified": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cyber Guqin Dapu Token",
+  "type": "object",
+  "required": ["token_id", "work_id", "source_token", "normalized_token", "source_status", "needs_review"],
+  "properties": {
+    "token_id": { "type": "string" },
+    "work_id": { "type": "string" },
+    "source_token": { "type": "string" },
+    "normalized_token": { "type": "string" },
+    "source_status": { "type": "string", "enum": ["manual_input", "ocr_candidate", "verified", "legacy_v1", "unknown"] },
+    "ocr_candidates": { "type": "array", "items": { "type": "string" } },
+    "needs_review": { "type": "boolean" },
+    "certainty": { "type": "number", "minimum": 0, "maximum": 1 },
+    "notes": { "type": "string" },
+    "source_refs": { "type": "array", "items": { "type": "string" } }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "source_status": { "const": "ocr_candidate" } } },
+      "then": { "properties": { "needs_review": { "const": true } } }
+    }
+  ],
+  "additionalProperties": false
+}

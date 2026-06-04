@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cyber Guqin Canon Gesture Family",
+  "type": "object",
+  "required": ["gesture_family", "zh_name", "description"],
+  "properties": {
+    "gesture_family": {
+      "type": "string",
+      "enum": ["single_pluck", "pressed_pluck", "harmonic_pluck", "simultaneous_pluck", "right_hand_sequence", "left_hand_sound", "post_motion", "vibrato", "open_pressed_harmony", "compound_both_hands", "tempo_expression"]
+    },
+    "zh_name": { "type": "string" },
+    "description": { "type": "string" },
+    "examples": { "type": "array", "items": { "type": "string" } },
+    "requires_components": { "type": "boolean" },
+    "default_requires_context_sample": { "type": ["boolean", "string"] }
+  },
+  "not": { "properties": { "gesture_family": { "const": "pressed_compound_motion" } } },
+  "additionalProperties": false
+}

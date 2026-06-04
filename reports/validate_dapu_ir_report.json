@@ -1,0 +1,10 @@
+{
+  "validator": "validate_dapu_ir.py",
+  "fixture": "tests/fixtures/xianwengcao_events_minimal.jsonl",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "events": 7
+  }
+}
