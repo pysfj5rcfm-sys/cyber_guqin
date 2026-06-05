@@ -1,0 +1,3387 @@
+{
+  "audit_type": "blind_v1_to_canon_coverage",
+  "piece_id": "XWC",
+  "total_score_events": 51,
+  "total_gestures": 29,
+  "total_components": 31,
+  "coverage_summary": {
+    "qxby_batch_001_draft_covered": [
+      "component_category:left_sound",
+      "component_category:micro_returning_slide",
+      "component_category:simultaneous_pluck",
+      "component_category:single_pluck",
+      "component_category:single_slide",
+      "component_name:bo",
+      "component_name:cuo",
+      "component_name:gou",
+      "component_name:qiaqi",
+      "component_name:tiao",
+      "gesture_family:left_hand_sound",
+      "gesture_family:post_motion",
+      "gesture_family:simultaneous_pluck",
+      "gesture_family:single_pluck",
+      "post_motion:shang",
+      "post_motion:zhuang",
+      "post_motion_return_structure:zhuang",
+      "pre_action:zhu",
+      "right_hand_action:bo",
+      "right_hand_action:cuo",
+      "right_hand_action:gou",
+      "right_hand_action:tiao",
+      "sound_profile:left_hand_sound",
+      "sound_profile:post_motion",
+      "sound_profile:single"
+    ],
+    "project_canon_seed_covered": [
+      "component_category:harmonic_pluck",
+      "component_category:pressed_pluck",
+      "gesture_family:harmonic_pluck",
+      "gesture_family:pressed_pluck",
+      "sound_type:按音",
+      "sound_type:散音",
+      "sound_type:泛音"
+    ],
+    "internal_ontology_only": [
+      "sound_profile:harmonic_compound"
+    ],
+    "v1_runtime_only": [
+      "composite_gesture_structure:AN_RING_10_QIAQI",
+      "composite_gesture_structure:AN_THUMB_9_GOU_4_ZHUANG",
+      "composite_gesture_structure:AN_THUMB_9_GOU_6_SHANG_79",
+      "composite_gesture_structure:FAN_DA7_ZHONG7_CUO_6_1",
+      "context_dependency:inherit_previous",
+      "gesture_id:AN_RING_10_8_GOU_3",
+      "gesture_id:AN_RING_10_GOU_1",
+      "gesture_id:AN_RING_10_GOU_2",
+      "gesture_id:AN_RING_10_GOU_4",
+      "gesture_id:AN_RING_10_GOU_5",
+      "gesture_id:AN_RING_10_QIAQI",
+      "gesture_id:AN_THUMB_9_GOU_1",
+      "gesture_id:AN_THUMB_9_GOU_2",
+      "gesture_id:AN_THUMB_9_GOU_3",
+      "gesture_id:AN_THUMB_9_GOU_4",
+      "gesture_id:AN_THUMB_9_GOU_4_ZHUANG",
+      "gesture_id:AN_THUMB_9_GOU_5",
+      "gesture_id:AN_THUMB_9_GOU_6_SHANG_79",
+      "gesture_id:FAN_DA7_ZHONG7_CUO_6_1",
+      "gesture_id:FAN_DA_7_BO_6",
+      "gesture_id:FAN_SHI_7_GOU_4",
+      "gesture_id:FAN_SHI_7_TIAO_4",
+      "gesture_id:FAN_SHI_7_TIAO_6",
+      "gesture_id:FAN_SHI_7_TIAO_7",
+      "gesture_id:FAN_ZHONG_7_GOU_1",
+      "gesture_id:SAN_GOU_2",
+      "gesture_id:SAN_GOU_3",
+      "gesture_id:SAN_GOU_4",
+      "gesture_id:SAN_GOU_5",
+      "gesture_id:SAN_TIAO_3",
+      "gesture_id:SAN_TIAO_4",
+      "gesture_id:SAN_TIAO_5",
+      "gesture_id:SAN_TIAO_6",
+      "gesture_id:SAN_TIAO_7",
+      "harmonic_touch_finger:index",
+      "harmonic_touch_finger:middle",
+      "harmonic_touch_finger:thumb",
+      "harmonic_touch_finger:thumb_middle",
+      "hui:10",
+      "hui:10_8",
+      "hui:7",
+      "hui:9",
+      "hui_target:7_9",
+      "inherited_context_structure:XWC_P09_N02_inherits_XWC_P09_N01",
+      "left_finger:index",
+      "left_finger:middle",
+      "left_finger:ring",
+      "left_finger:thumb",
+      "left_finger:thumb_middle",
+      "right_hand_finger:index",
+      "right_hand_finger:middle",
+      "right_hand_finger:thumb",
+      "right_hand_finger:thumb_middle",
+      "string_number:1",
+      "string_number:2",
+      "string_number:3",
+      "string_number:4",
+      "string_number:5",
+      "string_number:6",
+      "string_number:6_1",
+      "string_number:7",
+      "string_sequence:6_1"
+    ],
+    "missing_or_unmapped": [],
+    "ambiguous": [],
+    "recommended_batch002": [
+      "sound_profile:harmonic_compound",
+      "component_category:harmonic_pluck",
+      "component_category:pressed_pluck",
+      "gesture_family:harmonic_pluck",
+      "gesture_family:pressed_pluck",
+      "sound_type:按音",
+      "sound_type:散音",
+      "sound_type:泛音",
+      "context_dependency:inherit_previous",
+      "harmonic_touch_finger:index",
+      "harmonic_touch_finger:middle",
+      "harmonic_touch_finger:thumb",
+      "harmonic_touch_finger:thumb_middle",
+      "left_finger:index",
+      "left_finger:middle",
+      "left_finger:ring",
+      "left_finger:thumb",
+      "left_finger:thumb_middle",
+      "right_hand_finger:index",
+      "right_hand_finger:middle",
+      "right_hand_finger:thumb",
+      "right_hand_finger:thumb_middle"
+    ]
+  },
+  "extraction_summary": {
+    "gesture_id": [
+      "AN_RING_10_8_GOU_3",
+      "AN_RING_10_GOU_1",
+      "AN_RING_10_GOU_2",
+      "AN_RING_10_GOU_4",
+      "AN_RING_10_GOU_5",
+      "AN_RING_10_QIAQI",
+      "AN_THUMB_9_GOU_1",
+      "AN_THUMB_9_GOU_2",
+      "AN_THUMB_9_GOU_3",
+      "AN_THUMB_9_GOU_4",
+      "AN_THUMB_9_GOU_4_ZHUANG",
+      "AN_THUMB_9_GOU_5",
+      "AN_THUMB_9_GOU_6_SHANG_79",
+      "FAN_DA7_ZHONG7_CUO_6_1",
+      "FAN_DA_7_BO_6",
+      "FAN_SHI_7_GOU_4",
+      "FAN_SHI_7_TIAO_4",
+      "FAN_SHI_7_TIAO_6",
+      "FAN_SHI_7_TIAO_7",
+      "FAN_ZHONG_7_GOU_1",
+      "SAN_GOU_2",
+      "SAN_GOU_3",
+      "SAN_GOU_4",
+      "SAN_GOU_5",
+      "SAN_TIAO_3",
+      "SAN_TIAO_4",
+      "SAN_TIAO_5",
+      "SAN_TIAO_6",
+      "SAN_TIAO_7"
+    ],
+    "raw_input": [
+      "按音名指十徽勾一弦",
+      "按音名指十徽勾二弦",
+      "按音名指十徽勾五弦",
+      "按音名指十徽勾四弦",
+      "按音名指十徽掐起",
+      "按音名指注十徽八勾三弦",
+      "按音大指九徽勾一弦",
+      "按音大指九徽勾三弦",
+      "按音大指九徽勾二弦",
+      "按音大指九徽勾五弦",
+      "按音大指九徽勾六上七九",
+      "按音大指九徽勾四弦",
+      "按音大指注九徽勾四撞",
+      "散音勾三弦",
+      "散音勾二弦",
+      "散音勾五弦",
+      "散音勾四弦",
+      "散音挑七弦",
+      "散音挑三弦",
+      "散音挑五弦",
+      "散音挑六弦",
+      "散音挑四弦",
+      "泛音中指七徽勾一弦",
+      "泛音大指七徽中指七徽撮六一",
+      "泛音大指七徽擘六弦",
+      "泛音食指七徽勾四弦",
+      "泛音食指七徽挑七弦",
+      "泛音食指七徽挑六弦",
+      "泛音食指七徽挑四弦"
+    ],
+    "normalized_input": [
+      "名十勾一",
+      "名十勾二",
+      "名十勾五",
+      "名十勾四",
+      "名十徽八勾三",
+      "名十掐起",
+      "大九勾一",
+      "大九勾三",
+      "大九勾二",
+      "大九勾五",
+      "大九勾六上七九",
+      "大九勾四",
+      "大九勾四撞",
+      "散勾三",
+      "散勾二",
+      "散勾五",
+      "散勾四",
+      "散挑七",
+      "散挑三",
+      "散挑五",
+      "散挑六",
+      "散挑四",
+      "泛中七勾一",
+      "泛大七中七撮六一",
+      "泛大七擘六",
+      "泛食七勾四",
+      "泛食七挑七",
+      "泛食七挑六",
+      "泛食七挑四"
+    ],
+    "notation_pre_action": [
+      "zhu"
+    ],
+    "context_dependency": [
+      "inherit_previous"
+    ],
+    "inherited_from_event_id": [
+      "XWC_P09_N01"
+    ],
+    "normalized_name": [
+      "名十勾一",
+      "名十勾二",
+      "名十勾五",
+      "名十勾四",
+      "名十徽八勾三",
+      "名十掐起",
+      "大九勾一",
+      "大九勾三",
+      "大九勾二",
+      "大九勾五",
+      "大九勾六上七九",
+      "大九勾四",
+      "大九勾四撞",
+      "散勾三",
+      "散勾二",
+      "散勾五",
+      "散勾四",
+      "散挑七",
+      "散挑三",
+      "散挑五",
+      "散挑六",
+      "散挑四",
+      "泛中七勾一",
+      "泛大七中七撮六一",
+      "泛大七擘六",
+      "泛食七勾四",
+      "泛食七挑七",
+      "泛食七挑六",
+      "泛食七挑四"
+    ],
+    "primary_sound_type": [
+      "按音",
+      "散音",
+      "泛音"
+    ],
+    "sound_profile": [
+      "harmonic_compound",
+      "left_hand_sound",
+      "post_motion",
+      "single"
+    ],
+    "gesture_family": [
+      "harmonic_pluck",
+      "left_hand_sound",
+      "post_motion",
+      "pressed_pluck",
+      "simultaneous_pluck",
+      "single_pluck"
+    ],
+    "primary_string_no": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "6+1",
+      "7"
+    ],
+    "primary_right_action": [
+      "bo",
+      "cuo",
+      "gou",
+      "tiao"
+    ],
+    "is_composite": [
+      "false",
+      "true"
+    ],
+    "primary_hui": [
+      "10",
+      "10.8",
+      "7",
+      "9"
+    ],
+    "primary_left_finger": [
+      "index",
+      "middle",
+      "ring",
+      "thumb",
+      "thumb+middle"
+    ],
+    "component_name": [
+      "bo",
+      "cuo",
+      "gou",
+      "qiaqi",
+      "shang",
+      "tiao",
+      "zhuang"
+    ],
+    "component_category": [
+      "harmonic_pluck",
+      "left_sound",
+      "micro_returning_slide",
+      "pressed_pluck",
+      "simultaneous_pluck",
+      "single_pluck",
+      "single_slide"
+    ],
+    "component_sound_type": [
+      "按音",
+      "散音",
+      "泛音"
+    ],
+    "component_hand": [
+      "left",
+      "right"
+    ],
+    "right_action": [
+      "bo",
+      "cuo",
+      "gou",
+      "tiao"
+    ],
+    "string_no": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "motion_returns": [
+      "false",
+      "true"
+    ],
+    "is_sound_producing": [
+      "true"
+    ],
+    "right_finger": [
+      "index",
+      "middle",
+      "thumb",
+      "thumb+middle"
+    ],
+    "harmonic_role": [
+      "compound",
+      "single"
+    ],
+    "hui": [
+      "10",
+      "10.8",
+      "7",
+      "9"
+    ],
+    "left_finger": [
+      "index",
+      "middle",
+      "ring",
+      "thumb",
+      "thumb+middle"
+    ],
+    "hui_target": [
+      "7.9"
+    ],
+    "string_sequence": [
+      "6+1"
+    ]
+  },
+  "items": [
+    {
+      "item_id": "sound_profile:harmonic_compound",
+      "term": "harmonic_compound",
+      "internal_name": "harmonic_compound",
+      "item_type": "sound_profile",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:sound_profile"
+      ],
+      "coverage_status": "internal_ontology_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Add external source evidence if this observed V1 concept should be promoted into canon evidence.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "component_category:harmonic_pluck",
+      "term": "harmonic_pluck",
+      "internal_name": "harmonic_pluck",
+      "item_type": "component_category",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_category"
+      ],
+      "coverage_status": "project_canon_seed_covered",
+      "used_in_events": [
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04",
+        "XWC_P10_N05",
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "FAN_DA_7_BO_6",
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:harmonic_pluck"
+      ],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Optional external source evidence can be added if this is a reusable canon concept.",
+      "batch002_priority": "P1",
+      "notes": ""
+    },
+    {
+      "item_id": "component_category:pressed_pluck",
+      "term": "pressed_pluck",
+      "internal_name": "pressed_pluck",
+      "item_type": "component_category",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_category"
+      ],
+      "coverage_status": "project_canon_seed_covered",
+      "used_in_events": [
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P09_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_5",
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:pressed_pluck",
+        "canon/technique_rules.yaml:fenkai"
+      ],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Optional external source evidence can be added if this is a reusable canon concept.",
+      "batch002_priority": "P1",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_family:harmonic_pluck",
+      "term": "harmonic_pluck",
+      "internal_name": "harmonic_pluck",
+      "item_type": "gesture_family",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:gesture_family"
+      ],
+      "coverage_status": "project_canon_seed_covered",
+      "used_in_events": [
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04",
+        "XWC_P10_N05",
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "FAN_DA_7_BO_6",
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:harmonic_pluck"
+      ],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Optional external source evidence can be added if this is a reusable canon concept.",
+      "batch002_priority": "P1",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_family:pressed_pluck",
+      "term": "pressed_pluck",
+      "internal_name": "pressed_pluck",
+      "item_type": "gesture_family",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:gesture_family"
+      ],
+      "coverage_status": "project_canon_seed_covered",
+      "used_in_events": [
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N04",
+        "XWC_P09_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_5"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:pressed_pluck",
+        "canon/technique_rules.yaml:fenkai"
+      ],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Optional external source evidence can be added if this is a reusable canon concept.",
+      "batch002_priority": "P1",
+      "notes": ""
+    },
+    {
+      "item_id": "sound_type:按音",
+      "term": "按音",
+      "internal_name": "按音",
+      "item_type": "sound_type",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:sound_type",
+        "00_global/gesture_templates.csv:sound_type"
+      ],
+      "coverage_status": "project_canon_seed_covered",
+      "used_in_events": [
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P09_N02",
+        "XWC_P09_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_RING_10_QIAQI",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_5",
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/terms.yaml:sound_type_an",
+        "canon/technique_rules.yaml:qiaqi",
+        "canon/technique_rules.yaml:fanghe",
+        "canon/technique_rules.yaml:yinghe",
+        "canon/technique_rules.yaml:fenkai"
+      ],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Optional external source evidence can be added if this is a reusable canon concept.",
+      "batch002_priority": "P1",
+      "notes": ""
+    },
+    {
+      "item_id": "sound_type:散音",
+      "term": "散音",
+      "internal_name": "散音",
+      "item_type": "sound_type",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:sound_type",
+        "00_global/gesture_templates.csv:sound_type"
+      ],
+      "coverage_status": "project_canon_seed_covered",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N02",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N02",
+        "XWC_P02_N03",
+        "XWC_P02_N05",
+        "XWC_P03_N01",
+        "XWC_P03_N02",
+        "XWC_P03_N03",
+        "XWC_P03_N05",
+        "XWC_P04_N01",
+        "XWC_P04_N02",
+        "XWC_P04_N03",
+        "XWC_P04_N05",
+        "XWC_P05_N01",
+        "XWC_P05_N02",
+        "XWC_P05_N03",
+        "XWC_P05_N05",
+        "XWC_P06_N01",
+        "XWC_P06_N03",
+        "XWC_P07_N01",
+        "XWC_P07_N03",
+        "XWC_P08_N03",
+        "XWC_P09_N03"
+      ],
+      "used_in_gestures": [
+        "SAN_GOU_2",
+        "SAN_GOU_3",
+        "SAN_GOU_4",
+        "SAN_GOU_5",
+        "SAN_TIAO_3",
+        "SAN_TIAO_4",
+        "SAN_TIAO_5",
+        "SAN_TIAO_6",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/terms.yaml:sound_type_san"
+      ],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Optional external source evidence can be added if this is a reusable canon concept.",
+      "batch002_priority": "P1",
+      "notes": ""
+    },
+    {
+      "item_id": "sound_type:泛音",
+      "term": "泛音",
+      "internal_name": "泛音",
+      "item_type": "sound_type",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:sound_type",
+        "00_global/gesture_templates.csv:sound_type"
+      ],
+      "coverage_status": "project_canon_seed_covered",
+      "used_in_events": [
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04",
+        "XWC_P10_N05",
+        "XWC_P10_N06",
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1",
+        "FAN_DA_7_BO_6",
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/terms.yaml:sound_type_fan"
+      ],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Optional external source evidence can be added if this is a reusable canon concept.",
+      "batch002_priority": "P1",
+      "notes": ""
+    },
+    {
+      "item_id": "component_category:left_sound",
+      "term": "left_sound",
+      "internal_name": "left_sound",
+      "item_type": "component_category",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_category"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:qiaqi",
+        "canon/component_lexicon.yaml:yan",
+        "canon/component_lexicon.yaml:daiqi",
+        "canon/technique_rules.yaml:qiaqi"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_015"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "component_category:micro_returning_slide",
+      "term": "micro_returning_slide",
+      "internal_name": "micro_returning_slide",
+      "item_type": "component_category",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_category"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:zhuang",
+        "canon/component_lexicon.yaml:fan_zhuang",
+        "canon/technique_rules.yaml:zhuang"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_011",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_012"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "component_category:simultaneous_pluck",
+      "term": "simultaneous_pluck",
+      "internal_name": "simultaneous_pluck",
+      "item_type": "component_category",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_category"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:cuo",
+        "canon/gesture_families.yaml:simultaneous_pluck",
+        "canon/technique_rules.yaml:cuo"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_016"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "component_category:single_pluck",
+      "term": "single_pluck",
+      "internal_name": "single_pluck",
+      "item_type": "component_category",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_category"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N02",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N02",
+        "XWC_P02_N03",
+        "XWC_P02_N05",
+        "XWC_P03_N01",
+        "XWC_P03_N02",
+        "XWC_P03_N03",
+        "XWC_P03_N05",
+        "XWC_P04_N01",
+        "XWC_P04_N02",
+        "XWC_P04_N03",
+        "XWC_P04_N05",
+        "XWC_P05_N01",
+        "XWC_P05_N02",
+        "XWC_P05_N03",
+        "XWC_P05_N05",
+        "XWC_P06_N01",
+        "XWC_P06_N03",
+        "XWC_P07_N01",
+        "XWC_P07_N03",
+        "XWC_P08_N03",
+        "XWC_P09_N03"
+      ],
+      "used_in_gestures": [
+        "SAN_GOU_2",
+        "SAN_GOU_3",
+        "SAN_GOU_4",
+        "SAN_GOU_5",
+        "SAN_TIAO_3",
+        "SAN_TIAO_4",
+        "SAN_TIAO_5",
+        "SAN_TIAO_6",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:single_pluck"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_001",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_002",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_003",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_004",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_005",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_006",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_007",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_008"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "component_category:single_slide",
+      "term": "single_slide",
+      "internal_name": "single_slide",
+      "item_type": "component_category",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_category"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P08_N02"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:shang",
+        "canon/component_lexicon.yaml:xia",
+        "canon/technique_rules.yaml:shang",
+        "canon/technique_rules.yaml:fenkai"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_013",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_014"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "component_name:bo",
+      "term": "bo",
+      "internal_name": "bo",
+      "item_type": "component_name",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_name"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "FAN_DA_7_BO_6"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:bo",
+        "canon/alias_rules.yaml:pi"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_001",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_001"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": "component_category=harmonic_pluck"
+    },
+    {
+      "item_id": "component_name:cuo",
+      "term": "cuo",
+      "internal_name": "cuo",
+      "item_type": "component_name",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_name"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:cuo",
+        "canon/technique_rules.yaml:cuo"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_016",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_016"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": "component_category=simultaneous_pluck"
+    },
+    {
+      "item_id": "component_name:gou",
+      "term": "gou",
+      "internal_name": "gou",
+      "item_type": "component_name",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_name"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P01_N02",
+        "XWC_P01_N04",
+        "XWC_P02_N02",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N02",
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N02",
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N02",
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P09_N04",
+        "XWC_P10_N01",
+        "XWC_P10_N05"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_5",
+        "AN_THUMB_9_GOU_6_SHANG_79",
+        "FAN_SHI_7_GOU_4",
+        "FAN_ZHONG_7_GOU_1",
+        "SAN_GOU_2",
+        "SAN_GOU_3",
+        "SAN_GOU_4",
+        "SAN_GOU_5"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:gou"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_005",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_005"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": "component_category=harmonic_pluck; component_category=pressed_pluck; component_category=single_pluck"
+    },
+    {
+      "item_id": "component_name:qiaqi",
+      "term": "qiaqi",
+      "internal_name": "qiaqi",
+      "item_type": "component_name",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_name"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:qiaqi",
+        "canon/technique_rules.yaml:qiaqi"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_015",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_015"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": "component_category=left_sound"
+    },
+    {
+      "item_id": "component_name:tiao",
+      "term": "tiao",
+      "internal_name": "tiao",
+      "item_type": "component_name",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_name"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N03",
+        "XWC_P02_N05",
+        "XWC_P03_N01",
+        "XWC_P03_N03",
+        "XWC_P03_N05",
+        "XWC_P04_N01",
+        "XWC_P04_N03",
+        "XWC_P04_N05",
+        "XWC_P05_N01",
+        "XWC_P05_N03",
+        "XWC_P05_N05",
+        "XWC_P06_N01",
+        "XWC_P06_N03",
+        "XWC_P07_N01",
+        "XWC_P07_N03",
+        "XWC_P08_N03",
+        "XWC_P09_N03",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "SAN_TIAO_3",
+        "SAN_TIAO_4",
+        "SAN_TIAO_5",
+        "SAN_TIAO_6",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:tiao"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_004",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_004"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": "component_category=harmonic_pluck; component_category=single_pluck"
+    },
+    {
+      "item_id": "gesture_family:left_hand_sound",
+      "term": "left_hand_sound",
+      "internal_name": "left_hand_sound",
+      "item_type": "gesture_family",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:gesture_family"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:left_hand_sound",
+        "canon/alias_rules.yaml:掩",
+        "canon/alias_rules.yaml:虚掩",
+        "canon/alias_rules.yaml:搯起",
+        "canon/technique_rules.yaml:qiaqi"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_015"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_family:post_motion",
+      "term": "post_motion",
+      "internal_name": "post_motion",
+      "item_type": "gesture_family",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:gesture_family"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P08_N02",
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:post_motion",
+        "canon/technique_rules.yaml:chuo",
+        "canon/technique_rules.yaml:zhu",
+        "canon/technique_rules.yaml:shang",
+        "canon/technique_rules.yaml:zhuang"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_011",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_012",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_013",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_014"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_family:simultaneous_pluck",
+      "term": "simultaneous_pluck",
+      "internal_name": "simultaneous_pluck",
+      "item_type": "gesture_family",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:gesture_family"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:cuo",
+        "canon/gesture_families.yaml:simultaneous_pluck",
+        "canon/technique_rules.yaml:cuo"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_016"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_family:single_pluck",
+      "term": "single_pluck",
+      "internal_name": "single_pluck",
+      "item_type": "gesture_family",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:gesture_family"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N02",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N02",
+        "XWC_P02_N03",
+        "XWC_P02_N05",
+        "XWC_P03_N01",
+        "XWC_P03_N02",
+        "XWC_P03_N03",
+        "XWC_P03_N05",
+        "XWC_P04_N01",
+        "XWC_P04_N02",
+        "XWC_P04_N03",
+        "XWC_P04_N05",
+        "XWC_P05_N01",
+        "XWC_P05_N02",
+        "XWC_P05_N03",
+        "XWC_P05_N05",
+        "XWC_P06_N01",
+        "XWC_P06_N03",
+        "XWC_P07_N01",
+        "XWC_P07_N03",
+        "XWC_P08_N03",
+        "XWC_P09_N03"
+      ],
+      "used_in_gestures": [
+        "SAN_GOU_2",
+        "SAN_GOU_3",
+        "SAN_GOU_4",
+        "SAN_GOU_5",
+        "SAN_TIAO_3",
+        "SAN_TIAO_4",
+        "SAN_TIAO_5",
+        "SAN_TIAO_6",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:single_pluck"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_001",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_002",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_003",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_004",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_005",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_006",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_007",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_008"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "post_motion:shang",
+      "term": "shang",
+      "internal_name": "shang",
+      "item_type": "post_motion",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_name"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P08_N02"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:shang",
+        "canon/technique_rules.yaml:shang"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_013",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_013"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": "component_category=single_slide"
+    },
+    {
+      "item_id": "post_motion:zhuang",
+      "term": "zhuang",
+      "internal_name": "zhuang",
+      "item_type": "post_motion",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:component_name"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:zhuang",
+        "canon/technique_rules.yaml:zhuang"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_011",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_011"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": "component_category=micro_returning_slide"
+    },
+    {
+      "item_id": "post_motion_return_structure:zhuang",
+      "term": "zhuang",
+      "internal_name": "zhuang",
+      "item_type": "post_motion_return_structure",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:motion_returns"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:zhuang",
+        "canon/technique_rules.yaml:zhuang"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_011",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_011"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "pre_action:zhu",
+      "term": "zhu",
+      "internal_name": "zhu",
+      "item_type": "pre_action",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:notation_pre_action"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P03_N04",
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_THUMB_9_GOU_4_ZHUANG"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:zhu",
+        "canon/technique_rules.yaml:zhu"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_010",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_010"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_action:bo",
+      "term": "bo",
+      "internal_name": "bo",
+      "item_type": "right_hand_action",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_action",
+        "00_global/gesture_templates.csv:right_hand_action"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "FAN_DA_7_BO_6"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:bo",
+        "canon/alias_rules.yaml:pi"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_001",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_001"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_action:cuo",
+      "term": "cuo",
+      "internal_name": "cuo",
+      "item_type": "right_hand_action",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_action",
+        "00_global/gesture_templates.csv:right_hand_action"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:cuo",
+        "canon/technique_rules.yaml:cuo"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_016",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_016"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_action:gou",
+      "term": "gou",
+      "internal_name": "gou",
+      "item_type": "right_hand_action",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_action",
+        "00_global/gesture_templates.csv:right_hand_action"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P01_N02",
+        "XWC_P01_N04",
+        "XWC_P02_N02",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N02",
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N02",
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N02",
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P09_N04",
+        "XWC_P10_N01",
+        "XWC_P10_N05"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_5",
+        "AN_THUMB_9_GOU_6_SHANG_79",
+        "FAN_SHI_7_GOU_4",
+        "FAN_ZHONG_7_GOU_1",
+        "SAN_GOU_2",
+        "SAN_GOU_3",
+        "SAN_GOU_4",
+        "SAN_GOU_5"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:gou"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_005",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_005"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_action:tiao",
+      "term": "tiao",
+      "internal_name": "tiao",
+      "item_type": "right_hand_action",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_action",
+        "00_global/gesture_templates.csv:right_hand_action"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N03",
+        "XWC_P02_N05",
+        "XWC_P03_N01",
+        "XWC_P03_N03",
+        "XWC_P03_N05",
+        "XWC_P04_N01",
+        "XWC_P04_N03",
+        "XWC_P04_N05",
+        "XWC_P05_N01",
+        "XWC_P05_N03",
+        "XWC_P05_N05",
+        "XWC_P06_N01",
+        "XWC_P06_N03",
+        "XWC_P07_N01",
+        "XWC_P07_N03",
+        "XWC_P08_N03",
+        "XWC_P09_N03",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "SAN_TIAO_3",
+        "SAN_TIAO_4",
+        "SAN_TIAO_5",
+        "SAN_TIAO_6",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/component_lexicon.yaml:tiao"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_004",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml:QXBY_004"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "sound_profile:left_hand_sound",
+      "term": "left_hand_sound",
+      "internal_name": "left_hand_sound",
+      "item_type": "sound_profile",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:sound_profile"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:left_hand_sound",
+        "canon/alias_rules.yaml:掩",
+        "canon/alias_rules.yaml:虚掩",
+        "canon/alias_rules.yaml:搯起",
+        "canon/technique_rules.yaml:qiaqi"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_015"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "sound_profile:post_motion",
+      "term": "post_motion",
+      "internal_name": "post_motion",
+      "item_type": "sound_profile",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:sound_profile"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P08_N02",
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [
+        "canon/gesture_families.yaml:post_motion",
+        "canon/technique_rules.yaml:chuo",
+        "canon/technique_rules.yaml:zhu",
+        "canon/technique_rules.yaml:shang",
+        "canon/technique_rules.yaml:zhuang"
+      ],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_011",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_012",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_013",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_014"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "sound_profile:single",
+      "term": "single",
+      "internal_name": "single",
+      "item_type": "sound_profile",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:sound_profile"
+      ],
+      "coverage_status": "qxby_batch_001_draft_covered",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N02",
+        "XWC_P01_N03",
+        "XWC_P01_N04",
+        "XWC_P02_N01",
+        "XWC_P02_N02",
+        "XWC_P02_N03",
+        "XWC_P02_N04",
+        "XWC_P02_N05",
+        "XWC_P02_N06",
+        "XWC_P03_N01",
+        "XWC_P03_N02",
+        "XWC_P03_N03",
+        "XWC_P03_N04",
+        "XWC_P03_N05",
+        "XWC_P03_N06",
+        "XWC_P04_N01",
+        "XWC_P04_N02",
+        "XWC_P04_N03",
+        "XWC_P04_N04",
+        "XWC_P04_N05",
+        "XWC_P04_N06",
+        "XWC_P05_N01",
+        "XWC_P05_N02",
+        "XWC_P05_N03",
+        "XWC_P05_N04",
+        "XWC_P05_N05",
+        "XWC_P05_N06",
+        "XWC_P06_N01",
+        "XWC_P06_N02",
+        "XWC_P06_N03",
+        "XWC_P06_N04",
+        "XWC_P07_N01",
+        "XWC_P07_N02",
+        "XWC_P07_N03",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N03",
+        "XWC_P08_N04",
+        "XWC_P09_N03",
+        "XWC_P09_N04",
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04",
+        "XWC_P10_N05",
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_5",
+        "FAN_DA_7_BO_6",
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "FAN_ZHONG_7_GOU_1",
+        "SAN_GOU_2",
+        "SAN_GOU_3",
+        "SAN_GOU_4",
+        "SAN_GOU_5",
+        "SAN_TIAO_3",
+        "SAN_TIAO_4",
+        "SAN_TIAO_5",
+        "SAN_TIAO_6",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [
+        "canon/drafts/qxby_batch_001.yaml:QXBY_001",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_002",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_003",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_004",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_005",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_006",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_007",
+        "canon/drafts/qxby_batch_001.yaml:QXBY_008"
+      ],
+      "recommended_action": "No duplicate Batch002 evidence recommended.",
+      "batch002_priority": "defer",
+      "notes": ""
+    },
+    {
+      "item_id": "composite_gesture_structure:AN_RING_10_QIAQI",
+      "term": "AN_RING_10_QIAQI",
+      "internal_name": "AN_RING_10_QIAQI",
+      "item_type": "composite_gesture_structure",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:is_composite"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "composite_gesture_structure:AN_THUMB_9_GOU_4_ZHUANG",
+      "term": "AN_THUMB_9_GOU_4_ZHUANG",
+      "internal_name": "AN_THUMB_9_GOU_4_ZHUANG",
+      "item_type": "composite_gesture_structure",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:is_composite"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "composite_gesture_structure:AN_THUMB_9_GOU_6_SHANG_79",
+      "term": "AN_THUMB_9_GOU_6_SHANG_79",
+      "internal_name": "AN_THUMB_9_GOU_6_SHANG_79",
+      "item_type": "composite_gesture_structure",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:is_composite"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P08_N02"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "composite_gesture_structure:FAN_DA7_ZHONG7_CUO_6_1",
+      "term": "FAN_DA7_ZHONG7_CUO_6_1",
+      "internal_name": "FAN_DA7_ZHONG7_CUO_6_1",
+      "item_type": "composite_gesture_structure",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:is_composite"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "context_dependency:inherit_previous",
+      "term": "inherit_previous",
+      "internal_name": "inherit_previous",
+      "item_type": "context_dependency",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:context_dependency"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_RING_10_8_GOU_3",
+      "term": "AN_RING_10_8_GOU_3",
+      "internal_name": "AN_RING_10_8_GOU_3",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P03_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_RING_10_GOU_1",
+      "term": "AN_RING_10_GOU_1",
+      "internal_name": "AN_RING_10_GOU_1",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P05_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_RING_10_GOU_2",
+      "term": "AN_RING_10_GOU_2",
+      "internal_name": "AN_RING_10_GOU_2",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P04_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_2"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_RING_10_GOU_4",
+      "term": "AN_RING_10_GOU_4",
+      "internal_name": "AN_RING_10_GOU_4",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P02_N04",
+        "XWC_P09_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_4"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_RING_10_GOU_5",
+      "term": "AN_RING_10_GOU_5",
+      "internal_name": "AN_RING_10_GOU_5",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_5"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_RING_10_QIAQI",
+      "term": "AN_RING_10_QIAQI",
+      "internal_name": "AN_RING_10_QIAQI",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_THUMB_9_GOU_1",
+      "term": "AN_THUMB_9_GOU_1",
+      "internal_name": "AN_THUMB_9_GOU_1",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P05_N06",
+        "XWC_P06_N02"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_THUMB_9_GOU_2",
+      "term": "AN_THUMB_9_GOU_2",
+      "internal_name": "AN_THUMB_9_GOU_2",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P04_N06",
+        "XWC_P06_N04"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_2"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_THUMB_9_GOU_3",
+      "term": "AN_THUMB_9_GOU_3",
+      "internal_name": "AN_THUMB_9_GOU_3",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P03_N06",
+        "XWC_P07_N02"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_3"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_THUMB_9_GOU_4",
+      "term": "AN_THUMB_9_GOU_4",
+      "internal_name": "AN_THUMB_9_GOU_4",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P02_N06",
+        "XWC_P07_N04",
+        "XWC_P08_N04"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_THUMB_9_GOU_4_ZHUANG",
+      "term": "AN_THUMB_9_GOU_4_ZHUANG",
+      "internal_name": "AN_THUMB_9_GOU_4_ZHUANG",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_THUMB_9_GOU_5",
+      "term": "AN_THUMB_9_GOU_5",
+      "internal_name": "AN_THUMB_9_GOU_5",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P08_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_5"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:AN_THUMB_9_GOU_6_SHANG_79",
+      "term": "AN_THUMB_9_GOU_6_SHANG_79",
+      "internal_name": "AN_THUMB_9_GOU_6_SHANG_79",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P08_N02"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:FAN_DA7_ZHONG7_CUO_6_1",
+      "term": "FAN_DA7_ZHONG7_CUO_6_1",
+      "internal_name": "FAN_DA7_ZHONG7_CUO_6_1",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:FAN_DA_7_BO_6",
+      "term": "FAN_DA_7_BO_6",
+      "internal_name": "FAN_DA_7_BO_6",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "FAN_DA_7_BO_6"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:FAN_SHI_7_GOU_4",
+      "term": "FAN_SHI_7_GOU_4",
+      "internal_name": "FAN_SHI_7_GOU_4",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N01"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_GOU_4"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:FAN_SHI_7_TIAO_4",
+      "term": "FAN_SHI_7_TIAO_4",
+      "internal_name": "FAN_SHI_7_TIAO_4",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N04"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_TIAO_4"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:FAN_SHI_7_TIAO_6",
+      "term": "FAN_SHI_7_TIAO_6",
+      "internal_name": "FAN_SHI_7_TIAO_6",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N03"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_TIAO_6"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:FAN_SHI_7_TIAO_7",
+      "term": "FAN_SHI_7_TIAO_7",
+      "internal_name": "FAN_SHI_7_TIAO_7",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N02"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:FAN_ZHONG_7_GOU_1",
+      "term": "FAN_ZHONG_7_GOU_1",
+      "internal_name": "FAN_ZHONG_7_GOU_1",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N05"
+      ],
+      "used_in_gestures": [
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_GOU_2",
+      "term": "SAN_GOU_2",
+      "internal_name": "SAN_GOU_2",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P05_N02"
+      ],
+      "used_in_gestures": [
+        "SAN_GOU_2"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_GOU_3",
+      "term": "SAN_GOU_3",
+      "internal_name": "SAN_GOU_3",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P04_N02"
+      ],
+      "used_in_gestures": [
+        "SAN_GOU_3"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_GOU_4",
+      "term": "SAN_GOU_4",
+      "internal_name": "SAN_GOU_4",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P03_N02"
+      ],
+      "used_in_gestures": [
+        "SAN_GOU_4"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_GOU_5",
+      "term": "SAN_GOU_5",
+      "internal_name": "SAN_GOU_5",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N02",
+        "XWC_P02_N02"
+      ],
+      "used_in_gestures": [
+        "SAN_GOU_5"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_TIAO_3",
+      "term": "SAN_TIAO_3",
+      "internal_name": "SAN_TIAO_3",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P05_N03"
+      ],
+      "used_in_gestures": [
+        "SAN_TIAO_3"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_TIAO_4",
+      "term": "SAN_TIAO_4",
+      "internal_name": "SAN_TIAO_4",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P04_N03",
+        "XWC_P05_N01",
+        "XWC_P05_N05",
+        "XWC_P06_N01"
+      ],
+      "used_in_gestures": [
+        "SAN_TIAO_4"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_TIAO_5",
+      "term": "SAN_TIAO_5",
+      "internal_name": "SAN_TIAO_5",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P03_N03",
+        "XWC_P04_N01",
+        "XWC_P04_N05",
+        "XWC_P06_N03"
+      ],
+      "used_in_gestures": [
+        "SAN_TIAO_5"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_TIAO_6",
+      "term": "SAN_TIAO_6",
+      "internal_name": "SAN_TIAO_6",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P02_N03",
+        "XWC_P03_N01",
+        "XWC_P03_N05",
+        "XWC_P07_N01",
+        "XWC_P09_N03"
+      ],
+      "used_in_gestures": [
+        "SAN_TIAO_6"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "gesture_id:SAN_TIAO_7",
+      "term": "SAN_TIAO_7",
+      "internal_name": "SAN_TIAO_7",
+      "item_type": "gesture_id",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:gesture_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N05",
+        "XWC_P07_N03",
+        "XWC_P08_N03"
+      ],
+      "used_in_gestures": [
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "harmonic_touch_finger:index",
+      "term": "index",
+      "internal_name": "index",
+      "item_type": "harmonic_touch_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:harmonic_touch_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "harmonic_touch_finger:middle",
+      "term": "middle",
+      "internal_name": "middle",
+      "item_type": "harmonic_touch_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:harmonic_touch_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N05"
+      ],
+      "used_in_gestures": [
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "harmonic_touch_finger:thumb",
+      "term": "thumb",
+      "internal_name": "thumb",
+      "item_type": "harmonic_touch_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:harmonic_touch_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "FAN_DA_7_BO_6"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "harmonic_touch_finger:thumb_middle",
+      "term": "thumb+middle",
+      "internal_name": "thumb+middle",
+      "item_type": "harmonic_touch_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:harmonic_touch_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "hui:10",
+      "term": "10",
+      "internal_name": "10",
+      "item_type": "hui",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:hui",
+        "00_global/gesture_templates.csv:hui"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P04_N04",
+        "XWC_P05_N04",
+        "XWC_P09_N02",
+        "XWC_P09_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "hui:10_8",
+      "term": "10.8",
+      "internal_name": "10.8",
+      "item_type": "hui",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:hui",
+        "00_global/gesture_templates.csv:hui"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P03_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "hui:7",
+      "term": "7",
+      "internal_name": "7",
+      "item_type": "hui",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:hui",
+        "00_global/gesture_templates.csv:hui"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04",
+        "XWC_P10_N05",
+        "XWC_P10_N06",
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1",
+        "FAN_DA_7_BO_6",
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "hui:9",
+      "term": "9",
+      "internal_name": "9",
+      "item_type": "hui",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:hui",
+        "00_global/gesture_templates.csv:hui"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P02_N06",
+        "XWC_P03_N06",
+        "XWC_P04_N06",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_5",
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "hui_target:7_9",
+      "term": "7.9",
+      "internal_name": "7.9",
+      "item_type": "hui_target",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:hui_target"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P08_N02"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "inherited_context_structure:XWC_P09_N02_inherits_XWC_P09_N01",
+      "term": "XWC_P09_N02 inherits XWC_P09_N01",
+      "internal_name": "XWC_P09_N02 inherits XWC_P09_N01",
+      "item_type": "inherited_context_structure",
+      "source_in_v1": [
+        "01_pieces/xianwengcao/score_events.csv:inherited_from_event_id"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P09_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "left_finger:index",
+      "term": "index",
+      "internal_name": "index",
+      "item_type": "left_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:left_finger",
+        "00_global/gesture_templates.csv:left_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "left_finger:middle",
+      "term": "middle",
+      "internal_name": "middle",
+      "item_type": "left_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:left_finger",
+        "00_global/gesture_templates.csv:left_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N05"
+      ],
+      "used_in_gestures": [
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "left_finger:ring",
+      "term": "ring",
+      "internal_name": "ring",
+      "item_type": "left_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:left_finger",
+        "00_global/gesture_templates.csv:left_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P03_N04",
+        "XWC_P04_N04",
+        "XWC_P05_N04",
+        "XWC_P09_N02",
+        "XWC_P09_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_RING_10_QIAQI"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "left_finger:thumb",
+      "term": "thumb",
+      "internal_name": "thumb",
+      "item_type": "left_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:left_finger",
+        "00_global/gesture_templates.csv:left_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P02_N06",
+        "XWC_P03_N06",
+        "XWC_P04_N06",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_5",
+        "AN_THUMB_9_GOU_6_SHANG_79",
+        "FAN_DA_7_BO_6"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "left_finger:thumb_middle",
+      "term": "thumb+middle",
+      "internal_name": "thumb+middle",
+      "item_type": "left_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:left_finger",
+        "00_global/gesture_templates.csv:left_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_finger:index",
+      "term": "index",
+      "internal_name": "index",
+      "item_type": "right_hand_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N03",
+        "XWC_P02_N05",
+        "XWC_P03_N01",
+        "XWC_P03_N03",
+        "XWC_P03_N05",
+        "XWC_P04_N01",
+        "XWC_P04_N03",
+        "XWC_P04_N05",
+        "XWC_P05_N01",
+        "XWC_P05_N03",
+        "XWC_P05_N05",
+        "XWC_P06_N01",
+        "XWC_P06_N03",
+        "XWC_P07_N01",
+        "XWC_P07_N03",
+        "XWC_P08_N03",
+        "XWC_P09_N03",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "SAN_TIAO_3",
+        "SAN_TIAO_4",
+        "SAN_TIAO_5",
+        "SAN_TIAO_6",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_finger:middle",
+      "term": "middle",
+      "internal_name": "middle",
+      "item_type": "right_hand_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N02",
+        "XWC_P01_N04",
+        "XWC_P02_N02",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N02",
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N02",
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N02",
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P09_N04",
+        "XWC_P10_N01",
+        "XWC_P10_N05"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_2",
+        "AN_THUMB_9_GOU_3",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_THUMB_9_GOU_5",
+        "AN_THUMB_9_GOU_6_SHANG_79",
+        "FAN_SHI_7_GOU_4",
+        "FAN_ZHONG_7_GOU_1",
+        "SAN_GOU_2",
+        "SAN_GOU_3",
+        "SAN_GOU_4",
+        "SAN_GOU_5"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_finger:thumb",
+      "term": "thumb",
+      "internal_name": "thumb",
+      "item_type": "right_hand_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "FAN_DA_7_BO_6"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "right_hand_finger:thumb_middle",
+      "term": "thumb+middle",
+      "internal_name": "thumb+middle",
+      "item_type": "right_hand_finger",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:right_hand_finger"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P0",
+      "notes": ""
+    },
+    {
+      "item_id": "string_number:1",
+      "term": "1",
+      "internal_name": "1",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_number",
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P10_N05"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_1",
+        "AN_THUMB_9_GOU_1",
+        "FAN_ZHONG_7_GOU_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "string_number:2",
+      "term": "2",
+      "internal_name": "2",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_number",
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N02",
+        "XWC_P06_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_2",
+        "AN_THUMB_9_GOU_2",
+        "SAN_GOU_2"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "string_number:3",
+      "term": "3",
+      "internal_name": "3",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_number",
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N02",
+        "XWC_P05_N03",
+        "XWC_P07_N02"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_THUMB_9_GOU_3",
+        "SAN_GOU_3",
+        "SAN_TIAO_3"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "string_number:4",
+      "term": "4",
+      "internal_name": "4",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_number",
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N02",
+        "XWC_P04_N03",
+        "XWC_P05_N01",
+        "XWC_P05_N05",
+        "XWC_P06_N01",
+        "XWC_P07_N04",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P09_N04",
+        "XWC_P10_N01",
+        "XWC_P10_N04"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_4",
+        "AN_THUMB_9_GOU_4",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "SAN_GOU_4",
+        "SAN_TIAO_4"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "string_number:5",
+      "term": "5",
+      "internal_name": "5",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_number",
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N02",
+        "XWC_P01_N04",
+        "XWC_P02_N02",
+        "XWC_P03_N03",
+        "XWC_P04_N01",
+        "XWC_P04_N05",
+        "XWC_P06_N03",
+        "XWC_P08_N01"
+      ],
+      "used_in_gestures": [
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_5",
+        "SAN_GOU_5",
+        "SAN_TIAO_5"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "string_number:6",
+      "term": "6",
+      "internal_name": "6",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_number",
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P02_N03",
+        "XWC_P03_N01",
+        "XWC_P03_N05",
+        "XWC_P07_N01",
+        "XWC_P08_N02",
+        "XWC_P09_N03",
+        "XWC_P10_N03",
+        "XWC_P10_N06"
+      ],
+      "used_in_gestures": [
+        "AN_THUMB_9_GOU_6_SHANG_79",
+        "FAN_DA_7_BO_6",
+        "FAN_SHI_7_TIAO_6",
+        "SAN_TIAO_6"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "string_number:6_1",
+      "term": "6+1",
+      "internal_name": "6+1",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    },
+    {
+      "item_id": "string_number:7",
+      "term": "7",
+      "internal_name": "7",
+      "item_type": "string_number",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_number",
+        "00_global/gesture_templates.csv:string_number"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N03",
+        "XWC_P02_N01",
+        "XWC_P02_N05",
+        "XWC_P07_N03",
+        "XWC_P08_N03",
+        "XWC_P10_N02"
+      ],
+      "used_in_gestures": [
+        "FAN_SHI_7_TIAO_7",
+        "SAN_TIAO_7"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": "Structural pitch/location value; not necessarily a source-evidence term."
+    },
+    {
+      "item_id": "string_sequence:6_1",
+      "term": "6+1",
+      "internal_name": "6+1",
+      "item_type": "string_sequence",
+      "source_in_v1": [
+        "00_global/gesture_components.csv:string_sequence"
+      ],
+      "coverage_status": "v1_runtime_only",
+      "used_in_events": [
+        "XWC_P10_N07"
+      ],
+      "used_in_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "evidence_in_canon_seed": [],
+      "evidence_in_qxby_batch_001": [],
+      "recommended_action": "Map against ontology/canon first; request source evidence only if the runtime structure represents a canon concept.",
+      "batch002_priority": "P2",
+      "notes": ""
+    }
+  ],
+  "bridge_assessment": {
+    "structure_validated": true,
+    "successful_mappings": [
+      "sound_profile:harmonic_compound",
+      "component_category:harmonic_pluck",
+      "component_category:pressed_pluck",
+      "gesture_family:harmonic_pluck",
+      "gesture_family:pressed_pluck",
+      "sound_type:按音",
+      "sound_type:散音",
+      "sound_type:泛音",
+      "component_category:left_sound",
+      "component_category:micro_returning_slide",
+      "component_category:simultaneous_pluck",
+      "component_category:single_pluck",
+      "component_category:single_slide",
+      "component_name:bo",
+      "component_name:cuo",
+      "component_name:gou",
+      "component_name:qiaqi",
+      "component_name:tiao",
+      "gesture_family:left_hand_sound",
+      "gesture_family:post_motion",
+      "gesture_family:simultaneous_pluck",
+      "gesture_family:single_pluck",
+      "post_motion:shang",
+      "post_motion:zhuang",
+      "post_motion_return_structure:zhuang",
+      "pre_action:zhu",
+      "right_hand_action:bo",
+      "right_hand_action:cuo",
+      "right_hand_action:gou",
+      "right_hand_action:tiao",
+      "sound_profile:left_hand_sound",
+      "sound_profile:post_motion",
+      "sound_profile:single"
+    ],
+    "gaps_found": [
+      "composite_gesture_structure:AN_RING_10_QIAQI",
+      "composite_gesture_structure:AN_THUMB_9_GOU_4_ZHUANG",
+      "composite_gesture_structure:AN_THUMB_9_GOU_6_SHANG_79",
+      "composite_gesture_structure:FAN_DA7_ZHONG7_CUO_6_1",
+      "context_dependency:inherit_previous",
+      "gesture_id:AN_RING_10_8_GOU_3",
+      "gesture_id:AN_RING_10_GOU_1",
+      "gesture_id:AN_RING_10_GOU_2",
+      "gesture_id:AN_RING_10_GOU_4",
+      "gesture_id:AN_RING_10_GOU_5",
+      "gesture_id:AN_RING_10_QIAQI",
+      "gesture_id:AN_THUMB_9_GOU_1",
+      "gesture_id:AN_THUMB_9_GOU_2",
+      "gesture_id:AN_THUMB_9_GOU_3",
+      "gesture_id:AN_THUMB_9_GOU_4",
+      "gesture_id:AN_THUMB_9_GOU_4_ZHUANG",
+      "gesture_id:AN_THUMB_9_GOU_5",
+      "gesture_id:AN_THUMB_9_GOU_6_SHANG_79",
+      "gesture_id:FAN_DA7_ZHONG7_CUO_6_1",
+      "gesture_id:FAN_DA_7_BO_6",
+      "gesture_id:FAN_SHI_7_GOU_4",
+      "gesture_id:FAN_SHI_7_TIAO_4",
+      "gesture_id:FAN_SHI_7_TIAO_6",
+      "gesture_id:FAN_SHI_7_TIAO_7",
+      "gesture_id:FAN_ZHONG_7_GOU_1",
+      "gesture_id:SAN_GOU_2",
+      "gesture_id:SAN_GOU_3",
+      "gesture_id:SAN_GOU_4",
+      "gesture_id:SAN_GOU_5",
+      "gesture_id:SAN_TIAO_3",
+      "gesture_id:SAN_TIAO_4",
+      "gesture_id:SAN_TIAO_5",
+      "gesture_id:SAN_TIAO_6",
+      "gesture_id:SAN_TIAO_7",
+      "harmonic_touch_finger:index",
+      "harmonic_touch_finger:middle",
+      "harmonic_touch_finger:thumb",
+      "harmonic_touch_finger:thumb_middle",
+      "hui:10",
+      "hui:10_8",
+      "hui:7",
+      "hui:9",
+      "hui_target:7_9",
+      "inherited_context_structure:XWC_P09_N02_inherits_XWC_P09_N01",
+      "left_finger:index",
+      "left_finger:middle",
+      "left_finger:ring",
+      "left_finger:thumb",
+      "left_finger:thumb_middle",
+      "right_hand_finger:index",
+      "right_hand_finger:middle",
+      "right_hand_finger:thumb",
+      "right_hand_finger:thumb_middle",
+      "string_number:1",
+      "string_number:2",
+      "string_number:3",
+      "string_number:4",
+      "string_number:5",
+      "string_number:6",
+      "string_number:6_1",
+      "string_number:7",
+      "string_sequence:6_1"
+    ],
+    "risks": [
+      "String/hui/location values are observable runtime structures, but they are not all canon source-evidence terms.",
+      "English finger role names from V1 are not consistently modeled as standalone canon seed terms.",
+      "QXBY_BATCH_001 is draft/manual transcription evidence and should not be treated as verified."
+    ]
+  }
+}
