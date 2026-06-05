@@ -1,6 +1,6 @@
 {
   "validator": "validate_canon.py",
-  "fixture": "tests/fixtures/canon_minimal.yaml",
+  "fixture": "tests\\fixtures\\canon_minimal.yaml",
   "passed": true,
   "errors": [],
   "warnings": [],

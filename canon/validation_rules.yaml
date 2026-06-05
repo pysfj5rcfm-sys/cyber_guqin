@@ -1,0 +1,19 @@
+{
+  "validation_rules": [
+    {"rule_id": "sound_type_primary_enum", "severity": "fail", "description": "primary_sound_type 只能是 散音/按音/泛音/none。", "source_refs": ["references/validation_rules.md"]},
+    {"rule_id": "sound_type_component_enum", "severity": "fail", "description": "component_sound_type 只能是 散音/按音/泛音/none。", "source_refs": ["references/validation_rules.md"]},
+    {"rule_id": "no_complex_sound_type", "severity": "fail", "description": "复杂技法不得成为 sound_type，应通过 sound_profile、gesture_family、gesture_components 表达。", "source_refs": ["06_docs/GESTURE_ONTOLOGY.md"]},
+    {"rule_id": "bo_is_bi", "severity": "fail", "description": "bo=擘。", "source_refs": ["references/normalization_rules.md"]},
+    {"rule_id": "po_is_po", "severity": "fail", "description": "po=泼。", "source_refs": ["references/normalization_rules.md"]},
+    {"rule_id": "la_is_la", "severity": "fail", "description": "la=剌。", "source_refs": ["references/normalization_rules.md"]},
+    {"rule_id": "pi_alias_only", "severity": "fail", "description": "pi/劈 只能作为 bo/擘 的 alias。", "source_refs": ["references/normalization_rules.md"]},
+    {"rule_id": "bo_not_bo_variant", "severity": "fail", "description": "拨不得作为内部标准基础指法。", "source_refs": ["references/normalization_rules.md"]},
+    {"rule_id": "zhuang_micro_returning_slide", "severity": "fail", "description": "zhuang/fan_zhuang 必须是 micro_returning_slide。", "source_refs": ["references/validation_rules.md"]},
+    {"rule_id": "left_sound_family", "severity": "fail", "description": "qiaqi/yan/daiqi 必须是 left_hand_sound。", "source_refs": ["references/validation_rules.md"]},
+    {"rule_id": "cuo_simultaneous", "severity": "fail", "description": "cuo 必须是 simultaneous_pluck。", "source_refs": ["references/validation_rules.md"]},
+    {"rule_id": "open_pressed_harmony", "severity": "fail", "description": "fanghe/yinghe 必须是 open_pressed_harmony。", "source_refs": ["references/validation_rules.md"]},
+    {"rule_id": "fenkai_family_profile", "severity": "fail", "description": "fenkai 必须是 compound_both_hands + compound_pressed_motion。", "source_refs": ["references/validation_rules.md"]},
+    {"rule_id": "fenkai_no_extra_xia", "severity": "fail", "description": "fenkai 不另列 下。", "source_refs": ["06_docs/GESTURE_ONTOLOGY.md"]},
+    {"rule_id": "score_unmarked_chuo", "severity": "fail", "description": "score-unmarked chuo must not become notation_pre_action。", "source_refs": ["references/validation_rules.md"]}
+  ]
+}

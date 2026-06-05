@@ -1,0 +1,13 @@
+{
+  "alias_rules": [
+    {"alias": "劈", "canonical": "擘", "alias_type": "variant", "scope": "right_hand_basic", "notes": "劈只能作为 bo/擘 的 alias，不作为内部标准基础指法。", "source_refs": ["00_global/alias_rules.yaml", "references/normalization_rules.md"], "review_status": "verified", "confidence": 1.0},
+    {"alias": "pi", "canonical": "bo", "alias_type": "romanization", "scope": "right_hand_basic", "notes": "pi 只能作为 bo 的 alias。", "source_refs": ["00_global/alias_rules.yaml", "references/normalization_rules.md"], "review_status": "verified", "confidence": 1.0},
+    {"alias": "拨", "canonical": "泼", "alias_type": "variant", "scope": "right_hand_sequence", "notes": "拨不得作为内部标准基础指法，只映射到泼。", "source_refs": ["00_global/alias_rules.yaml", "references/normalization_rules.md"], "review_status": "verified", "confidence": 1.0},
+    {"alias": "撥", "canonical": "泼", "alias_type": "traditional_variant", "scope": "right_hand_sequence", "notes": "撥不得作为内部标准基础指法，只映射到泼。", "source_refs": ["00_global/alias_rules.yaml", "references/normalization_rules.md"], "review_status": "verified", "confidence": 1.0},
+    {"alias": "拨剌", "canonical": "泼剌", "alias_type": "variant", "scope": "right_hand_sequence", "notes": "拨剌只作为 po_la/泼剌 的 alias。", "source_refs": ["00_global/alias_rules.yaml", "references/normalization_rules.md"], "review_status": "verified", "confidence": 1.0},
+    {"alias": "撥剌", "canonical": "泼剌", "alias_type": "traditional_variant", "scope": "right_hand_sequence", "notes": "撥剌只作为 po_la/泼剌 的 alias。", "source_refs": ["00_global/alias_rules.yaml", "references/normalization_rules.md"], "review_status": "verified", "confidence": 1.0},
+    {"alias": "掩", "canonical": "罨", "alias_type": "variant", "scope": "left_hand_sound", "notes": "掩只能 alias 到 yan/罨。", "source_refs": ["00_global/alias_rules.yaml", "references/normalization_rules.md"], "review_status": "verified", "confidence": 1.0},
+    {"alias": "虚掩", "canonical": "虚罨", "alias_type": "variant", "scope": "left_hand_sound", "notes": "虚掩作为虚罨的 alias。", "source_refs": ["00_global/alias_rules.yaml"], "review_status": "verified", "confidence": 0.95},
+    {"alias": "搯起", "canonical": "掐起", "alias_type": "variant", "scope": "left_hand_sound", "notes": "搯起作为掐起的 alias。", "source_refs": ["00_global/alias_rules.yaml"], "review_status": "verified", "confidence": 0.95}
+  ]
+}

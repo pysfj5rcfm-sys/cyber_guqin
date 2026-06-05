@@ -1,0 +1,15 @@
+{
+  "gesture_families": [
+    {"gesture_family": "single_pluck", "zh_name": "单次右手拨弦", "description": "右手一次拨弦发声。", "examples": ["散挑七", "散勾五"], "requires_components": false, "default_requires_context_sample": false, "review_status": "verified"},
+    {"gesture_family": "pressed_pluck", "zh_name": "按音右手拨弦", "description": "左手按弦、右手拨弦发声。", "examples": ["名十勾五"], "requires_components": false, "default_requires_context_sample": false, "review_status": "verified"},
+    {"gesture_family": "harmonic_pluck", "zh_name": "泛音右手拨弦", "description": "左手轻触泛音点、右手拨弦发声。", "examples": ["泛食七挑七"], "requires_components": false, "default_requires_context_sample": false, "review_status": "verified"},
+    {"gesture_family": "simultaneous_pluck", "zh_name": "同时拨多弦", "description": "同时拨两弦或多弦。", "examples": ["撮", "大撮", "小撮"], "requires_components": true, "default_requires_context_sample": "preferred", "review_status": "verified"},
+    {"gesture_family": "right_hand_sequence", "zh_name": "右手序列", "description": "右手连续或扫弦动作。", "examples": ["滚", "拂", "泼", "剌"], "requires_components": true, "default_requires_context_sample": "preferred", "review_status": "verified"},
+    {"gesture_family": "left_hand_sound", "zh_name": "左手发音", "description": "左手动作直接发声。", "examples": ["掐起", "罨", "带起"], "requires_components": true, "default_requires_context_sample": true, "review_status": "verified"},
+    {"gesture_family": "post_motion", "zh_name": "发声后走手", "description": "按音发声后的左手运动。", "examples": ["上", "下", "进复", "撞"], "requires_components": true, "default_requires_context_sample": "preferred", "review_status": "verified"},
+    {"gesture_family": "vibrato", "zh_name": "吟猱韵声", "description": "按音后的韵声修饰。", "examples": ["吟", "猱", "吟猱"], "requires_components": true, "default_requires_context_sample": "preferred", "review_status": "verified"},
+    {"gesture_family": "open_pressed_harmony", "zh_name": "散按和声", "description": "散音与按音的和声或相应。", "examples": ["放合", "应合"], "requires_components": true, "default_requires_context_sample": true, "review_status": "verified"},
+    {"gesture_family": "compound_both_hands", "zh_name": "复杂双手复合", "description": "左右手复合动作；分开属于此类并使用 compound_pressed_motion。", "examples": ["分开", "掐撮三声"], "requires_components": true, "default_requires_context_sample": true, "review_status": "verified"},
+    {"gesture_family": "tempo_expression", "zh_name": "速度/停顿/句法符号", "description": "不直接发声但影响节奏或句法。", "examples": ["少息", "大息", "急", "缓"], "requires_components": false, "default_requires_context_sample": false, "review_status": "verified"}
+  ]
+}

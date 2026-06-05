@@ -1,0 +1,102 @@
+batch_id: QXBY_BATCH_001
+source_title: 琴学备要
+source_status: manual_image_transcription
+needs_review: true
+image_root: sources/qinxue_beiyao/QXBY_BATCH_001/images
+items:
+  - item_id: QXBY_001
+    term: bo
+    internal_name: bo
+    image_file: images/QXBY_B001_001_bo_擘.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_002
+    term: tuo
+    internal_name: tuo
+    image_file: images/QXBY_B001_002_tuo_托.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_003
+    term: mo
+    internal_name: mo
+    image_file: images/QXBY_B001_003_mo_抹.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_004
+    term: tiao
+    internal_name: tiao
+    image_file: images/QXBY_B001_004_tiao_挑.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_005
+    term: gou
+    internal_name: gou
+    image_file: images/QXBY_B001_005_gou_勾.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_006
+    term: ti
+    internal_name: ti
+    image_file: images/QXBY_B001_006_ti_剔.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_007
+    term: da
+    internal_name: da
+    image_file: images/QXBY_B001_007_da_打.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_008
+    term: zhai
+    internal_name: zhai
+    image_file: images/QXBY_B001_008_zhai_摘.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_009
+    term: chuo
+    internal_name: chuo
+    image_file: images/QXBY_B001_009_chuo_绰.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_010
+    term: zhu
+    internal_name: zhu
+    image_file: images/QXBY_B001_010_zhu_注.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_011
+    term: zhuang
+    internal_name: zhuang
+    image_file: images/QXBY_B001_011_zhuang_撞.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_012
+    term: fan_zhuang
+    internal_name: fan_zhuang
+    image_file: images/QXBY_B001_012_fan_zhuang_反撞.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_013
+    term: shang
+    internal_name: shang
+    image_file: images/QXBY_B001_013_shang_上.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_014
+    term: xia
+    internal_name: xia
+    image_file: images/QXBY_B001_014_xia_下.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_015
+    term: qiaqi
+    internal_name: qiaqi
+    image_file: images/QXBY_B001_015_qiaqi_掐起.jpg
+    source_status: manual_image_transcription
+    needs_review: true
+  - item_id: QXBY_016
+    term: cuo
+    internal_name: cuo
+    image_file: images/QXBY_B001_016_cuo_撮.jpg
+    source_status: manual_image_transcription
+    needs_review: true

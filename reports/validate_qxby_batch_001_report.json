@@ -1,0 +1,87 @@
+{
+  "validator": "validate_qxby_batch.py",
+  "input": "canon\\drafts\\qxby_batch_001.yaml",
+  "status": "pass",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "batch_id": "QXBY_BATCH_001",
+    "source_title": "琴学备要",
+    "source_status": "manual_image_transcription",
+    "item_count": 16,
+    "required_item_count": 16,
+    "terms": [
+      "bo",
+      "chuo",
+      "cuo",
+      "da",
+      "fan_zhuang",
+      "gou",
+      "mo",
+      "qiaqi",
+      "shang",
+      "ti",
+      "tiao",
+      "tuo",
+      "xia",
+      "zhai",
+      "zhu",
+      "zhuang"
+    ],
+    "confidence": {
+      "high": [
+        "bo",
+        "chuo",
+        "cuo",
+        "da",
+        "fan_zhuang",
+        "mo",
+        "shang",
+        "ti",
+        "xia",
+        "zhu"
+      ],
+      "medium": [
+        "gou",
+        "qiaqi",
+        "tiao",
+        "tuo",
+        "zhai",
+        "zhuang"
+      ],
+      "low": []
+    },
+    "conflicts_with_project_ontology": [],
+    "ocr_or_transcription_uncertainty_terms": [
+      "bo",
+      "chuo",
+      "cuo",
+      "da",
+      "fan_zhuang",
+      "gou",
+      "mo",
+      "qiaqi",
+      "shang",
+      "tiao",
+      "tuo",
+      "zhai",
+      "zhu",
+      "zhuang"
+    ],
+    "global_guardrails_checked_when_present": [],
+    "global_guardrails_not_required_when_absent": [
+      "daiqi",
+      "fanghe",
+      "fenkai",
+      "jinfu",
+      "la",
+      "po",
+      "po_la",
+      "qia_cuo_sansheng",
+      "tuifu",
+      "yan",
+      "yinghe"
+    ]
+  }
+}

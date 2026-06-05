@@ -1,0 +1,367 @@
+batch_id: QXBY_BATCH_001
+source_title: 琴学备要
+source_status: manual_image_transcription
+review_status: draft
+needs_review: true
+source_note: 由用户上传 OCR 图片/截图，经人工视觉转写并按 Cyber Guqin Gesture Ontology v1.1 初步匹配；尚未逐字核对原书，不标 verified。
+ontology_target: Cyber Guqin Gesture Ontology v1.1
+items:
+- item_id: QXBY_001
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_001_bo_擘.jpg
+  raw_excerpt: 即是“擘”字的减字体式。大指向身弹入口“擘”。用擘的方法，要将大指倒竖，甲尖着弦而入，纯取甲音，宜稍微用力，又不要有用力的形态。琴曲里面用“擘”的地方不多，只在曲操结尾时用它来送收着的“大撮”。
+  source_status: manual_image_transcription
+  normalized_term: bo
+  normalized_claim: 擘为右手大指向身、入口弹弦之法，内部标准名 bo；强调甲尖入弦、取甲音、用力适中。
+  involved_terms:
+  - 擘
+  mapped_component_name: bo
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected:
+  - 劈
+  - pi
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 图中说明“擘”与大指向身入口相关；pi/劈仅保留为 alias，不作为内部标准枚举。
+- item_id: QXBY_002
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_002_tuo_托.jpg
+  raw_excerpt: 即是“托”字的减字体式。大指向徽弦出口“托”。用托的方法，也是将大指倒竖，中、末两节伸直，指头靠弦而出，不轻不重，得甲肉各半的音。托法多用于六、七弦，而以便于和相隔较远些的一、二弦取应。有用仰托的减字体式，作法是令大指仰天托弦放出，故弦击琴面，其音较太粗厉，无甚意趣，间或于激节偶然一用，也必须不轻不重，取得清脆之声，方才可听。
+  source_status: manual_image_transcription
+  normalized_term: tuo
+  normalized_claim: 托为右手大指向徽、出口弹弦之法，内部标准名 tuo；强调甲肉各半、用力不轻不重。
+  involved_terms:
+  - 托
+  mapped_component_name: tuo
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: “仰托”作为变体描述，暂不新增标准 component。
+- item_id: QXBY_003
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_003_mo_抹.jpg
+  raw_excerpt: 即是“抹”字的减字体式。食指向身弦入口“抹”。用抹的方法，食指屈曲根节，伸直中、末二节，指头着弦，中锋平正弹入，不可斜扫，又不可太重，太重则出音浊，而且容易使弦扑面，也须不轻不重，甲肉各半，才能取得洁健的音响。（勾、打弹入皆同）
+  source_status: manual_image_transcription
+  normalized_term: mo
+  normalized_claim: 抹为右手食指向身、入口弹弦之法，内部标准名 mo；强调中锋平正入弦，不可斜扫或太重。
+  involved_terms:
+  - 抹
+  mapped_component_name: mo
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 括注“勾、打弹入皆同”可作为同向入口动作参考。
+- item_id: QXBY_004
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_004_tiao_挑.jpg
+  raw_excerpt: 即是“挑”字的减字体式。食指向徽弦出口“挑”。挑法，食指屈曲根节，中节用大指尖微托，食指头挑时，大指伸直将食指向前推送，以伸缩灵活为妙。指弦往空悬落挑，以甲尖弦出，又要用力不宽，弦坚实而不粗厉，才能得洁健的音响；若倚弦揉弦，手法失势，就出音柔弱涩浊了。
+  source_status: manual_image_transcription
+  normalized_term: tiao
+  normalized_claim: 挑为右手食指向徽、出口弹弦之法，内部标准名 tiao；强调伸缩灵活、悬落挑出、发音洁健。
+  involved_terms:
+  - 挑
+  mapped_component_name: tiao
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 局部原文“剔、摘弦出皆同”一类旁注疑似被截；待核原书。
+- item_id: QXBY_005
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_005_gou_勾.jpg
+  raw_excerpt: 即是“勾”字的减字体式。中指向身弦入口“勾”。勾法，中指屈曲根、中二节，竖直末节，用指头抵弦，甲尖勾入，右落而滑，重抵轻出，就是说宜重下指而轻出弦，才得中和、免偏重偏轻的弊病，而以也要纯用正锋，不可斜扫，又不可使甲尖打着琴面。
+  source_status: manual_image_transcription
+  normalized_term: gou
+  normalized_claim: 勾为右手中指向身、入口弹弦之法，内部标准名 gou；强调重下轻出、正锋入弦。
+  involved_terms:
+  - 勾
+  mapped_component_name: gou
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: “右落而滑”处可能需核原书字形。
+- item_id: QXBY_006
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: '48'
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_006_ti_剔.jpg
+  raw_excerpt: 即是“剔”字的减字体式。中指向徽弦出口“剔”。剔法，中指微屈中、末二节，甲背着弦，下指不可太深，太深就会滞碍；不可太刚，太刚就会粗暴。指法须悬空落弦，才能得灵动之机，又须正锋弹出，得声才清和浑厚。或剔出抵着前弦，也是指病，须当避免。
+  source_status: manual_image_transcription
+  normalized_term: ti
+  normalized_claim: 剔为右手中指向徽、出口弹弦之法，内部标准名 ti；强调甲背着弦、悬空落弦、正锋弹出。
+  involved_terms:
+  - 剔
+  mapped_component_name: ti
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 图中可见页码 48。
+- item_id: QXBY_007
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_007_da_打.jpg
+  raw_excerpt: 即是“打”字的减字体式。名指向身弦入口“打”。打法，名指微屈根节，竖直中、末二节，指头着弦，由根节运动，与“勾”微有不同，多用于一、二弦，因弦位距身较远，用名指取其便利。右落每于前一声用“勾”之后，次声即用“打”，和用“勾”的作用还是一样，近今的琴谱里面就完全用“勾”来代替，而将打法多形湮没了。实则因为名指的运用较难得力，不若用中指灵动的缘故。
+  source_status: manual_image_transcription
+  normalized_term: da
+  normalized_claim: 打为右手名指向身、入口弹弦之法，内部标准名 da；资料提示近今琴谱多以勾代打。
+  involved_terms:
+  - 打
+  mapped_component_name: da
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 可为后续“打/勾替代关系”建立 alias_or_substitution_rule，但本批先不自动合并。
+- item_id: QXBY_008
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_008_zhai_摘.jpg
+  raw_excerpt: 即是“摘”字的减字体式。名指向徽弦出口“摘”。摘法，名指屈曲中节，竖直末节，用甲背向外出弦，运动也在根节，弦要停倒。名指的末节最难坚劲，必须习练得推摇不动为妙。摘多用在“滚”“轮”的指法里面，详见后。
+  source_status: manual_image_transcription
+  normalized_term: zhai
+  normalized_claim: 摘为右手名指向徽、出口弹弦之法，内部标准名 zhai；常见于滚、轮等序列技法中。
+  involved_terms:
+  - 摘
+  mapped_component_name: zhai
+  mapped_component_category: pluck
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: “弦要停倒”处疑似需核原书；不影响 zhai 映射。
+- item_id: QXBY_009
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_009_chuo_绰.jpg
+  raw_excerpt: “绰”字的减字体式，或作“占”。左指弹弦，左指同时由下半位轻鬆起势，灵活用力，按弦迎音引上至本位，重按得音曰“绰”。
+  source_status: manual_image_transcription
+  normalized_term: chuo
+  normalized_claim: 绰为发声前从下方趋向本音的 pre_slide；谱面明示时 notation_pre_action=chuo，未明示时不得自动补入谱面事实。
+  involved_terms:
+  - 绰
+  mapped_component_name: chuo
+  mapped_component_category: pre_slide
+  mapped_gesture_family: component_only
+  mapped_sound_profile: none
+  aliases_detected:
+  - 占
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: source text says 或作“占”；本项目仍以内名 chuo 记录。component-only pre_slide; not post_motion; not a canonical gesture_family.
+- item_id: QXBY_010
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_010_zhu_注.jpg
+  raw_excerpt: “注”字的减字体式，或作“主”。左指弹弦，左指同时由上半位轻鬆起势，灵活用力，按弦送音抑下至本位，重按得音曰“注”。与“绰”取向相反，运指则同。
+  source_status: manual_image_transcription
+  normalized_term: zhu
+  normalized_claim: 注为发声前从上方趋向本音的 pre_slide；谱面明示时 notation_pre_action=zhu。
+  involved_terms:
+  - 注
+  mapped_component_name: zhu
+  mapped_component_category: pre_slide
+  mapped_gesture_family: component_only
+  mapped_sound_profile: none
+  aliases_detected:
+  - 主
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 与绰取向相反；本项目用于明示注的 notation_pre_action。component-only pre_slide; not post_motion; not a canonical gesture_family.
+- item_id: QXBY_011
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_011_zhuang_撞.jpg
+  raw_excerpt: “撞”字的减字体式。按弹得声后，左指急将本位向上一闪，急掣归本位，凡得一声，运指实上虚下，如钟杵撞钟一般重，其速如电。要速才是一声，略迟就成两声如进复（详后）而不是撞了。古谱有名为触的减字体式，作蜀，即是撞。
+  source_status: manual_image_transcription
+  normalized_term: zhuang
+  normalized_claim: 撞为按音发声后的微型回返走手，内部 component_category=micro_returning_slide；不可归入 percussive。
+  involved_terms:
+  - 撞
+  mapped_component_name: zhuang
+  mapped_component_category: micro_returning_slide
+  mapped_gesture_family: post_motion
+  mapped_sound_profile: post_motion
+  aliases_detected:
+  - 触
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 原文“触/蜀”处需核古谱字形；映射上仍为 zhuang。
+- item_id: QXBY_012
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_012_fan_zhuang_反撞.jpg
+  raw_excerpt: “反撞”两字的减字体式。按弹得声后，将本位向下一闪，急掣归本位，运指实下虚上，与“撞”取向相反。
+  source_status: manual_image_transcription
+  normalized_term: fan_zhuang
+  normalized_claim: 反撞为按音发声后的反向微型回返走手，内部 component_category=micro_returning_slide；方向与撞相反。
+  involved_terms:
+  - 反撞
+  mapped_component_name: fan_zhuang
+  mapped_component_category: micro_returning_slide
+  mapped_gesture_family: post_motion
+  mapped_sound_profile: post_motion
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 反撞与撞取向相反。
+- item_id: QXBY_013
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_013_shang_上.jpg
+  raw_excerpt: 即是上字，不减写。按本位按弹后，左指向右走上一位，得声曰“上”。运指要挺劲，两头着实，有起有顿，则出音实在，而不浮飘。
+  source_status: manual_image_transcription
+  normalized_term: shang
+  normalized_claim: 上为按音发声后的单向上行走手，component_category=single_slide，gesture_family=post_motion。
+  involved_terms:
+  - 上
+  mapped_component_name: shang
+  mapped_component_category: single_slide
+  mapped_gesture_family: post_motion
+  mapped_sound_profile: post_motion
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 原文称“不减写”。
+- item_id: QXBY_014
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: '68'
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_014_xia_下.jpg
+  raw_excerpt: 即是下字，不减写。按本位按弹后，左指向左走下一位，得声曰“下”。运指与“上”法同，而取向相反。“上”“下”两法，由“绰”“注”而生，而致用不同：绰注合两位为一位，融两声成一声；上下则分一位为两位，化一声为两声，都是作行腔用的。凡用上、下，或一上一下，或二上二下，或一上二下，或二上一下，最多有三上或三下的，都是因节奏而定，其上下的地位移动以协音为要，非可任意漫失定准。
+  source_status: manual_image_transcription
+  normalized_term: xia
+  normalized_claim: 下为按音发声后的单向下行走手，component_category=single_slide，gesture_family=post_motion；上/下与绰/注来源相关但用法不同。
+  involved_terms:
+  - 下
+  mapped_component_name: xia
+  mapped_component_category: single_slide
+  mapped_gesture_family: post_motion
+  mapped_sound_profile: post_motion
+  aliases_detected: []
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 图中可见页码 68；长段文字明确上/下为行腔用。
+- item_id: QXBY_015
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: '74'
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_015_qiaqi_掐起.jpg
+  raw_excerpt: “搯起”两字的减字体式。名指按下一位，大指按上一位用甲爪弦有声，以代右弹曰“搯起”。搯法取音难在大指，而得音之虚全在名指按得坚实，才使爪得有声，否则声响不清。
+  source_status: manual_image_transcription
+  normalized_term: qiaqi
+  normalized_claim: 搯起规范到掐起，为左手发音技法，gesture_family=left_hand_sound；需重视上下文与按指承接。
+  involved_terms:
+  - 掐起
+  mapped_component_name: qiaqi
+  mapped_component_category: left_sound
+  mapped_gesture_family: left_hand_sound
+  mapped_sound_profile: left_hand_sound
+  aliases_detected:
+  - 搯起
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 原图术语为“搯起”，按项目 alias 归入 qiaqi/掐起。图中可见页码 74。
+- item_id: QXBY_016
+  source_id: QXBY_BATCH_001
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_001
+  page_or_section: 待补页码/章节
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_016_cuo_撮.jpg
+  raw_excerpt: “撮”字的减字体式。两弦一拨一按，或一按一泛，或俱按俱散俱泛，“挑”“勾”并下，两弦齐响，同得一声，所以又称为齐撮。减字体式作章。不可参差，不可偏重，不可太喧，惟取隐然相和为妙。法在食、中两指倒垂入分，若如挑勾着弦的准则，手均指力向中将两弦一夹，其运动在两指根节，自然出声齐匀。
+  source_status: manual_image_transcription
+  normalized_term: cuo
+  normalized_claim: 撮为同时拨两弦的复合右手技法，gesture_family=simultaneous_pluck；可用于散、按、泛不同 sound_type 组合，但不新增第四音型。
+  involved_terms:
+  - 撮
+  mapped_component_name: cuo
+  mapped_component_category: simultaneous_pluck
+  mapped_gesture_family: simultaneous_pluck
+  mapped_sound_profile: simultaneous_strings
+  aliases_detected:
+  - 齐撮
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: “减字体式作章”处作为原文记录，暂不建内部 alias。

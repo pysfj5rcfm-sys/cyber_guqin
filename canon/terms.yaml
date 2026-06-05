@@ -1,0 +1,100 @@
+{
+  "terms": [
+    {
+      "term_id": "sound_type_san",
+      "name_zh": "散音",
+      "definition": "不按弦而发出的空弦音，是固定 sound_type 之一。",
+      "category": "sound_type",
+      "source_refs": ["00_global/guqin_fingering_ontology.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "sound_type_an",
+      "name_zh": "按音",
+      "definition": "左手按弦取音，是固定 sound_type 之一。",
+      "category": "sound_type",
+      "source_refs": ["00_global/guqin_fingering_ontology.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "sound_type_fan",
+      "name_zh": "泛音",
+      "definition": "左手轻触泛音点取音，是固定 sound_type 之一。",
+      "category": "sound_type",
+      "source_refs": ["00_global/guqin_fingering_ontology.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "score_fact",
+      "name_zh": "谱面事实",
+      "definition": "谱面明示的记谱内容，应与演奏实现分层保存。",
+      "category": "ontology_layer",
+      "source_refs": ["06_docs/GESTURE_ONTOLOGY.md", "references/normalization_rules.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "realization",
+      "name_zh": "演奏实现",
+      "definition": "琴人或采样层面的实际演奏处理，不自动回填为谱面事实。",
+      "category": "ontology_layer",
+      "source_refs": ["06_docs/GESTURE_ONTOLOGY.md", "references/validation_rules.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "notation_pre_action",
+      "name_zh": "notation_pre_action",
+      "definition": "谱面明示的发声前动作字段，例如明示绰或注。",
+      "category": "field",
+      "source_refs": ["00_global/schema_contract.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "realization_pre_action",
+      "name_zh": "realization_pre_action",
+      "definition": "演奏实现层面的发声前动作；默认绰等处理属于此类或更下游层。",
+      "category": "field",
+      "source_refs": ["00_global/sample_selection_policy.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "notation_vibrato",
+      "name_zh": "notation_vibrato",
+      "definition": "谱面明示的吟猱字段。",
+      "category": "field",
+      "source_refs": ["00_global/schema_contract.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "realization_vibrato",
+      "name_zh": "realization_vibrato",
+      "definition": "演奏实现层面的吟猱韵声处理，默认吟猱不自动写入谱面字段。",
+      "category": "field",
+      "source_refs": ["00_global/sample_selection_policy.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "gesture_family",
+      "name_zh": "gesture_family",
+      "definition": "动作家族分类，用于承载复杂技法结构而不扩展 sound_type。",
+      "category": "field",
+      "source_refs": ["00_global/gesture_family_catalog.csv", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "sound_profile",
+      "name_zh": "sound_profile",
+      "definition": "声音或动作轮廓分类，用于表达复杂技法的实现类型。",
+      "category": "field",
+      "source_refs": ["00_global/guqin_fingering_ontology.yaml", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    },
+    {
+      "term_id": "gesture_components",
+      "name_zh": "gesture_components",
+      "definition": "动作组件序列，用于拆分可结构化的复合技法。",
+      "category": "field",
+      "source_refs": ["00_global/gesture_components.csv", "06_docs/GESTURE_ONTOLOGY.md"],
+      "review_status": "verified"
+    }
+  ]
+}

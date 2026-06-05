@@ -1,0 +1,11 @@
+{
+  "sources": [
+    {
+      "source_id": "PROJECT_ONTOLOGY_V1_1",
+      "title": "Cyber Guqin Gesture Ontology v1.1",
+      "source_type": "project_internal",
+      "review_status": "verified",
+      "notes": "由当前项目已确认的 Gesture Ontology v1.1 生成最小 canon seed"
+    }
+  ]
+}
