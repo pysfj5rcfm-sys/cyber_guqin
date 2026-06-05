@@ -1,0 +1,820 @@
+{
+  "audit_type": "recording_sample_ingest_readiness",
+  "piece_id": "XWC",
+  "qinist_id": "QINIST_001",
+  "readiness_status": "warning",
+  "checked_files": [
+    {
+      "path": "00_global/qinists.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/pieces.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/qins.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/tunings.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/gesture_templates.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/gesture_components.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/schema_contract.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/parse_rules.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/guqin_fingering_ontology.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/gesture_component_lexicon.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/gesture_family_catalog.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/alias_rules.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "00_global/sample_selection_policy.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/score_events.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/phrase_structure.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/recording_script.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/recording_script_human.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/recording_script_human.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/recording_batches.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/rhythm_candidates",
+      "exists": true,
+      "kind": "directory",
+      "status": "present"
+    },
+    {
+      "path": "01_pieces/xianwengcao/reviews",
+      "exists": false,
+      "kind": "file",
+      "status": "expected_missing_this_phase"
+    },
+    {
+      "path": "02_recordings/recording_sessions.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "02_recordings/raw_audio",
+      "exists": false,
+      "kind": "file",
+      "status": "expected_missing_this_phase"
+    },
+    {
+      "path": "03_samples/recording_segments.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "03_samples/sample_assets.csv",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "03_samples/QIN_A/ZHENG_DIAO",
+      "exists": true,
+      "kind": "directory",
+      "status": "present"
+    },
+    {
+      "path": "05_scripts/generate_recording_script.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "05_scripts/export_recording_checklist.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "05_scripts/make_dummy_samples.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "05_scripts/generate_rhythm.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "05_scripts/render_audio.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "05_scripts/audio_viability_review.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "05_scripts/smoke_test.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": ".agents/skills/guqin-canon-builder/SKILL.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": ".agents/skills/guqin-dapu-parser/SKILL.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/sources.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/terms.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/component_lexicon.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/gesture_families.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/alias_rules.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/technique_rules.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/validation_rules.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/drafts/qxby_batch_001.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "canon/drafts/qxby_batch_002.yaml",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "scripts/validate_canon.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "scripts/validate_dapu_ir.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "scripts/check_v1_compat.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "scripts/validate_canon_seed.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "scripts/validate_qxby_batch.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "scripts/audit_qxby_batch_sources.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "scripts/audit_v1_to_canon_coverage.py",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "06_docs/GESTURE_ONTOLOGY.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "06_docs/PROJECT_STRUCTURE.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "reports/REPORTS_INDEX.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "reports/v1_to_canon_coverage.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "reports/qxby_batch_002_collection_plan.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "reports/qxby_batch_001_human_review.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "reports/qxby_batch_002_report.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    },
+    {
+      "path": "reports/validator_parameterization_report.md",
+      "exists": true,
+      "kind": "file",
+      "status": "present"
+    }
+  ],
+  "recording_task_summary": {
+    "expected_total_takes": 71,
+    "has_recording_script": true,
+    "has_human_recording_script": true,
+    "has_recording_batches": true,
+    "atomic_take_count": 69,
+    "context_take_count": 2,
+    "variant_types": [
+      "atomic",
+      "chuo",
+      "context",
+      "straight",
+      "zhu"
+    ]
+  },
+  "field_gaps": [
+    {
+      "area": "recording_script_human",
+      "field": "event_range",
+      "severity": "must_before_splitting",
+      "current_status": "1 context row(s) lack event_range",
+      "recommendation": "Fill event_range for every context take before cutting or registering real segments."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "recording_session_id",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "location",
+      "severity": "optional",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "recorder",
+      "severity": "optional",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "microphone",
+      "severity": "optional",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "audio_interface",
+      "severity": "optional",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "sample_rate",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "bit_depth",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "channel_count",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "file_format",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "room_noise_note",
+      "severity": "optional",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "qin_condition_note",
+      "severity": "optional",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "recording_mode",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "source_raw_files",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "recording_sessions",
+      "field": "linked_recording_script",
+      "severity": "must_before_recording",
+      "current_status": "missing",
+      "recommendation": "Capture in a session manifest before real audio is archived."
+    },
+    {
+      "area": "take_manifest",
+      "field": "recording_session_id",
+      "severity": "must_before_splitting",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "recording_id",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "recording_take_no",
+      "severity": "must_before_splitting",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "batch_take_no",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "script_id",
+      "severity": "must_before_splitting",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "event_id",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "event_range",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "gesture_id",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "normalized_name",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "expected_sample_type",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "realization_variant",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "source_raw_file",
+      "severity": "must_before_splitting",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "take_start_time",
+      "severity": "must_before_splitting",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "take_end_time",
+      "severity": "must_before_splitting",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "take_quality",
+      "severity": "must_before_splitting",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "performer_note",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "engineer_note",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "needs_reshoot",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "selected_for_sample",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "take_manifest",
+      "field": "notes",
+      "severity": "optional",
+      "current_status": "no take manifest exists",
+      "recommendation": "Create as a future manifest, not during this audit."
+    },
+    {
+      "area": "recording_segments",
+      "field": "recording_session_id",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "source_raw_file",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "source_take_id",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "script_id",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "event_range",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "gesture_id",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "sample_type",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "realization_variant",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "start_time_s",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "end_time_s",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "attack_marker_ms",
+      "severity": "should_before_render",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "release_tail_ms",
+      "severity": "should_before_render",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "file_path",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "extraction_method",
+      "severity": "should_before_render",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "recording_segments",
+      "field": "qc_status",
+      "severity": "must_before_splitting",
+      "current_status": "missing",
+      "recommendation": "Add before registering real audio slices."
+    },
+    {
+      "area": "sample_assets",
+      "field": "sample_version",
+      "severity": "should_before_render",
+      "current_status": "missing",
+      "recommendation": "Needed to manage real/dummy coexistence and render selection."
+    },
+    {
+      "area": "sample_assets",
+      "field": "selected_sample_set",
+      "severity": "should_before_render",
+      "current_status": "missing",
+      "recommendation": "Needed to manage real/dummy coexistence and render selection."
+    },
+    {
+      "area": "sample_assets",
+      "field": "active_sample_set",
+      "severity": "should_before_render",
+      "current_status": "missing",
+      "recommendation": "Needed to manage real/dummy coexistence and render selection."
+    },
+    {
+      "area": "sample_assets",
+      "field": "source_type",
+      "severity": "must_before_splitting",
+      "current_status": "present, currently dummy only",
+      "recommendation": "Allow dummy and real_recording values to coexist."
+    },
+    {
+      "area": "sample_assets",
+      "field": "source_segment_id",
+      "severity": "must_before_splitting",
+      "current_status": "present, empty for all dummy rows",
+      "recommendation": "Populate only after real recording_segments are registered."
+    }
+  ],
+  "proposed_new_files": [
+    {
+      "path": "02_recordings/raw_audio/QINIST_001/XWC/RS_XWC_001/session_manifest.yaml",
+      "purpose": "Capture session-level environment, equipment, format, and recording mode.",
+      "create_now": false,
+      "phase": "Phase 1B-1"
+    },
+    {
+      "path": "02_recordings/raw_audio/QINIST_001/XWC/RS_XWC_001/take_manifest.csv",
+      "purpose": "Map the 71 expected tasks to raw file boundaries, retakes, and quality choices.",
+      "create_now": false,
+      "phase": "Phase 1B-2"
+    },
+    {
+      "path": "05_scripts/split_recording_session.py",
+      "purpose": "Future manual/semi-auto splitter from raw WAV plus take manifest into segments.",
+      "create_now": false,
+      "phase": "Phase 1B-3"
+    },
+    {
+      "path": "05_scripts/ingest_recording_segments.py",
+      "purpose": "Future runtime-side registration of verified segment rows.",
+      "create_now": false,
+      "phase": "Phase 1B-3"
+    },
+    {
+      "path": "05_scripts/promote_segments_to_samples.py",
+      "purpose": "Future promotion from good segments to real sample_assets and sample sets.",
+      "create_now": false,
+      "phase": "Phase 1B-5"
+    }
+  ],
+  "do_not_create_now": [
+    "real audio slices",
+    "recording_items_enriched.jsonl",
+    "recording ingest data rows",
+    "V1 patch scripts",
+    "machine learning training scripts",
+    "OCR pipeline outputs",
+    "new canon drafts",
+    "real sample_assets rows",
+    "real recording_segments rows"
+  ],
+  "risks": [
+    "Context takes without explicit event_range can lose the relationship between source event, inherited event, and sample.",
+    "Using batch order as score order would scramble event chronology; keep batch_take_no separate from score event order.",
+    "Writing sample_assets before segment QC would hide rejected/bad takes and weaken provenance.",
+    "Overwriting dummy assets instead of coexisting sample sets would make regression rendering harder."
+  ],
+  "next_steps": [
+    "Confirm session manifest fields and recording format before recording.",
+    "Archive raw audio permanently as read-only originals, then make normalized copies.",
+    "Create a take manifest from the 71 task script before cutting.",
+    "Manually or semi-automatically split a small pilot batch before full 71-take ingest.",
+    "Promote only good segments into a real sample set after QC."
+  ]
+}
