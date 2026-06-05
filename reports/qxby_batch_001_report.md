@@ -88,3 +88,7 @@ This round did not modify V1 mainline files such as:
 - `recording_script_human.md`
 
 This round did not create `recording_items_enriched.jsonl`, did not run recording ingest, and did not make V1 repair edits.
+
+## Human Review Update
+
+The user manually reviewed all 16 QXBY_BATCH_001 items and confirmed image-to-item mapping, raw excerpt, normalized term, and ontology mapping are correct. The batch remains non-verified and is recorded as reviewed draft in `reports/qxby_batch_001_human_review.md`.
