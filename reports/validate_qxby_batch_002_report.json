@@ -1,0 +1,68 @@
+{
+  "validator": "validate_qxby_batch.py",
+  "input": "canon/drafts/qxby_batch_002.yaml",
+  "batch_id": "QXBY_BATCH_002",
+  "expected_count": 8,
+  "strict": false,
+  "allow_warnings": false,
+  "status": "pass",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "batch_id": "QXBY_BATCH_002",
+    "source_title": "琴学备要",
+    "source_status": "manual_image_transcription",
+    "item_count": 8,
+    "expected_count": 8,
+    "required_item_count": 0,
+    "terms": [
+      "中指",
+      "名指",
+      "大指",
+      "按音",
+      "散音",
+      "泛音",
+      "跪指",
+      "食指"
+    ],
+    "confidence": {
+      "high": [
+        "散音",
+        "食指"
+      ],
+      "medium": [
+        "中指",
+        "名指",
+        "大指",
+        "按音",
+        "泛音",
+        "跪指"
+      ],
+      "low": []
+    },
+    "conflicts_with_project_ontology": [],
+    "ocr_or_transcription_uncertainty_terms": [
+      "中指",
+      "名指",
+      "大指",
+      "按音",
+      "泛音",
+      "跪指"
+    ],
+    "global_guardrails_checked_when_present": [],
+    "global_guardrails_not_required_when_absent": [
+      "daiqi",
+      "fanghe",
+      "fenkai",
+      "jinfu",
+      "la",
+      "po",
+      "po_la",
+      "qia_cuo_sansheng",
+      "tuifu",
+      "yan",
+      "yinghe"
+    ]
+  }
+}

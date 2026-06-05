@@ -153,6 +153,13 @@ def image_path_from_source_image(source_image: str) -> Path:
     return path if path.is_absolute() else ROOT / path
 
 
+def first_present(item: dict[str, Any], keys: tuple[str, ...]) -> tuple[str, Any]:
+    for key in keys:
+        if key in item and item.get(key) not in {None, ""}:
+            return key, item.get(key)
+    return "", None
+
+
 def main() -> int:
     args = parse_args()
     batch_id = args.batch_id
@@ -227,6 +234,9 @@ def main() -> int:
     manifest_missing: list[str] = []
     draft_missing: list[str] = []
     term_mismatches: list[str] = []
+    internal_name_mismatches: list[str] = []
+    missing_draft_internal_names: list[str] = []
+    missing_mapped_component_names: list[str] = []
     filename_mismatches: list[str] = []
     source_image_outside_source_dir: list[str] = []
 
@@ -239,12 +249,23 @@ def main() -> int:
         draft_item = draft_by_id.get(item_id)
         if draft_item is None:
             continue
-        term = str(draft_item.get("normalized_term", ""))
-        internal = str(draft_item.get("mapped_component_name", ""))
-        if manifest_item.get("term") != term or manifest_item.get("internal_name") != internal:
+        term_key, term_value = first_present(draft_item, ("term", "normalized_term", "source_term"))
+        term = str(term_value or "")
+        manifest_term = str(manifest_item.get("term", ""))
+        if manifest_term != term:
             term_mismatches.append(
-                f"{item_id}: draft term/internal={term}/{internal}, manifest={manifest_item.get('term')}/{manifest_item.get('internal_name')}"
+                f"{item_id}: draft {term_key or 'term'}={term!r}, manifest term={manifest_term!r}"
             )
+        draft_internal_name = draft_item.get("internal_name")
+        manifest_internal_name = manifest_item.get("internal_name")
+        if draft_internal_name in {None, ""}:
+            missing_draft_internal_names.append(item_id)
+        elif manifest_internal_name != draft_internal_name:
+            internal_name_mismatches.append(
+                f"{item_id}: draft internal_name={draft_internal_name!r}, manifest internal_name={manifest_internal_name!r}"
+            )
+        if "mapped_component_name" in draft_item and draft_item.get("mapped_component_name") in {None, ""}:
+            missing_mapped_component_names.append(item_id)
         filename = Path(image_file).name
         if term and f"_{term}_" not in filename:
             filename_mismatches.append(f"{item_id}: {filename} does not contain _{term}_")
@@ -269,8 +290,16 @@ def main() -> int:
     add(errors, not manifest_missing, f"manifest references missing files: {manifest_missing}")
     add(errors, not draft_missing, f"draft references missing files: {draft_missing}")
     add(errors, not source_image_outside_source_dir, f"draft source_image values outside source images dir: {source_image_outside_source_dir}")
-    add(errors, not term_mismatches, f"term/internal_name mismatches: {term_mismatches}")
-    add(errors, not filename_mismatches, f"filename term mismatches: {filename_mismatches}")
+    add(errors, not term_mismatches, f"term mismatches: {term_mismatches}")
+    add(errors, not internal_name_mismatches, f"internal_name mismatches: {internal_name_mismatches}")
+    add(errors, not missing_mapped_component_names, f"draft mapped_component_name present but empty: {missing_mapped_component_names}")
+    if missing_draft_internal_names and batch_id != DEFAULT_BATCH_ID:
+        warnings.append(
+            "draft internal_name missing for item_id values; source audit skipped manifest.internal_name equality for these items: "
+            f"{missing_draft_internal_names}"
+        )
+    if filename_mismatches:
+        warnings.append(f"filename term readability mismatches: {filename_mismatches}")
 
     summary = {
         "batch_id": batch_id,
@@ -284,7 +313,15 @@ def main() -> int:
         "draft_missing_files": draft_missing,
         "source_image_outside_source_dir": source_image_outside_source_dir,
         "term_mismatches": term_mismatches,
+        "internal_name_mismatches": internal_name_mismatches,
+        "missing_draft_internal_names": missing_draft_internal_names,
+        "missing_mapped_component_names": missing_mapped_component_names,
         "filename_mismatches": filename_mismatches,
+        "semantic_rules": {
+            "manifest_internal_name": "matches draft.internal_name when present",
+            "mapped_component_name": "checked as a non-empty draft semantic mapping field when present; not compared to manifest.internal_name",
+            "filename": "checked as human-readable metadata only; mismatches warn when referenced files exist",
+        },
     }
     return write_reports(errors, warnings, summary, draft_path, manifest_path, image_dir, report_md, report_json, args)
 
@@ -340,7 +377,16 @@ def write_reports(
         f"- draft missing files: {summary.get('draft_missing_files')}",
         f"- source_image outside source dir: {summary.get('source_image_outside_source_dir')}",
         f"- term mismatches: {summary.get('term_mismatches')}",
+        f"- internal_name mismatches: {summary.get('internal_name_mismatches')}",
+        f"- draft items missing internal_name: {summary.get('missing_draft_internal_names')}",
+        f"- draft mapped_component_name empty: {summary.get('missing_mapped_component_names')}",
         f"- filename mismatches: {summary.get('filename_mismatches')}",
+        "",
+        "## Semantic Rules",
+        "",
+        "- `manifest.internal_name` is aligned with draft `internal_name` when that field is present.",
+        "- `mapped_component_name` is a semantic mapping field in the draft and is no longer required to equal manifest `internal_name`.",
+        "- Source image filenames are human-readable archive aids; filename term mismatches are warnings when referenced files exist.",
         "",
         "## Errors",
         "",

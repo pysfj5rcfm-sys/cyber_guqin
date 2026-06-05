@@ -1,0 +1,54 @@
+batch_id: QXBY_BATCH_002
+source_title: 琴学备要
+source_status: manual_image_transcription
+needs_review: true
+image_root: sources/qinxue_beiyao/QXBY_BATCH_002/images
+items:
+- item_id: QXBY_B002_001
+  term: 按音
+  internal_name: sound_type_an
+  image_file: images/QXBY_B002_001_an_按音_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true
+- item_id: QXBY_B002_002
+  term: 散音
+  internal_name: sound_type_san
+  image_file: images/QXBY_B002_002_san_散音_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true
+- item_id: QXBY_B002_003
+  term: 大指
+  internal_name: thumb
+  image_file: images/QXBY_B002_003_thumb_大指_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true
+- item_id: QXBY_B002_004
+  term: 食指
+  internal_name: index
+  image_file: images/QXBY_B002_004_index_食指_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true
+- item_id: QXBY_B002_005
+  term: 中指
+  internal_name: middle
+  image_file: images/QXBY_B002_005_middle_中指_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true
+- item_id: QXBY_B002_006
+  term: 名指
+  internal_name: ring
+  image_file: images/QXBY_B002_006_ring_名指_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true
+- item_id: QXBY_B002_007
+  term: 跪指
+  internal_name: gui_finger
+  image_file: images/QXBY_B002_007_gui_跪指_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true
+- item_id: QXBY_B002_008
+  term: 泛音
+  internal_name: sound_type_fan
+  image_file: images/QXBY_B002_008_fan_泛音_ref.jpeg
+  source_status: manual_image_transcription
+  needs_review: true

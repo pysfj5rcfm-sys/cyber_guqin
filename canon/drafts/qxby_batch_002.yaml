@@ -1,0 +1,239 @@
+batch_id: QXBY_BATCH_002
+source_title: 琴学备要
+source_type: image_transcription
+batch_scope: Xianwengcao canon coverage supplement
+source_status_default: manual_image_transcription
+review_status_default: draft
+needs_review_default: true
+do_not_mark_verified: true
+user_clarifications:
+- 本批已提供散音、泛音、按音说明，以及四根手指按音加跪指说明。
+- 复合泛音撮不作为独立特殊指法入库；实际是左手泛音动作加右手撮指法的组合。
+- Batch001 掐起说明已经包括名指按下一音位，已涵盖按同一根弦的语义；本批不再新增掐起继承规则条目。
+items:
+- item_id: QXBY_B002_001
+  topic_id: QXBY_B002_TOPIC_005
+  normalized_term: 按音
+  internal_name: sound_type_an
+  source_image_original: 屏幕截图_5-6-2026_162429_.jpeg
+  suggested_archive_filename: QXBY_B002_001_an_按音_ref.jpeg
+  raw_excerpt: “按”字的减字体式。右指弹弦，左指按徽位间压弦贴木，以取音，名为“按音”。按宜坚实，才能得到它的真音。按音是琴的主要音声，可分为三种：一实音，即是实按不动发出的本音；二绰音，即指下摇动，将本音的馀韵化为小音；三走音，即指在弦上走动，抛本音之外再取得别位的音。
+  raw_excerpt_uncertain: true
+  normalized_claim: 按音由左手按徽位压弦贴木、右手弹弦取声形成；按音须坚实以得真音。此条同时说明按音内部可有实音、绰音、走音三类表现。此处支持 sound_type=按音 与 pressed_pluck/按音取法，不应把“绰音/走音”误写成谱面默认绰注。
+  mapped_component_name: pressed_pluck
+  mapped_component_category: pressed_pluck
+  mapped_gesture_family: pressed_pluck
+  mapped_sound_profile: pressed
+  canon_target_type:
+  - term
+  - technique_rule
+  aliases_detected: null
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 支持 C1 按音取法/三音型主题。原文部分字形需后续按原书复核；不要把按音中的绰音说明等同为所有按音谱面默认 notation_pre_action=chuo。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_001_an_按音_ref.jpeg
+- item_id: QXBY_B002_002
+  topic_id: QXBY_B002_TOPIC_001
+  normalized_term: 散音
+  internal_name: sound_type_san
+  source_image_original: 屏幕截图_5-6-2026_16249_.jpeg
+  suggested_archive_filename: QXBY_B002_002_san_散音_ref.jpeg
+  raw_excerpt: “散”字的减字体式。左手不按徽位，仅以右手各指弹弦，名为“散音”。下指不刚不柔，宜在岳山与一徽的中间着弦，弹得出中和的音声。
+  raw_excerpt_uncertain: false
+  normalized_claim: 散音是左手不按徽位，仅以右手各指弹弦取声；该条支持 sound_type=散音 与 open-string / single-pluck 类散音取声。
+  mapped_component_name: san_sound
+  mapped_component_category: sound_type
+  mapped_gesture_family: single_pluck
+  mapped_sound_profile: single
+  canon_target_type:
+  - term
+  - technique_rule
+  aliases_detected: null
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 支持 C1 三音型主题。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_002_san_散音_ref.jpeg
+- item_id: QXBY_B002_003
+  topic_id: QXBY_B002_TOPIC_002
+  normalized_term: 大指
+  internal_name: thumb
+  source_image_original: 屏幕截图_5-6-2026_162526_.jpeg
+  suggested_archive_filename: QXBY_B002_003_thumb_大指_ref.jpeg
+  raw_excerpt: 大，即是“大指”不减写。大指按弦，有甲肉相半和纯肉两用。用甲肉相半，则屈曲中、末二节，指头右侧半甲半肉压按之；用纯肉，则伸直中、末二节，指末节右侧近骨处按之。或伸或曲，必须灵活，则一指可按两弦，而运用极便。泛音纯用肉，法与此同。
+  raw_excerpt_uncertain: true
+  normalized_claim: 大指是左手指名之一，可用于按弦；有甲肉相半与纯肉两法。该条还说明泛音时大指纯用肉。支持 left_finger=thumb 与 harmonic_touch_finger=thumb。
+  mapped_component_name: thumb
+  mapped_component_category: finger_name
+  mapped_gesture_family: finger_role
+  mapped_sound_profile: none
+  canon_target_type:
+  - component
+  - alias_rule
+  aliases_detected:
+  - 大
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 支持 C1 指名系统与泛音取法主题。部分字形如“近骨处”需原书复核。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_003_thumb_大指_ref.jpeg
+- item_id: QXBY_B002_004
+  topic_id: QXBY_B002_TOPIC_002
+  normalized_term: 食指
+  internal_name: index
+  source_image_original: 屏幕截图_5-6-2026_162539_.jpeg
+  suggested_archive_filename: QXBY_B002_004_index_食指_ref.jpeg
+  raw_excerpt: “食指”食字的减字体式，或作亻。食指按弦，微作俯势，以指头平正按之，不可斜侧，用时很少，惟泛音较多。
+  raw_excerpt_uncertain: false
+  normalized_claim: 食指是左手指名之一；按弦时以指头平正按之，不宜斜侧；在按音中用时较少，而泛音中较多。支持 left_finger=index 与 harmonic_touch_finger=index。
+  mapped_component_name: index
+  mapped_component_category: finger_name
+  mapped_gesture_family: finger_role
+  mapped_sound_profile: none
+  canon_target_type:
+  - component
+  - alias_rule
+  aliases_detected:
+  - 食
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: high
+  notes: 支持 C1 指名系统与泛音取法主题。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_004_index_食指_ref.jpeg
+- item_id: QXBY_B002_005
+  topic_id: QXBY_B002_TOPIC_002
+  normalized_term: 中指
+  internal_name: middle
+  source_image_original: 屏幕截图_5-6-2026_162548_.jpeg
+  suggested_archive_filename: QXBY_B002_005_middle_中指_ref.jpeg
+  raw_excerpt: “中”指中字，不减写。中指按弦，法同食指，也要正按，惟遇连按两弦，则可稍侧于左，兼用中、末节界。泛音则但用指头正点弦上。
+  raw_excerpt_uncertain: true
+  normalized_claim: 中指是左手指名之一；按弦法大体同食指，泛音时用指头正点弦上。支持 left_finger=middle 与 harmonic_touch_finger=middle。
+  mapped_component_name: middle
+  mapped_component_category: finger_name
+  mapped_gesture_family: finger_role
+  mapped_sound_profile: none
+  canon_target_type:
+  - component
+  - alias_rule
+  aliases_detected:
+  - 中
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 支持 C1 指名系统与泛音取法主题。原文“中、末节界”等字形需复核。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_005_middle_中指_ref.jpeg
+- item_id: QXBY_B002_006
+  topic_id: QXBY_B002_TOPIC_002
+  normalized_term: 名指
+  internal_name: ring
+  source_image_original: 屏幕截图_5-6-2026_162559_.jpeg
+  suggested_archive_filename: QXBY_B002_006_ring_名指_ref.jpeg
+  raw_excerpt: “名指”名字的减字体式。名指按弦，屈曲中节，凸出末节，按的属所也有指头和末节骨两用，内稍微侧左按之。若连按两三弦时，则当伸直中节，法音亦同。
+  raw_excerpt_uncertain: true
+  normalized_claim: 名指是左手指名之一；可用于按弦，常以中节屈曲、末节凸出取势，兼有指头与末节骨等按法。支持 left_finger=ring。
+  mapped_component_name: ring
+  mapped_component_category: finger_name
+  mapped_gesture_family: finger_role
+  mapped_sound_profile: none
+  canon_target_type:
+  - component
+  - alias_rule
+  aliases_detected:
+  - 名
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 支持 C1 指名系统。原文字形较难，尤其“属所/末节骨/法音亦同”等需原书复核。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_006_ring_名指_ref.jpeg
+- item_id: QXBY_B002_007
+  topic_id: QXBY_B002_TOPIC_002
+  normalized_term: 跪指
+  internal_name: gui_finger
+  source_image_original: 屏幕截图_5-6-2026_162812_.jpeg
+  suggested_archive_filename: QXBY_B002_007_gui_跪指_ref.jpeg
+  raw_excerpt: “跪”字的减字体式。名指屈曲中、末二节，以末节指背按弦，名为“跪”。用尺七徽以上音位短促，名指直按其势拘而不便，故用跪按。按的属所也有甲肉两用，用甲则于甲中按之，用肉则在末节近硬骨处按之。须绽甲肉熟按，两法皆按时都宜侧左，才能运用得力。跪指按弦最难坚实，稍音熟练，泛音则不用。
+  raw_excerpt_uncertain: true
+  normalized_claim: 跪是名指屈曲中、末二节，以末节指背按弦的按法；用于直按不便的短促音位。该条可作为 ring finger special pressing posture / gui_finger 的来源证据；同时说明泛音不用跪。
+  mapped_component_name: gui_finger
+  mapped_component_category: finger_posture
+  mapped_gesture_family: pressed_pluck
+  mapped_sound_profile: pressed
+  canon_target_type:
+  - component
+  - technique_rule
+  aliases_detected:
+  - 跪
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 支持 C1 指名系统补充项。跪指当前未必直接用于仙翁操，但用户明确提供为四根手指按音+跪指说明，应入 Batch002 draft 或附录项。原文部分字形需复核。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_007_gui_跪指_ref.jpeg
+- item_id: QXBY_B002_008
+  topic_id: QXBY_B002_TOPIC_003
+  normalized_term: 泛音
+  internal_name: sound_type_fan
+  source_image_original: 屏幕截图_5-6-2026_163511_.jpeg
+  suggested_archive_filename: QXBY_B002_008_fan_泛音_ref.jpeg
+  raw_excerpt: “泛”字的减字体式。右指弹弦，左指同时正对徽位轻点弦上，取得清脆的音声，名为泛音。右弦欲重，左点欲轻，悬空落指，一着即起，不可过抑，使音不响。譬如蜻蜓点水，最为逼肖。又有用左指离弦一米许，弹时弦跃触指自成泛音的，此为粉蝶浮花也，极难切。前法大名二指互泛两徽时用之。后法食指连泛按弦时用之。右手下指弹弦，宜稍近岳山，则出音劲脆清亮。
+  raw_excerpt_uncertain: true
+  normalized_claim: 泛音由右指弹弦、左指正对徽位轻点弦上取声；左点宜轻，一触即起。该条支持 sound_type=泛音、harmonic_pluck、harmonic_touch_finger 与泛音取法。复合泛音撮不需要单列为独立特殊术语，可理解为左手泛音取法与右手撮的组合。
+  mapped_component_name: fan_sound
+  mapped_component_category: harmonic_pluck
+  mapped_gesture_family: harmonic_pluck
+  mapped_sound_profile: harmonic
+  canon_target_type:
+  - term
+  - component
+  - technique_rule
+  aliases_detected:
+  - 泛
+  conflict_with_project_ontology: false
+  needs_review: true
+  review_status: draft
+  confidence: medium
+  notes: 支持 C1 泛音取法主题。原文“一米许”等字形需复核，可能为传统比喻/距离说明。
+  source_id: QXBY_BATCH_002
+  source_title: 琴学备要
+  batch_id: QXBY_BATCH_002
+  source_status: manual_image_transcription
+  source_image: sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_008_fan_泛音_ref.jpeg
+source_status: manual_image_transcription
+review_status: draft
+needs_review: true

@@ -106,3 +106,7 @@ Example source audit call:
 ```powershell
 python scripts/audit_qxby_batch_sources.py --batch-id QXBY_BATCH_002 --draft canon/drafts/qxby_batch_002.yaml --source-dir sources/qinxue_beiyao/QXBY_BATCH_002 --manifest sources/qinxue_beiyao/QXBY_BATCH_002/manifest.yaml --expected-count <count> --report-md reports/qxby_batch_002_source_audit.md --report-json reports/qxby_batch_002_source_audit.json
 ```
+
+## Source Audit Semantic Fix
+
+The source audit now treats `manifest.internal_name` as the entry's standard internal name and no longer requires equality with draft `mapped_component_name`. This supports Batch002 sound-type entries such as `sound_type_an -> pressed_pluck`.
