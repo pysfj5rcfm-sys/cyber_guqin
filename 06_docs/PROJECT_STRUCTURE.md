@@ -44,3 +44,10 @@ The two script trees must not be mixed. Runtime scripts should not absorb canon 
 - Do not treat `reports/` as runtime output.
 - Do not let Step 2B drafts overwrite Gesture Ontology v1.1.
 - Do not treat `recording_batches.md` as a source of score facts.
+
+## Reports and Archive Policy
+
+reports/ root keeps current status entry reports.
+reports/archive/ stores historical audit reports, old batch reports, generated validation outputs, and completed staging artifacts.
+Generated validator reports may reappear in reports/ root after validation runs.
+Audio/runtime outputs belong to 04_outputs/, not reports/.

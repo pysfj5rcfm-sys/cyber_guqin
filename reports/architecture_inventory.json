@@ -1,0 +1,339 @@
+{
+  "phase": "R0 Architecture Review & Slimming Audit",
+  "project_root": "D:/AIProjects/cyber_guqin/Cyber_Guqin_v1",
+  "generated_at_local": "2026-06-05",
+  "scope_note": "Inventory is based on read-only scan of the project root. Validation commands were run in a temporary copy to avoid modifying mainline data or existing reports.",
+  "counts": {
+    "python_scripts_total": 13,
+    "python_scripts_05_scripts": 7,
+    "python_scripts_scripts": 6,
+    "fixtures_total": 3,
+    "reports_total_before_r0": 15,
+    "source_images_qxby_batch_001": 16,
+    "tracked_or_untracked_cache_files_found": 1,
+    "untracked_nonignored_files": 0
+  },
+  "git_status": {
+    "working_tree_before_r0_reports": "clean",
+    "untracked_nonignored_files": []
+  },
+  "gitignore": {
+    "exists": true,
+    "contains": {
+      ".DS_Store": true,
+      "__pycache__/": true,
+      "*.pyc": true,
+      ".pytest_cache/": true
+    },
+    "recommendation": "No .gitignore edit needed in Phase R0."
+  },
+  "cache_and_disposable_findings": [
+    {
+      "path": ".DS_Store",
+      "type": "macOS metadata",
+      "tracked": false,
+      "gitignored": true,
+      "recommendation": "Safe to delete after confirmation or as a cleanup-only pass."
+    }
+  ],
+  "script_summary": {
+    "long_term_keep": [
+      "05_scripts/render_audio.py",
+      "05_scripts/audio_viability_review.py",
+      "05_scripts/export_recording_checklist.py",
+      "05_scripts/smoke_test.py",
+      "scripts/validate_canon.py",
+      "scripts/validate_dapu_ir.py",
+      "scripts/check_v1_compat.py",
+      "scripts/validate_canon_seed.py"
+    ],
+    "batch_specific_parameterize": [
+      "scripts/validate_qxby_batch.py",
+      "scripts/audit_qxby_batch_sources.py"
+    ],
+    "one_off_or_review": [
+      "05_scripts/generate_recording_script.py",
+      "05_scripts/generate_rhythm.py",
+      "05_scripts/make_dummy_samples.py"
+    ]
+  },
+  "scripts": [
+    {
+      "path": "05_scripts/audio_viability_review.py",
+      "purpose": "Review rendered audio and emit audio viability reports under 04_outputs/xianwengcao/reports.",
+      "category": "Core Runtime",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["04_outputs/xianwengcao/reports/audio_viability_report.md", "04_outputs/xianwengcao/reports/audio_viability_report.csv"],
+      "v1_runtime": true,
+      "canon_or_skills_validator": false,
+      "keep_current_path": true,
+      "merge_or_parameterize": "No merge recommended. Keep as V1 runtime report generator."
+    },
+    {
+      "path": "05_scripts/export_recording_checklist.py",
+      "purpose": "Export human recording checklist and batch guidance for xianwengcao.",
+      "category": "Core Runtime",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["01_pieces/xianwengcao/recording_script_human.csv", "01_pieces/xianwengcao/recording_script_human.md", "01_pieces/xianwengcao/recording_batches.md"],
+      "v1_runtime": true,
+      "canon_or_skills_validator": false,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep in 05_scripts. Later parameterize by piece_id if more pieces are added."
+    },
+    {
+      "path": "05_scripts/generate_recording_script.py",
+      "purpose": "Generate xianwengcao recording_script.csv from score_events.csv.",
+      "category": "Core Runtime",
+      "recommendation": "review",
+      "possibly_one_off": true,
+      "modifies_files": true,
+      "modifies_paths": ["01_pieces/xianwengcao/recording_script.csv"],
+      "v1_runtime": true,
+      "canon_or_skills_validator": false,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Do not merge. Consider marking as regeneration utility or parameterizing by piece."
+    },
+    {
+      "path": "05_scripts/generate_rhythm.py",
+      "purpose": "Generate A/B/C/D rhythm candidate CSVs for xianwengcao.",
+      "category": "Core Runtime",
+      "recommendation": "review",
+      "possibly_one_off": true,
+      "modifies_files": true,
+      "modifies_paths": ["01_pieces/xianwengcao/rhythm_candidates/*.csv"],
+      "v1_runtime": true,
+      "canon_or_skills_validator": false,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep separate from scripts/. Later parameterize by piece and candidate profile."
+    },
+    {
+      "path": "05_scripts/make_dummy_samples.py",
+      "purpose": "Generate dummy WAV samples and sample_assets.csv for baseline smoke rendering.",
+      "category": "Core Runtime",
+      "recommendation": "review",
+      "possibly_one_off": true,
+      "modifies_files": true,
+      "modifies_paths": ["03_samples/**/*.wav", "03_samples/sample_assets.csv"],
+      "v1_runtime": true,
+      "canon_or_skills_validator": false,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep as fixture/bootstrap utility only. Do not run during real recording ingest."
+    },
+    {
+      "path": "05_scripts/render_audio.py",
+      "purpose": "Render rhythm candidates into WAV outputs and render_events.csv.",
+      "category": "Core Runtime",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["04_outputs/xianwengcao/renders/*.wav", "04_outputs/xianwengcao/reports/render_events.csv"],
+      "v1_runtime": true,
+      "canon_or_skills_validator": false,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep as runtime renderer. Later parameterize by piece_id/render profile."
+    },
+    {
+      "path": "05_scripts/smoke_test.py",
+      "purpose": "Run V1 smoke pipeline by invoking generation, dummy samples, rhythm generation, rendering, and audio viability review.",
+      "category": "Core Runtime",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["01_pieces/xianwengcao/recording_script.csv", "03_samples/sample_assets.csv", "03_samples/**/*.wav", "01_pieces/xianwengcao/rhythm_candidates/*.csv", "04_outputs/xianwengcao/**/*"],
+      "v1_runtime": true,
+      "canon_or_skills_validator": false,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep, but label as destructive/regenerating smoke pipeline in docs."
+    },
+    {
+      "path": "scripts/audit_qxby_batch_sources.py",
+      "purpose": "Audit QXBY_BATCH_001 source images, manifest, and canon draft linkage.",
+      "category": "Candidate for Parameterization",
+      "recommendation": "parameterize",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["reports/qxby_batch_001_source_audit.md", "reports/qxby_batch_001_source_audit.json"],
+      "v1_runtime": false,
+      "canon_or_skills_validator": true,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Parameterize batch_id, draft path, source dir, and report prefix."
+    },
+    {
+      "path": "scripts/check_v1_compat.py",
+      "purpose": "Check skills/canon additions against V1 mainline compatibility.",
+      "category": "Core Skills Infrastructure",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["reports/check_v1_compat_report.json"],
+      "v1_runtime": false,
+      "canon_or_skills_validator": true,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep as canonical boundary validator."
+    },
+    {
+      "path": "scripts/validate_canon.py",
+      "purpose": "Validate Phase S0 minimal canon fixture.",
+      "category": "Core Skills Infrastructure",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["reports/validate_canon_report.json"],
+      "v1_runtime": false,
+      "canon_or_skills_validator": true,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep as smoke fixture validator."
+    },
+    {
+      "path": "scripts/validate_canon_seed.py",
+      "purpose": "Validate canon seed YAML files.",
+      "category": "Core Skills Infrastructure",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["reports/validate_canon_seed_report.json"],
+      "v1_runtime": false,
+      "canon_or_skills_validator": true,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep as seed-level validator."
+    },
+    {
+      "path": "scripts/validate_dapu_ir.py",
+      "purpose": "Validate minimal Dapu Event IR fixture.",
+      "category": "Core Skills Infrastructure",
+      "recommendation": "keep",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["reports/validate_dapu_ir_report.json"],
+      "v1_runtime": false,
+      "canon_or_skills_validator": true,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Keep as Dapu IR smoke fixture validator."
+    },
+    {
+      "path": "scripts/validate_qxby_batch.py",
+      "purpose": "Validate QXBY_BATCH_001 canon draft ingest.",
+      "category": "Candidate for Parameterization",
+      "recommendation": "parameterize",
+      "possibly_one_off": false,
+      "modifies_files": true,
+      "modifies_paths": ["reports/validate_qxby_batch_001_report.json"],
+      "v1_runtime": false,
+      "canon_or_skills_validator": true,
+      "keep_current_path": true,
+      "merge_or_parameterize": "Parameterize batch_id, expected count, draft path, and report path."
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "tests/fixtures/canon_minimal.yaml",
+      "value": "Still valuable as Phase S0 canon smoke fixture.",
+      "phase_s0_minimal": true,
+      "long_term_smoke_fixture": true,
+      "doc_needed": true
+    },
+    {
+      "path": "tests/fixtures/xianwengcao_events_minimal.jsonl",
+      "value": "Still valuable as minimal Dapu Event IR compatibility fixture.",
+      "phase_s0_minimal": true,
+      "long_term_smoke_fixture": true,
+      "doc_needed": true
+    },
+    {
+      "path": "tests/fixtures/xianwengcao_tokens_minimal.jsonl",
+      "value": "Still valuable as minimal token fixture, though current validators mainly exercise events/canon.",
+      "phase_s0_minimal": true,
+      "long_term_smoke_fixture": true,
+      "doc_needed": true
+    }
+  ],
+  "reports_before_r0": [
+    {"path": "reports/canon_seed_report.md", "classification": "current_status"},
+    {"path": "reports/check_v1_compat_report.json", "classification": "regenerable"},
+    {"path": "reports/qxby_batch_001_human_review.md", "classification": "current_status"},
+    {"path": "reports/qxby_batch_001_report.md", "classification": "historical_or_batch_audit"},
+    {"path": "reports/qxby_batch_001_source_audit.json", "classification": "regenerable"},
+    {"path": "reports/qxby_batch_001_source_audit.md", "classification": "regenerable"},
+    {"path": "reports/skills_v1_integration_report.md", "classification": "historical_audit"},
+    {"path": "reports/skill_install_instructions.md", "classification": "historical_install_staging"},
+    {"path": "reports/v1_compat_audit.md", "classification": "historical_audit"},
+    {"path": "reports/validate_canon_report.json", "classification": "regenerable"},
+    {"path": "reports/validate_canon_seed_report.json", "classification": "regenerable"},
+    {"path": "reports/validate_dapu_ir_report.json", "classification": "regenerable"},
+    {"path": "reports/validate_qxby_batch_001_report.json", "classification": "regenerable"},
+    {"path": "reports/skill_install_staging/guqin-canon-builder/SKILL.md", "classification": "historical_install_staging"},
+    {"path": "reports/skill_install_staging/guqin-dapu-parser/SKILL.md", "classification": "historical_install_staging"}
+  ],
+  "canon": {
+    "seed_files": [
+      "canon/alias_rules.yaml",
+      "canon/component_lexicon.yaml",
+      "canon/gesture_families.yaml",
+      "canon/sources.yaml",
+      "canon/technique_rules.yaml",
+      "canon/terms.yaml",
+      "canon/validation_rules.yaml"
+    ],
+    "draft_files": [
+      "canon/drafts/qxby_batch_001.yaml"
+    ],
+    "seed_and_draft_separated": true,
+    "recommendation": "Keep seed files and drafts separated. Do not promote qxby_batch_001 until review status and OCR uncertainty are resolved."
+  },
+  "sources": {
+    "qxby_batch_001": {
+      "path": "sources/qinxue_beiyao/QXBY_BATCH_001",
+      "manifest": "sources/qinxue_beiyao/QXBY_BATCH_001/manifest.yaml",
+      "readme": "sources/qinxue_beiyao/QXBY_BATCH_001/README.md",
+      "image_count": 16,
+      "image_files": [
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_001_bo_擘.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_002_tuo_托.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_003_mo_抹.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_004_tiao_挑.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_005_gou_勾.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_006_ti_剔.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_007_da_打.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_008_zhai_摘.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_009_chuo_绰.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_010_zhu_注.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_011_zhuang_撞.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_012_fan_zhuang_反撞.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_013_shang_上.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_014_xia_下.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_015_qiaqi_掐起.jpg",
+        "sources/qinxue_beiyao/QXBY_BATCH_001/images/QXBY_B001_016_cuo_撮.jpg"
+      ],
+      "draft_linkage_status": "pass in temporary-copy validation",
+      "draft_status": "draft/manual_image_transcription"
+    }
+  },
+  "validation_in_temporary_copy": {
+    "temporary_copy": "D:/AIProjects/cyber_guqin/Cyber_Guqin_v1_R0_verify_tmp_20260605131203",
+    "commands": [
+      {"command": "scripts/validate_canon.py", "exit_code": 0, "status": "pass"},
+      {"command": "scripts/validate_dapu_ir.py", "exit_code": 0, "status": "pass"},
+      {"command": "scripts/check_v1_compat.py", "exit_code": 0, "status": "pass with warning: minimal patch recommended for first-class Dapu Event IR fields"},
+      {"command": "scripts/validate_canon_seed.py", "exit_code": 0, "status": "pass"},
+      {"command": "scripts/validate_qxby_batch.py", "exit_code": 0, "status": "pass"},
+      {"command": "scripts/audit_qxby_batch_sources.py", "exit_code": 0, "status": "pass"},
+      {"command": "05_scripts/smoke_test.py", "exit_code": 0, "status": "pass"}
+    ],
+    "note": "Commands were not run against the live project because several validators overwrite reports and smoke_test.py regenerates mainline CSV/WAV/output files."
+  },
+  "naming_findings": {
+    "inconsistencies": [
+      "Top-level runtime directories use numeric prefixes while skills/canon directories use semantic names.",
+      "QXBY source batch directory is uppercase QXBY_BATCH_001 while canon draft/report filenames use lowercase qxby_batch_001.",
+      "05_scripts contains both long-term runtime tools and regeneration/bootstrap utilities.",
+      "reports root mixes status reports, historical audits, regenerable validator JSON, and skill install staging."
+    ],
+    "recommend_immediate_rename": false,
+    "recommend_boundary_doc_first": true,
+    "boundary_doc": "06_docs/PROJECT_STRUCTURE.md"
+  }
+}

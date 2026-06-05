@@ -1,7 +1,5 @@
 {
   "auditor": "audit_qxby_batch_sources.py",
-  "batch_id": "QXBY_BATCH_001",
-  "expected_count": 16,
   "status": "pass",
   "passed": true,
   "inputs": {
@@ -12,16 +10,13 @@
   "errors": [],
   "warnings": [],
   "summary": {
-    "batch_id": "QXBY_BATCH_001",
     "draft_items": 16,
     "manifest_items": 16,
     "image_files": 16,
-    "expected_count": 16,
     "item_ids_match": true,
     "orphan_images": [],
     "manifest_missing_files": [],
     "draft_missing_files": [],
-    "source_image_outside_source_dir": [],
     "term_mismatches": [],
     "filename_mismatches": []
   }

@@ -1,0 +1,25 @@
+{
+  "validator": "validate_canon_seed.py",
+  "status": "pass",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "inputs": [
+    "canon\\alias_rules.yaml",
+    "canon\\component_lexicon.yaml",
+    "canon\\gesture_families.yaml",
+    "canon\\sources.yaml",
+    "canon\\technique_rules.yaml",
+    "canon\\terms.yaml",
+    "canon\\validation_rules.yaml"
+  ],
+  "summary": {
+    "sources": 1,
+    "terms": 12,
+    "components": 33,
+    "gesture_families": 11,
+    "alias_rules": 9,
+    "techniques": 11,
+    "validation_rules": 15
+  }
+}

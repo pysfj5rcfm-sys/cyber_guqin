@@ -11,12 +11,10 @@
 - draft items: 16
 - manifest items: 16
 - image files: 16
-- expected count: 16
 - item ids match: True
 - orphan images: []
 - manifest missing files: []
 - draft missing files: []
-- source_image outside source dir: []
 - term mismatches: []
 - filename mismatches: []
 

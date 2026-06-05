@@ -1,0 +1,12 @@
+{
+  "validator": "validate_canon.py",
+  "fixture": "tests\\fixtures\\canon_minimal.yaml",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "components": 8,
+    "techniques": 5,
+    "alias_rules": 7
+  }
+}
