@@ -1,22 +1,46 @@
 #!/usr/bin/env python3
-"""Audit QXBY_BATCH_001 source-image archive without modifying inputs."""
+"""Audit QXBY batch source-image archives without modifying inputs."""
 
 from __future__ import annotations
 
+import argparse
 import json
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-DRAFT = ROOT / "canon" / "drafts" / "qxby_batch_001.yaml"
-SOURCE_DIR = ROOT / "sources" / "qinxue_beiyao" / "QXBY_BATCH_001"
-MANIFEST = SOURCE_DIR / "manifest.yaml"
-IMAGE_DIR = SOURCE_DIR / "images"
-REPORT_MD = ROOT / "reports" / "qxby_batch_001_source_audit.md"
-REPORT_JSON = ROOT / "reports" / "qxby_batch_001_source_audit.json"
+DEFAULT_BATCH_ID = "QXBY_BATCH_001"
+DEFAULT_DRAFT = ROOT / "canon" / "drafts" / "qxby_batch_001.yaml"
+DEFAULT_SOURCE_DIR = ROOT / "sources" / "qinxue_beiyao" / "QXBY_BATCH_001"
+DEFAULT_MANIFEST = DEFAULT_SOURCE_DIR / "manifest.yaml"
+DEFAULT_REPORT_MD = ROOT / "reports" / "qxby_batch_001_source_audit.md"
+DEFAULT_REPORT_JSON = ROOT / "reports" / "qxby_batch_001_source_audit.json"
+DEFAULT_EXPECTED_COUNT = 16
 
-EXPECTED_COUNT = 16
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--batch-id", default=DEFAULT_BATCH_ID)
+    parser.add_argument("--draft", default=relative(DEFAULT_DRAFT))
+    parser.add_argument("--source-dir", default=relative(DEFAULT_SOURCE_DIR))
+    parser.add_argument("--manifest", default=relative(DEFAULT_MANIFEST))
+    parser.add_argument("--expected-count", type=int, default=DEFAULT_EXPECTED_COUNT)
+    parser.add_argument("--report-md", default=relative(DEFAULT_REPORT_MD))
+    parser.add_argument("--report-json", default=relative(DEFAULT_REPORT_JSON))
+    return parser.parse_args()
+
+
+def resolve_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
+
+
+def relative(path: Path) -> str:
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def parse_scalar(value: str) -> Any:
@@ -45,7 +69,7 @@ def fallback_yaml(text: str) -> dict[str, Any]:
         indent = len(raw_line) - len(raw_line.lstrip(" "))
         line = raw_line.strip()
 
-        if line == "items:":
+        if indent == 0 and line == "items:":
             root["items"] = items
             current = None
             active_list_key = None
@@ -53,17 +77,27 @@ def fallback_yaml(text: str) -> dict[str, Any]:
 
         if line.startswith("- "):
             payload = line[2:]
-            if "items" not in root:
-                root["items"] = items
-            key, sep, value = payload.partition(":")
-            if sep:
-                current = {key.strip(): parse_scalar(value)}
+            if current is not None and active_list_key is not None:
+                current.setdefault(active_list_key, []).append(parse_scalar(payload))
+            elif indent in {0, 2} and "items" in root:
+                current = {}
                 items.append(current)
                 active_list_key = None
-            elif current is not None and active_list_key is not None:
-                current.setdefault(active_list_key, []).append(parse_scalar(payload))
+                if payload:
+                    key, sep, value = payload.partition(":")
+                    if not sep:
+                        raise ValueError(f"cannot parse item line: {raw_line}")
+                    current[key.strip()] = parse_scalar(value)
             else:
-                raise ValueError(f"cannot parse list line: {raw_line}")
+                raise ValueError(f"unsupported list indentation: {raw_line}")
+            continue
+
+        if indent == 0:
+            key, sep, value = line.partition(":")
+            if not sep:
+                raise ValueError(f"cannot parse line: {raw_line}")
+            root[key] = parse_scalar(value)
+            active_list_key = None
             continue
 
         if current is not None and indent > 0:
@@ -78,11 +112,7 @@ def fallback_yaml(text: str) -> dict[str, Any]:
                 active_list_key = key
             continue
 
-        key, sep, value = line.partition(":")
-        if not sep:
-            raise ValueError(f"cannot parse line: {raw_line}")
-        root[key] = parse_scalar(value)
-        active_list_key = None
+        raise ValueError(f"unsupported YAML fallback line: {raw_line}")
 
     root.setdefault("items", items)
     return root
@@ -96,9 +126,8 @@ def load_yaml(path: Path, warnings: list[str]) -> dict[str, Any]:
         data = yaml.safe_load(text)
     except Exception:
         data = fallback_yaml(text)
-        warnings.append(f"{path.relative_to(ROOT)} parsed with built-in YAML fallback")
     if not isinstance(data, dict):
-        raise ValueError(f"{path.relative_to(ROOT)} root must be an object")
+        raise ValueError(f"{relative(path)} root must be an object")
     return data
 
 
@@ -107,42 +136,54 @@ def add(errors: list[str], condition: bool, message: str) -> None:
         errors.append(message)
 
 
-def warn(warnings: list[str], condition: bool, message: str) -> None:
-    if not condition:
-        warnings.append(message)
-
-
 def duplicates(values: list[str]) -> list[str]:
     return sorted(value for value, count in Counter(values).items() if count > 1)
 
 
-def rel(path: Path) -> str:
-    return path.relative_to(ROOT).as_posix()
+def is_relative_to(path: Path, parent: Path) -> bool:
+    try:
+        path.resolve().relative_to(parent.resolve())
+        return True
+    except ValueError:
+        return False
+
+
+def image_path_from_source_image(source_image: str) -> Path:
+    path = Path(source_image)
+    return path if path.is_absolute() else ROOT / path
 
 
 def main() -> int:
+    args = parse_args()
+    batch_id = args.batch_id
+    draft_path = resolve_path(args.draft)
+    source_dir = resolve_path(args.source_dir)
+    manifest_path = resolve_path(args.manifest)
+    image_dir = source_dir / "images"
+    report_md = resolve_path(args.report_md)
+    report_json = resolve_path(args.report_json)
+
     errors: list[str] = []
     warnings: list[str] = []
 
-    add(errors, SOURCE_DIR.exists(), f"source folder missing: {rel(SOURCE_DIR)}")
-    add(errors, SOURCE_DIR == ROOT / "sources" / "qinxue_beiyao" / "QXBY_BATCH_001", "source folder must be under sources/qinxue_beiyao/QXBY_BATCH_001/")
-    add(errors, IMAGE_DIR.exists(), f"images directory missing: {rel(IMAGE_DIR)}")
-    add(errors, MANIFEST.exists(), f"manifest missing: {rel(MANIFEST)}")
-    add(errors, DRAFT.exists(), f"draft missing: {rel(DRAFT)}")
+    add(errors, source_dir.exists(), f"source folder missing: {relative(source_dir)}")
+    add(errors, image_dir.exists(), f"images directory missing: {relative(image_dir)}")
+    add(errors, manifest_path.exists(), f"manifest missing: {relative(manifest_path)}")
+    add(errors, draft_path.exists(), f"draft missing: {relative(draft_path)}")
 
-    image_files = sorted(path for path in IMAGE_DIR.glob("*") if path.is_file()) if IMAGE_DIR.exists() else []
-    add(errors, len(image_files) == EXPECTED_COUNT, f"images directory should contain {EXPECTED_COUNT} files, found {len(image_files)}")
+    image_files = sorted(path for path in image_dir.glob("*") if path.is_file()) if image_dir.exists() else []
+    add(errors, len(image_files) == args.expected_count, f"images directory should contain {args.expected_count} files, found {len(image_files)}")
 
     draft: dict[str, Any] = {}
     manifest: dict[str, Any] = {}
-    if DRAFT.exists():
+    if draft_path.exists():
         try:
-            draft = load_yaml(DRAFT, warnings)
+            draft = load_yaml(draft_path, warnings)
         except Exception as exc:
             errors.append(str(exc))
-    if MANIFEST.exists():
+    if manifest_path.exists():
         try:
-            manifest = load_yaml(MANIFEST, warnings)
+            manifest = load_yaml(manifest_path, warnings)
         except Exception as exc:
             errors.append(str(exc))
 
@@ -155,22 +196,30 @@ def main() -> int:
     if not isinstance(manifest_items, list):
         manifest_items = []
 
-    add(errors, len(draft_items) == EXPECTED_COUNT, f"draft should contain {EXPECTED_COUNT} items, found {len(draft_items)}")
-    add(errors, len(manifest_items) == EXPECTED_COUNT, f"manifest should contain {EXPECTED_COUNT} items, found {len(manifest_items)}")
+    add(errors, draft.get("batch_id") in {None, batch_id}, f"draft batch_id should be {batch_id}, got {draft.get('batch_id')!r}")
+    add(errors, manifest.get("batch_id") in {None, batch_id}, f"manifest batch_id should be {batch_id}, got {manifest.get('batch_id')!r}")
+    add(errors, len(draft_items) == args.expected_count, f"draft should contain {args.expected_count} items, found {len(draft_items)}")
+    add(errors, len(manifest_items) == args.expected_count, f"manifest should contain {args.expected_count} items, found {len(manifest_items)}")
 
-    draft_by_id = {str(item.get("item_id")): item for item in draft_items if isinstance(item, dict)}
-    manifest_by_id = {str(item.get("item_id")): item for item in manifest_items if isinstance(item, dict)}
     draft_ids = [str(item.get("item_id")) for item in draft_items if isinstance(item, dict)]
     manifest_ids = [str(item.get("item_id")) for item in manifest_items if isinstance(item, dict)]
+    draft_by_id = {str(item.get("item_id")): item for item in draft_items if isinstance(item, dict)}
+    manifest_by_id = {str(item.get("item_id")): item for item in manifest_items if isinstance(item, dict)}
 
+    add(errors, len(draft_ids) == len(draft_items), "every draft item must be an object with item_id")
+    add(errors, len(manifest_ids) == len(manifest_items), "every manifest item must be an object with item_id")
     add(errors, not duplicates(draft_ids), f"duplicate draft item_id values: {duplicates(draft_ids)}")
     add(errors, not duplicates(manifest_ids), f"duplicate manifest item_id values: {duplicates(manifest_ids)}")
-    add(errors, set(draft_ids) == set(manifest_ids), f"draft/manifest item_id mismatch: draft_only={sorted(set(draft_ids) - set(manifest_ids))}, manifest_only={sorted(set(manifest_ids) - set(draft_ids))}")
+    add(
+        errors,
+        set(draft_ids) == set(manifest_ids),
+        f"draft/manifest item_id mismatch: draft_only={sorted(set(draft_ids) - set(manifest_ids))}, manifest_only={sorted(set(manifest_ids) - set(draft_ids))}",
+    )
 
     manifest_image_files = [str(item.get("image_file")) for item in manifest_items if isinstance(item, dict)]
     add(errors, not duplicates(manifest_image_files), f"duplicate manifest image_file values: {duplicates(manifest_image_files)}")
 
-    all_image_rel = {path.relative_to(SOURCE_DIR).as_posix() for path in image_files}
+    all_image_rel = {path.relative_to(source_dir).as_posix() for path in image_files}
     manifest_image_rel = set(manifest_image_files)
     orphan_images = sorted(all_image_rel - manifest_image_rel)
     add(errors, not orphan_images, f"image files not referenced by manifest: {orphan_images}")
@@ -179,10 +228,11 @@ def main() -> int:
     draft_missing: list[str] = []
     term_mismatches: list[str] = []
     filename_mismatches: list[str] = []
+    source_image_outside_source_dir: list[str] = []
 
     for item_id, manifest_item in manifest_by_id.items():
         image_file = str(manifest_item.get("image_file", ""))
-        image_path = SOURCE_DIR / image_file
+        image_path = source_dir / image_file
         if not image_path.exists():
             manifest_missing.append(f"{item_id}: {image_file}")
 
@@ -196,78 +246,99 @@ def main() -> int:
                 f"{item_id}: draft term/internal={term}/{internal}, manifest={manifest_item.get('term')}/{manifest_item.get('internal_name')}"
             )
         filename = Path(image_file).name
-        if f"_{term}_" not in filename:
+        if term and f"_{term}_" not in filename:
             filename_mismatches.append(f"{item_id}: {filename} does not contain _{term}_")
 
     for item_id, draft_item in draft_by_id.items():
         source_image = str(draft_item.get("source_image", ""))
-        source_path = ROOT / source_image
+        source_path = image_path_from_source_image(source_image)
+        if not source_image:
+            draft_missing.append(f"{item_id}: source_image is empty")
+            continue
         if not source_path.exists():
             draft_missing.append(f"{item_id}: {source_image}")
-        if not source_image.replace("\\", "/").startswith("sources/qinxue_beiyao/QXBY_BATCH_001/images/"):
-            errors.append(f"{item_id}: source_image is outside sources/qinxue_beiyao/QXBY_BATCH_001/images/")
+        if not is_relative_to(source_path, image_dir):
+            source_image_outside_source_dir.append(f"{item_id}: {source_image}")
 
         manifest_item = manifest_by_id.get(item_id)
         if manifest_item is not None:
-            manifest_image = (SOURCE_DIR / str(manifest_item.get("image_file", ""))).resolve()
+            manifest_image = (source_dir / str(manifest_item.get("image_file", ""))).resolve()
             if source_path.exists() and manifest_image.exists() and source_path.resolve() != manifest_image:
                 errors.append(f"{item_id}: draft source_image and manifest image_file point to different files")
 
     add(errors, not manifest_missing, f"manifest references missing files: {manifest_missing}")
     add(errors, not draft_missing, f"draft references missing files: {draft_missing}")
+    add(errors, not source_image_outside_source_dir, f"draft source_image values outside source images dir: {source_image_outside_source_dir}")
     add(errors, not term_mismatches, f"term/internal_name mismatches: {term_mismatches}")
     add(errors, not filename_mismatches, f"filename term mismatches: {filename_mismatches}")
 
     summary = {
+        "batch_id": batch_id,
         "draft_items": len(draft_items),
         "manifest_items": len(manifest_items),
         "image_files": len(image_files),
+        "expected_count": args.expected_count,
         "item_ids_match": set(draft_ids) == set(manifest_ids),
         "orphan_images": orphan_images,
         "manifest_missing_files": manifest_missing,
         "draft_missing_files": draft_missing,
+        "source_image_outside_source_dir": source_image_outside_source_dir,
         "term_mismatches": term_mismatches,
         "filename_mismatches": filename_mismatches,
     }
-    return write_reports(errors, warnings, summary)
+    return write_reports(errors, warnings, summary, draft_path, manifest_path, image_dir, report_md, report_json, args)
 
 
-def write_reports(errors: list[str], warnings: list[str], summary: dict[str, Any]) -> int:
+def write_reports(
+    errors: list[str],
+    warnings: list[str],
+    summary: dict[str, Any],
+    draft_path: Path,
+    manifest_path: Path,
+    image_dir: Path,
+    report_md: Path,
+    report_json: Path,
+    args: argparse.Namespace,
+) -> int:
     status = "fail" if errors else ("warning" if warnings else "pass")
     report = {
         "auditor": "audit_qxby_batch_sources.py",
+        "batch_id": args.batch_id,
+        "expected_count": args.expected_count,
         "status": status,
         "passed": not errors,
         "inputs": {
-            "draft": rel(DRAFT),
-            "manifest": rel(MANIFEST),
-            "images": rel(IMAGE_DIR),
+            "draft": relative(draft_path),
+            "manifest": relative(manifest_path),
+            "images": relative(image_dir),
         },
         "errors": errors,
         "warnings": warnings,
         "summary": summary,
     }
-    REPORT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    REPORT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    report_json.parent.mkdir(parents=True, exist_ok=True)
+    report_json.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [
-        "# QXBY_BATCH_001 Source Audit",
+        f"# {args.batch_id} Source Audit",
         "",
         f"- status: `{status}`",
         f"- passed: `{str(not errors).lower()}`",
-        f"- draft: `{rel(DRAFT)}`",
-        f"- manifest: `{rel(MANIFEST)}`",
-        f"- images: `{rel(IMAGE_DIR)}`",
+        f"- draft: `{relative(draft_path)}`",
+        f"- manifest: `{relative(manifest_path)}`",
+        f"- images: `{relative(image_dir)}`",
         "",
         "## Summary",
         "",
         f"- draft items: {summary.get('draft_items')}",
         f"- manifest items: {summary.get('manifest_items')}",
         f"- image files: {summary.get('image_files')}",
+        f"- expected count: {summary.get('expected_count')}",
         f"- item ids match: {summary.get('item_ids_match')}",
         f"- orphan images: {summary.get('orphan_images')}",
         f"- manifest missing files: {summary.get('manifest_missing_files')}",
         f"- draft missing files: {summary.get('draft_missing_files')}",
+        f"- source_image outside source dir: {summary.get('source_image_outside_source_dir')}",
         f"- term mismatches: {summary.get('term_mismatches')}",
         f"- filename mismatches: {summary.get('filename_mismatches')}",
         "",
@@ -277,7 +348,7 @@ def write_reports(errors: list[str], warnings: list[str], summary: dict[str, Any
     lines.extend(f"- {error}" for error in errors) if errors else lines.append("- none")
     lines.extend(["", "## Warnings", ""])
     lines.extend(f"- {warning}" for warning in warnings) if warnings else lines.append("- none")
-    REPORT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    report_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0 if not errors else 1
