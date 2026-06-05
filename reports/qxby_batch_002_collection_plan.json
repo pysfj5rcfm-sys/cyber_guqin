@@ -1,0 +1,460 @@
+{
+  "batch_id": "QXBY_BATCH_002",
+  "source": "derived_from_C0_blind_audit",
+  "do_not_create_batch_yet": true,
+  "scope_note": "C1 normalizes C0 machine-level candidates into human OCR/screenshot collection topics only. It does not import OCR, create Batch002, patch canon, patch sources, or modify V1 runtime.",
+  "topics": [
+    {
+      "collection_topic_id": "QXBY_B002_TOPIC_001",
+      "human_topic_name": "三音型：散音 / 按音 / 泛音",
+      "related_c0_items": [
+        "sound_type:散音",
+        "sound_type:按音",
+        "sound_type:泛音",
+        "component_category:pressed_pluck",
+        "component_category:harmonic_pluck",
+        "gesture_family:pressed_pluck",
+        "gesture_family:harmonic_pluck"
+      ],
+      "related_xianwengcao_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N02",
+        "XWC_P01_N03",
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P08_N01",
+        "XWC_P09_N01",
+        "XWC_P10_N01",
+        "XWC_P10_N07"
+      ],
+      "related_gestures": [
+        "SAN_GOU_2",
+        "SAN_TIAO_7",
+        "AN_RING_10_GOU_5",
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "FAN_SHI_7_GOU_4",
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "current_coverage_status": [
+        "project_canon_seed_covered"
+      ],
+      "canon_target_type": [
+        "term",
+        "technique_rule"
+      ],
+      "suggested_search_terms_zh": [
+        "散音",
+        "按音",
+        "泛音",
+        "三音",
+        "三声",
+        "空弦",
+        "按弦取音",
+        "触徽取声"
+      ],
+      "source_material_needed": [
+        "QXBY or comparable rule-book page explaining the three sound types",
+        "OCR excerpt that explicitly distinguishes散音/按音/泛音",
+        "page number or section marker",
+        "short human note tying the excerpt to Xianwengcao observed sound_type usage"
+      ],
+      "priority": "P1",
+      "notes": "C0 marks these as canon-seed covered but without QXBY_BATCH_001 draft evidence. This is evidence enrichment, not a missing runtime concept."
+    },
+    {
+      "collection_topic_id": "QXBY_B002_TOPIC_002",
+      "human_topic_name": "指名系统：大指 / 食指 / 中指 / 名指 / 复合触弦",
+      "related_c0_items": [
+        "harmonic_touch_finger:index",
+        "harmonic_touch_finger:middle",
+        "harmonic_touch_finger:thumb",
+        "harmonic_touch_finger:thumb_middle",
+        "left_finger:index",
+        "left_finger:middle",
+        "left_finger:ring",
+        "left_finger:thumb",
+        "left_finger:thumb_middle",
+        "right_hand_finger:index",
+        "right_hand_finger:middle",
+        "right_hand_finger:thumb",
+        "right_hand_finger:thumb_middle"
+      ],
+      "related_xianwengcao_events": [
+        "XWC_P01_N01",
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P06_N02",
+        "XWC_P09_N02",
+        "XWC_P10_N01",
+        "XWC_P10_N05",
+        "XWC_P10_N06",
+        "XWC_P10_N07"
+      ],
+      "related_gestures": [
+        "SAN_TIAO_7",
+        "SAN_GOU_5",
+        "AN_RING_10_QIAQI",
+        "AN_THUMB_9_GOU_6_SHANG_79",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_ZHONG_7_GOU_1",
+        "FAN_DA_7_BO_6",
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "current_coverage_status": [
+        "v1_runtime_only"
+      ],
+      "canon_target_type": [
+        "component",
+        "alias_rule"
+      ],
+      "suggested_search_terms_zh": [
+        "大指",
+        "食指",
+        "中指",
+        "名指",
+        "左指",
+        "右指",
+        "触弦指",
+        "泛音用指",
+        "双指触弦"
+      ],
+      "source_material_needed": [
+        "OCR/screenshot pages that define finger names or identify which finger performs a technique",
+        "examples covering right-hand pluck fingers and left-hand press/touch fingers",
+        "page number and original excerpt",
+        "manual note distinguishing role names from standalone canon terms"
+      ],
+      "priority": "P0",
+      "notes": "This topic deliberately merges repeated C0 machine items such as index as harmonic_touch_finger, left_finger, and right_hand_finger. The collection target is the human finger-name system, not three separate OCR tasks."
+    },
+    {
+      "collection_topic_id": "QXBY_B002_TOPIC_003",
+      "human_topic_name": "泛音取法：触徽 / 泛音指法 / 左手触徽右手取声",
+      "related_c0_items": [
+        "component_category:harmonic_pluck",
+        "gesture_family:harmonic_pluck",
+        "sound_type:泛音",
+        "harmonic_touch_finger:index",
+        "harmonic_touch_finger:middle",
+        "harmonic_touch_finger:thumb"
+      ],
+      "related_xianwengcao_events": [
+        "XWC_P10_N01",
+        "XWC_P10_N02",
+        "XWC_P10_N03",
+        "XWC_P10_N04",
+        "XWC_P10_N05",
+        "XWC_P10_N06"
+      ],
+      "related_gestures": [
+        "FAN_SHI_7_GOU_4",
+        "FAN_SHI_7_TIAO_4",
+        "FAN_SHI_7_TIAO_6",
+        "FAN_SHI_7_TIAO_7",
+        "FAN_ZHONG_7_GOU_1",
+        "FAN_DA_7_BO_6"
+      ],
+      "current_coverage_status": [
+        "project_canon_seed_covered",
+        "v1_runtime_only"
+      ],
+      "canon_target_type": [
+        "component",
+        "technique_rule"
+      ],
+      "suggested_search_terms_zh": [
+        "泛音",
+        "泛音取法",
+        "触徽",
+        "左手轻触",
+        "右手取声",
+        "七徽泛音",
+        "泛食",
+        "泛中",
+        "泛大"
+      ],
+      "source_material_needed": [
+        "OCR/screenshot describing how泛音 is produced",
+        "source example showing left-hand touch at hui and right-hand pluck",
+        "if available, examples naming 食指/中指/大指 as harmonic touch fingers",
+        "page number and manual linkage to XWC_P10 fan gestures"
+      ],
+      "priority": "P0",
+      "notes": "C0 separates harmonic_pluck, sound_type fan, and harmonic_touch_finger values. Human collection should gather them together as one泛音取法 topic."
+    },
+    {
+      "collection_topic_id": "QXBY_B002_TOPIC_004",
+      "human_topic_name": "复合泛音撮：双指七徽 + 撮六一",
+      "related_c0_items": [
+        "sound_profile:harmonic_compound",
+        "harmonic_touch_finger:thumb_middle",
+        "left_finger:thumb_middle",
+        "right_hand_finger:thumb_middle",
+        "composite_gesture_structure:FAN_DA7_ZHONG7_CUO_6_1",
+        "string_number:6_1",
+        "string_sequence:6_1"
+      ],
+      "related_xianwengcao_events": [
+        "XWC_P10_N07"
+      ],
+      "related_gestures": [
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "current_coverage_status": [
+        "internal_ontology_only",
+        "v1_runtime_only",
+        "qxby_batch_001_draft_covered"
+      ],
+      "canon_target_type": [
+        "component",
+        "technique_rule",
+        "dapu_rule"
+      ],
+      "suggested_search_terms_zh": [
+        "复合泛音",
+        "双指泛音",
+        "同徽触弦",
+        "大指七徽",
+        "中指七徽",
+        "撮六一",
+        "泛音撮",
+        "齐撮"
+      ],
+      "source_material_needed": [
+        "OCR/screenshot showing撮 can combine with泛音 or mixed sound types",
+        "source evidence for simultaneous two-string pluck with one sound",
+        "if available, an example of two left fingers touching the same hui",
+        "page number and note tying the source to XWC_P10_N07"
+      ],
+      "priority": "P0",
+      "notes": "C0 gives harmonic_compound as the only internal_ontology_only P0 item. Because cuo itself is already covered by QXBY_BATCH_001, new collection should focus on the泛音复合 context rather than re-collecting basic撮."
+    },
+    {
+      "collection_topic_id": "QXBY_B002_TOPIC_005",
+      "human_topic_name": "按音取法：按弦 / 左手按音 / 右手取声",
+      "related_c0_items": [
+        "component_category:pressed_pluck",
+        "gesture_family:pressed_pluck",
+        "sound_type:按音",
+        "left_finger:ring",
+        "left_finger:thumb"
+      ],
+      "related_xianwengcao_events": [
+        "XWC_P01_N04",
+        "XWC_P02_N04",
+        "XWC_P02_N06",
+        "XWC_P03_N04",
+        "XWC_P03_N06",
+        "XWC_P04_N04",
+        "XWC_P04_N06",
+        "XWC_P05_N04",
+        "XWC_P05_N06",
+        "XWC_P06_N02",
+        "XWC_P06_N04",
+        "XWC_P07_N02",
+        "XWC_P07_N04",
+        "XWC_P08_N01",
+        "XWC_P08_N02",
+        "XWC_P08_N04",
+        "XWC_P09_N01",
+        "XWC_P09_N04"
+      ],
+      "related_gestures": [
+        "AN_RING_10_GOU_1",
+        "AN_RING_10_GOU_2",
+        "AN_RING_10_GOU_4",
+        "AN_RING_10_GOU_5",
+        "AN_RING_10_8_GOU_3",
+        "AN_THUMB_9_GOU_1",
+        "AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "current_coverage_status": [
+        "project_canon_seed_covered",
+        "v1_runtime_only"
+      ],
+      "canon_target_type": [
+        "term",
+        "component",
+        "technique_rule"
+      ],
+      "suggested_search_terms_zh": [
+        "按音",
+        "按弦",
+        "左手按弦",
+        "右手取声",
+        "名指按",
+        "大指按",
+        "九徽按音",
+        "十徽按音"
+      ],
+      "source_material_needed": [
+        "OCR/screenshot explaining按音 as left-hand pressed sound",
+        "examples where left-hand finger and hui position are stated",
+        "page number and excerpt",
+        "manual note separating按音取法 from post-motion entries already covered in Batch001"
+      ],
+      "priority": "P1",
+      "notes": "This topic translates pressed_pluck into a searchable琴学 topic. It should not duplicate existing Batch001 entries for gou/tiao/zhu/shang/zhuang."
+    },
+    {
+      "collection_topic_id": "QXBY_B002_TOPIC_006",
+      "human_topic_name": "承接规则：掐起承前音位 / 省略继承",
+      "related_c0_items": [
+        "context_dependency:inherit_previous",
+        "inherited_context_structure:XWC_P09_N02_inherits_XWC_P09_N01",
+        "gesture_id:AN_RING_10_QIAQI",
+        "composite_gesture_structure:AN_RING_10_QIAQI"
+      ],
+      "related_xianwengcao_events": [
+        "XWC_P09_N01",
+        "XWC_P09_N02"
+      ],
+      "related_gestures": [
+        "AN_THUMB_9_GOU_4_ZHUANG",
+        "AN_RING_10_QIAQI"
+      ],
+      "current_coverage_status": [
+        "v1_runtime_only",
+        "qxby_batch_001_draft_covered"
+      ],
+      "canon_target_type": [
+        "dapu_rule",
+        "technique_rule"
+      ],
+      "suggested_search_terms_zh": [
+        "掐起",
+        "搯起",
+        "承前",
+        "承接前一按音",
+        "省略音位",
+        "前一按位",
+        "按下位",
+        "上一位"
+      ],
+      "source_material_needed": [
+        "OCR/screenshot around掐起/搯起 explaining the required prior pressed position",
+        "source note showing whether the preceding position is inherited from context",
+        "page number and original excerpt",
+        "manual link to XWC_P09_N01 -> XWC_P09_N02"
+      ],
+      "priority": "P0",
+      "notes": "The OCR target is not the internal word inherit_previous. It is the dapu/context rule by which掐起 uses a prior left-hand按音 position."
+    },
+    {
+      "collection_topic_id": "QXBY_B002_TOPIC_007",
+      "human_topic_name": "徽分与弦序结构：徽 / 分 / 七徽九分 / 六一撮",
+      "related_c0_items": [
+        "hui:7",
+        "hui:9",
+        "hui:10",
+        "hui:10_8",
+        "hui_target:7_9",
+        "string_number:1",
+        "string_number:2",
+        "string_number:3",
+        "string_number:4",
+        "string_number:5",
+        "string_number:6",
+        "string_number:6_1",
+        "string_number:7",
+        "string_sequence:6_1"
+      ],
+      "related_xianwengcao_events": [
+        "XWC_P03_N04",
+        "XWC_P08_N02",
+        "XWC_P09_N01",
+        "XWC_P10_N01",
+        "XWC_P10_N07"
+      ],
+      "related_gestures": [
+        "AN_RING_10_8_GOU_3",
+        "AN_THUMB_9_GOU_6_SHANG_79",
+        "FAN_SHI_7_GOU_4",
+        "FAN_DA7_ZHONG7_CUO_6_1"
+      ],
+      "current_coverage_status": [
+        "v1_runtime_only"
+      ],
+      "canon_target_type": [
+        "term",
+        "dapu_rule"
+      ],
+      "suggested_search_terms_zh": [
+        "徽",
+        "分",
+        "十徽八",
+        "七徽",
+        "九徽",
+        "七徽九分",
+        "六一",
+        "弦序",
+        "撮六一"
+      ],
+      "source_material_needed": [
+        "Only collect if the same screenshot also contains a relevant Batch002 topic such as泛音,按音,掐起, or撮",
+        "manual note explaining whether the number is a location/string structure rather than a standalone canon term",
+        "page number and original excerpt"
+      ],
+      "priority": "P2",
+      "notes": "C0 exposes these as runtime structures. They are useful context for screenshots, but standalone numeric hui/string values should be deferred unless canon scope expands."
+    }
+  ],
+  "already_covered": [
+    "component_category:left_sound",
+    "component_category:micro_returning_slide",
+    "component_category:simultaneous_pluck",
+    "component_category:single_pluck",
+    "component_category:single_slide",
+    "component_name:bo",
+    "component_name:cuo",
+    "component_name:gou",
+    "component_name:qiaqi",
+    "component_name:tiao",
+    "gesture_family:left_hand_sound",
+    "gesture_family:post_motion",
+    "gesture_family:simultaneous_pluck",
+    "gesture_family:single_pluck",
+    "post_motion:shang",
+    "post_motion:zhuang",
+    "post_motion_return_structure:zhuang",
+    "pre_action:zhu",
+    "right_hand_action:bo",
+    "right_hand_action:cuo",
+    "right_hand_action:gou",
+    "right_hand_action:tiao",
+    "sound_profile:left_hand_sound",
+    "sound_profile:post_motion",
+    "sound_profile:single"
+  ],
+  "defer": [
+    {
+      "raw_item_group": "individual gesture_id templates",
+      "items": [
+        "gesture_id:SAN_*",
+        "gesture_id:AN_*",
+        "gesture_id:FAN_*"
+      ],
+      "reason": "Gesture IDs are runtime template names. They should be parsed from source screenshots only after source evidence exists for the underlying human topic."
+    },
+    {
+      "raw_item_group": "standalone composite_gesture_structure values",
+      "items": [
+        "composite_gesture_structure:AN_RING_10_QIAQI",
+        "composite_gesture_structure:AN_THUMB_9_GOU_4_ZHUANG",
+        "composite_gesture_structure:AN_THUMB_9_GOU_6_SHANG_79"
+      ],
+      "reason": "These are structural/runtime summaries. Relevant source collection is already covered by Batch001 or by the承接 topic, not by searching the internal gesture_id."
+    },
+    {
+      "raw_item_group": "standalone hui and string values",
+      "items": [
+        "hui:*",
+        "hui_target:*",
+        "string_number:*",
+        "string_sequence:*"
+      ],
+      "reason": "Location and string numbers are context fields. Collect them only when they appear in the same screenshot as a P0/P1 technique topic."
+    }
+  ]
+}
