@@ -1,0 +1,72 @@
+recording_session_id,recording_id,recording_take_no,batch_take_no,script_id,legacy_source_type,legacy_source_path,event_id,event_range,gesture_id,normalized_name,expected_sample_type,realization_variant,realization_pre_action,source_raw_file,take_start_time_s,take_end_time_s,slate_text,take_quality,performer_note,engineer_note,needs_reshoot,selected_for_segment,selected_for_sample,notes
+,RS_XWC_001,001,001,RS_XWC_001_001,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P01_N01,,SAN_TIAO_7,散挑七,atomic,straight,none,,,,001,,,,,,,baseline straight
+,RS_XWC_001,002,002,RS_XWC_001_002,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P01_N02,,SAN_GOU_5,散勾五,atomic,straight,none,,,,002,,,,,,,baseline straight
+,RS_XWC_001,003,003,RS_XWC_001_003,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P01_N03,,SAN_TIAO_7,散挑七,atomic,straight,none,,,,003,,,,,,,baseline straight
+,RS_XWC_001,004,032,RS_XWC_001_004,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P01_N04,,AN_RING_10_GOU_5,名十勾五,atomic,straight,none,,,,032,,,,,,,baseline straight
+,RS_XWC_001,005,050,RS_XWC_001_005,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P01_N04,,AN_RING_10_GOU_5,名十勾五,atomic,chuo,chuo,,,,050,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,006,004,RS_XWC_001_006,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N01,,SAN_TIAO_7,散挑七,atomic,straight,none,,,,004,,,,,,,baseline straight
+,RS_XWC_001,007,005,RS_XWC_001_007,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N02,,SAN_GOU_5,散勾五,atomic,straight,none,,,,005,,,,,,,baseline straight
+,RS_XWC_001,008,006,RS_XWC_001_008,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N03,,SAN_TIAO_6,散挑六,atomic,straight,none,,,,006,,,,,,,baseline straight
+,RS_XWC_001,009,033,RS_XWC_001_009,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N04,,AN_RING_10_GOU_4,名十勾四,atomic,straight,none,,,,033,,,,,,,baseline straight
+,RS_XWC_001,010,051,RS_XWC_001_010,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N04,,AN_RING_10_GOU_4,名十勾四,atomic,chuo,chuo,,,,051,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,011,007,RS_XWC_001_011,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N05,,SAN_TIAO_7,散挑七,atomic,straight,none,,,,007,,,,,,,baseline straight
+,RS_XWC_001,012,034,RS_XWC_001_012,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N06,,AN_THUMB_9_GOU_4,大九勾四,atomic,straight,none,,,,034,,,,,,,baseline straight
+,RS_XWC_001,013,052,RS_XWC_001_013,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P02_N06,,AN_THUMB_9_GOU_4,大九勾四,atomic,chuo,chuo,,,,052,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,014,008,RS_XWC_001_014,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N01,,SAN_TIAO_6,散挑六,atomic,straight,none,,,,008,,,,,,,baseline straight
+,RS_XWC_001,015,009,RS_XWC_001_015,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N02,,SAN_GOU_4,散勾四,atomic,straight,none,,,,009,,,,,,,baseline straight
+,RS_XWC_001,016,010,RS_XWC_001_016,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N03,,SAN_TIAO_5,散挑五,atomic,straight,none,,,,010,,,,,,,baseline straight
+,RS_XWC_001,017,035,RS_XWC_001_017,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N04,,AN_RING_10_8_GOU_3,名十徽八勾三,atomic,straight,none,,,,035,,,,,,,baseline straight
+,RS_XWC_001,018,066,RS_XWC_001_018,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N04,,AN_RING_10_8_GOU_3,名十徽八勾三,atomic,zhu,zhu,,,,066,,,,,,,谱面明示注
+,RS_XWC_001,019,011,RS_XWC_001_019,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N05,,SAN_TIAO_6,散挑六,atomic,straight,none,,,,011,,,,,,,baseline straight
+,RS_XWC_001,020,036,RS_XWC_001_020,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N06,,AN_THUMB_9_GOU_3,大九勾三,atomic,straight,none,,,,036,,,,,,,baseline straight
+,RS_XWC_001,021,053,RS_XWC_001_021,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P03_N06,,AN_THUMB_9_GOU_3,大九勾三,atomic,chuo,chuo,,,,053,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,022,012,RS_XWC_001_022,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N01,,SAN_TIAO_5,散挑五,atomic,straight,none,,,,012,,,,,,,baseline straight
+,RS_XWC_001,023,013,RS_XWC_001_023,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N02,,SAN_GOU_3,散勾三,atomic,straight,none,,,,013,,,,,,,baseline straight
+,RS_XWC_001,024,014,RS_XWC_001_024,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N03,,SAN_TIAO_4,散挑四,atomic,straight,none,,,,014,,,,,,,baseline straight
+,RS_XWC_001,025,037,RS_XWC_001_025,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N04,,AN_RING_10_GOU_2,名十勾二,atomic,straight,none,,,,037,,,,,,,baseline straight
+,RS_XWC_001,026,054,RS_XWC_001_026,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N04,,AN_RING_10_GOU_2,名十勾二,atomic,chuo,chuo,,,,054,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,027,015,RS_XWC_001_027,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N05,,SAN_TIAO_5,散挑五,atomic,straight,none,,,,015,,,,,,,baseline straight
+,RS_XWC_001,028,038,RS_XWC_001_028,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N06,,AN_THUMB_9_GOU_2,大九勾二,atomic,straight,none,,,,038,,,,,,,baseline straight
+,RS_XWC_001,029,055,RS_XWC_001_029,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P04_N06,,AN_THUMB_9_GOU_2,大九勾二,atomic,chuo,chuo,,,,055,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,030,016,RS_XWC_001_030,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N01,,SAN_TIAO_4,散挑四,atomic,straight,none,,,,016,,,,,,,baseline straight
+,RS_XWC_001,031,017,RS_XWC_001_031,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N02,,SAN_GOU_2,散勾二,atomic,straight,none,,,,017,,,,,,,baseline straight
+,RS_XWC_001,032,018,RS_XWC_001_032,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N03,,SAN_TIAO_3,散挑三,atomic,straight,none,,,,018,,,,,,,baseline straight
+,RS_XWC_001,033,039,RS_XWC_001_033,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N04,,AN_RING_10_GOU_1,名十勾一,atomic,straight,none,,,,039,,,,,,,baseline straight
+,RS_XWC_001,034,056,RS_XWC_001_034,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N04,,AN_RING_10_GOU_1,名十勾一,atomic,chuo,chuo,,,,056,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,035,019,RS_XWC_001_035,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N05,,SAN_TIAO_4,散挑四,atomic,straight,none,,,,019,,,,,,,baseline straight
+,RS_XWC_001,036,040,RS_XWC_001_036,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N06,,AN_THUMB_9_GOU_1,大九勾一,atomic,straight,none,,,,040,,,,,,,baseline straight
+,RS_XWC_001,037,057,RS_XWC_001_037,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P05_N06,,AN_THUMB_9_GOU_1,大九勾一,atomic,chuo,chuo,,,,057,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,038,020,RS_XWC_001_038,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P06_N01,,SAN_TIAO_4,散挑四,atomic,straight,none,,,,020,,,,,,,baseline straight
+,RS_XWC_001,039,041,RS_XWC_001_039,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P06_N02,,AN_THUMB_9_GOU_1,大九勾一,atomic,straight,none,,,,041,,,,,,,baseline straight
+,RS_XWC_001,040,058,RS_XWC_001_040,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P06_N02,,AN_THUMB_9_GOU_1,大九勾一,atomic,chuo,chuo,,,,058,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,041,021,RS_XWC_001_041,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P06_N03,,SAN_TIAO_5,散挑五,atomic,straight,none,,,,021,,,,,,,baseline straight
+,RS_XWC_001,042,042,RS_XWC_001_042,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P06_N04,,AN_THUMB_9_GOU_2,大九勾二,atomic,straight,none,,,,042,,,,,,,baseline straight
+,RS_XWC_001,043,059,RS_XWC_001_043,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P06_N04,,AN_THUMB_9_GOU_2,大九勾二,atomic,chuo,chuo,,,,059,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,044,022,RS_XWC_001_044,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P07_N01,,SAN_TIAO_6,散挑六,atomic,straight,none,,,,022,,,,,,,baseline straight
+,RS_XWC_001,045,043,RS_XWC_001_045,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P07_N02,,AN_THUMB_9_GOU_3,大九勾三,atomic,straight,none,,,,043,,,,,,,baseline straight
+,RS_XWC_001,046,060,RS_XWC_001_046,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P07_N02,,AN_THUMB_9_GOU_3,大九勾三,atomic,chuo,chuo,,,,060,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,047,023,RS_XWC_001_047,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P07_N03,,SAN_TIAO_7,散挑七,atomic,straight,none,,,,023,,,,,,,baseline straight
+,RS_XWC_001,048,044,RS_XWC_001_048,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P07_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,straight,none,,,,044,,,,,,,baseline straight
+,RS_XWC_001,049,061,RS_XWC_001_049,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P07_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,chuo,chuo,,,,061,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,050,045,RS_XWC_001_050,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P08_N01,,AN_THUMB_9_GOU_5,大九勾五,atomic,straight,none,,,,045,,,,,,,baseline straight
+,RS_XWC_001,051,062,RS_XWC_001_051,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P08_N01,,AN_THUMB_9_GOU_5,大九勾五,atomic,chuo,chuo,,,,062,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,052,046,RS_XWC_001_052,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P08_N02,,AN_THUMB_9_GOU_6_SHANG_79,大九勾六上七九,atomic,straight,none,,,,046,,,,,,,baseline straight
+,RS_XWC_001,053,063,RS_XWC_001_053,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P08_N02,,AN_THUMB_9_GOU_6_SHANG_79,大九勾六上七九,atomic,chuo,chuo,,,,063,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,054,024,RS_XWC_001_054,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P08_N03,,SAN_TIAO_7,散挑七,atomic,straight,none,,,,024,,,,,,,baseline straight
+,RS_XWC_001,055,047,RS_XWC_001_055,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P08_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,straight,none,,,,047,,,,,,,baseline straight
+,RS_XWC_001,056,064,RS_XWC_001_056,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P08_N04,,AN_THUMB_9_GOU_4,大九勾四,atomic,chuo,chuo,,,,064,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,057,048,RS_XWC_001_057,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N01,,AN_THUMB_9_GOU_4_ZHUANG,大九勾四撞,atomic,straight,none,,,,048,,,,,,,baseline straight
+,RS_XWC_001,058,067,RS_XWC_001_058,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N01,,AN_THUMB_9_GOU_4_ZHUANG,大九勾四撞,atomic,zhu,zhu,,,,067,,,,,,,谱面明示注
+,RS_XWC_001,059,068,RS_XWC_001_059,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N02,,AN_RING_10_QIAQI,名十掐起,atomic,atomic,none,,,,068,,,,,,,掐起 atomic dummy
+,RS_XWC_001,060,069,RS_XWC_001_060,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N02,,AN_RING_10_QIAQI,名十掐起,context,context,none,,,,069,,,,,,,掐起 context dummy | WARNING: Context take is missing event_range; resolve before slicing or segment registration.
+,RS_XWC_001,061,025,RS_XWC_001_061,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N03,,SAN_TIAO_6,散挑六,atomic,straight,none,,,,025,,,,,,,baseline straight
+,RS_XWC_001,062,049,RS_XWC_001_062,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N04,,AN_RING_10_GOU_4,名十勾四,atomic,straight,none,,,,049,,,,,,,baseline straight
+,RS_XWC_001,063,065,RS_XWC_001_063,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N04,,AN_RING_10_GOU_4,名十勾四,atomic,chuo,chuo,,,,065,,,,,,,普通按音默认绰 realization
+,RS_XWC_001,064,026,RS_XWC_001_064,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P10_N01,,FAN_SHI_7_GOU_4,泛食七勾四,atomic,straight,none,,,,026,,,,,,,baseline straight
+,RS_XWC_001,065,027,RS_XWC_001_065,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P10_N02,,FAN_SHI_7_TIAO_7,泛食七挑七,atomic,straight,none,,,,027,,,,,,,baseline straight
+,RS_XWC_001,066,028,RS_XWC_001_066,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P10_N03,,FAN_SHI_7_TIAO_6,泛食七挑六,atomic,straight,none,,,,028,,,,,,,baseline straight
+,RS_XWC_001,067,029,RS_XWC_001_067,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P10_N04,,FAN_SHI_7_TIAO_4,泛食七挑四,atomic,straight,none,,,,029,,,,,,,baseline straight
+,RS_XWC_001,068,030,RS_XWC_001_068,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P10_N05,,FAN_ZHONG_7_GOU_1,泛中七勾一,atomic,straight,none,,,,030,,,,,,,baseline straight
+,RS_XWC_001,069,031,RS_XWC_001_069,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P10_N06,,FAN_DA_7_BO_6,泛大七擘六,atomic,straight,none,,,,031,,,,,,,baseline straight
+,RS_XWC_001,070,071,RS_XWC_001_070,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P10_N07,,FAN_DA7_ZHONG7_CUO_6_1,泛大七中七撮六一,atomic,straight,none,,,,071,,,,,,,baseline straight
+,RS_XWC_001,071,070,RS_XWC_001_071,legacy_v1_recording_script,01_pieces/xianwengcao/recording_script.csv,XWC_P09_N02,XWC_P09_N01_to_N02,AN_RING_10_QIAQI,名十掐起,context,context,none,,,,070,,,,,,,撞到掐起建议上下文录制

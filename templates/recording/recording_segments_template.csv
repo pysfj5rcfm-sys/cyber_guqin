@@ -1,0 +1,1 @@
+segment_id,recording_session_id,recording_id,source_take_id,source_raw_file,script_id,event_id,event_range,gesture_id,sample_type,realization_variant,realization_pre_action,start_time_s,end_time_s,attack_marker_ms,release_tail_ms,file_path,extraction_method,qc_status,quality_status,selected_for_sample,notes

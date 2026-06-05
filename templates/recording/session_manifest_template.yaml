@@ -1,0 +1,67 @@
+# Reusable template only. Copy this into a real recording session folder only
+# after the recording settings are confirmed.
+#
+# Raw audio policy:
+# - Raw audio is the permanent read-only recording archive.
+# - Normalized copies may be used for slicing and restoration.
+# - Do not cut, overwrite, or rename raw masters during segment work.
+#
+# Data authority policy:
+# - session_manifest records recording facts, not score facts.
+# - Score facts remain in score_events / Dapu Event IR / canon-backed sources.
+# - recording_mode may be continuous_batch, per_take, or hybrid.
+# - XWC RS_XWC_001 is a legacy_v1_recording_script source; future pieces
+#   should use dapu_event_ir_recording_plan.
+
+recording_session_id: "<SESSION_ID>"
+recording_id: "<RECORDING_ID>"
+piece_id: "<PIECE_ID>"
+piece_title: "<PIECE_TITLE>"
+qinist_id: "<QINIST_ID>"
+qinist_name: "<QINIST_NAME>"
+qin_id: "<QIN_ID>"
+qin_name: "<QIN_NAME>"
+tuning_id: "<TUNING_ID>"
+tuning_name: "<TUNING_NAME>"
+recording_date: "<YYYY-MM-DD>"
+location: "<ROOM_OR_LOCATION>"
+recording_mode: "<continuous_batch|per_take|hybrid>"
+source_script:
+  script_type: "<legacy_v1_recording_script|dapu_event_ir_recording_plan>"
+  script_path: "<PATH_TO_SOURCE_RECORDING_PLAN>"
+  script_version: "<VERSION_OR_COMMIT>"
+audio_format:
+  file_format: wav
+  sample_rate: "<48000_OR_44100>"
+  bit_depth: "<24_OR_16>"
+  channel_count: "<1_MONO_OR_2_STEREO>"
+  normalization_policy: "<NO_NORMALIZATION_ON_RAW; DESCRIBE_COPY_POLICY>"
+equipment:
+  recorder: "<RECORDER_MODEL>"
+  microphone: "<MICROPHONE_MODEL_AND_PATTERN>"
+  audio_interface: "<INTERFACE_OR_BUILT_IN>"
+  mic_position: "<DISTANCE_HEIGHT_ANGLE_NOTES>"
+environment:
+  room_noise_note: "<10_SECOND_ROOM_NOISE_NOTE>"
+  room_noise_file: "<OPTIONAL_RELATIVE_PATH_TO_ROOM_NOISE_RAW>"
+  temperature_humidity_note: "<OPTIONAL_TEMP_HUMIDITY_NOTE>"
+qin_condition:
+  tuning_reference_before: "<OPTIONAL_RELATIVE_PATH_OR_NOTE>"
+  tuning_reference_after: "<OPTIONAL_RELATIVE_PATH_OR_NOTE>"
+  string_condition_note: "<STRING_TOUCH_TUNING_BUZZ_NOTES>"
+raw_audio_policy:
+  preserve_raw: true
+  raw_folder: "<RELATIVE_RAW_FOLDER>"
+  normalized_folder: "<RELATIVE_NORMALIZED_FOLDER>"
+  file_naming_policy: "<BATCH_OR_TAKE_NAMING_POLICY>"
+take_policy:
+  slate_policy: "<SPOKEN_OR_TAPPED_TAKE_NUMBER_POLICY>"
+  tail_decay_seconds: "<DEFAULT_TAIL_SECONDS>"
+  allow_retakes: true
+  retake_naming_policy: "<RETAKE_NUMBERING_POLICY>"
+linked_files:
+  recording_script: "<PATH_TO_RECORDING_SCRIPT_OR_PLAN>"
+  take_manifest: "<PATH_TO_TAKE_MANIFEST>"
+  notes: "<PATH_TO_SESSION_NOTES>"
+review_status: "<draft|ready_for_recording|recorded|archived|reviewed>"
+notes: "<FREEFORM_NOTES>"
