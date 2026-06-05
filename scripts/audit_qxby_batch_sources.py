@@ -49,6 +49,8 @@ def parse_scalar(value: str) -> Any:
         return True
     if value == "false":
         return False
+    if value in {"null", "~"}:
+        return None
     if value == "[]":
         return []
     if (value.startswith("'") and value.endswith("'")) or (value.startswith('"') and value.endswith('"')):
@@ -62,6 +64,7 @@ def fallback_yaml(text: str) -> dict[str, Any]:
     items: list[dict[str, Any]] = []
     current: dict[str, Any] | None = None
     active_list_key: str | None = None
+    active_list_owner: dict[str, Any] | None = None
 
     for raw_line in text.splitlines():
         if not raw_line.strip() or raw_line.lstrip().startswith("#"):
@@ -73,16 +76,18 @@ def fallback_yaml(text: str) -> dict[str, Any]:
             root["items"] = items
             current = None
             active_list_key = None
+            active_list_owner = None
             continue
 
         if line.startswith("- "):
             payload = line[2:]
-            if current is not None and active_list_key is not None:
-                current.setdefault(active_list_key, []).append(parse_scalar(payload))
+            if active_list_owner is not None and active_list_key is not None:
+                active_list_owner.setdefault(active_list_key, []).append(parse_scalar(payload))
             elif indent in {0, 2} and "items" in root:
                 current = {}
                 items.append(current)
                 active_list_key = None
+                active_list_owner = None
                 if payload:
                     key, sep, value = payload.partition(":")
                     if not sep:
@@ -96,20 +101,31 @@ def fallback_yaml(text: str) -> dict[str, Any]:
             key, sep, value = line.partition(":")
             if not sep:
                 raise ValueError(f"cannot parse line: {raw_line}")
-            root[key] = parse_scalar(value)
-            active_list_key = None
+            key = key.strip()
+            if value.strip():
+                root[key] = parse_scalar(value)
+                active_list_key = None
+                active_list_owner = None
+            else:
+                root[key] = []
+                active_list_key = key
+                active_list_owner = root
+            current = None
             continue
 
         if current is not None and indent > 0:
             key, sep, value = line.partition(":")
             if not sep:
                 raise ValueError(f"cannot parse item field: {raw_line}")
+            key = key.strip()
             if value.strip():
                 current[key] = parse_scalar(value)
                 active_list_key = None
+                active_list_owner = None
             else:
                 current[key] = []
                 active_list_key = key
+                active_list_owner = current
             continue
 
         raise ValueError(f"unsupported YAML fallback line: {raw_line}")
