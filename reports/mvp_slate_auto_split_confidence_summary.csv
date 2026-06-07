@@ -1,0 +1,17 @@
+metric,value
+expected_count,71
+segments_created,71
+missing_count,0
+high,7
+medium,58
+low,0
+forced_review,6
+boundary_review_count,64
+working_wav_count,7
+converter,ffmpeg
+converter_profile,ffmpeg_pcm_s16le_wav
+ffmpeg_available,true
+afconvert_available,true
+asr_used,false
+filenames_include_gesture_id,true
+unknown_gesture_count,0
