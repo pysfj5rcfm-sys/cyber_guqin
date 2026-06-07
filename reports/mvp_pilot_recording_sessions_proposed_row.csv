@@ -1,0 +1,2 @@
+recording_id,qinist_id,piece_id,qin_id,tuning_id,date,status,notes
+RS_XWC_001_MVP_PILOT,QINIST_001,XWC,QIN_A,ZHENG_DIAO,unknown,registered_mvp_pilot,manifest=02_recordings/session_manifests/RS_XWC_001_MVP_PILOT_session_manifest.yaml; production_grade=false; asset_class=mvp_experimental_raw

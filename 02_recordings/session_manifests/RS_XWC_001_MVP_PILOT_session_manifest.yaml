@@ -1,0 +1,83 @@
+recording_session_id: RS_XWC_001_MVP_PILOT
+recording_id: RS_XWC_001
+piece_id: XWC
+piece_title: 仙翁操
+qinist_id: QINIST_001
+qinist_name: 三曼
+qin_id: QIN_A
+qin_name: 主测琴
+tuning_id: ZHENG_DIAO
+tuning_name: 正调
+
+asset_class: mvp_experimental_raw
+production_grade: false
+source_format: m4a_aac
+recording_mode: continuous_batch
+
+recording_date: unknown
+location: unknown
+recorder: unknown
+microphone: unknown
+audio_interface: unknown
+sample_rate: unknown
+bit_depth: unknown_or_not_applicable_for_aac
+channel_count: unknown
+
+source_script:
+  script_type: legacy_v1_recording_script
+  recording_batches: 01_pieces/xianwengcao/recording_batches.md
+  recording_script_human: 01_pieces/xianwengcao/recording_script_human.csv
+  recording_script: 01_pieces/xianwengcao/recording_script.csv
+
+legacy_bridge:
+  bridge_plan: reports/xwc_legacy_recording_bridge_plan.md
+  take_manifest_preview: reports/xwc_legacy_take_manifest_preview.csv
+  bridge_map: reports/xwc_legacy_recording_bridge_map.json
+
+audio_files:
+  inventory: 02_recordings/raw_audio/QINIST_001/XWC/RS_XWC_001_MVP_PILOT/raw_audio_inventory.csv
+
+raw_audio_policy:
+  preserve_raw: true
+  no_destructive_editing: true
+  no_transcoding_in_this_phase: true
+  normalized_copy_allowed_later: true
+
+usage_scope:
+  - MVP pipeline experiment
+  - rough segmentation test
+  - sample selection prototype
+  - render feasibility test
+  - listening workflow test
+
+not_for:
+  - final production sample library
+  - long-term Sanman standard sample archive
+  - ML training baseline
+
+qc_summary:
+  status: registered_for_mvp_experiment
+  production_grade: false
+  known_issues:
+    - lossy_m4a_aac_source
+    - not_standard_wav_capture
+    - possible_hot_level_based_on_manual_review
+    - possible_stereo_imbalance_based_on_manual_review
+
+next_allowed_phase:
+  - experimental_split_sandbox
+
+next_forbidden_without_new_phase:
+  - production_sample_ingest
+  - formal_recording_segments_update
+  - sample_assets_update
+  - machine_learning_training
+
+review_status: registered
+notes:
+  - "MVP pilot raw audio only."
+  - "Not production-grade Sanman sample source."
+  - "本批录音可用于 MVP 真实音频链路实验。"
+  - "本批录音不得标记为 production-grade。"
+  - "本批录音不得作为最终三曼标准采样库。"
+  - "MVP 成功后，应按 WAV / controlled gain / standardized mic placement 全量重录标准采样。"
