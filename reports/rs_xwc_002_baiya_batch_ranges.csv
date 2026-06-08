@@ -1,0 +1,8 @@
+batch_id,start_recording_take_no,end_recording_take_no,expected_take_count,recommended_raw_filename,recording_mode,notes
+batch01,001,010,10,RS_XWC_002_BAIYA_PILOT_batch01_T001-T010.wav,batch_wav_draft_pending_user_review,每条 take 均需保留报号后 0.8 秒前静音和完整自然尾音；普通 take 尾音后至少 1.2 秒静音；长尾/滑音/撞/context/复合泛音 take 尾音后至少 2.5 秒静音；生成后等待用户审核，不进入登记或切片。
+batch02,011,020,10,RS_XWC_002_BAIYA_PILOT_batch02_T011-T020.wav,batch_wav_draft_pending_user_review,每条 take 均需保留报号后 0.8 秒前静音和完整自然尾音；普通 take 尾音后至少 1.2 秒静音；长尾/滑音/撞/context/复合泛音 take 尾音后至少 2.5 秒静音；生成后等待用户审核，不进入登记或切片。
+batch03,021,030,10,RS_XWC_002_BAIYA_PILOT_batch03_T021-T030.wav,batch_wav_draft_pending_user_review,每条 take 均需保留报号后 0.8 秒前静音和完整自然尾音；普通 take 尾音后至少 1.2 秒静音；长尾/滑音/撞/context/复合泛音 take 尾音后至少 2.5 秒静音；生成后等待用户审核，不进入登记或切片。
+batch04,031,040,10,RS_XWC_002_BAIYA_PILOT_batch04_T031-T040.wav,batch_wav_draft_pending_user_review,每条 take 均需保留报号后 0.8 秒前静音和完整自然尾音；普通 take 尾音后至少 1.2 秒静音；长尾/滑音/撞/context/复合泛音 take 尾音后至少 2.5 秒静音；生成后等待用户审核，不进入登记或切片。
+batch05,041,050,10,RS_XWC_002_BAIYA_PILOT_batch05_T041-T050.wav,batch_wav_draft_pending_user_review,每条 take 均需保留报号后 0.8 秒前静音和完整自然尾音；普通 take 尾音后至少 1.2 秒静音；长尾/滑音/撞/context/复合泛音 take 尾音后至少 2.5 秒静音；生成后等待用户审核，不进入登记或切片。
+batch06,051,060,10,RS_XWC_002_BAIYA_PILOT_batch06_T051-T060.wav,batch_wav_draft_pending_user_review,每条 take 均需保留报号后 0.8 秒前静音和完整自然尾音；普通 take 尾音后至少 1.2 秒静音；长尾/滑音/撞/context/复合泛音 take 尾音后至少 2.5 秒静音；生成后等待用户审核，不进入登记或切片。
+batch07,061,071,11,RS_XWC_002_BAIYA_PILOT_batch07_T061-T071.wav,batch_wav_draft_pending_user_review,每条 take 均需保留报号后 0.8 秒前静音和完整自然尾音；普通 take 尾音后至少 1.2 秒静音；长尾/滑音/撞/context/复合泛音 take 尾音后至少 2.5 秒静音；生成后等待用户审核，不进入登记或切片。

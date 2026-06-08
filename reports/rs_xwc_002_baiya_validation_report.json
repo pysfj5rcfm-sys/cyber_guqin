@@ -1,0 +1,35 @@
+{
+  "recording_session_id": "RS_XWC_002_BAIYA_PILOT",
+  "status": "draft_pending_user_review",
+  "take_count": 71,
+  "covers_t001_t071": true,
+  "batch_count": 7,
+  "all_qinist_002": true,
+  "all_session_id_ok": true,
+  "slate_equals_take_no": true,
+  "slate_style": "single_yao_style",
+  "asr_accepted_variants_field_present": true,
+  "context_transition_takes": {
+    "060": "XWC_P09_N01_to_N02",
+    "071": "XWC_P09_N01_to_N02"
+  },
+  "long_tail_rule_takes": [
+    "052",
+    "053",
+    "057",
+    "058",
+    "059",
+    "060",
+    "070",
+    "071"
+  ],
+  "long_tail_rule_seconds": "2.5",
+  "long_tail_rule_ok": true,
+  "forbidden_paths_changed_by_script": [],
+  "raw_audio_folder_created": false,
+  "recording_registration_entered": false,
+  "slicing_entered": false,
+  "sample_assets_created": false,
+  "recording_items_enriched_created": false,
+  "warnings": []
+}

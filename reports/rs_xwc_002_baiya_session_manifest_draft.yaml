@@ -1,0 +1,29 @@
+recording_session_id: RS_XWC_002_BAIYA_PILOT
+recording_id: RS_XWC_002
+piece_id: XWC
+piece_title: 仙翁操
+qinist_id: QINIST_002
+qinist_name: 白牙
+asset_class: mvp_reshoot_raw
+production_grade: false
+source_format_preferred: wav
+sample_rate_preferred: 48000
+bit_depth_preferred: 24
+recording_mode_recommended: batch_wav
+raw_master_policy: preserve_do_not_cut
+retake_policy: keep_all
+bad_take_policy: keep_and_mark
+sample_ingest_allowed: false
+recording_segments_allowed: false
+sample_assets_allowed: false
+recording_registration_allowed: false
+split_allowed: false
+draft_status: pending_user_review
+source_plan_kind: legacy_xwc_bridge_for_baiya_reshoot
+future_plan_kind: dapu_event_ir_recording_plan
+notes:
+  - Baiya reshoot after failed Sanman M4A pilot.
+  - Do not overwrite QINIST_001.
+  - This draft does not create raw audio folders.
+  - This draft does not enter recording registration.
+  - This draft does not enter slicing.
