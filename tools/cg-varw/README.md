@@ -4,15 +4,27 @@ Cyber Guqin Visual Anchor Review Workbench.
 
 R0B now includes a review-only FastAPI backend for raw root scanning, WAV metadata/waveform extraction without ffmpeg, draft save, and three review-only CSV exports. It does not execute split, create sample assets, render audio, or create ML data.
 
-## Windows Backend
+## Backend
+
+The backend should run with Python 3.11 or newer.
+
+macOS:
+
+```bash
+cd tools/cg-varw/backend
+/opt/homebrew/bin/python3.11 -m pip install -r requirements.txt
+CG_VARW_RAW_ROOT="/path/to/your/raw_audio" /opt/homebrew/bin/python3.11 -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+```
+
+Windows:
 
 ```powershell
 cd tools\cg-varw\backend
-python -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 $env:CG_VARW_RAW_ROOT="D:\path\to\your\raw_audio"
-uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
 ```
 
 If `CG_VARW_RAW_ROOT` is not set, the backend falls back to `tools/cg-varw/sample_workspace/raw_audio` and the UI reports that it is using the synthetic demo root.

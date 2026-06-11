@@ -22,17 +22,29 @@ Example `config.local.json`:
 
 Do not commit `.env.local` or `config.local.json`.
 
-## Windows Startup
+## Local Startup
+
+The backend uses modern Python typing syntax and should run with Python 3.11 or newer. In VSCode, select the same Python 3.11 interpreter that has `fastapi`, `pydantic`, and `uvicorn` installed.
+
+macOS:
+
+```bash
+cd tools/cg-varw/backend
+/opt/homebrew/bin/python3.11 -m pip install -r requirements.txt
+CG_VARW_RAW_ROOT="/path/to/your/raw_audio" /opt/homebrew/bin/python3.11 -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+```
+
+Windows:
 
 Backend:
 
 ```powershell
 cd tools\cg-varw\backend
-python -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 $env:CG_VARW_RAW_ROOT="D:\path\to\your\raw_audio"
-uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
 ```
 
 Frontend:
