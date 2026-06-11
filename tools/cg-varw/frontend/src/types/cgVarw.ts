@@ -1,7 +1,8 @@
 export type ReviewMode = "R0" | "R1" | "R2";
 
-export type ReviewStatus = "accepted" | "unclear" | "needs_retake" | "rejected";
-export type ReviewUnitStatus = "confirmed" | "needs_review" | "not_started" | "needs_retake" | "excluded";
+export type MarkerReviewStatus = "candidate" | "accepted" | "unclear" | "needs_retake" | "rejected";
+export type ReviewStatus = "not_started" | "in_progress" | "accepted" | "unclear" | "needs_retake" | "rejected";
+export type ReviewUnitStatus = "candidate" | "confirmed" | "needs_review" | "not_started" | "needs_retake" | "excluded" | "rejected";
 export type SegmentStatus = "reviewed" | "pending" | "needs_review" | "rejected";
 export type RenderStatus = "render_usable" | "reference_only" | "unclear" | "needs_retake" | "rejected";
 export type Severity = "low" | "medium" | "high";
@@ -32,7 +33,7 @@ export interface Marker<Key extends string = string> {
   displayLabel?: boolean;
   source?: string;
   confidence?: number | null;
-  review_status?: string;
+  review_status?: MarkerReviewStatus;
   nudge_total_ms?: number;
   notes?: string;
 }
@@ -41,6 +42,7 @@ export interface ReviewUnit {
   id: string;
   sequence: number;
   unit_status: ReviewUnitStatus;
+  review_status?: ReviewStatus;
   source: "asr_candidate" | "manual";
   takeId: string;
   boundary_type?: "next_slate_start" | "file_end";

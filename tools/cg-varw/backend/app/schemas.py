@@ -17,7 +17,7 @@ class Marker(BaseModel):
     displayLabel: bool | None = None
     source: str = "manual"
     confidence: float | None = None
-    review_status: str = "draft"
+    review_status: str = "candidate"
     nudge_total_ms: int = 0
     notes: str = ""
 
@@ -26,6 +26,7 @@ class ReviewUnit(BaseModel):
     id: str
     sequence: int
     unit_status: str = "needs_review"
+    review_status: str = "not_started"
     source: str = "manual"
     takeId: str = ""
     boundary_type: Literal["next_slate_start", "file_end"] | None = None

@@ -1,21 +1,25 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
 import { KeyValueList, SearchBox } from "../components/FileNavigator";
 import { PlaybackBar } from "../components/ReviewStatusBar";
 import {
   buildRawExportPreview,
-  completedMarkerCount,
+  completionLabel,
   demoAudioFileName,
   demoAudioUrl,
   demoRawDuration,
+  deriveUnitReviewStatus,
   markerLabels,
+  markerReviewStatusLabels,
   rawFiles as fallbackRawFiles,
   rawFlags,
   rawReviewUnits,
+  unitReviewStatusLabels,
   unitStatusLabels,
+  withDerivedUnitState,
 } from "../mock/rawReviewMock";
-import type { Marker, R0MarkerKey, ReviewUnit, ReviewUnitStatus } from "../types/cgVarw";
+import type { Marker, MarkerReviewStatus, R0MarkerKey, ReviewUnit, ReviewUnitStatus } from "../types/cgVarw";
 
 const apiBase = import.meta.env.VITE_CG_VARW_API_BASE ?? "http://127.0.0.1:8787";
 const markerOrder: R0MarkerKey[] = ["slate_start", "slate_end", "guqin_start", "tail_end", "next_slate_start"];
@@ -51,7 +55,8 @@ type BackendState =
   | { status: "online"; rawRootMode: "demo" | "real"; message: string };
 
 export function R0RawReviewPage() {
-  const [units, setUnits] = useState<ReviewUnit[]>(rawReviewUnits);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [units, setUnits] = useState<ReviewUnit[]>(rawReviewUnits.map(withDerivedUnitState));
   const [selectedUnitId, setSelectedUnitId] = useState("T003");
   const [selectedMarkerKey, setSelectedMarkerKey] = useState<R0MarkerKey>("guqin_start");
   const [rawFiles, setRawFiles] = useState<RawFile[]>([]);
@@ -60,6 +65,12 @@ export function R0RawReviewPage() {
   const [audioUrl, setAudioUrl] = useState(demoAudioUrl);
   const [duration, setDuration] = useState(demoRawDuration);
   const [metadata, setMetadata] = useState<Metadata | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [playbackRate, setPlaybackRate] = useState(1);
+  const [loopAuditionEnabled, setLoopAuditionEnabled] = useState(false);
+  const [loopStartS, setLoopStartS] = useState(0);
+  const [loopEndS, setLoopEndS] = useState(0);
   const [backend, setBackend] = useState<BackendState>({
     status: "connecting",
     rawRootMode: "demo",
@@ -69,31 +80,23 @@ export function R0RawReviewPage() {
 
   useEffect(() => {
     let cancelled = false;
-
     async function loadBackend() {
       try {
         const health = await fetch(`${apiBase}/api/health`);
         if (!health.ok) throw new Error(`health ${health.status}`);
-
         const rawResponse = await fetch(`${apiBase}/api/r0/raw-files`);
         if (!rawResponse.ok) throw new Error(`raw-files ${rawResponse.status}`);
         const rawData = await rawResponse.json() as { raw_root_mode: "demo" | "real"; files: RawFile[] };
         if (cancelled) return;
-
-        const firstFile = rawData.files[0];
         setRawFiles(rawData.files);
         setBackend({
           status: "online",
           rawRootMode: rawData.raw_root_mode,
-          message:
-            rawData.raw_root_mode === "demo"
-              ? "后端已连接，当前使用合成演示 Raw 根目录。"
-              : "后端已连接，当前使用真实 Raw 根目录。",
+          message: rawData.raw_root_mode === "demo"
+            ? "后端已连接，当前使用合成演示 Raw 根目录。"
+            : "后端已连接，当前使用真实 Raw 根目录。",
         });
-
-        if (firstFile) {
-          await selectBackendFile(firstFile);
-        }
+        if (rawData.files[0]) await selectBackendFile(rawData.files[0]);
       } catch {
         if (cancelled) return;
         setBackend({
@@ -107,39 +110,26 @@ export function R0RawReviewPage() {
         setAudioUrl(demoAudioUrl);
         setDuration(demoRawDuration);
         setMetadata(null);
-        setUnits(rawReviewUnits);
+        setUnits(rawReviewUnits.map(withDerivedUnitState));
         setSelectedUnitId("T003");
         setSelectedMarkerKey("guqin_start");
       }
     }
-
     loadBackend();
     return () => {
       cancelled = true;
     };
   }, []);
 
-  async function selectBackendFile(file: RawFile) {
-    setSelectedFileId(file.file_id);
-    setSourceAudio(file.name);
-    setAudioUrl(`${apiBase}/api/r0/raw-files/${file.file_id}/audio`);
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.playbackRate = playbackRate;
+  }, [playbackRate]);
 
-    const [metadataResponse, reviewUnitsResponse] = await Promise.all([
-      fetch(`${apiBase}/api/r0/raw-files/${file.file_id}/metadata`),
-      fetch(`${apiBase}/api/r0/raw-files/${file.file_id}/review-units`),
-    ]);
-    const nextMetadata = await metadataResponse.json() as Metadata;
-    const reviewData = await reviewUnitsResponse.json() as { units: ReviewUnit[]; message?: string };
-    setMetadata(nextMetadata);
-    setDuration(nextMetadata.duration_s ?? demoRawDuration);
-    const nextUnits = reviewData.units.length ? normalizeUnits(reviewData.units) : [];
-    setUnits(nextUnits);
-    if (nextUnits[0]) {
-      setSelectedUnitId(nextUnits[0].id);
-      setSelectedMarkerKey("guqin_start");
-    }
-    if (reviewData.message) setOperationMessage(reviewData.message);
-  }
+  useEffect(() => {
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setLoopAuditionEnabled(false);
+  }, [audioUrl]);
 
   const selectedUnit = units.find((unit) => unit.id === selectedUnitId) ?? units[0];
   const selectedMarker = selectedUnit?.markers.find((marker) => marker.key === selectedMarkerKey) ?? selectedUnit?.markers[0];
@@ -148,13 +138,7 @@ export function R0RawReviewPage() {
   const nextSlateStart = nextUnit?.markers.find((marker) => marker.key === "slate_start");
   const selectedBoundaryMarker = selectedUnit?.markers.find((marker) => marker.key === "next_slate_start");
   const isFileEndBoundary = selectedUnit?.boundary_type === "file_end";
-  const boundaryLinked = Boolean(
-    selectedUnit &&
-      nextUnit &&
-      nextSlateStart &&
-      !selectedUnit.boundary_unlinked &&
-      selectedBoundaryMarker?.time === nextSlateStart.time,
-  );
+  const boundaryLinked = Boolean(selectedUnit && nextUnit && nextSlateStart && !selectedUnit.boundary_unlinked && selectedBoundaryMarker?.time === nextSlateStart.time);
 
   const canvasMarkers = useMemo(
     () =>
@@ -171,17 +155,47 @@ export function R0RawReviewPage() {
     [selectedUnit?.id, units],
   );
 
+  async function selectBackendFile(file: RawFile) {
+    setSelectedFileId(file.file_id);
+    setSourceAudio(file.name);
+    setAudioUrl(`${apiBase}/api/r0/raw-files/${file.file_id}/audio`);
+    const [metadataResponse, reviewUnitsResponse] = await Promise.all([
+      fetch(`${apiBase}/api/r0/raw-files/${file.file_id}/metadata`),
+      fetch(`${apiBase}/api/r0/raw-files/${file.file_id}/review-units`),
+    ]);
+    const nextMetadata = await metadataResponse.json() as Metadata;
+    const reviewData = await reviewUnitsResponse.json() as { units: ReviewUnit[]; message?: string };
+    setMetadata(nextMetadata);
+    setDuration(nextMetadata.duration_s ?? demoRawDuration);
+    const nextUnits = reviewData.units.length ? normalizeUnits(reviewData.units) : [];
+    setUnits(nextUnits);
+    if (nextUnits[0]) {
+      setSelectedUnitId(nextUnits[0].id);
+      jumpToMarker(nextUnits[0], "guqin_start", false);
+    }
+    if (reviewData.message) setOperationMessage(reviewData.message);
+  }
+
   function selectMarkerInstance(instanceId: string) {
     const [unitId, markerKey] = instanceId.split(":") as [string, R0MarkerKey];
-    if (unitId && markerKey) {
-      setSelectedUnitId(unitId);
-      setSelectedMarkerKey(markerKey);
+    const unit = units.find((item) => item.id === unitId);
+    if (unit && markerKey) jumpToMarker(unit, markerKey, false);
+  }
+
+  function jumpToMarker(unit: ReviewUnit, markerKey: R0MarkerKey, shouldPlay = false) {
+    const marker = unit.markers.find((item) => item.key === markerKey) ?? unit.markers[0];
+    setSelectedUnitId(unit.id);
+    setSelectedMarkerKey(marker.key);
+    if (audioRef.current) {
+      audioRef.current.currentTime = marker.time;
+      setCurrentTime(marker.time);
+      if (shouldPlay) void audioRef.current.play();
     }
   }
 
   function updateSelectedUnit(updater: (unit: ReviewUnit, index: number) => ReviewUnit) {
     if (!selectedUnit) return;
-    setUnits((current) => current.map((unit, index) => (unit.id === selectedUnit.id ? updater(unit, index) : unit)));
+    setUnits((current) => current.map((unit, index) => (unit.id === selectedUnit.id ? withDerivedUnitState(updater(unit, index)) : unit)));
   }
 
   function nudge(deltaMs: number) {
@@ -192,13 +206,26 @@ export function R0RawReviewPage() {
         ...unit,
         boundary_unlinked: selectedMarkerKey === "next_slate_start" && nextSlate ? true : unit.boundary_unlinked,
         markers: unit.markers.map((marker) =>
-          marker.key === selectedMarkerKey ? { ...marker, time: Math.max(0, marker.time + deltaMs / 1000) } : marker,
+          marker.key === selectedMarkerKey
+            ? {
+                ...marker,
+                time: Math.max(0, marker.time + deltaMs / 1000),
+                nudge_total_ms: (marker.nudge_total_ms ?? 0) + deltaMs,
+              }
+            : marker,
         ),
       };
     });
   }
 
-  function setUnitStatus(unit_status: ReviewUnitStatus) {
+  function setMarkerStatus(review_status: MarkerReviewStatus) {
+    updateSelectedUnit((unit) => ({
+      ...unit,
+      markers: unit.markers.map((marker) => marker.key === selectedMarkerKey ? { ...marker, review_status } : marker),
+    }));
+  }
+
+  function setUnitExistence(unit_status: ReviewUnitStatus) {
     updateSelectedUnit((unit) => ({ ...unit, unit_status }));
   }
 
@@ -214,18 +241,21 @@ export function R0RawReviewPage() {
       color: markerColors[key],
       optional: key === "guqin_start" || key === "tail_end",
       source: "manual",
+      review_status: "candidate" as MarkerReviewStatus,
+      nudge_total_ms: 0,
+      notes: "",
     }));
-    setUnits((current) => [...current, { id, sequence, unit_status: "not_started", source: "manual", takeId: `DEMO_BATCH01_${id}`, markers }]);
-    setSelectedUnitId(id);
-    setSelectedMarkerKey("slate_start");
+    const nextUnitValue = withDerivedUnitState({ id, sequence, unit_status: "candidate", source: "manual", takeId: `DEMO_BATCH01_${id}`, boundary_unlinked: false, markers });
+    setUnits((current) => [...current, nextUnitValue]);
+    jumpToMarker(nextUnitValue, "slate_start", false);
   }
 
   function excludeSelectedUnit() {
-    setUnitStatus("excluded");
+    setUnitExistence("excluded");
   }
 
   function restoreExcludedUnit() {
-    updateSelectedUnit((unit) => ({ ...unit, unit_status: unit.unit_status === "excluded" ? "needs_review" : unit.unit_status }));
+    updateSelectedUnit((unit) => ({ ...unit, unit_status: unit.unit_status === "excluded" ? "candidate" : unit.unit_status }));
   }
 
   function renameSelectedUnit() {
@@ -233,6 +263,58 @@ export function R0RawReviewPage() {
     const renamedId = selectedUnit.id.endsWith("_R") ? selectedUnit.id : `${selectedUnit.id}_R`;
     setUnits((current) => current.map((unit) => (unit.id === selectedUnit.id ? { ...unit, id: renamedId } : unit)));
     setSelectedUnitId(renamedId);
+  }
+
+  function playPause() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (!audio.paused) {
+      audio.pause();
+      return;
+    }
+    if (selectedMarker) audio.currentTime = selectedMarker.time;
+    audio.playbackRate = playbackRate;
+    void audio.play();
+  }
+
+  function playBack300ms() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const start = Math.max(0, selectedMarker ? selectedMarker.time - 0.3 : audio.currentTime - 0.3);
+    audio.currentTime = start;
+    audio.playbackRate = playbackRate;
+    void audio.play();
+  }
+
+  function toggleLoopAudition() {
+    const audio = audioRef.current;
+    if (!audio || !selectedUnit || !selectedMarker) return;
+    if (loopAuditionEnabled) {
+      setLoopAuditionEnabled(false);
+      return;
+    }
+    const nextWindow = loopWindowForMarker(selectedUnit, selectedMarker.key, duration);
+    setLoopStartS(nextWindow.start);
+    setLoopEndS(nextWindow.end);
+    setLoopAuditionEnabled(true);
+    audio.currentTime = nextWindow.start;
+    audio.playbackRate = playbackRate;
+    void audio.play();
+  }
+
+  function changePlaybackRate(rate: number) {
+    setPlaybackRate(rate);
+    if (audioRef.current) audioRef.current.playbackRate = rate;
+  }
+
+  function handleTimeUpdate() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (loopAuditionEnabled && loopEndS > loopStartS && audio.currentTime >= loopEndS) {
+      audio.currentTime = loopStartS;
+      void audio.play();
+    }
+    setCurrentTime(audio.currentTime);
   }
 
   async function saveDraft() {
@@ -260,7 +342,7 @@ export function R0RawReviewPage() {
       body: JSON.stringify({
         file_id: selectedFileId,
         source_audio: sourceAudio,
-        units,
+        units: units.map(withDerivedUnitState),
       }),
     });
     return response.json() as Promise<{ ok: boolean }>;
@@ -278,8 +360,8 @@ export function R0RawReviewPage() {
             selectedUnitId={selectedUnit?.id ?? ""}
             onSelectBackendFile={selectBackendFile}
             onSelectUnit={(id) => {
-              setSelectedUnitId(id);
-              setSelectedMarkerKey("guqin_start");
+              const unit = units.find((item) => item.id === id);
+              if (unit) jumpToMarker(unit, "guqin_start", false);
             }}
             onAddUnit={addUnit}
             onExclude={excludeSelectedUnit}
@@ -289,6 +371,16 @@ export function R0RawReviewPage() {
         ),
         main: (
           <div className="work-area">
+            <audio
+              ref={audioRef}
+              src={audioUrl}
+              preload="auto"
+              onTimeUpdate={handleTimeUpdate}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => setIsPlaying(false)}
+              onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || duration)}
+            />
             <div className="work-title r0-work-title">
               <div>
                 <h1>R0B 合成 Raw 校验：{sourceAudio}</h1>
@@ -296,7 +388,7 @@ export function R0RawReviewPage() {
                   <>
                     <p>当前校验单元：{selectedUnit.id} / {selectedUnit.sequence} / {selectedUnit.takeId}</p>
                     <p>
-                      来源：{sourceLabel(selectedUnit.source)} {selectedUnit.source} | 状态：{unitStatusLabels[selectedUnit.unit_status]} {selectedUnit.unit_status} | 标记：{completedMarkerCount(selectedUnit)}/5
+                      来源：{sourceLabel(selectedUnit.source)} {selectedUnit.source} | 单元状态：{unitStatusLabels[selectedUnit.unit_status]} {selectedUnit.unit_status} | 审核状态：{unitReviewStatusLabels[deriveUnitReviewStatus(selectedUnit)]} | {completionLabel(selectedUnit)}
                     </p>
                   </>
                 ) : (
@@ -316,23 +408,34 @@ export function R0RawReviewPage() {
             />
             <div className={`boundary-note ${boundaryLinked || isFileEndBoundary ? "is-linked" : "is-unlinked"}`}>
               {selectedUnit && isFileEndBoundary
-                ? `${selectedUnit.id}.next_slate_start 为文件结束边界：${formatTime(selectedBoundaryMarker?.time ?? duration)}`
+                ? `${selectedUnit.id}.next_slate_start 使用文件结束边界：${formatTime(selectedBoundaryMarker?.time ?? duration)}`
                 : selectedUnit && boundaryLinked && nextUnit
-                  ? `${selectedUnit.id}.next_slate_start 已联动到 ${nextUnit.id}.slate_start`
+                  ? `${selectedUnit.id}.next_slate_start 边界已联动到 ${nextUnit.id}.slate_start`
                   : selectedUnit
                     ? `边界已解除联动${nextUnit ? `：${selectedUnit.id}.next_slate_start 与 ${nextUnit.id}.slate_start 不同` : ""}`
                     : "暂无边界可校验"}
             </div>
-            <PlaybackBar time={formatTime(selectedMarker?.time ?? 0)} total={formatTime(duration)} backLabel="前滚 300ms" />
+            <PlaybackBar
+              time={formatTime(currentTime)}
+              total={formatTime(duration)}
+              backLabel="前滚 300ms"
+              isPlaying={isPlaying}
+              playbackRate={playbackRate}
+              loopAuditionEnabled={loopAuditionEnabled}
+              onPlayPause={playPause}
+              onBack={playBack300ms}
+              onToggleLoop={toggleLoopAudition}
+              onRateChange={changePlaybackRate}
+            />
           </div>
         ),
         right: selectedUnit && selectedMarker ? (
           <R0MarkerEditor
             unit={selectedUnit}
             selectedMarkerKey={selectedMarker.key}
-            onSelectMarker={setSelectedMarkerKey}
+            onSelectMarker={(key) => jumpToMarker(selectedUnit, key, false)}
             onNudge={nudge}
-            onStatus={setUnitStatus}
+            onStatus={setMarkerStatus}
             onSave={saveDraft}
             onExport={exportCsv}
           />
@@ -408,8 +511,8 @@ function LeftPanel({
               onClick={() => onSelectUnit(unit.id)}
             >
               <strong>{unit.id}</strong>
-              <span className={`unit-status status-${unit.unit_status}`}>{unitStatusLabels[unit.unit_status]}</span>
-              <span className="progress-chip">{completedMarkerCount(unit)}/5</span>
+              <span className={`unit-status status-${unit.unit_status}`}>{unitReviewStatusLabels[deriveUnitReviewStatus(unit)]}</span>
+              <span className="progress-chip">{completionLabel(unit)}</span>
               <small>{boundaryLabel(unit.boundary_type)}</small>
               <code>{unit.takeId}</code>
             </button>
@@ -443,16 +546,16 @@ function R0MarkerEditor({
   selectedMarkerKey: R0MarkerKey;
   onSelectMarker: (key: R0MarkerKey) => void;
   onNudge: (delta: number) => void;
-  onStatus: (status: ReviewUnitStatus) => void;
+  onStatus: (status: MarkerReviewStatus) => void;
   onSave: () => void;
   onExport: () => void;
 }) {
   const selected = unit.markers.find((marker) => marker.key === selectedMarkerKey) ?? unit.markers[0];
-  const statuses: { key: ReviewUnitStatus; label: string; tone: string }[] = [
-    { key: "confirmed", label: "已确认", tone: "green" },
-    { key: "needs_review", label: "待复核", tone: "gold" },
+  const statuses: { key: MarkerReviewStatus; label: string; tone: string }[] = [
+    { key: "accepted", label: "标记确认", tone: "green" },
+    { key: "unclear", label: "待复核", tone: "gold" },
     { key: "needs_retake", label: "需重录", tone: "red" },
-    { key: "excluded", label: "已排除", tone: "red" },
+    { key: "rejected", label: "排除此标记", tone: "red" },
   ];
 
   return (
@@ -461,6 +564,7 @@ function R0MarkerEditor({
       <div className="info-card center r0-marker-context">
         <span>当前选中标记</span>
         <strong>{unit.id} · {selected.label} {selected.key}</strong>
+        <code>{markerReviewStatusLabels[selected.review_status ?? "candidate"]}</code>
         <b>{formatTime(selected.time)}</b>
       </div>
       <section className="editor-section">
@@ -482,10 +586,10 @@ function R0MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>审核状态</h3>
+        <h3>标记审核状态</h3>
         <div className="status-grid">
           {statuses.map((status) => (
-            <button key={status.key} className={`${unit.unit_status === status.key ? "active" : ""} tone-${status.tone}`} onClick={() => onStatus(status.key)}>
+            <button key={status.key} className={`${selected.review_status === status.key ? "active" : ""} tone-${status.tone}`} onClick={() => onStatus(status.key)}>
               {status.label}
             </button>
           ))}
@@ -513,7 +617,7 @@ function RawExportPreviewPanel({ units, onSave, onExport }: { units: ReviewUnit[
     <div className="export-panel r0-export-panel">
       <div className="section-title-row">
         <h2>导出预览</h2>
-        <span>仅预览 | 合成演示 | 不生成 sample_assets</span>
+        <span>仅预览 | 不生成 sample_assets | R0B 不执行切片</span>
         <div className="row-actions">
           <button onClick={onSave} title="保存 draft">存</button>
           <button onClick={onExport} title="导出三个 CSV">导</button>
@@ -522,21 +626,21 @@ function RawExportPreviewPanel({ units, onSave, onExport }: { units: ReviewUnit[
       <div className="export-preview-grid">
         <PreviewTable
           title="reviewed_slate_anchor_manifest.csv"
-          note="按 ReviewUnit 粒度预览"
+          note="一行一个录音单元"
           rows={preview.reviewedManifest}
-          columns={["unit_id", "unit_status", "take_id", "slate_start", "guqin_start", "synthetic_demo", "review_only"]}
+          columns={["unit_id", "unit_status", "review_status", "slate_start", "slate_end", "next_slate_start"]}
         />
         <PreviewTable
           title="raw_marker_review.csv"
-          note="每个标记实例一行"
+          note="一行一个标记实例"
           rows={preview.rawMarkerReview}
-          columns={["unit_id", "marker_key", "marker_time", "unit_status", "boundary_type"]}
+          columns={["unit_id", "marker_key", "marker_label_zh", "marker_time", "marker_status", "nudge_total_ms"]}
         />
         <PreviewTable
           title="split_plan_from_raw_markers.csv"
-          note="已排除单元不导出，R0B 不执行切片"
+          note="一行一个计划切片单元"
           rows={preview.splitPlan}
-          columns={["unit_id", "take_id", "not_executed", "not_sample_source", "not_ml_training_data"]}
+          columns={["unit_id", "planned_unit_start_s", "planned_unit_end_s", "planned_clean_start_s", "planned_clean_end_s", "not_executed"]}
         />
       </div>
     </div>
@@ -575,15 +679,37 @@ function PreviewTable({
 }
 
 function normalizeUnits(units: ReviewUnit[]): ReviewUnit[] {
-  return units.map((unit) => ({
-    ...unit,
-    takeId: unit.takeId || `TAKE_${unit.id}`,
-    markers: unit.markers.map((marker) => ({
-      ...marker,
-      label: marker.label || markerLabels[marker.key],
-      color: marker.color || markerColors[marker.key],
-    })),
-  }));
+  return units.map((unit) =>
+    withDerivedUnitState({
+      ...unit,
+      takeId: unit.takeId || `TAKE_${unit.id}`,
+      markers: unit.markers.map((marker) => ({
+        ...marker,
+        label: markerLabels[marker.key],
+        color: marker.color || markerColors[marker.key],
+        review_status: normalizeMarkerStatus(marker.review_status),
+        nudge_total_ms: marker.nudge_total_ms ?? 0,
+        notes: marker.notes ?? "",
+      })),
+    }),
+  );
+}
+
+function normalizeMarkerStatus(status: string | undefined): MarkerReviewStatus {
+  return status === "accepted" || status === "unclear" || status === "needs_retake" || status === "rejected" ? status : "candidate";
+}
+
+function loopWindowForMarker(unit: ReviewUnit, markerKey: R0MarkerKey, duration: number) {
+  const marker = unit.markers.find((item) => item.key === markerKey) ?? unit.markers[0];
+  const slateEnd = unit.markers.find((item) => item.key === "slate_end");
+  const tailEnd = unit.markers.find((item) => item.key === "tail_end");
+  if (marker.key === "guqin_start" && tailEnd) {
+    return { start: Math.max(0, marker.time - 0.3), end: Math.min(duration, tailEnd.time + 0.3) };
+  }
+  if (marker.key === "slate_start" && slateEnd) {
+    return { start: Math.max(0, marker.time - 0.3), end: Math.min(duration, slateEnd.time + 0.3) };
+  }
+  return { start: Math.max(0, marker.time - 0.3), end: Math.min(duration, marker.time + 1.2) };
 }
 
 function sourceLabel(source: string) {
@@ -591,7 +717,7 @@ function sourceLabel(source: string) {
 }
 
 function boundaryLabel(boundary?: string) {
-  return boundary === "file_end" ? "文件结束" : "下一口播";
+  return boundary === "file_end" ? "来源：file_end" : "下一口播";
 }
 
 function formatBytes(value: number) {

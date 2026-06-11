@@ -18,6 +18,17 @@ def save_review_draft(request: SaveReviewRequest) -> dict[str, Any]:
         "source_audio": request.source_audio,
         "notes": request.notes,
         "units": [unit.model_dump() for unit in request.units],
+        "unit_change_log": [
+            {
+                "unit_id": unit.id,
+                "unit_status": unit.unit_status,
+                "review_status": unit.review_status,
+                "boundary_unlinked": unit.boundary_unlinked,
+                "marker_statuses": {marker.key: marker.review_status for marker in unit.markers},
+                "marker_nudge_total_ms": {marker.key: marker.nudge_total_ms for marker in unit.markers},
+            }
+            for unit in request.units
+        ],
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "review_only": True,
         "production_grade": False,

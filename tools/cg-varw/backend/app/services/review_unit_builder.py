@@ -20,9 +20,9 @@ MARKER_COLORS = {
 MARKER_LABEL_ZH = {
     "slate_start": "口播起始",
     "slate_end": "口播结束",
-    "guqin_start": "合成拨弦起声",
+    "guqin_start": "古琴起声",
     "tail_end": "尾音结束",
-    "next_slate_start": "文件结束",
+    "next_slate_start": "下一口播起始",
 }
 
 
@@ -65,22 +65,23 @@ def build_units_from_candidates(candidates: list[Any]) -> list[ReviewUnit]:
         for key in ["slate_start", "slate_end", "guqin_start", "tail_end", "next_slate_start"]:
             if key not in markers_obj:
                 continue
-            label = "文件结束" if key == "next_slate_start" and boundary_type == "file_end" else MARKER_LABEL_ZH[key]
             markers.append(
                 Marker(
                     key=key,
-                    label=label,
+                    label=MARKER_LABEL_ZH[key],
                     time=float(markers_obj[key]),
                     color=MARKER_COLORS[key],
                     source="asr_candidate",
                     confidence=_float_or_none(candidate.get("confidence")),
+                    review_status="candidate",
                 )
             )
         units.append(
             ReviewUnit(
                 id=unit_id,
                 sequence=int(candidate.get("sequence") or index),
-                unit_status=str(candidate.get("status") or "needs_review"),
+                unit_status="candidate",
+                review_status="not_started",
                 source="asr_candidate",
                 takeId=str(candidate.get("take_id") or f"TAKE_{unit_id}"),
                 boundary_type=boundary_type,
