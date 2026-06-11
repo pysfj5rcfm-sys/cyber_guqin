@@ -11,12 +11,12 @@ export function PlaybackBar({
 }) {
   return (
     <div className="playback-bar">
-      <button className="play-button">Play<span>Pause</span></button>
+      <button className="play-button">播放<span>暂停</span></button>
       <button>{backLabel}</button>
-      <button>Loop audition</button>
+      <button>循环试听</button>
       {sequenceLabel && <button>{sequenceLabel}</button>}
       <strong className="clock">{time}<small>/ {total}</small></strong>
-      <span className="speed-label">Speed</span>
+      <span className="speed-label">播放速度</span>
       <button>0.5x</button>
       <button className="active">1x</button>
       <button>1.5x</button>

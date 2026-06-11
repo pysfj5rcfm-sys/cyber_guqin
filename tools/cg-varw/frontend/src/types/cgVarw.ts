@@ -30,6 +30,11 @@ export interface Marker<Key extends string = string> {
   optional?: boolean;
   weak?: boolean;
   displayLabel?: boolean;
+  source?: string;
+  confidence?: number | null;
+  review_status?: string;
+  nudge_total_ms?: number;
+  notes?: string;
 }
 
 export interface ReviewUnit {

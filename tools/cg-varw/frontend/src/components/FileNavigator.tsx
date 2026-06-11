@@ -12,5 +12,5 @@ export function KeyValueList({ rows }: { rows: [string, string][] }) {
 }
 
 export function SearchBox({ placeholder }: { placeholder: string }) {
-  return <div className="search-box">⌕ <input placeholder={placeholder} /></div>;
+  return <div className="search-box">⌕<input placeholder={placeholder} /></div>;
 }

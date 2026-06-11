@@ -1,9 +1,9 @@
 import type { ReviewMode } from "../types/cgVarw";
 
 const modeLabels: Record<ReviewMode, string> = {
-  R0: "R0 Raw Review",
-  R1: "R1 Split Review",
-  R2: "R2 Project Review",
+  R0: "R0 Raw 校验",
+  R1: "R1 Split 校验",
+  R2: "R2 句读听评",
 };
 
 export function TopBar({ mode }: { mode: ReviewMode }) {

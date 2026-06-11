@@ -10,7 +10,16 @@ interface WavInfo {
   peaks: number[];
 }
 
-const nonWavWarning = "Waveform fallback: non-WAV audio needs ffmpeg or another decoder for local waveform extraction.";
+interface AudioMetadata {
+  duration_s: number | null;
+  sample_rate: number | null;
+  bit_depth: number | null;
+  channels: number | null;
+  waveform_supported: boolean;
+  warning?: string | null;
+}
+
+const nonWavWarning = "非 WAV 波形需要 ffmpeg 或其他解码器；当前仅显示回退提示。";
 
 export function AudioCanvas({
   markers,
@@ -20,6 +29,7 @@ export function AudioCanvas({
   onSelect,
   audioUrl,
   audioFileName,
+  metadata,
 }: {
   markers: Marker[];
   duration: number;
@@ -28,6 +38,7 @@ export function AudioCanvas({
   onSelect?: (key: string) => void;
   audioUrl?: string;
   audioFileName?: string;
+  metadata?: AudioMetadata;
 }) {
   const barCount = compact ? 80 : 160;
   const [wavInfo, setWavInfo] = useState<WavInfo | null>(null);
@@ -54,7 +65,7 @@ export function AudioCanvas({
         if (!cancelled) setWavInfo(info);
       })
       .catch((error: unknown) => {
-        if (!cancelled) setWarning(`WAV metadata fallback failed: ${error instanceof Error ? error.message : String(error)}`);
+        if (!cancelled) setWarning(`WAV 元数据回退解析失败：${error instanceof Error ? error.message : String(error)}`);
       });
 
     return () => {
@@ -77,7 +88,7 @@ export function AudioCanvas({
 
   return (
     <div className={`audio-canvas ${compact ? "audio-compact" : ""}`}>
-      <div className="axis-label top">waveform</div>
+      <div className="axis-label top">波形</div>
       <div className="waveform" data-source={wavInfo ? "wav-native" : "fallback"}>
         {bars.map((height, index) => <span key={index} style={{ height }} />)}
       </div>
@@ -87,8 +98,10 @@ export function AudioCanvas({
       <MarkerLayer markers={markers} duration={duration} selectedKey={selectedKey} onSelect={onSelect} />
       <div className="audio-meta">
         {wavInfo
-          ? `${audioFileName ?? "WAV"} | ${wavInfo.duration.toFixed(3)}s | ${wavInfo.sampleRate} Hz | ${wavInfo.channels} ch | ${wavInfo.bitDepth} bit | ffmpeg not required`
-          : warning ?? `${audioFileName ?? "audio"} | synthetic display waveform`}
+          ? `${audioFileName ?? "WAV"} | ${wavInfo.duration.toFixed(3)}s | ${wavInfo.sampleRate} Hz | ${wavInfo.channels} ch | ${wavInfo.bitDepth} bit | WAV 解析无需 ffmpeg`
+          : metadata
+            ? `${audioFileName ?? "WAV"} | ${metadata.duration_s?.toFixed(3) ?? "未知"}s | ${metadata.sample_rate ?? "未知"} Hz | ${metadata.channels ?? "未知"} ch | ${metadata.bit_depth ?? "未知"} bit`
+            : warning ?? `${audioFileName ?? "音频"} | 合成显示波形`}
       </div>
       <div className="time-axis">
         {ticks.map((tick) => <span key={tick}>{formatTime(tick)}</span>)}

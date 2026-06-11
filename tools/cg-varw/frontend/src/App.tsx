@@ -9,10 +9,10 @@ export default function App() {
 
   return (
     <>
-      <nav className="mode-switcher" aria-label="review layer switcher">
+      <nav className="mode-switcher" aria-label="审核层级切换">
         {(["R0", "R1", "R2"] as ReviewMode[]).map((item) => (
           <button key={item} className={mode === item ? "active" : ""} onClick={() => setMode(item)}>
-            {item === "R0" ? "Raw review" : item === "R1" ? "Split review" : "Project review"}
+            {item === "R0" ? "原始 Raw" : item === "R1" ? "Split 校验" : "句读听评"}
           </button>
         ))}
       </nav>

@@ -31,26 +31,26 @@ export const rawFlags: MockFlags = {
 
 export const rawFiles = [
   {
-    name: `synthetic_demo / ${syntheticAsr.audio_file}`,
+    name: `合成演示 / ${syntheticAsr.audio_file}`,
     meta: `${syntheticAsr.duration_seconds.toFixed(3)}s | ${syntheticAsr.sample_rate_hz / 1000}kHz | ${syntheticAsr.bit_depth}bit | WAV | review_only`,
     selected: true,
   },
 ];
 
 export const markerLabels: Record<R0MarkerKey, string> = {
-  slate_start: "slate start",
-  slate_end: "slate end",
-  guqin_start: "synthetic pluck start",
-  tail_end: "tail decay end",
-  next_slate_start: "next slate / file end",
+  slate_start: "口播起始",
+  slate_end: "口播结束",
+  guqin_start: "合成拨弦起声",
+  tail_end: "尾音结束",
+  next_slate_start: "下一口播 / 文件结束",
 };
 
 export const unitStatusLabels: Record<ReviewUnitStatus, string> = {
-  confirmed: "confirmed",
-  needs_review: "needs review",
-  not_started: "not started",
-  needs_retake: "needs retake",
-  excluded: "excluded",
+  confirmed: "已确认",
+  needs_review: "待复核",
+  not_started: "未开始",
+  needs_retake: "需重录",
+  excluded: "已排除",
 };
 
 const markerColors: Record<R0MarkerKey, Marker<R0MarkerKey>["color"]> = {
@@ -66,7 +66,7 @@ const markerOrder: R0MarkerKey[] = ["slate_start", "slate_end", "guqin_start", "
 function unitMarkers(times: Record<R0MarkerKey, number>, boundaryType: SyntheticCandidate["boundary"]["type"]): Marker<R0MarkerKey>[] {
   return markerOrder.map((key) => ({
     key,
-    label: boundaryType === "file_end" && key === "next_slate_start" ? "file end" : markerLabels[key],
+    label: boundaryType === "file_end" && key === "next_slate_start" ? "文件结束" : markerLabels[key],
     time: times[key],
     color: markerColors[key],
     optional: key === "guqin_start" || key === "tail_end",
@@ -114,7 +114,7 @@ export function buildRawExportPreview(units: ReviewUnit[]) {
   );
 
   const splitPlan = units
-    .filter((unit) => unit.unit_status !== "excluded")
+    .filter((unit) => unit.unit_status === "confirmed")
     .map((unit) => ({
       unit_id: unit.id,
       take_id: unit.takeId,

@@ -1,20 +1,40 @@
-# CG-VARW M0 UI Shell
+# CG-VARW
 
-React + TypeScript + Vite mock UI shell for Cyber Guqin Visual Anchor Review Workbench.
+Cyber Guqin Visual Anchor Review Workbench.
 
-This M0 only renders review interfaces and mock interactions. It does not read audio, scan project folders, write review outputs, run split/render scripts, or create ML data.
+R0B now includes a review-only FastAPI backend for raw root scanning, WAV metadata/waveform extraction without ffmpeg, draft save, and three review-only CSV exports. It does not execute split, create sample assets, render audio, or create ML data.
 
-## Run
+## Windows Backend
 
-```bash
+```powershell
+cd tools\cg-varw\backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+$env:CG_VARW_RAW_ROOT="D:\path\to\your\raw_audio"
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+```
+
+If `CG_VARW_RAW_ROOT` is not set, the backend falls back to `tools/cg-varw/sample_workspace/raw_audio` and the UI reports that it is using the synthetic demo root.
+
+## Windows Frontend
+
+```powershell
 cd tools/cg-varw/frontend
 npm install
-npm run dev
+$env:VITE_CG_VARW_API_BASE="http://127.0.0.1:8787"
+npm run dev -- --host 127.0.0.1 --port 5173
 ```
+
+Open `http://127.0.0.1:5173/`.
 
 ## Validate
 
-```bash
+```powershell
+cd tools\cg-varw\backend
+python -m compileall app
+
+cd ..\frontend
 npm run build
 npm run typecheck
 ```
