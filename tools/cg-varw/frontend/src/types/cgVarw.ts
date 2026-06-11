@@ -1,6 +1,7 @@
 export type ReviewMode = "R0" | "R1" | "R2";
 
 export type ReviewStatus = "accepted" | "unclear" | "needs_retake" | "rejected";
+export type ReviewUnitStatus = "confirmed" | "needs_review" | "not_started" | "needs_retake" | "excluded";
 export type SegmentStatus = "reviewed" | "pending" | "needs_review" | "rejected";
 export type RenderStatus = "render_usable" | "reference_only" | "unclear" | "needs_retake" | "rejected";
 export type Severity = "low" | "medium" | "high";
@@ -16,11 +17,25 @@ export interface MockFlags {
 }
 
 export interface Marker<Key extends string = string> {
+  id?: string;
+  unitId?: string;
   key: Key;
   label: string;
   time: number;
   color: "green" | "blue" | "gold" | "purple" | "cyan" | "red";
   optional?: boolean;
+  weak?: boolean;
+  displayLabel?: boolean;
+}
+
+export interface ReviewUnit {
+  id: string;
+  sequence: number;
+  unit_status: ReviewUnitStatus;
+  source: "asr_candidate" | "manual";
+  takeId: string;
+  boundary_unlinked?: boolean;
+  markers: Marker<R0MarkerKey>[];
 }
 
 export interface ExportRow {
