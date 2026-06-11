@@ -1,0 +1,272 @@
+﻿{
+    "schema":  "cg-varw.r0b.synthetic_asr_candidates.v1",
+    "audio_file":  "demo_batch01_synthetic.wav",
+    "workspace_role":  "local_r0b_validation_fixture",
+    "description":  "Synthetic demo audio only: generated slate tones, silence, and sine-decay plucked-tone-like blocks. No real guqin audio and no real qinist recording.",
+    "sample_rate_hz":  44100,
+    "channels":  1,
+    "bit_depth":  16,
+    "duration_seconds":  44,
+    "ffmpeg_required_for_wav":  false,
+    "ffmpeg_optional_for_non_wav":  true,
+    "non_wav_waveform_fallback_warning":  "Non-WAV waveform extraction may require ffmpeg or another decoder; WAV metadata and waveform must work without ffmpeg.",
+    "synthetic_demo":  true,
+    "review_only":  true,
+    "production_grade":  false,
+    "not_real_qinist_recording":  true,
+    "not_sample_source":  true,
+    "not_ml_training_data":  true,
+    "candidates":  [
+                       {
+                           "unit_id":  "T001",
+                           "sequence":  1,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T001",
+                           "markers":  {
+                                           "slate_start":  0,
+                                           "slate_end":  0.32,
+                                           "guqin_start":  1.12,
+                                           "tail_end":  3.32,
+                                           "next_slate_start":  4.52
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  4.52,
+                                            "target_unit_id":  "T002"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T002",
+                           "sequence":  2,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T002",
+                           "markers":  {
+                                           "slate_start":  4.52,
+                                           "slate_end":  4.84,
+                                           "guqin_start":  5.64,
+                                           "tail_end":  7.84,
+                                           "next_slate_start":  9.04
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  9.04,
+                                            "target_unit_id":  "T003"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T003",
+                           "sequence":  3,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T003",
+                           "markers":  {
+                                           "slate_start":  9.04,
+                                           "slate_end":  9.36,
+                                           "guqin_start":  10.16,
+                                           "tail_end":  12.36,
+                                           "next_slate_start":  13.56
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  13.56,
+                                            "target_unit_id":  "T004"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T004",
+                           "sequence":  4,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T004",
+                           "markers":  {
+                                           "slate_start":  13.56,
+                                           "slate_end":  13.88,
+                                           "guqin_start":  14.68,
+                                           "tail_end":  16.88,
+                                           "next_slate_start":  18.08
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  18.08,
+                                            "target_unit_id":  "T005"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T005",
+                           "sequence":  5,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T005",
+                           "markers":  {
+                                           "slate_start":  18.08,
+                                           "slate_end":  18.4,
+                                           "guqin_start":  19.2,
+                                           "tail_end":  21.4,
+                                           "next_slate_start":  22.6
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  22.6,
+                                            "target_unit_id":  "T006"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T006",
+                           "sequence":  6,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T006",
+                           "markers":  {
+                                           "slate_start":  22.6,
+                                           "slate_end":  22.92,
+                                           "guqin_start":  23.72,
+                                           "tail_end":  25.92,
+                                           "next_slate_start":  27.12
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  27.12,
+                                            "target_unit_id":  "T007"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T007",
+                           "sequence":  7,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T007",
+                           "markers":  {
+                                           "slate_start":  27.12,
+                                           "slate_end":  27.44,
+                                           "guqin_start":  28.24,
+                                           "tail_end":  30.44,
+                                           "next_slate_start":  31.64
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  31.64,
+                                            "target_unit_id":  "T008"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T008",
+                           "sequence":  8,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T008",
+                           "markers":  {
+                                           "slate_start":  31.64,
+                                           "slate_end":  31.96,
+                                           "guqin_start":  32.76,
+                                           "tail_end":  34.96,
+                                           "next_slate_start":  36.16
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  36.16,
+                                            "target_unit_id":  "T009"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T009",
+                           "sequence":  9,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T009",
+                           "markers":  {
+                                           "slate_start":  36.16,
+                                           "slate_end":  36.48,
+                                           "guqin_start":  37.28,
+                                           "tail_end":  39.48,
+                                           "next_slate_start":  40.68
+                                       },
+                           "boundary":  {
+                                            "type":  "next_slate_start",
+                                            "time":  40.68,
+                                            "target_unit_id":  "T010"
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       },
+                       {
+                           "unit_id":  "T010",
+                           "sequence":  10,
+                           "source":  "synthetic_asr_candidate",
+                           "status":  "needs_review",
+                           "take_id":  "DEMO_BATCH01_T010",
+                           "markers":  {
+                                           "slate_start":  40.68,
+                                           "slate_end":  41,
+                                           "guqin_start":  41.8,
+                                           "tail_end":  44,
+                                           "next_slate_start":  44
+                                       },
+                           "boundary":  {
+                                            "type":  "file_end",
+                                            "time":  44,
+                                            "target_unit_id":  null
+                                        },
+                           "synthetic_demo":  true,
+                           "review_only":  true,
+                           "production_grade":  false,
+                           "not_real_qinist_recording":  true,
+                           "not_sample_source":  true,
+                           "not_ml_training_data":  true
+                       }
+                   ]
+}
+

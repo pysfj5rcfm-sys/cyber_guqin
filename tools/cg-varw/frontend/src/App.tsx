@@ -5,14 +5,14 @@ import { R1SplitReviewPage } from "./pages/R1SplitReviewPage";
 import { R2ProjectReviewPage } from "./pages/R2ProjectReviewPage";
 
 export default function App() {
-  const [mode, setMode] = useState<ReviewMode>("R2");
+  const [mode, setMode] = useState<ReviewMode>("R0");
 
   return (
     <>
-      <nav className="mode-switcher" aria-label="层级切换">
+      <nav className="mode-switcher" aria-label="review layer switcher">
         {(["R0", "R1", "R2"] as ReviewMode[]).map((item) => (
           <button key={item} className={mode === item ? "active" : ""} onClick={() => setMode(item)}>
-            {item === "R0" ? "原始 Raw" : item === "R1" ? "Split 审校" : "句读听评"}
+            {item === "R0" ? "Raw review" : item === "R1" ? "Split review" : "Project review"}
           </button>
         ))}
       </nav>

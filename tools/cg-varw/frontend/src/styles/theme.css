@@ -87,6 +87,7 @@ select, input { width: 100%; min-height: 36px; padding: 0 12px; }
 .spectrogram { position: absolute; inset: 52% 30px 42px; display: flex; align-items: stretch; gap: 1px; background: rgba(30,9,42,0.28); }
 .spectrogram span { flex: 1; background: linear-gradient(0deg, #ffca4e 0 14%, #f34f92 34%, #6f21bd 60%, transparent 90%); filter: saturate(1.1); }
 .axis-label { position: absolute; z-index: 2; left: 10px; top: 42px; color: var(--muted); font-size: 12px; }
+.audio-meta { position: absolute; z-index: 4; left: 30px; right: 30px; bottom: 32px; min-height: 20px; color: #9fc9d1; font-size: 12px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
 .time-axis { position: absolute; left: 30px; right: 30px; bottom: 13px; display: flex; justify-content: space-between; color: #b3c2c6; font-size: 12px; }
 .marker-layer { position: absolute; inset: 0 30px 34px; z-index: 3; }
 .marker { position: absolute; top: 44px; bottom: 0; width: 0; min-width: 0; padding: 0; border: 0; background: transparent; }

@@ -6,6 +6,9 @@ import { PlaybackBar } from "../components/ReviewStatusBar";
 import {
   buildRawExportPreview,
   completedMarkerCount,
+  demoAudioFileName,
+  demoAudioUrl,
+  demoRawDuration,
   markerLabels,
   rawFiles,
   rawFlags,
@@ -14,7 +17,6 @@ import {
 } from "../mock/rawReviewMock";
 import type { Marker, R0MarkerKey, ReviewUnit, ReviewUnitStatus } from "../types/cgVarw";
 
-const rawDuration = 248.237;
 const markerOrder: R0MarkerKey[] = ["slate_start", "slate_end", "guqin_start", "tail_end", "next_slate_start"];
 
 export function R0RawReviewPage() {
@@ -27,7 +29,14 @@ export function R0RawReviewPage() {
   const selectedIndex = units.findIndex((unit) => unit.id === selectedUnit.id);
   const nextUnit = selectedIndex >= 0 ? units[selectedIndex + 1] : undefined;
   const nextSlateStart = nextUnit?.markers.find((marker) => marker.key === "slate_start");
-  const boundaryLinked = Boolean(nextUnit && nextSlateStart && !selectedUnit.boundary_unlinked && selectedUnit.markers.find((marker) => marker.key === "next_slate_start")?.time === nextSlateStart.time);
+  const selectedBoundaryMarker = selectedUnit.markers.find((marker) => marker.key === "next_slate_start");
+  const isFileEndBoundary = selectedUnit.boundary_type === "file_end";
+  const boundaryLinked = Boolean(
+    nextUnit &&
+      nextSlateStart &&
+      !selectedUnit.boundary_unlinked &&
+      selectedBoundaryMarker?.time === nextSlateStart.time,
+  );
 
   const canvasMarkers = useMemo(
     () =>
@@ -62,10 +71,7 @@ export function R0RawReviewPage() {
       const nextSlate = next?.markers.find((marker) => marker.key === "slate_start");
       return {
         ...unit,
-        boundary_unlinked:
-          selectedMarkerKey === "next_slate_start" && nextSlate
-            ? true
-            : unit.boundary_unlinked,
+        boundary_unlinked: selectedMarkerKey === "next_slate_start" && nextSlate ? true : unit.boundary_unlinked,
         markers: unit.markers.map((marker) =>
           marker.key === selectedMarkerKey ? { ...marker, time: Math.max(0, marker.time + deltaMs / 1000) } : marker,
         ),
@@ -80,16 +86,16 @@ export function R0RawReviewPage() {
   function addUnit() {
     const last = units.at(-1);
     const sequence = (last?.sequence ?? 0) + 1;
-    const base = (last?.markers.find((marker) => marker.key === "next_slate_start")?.time ?? 0) + 6;
+    const base = (last?.markers.find((marker) => marker.key === "next_slate_start")?.time ?? 0) + 4.52;
     const id = `T${String(sequence).padStart(3, "0")}`;
     const markers = markerOrder.map((key, index) => ({
       key,
       label: markerLabels[key],
-      time: base + [0, 5.2, 10.4, 18.2, 23.6][index],
+      time: base + [0, 0.32, 1.12, 3.32, 4.52][index],
       color: ({ slate_start: "green", slate_end: "blue", guqin_start: "gold", tail_end: "purple", next_slate_start: "cyan" } as const)[key],
       optional: key === "guqin_start" || key === "tail_end",
     }));
-    setUnits((current) => [...current, { id, sequence, unit_status: "not_started", source: "manual", takeId: `XWC_P01_N${String(sequence).padStart(2, "0")}`, markers }]);
+    setUnits((current) => [...current, { id, sequence, unit_status: "not_started", source: "manual", takeId: `DEMO_BATCH01_${id}`, markers }]);
     setSelectedUnitId(id);
     setSelectedMarkerKey("slate_start");
   }
@@ -129,19 +135,30 @@ export function R0RawReviewPage() {
         <div className="work-area">
           <div className="work-title r0-work-title">
             <div>
-              <h1>当前 Raw：batch01_raw.wav</h1>
-              <p>当前审校：{selectedUnit.id} / 第{selectedUnit.sequence}条 / {selectedUnit.takeId}</p>
-              <p>来源：{selectedUnit.source} · Unit状态：{unitStatusLabels[selectedUnit.unit_status]} {selectedUnit.unit_status} · 完成度：{completedMarkerCount(selectedUnit)}/5</p>
+              <h1>R0B synthetic raw review: {demoAudioFileName}</h1>
+              <p>Selected unit: {selectedUnit.id} / {selectedUnit.sequence} / {selectedUnit.takeId}</p>
+              <p>
+                Source: {selectedUnit.source} | Status: {unitStatusLabels[selectedUnit.unit_status]} | Markers: {completedMarkerCount(selectedUnit)}/5
+              </p>
             </div>
-            <span>时长：04:08.237</span>
+            <span>Duration: {formatTime(demoRawDuration)}</span>
           </div>
-          <AudioCanvas markers={canvasMarkers} duration={rawDuration} selectedKey={`${selectedUnit.id}:${selectedMarker.key}`} onSelect={selectMarkerInstance} />
-          <div className={`boundary-note ${boundaryLinked ? "is-linked" : "is-unlinked"}`}>
-            {boundaryLinked && nextUnit
-              ? `边界已联动：${selectedUnit.id}.next_slate_start = ${nextUnit.id}.slate_start`
-              : `边界已解除联动${nextUnit ? `：${selectedUnit.id}.next_slate_start ≠ ${nextUnit.id}.slate_start` : ""}`}
+          <AudioCanvas
+            markers={canvasMarkers}
+            duration={demoRawDuration}
+            selectedKey={`${selectedUnit.id}:${selectedMarker.key}`}
+            onSelect={selectMarkerInstance}
+            audioUrl={demoAudioUrl}
+            audioFileName={demoAudioFileName}
+          />
+          <div className={`boundary-note ${boundaryLinked || isFileEndBoundary ? "is-linked" : "is-unlinked"}`}>
+            {isFileEndBoundary
+              ? `${selectedUnit.id}.next_slate_start is the file_end boundary at ${formatTime(selectedBoundaryMarker?.time ?? demoRawDuration)}`
+              : boundaryLinked && nextUnit
+                ? `${selectedUnit.id}.next_slate_start is linked to ${nextUnit.id}.slate_start`
+                : `Boundary unlinked${nextUnit ? `: ${selectedUnit.id}.next_slate_start differs from ${nextUnit.id}.slate_start` : ""}`}
           </div>
-          <PlaybackBar time={formatTime(selectedMarker.time)} total="04:08.237" backLabel="前滚 300ms" />
+          <PlaybackBar time={formatTime(selectedMarker.time)} total={formatTime(demoRawDuration)} backLabel="Back 300ms" />
         </div>
       }
       right={
@@ -177,23 +194,23 @@ function LeftPanel({
 }) {
   return (
     <div className="panel-stack">
-      <h2>原始 Raw 文件</h2>
+      <h2>R0 raw files</h2>
       <section className="editor-section">
-        <h3>Raw 文件</h3>
-        <SearchBox placeholder="搜索文件或会话..." />
+        <h3>Demo raw audio</h3>
+        <SearchBox placeholder="Search demo files..." />
         <div className="file-list">
           {rawFiles.map((file) => <button key={file.name} className={file.selected ? "selected" : ""}><strong>{file.name}</strong><span>{file.meta}</span></button>)}
         </div>
       </section>
       <section className="editor-section unit-queue-panel">
         <div className="section-title-row">
-          <h3>本文件内录音单元</h3>
-          <button onClick={onAddUnit}>+ 新增 T</button>
+          <h3>T units in this file</h3>
+          <button onClick={onAddUnit}>+ Add T</button>
         </div>
         <div className="unit-actions">
-          <button onClick={onExclude}>排除当前 T</button>
-          <button onClick={onRestore}>恢复已排除 T</button>
-          <button onClick={onRename}>重命名 T</button>
+          <button onClick={onExclude}>Exclude current T</button>
+          <button onClick={onRestore}>Restore excluded T</button>
+          <button onClick={onRename}>Rename current T</button>
         </div>
         <div className="unit-queue">
           {units.map((unit) => (
@@ -205,19 +222,21 @@ function LeftPanel({
               <strong>{unit.id}</strong>
               <span className={`unit-status status-${unit.unit_status}`}>{unitStatusLabels[unit.unit_status]}</span>
               <span className="progress-chip">{completedMarkerCount(unit)}/5</span>
-              <small>{unit.source}</small>
+              <small>{unit.boundary_type ?? "next_slate_start"}</small>
               <code>{unit.takeId}</code>
             </button>
           ))}
         </div>
       </section>
       <KeyValueList rows={[
-        ["session_id", "RS_XWC_002_BAIYA_PILOT"],
-        ["qinist_id", "QIN_001_BAIYA"],
-        ["piece_id", "PIECE_002_XIANGSHUI"],
-        ["当前 Raw", "batch01_raw.wav"],
+        ["workspace", "tools/cg-varw/sample_workspace/raw_audio"],
+        ["current_raw", demoAudioFileName],
+        ["synthetic_demo", String(rawFlags.synthetic_demo)],
         ["review_only", String(rawFlags.review_only)],
         ["production_grade", String(rawFlags.production_grade)],
+        ["not_real_qinist_recording", String(rawFlags.not_real_qinist_recording)],
+        ["not_sample_source", String(rawFlags.not_sample_source)],
+        ["not_ml_training_data", String(rawFlags.not_ml_training_data)],
       ]} />
     </div>
   );
@@ -238,23 +257,23 @@ function R0MarkerEditor({
 }) {
   const selected = unit.markers.find((marker) => marker.key === selectedMarkerKey) ?? unit.markers[0];
   const statuses: { key: ReviewUnitStatus; label: string; tone: string }[] = [
-    { key: "confirmed", label: "已确认", tone: "green" },
-    { key: "needs_review", label: "待复核", tone: "gold" },
-    { key: "needs_retake", label: "需重录", tone: "red" },
-    { key: "excluded", label: "已排除", tone: "red" },
+    { key: "confirmed", label: "Confirmed", tone: "green" },
+    { key: "needs_review", label: "Needs review", tone: "gold" },
+    { key: "needs_retake", label: "Needs retake", tone: "red" },
+    { key: "excluded", label: "Excluded", tone: "red" },
   ];
 
   return (
     <div className="panel-stack">
-      <h2>当前选中标记</h2>
+      <h2>Selected marker</h2>
       <div className="info-card center r0-marker-context">
-        <span>当前选中标记</span>
-        <strong>{unit.id} · {selected.label}</strong>
+        <span>Current marker</span>
+        <strong>{unit.id} | {selected.label}</strong>
         <code>{selected.key}</code>
         <b>{formatTime(selected.time)}</b>
       </div>
       <section className="editor-section">
-        <h3>标记跳转</h3>
+        <h3>Marker jump</h3>
         <div className="button-grid">
           {unit.markers.map((marker) => (
             <button key={marker.key} className={selectedMarkerKey === marker.key ? "active" : ""} onClick={() => onSelectMarker(marker.key)}>
@@ -264,7 +283,7 @@ function R0MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>微调</h3>
+        <h3>Nudge</h3>
         <div className="nudge-grid">
           {[-50, -10, -5, 5, 10, 50].map((delta) => (
             <button key={delta} onClick={() => onNudge(delta)}>{delta > 0 ? "+" : ""}{delta}ms</button>
@@ -272,7 +291,7 @@ function R0MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>审核状态</h3>
+        <h3>Review status</h3>
         <div className="status-grid">
           {statuses.map((status) => (
             <button key={status.key} className={`${unit.unit_status === status.key ? "active" : ""} tone-${status.tone}`} onClick={() => onStatus(status.key)}>
@@ -282,8 +301,8 @@ function R0MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>备注</h3>
-        <textarea placeholder="在此输入备注（可选）..." maxLength={500} />
+        <h3>Notes</h3>
+        <textarea placeholder="Optional review note..." maxLength={500} />
         <span className="char-count">0 / 500</span>
       </section>
     </div>
@@ -295,27 +314,27 @@ function RawExportPreviewPanel({ units }: { units: ReviewUnit[] }) {
   return (
     <div className="export-panel r0-export-panel">
       <div className="section-title-row">
-        <h2>底部导出预览</h2>
-        <span>preview only · no real CSV written in R0A</span>
+        <h2>Export preview</h2>
+        <span>preview only | synthetic demo | no sample assets</span>
       </div>
       <div className="export-preview-grid">
         <PreviewTable
           title="reviewed_slate_anchor_manifest.csv"
-          note="one row per confirmed / needs_retake ReviewUnit"
+          note="one row per reviewed synthetic ReviewUnit"
           rows={preview.reviewedManifest}
-          columns={["unit_id", "unit_status", "take_id", "slate_start", "guqin_start"]}
+          columns={["unit_id", "unit_status", "take_id", "slate_start", "guqin_start", "synthetic_demo", "review_only"]}
         />
         <PreviewTable
           title="raw_marker_review.csv"
           note="one row per marker instance"
           rows={preview.rawMarkerReview}
-          columns={["unit_id", "marker_key", "marker_time", "unit_status", "source"]}
+          columns={["unit_id", "marker_key", "marker_time", "unit_status", "boundary_type"]}
         />
         <PreviewTable
           title="split_plan_from_raw_markers.csv"
-          note="excluded units omitted · flags are preview-only"
+          note="excluded units omitted | not executable from R0B"
           rows={preview.splitPlan}
-          columns={["unit_id", "take_id", "not_executed", "not_recording_segments", "not_sample_assets"]}
+          columns={["unit_id", "take_id", "not_executed", "not_sample_source", "not_ml_training_data"]}
         />
       </div>
     </div>

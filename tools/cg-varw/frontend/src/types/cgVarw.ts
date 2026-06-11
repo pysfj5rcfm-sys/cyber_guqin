@@ -11,8 +11,12 @@ export type R1MarkerKey = "pre_idle_end" | "gesture_start" | "render_anchor" | "
 export type R2MarkerKey = "phrase_start" | "phrase_end" | "breath_point" | "cadence" | "section_start" | "unclear_boundary";
 
 export interface MockFlags {
+  synthetic_demo?: true;
   review_only: true;
   production_grade: false;
+  not_real_qinist_recording?: true;
+  not_sample_source?: true;
+  not_ml_training_data?: true;
   training_value_class: string[];
 }
 
@@ -34,6 +38,7 @@ export interface ReviewUnit {
   unit_status: ReviewUnitStatus;
   source: "asr_candidate" | "manual";
   takeId: string;
+  boundary_type?: "next_slate_start" | "file_end";
   boundary_unlinked?: boolean;
   markers: Marker<R0MarkerKey>[];
 }
