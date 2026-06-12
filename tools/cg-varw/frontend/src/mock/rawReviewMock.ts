@@ -49,27 +49,27 @@ export const unitStatusLabels: Record<ReviewUnitStatus, string> = {
   candidate: "待确认",
   confirmed: "已确认",
   needs_review: "待复核",
-  not_started: "未开始",
+  not_started: "待确认",
   needs_retake: "需重录",
   excluded: "已排除",
-  rejected: "已拒绝",
+  rejected: "已排除",
 };
 
 export const unitReviewStatusLabels: Record<ReviewStatus, string> = {
-  not_started: "未开始",
-  in_progress: "审核中",
+  not_started: "待确认",
+  in_progress: "审校中",
   accepted: "已确认",
   unclear: "待复核",
   needs_retake: "需重录",
-  rejected: "已拒绝",
+  rejected: "已排除",
 };
 
 export const markerReviewStatusLabels: Record<MarkerReviewStatus, string> = {
   candidate: "待确认",
-  accepted: "标记确认",
+  accepted: "已确认",
   unclear: "待复核",
   needs_retake: "需重录",
-  rejected: "排除此标记",
+  rejected: "已排除",
 };
 
 const markerColors: Record<R0MarkerKey, Marker<R0MarkerKey>["color"]> = {
@@ -121,7 +121,7 @@ export function markerStats(unit: ReviewUnit) {
 
 export function completionLabel(unit: ReviewUnit) {
   const stats = markerStats(unit);
-  return `必填${stats.requiredAccepted}/${stats.requiredTotal} 可选${stats.optionalAccepted}/${stats.optionalTotal}`;
+  return `必填${stats.requiredAccepted}/${stats.requiredTotal} · 可选${stats.optionalAccepted}/${stats.optionalTotal}`;
 }
 
 export function deriveUnitReviewStatus(unit: ReviewUnit): ReviewStatus {

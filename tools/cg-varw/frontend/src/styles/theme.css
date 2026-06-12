@@ -94,8 +94,14 @@ select, input { width: 100%; min-height: 36px; padding: 0 12px; }
 .marker:before { content: ""; position: absolute; top: 30px; bottom: 0; width: 2px; background: currentColor; box-shadow: 0 0 12px currentColor; }
 .marker:after { content: ""; position: absolute; top: 24px; left: -5px; width: 12px; height: 12px; border: 2px solid currentColor; border-radius: 50%; background: #101820; }
 .marker-tag { position: absolute; transform: translateX(-50%); top: -2px; width: max-content; max-width: 138px; padding: 5px 10px; border: 1px solid currentColor; border-radius: 6px; background: rgba(7,19,25,0.9); font-size: 12px; line-height: 1.1; }
+.marker-label--compact { max-width: 86px; padding: 2px 6px; font-size: 11px; opacity: 0.82; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.marker-label--selected { max-width: 160px; padding: 5px 10px; font-size: 12px; opacity: 1; }
+.marker-lane-1 .marker-tag { top: 24px; transform: translateX(-12%); max-width: 112px; padding: 3px 7px; opacity: 0.86; }
+.marker-lane-2 .marker-tag { top: 48px; transform: translateX(-88%); max-width: 112px; padding: 3px 7px; opacity: 0.86; }
+.marker-lane-1 .marker-label--compact, .marker-lane-2 .marker-label--compact { max-width: 86px; padding: 2px 6px; }
 .marker-green { color: var(--green); } .marker-blue { color: var(--blue); } .marker-gold { color: var(--gold); } .marker-purple { color: var(--purple); } .marker-cyan { color: var(--cyan); } .marker-red { color: var(--red); }
-.marker.is-selected .marker-tag { background: rgba(255,255,255,0.1); box-shadow: 0 0 0 2px rgba(255,255,255,0.08); }
+.marker.is-selected .marker-tag { top: -2px; transform: translateX(-50%); max-width: 160px; padding: 5px 10px; opacity: 1; background: rgba(255,255,255,0.1); box-shadow: 0 0 0 2px rgba(255,255,255,0.08); }
+.marker.is-selected .marker-tag small { display: block; margin-top: 2px; }
 .marker.is-weak { opacity: 0.34; }
 .marker.is-weak:before { width: 1px; box-shadow: none; }
 .marker.is-weak:after { top: 28px; left: -3px; width: 7px; height: 7px; border-width: 1px; background: rgba(16,24,32,0.84); }
@@ -129,7 +135,7 @@ th, td { height: 33px; padding: 7px 12px; border-top: 1px solid rgba(116,156,166
 th { color: #8fa4aa; font-weight: 500; background: rgba(255,255,255,0.025); }
 .file-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 22px; margin-right: 8px; color: #061016; background: #65dc8a; border-radius: 3px; font-size: 10px; font-weight: 700; }
 .row-actions { display: flex; gap: 6px; }
-.row-actions button { width: 28px; min-width: 28px; padding: 0; border: 0; background: transparent; color: #9cc8d4; }
+.row-actions button { width: auto; min-width: 88px; padding: 0 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.035); color: #9cc8d4; white-space: nowrap; }
 
 .version-list { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
 .version-head, .version-row { display: grid; grid-template-columns: 70px 300px 1fr 210px 120px 50px; align-items: center; gap: 14px; min-height: 52px; padding: 0 16px; border-top: 1px solid rgba(116,156,166,0.13); }
@@ -159,14 +165,14 @@ th { color: #8fa4aa; font-weight: 500; background: rgba(255,255,255,0.025); }
 .unit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 10px; }
 .unit-actions button:last-child { grid-column: 1 / 3; }
 .unit-queue { display: flex; flex-direction: column; gap: 7px; margin-top: 10px; }
-.unit-row { display: grid; grid-template-columns: 48px 62px 42px minmax(84px, 1fr); align-items: center; gap: 7px; min-height: 48px; height: auto; padding: 8px 9px; text-align: left; border-color: rgba(116,156,166,0.2); background: rgba(7,18,24,0.66); }
-.r1-unit-row { grid-template-columns: minmax(102px, 1fr) minmax(76px, auto) 58px 44px; }
-.unit-row strong { color: #f2fbfb; }
+.unit-row { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: 5px; min-height: 74px; height: auto; padding: 9px 10px; text-align: left; border-color: rgba(116,156,166,0.2); background: rgba(7,18,24,0.66); overflow: hidden; }
+.r1-unit-row { grid-template-columns: minmax(0, 1fr); }
+.unit-row strong { color: #f2fbfb; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .unit-row small { display: inline; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.unit-row code { grid-column: 2 / 5; color: #b9c9cd; font-family: ui-monospace, Consolas, monospace; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.unit-row code { color: #b9c9cd; font-family: ui-monospace, Consolas, monospace; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .unit-row.selected { border-color: var(--cyan); background: linear-gradient(90deg, rgba(23,210,201,0.2), rgba(23,210,201,0.06)); box-shadow: inset 3px 0 0 var(--cyan); }
 .unit-row.is-excluded { opacity: 0.48; filter: grayscale(0.4); }
-.unit-status, .progress-chip { display: inline-flex; align-items: center; justify-content: center; min-height: 24px; padding: 0 7px; border: 1px solid var(--line); border-radius: 6px; font-size: 12px; white-space: nowrap; }
+.unit-status, .progress-chip { display: inline-flex; align-items: center; justify-content: center; width: fit-content; max-width: 100%; min-height: 24px; padding: 0 7px; border: 1px solid var(--line); border-radius: 6px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .progress-chip { color: var(--cyan); border-color: rgba(23,210,201,0.34); background: rgba(23,210,201,0.07); font-variant-numeric: tabular-nums; }
 .status-confirmed { color: #a7f0b0; border-color: rgba(95,214,111,0.42); background: rgba(95,214,111,0.07); }
 .status-needs_review { color: #ffd27a; border-color: rgba(245,174,32,0.48); background: rgba(245,174,32,0.08); }
@@ -187,6 +193,6 @@ th { color: #8fa4aa; font-weight: 500; background: rgba(255,255,255,0.025); }
 @media (max-width: 1400px) {
   .workspace-grid { grid-template-columns: 300px minmax(0, 1fr) 300px; }
   .version-head, .version-row { grid-template-columns: 54px 260px 1fr 180px 90px 36px; gap: 10px; }
-  .unit-row { grid-template-columns: 44px 58px 38px minmax(72px, 1fr); gap: 5px; }
+  .unit-row { grid-template-columns: minmax(0, 1fr); gap: 5px; }
   .export-preview-grid { grid-template-columns: 1fr 1fr; }
 }

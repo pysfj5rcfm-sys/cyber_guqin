@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
 import { KeyValueList, SearchBox } from "../components/FileNavigator";
+import { buildR1HeaderRows, formatClockTime, markerReviewStatusLabels, markerReviewStatusTone, reviewStatusLabels, segmentStatusLabels } from "../components/reviewUi";
 import type {
   Marker,
   MarkerReviewStatus,
@@ -32,38 +33,6 @@ const markerLabels: Record<R1MarkerKey, string> = {
   render_anchor: "渲染锚点",
   tail_end: "尾音结束",
 };
-const reviewStatusLabels: Record<ReviewStatus, string> = {
-  not_started: "待审",
-  in_progress: "审校中",
-  accepted: "已审",
-  unclear: "待复核",
-  needs_retake: "需重录",
-  rejected: "已排除",
-};
-const markerStatusLabels: Record<MarkerReviewStatus, string> = {
-  candidate: "待确认",
-  accepted: "已确认",
-  unclear: "待复核",
-  needs_retake: "需重录",
-  rejected: "已排除",
-};
-const markerStatusTone: Record<MarkerReviewStatus, string> = {
-  candidate: "not_started",
-  accepted: "confirmed",
-  unclear: "needs_review",
-  needs_retake: "needs_retake",
-  rejected: "excluded",
-};
-const segmentStatusLabels: Record<R1SegmentStatus, string> = {
-  candidate: "待审",
-  render_usable: "可用于后续渲染评估",
-  reference_only: "仅供参考",
-  unclear: "待复核",
-  needs_retake: "需重录",
-  rejected: "已拒绝",
-  excluded: "排除单元",
-};
-
 type BackendState =
   | { status: "connecting"; splitRootMode: "demo"; message: string }
   | { status: "offline"; splitRootMode: "demo"; message: string }
@@ -146,6 +115,20 @@ export function R1SplitReviewPage() {
   const selectedMarker = selectedSegment?.markers[selectedMarkerType] ?? selectedSegment?.markers.render_anchor ?? selectedSegment?.markers.tail_end;
   const audioUrl = selectedSegment ? `${apiBase}/api/r1/segments/${selectedSegment.segment_id}/audio` : "";
   const duration = metadata?.duration_s ?? selectedSegment?.duration_s ?? 0;
+  const headerRows = selectedSegment
+    ? buildR1HeaderRows({
+        batchId: selectedSegment.batch_id,
+        fileName: selectedSegment.file_name,
+        eventId: selectedSegment.event_id,
+        segmentId: selectedSegment.segment_id,
+        variant: selectedSegment.variant,
+        reviewStatusLabel: reviewStatusLabels[selectedSegment.review_status],
+        segmentStatusLabel: segmentStatusLabels[selectedSegment.segment_status],
+        coreAccepted: acceptedCount(selectedSegment, coreMarkerKeys),
+        markerAccepted: acceptedCount(selectedSegment, markerOrder),
+        duration,
+      })
+    : undefined;
 
   const canvasMarkers = useMemo(
     () =>
@@ -417,26 +400,27 @@ export function R1SplitReviewPage() {
               onPause={() => setIsPlaying(false)}
               onEnded={() => setIsPlaying(false)}
               onLoadedMetadata={(event) => {
-                if (!metadata) setMetadata({ duration_s: event.currentTarget.duration, sample_rate: null, bit_depth: null, channels: null, waveform_supported: true });
+                const loadedDuration = event.currentTarget.duration;
+                if (!metadata && Number.isFinite(loadedDuration) && loadedDuration > 0) {
+                  setMetadata({ duration_s: loadedDuration, sample_rate: null, bit_depth: null, channels: null, waveform_supported: true });
+                }
               }}
             />
             <div className="work-title r0-work-title">
               <div>
-                <h1>当前选择：{selectedSegment ? `${selectedSegment.batch_id} / ${selectedSegment.file_name}` : "未选择 Segment"}</h1>
-                {selectedSegment && (
+                <h1>{headerRows?.title ?? "R1 Split 审校：未选择 Segment"}</h1>
+                {headerRows && (
                   <>
-                    <p>事件：{selectedSegment.event_id} · Segment ID：{selectedSegment.segment_id} · 版本：{selectedSegment.variant}</p>
-                    <p>
-                      时长：{formatTime(duration)} · 状态：{reviewStatusLabels[selectedSegment.review_status]} ·
-                      核心{acceptedCount(selectedSegment, coreMarkerKeys)}/2 · 标记{acceptedCount(selectedSegment, markerOrder)}/4
-                    </p>
+                    <p>{headerRows.identity}</p>
+                    <p>{headerRows.status}</p>
                   </>
                 )}
               </div>
+              <span>{headerRows?.duration ?? `时长：${formatTime(duration)}`}</span>
             </div>
             <AudioCanvas
               markers={canvasMarkers}
-              duration={Math.max(duration, 0.1)}
+              duration={duration}
               selectedKey={selectedMarkerType}
               onSelect={(key) => jumpToMarker(key as R1MarkerKey, false)}
               audioUrl={audioUrl}
@@ -523,18 +507,17 @@ function LeftPanel({
               className={`unit-row r1-unit-row ${selectedSegmentId === segment.segment_id ? "selected" : ""} ${segment.segment_status === "excluded" ? "is-excluded" : ""}`}
               onClick={() => onSelectSegment(segment.segment_id)}
             >
-              <strong>{segment.file_name}</strong>
-              <span className={`unit-status status-${segmentStatusClass(segment.segment_status)}`}>{segmentStatusLabels[segment.segment_status]}</span>
-              <span className="progress-chip">核心{acceptedCount(segment, coreMarkerKeys)}/2</span>
-              <small>标记{acceptedCount(segment, markerOrder)}/4</small>
-              <code>{segment.take_id} · {formatTime(segment.duration_s)} · {segment.segment_id}</code>
+              <strong title={segment.segment_id}>{segment.file_name.replace(/\.wav$/i, "")}</strong>
+              <span className={`unit-status status-${segmentStatusClass(segment.segment_status)}`}>
+                {reviewStatusLabels[segment.review_status]} · {segmentStatusLabels[segment.segment_status]}
+              </span>
+              <span className="progress-chip">核心{acceptedCount(segment, coreMarkerKeys)}/2 · 标记{acceptedCount(segment, markerOrder)}/4</span>
             </button>
           ))}
         </div>
       </section>
       <KeyValueList rows={[
-        ["batch_id", selectedBatch?.batch_id ?? selectedBatchId],
-        ["display_name", selectedBatch?.display_name ?? ""],
+        ["当前批次", selectedBatch?.display_name ?? ""],
         ["segment_count", String(selectedBatch?.segment_count ?? segments.length)],
         ["source", selectedBatch?.source ?? ""],
       ]} />
@@ -570,10 +553,10 @@ function R1MarkerEditor({
   onExport: () => void;
 }) {
   const statusButtons: { key: MarkerReviewStatus; label: string; tone: string }[] = [
-    { key: "accepted", label: "标记确认", tone: "green" },
+    { key: "accepted", label: "已确认", tone: "green" },
     { key: "unclear", label: "待复核", tone: "gold" },
     { key: "needs_retake", label: "需重录", tone: "red" },
-    { key: "rejected", label: "排除此标记", tone: "red" },
+    { key: "rejected", label: "已排除", tone: "red" },
   ];
 
   return (
@@ -582,8 +565,8 @@ function R1MarkerEditor({
       <div className="info-card center">
         <span>当前选中标记</span>
         <strong>{segment.take_id} · {marker.marker_label_zh} {marker.marker_type}</strong>
-        <b>{marker.time_s.toFixed(3)}s</b>
-        <span className={`unit-status status-${markerStatusTone[marker.review_status]}`}>状态：{markerStatusLabels[marker.review_status]}</span>
+        <b>{formatTime(marker.time_s)}</b>
+        <span className={`unit-status status-${markerReviewStatusTone[marker.review_status]}`}>状态：{markerReviewStatusLabels[marker.review_status]}</span>
       </div>
       <section className="editor-section">
         <h3>标记跳转</h3>
@@ -604,7 +587,7 @@ function R1MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>标记审核状态</h3>
+        <h3>标记审校状态</h3>
         <div className="status-grid">
           {statusButtons.map((status) => (
             <button key={status.key} className={`${marker.review_status === status.key ? "active" : ""} tone-${status.tone}`} onClick={() => onMarkerStatus(status.key)}>
@@ -652,10 +635,10 @@ function R1MarkerEditor({
         />
       </section>
       <section className="editor-section">
-        <h3>Segment 审核状态</h3>
+        <h3>Segment 审校状态</h3>
         <div className="status-grid">
           {[
-            ["render_usable", "可用于后续渲染评估"],
+            ["render_usable", "渲染可用"],
             ["reference_only", "仅供参考"],
             ["unclear", "待复核"],
             ["needs_retake", "需重录"],
@@ -766,10 +749,10 @@ function R1ExportPreviewPanel({ segments, onSave, onExport }: { segments: SplitS
     <div className="export-panel r0-export-panel">
       <div className="section-title-row">
         <h2>导出预览</h2>
-        <span>仅预览 | review_only=true | production_grade=false | 不写 sample_assets | R1 不执行 render</span>
+        <span>仅预览 · 不生成 sample_assets · R1 不执行 render</span>
         <div className="row-actions">
-          <button onClick={onSave} title="保存 draft">存</button>
-          <button onClick={onExport} title="导出三个 CSV">导</button>
+          <button onClick={onSave} title="保存 draft">保存 draft</button>
+          <button onClick={onExport} title="导出 CSV">导出 CSV</button>
         </div>
       </div>
       <div className="export-preview-grid">
@@ -968,7 +951,5 @@ function segmentStatusClass(status: R1SegmentStatus) {
 }
 
 function formatTime(time: number) {
-  const minutes = Math.floor(time / 60);
-  const seconds = time - minutes * 60;
-  return `${String(minutes).padStart(2, "0")}:${seconds.toFixed(3).padStart(6, "0")}`;
+  return formatClockTime(time);
 }

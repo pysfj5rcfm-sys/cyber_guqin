@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Marker } from "../types/cgVarw";
 import { MarkerLayer } from "./MarkerLayer";
+import { formatAxisTime } from "./reviewUi";
 
 interface WavInfo {
   duration: number;
@@ -100,7 +101,7 @@ export function AudioCanvas({
       <MarkerLayer markers={markers} duration={duration} selectedKey={selectedKey} onSelect={onSelect} />
       <div className="audio-meta">
         {waveformPeaks?.length
-          ? `${audioFileName ?? "WAV"} | ${duration.toFixed(3)}s | 后端 WAV 波形无需 ffmpeg`
+          ? `${audioFileName ?? "WAV"} | ${formatDurationMeta(duration)} | 后端 WAV 波形无需 ffmpeg`
           : wavInfo
           ? `${audioFileName ?? "WAV"} | ${wavInfo.duration.toFixed(3)}s | ${wavInfo.sampleRate} Hz | ${wavInfo.channels} ch | ${wavInfo.bitDepth} bit | WAV 解析无需 ffmpeg`
           : metadata
@@ -108,7 +109,7 @@ export function AudioCanvas({
             : warning ?? `${audioFileName ?? "音频"} | 合成显示波形`}
       </div>
       <div className="time-axis">
-        {ticks.map((tick) => <span key={tick}>{formatTime(tick)}</span>)}
+        {ticks.map((tick) => <span key={tick}>{formatAxisTime(tick, duration)}</span>)}
       </div>
     </div>
   );
@@ -210,12 +211,13 @@ function downsamplePeaks(peaks: number[], count: number) {
 }
 
 function makeTicks(duration: number) {
+  if (!Number.isFinite(duration) || duration <= 0) return [];
   const count = 6;
-  return Array.from({ length: count }, (_, index) => (duration / (count - 1)) * index);
+  const step = duration / (count - 1);
+  if (!Number.isFinite(step) || step <= 0) return [];
+  return Array.from({ length: count }, (_, index) => step * index).filter((tick) => Number.isFinite(tick));
 }
 
-function formatTime(time: number) {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time - minutes * 60);
-  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+function formatDurationMeta(duration: number) {
+  return Number.isFinite(duration) && duration >= 0 ? `${duration.toFixed(3)}s` : "未知时长";
 }

@@ -1,7 +1,7 @@
 import type { ReviewMode } from "../types/cgVarw";
 
 const modeLabels: Record<ReviewMode, string> = {
-  R0: "R0 Raw 校验",
+  R0: "R0 Raw 审校",
   R1: "R1 Split 审校",
   R2: "R2 句读听评",
 };

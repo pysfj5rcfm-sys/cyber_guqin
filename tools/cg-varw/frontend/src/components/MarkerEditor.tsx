@@ -50,7 +50,7 @@ export function MarkerEditor({
       </section>
       {extra}
       <section className="editor-section">
-        <h3>审核状态</h3>
+        <h3>审校状态</h3>
         <div className="status-grid">
           {statusLabels.map((status) => (
             <button key={status.key} className={`${selectedStatus === status.key ? "active" : ""} tone-${status.tone ?? "cyan"}`} onClick={() => onStatus(status.key)}>

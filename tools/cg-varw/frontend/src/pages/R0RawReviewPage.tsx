@@ -3,6 +3,7 @@ import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
 import { KeyValueList, SearchBox } from "../components/FileNavigator";
 import { PlaybackBar } from "../components/ReviewStatusBar";
+import { buildR0HeaderRows, formatClockTime, markerReviewStatusLabels, markerReviewStatusTone, unitReviewStatusLabels, unitStatusLabels } from "../components/reviewUi";
 import {
   buildRawExportPreview,
   completionLabel,
@@ -11,12 +12,9 @@ import {
   demoRawDuration,
   deriveUnitReviewStatus,
   markerLabels,
-  markerReviewStatusLabels,
   rawFiles as fallbackRawFiles,
   rawFlags,
   rawReviewUnits,
-  unitReviewStatusLabels,
-  unitStatusLabels,
   withDerivedUnitState,
 } from "../mock/rawReviewMock";
 import type { Marker, MarkerReviewStatus, R0MarkerKey, ReviewUnit, ReviewUnitStatus } from "../types/cgVarw";
@@ -139,6 +137,23 @@ export function R0RawReviewPage() {
   const selectedBoundaryMarker = selectedUnit?.markers.find((marker) => marker.key === "next_slate_start");
   const isFileEndBoundary = selectedUnit?.boundary_type === "file_end";
   const boundaryLinked = Boolean(selectedUnit && nextUnit && nextSlateStart && !selectedUnit.boundary_unlinked && selectedBoundaryMarker?.time === nextSlateStart.time);
+  const headerRows = buildR0HeaderRows({
+    sourceAudio,
+    unit: selectedUnit
+      ? {
+          id: selectedUnit.id,
+          sequence: selectedUnit.sequence,
+          takeId: selectedUnit.takeId,
+          sourceLabel: sourceLabel(selectedUnit.source),
+          unitStatusLabel: unitStatusLabels[selectedUnit.unit_status],
+          reviewStatusLabel: unitReviewStatusLabels[deriveUnitReviewStatus(selectedUnit)],
+          completionLabel: completionLabel(selectedUnit),
+        }
+      : undefined,
+    marker: selectedMarker ? { label: selectedMarker.label, key: selectedMarker.key, time: selectedMarker.time } : undefined,
+    metadata,
+    duration,
+  });
 
   const canvasMarkers = useMemo(
     () =>
@@ -148,7 +163,6 @@ export function R0RawReviewPage() {
           id: `${unit.id}:${marker.key}`,
           unitId: unit.id,
           weak: selectedUnit ? unit.id !== selectedUnit.id : false,
-          displayLabel: selectedUnit ? unit.id === selectedUnit.id : true,
           color: unit.unit_status === "excluded" ? "red" : marker.color,
         })),
       ) satisfies Marker<R0MarkerKey>[],
@@ -166,7 +180,8 @@ export function R0RawReviewPage() {
     const nextMetadata = await metadataResponse.json() as Metadata;
     const reviewData = await reviewUnitsResponse.json() as { units: ReviewUnit[]; message?: string };
     setMetadata(nextMetadata);
-    setDuration(nextMetadata.duration_s ?? demoRawDuration);
+    const metadataDuration = nextMetadata.duration_s;
+    setDuration(metadataDuration !== null && Number.isFinite(metadataDuration) && metadataDuration > 0 ? metadataDuration : demoRawDuration);
     const nextUnits = reviewData.units.length ? normalizeUnits(reviewData.units) : [];
     setUnits(nextUnits);
     if (nextUnits[0]) {
@@ -379,23 +394,18 @@ export function R0RawReviewPage() {
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
               onEnded={() => setIsPlaying(false)}
-              onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || duration)}
+              onLoadedMetadata={(event) => {
+                const loadedDuration = event.currentTarget.duration;
+                if (Number.isFinite(loadedDuration) && loadedDuration > 0) setDuration(loadedDuration);
+              }}
             />
             <div className="work-title r0-work-title">
               <div>
-                <h1>R0B 合成 Raw 校验：{sourceAudio}</h1>
-                {selectedUnit ? (
-                  <>
-                    <p>当前校验单元：{selectedUnit.id} / {selectedUnit.sequence} / {selectedUnit.takeId}</p>
-                    <p>
-                      来源：{sourceLabel(selectedUnit.source)} {selectedUnit.source} | 单元状态：{unitStatusLabels[selectedUnit.unit_status]} {selectedUnit.unit_status} | 审核状态：{unitReviewStatusLabels[deriveUnitReviewStatus(selectedUnit)]} | {completionLabel(selectedUnit)}
-                    </p>
-                  </>
-                ) : (
-                  <p>未找到 ASR 候选，可手动新增 T</p>
-                )}
+                <h1>{headerRows.title}</h1>
+                <p>{headerRows.identity}</p>
+                <p>{headerRows.status}</p>
               </div>
-              <span>时长：{formatTime(duration)}</span>
+              <span>{headerRows.duration}</span>
             </div>
             <AudioCanvas
               markers={canvasMarkers}
@@ -413,7 +423,7 @@ export function R0RawReviewPage() {
                   ? `${selectedUnit.id}.next_slate_start 边界已联动到 ${nextUnit.id}.slate_start`
                   : selectedUnit
                     ? `边界已解除联动${nextUnit ? `：${selectedUnit.id}.next_slate_start 与 ${nextUnit.id}.slate_start 不同` : ""}`
-                    : "暂无边界可校验"}
+                    : "暂无边界可审校"}
             </div>
             <PlaybackBar
               time={formatTime(currentTime)}
@@ -510,11 +520,9 @@ function LeftPanel({
               className={`unit-row ${selectedUnitId === unit.id ? "selected" : ""} ${unit.unit_status === "excluded" ? "is-excluded" : ""}`}
               onClick={() => onSelectUnit(unit.id)}
             >
-              <strong>{unit.id}</strong>
-              <span className={`unit-status status-${unit.unit_status}`}>{unitReviewStatusLabels[deriveUnitReviewStatus(unit)]}</span>
+              <strong title={unit.takeId}>{unit.id}</strong>
+              <span className={`unit-status status-${unitStatusClass(unit.unit_status)}`}>{unitStatusLabels[unit.unit_status]}</span>
               <span className="progress-chip">{completionLabel(unit)}</span>
-              <small>{boundaryLabel(unit.boundary_type)}</small>
-              <code>{unit.takeId}</code>
             </button>
           ))}
         </div>
@@ -552,10 +560,10 @@ function R0MarkerEditor({
 }) {
   const selected = unit.markers.find((marker) => marker.key === selectedMarkerKey) ?? unit.markers[0];
   const statuses: { key: MarkerReviewStatus; label: string; tone: string }[] = [
-    { key: "accepted", label: "标记确认", tone: "green" },
+    { key: "accepted", label: "已确认", tone: "green" },
     { key: "unclear", label: "待复核", tone: "gold" },
     { key: "needs_retake", label: "需重录", tone: "red" },
-    { key: "rejected", label: "排除此标记", tone: "red" },
+    { key: "rejected", label: "已排除", tone: "red" },
   ];
 
   return (
@@ -564,8 +572,10 @@ function R0MarkerEditor({
       <div className="info-card center r0-marker-context">
         <span>当前选中标记</span>
         <strong>{unit.id} · {selected.label} {selected.key}</strong>
-        <code>{markerReviewStatusLabels[selected.review_status ?? "candidate"]}</code>
         <b>{formatTime(selected.time)}</b>
+        <span className={`unit-status status-${markerReviewStatusTone[selected.review_status ?? "candidate"]}`}>
+          状态：{markerReviewStatusLabels[selected.review_status ?? "candidate"]}
+        </span>
       </div>
       <section className="editor-section">
         <h3>标记跳转</h3>
@@ -586,7 +596,7 @@ function R0MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>标记审核状态</h3>
+        <h3>标记审校状态</h3>
         <div className="status-grid">
           {statuses.map((status) => (
             <button key={status.key} className={`${selected.review_status === status.key ? "active" : ""} tone-${status.tone}`} onClick={() => onStatus(status.key)}>
@@ -617,10 +627,10 @@ function RawExportPreviewPanel({ units, onSave, onExport }: { units: ReviewUnit[
     <div className="export-panel r0-export-panel">
       <div className="section-title-row">
         <h2>导出预览</h2>
-        <span>仅预览 | 不生成 sample_assets | R0B 不执行切片</span>
+        <span>仅预览 · 不生成 sample_assets · R0B 不执行切片</span>
         <div className="row-actions">
-          <button onClick={onSave} title="保存 draft">存</button>
-          <button onClick={onExport} title="导出三个 CSV">导</button>
+          <button onClick={onSave} title="保存 draft">保存 draft</button>
+          <button onClick={onExport} title="导出 CSV">导出 CSV</button>
         </div>
       </div>
       <div className="export-preview-grid">
@@ -716,10 +726,6 @@ function sourceLabel(source: string) {
   return source === "asr_candidate" ? "ASR 候选" : "手动新增";
 }
 
-function boundaryLabel(boundary?: string) {
-  return boundary === "file_end" ? "来源：file_end" : "下一口播";
-}
-
 function formatBytes(value: number) {
   if (value < 1024) return `${value} B`;
   if (value < 1024 * 1024) return `${(value / 1024).toFixed(1)} KB`;
@@ -727,7 +733,13 @@ function formatBytes(value: number) {
 }
 
 function formatTime(time: number) {
-  const minutes = Math.floor(time / 60);
-  const seconds = time - minutes * 60;
-  return `${String(minutes).padStart(2, "0")}:${seconds.toFixed(3).padStart(6, "0")}`;
+  return formatClockTime(time);
+}
+
+function unitStatusClass(status: ReviewUnitStatus) {
+  if (status === "confirmed") return "confirmed";
+  if (status === "needs_review") return "needs_review";
+  if (status === "needs_retake") return "needs_retake";
+  if (status === "excluded" || status === "rejected") return "excluded";
+  return "not_started";
 }
