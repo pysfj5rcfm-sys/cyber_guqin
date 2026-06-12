@@ -46,7 +46,7 @@ export const markerLabels: Record<R0MarkerKey, string> = {
 };
 
 export const unitStatusLabels: Record<ReviewUnitStatus, string> = {
-  candidate: "候选",
+  candidate: "待确认",
   confirmed: "已确认",
   needs_review: "待复核",
   not_started: "未开始",
@@ -65,7 +65,7 @@ export const unitReviewStatusLabels: Record<ReviewStatus, string> = {
 };
 
 export const markerReviewStatusLabels: Record<MarkerReviewStatus, string> = {
-  candidate: "候选",
+  candidate: "待确认",
   accepted: "标记确认",
   unclear: "待复核",
   needs_retake: "需重录",

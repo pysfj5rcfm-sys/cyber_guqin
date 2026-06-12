@@ -6,13 +6,14 @@ from fastapi.responses import FileResponse
 from app.schemas import (
     GenericResponse,
     R1BatchesResponse,
+    R1DraftResponse,
     R1ReviewExportRequest,
     R1ReviewSaveRequest,
     R1SegmentMetadata,
     R1SegmentsResponse,
     R1WaveformResponse,
 )
-from app.services.r1_review_store import export_r1_csv, save_r1_draft
+from app.services.r1_review_store import export_r1_csv, load_r1_draft, save_r1_draft
 from app.services.r1_split_store import (
     get_split_root,
     get_split_root_mode,
@@ -91,6 +92,11 @@ def r1_segment_markers(segment_id: str):
         "review_only": True,
         "production_grade": False,
     }
+
+
+@router.get("/reviews/{batch_id}/draft", response_model=R1DraftResponse)
+def r1_review_draft(batch_id: str) -> R1DraftResponse:
+    return load_r1_draft(batch_id)
 
 
 @router.post("/reviews/save", response_model=GenericResponse)

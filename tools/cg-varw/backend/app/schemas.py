@@ -249,3 +249,12 @@ class R1ReviewSaveRequest(BaseModel):
 
 class R1ReviewExportRequest(R1ReviewSaveRequest):
     pass
+
+
+class R1DraftResponse(BaseModel):
+    batch_id: str
+    exists: bool
+    saved_at: str | None = None
+    segments: list[SplitSegment] = Field(default_factory=list)
+    review_only: bool = True
+    production_grade: bool = False

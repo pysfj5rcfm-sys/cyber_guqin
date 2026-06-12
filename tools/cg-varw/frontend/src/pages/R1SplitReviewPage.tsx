@@ -41,11 +41,27 @@ const reviewStatusLabels: Record<ReviewStatus, string> = {
   rejected: "已排除",
 };
 const markerStatusLabels: Record<MarkerReviewStatus, string> = {
-  candidate: "候选",
+  candidate: "待确认",
   accepted: "已确认",
   unclear: "待复核",
   needs_retake: "需重录",
   rejected: "已排除",
+};
+const markerStatusTone: Record<MarkerReviewStatus, string> = {
+  candidate: "not_started",
+  accepted: "confirmed",
+  unclear: "needs_review",
+  needs_retake: "needs_retake",
+  rejected: "excluded",
+};
+const segmentStatusLabels: Record<R1SegmentStatus, string> = {
+  candidate: "待审",
+  render_usable: "可用于后续渲染评估",
+  reference_only: "仅供参考",
+  unclear: "待复核",
+  needs_retake: "需重录",
+  rejected: "已拒绝",
+  excluded: "排除单元",
 };
 
 type BackendState =
@@ -66,6 +82,13 @@ interface R1Waveform {
   duration_s: number;
   peaks: number[];
   waveform_supported: boolean;
+}
+
+interface R1DraftResponse {
+  batch_id: string;
+  exists: boolean;
+  saved_at?: string | null;
+  segments?: SplitSegment[];
 }
 
 export function R1SplitReviewPage() {
@@ -100,7 +123,9 @@ export function R1SplitReviewPage() {
         if (cancelled) return;
         setBatches(data.batches);
         setBackend({ status: "online", splitRootMode: data.split_root_mode, message: data.message });
-        if (data.batches[0]) await selectBatch(data.batches[0].batch_id);
+        const rememberedBatch = window.localStorage.getItem("cg-varw:r1:selectedBatchId");
+        const initialBatch = data.batches.find((batch) => batch.batch_id === rememberedBatch) ?? data.batches[0];
+        if (initialBatch) await loadBatchReviewState(initialBatch.batch_id);
       } catch {
         if (cancelled) return;
         setBackend({ status: "offline", splitRootMode: "demo", message: "R1 后端未连接，无法加载 Split 审校数据。" });
@@ -142,20 +167,41 @@ export function R1SplitReviewPage() {
     [selectedSegment],
   );
 
-  async function selectBatch(batchId: string) {
+  async function loadBatchReviewState(batchId: string, preferredSegmentId?: string) {
     setSelectedBatchId(batchId);
+    window.localStorage.setItem("cg-varw:r1:selectedBatchId", batchId);
     setOperationMessage("正在加载当前批次 Segment...");
     const response = await fetch(`${apiBase}/api/r1/batches/${batchId}/segments`);
     if (!response.ok) throw new Error(`segments ${response.status}`);
     const data = await response.json() as { segments: SplitSegment[] };
-    const nextSegments = data.segments.map(withDerivedSegmentState);
-    setSegments(nextSegments);
-    if (nextSegments[0]) {
-      setSelectedSegmentId(nextSegments[0].segment_id);
-      setSelectedMarkerType("render_anchor");
-      await loadSegmentAssets(nextSegments[0]);
+    let nextSegments = data.segments.map(withDerivedSegmentState);
+    let draftMessage = "已加载 R1 Split 合成演示数据。";
+    try {
+      const draftResponse = await fetch(`${apiBase}/api/r1/reviews/${batchId}/draft`);
+      if (draftResponse.ok) {
+        const draft = await draftResponse.json() as R1DraftResponse;
+        if (draft.exists && draft.segments?.length) {
+          nextSegments = mergeDraftSegments(nextSegments, draft.segments);
+          draftMessage = `已加载 ${batchId} draft`;
+        }
+      } else {
+        draftMessage = `${batchId} draft 加载失败：HTTP ${draftResponse.status}`;
+      }
+    } catch {
+      draftMessage = `${batchId} draft 加载失败`;
     }
-    setOperationMessage("已加载 R1 Split 合成演示数据。");
+    setSegments(nextSegments);
+    const nextSelected = nextSegments.find((segment) => segment.segment_id === preferredSegmentId) ?? nextSegments[0];
+    if (nextSelected) {
+      setSelectedSegmentId(nextSelected.segment_id);
+      setSelectedMarkerType("render_anchor");
+      await loadSegmentAssets(nextSelected);
+    }
+    setOperationMessage(draftMessage);
+  }
+
+  async function selectBatch(batchId: string) {
+    await loadBatchReviewState(batchId);
   }
 
   async function selectSegment(segmentId: string) {
@@ -246,6 +292,7 @@ export function R1SplitReviewPage() {
       segment_status: status,
       qc: {
         ...segment.qc,
+        render_usable: status === "render_usable",
         reference_only: status === "reference_only",
         unclear: status === "unclear",
         needs_retake: status === "needs_retake",
@@ -316,7 +363,12 @@ export function R1SplitReviewPage() {
       return;
     }
     const response = await postReview("save");
-    setOperationMessage(response.ok ? "draft 已保存到 review_outputs/r1/drafts。" : "draft 保存失败。");
+    if (response.ok) {
+      setOperationMessage("draft 已保存");
+      await loadBatchReviewState(selectedBatchId, selectedSegment?.segment_id);
+    } else {
+      setOperationMessage("draft 保存失败。");
+    }
   }
 
   async function exportCsv() {
@@ -346,7 +398,6 @@ export function R1SplitReviewPage() {
       {{
         left: (
           <LeftPanel
-            backend={backend}
             batches={batches}
             selectedBatchId={selectedBatchId}
             segments={segments}
@@ -382,7 +433,6 @@ export function R1SplitReviewPage() {
                   </>
                 )}
               </div>
-              <span>review_only=true · production_grade=false</span>
             </div>
             <AudioCanvas
               markers={canvasMarkers}
@@ -436,7 +486,6 @@ export function R1SplitReviewPage() {
 }
 
 function LeftPanel({
-  backend,
   batches,
   selectedBatchId,
   segments,
@@ -444,7 +493,6 @@ function LeftPanel({
   onSelectBatch,
   onSelectSegment,
 }: {
-  backend: BackendState;
   batches: SplitBatch[];
   selectedBatchId: string;
   segments: SplitSegment[];
@@ -452,6 +500,7 @@ function LeftPanel({
   onSelectBatch: (batchId: string) => void;
   onSelectSegment: (segmentId: string) => void;
 }) {
+  const selectedBatch = batches.find((batch) => batch.batch_id === selectedBatchId);
   return (
     <div className="panel-stack">
       <h2>Split 文件审校</h2>
@@ -471,27 +520,23 @@ function LeftPanel({
           {segments.map((segment) => (
             <button
               key={segment.segment_id}
-              className={`unit-row ${selectedSegmentId === segment.segment_id ? "selected" : ""} ${segment.segment_status === "excluded" ? "is-excluded" : ""}`}
+              className={`unit-row r1-unit-row ${selectedSegmentId === segment.segment_id ? "selected" : ""} ${segment.segment_status === "excluded" ? "is-excluded" : ""}`}
               onClick={() => onSelectSegment(segment.segment_id)}
             >
-              <strong>{segment.take_id}</strong>
-              <span className={`unit-status status-${statusClass(segment.review_status)}`}>{reviewStatusLabels[segment.review_status]}</span>
+              <strong>{segment.file_name}</strong>
+              <span className={`unit-status status-${segmentStatusClass(segment.segment_status)}`}>{segmentStatusLabels[segment.segment_status]}</span>
               <span className="progress-chip">核心{acceptedCount(segment, coreMarkerKeys)}/2</span>
               <small>标记{acceptedCount(segment, markerOrder)}/4</small>
-              <code>{segment.file_name} · {formatTime(segment.duration_s)}</code>
+              <code>{segment.take_id} · {formatTime(segment.duration_s)} · {segment.segment_id}</code>
             </button>
           ))}
         </div>
       </section>
       <KeyValueList rows={[
-        ["当前使用", backend.splitRootMode === "real" ? "真实 Split 根目录" : "合成演示 Split 根目录"],
-        ["连接状态", backend.status === "online" ? "后端已连接" : "R1 后端未连接"],
-        ["synthetic_demo", String(backend.splitRootMode === "demo")],
-        ["review_only", "true"],
-        ["production_grade", "false"],
-        ["not_sample_assets", "true"],
-        ["not_render_executed", "true"],
-        ["not_ml_training_data", "true"],
+        ["batch_id", selectedBatch?.batch_id ?? selectedBatchId],
+        ["display_name", selectedBatch?.display_name ?? ""],
+        ["segment_count", String(selectedBatch?.segment_count ?? segments.length)],
+        ["source", selectedBatch?.source ?? ""],
       ]} />
     </div>
   );
@@ -533,12 +578,12 @@ function R1MarkerEditor({
 
   return (
     <div className="panel-stack">
-      <h2>标记编辑</h2>
+      <h2>标记级审校</h2>
       <div className="info-card center">
         <span>当前选中标记</span>
         <strong>{segment.take_id} · {marker.marker_label_zh} {marker.marker_type}</strong>
-        <code>{markerStatusLabels[marker.review_status]}</code>
         <b>{marker.time_s.toFixed(3)}s</b>
+        <span className={`unit-status status-${markerStatusTone[marker.review_status]}`}>状态：{markerStatusLabels[marker.review_status]}</span>
       </div>
       <section className="editor-section">
         <h3>标记跳转</h3>
@@ -559,46 +604,6 @@ function R1MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>锚点类型</h3>
-        <div className="pill-row">
-          {[
-            ["main_attack", "主发声点 main_attack"],
-            ["gesture_start", "前导起势点 gesture_start"],
-            ["context_first_attach", "上下文首触点 context_first_attach"],
-          ].map(([key, label]) => (
-            <button key={key} className={segment.anchor_type === key ? "active" : ""} onClick={() => onPolicy("anchor_type", key as R1AnchorType)}>
-              {label}
-            </button>
-          ))}
-        </div>
-      </section>
-      <section className="editor-section">
-        <h3>前置内容策略</h3>
-        <div className="segmented">
-          {[
-            ["keep_silence", "保留静音缓冲 keep_silence"],
-            ["preserve", "保留前导音乐 preserve"],
-          ].map(([key, label]) => (
-            <button key={key} className={segment.pre_attack_music_policy === key ? "active" : ""} onClick={() => onPolicy("pre_attack_music_policy", key as R1PreAttackMusicPolicy)}>
-              {label}
-            </button>
-          ))}
-        </div>
-      </section>
-      <section className="editor-section">
-        <h3>尾音策略</h3>
-        <div className="segmented">
-          {[
-            ["smart_fade_100ms", "智能淡出 100ms smart_fade_100ms"],
-            ["full_tail", "保留完整尾音 full_tail"],
-          ].map(([key, label]) => (
-            <button key={key} className={segment.tail_policy === key ? "active" : ""} onClick={() => onPolicy("tail_policy", key as R1TailPolicy)}>
-              {label}
-            </button>
-          ))}
-        </div>
-      </section>
-      <section className="editor-section">
         <h3>标记审核状态</h3>
         <div className="status-grid">
           {statusButtons.map((status) => (
@@ -608,14 +613,54 @@ function R1MarkerEditor({
           ))}
         </div>
       </section>
+      <h2>Segment 级审校</h2>
+      <section className="editor-section">
+        <h3>锚点类型</h3>
+        <SelectField
+          value={segment.anchor_type}
+          options={[
+            ["main_attack", "主发声点 main_attack"],
+            ["gesture_start", "前导起势点 gesture_start"],
+            ["context_first_attach", "上下文首触点 context_first_attach"],
+          ]}
+          onChange={(value) => onPolicy("anchor_type", value as R1AnchorType)}
+          help="锚点类型说明 render_anchor 代表什么。普通古琴单音默认使用“主发声点”。"
+        />
+      </section>
+      <section className="editor-section">
+        <h3>前置内容策略</h3>
+        <SelectField
+          value={segment.pre_attack_music_policy}
+          options={[
+            ["keep_silence", "保留静音缓冲 keep_silence"],
+            ["preserve", "保留前导音乐 preserve"],
+          ]}
+          onChange={(value) => onPolicy("pre_attack_music_policy", value as R1PreAttackMusicPolicy)}
+          help="render_anchor 前只是静音或安全余量时选“保留静音缓冲”；存在绰注、滑入、连接声等音乐性内容时选“保留前导音乐”。"
+        />
+      </section>
+      <section className="editor-section">
+        <h3>尾音策略</h3>
+        <SelectField
+          value={segment.tail_policy}
+          options={[
+            ["smart_fade_100ms", "智能淡出 100ms smart_fade_100ms"],
+            ["full_tail", "保留完整尾音 full_tail"],
+          ]}
+          onChange={(value) => onPolicy("tail_policy", value as R1TailPolicy)}
+          help="R1A 只记录策略，不执行实际 fade，不生成 render audio。"
+        />
+      </section>
       <section className="editor-section">
         <h3>Segment 审核状态</h3>
         <div className="status-grid">
           {[
-            ["reference_only", "仅参考"],
+            ["render_usable", "可用于后续渲染评估"],
+            ["reference_only", "仅供参考"],
             ["unclear", "待复核"],
             ["needs_retake", "需重录"],
-            ["excluded", "排除 Segment"],
+            ["rejected", "已拒绝"],
+            ["excluded", "排除单元"],
           ].map(([key, label]) => (
             <button key={key} className={segment.segment_status === key ? "active" : ""} onClick={() => onSegmentConclusion(key as R1SegmentStatus)}>
               {label}
@@ -639,7 +684,7 @@ function R1MarkerEditor({
         </div>
       </section>
       <section className="editor-section">
-        <h3>备注</h3>
+        <h3>Segment 备注</h3>
         <textarea value={segment.notes ?? ""} onChange={(event) => onNotes(event.target.value)} placeholder="输入备注（可选）..." maxLength={500} />
         <span className="char-count">{(segment.notes ?? "").length} / 500</span>
       </section>
@@ -690,6 +735,27 @@ function R1PlaybackBar({
           {rate}x
         </button>
       ))}
+    </div>
+  );
+}
+
+function SelectField({
+  value,
+  options,
+  onChange,
+  help,
+}: {
+  value: string;
+  options: [string, string][];
+  onChange: (value: string) => void;
+  help: string;
+}) {
+  return (
+    <div className="cg-select-row">
+      <select className="cg-select" value={value} onChange={(event) => onChange(event.target.value)}>
+        {options.map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+      </select>
+      <small className="cg-select-help">{help}</small>
     </div>
   );
 }
@@ -778,6 +844,39 @@ function withDerivedSegmentState(segment: SplitSegment): SplitSegment {
   return { ...segment, review_status, segment_status, qc };
 }
 
+function mergeDraftSegments(defaultSegments: SplitSegment[], draftSegments: SplitSegment[]) {
+  const draftsBySegmentId = new Map(draftSegments.map((segment) => [segment.segment_id, segment]));
+  return defaultSegments.map((segment) => {
+    const draft = draftsBySegmentId.get(segment.segment_id);
+    if (!draft) return segment;
+    return withDerivedSegmentState({
+      ...segment,
+      ...draft,
+      batch_id: segment.batch_id,
+      take_id: segment.take_id,
+      file_name: segment.file_name,
+      relative_path: segment.relative_path,
+      duration_s: segment.duration_s,
+      sample_rate: segment.sample_rate,
+      bit_depth: segment.bit_depth,
+      channels: segment.channels,
+      markers: {
+        ...segment.markers,
+        ...draft.markers,
+      },
+      qc: {
+        ...segment.qc,
+        ...draft.qc,
+      },
+      review_only: true,
+      production_grade: false,
+      not_sample_assets: true,
+      not_render_executed: true,
+      not_ml_training_data: true,
+    });
+  });
+}
+
 function deriveReviewStatus(segment: SplitSegment): ReviewStatus {
   const markers = markerOrder.map((key) => segment.markers[key]).filter(Boolean) as R1Marker[];
   const core = coreMarkerKeys.map((key) => segment.markers[key]).filter(Boolean) as R1Marker[];
@@ -858,6 +957,14 @@ function statusClass(status: ReviewStatus) {
   if (status === "needs_retake" || status === "rejected") return "needs_retake";
   if (status === "not_started") return "not_started";
   return "needs_review";
+}
+
+function segmentStatusClass(status: R1SegmentStatus) {
+  if (status === "render_usable") return "confirmed";
+  if (status === "reference_only" || status === "unclear") return "needs_review";
+  if (status === "needs_retake" || status === "rejected") return "needs_retake";
+  if (status === "excluded") return "excluded";
+  return "not_started";
 }
 
 function formatTime(time: number) {

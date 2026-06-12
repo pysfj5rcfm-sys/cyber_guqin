@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from app.config import REVIEW_OUTPUT_ROOT
-from app.schemas import R1Marker, R1ReviewExportRequest, R1ReviewSaveRequest, SplitSegment
+from app.schemas import R1DraftResponse, R1Marker, R1ReviewExportRequest, R1ReviewSaveRequest, SplitSegment
 
 
 RENDER_ANCHOR_FIELDS = [
@@ -83,7 +83,7 @@ SEGMENT_QC_FIELDS = [
 
 def save_r1_draft(request: R1ReviewSaveRequest) -> dict[str, Any]:
     updated_at = datetime.now(timezone.utc).isoformat()
-    out_path = REVIEW_OUTPUT_ROOT / "r1" / "drafts" / f"{request.batch_id}.split_review.json"
+    out_path = _draft_path(request.batch_id)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     segments = [with_derived_state(segment) for segment in request.segments]
     payload = {
@@ -102,6 +102,31 @@ def save_r1_draft(request: R1ReviewSaveRequest) -> dict[str, Any]:
         json.dump(payload, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
     return {"path": str(out_path), "payload": payload}
+
+
+def load_r1_draft(batch_id: str) -> R1DraftResponse:
+    draft_path = _draft_path(batch_id)
+    if not draft_path.exists():
+        return R1DraftResponse(batch_id=batch_id, exists=False)
+
+    with draft_path.open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+
+    segments: list[SplitSegment] = []
+    for raw_segment in payload.get("segments", []):
+        try:
+            segment = SplitSegment(**raw_segment)
+        except Exception:
+            continue
+        if segment.batch_id == batch_id:
+            segments.append(with_derived_state(segment))
+
+    return R1DraftResponse(
+        batch_id=batch_id,
+        exists=True,
+        saved_at=payload.get("updated_at"),
+        segments=segments,
+    )
 
 
 def export_r1_csv(request: R1ReviewExportRequest) -> dict[str, list[str] | str]:
@@ -313,3 +338,8 @@ def _write_csv(path: Path, fields: list[str], rows: list[dict[str, object]]) -> 
 
 def _bool(value: bool) -> str:
     return str(bool(value)).lower()
+
+
+def _draft_path(batch_id: str) -> Path:
+    safe_batch_id = batch_id.replace("/", "_").replace("\\", "_")
+    return REVIEW_OUTPUT_ROOT / "r1" / "drafts" / f"{safe_batch_id}.split_review.json"
