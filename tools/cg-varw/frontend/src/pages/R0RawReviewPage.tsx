@@ -638,19 +638,19 @@ function RawExportPreviewPanel({ units, onSave, onExport }: { units: ReviewUnit[
           title="reviewed_slate_anchor_manifest.csv"
           note="一行一个录音单元"
           rows={preview.reviewedManifest}
-          columns={["unit_id", "unit_status", "review_status", "slate_start", "slate_end", "next_slate_start"]}
+          columns={["unit_id", "recording_take_no", "source_raw_audio", "review_status", "slate_start_s", "slate_end_s", "next_slate_start_s"]}
         />
         <PreviewTable
           title="raw_marker_review.csv"
           note="一行一个标记实例"
           rows={preview.rawMarkerReview}
-          columns={["unit_id", "marker_key", "marker_label_zh", "marker_time", "marker_status", "nudge_total_ms"]}
+          columns={["unit_id", "marker_key", "marker_label_zh", "marker_time", "review_status", "nudge_total_ms"]}
         />
         <PreviewTable
           title="split_plan_from_raw_markers.csv"
           note="一行一个计划切片单元"
           rows={preview.splitPlan}
-          columns={["unit_id", "planned_unit_start_s", "planned_unit_end_s", "planned_clean_start_s", "planned_clean_end_s", "not_executed"]}
+          columns={["unit_id", "unit_start_s", "unit_end_s", "suggested_clean_start_s", "suggested_clean_end_s", "not_executed"]}
         />
       </div>
     </div>

@@ -19,4 +19,4 @@ def save_review(request: SaveReviewRequest) -> GenericResponse:
 @router.post("/export", response_model=GenericResponse)
 def export_review(request: ExportReviewRequest) -> GenericResponse:
     result = export_review_csv(request)
-    return GenericResponse(path=result["path"], files=result["files"])
+    return GenericResponse(path=result["path"], files=result["files"], data={"contract_warnings": result.get("contract_warnings", [])})

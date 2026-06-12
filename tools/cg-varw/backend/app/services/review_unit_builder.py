@@ -37,7 +37,7 @@ def load_or_build_review_units(file_id: str, raw_path: Path) -> dict[str, Any]:
             return json.load(handle)
 
     candidates_data = load_asr_candidates(raw_path)
-    units = build_units_from_candidates(candidates_data.get("candidates", []))
+    units = build_units_from_candidates(candidates_data.get("candidates", []), source_raw_audio=raw_path.name)
     return {
         "file_id": file_id,
         "source_audio": raw_path.name,
@@ -52,7 +52,7 @@ def load_or_build_review_units(file_id: str, raw_path: Path) -> dict[str, Any]:
     }
 
 
-def build_units_from_candidates(candidates: list[Any]) -> list[ReviewUnit]:
+def build_units_from_candidates(candidates: list[Any], source_raw_audio: str = "") -> list[ReviewUnit]:
     units: list[ReviewUnit] = []
     for index, candidate in enumerate(candidates, start=1):
         if not isinstance(candidate, dict):
@@ -85,6 +85,19 @@ def build_units_from_candidates(candidates: list[Any]) -> list[ReviewUnit]:
                 source="asr_candidate",
                 takeId=str(candidate.get("take_id") or f"TAKE_{unit_id}"),
                 boundary_type=boundary_type,
+                recording_session_id=str(candidate.get("recording_session_id") or ""),
+                recording_id=str(candidate.get("recording_id") or ""),
+                piece_id=str(candidate.get("piece_id") or ""),
+                qinist_id=str(candidate.get("qinist_id") or ""),
+                batch_id=str(candidate.get("batch_id") or ""),
+                recording_take_no=str(candidate.get("recording_take_no") or ""),
+                batch_take_no=str(candidate.get("batch_take_no") or ""),
+                script_id=str(candidate.get("script_id") or ""),
+                source_raw_audio=str(candidate.get("source_raw_audio") or candidate.get("audio_file") or source_raw_audio),
+                event_id=str(candidate.get("event_id") or ""),
+                event_range=str(candidate.get("event_range") or ""),
+                gesture_id=str(candidate.get("gesture_id") or ""),
+                expected_sample_type=str(candidate.get("expected_sample_type") or ""),
                 markers=markers,
             )
         )

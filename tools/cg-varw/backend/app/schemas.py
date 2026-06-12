@@ -32,8 +32,15 @@ class ReviewUnit(BaseModel):
     boundary_type: Literal["next_slate_start", "file_end"] | None = None
     boundary_unlinked: bool = False
     notes: str = ""
+    recording_session_id: str = ""
+    recording_id: str = ""
+    piece_id: str = ""
+    qinist_id: str = ""
+    batch_id: str = ""
     recording_take_no: str = ""
     batch_take_no: str = ""
+    script_id: str = ""
+    source_raw_audio: str = ""
     event_id: str = ""
     event_range: str = ""
     gesture_id: str = ""
@@ -120,7 +127,7 @@ R1AnchorType = Literal["main_attack", "gesture_start", "context_first_attach"]
 R1PreAttackMusicPolicy = Literal["keep_silence", "preserve"]
 R1TailPolicy = Literal["smart_fade_100ms", "full_tail"]
 R1SegmentStatus = Literal["candidate", "render_usable", "reference_only", "unclear", "needs_retake", "rejected", "excluded"]
-R1ReviewStatus = Literal["not_started", "in_progress", "accepted", "unclear", "needs_retake", "rejected"]
+R1ReviewStatus = Literal["candidate", "not_started", "in_progress", "accepted", "unclear", "needs_retake", "rejected"]
 
 
 class R1Marker(BaseModel):
@@ -173,8 +180,19 @@ class SplitSegment(BaseModel):
     take_id: str
     file_name: str
     relative_path: str
+    recording_session_id: str = ""
+    recording_id: str = ""
+    piece_id: str = ""
+    qinist_id: str = ""
+    recording_take_no: str = ""
+    batch_take_no: str = ""
+    script_id: str = ""
+    source_raw_audio: str = ""
+    source_split_audio: str = ""
     event_id: str = ""
     event_range: str = ""
+    gesture_id: str = ""
+    realization_variant: Literal["clean", "context", "retake", "demo"] | None = None
     variant: Literal["clean", "context", "retake", "demo"] = "clean"
     duration_s: float
     sample_rate: int | None = None
@@ -187,6 +205,9 @@ class SplitSegment(BaseModel):
     segment_status: R1SegmentStatus = "candidate"
     review_status: R1ReviewStatus = "not_started"
     qc: R1SegmentQC = Field(default_factory=R1SegmentQC)
+    human_accepted: bool | None = None
+    reviewed_by: str = ""
+    reviewed_at: str = ""
     notes: str = ""
     synthetic_demo: bool = False
     review_only: bool = True
@@ -218,6 +239,19 @@ class R1SegmentMetadata(BaseModel):
     take_id: str
     file_name: str
     relative_path: str
+    recording_session_id: str = ""
+    recording_id: str = ""
+    piece_id: str = ""
+    qinist_id: str = ""
+    recording_take_no: str = ""
+    batch_take_no: str = ""
+    script_id: str = ""
+    source_raw_audio: str = ""
+    source_split_audio: str = ""
+    event_id: str = ""
+    event_range: str = ""
+    gesture_id: str = ""
+    realization_variant: str = ""
     duration_s: float
     sample_rate: int | None = None
     bit_depth: int | None = None

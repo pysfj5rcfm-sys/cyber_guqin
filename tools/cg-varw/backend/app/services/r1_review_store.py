@@ -8,9 +8,72 @@ from typing import Any
 
 from app.config import REVIEW_OUTPUT_ROOT
 from app.schemas import R1DraftResponse, R1Marker, R1ReviewExportRequest, R1ReviewSaveRequest, SplitSegment
+from app.services.csv_contract_validator import CSV_REQUIRED_FIELDS, validate_csv_contract
+from app.services.export_context_resolver import R1ExportContextResolver
 
 
-RENDER_ANCHOR_FIELDS = [
+R1_CONTEXT_RESOLVER = R1ExportContextResolver()
+RENDER_ANCHOR_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["reviewed_render_anchors.csv"])
+MARKER_REVIEW_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["split_marker_review.csv"])
+SEGMENT_QC_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["segment_qc_sheet.csv"])
+
+RENDER_ANCHOR_FIELDS = RENDER_ANCHOR_REQUIRED_FIELDS + [
+    "source_raw_audio",
+    "source_audio",
+    "variant",
+    "anchor_type",
+    "render_usable",
+    "segment_status_label_zh",
+    "review_status_label_zh",
+    "notes",
+]
+
+MARKER_REVIEW_FIELDS = MARKER_REVIEW_REQUIRED_FIELDS + [
+    "take_id",
+    "source_raw_audio",
+    "source_split_audio",
+    "source_audio",
+    "event_id",
+    "event_range",
+    "gesture_id",
+    "realization_variant",
+    "variant",
+    "confidence",
+    "marker_label_zh",
+    "training_value_class",
+    "notes",
+]
+
+SEGMENT_QC_FIELDS = SEGMENT_QC_REQUIRED_FIELDS + [
+    "take_id",
+    "source_raw_audio",
+    "source_audio",
+    "variant",
+    "segment_status_label_zh",
+    "notes",
+]
+
+SEGMENT_STATUS_LABEL_ZH = {
+    "candidate": "待确认",
+    "render_usable": "渲染可用",
+    "reference_only": "仅参考",
+    "unclear": "待复核",
+    "needs_retake": "需重录",
+    "rejected": "已拒绝",
+    "excluded": "已排除",
+}
+
+REVIEW_STATUS_LABEL_ZH = {
+    "candidate": "待确认",
+    "accepted": "已确认",
+    "unclear": "待复核",
+    "needs_retake": "需重录",
+    "rejected": "已拒绝",
+}
+
+LEGACY_REVIEW_STATUS = {"not_started", "in_progress"}
+
+LEGACY_RENDER_ANCHOR_FIELDS = [
     "batch_id",
     "take_id",
     "segment_id",
@@ -35,7 +98,7 @@ RENDER_ANCHOR_FIELDS = [
     "notes",
 ]
 
-MARKER_REVIEW_FIELDS = [
+LEGACY_MARKER_REVIEW_FIELDS = [
     "batch_id",
     "take_id",
     "segment_id",
@@ -54,7 +117,7 @@ MARKER_REVIEW_FIELDS = [
     "updated_at",
 ]
 
-SEGMENT_QC_FIELDS = [
+LEGACY_SEGMENT_QC_FIELDS = [
     "batch_id",
     "take_id",
     "segment_id",
@@ -134,40 +197,49 @@ def export_r1_csv(request: R1ReviewExportRequest) -> dict[str, list[str] | str]:
     out_dir = REVIEW_OUTPUT_ROOT / "r1" / "exports" / request.batch_id
     out_dir.mkdir(parents=True, exist_ok=True)
     segments = [with_derived_state(segment) for segment in request.segments]
-    files = [
-        _write_csv(out_dir / "reviewed_render_anchors.csv", RENDER_ANCHOR_FIELDS, reviewed_render_anchor_rows(segments, updated_at)),
-        _write_csv(out_dir / "split_marker_review.csv", MARKER_REVIEW_FIELDS, marker_review_rows(segments, updated_at)),
-        _write_csv(out_dir / "segment_qc_sheet.csv", SEGMENT_QC_FIELDS, segment_qc_rows(segments, updated_at)),
+    render_anchor_rows = reviewed_render_anchor_rows(segments, updated_at)
+    marker_rows = marker_review_rows(segments, updated_at)
+    qc_rows = segment_qc_rows(segments, updated_at)
+    contract_warnings = [
+        *validate_csv_contract("reviewed_render_anchors.csv", render_anchor_rows),
+        *validate_csv_contract("split_marker_review.csv", marker_rows),
+        *validate_csv_contract("segment_qc_sheet.csv", qc_rows),
     ]
-    return {"path": str(out_dir), "files": [str(path) for path in files]}
+    files = [
+        _write_csv(out_dir / "reviewed_render_anchors.csv", RENDER_ANCHOR_FIELDS, render_anchor_rows),
+        _write_csv(out_dir / "split_marker_review.csv", MARKER_REVIEW_FIELDS, marker_rows),
+        _write_csv(out_dir / "segment_qc_sheet.csv", SEGMENT_QC_FIELDS, qc_rows),
+    ]
+    return {"path": str(out_dir), "files": [str(path) for path in files], "contract_warnings": contract_warnings}
 
 
 def reviewed_render_anchor_rows(segments: list[SplitSegment], updated_at: str) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
     for segment in segments:
         markers = _marker_map(segment)
+        context = R1_CONTEXT_RESOLVER.resolve(segment).values
+        review_status = _contract_review_status(segment.review_status)
         rows.append(
             {
-                "batch_id": segment.batch_id,
-                "take_id": segment.take_id,
-                "segment_id": segment.segment_id,
-                "source_audio": segment.relative_path,
-                "event_id": segment.event_id,
-                "event_range": segment.event_range,
-                "variant": segment.variant,
+                **context,
                 "pre_idle_end_s": _marker_time(markers.get("pre_idle_end")),
                 "gesture_start_s": _marker_time(markers.get("gesture_start")),
                 "render_anchor_s": _marker_time(markers.get("render_anchor")),
                 "tail_end_s": _marker_time(markers.get("tail_end")),
+                "render_anchor_type": segment.anchor_type,
                 "anchor_type": segment.anchor_type,
                 "pre_attack_music_policy": segment.pre_attack_music_policy,
                 "tail_policy": segment.tail_policy,
+                "segment_status": segment.segment_status,
+                "segment_status_label_zh": SEGMENT_STATUS_LABEL_ZH.get(segment.segment_status, ""),
                 "render_usable": _bool(segment.qc.render_usable),
-                "review_status": segment.review_status,
+                "review_status": review_status,
+                "review_status_label_zh": REVIEW_STATUS_LABEL_ZH.get(review_status, ""),
                 "review_only": "true",
                 "production_grade": "false",
                 "not_sample_assets": "true",
                 "not_render_executed": "true",
+                "not_ml_training_data": "true",
                 "updated_at": updated_at,
                 "notes": segment.notes,
             }
@@ -178,12 +250,11 @@ def reviewed_render_anchor_rows(segments: list[SplitSegment], updated_at: str) -
 def marker_review_rows(segments: list[SplitSegment], updated_at: str) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
     for segment in segments:
+        context = R1_CONTEXT_RESOLVER.resolve(segment).values
         for marker in _marker_map(segment).values():
             rows.append(
                 {
-                    "batch_id": segment.batch_id,
-                    "take_id": segment.take_id,
-                    "segment_id": segment.segment_id,
+                    **context,
                     "marker_id": marker.marker_id,
                     "marker_type": marker.marker_type,
                     "marker_label_zh": marker.marker_label_zh,
@@ -195,6 +266,9 @@ def marker_review_rows(segments: list[SplitSegment], updated_at: str) -> list[di
                     "notes": marker.notes,
                     "review_only": "true",
                     "production_grade": "false",
+                    "not_sample_assets": "true",
+                    "not_render_executed": "true",
+                    "not_ml_training_data": "true",
                     "training_value_class": "review_only_render_alignment_draft",
                     "updated_at": updated_at,
                 }
@@ -205,18 +279,23 @@ def marker_review_rows(segments: list[SplitSegment], updated_at: str) -> list[di
 def segment_qc_rows(segments: list[SplitSegment], updated_at: str) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
     for segment in segments:
+        context = R1_CONTEXT_RESOLVER.resolve(segment).values
+        human_accepted = _human_accepted(segment)
         rows.append(
             {
-                "batch_id": segment.batch_id,
-                "take_id": segment.take_id,
-                "segment_id": segment.segment_id,
-                "source_audio": segment.relative_path,
+                **context,
                 "duration_s": f"{segment.duration_s:.3f}",
+                "segment_status": segment.segment_status,
+                "segment_status_label_zh": SEGMENT_STATUS_LABEL_ZH.get(segment.segment_status, ""),
                 "render_usable": _bool(segment.qc.render_usable),
                 "reference_only": _bool(segment.qc.reference_only),
                 "unclear": _bool(segment.qc.unclear),
                 "needs_retake": _bool(segment.qc.needs_retake),
                 "rejected": _bool(segment.qc.rejected),
+                "excluded": _bool(segment.segment_status == "excluded"),
+                "human_accepted": _bool(human_accepted),
+                "reviewed_by": segment.reviewed_by,
+                "reviewed_at": segment.reviewed_at,
                 "reject_reason": segment.qc.reject_reason,
                 "noise_issue": _bool(segment.qc.noise_issue),
                 "click_issue": _bool(segment.qc.click_issue),
@@ -229,6 +308,7 @@ def segment_qc_rows(segments: list[SplitSegment], updated_at: str) -> list[dict[
                 "production_grade": "false",
                 "not_sample_assets": "true",
                 "not_render_executed": "true",
+                "not_ml_training_data": "true",
                 "updated_at": updated_at,
             }
         )
@@ -281,9 +361,7 @@ def derive_review_status(segment: SplitSegment) -> str:
         return "accepted"
     if any(marker.review_status == "unclear" for marker in all_markers):
         return "unclear"
-    if any(marker.review_status != "candidate" or (marker.nudge_total_ms or 0) != 0 for marker in all_markers):
-        return "in_progress"
-    return "not_started"
+    return "candidate"
 
 
 def derive_render_usable(segment: SplitSegment) -> bool:
@@ -312,6 +390,18 @@ def _marker_map(segment: SplitSegment) -> dict[str, R1Marker]:
 
 def _marker_time(marker: R1Marker | None) -> str:
     return "" if marker is None else f"{marker.time_s:.3f}"
+
+
+def _contract_review_status(status: str) -> str:
+    return "candidate" if status in LEGACY_REVIEW_STATUS else status
+
+
+def _human_accepted(segment: SplitSegment) -> bool:
+    if segment.human_accepted is not None:
+        return segment.human_accepted
+    # v0.1 migration: explicit human acceptance does not exist in older R1 drafts.
+    # Treat render_usable as a review-only transitional value, never as sample asset creation.
+    return segment.segment_status == "render_usable"
 
 
 def _change_log_row(segment: SplitSegment) -> dict[str, object]:

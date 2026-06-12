@@ -6,77 +6,62 @@ from pathlib import Path
 
 from app.config import REVIEW_OUTPUT_ROOT
 from app.schemas import ExportReviewRequest, ReviewUnit
+from app.services.csv_contract_validator import CSV_REQUIRED_FIELDS, validate_csv_contract
+from app.services.export_context_resolver import R0ExportContextResolver
 
 
 REQUIRED_MARKERS = ("slate_start", "slate_end", "next_slate_start")
+R0_CONTEXT_RESOLVER = R0ExportContextResolver()
+MANIFEST_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["reviewed_slate_anchor_manifest.csv"])
+MARKER_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["raw_marker_review.csv"])
+SPLIT_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["split_plan_from_raw_markers.csv"])
 
-MANIFEST_FIELDS = [
+MANIFEST_FIELDS = MANIFEST_REQUIRED_FIELDS + [
     "file_id",
     "source_audio",
-    "unit_id",
-    "recording_take_no",
-    "batch_take_no",
+    "take_id",
     "unit_source",
     "unit_status",
-    "review_status",
+    "boundary_unlinked",
+    "not_sample_ingest",
+    "not_recording_segments",
+    "notes",
+]
+
+MARKER_FIELDS = MARKER_REQUIRED_FIELDS + [
+    "file_id",
+    "batch_take_no",
+    "script_id",
+    "unit_id",
+    "source_raw_audio",
+    "source_audio",
+    "take_id",
     "event_id",
     "event_range",
     "gesture_id",
     "expected_sample_type",
-    "slate_start_s",
-    "slate_end_s",
-    "guqin_start_s",
-    "tail_end_s",
-    "next_slate_start_s",
-    "boundary_unlinked",
-    "review_only",
-    "production_grade",
-    "not_sample_ingest",
-    "not_recording_segments",
-    "not_sample_assets",
-    "notes",
-    "updated_at",
-]
-
-MARKER_FIELDS = [
-    "file_id",
-    "source_audio",
-    "unit_id",
-    "recording_take_no",
     "unit_status",
-    "marker_id",
-    "marker_type",
     "marker_label_zh",
-    "time_s",
-    "source",
     "confidence",
-    "review_status",
     "nudge_total_ms",
     "notes",
-    "review_only",
-    "production_grade",
     "training_value_class",
-    "updated_at",
+    "not_sample_assets",
 ]
 
-SPLIT_FIELDS = [
+SPLIT_FIELDS = SPLIT_REQUIRED_FIELDS + [
     "file_id",
     "source_audio",
-    "unit_id",
-    "recording_take_no",
-    "batch_take_no",
+    "take_id",
+    "guqin_start_s",
+    "expected_sample_type",
     "planned_unit_start_s",
     "planned_unit_end_s",
     "planned_clean_start_s",
     "planned_clean_end_s",
-    "source_boundary_policy",
-    "requires_human_confirmation",
-    "not_executed",
-    "not_recording_segments",
-    "not_sample_assets",
-    "review_only",
-    "production_grade",
+    "boundary_unlinked",
     "notes",
+    "updated_at",
 ]
 
 
@@ -88,25 +73,28 @@ def export_review_csv(request: ExportReviewRequest) -> dict[str, list[str] | str
 
     manifest_rows = [_manifest_row(request.file_id, source_audio, unit, updated_at) for unit in request.units if unit.unit_status not in {"excluded", "rejected"}]
     marker_rows = [_marker_row(request.file_id, source_audio, unit, marker, updated_at) for unit in request.units for marker in unit.markers]
-    split_rows = [_split_row(request.file_id, source_audio, unit) for unit in request.units if _is_plannable(unit)]
+    split_rows = [_split_row(request.file_id, source_audio, unit, updated_at) for unit in request.units if _is_plannable(unit)]
+    contract_warnings = [
+        *validate_csv_contract("reviewed_slate_anchor_manifest.csv", manifest_rows),
+        *validate_csv_contract("raw_marker_review.csv", marker_rows),
+        *validate_csv_contract("split_plan_from_raw_markers.csv", split_rows),
+    ]
 
     files = [
         _write_csv(out_dir / "reviewed_slate_anchor_manifest.csv", MANIFEST_FIELDS, manifest_rows),
         _write_csv(out_dir / "raw_marker_review.csv", MARKER_FIELDS, marker_rows),
         _write_csv(out_dir / "split_plan_from_raw_markers.csv", SPLIT_FIELDS, split_rows),
     ]
-    return {"path": str(out_dir), "files": [str(path) for path in files]}
+    return {"path": str(out_dir), "files": [str(path) for path in files], "contract_warnings": contract_warnings}
 
 
 def _manifest_row(file_id: str, source_audio: str, unit: ReviewUnit, updated_at: str) -> dict[str, object]:
     times = _marker_times(unit)
     review_status = _derive_unit_review_status(unit)
+    context = R0_CONTEXT_RESOLVER.resolve(file_id=file_id, source_audio=source_audio, unit=unit).values
     return {
-        "file_id": file_id,
-        "source_audio": source_audio,
+        **context,
         "unit_id": unit.id,
-        "recording_take_no": unit.recording_take_no or unit.takeId,
-        "batch_take_no": unit.batch_take_no or str(unit.sequence),
         "unit_source": unit.source,
         "unit_status": _derive_unit_status(unit),
         "review_status": review_status,
@@ -131,11 +119,10 @@ def _manifest_row(file_id: str, source_audio: str, unit: ReviewUnit, updated_at:
 
 
 def _marker_row(file_id: str, source_audio: str, unit: ReviewUnit, marker, updated_at: str) -> dict[str, object]:
+    context = R0_CONTEXT_RESOLVER.resolve(file_id=file_id, source_audio=source_audio, unit=unit).values
     return {
-        "file_id": file_id,
-        "source_audio": source_audio,
+        **context,
         "unit_id": unit.id,
-        "recording_take_no": unit.recording_take_no or unit.takeId,
         "unit_status": _derive_unit_status(unit),
         "marker_id": marker.id or f"{unit.id}:{marker.key}",
         "marker_type": marker.key,
@@ -149,22 +136,35 @@ def _marker_row(file_id: str, source_audio: str, unit: ReviewUnit, marker, updat
         "review_only": "true",
         "production_grade": "false",
         "training_value_class": "review_only_boundary_draft",
+        "not_sample_assets": "true",
         "updated_at": updated_at,
     }
 
 
-def _split_row(file_id: str, source_audio: str, unit: ReviewUnit) -> dict[str, object]:
+def _split_row(file_id: str, source_audio: str, unit: ReviewUnit, updated_at: str) -> dict[str, object]:
     times = _marker_times(unit)
+    context = R0_CONTEXT_RESOLVER.resolve(file_id=file_id, source_audio=source_audio, unit=unit).values
+    unit_start_s = times.get("slate_start", "")
+    unit_end_s = times.get("next_slate_start", "")
+    clean_start_s = times.get("guqin_start") or times.get("slate_end", "")
+    clean_end_s = unit_end_s
     return {
-        "file_id": file_id,
-        "source_audio": source_audio,
+        **context,
         "unit_id": unit.id,
-        "recording_take_no": unit.recording_take_no or unit.takeId,
-        "batch_take_no": unit.batch_take_no or str(unit.sequence),
-        "planned_unit_start_s": times.get("slate_start", ""),
-        "planned_unit_end_s": times.get("next_slate_start", ""),
-        "planned_clean_start_s": times.get("guqin_start") or times.get("slate_end", ""),
-        "planned_clean_end_s": times.get("next_slate_start", ""),
+        "unit_start_s": unit_start_s,
+        "unit_end_s": unit_end_s,
+        "slate_start_s": times.get("slate_start", ""),
+        "slate_end_s": times.get("slate_end", ""),
+        "guqin_start_s": times.get("guqin_start", ""),
+        "next_slate_start_s": unit_end_s,
+        "suggested_clean_start_s": clean_start_s,
+        "suggested_clean_end_s": clean_end_s,
+        "tail_end_s": times.get("tail_end", ""),
+        "split_plan_role": "clean_preview",
+        "planned_unit_start_s": unit_start_s,
+        "planned_unit_end_s": unit_end_s,
+        "planned_clean_start_s": clean_start_s,
+        "planned_clean_end_s": clean_end_s,
         "source_boundary_policy": "reviewed_required_markers",
         "requires_human_confirmation": "true",
         "not_executed": "true",
@@ -172,7 +172,9 @@ def _split_row(file_id: str, source_audio: str, unit: ReviewUnit) -> dict[str, o
         "not_sample_assets": "true",
         "review_only": "true",
         "production_grade": "false",
+        "boundary_unlinked": str(unit.boundary_unlinked).lower(),
         "notes": unit.notes,
+        "updated_at": updated_at,
     }
 
 
@@ -198,9 +200,7 @@ def _derive_unit_review_status(unit: ReviewUnit) -> str:
         return "needs_retake"
     if any(marker and marker.review_status == "unclear" for marker in required):
         return "unclear"
-    if any((marker.review_status and marker.review_status != "candidate") or marker.nudge_total_ms for marker in unit.markers):
-        return "in_progress"
-    return "not_started"
+    return "candidate"
 
 
 def _derive_unit_status(unit: ReviewUnit) -> str:

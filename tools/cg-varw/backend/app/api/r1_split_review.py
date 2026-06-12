@@ -108,7 +108,7 @@ def r1_save_review(request: R1ReviewSaveRequest) -> GenericResponse:
 @router.post("/reviews/export", response_model=GenericResponse)
 def r1_export_review(request: R1ReviewExportRequest) -> GenericResponse:
     result = export_r1_csv(request)
-    return GenericResponse(path=result["path"], files=result["files"])
+    return GenericResponse(path=result["path"], files=result["files"], data={"contract_warnings": result.get("contract_warnings", [])})
 
 
 def _media_type(suffix: str) -> str:

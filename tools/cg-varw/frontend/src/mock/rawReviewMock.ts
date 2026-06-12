@@ -6,6 +6,19 @@ type SyntheticCandidate = {
   sequence: number;
   status: ReviewUnitStatus;
   take_id: string;
+  recording_session_id?: string;
+  recording_id?: string;
+  piece_id?: string;
+  qinist_id?: string;
+  batch_id?: string;
+  recording_take_no?: string;
+  batch_take_no?: string;
+  script_id?: string;
+  source_raw_audio?: string;
+  event_id?: string;
+  event_range?: string;
+  gesture_id?: string;
+  expected_sample_type?: string;
   markers: Record<R0MarkerKey, number>;
   boundary: {
     type: "next_slate_start" | "file_end";
@@ -56,6 +69,7 @@ export const unitStatusLabels: Record<ReviewUnitStatus, string> = {
 };
 
 export const unitReviewStatusLabels: Record<ReviewStatus, string> = {
+  candidate: "待确认",
   not_started: "待确认",
   in_progress: "审校中",
   accepted: "已确认",
@@ -103,6 +117,19 @@ export const rawReviewUnits: ReviewUnit[] = (syntheticAsr.candidates as Syntheti
     unit_status: candidate.status === "excluded" ? "excluded" : "candidate",
     source: "asr_candidate",
     takeId: candidate.take_id,
+    recording_session_id: candidate.recording_session_id,
+    recording_id: candidate.recording_id,
+    piece_id: candidate.piece_id,
+    qinist_id: candidate.qinist_id,
+    batch_id: candidate.batch_id,
+    recording_take_no: candidate.recording_take_no,
+    batch_take_no: candidate.batch_take_no,
+    script_id: candidate.script_id,
+    source_raw_audio: candidate.source_raw_audio ?? syntheticAsr.audio_file,
+    event_id: candidate.event_id,
+    event_range: candidate.event_range,
+    gesture_id: candidate.gesture_id,
+    expected_sample_type: candidate.expected_sample_type,
     boundary_type: candidate.boundary.type,
     boundary_unlinked: false,
     markers: unitMarkers(candidate.markers),
@@ -168,14 +195,18 @@ export function buildRawExportPreview(units: ReviewUnit[]) {
       const times = markerTimes(unit);
       return {
         unit_id: unit.id,
+        recording_take_no: unit.recording_take_no ?? "",
+        batch_take_no: unit.batch_take_no ?? "",
+        source_raw_audio: unit.source_raw_audio ?? "",
+        source_audio: unit.source_raw_audio ?? "",
         unit_status: unit.unit_status,
-        review_status: unit.review_status ?? "not_started",
+        review_status: contractReviewStatus(unit.review_status),
         take_id: unit.takeId,
-        slate_start: times.slate_start ?? "",
-        slate_end: times.slate_end ?? "",
-        guqin_start: times.guqin_start ?? "",
+        slate_start_s: times.slate_start ?? "",
+        slate_end_s: times.slate_end ?? "",
+        guqin_start_s: times.guqin_start ?? "",
         tail_end: times.tail_end ?? "",
-        next_slate_start: times.next_slate_start ?? "",
+        next_slate_start_s: times.next_slate_start ?? "",
       };
     });
 
@@ -185,7 +216,7 @@ export function buildRawExportPreview(units: ReviewUnit[]) {
       marker_key: marker.key,
       marker_label_zh: marker.label,
       marker_time: marker.time.toFixed(3),
-      marker_status: marker.review_status ?? "candidate",
+      review_status: marker.review_status ?? "candidate",
       nudge_total_ms: String(marker.nudge_total_ms ?? 0),
     })),
   );
@@ -194,18 +225,36 @@ export function buildRawExportPreview(units: ReviewUnit[]) {
     .filter((unit) => unit.unit_status !== "excluded" && requiredMarkerKeys.every((key) => unit.markers.find((marker) => marker.key === key)?.review_status === "accepted"))
     .map((unit) => {
       const times = markerTimes(unit);
+      const unitStart = times.slate_start ?? "";
+      const unitEnd = times.next_slate_start ?? "";
+      const cleanStart = times.guqin_start || times.slate_end || "";
       return {
         unit_id: unit.id,
+        recording_take_no: unit.recording_take_no ?? "",
+        source_raw_audio: unit.source_raw_audio ?? "",
         take_id: unit.takeId,
-        planned_unit_start_s: times.slate_start ?? "",
-        planned_unit_end_s: times.next_slate_start ?? "",
-        planned_clean_start_s: times.guqin_start || times.slate_end || "",
-        planned_clean_end_s: times.next_slate_start ?? "",
+        unit_start_s: unitStart,
+        unit_end_s: unitEnd,
+        slate_start_s: times.slate_start ?? "",
+        slate_end_s: times.slate_end ?? "",
+        tail_end_s: times.tail_end ?? "",
+        next_slate_start_s: unitEnd,
+        suggested_clean_start_s: cleanStart,
+        suggested_clean_end_s: unitEnd,
+        split_plan_role: "clean_preview",
+        planned_unit_start_s: unitStart,
+        planned_unit_end_s: unitEnd,
+        planned_clean_start_s: cleanStart,
+        planned_clean_end_s: unitEnd,
         not_executed: "true",
       };
     });
 
   return { reviewedManifest, rawMarkerReview, splitPlan };
+}
+
+function contractReviewStatus(status: ReviewStatus | undefined): MarkerReviewStatus {
+  return status === "accepted" || status === "unclear" || status === "needs_retake" || status === "rejected" ? status : "candidate";
 }
 
 function markerTimes(unit: ReviewUnit) {

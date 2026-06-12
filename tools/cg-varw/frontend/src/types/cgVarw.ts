@@ -1,7 +1,7 @@
 export type ReviewMode = "R0" | "R1" | "R2";
 
 export type MarkerReviewStatus = "candidate" | "accepted" | "unclear" | "needs_retake" | "rejected";
-export type ReviewStatus = "not_started" | "in_progress" | "accepted" | "unclear" | "needs_retake" | "rejected";
+export type ReviewStatus = "candidate" | "not_started" | "in_progress" | "accepted" | "unclear" | "needs_retake" | "rejected";
 export type ReviewUnitStatus = "candidate" | "confirmed" | "needs_review" | "not_started" | "needs_retake" | "excluded" | "rejected";
 export type SegmentStatus = "reviewed" | "pending" | "needs_review" | "rejected";
 export type RenderStatus = "render_usable" | "reference_only" | "unclear" | "needs_retake" | "rejected";
@@ -87,8 +87,19 @@ export interface SplitSegment {
   take_id: string;
   file_name: string;
   relative_path: string;
+  recording_session_id?: string;
+  recording_id?: string;
+  piece_id?: string;
+  qinist_id?: string;
+  recording_take_no?: string;
+  batch_take_no?: string;
+  script_id?: string;
+  source_raw_audio?: string;
+  source_split_audio?: string;
   event_id?: string;
   event_range?: string;
+  gesture_id?: string;
+  realization_variant?: "clean" | "context" | "retake" | "demo" | null;
   variant: "clean" | "context" | "retake" | "demo";
   duration_s: number;
   sample_rate?: number | null;
@@ -101,6 +112,9 @@ export interface SplitSegment {
   segment_status: R1SegmentStatus;
   review_status: ReviewStatus;
   qc: R1SegmentQC;
+  human_accepted?: boolean | null;
+  reviewed_by?: string;
+  reviewed_at?: string;
   notes?: string;
   synthetic_demo?: boolean;
   review_only: true;
@@ -119,6 +133,19 @@ export interface ReviewUnit {
   takeId: string;
   boundary_type?: "next_slate_start" | "file_end";
   boundary_unlinked?: boolean;
+  recording_session_id?: string;
+  recording_id?: string;
+  piece_id?: string;
+  qinist_id?: string;
+  batch_id?: string;
+  recording_take_no?: string;
+  batch_take_no?: string;
+  script_id?: string;
+  source_raw_audio?: string;
+  event_id?: string;
+  event_range?: string;
+  gesture_id?: string;
+  expected_sample_type?: string;
   markers: Marker<R0MarkerKey>[];
 }
 

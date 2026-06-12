@@ -760,19 +760,19 @@ function R1ExportPreviewPanel({ segments, onSave, onExport }: { segments: SplitS
           title="reviewed_render_anchors.csv"
           note="一行一个 segment / clean wav"
           rows={preview.renderAnchors}
-          columns={["take_id", "render_anchor_s", "tail_end_s", "anchor_type", "render_usable", "review_status"]}
+          columns={["recording_take_no", "source_split_audio", "realization_variant", "render_anchor_type", "segment_status", "review_status"]}
         />
         <PreviewTable
           title="split_marker_review.csv"
           note="一行一个标记实例"
           rows={preview.markerReview}
-          columns={["take_id", "marker_type", "marker_label_zh", "time_s", "review_status", "nudge_total_ms"]}
+          columns={["segment_id", "marker_type", "marker_label_zh", "time_s", "review_status", "nudge_total_ms"]}
         />
         <PreviewTable
           title="segment_qc_sheet.csv"
           note="一行一个 segment QC 结论"
           rows={preview.qcRows}
-          columns={["take_id", "render_usable", "reference_only", "unclear", "needs_retake", "rejected"]}
+          columns={["segment_id", "segment_status", "render_usable", "human_accepted", "reviewed_by", "reviewed_at"]}
         />
       </div>
     </div>
@@ -900,18 +900,26 @@ function acceptedCount(segment: SplitSegment, keys: R1MarkerKey[]) {
 function buildR1ExportPreview(segments: SplitSegment[]) {
   return {
     renderAnchors: segments.map((segment) => ({
+      recording_take_no: segment.recording_take_no ?? "",
       take_id: segment.take_id,
+      source_split_audio: segment.source_split_audio || segment.relative_path,
+      source_audio: segment.source_split_audio || segment.relative_path,
+      realization_variant: segment.realization_variant ?? segment.variant,
+      variant: segment.realization_variant ?? segment.variant,
       render_anchor_s: timeField(segment.markers.render_anchor),
       tail_end_s: timeField(segment.markers.tail_end),
+      render_anchor_type: segment.anchor_type,
       anchor_type: segment.anchor_type,
+      segment_status: segment.segment_status,
       render_usable: String(segment.qc.render_usable),
-      review_status: segment.review_status,
+      review_status: contractReviewStatus(segment.review_status),
     })),
     markerReview: segments.flatMap((segment) =>
       markerOrder.map((key) => {
         const marker = segment.markers[key];
         return {
           take_id: segment.take_id,
+          segment_id: segment.segment_id,
           marker_type: key,
           marker_label_zh: marker?.marker_label_zh ?? markerLabels[key],
           time_s: timeField(marker),
@@ -921,14 +929,24 @@ function buildR1ExportPreview(segments: SplitSegment[]) {
       }),
     ),
     qcRows: segments.map((segment) => ({
+      segment_id: segment.segment_id,
       take_id: segment.take_id,
+      segment_status: segment.segment_status,
       render_usable: String(segment.qc.render_usable),
       reference_only: String(segment.qc.reference_only),
       unclear: String(segment.qc.unclear),
       needs_retake: String(segment.qc.needs_retake),
       rejected: String(segment.qc.rejected),
+      excluded: String(segment.segment_status === "excluded"),
+      human_accepted: String(segment.human_accepted ?? segment.segment_status === "render_usable"),
+      reviewed_by: segment.reviewed_by ?? "",
+      reviewed_at: segment.reviewed_at ?? "",
     })),
   };
+}
+
+function contractReviewStatus(status: ReviewStatus | undefined): MarkerReviewStatus {
+  return status === "accepted" || status === "unclear" || status === "needs_retake" || status === "rejected" ? status : "candidate";
 }
 
 function timeField(marker?: R1Marker) {
@@ -938,7 +956,7 @@ function timeField(marker?: R1Marker) {
 function statusClass(status: ReviewStatus) {
   if (status === "accepted") return "confirmed";
   if (status === "needs_retake" || status === "rejected") return "needs_retake";
-  if (status === "not_started") return "not_started";
+  if (status === "candidate" || status === "not_started") return "not_started";
   return "needs_review";
 }
 

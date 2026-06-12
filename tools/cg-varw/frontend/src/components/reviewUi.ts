@@ -17,6 +17,7 @@ export const markerReviewStatusTone: Record<MarkerReviewStatus, string> = {
 };
 
 export const reviewStatusLabels: Record<ReviewStatus, string> = {
+  candidate: "待确认",
   not_started: "待确认",
   in_progress: "审校中",
   accepted: "已确认",
