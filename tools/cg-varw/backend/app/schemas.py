@@ -112,3 +112,140 @@ class GenericResponse(BaseModel):
     data: dict[str, Any] = Field(default_factory=dict)
     review_only: bool = True
     production_grade: bool = False
+
+
+R1MarkerType = Literal["pre_idle_end", "gesture_start", "render_anchor", "tail_end"]
+R1MarkerReviewStatus = Literal["candidate", "accepted", "unclear", "needs_retake", "rejected"]
+R1AnchorType = Literal["main_attack", "gesture_start", "context_first_attach"]
+R1PreAttackMusicPolicy = Literal["keep_silence", "preserve"]
+R1TailPolicy = Literal["smart_fade_100ms", "full_tail"]
+R1SegmentStatus = Literal["candidate", "render_usable", "reference_only", "unclear", "needs_retake", "rejected", "excluded"]
+R1ReviewStatus = Literal["not_started", "in_progress", "accepted", "unclear", "needs_retake", "rejected"]
+
+
+class R1Marker(BaseModel):
+    marker_id: str
+    segment_id: str
+    marker_type: R1MarkerType
+    marker_label_zh: str
+    time_s: float
+    source: Literal["synthetic_candidate", "human_adjusted", "manual", "derived_from_fixture"] = "derived_from_fixture"
+    confidence: float | None = None
+    review_status: R1MarkerReviewStatus = "candidate"
+    nudge_total_ms: int = 0
+    notes: str = ""
+
+
+class R1MarkerSet(BaseModel):
+    pre_idle_end: R1Marker | None = None
+    gesture_start: R1Marker | None = None
+    render_anchor: R1Marker | None = None
+    tail_end: R1Marker | None = None
+
+
+class R1SegmentQC(BaseModel):
+    render_usable: bool = False
+    reference_only: bool = False
+    unclear: bool = False
+    needs_retake: bool = False
+    rejected: bool = False
+    reject_reason: str = ""
+    noise_issue: bool = False
+    click_issue: bool = False
+    tail_clipped: bool = False
+    attack_clipped: bool = False
+    slate_residue: bool = False
+    wrong_take: bool = False
+
+
+class SplitBatch(BaseModel):
+    batch_id: str
+    display_name: str
+    segment_count: int
+    source: Literal["synthetic_demo", "real_split_root"]
+    review_only: bool = True
+    production_grade: bool = False
+
+
+class SplitSegment(BaseModel):
+    segment_id: str
+    batch_id: str
+    take_id: str
+    file_name: str
+    relative_path: str
+    event_id: str = ""
+    event_range: str = ""
+    variant: Literal["clean", "context", "retake", "demo"] = "clean"
+    duration_s: float
+    sample_rate: int | None = None
+    bit_depth: int | None = None
+    channels: int | None = None
+    markers: R1MarkerSet
+    anchor_type: R1AnchorType = "main_attack"
+    pre_attack_music_policy: R1PreAttackMusicPolicy = "keep_silence"
+    tail_policy: R1TailPolicy = "smart_fade_100ms"
+    segment_status: R1SegmentStatus = "candidate"
+    review_status: R1ReviewStatus = "not_started"
+    qc: R1SegmentQC = Field(default_factory=R1SegmentQC)
+    notes: str = ""
+    synthetic_demo: bool = False
+    review_only: bool = True
+    production_grade: bool = False
+    not_sample_assets: bool = True
+    not_render_executed: bool = True
+    not_ml_training_data: bool = True
+
+
+class R1BatchesResponse(BaseModel):
+    split_root: str
+    split_root_mode: Literal["demo", "real"]
+    message: str
+    batches: list[SplitBatch]
+    review_only: bool = True
+    production_grade: bool = False
+
+
+class R1SegmentsResponse(BaseModel):
+    batch_id: str
+    segments: list[SplitSegment]
+    review_only: bool = True
+    production_grade: bool = False
+
+
+class R1SegmentMetadata(BaseModel):
+    segment_id: str
+    batch_id: str
+    take_id: str
+    file_name: str
+    relative_path: str
+    duration_s: float
+    sample_rate: int | None = None
+    bit_depth: int | None = None
+    channels: int | None = None
+    source_format: str
+    waveform_supported: bool
+    browser_playback_likely: bool
+    synthetic_demo: bool = False
+    review_only: bool = True
+    production_grade: bool = False
+
+
+class R1WaveformResponse(BaseModel):
+    segment_id: str
+    duration_s: float
+    points: int
+    peaks: list[float]
+    waveform_supported: bool
+    fallback_reason: str | None = None
+    review_only: bool = True
+    production_grade: bool = False
+
+
+class R1ReviewSaveRequest(BaseModel):
+    batch_id: str
+    segments: list[SplitSegment]
+    notes: str = ""
+
+
+class R1ReviewExportRequest(R1ReviewSaveRequest):
+    pass

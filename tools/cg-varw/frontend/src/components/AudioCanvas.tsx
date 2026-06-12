@@ -30,6 +30,7 @@ export function AudioCanvas({
   audioUrl,
   audioFileName,
   metadata,
+  waveformPeaks,
 }: {
   markers: Marker[];
   duration: number;
@@ -39,6 +40,7 @@ export function AudioCanvas({
   audioUrl?: string;
   audioFileName?: string;
   metadata?: AudioMetadata;
+  waveformPeaks?: number[];
 }) {
   const barCount = compact ? 80 : 160;
   const [wavInfo, setWavInfo] = useState<WavInfo | null>(null);
@@ -83,7 +85,7 @@ export function AudioCanvas({
     [barCount, compact],
   );
 
-  const bars = wavInfo ? peaksToBars(wavInfo.peaks, compact) : fallbackBars;
+  const bars = waveformPeaks?.length ? peaksToBars(downsamplePeaks(waveformPeaks, barCount), compact) : wavInfo ? peaksToBars(wavInfo.peaks, compact) : fallbackBars;
   const ticks = useMemo(() => makeTicks(duration), [duration]);
 
   return (
@@ -97,7 +99,9 @@ export function AudioCanvas({
       </div>
       <MarkerLayer markers={markers} duration={duration} selectedKey={selectedKey} onSelect={onSelect} />
       <div className="audio-meta">
-        {wavInfo
+        {waveformPeaks?.length
+          ? `${audioFileName ?? "WAV"} | ${duration.toFixed(3)}s | 后端 WAV 波形无需 ffmpeg`
+          : wavInfo
           ? `${audioFileName ?? "WAV"} | ${wavInfo.duration.toFixed(3)}s | ${wavInfo.sampleRate} Hz | ${wavInfo.channels} ch | ${wavInfo.bitDepth} bit | WAV 解析无需 ffmpeg`
           : metadata
             ? `${audioFileName ?? "WAV"} | ${metadata.duration_s?.toFixed(3) ?? "未知"}s | ${metadata.sample_rate ?? "未知"} Hz | ${metadata.channels ?? "未知"} ch | ${metadata.bit_depth ?? "未知"} bit`
@@ -193,6 +197,16 @@ function readAscii(view: DataView, offset: number, length: number) {
 function peaksToBars(peaks: number[], compact: boolean) {
   const maxHeight = compact ? 42 : 86;
   return peaks.map((peak) => Math.max(6, Math.round(peak * maxHeight)));
+}
+
+function downsamplePeaks(peaks: number[], count: number) {
+  if (peaks.length <= count) return peaks;
+  const bucket = peaks.length / count;
+  return Array.from({ length: count }, (_, index) => {
+    const start = Math.floor(index * bucket);
+    const end = Math.max(start + 1, Math.floor((index + 1) * bucket));
+    return Math.max(...peaks.slice(start, end));
+  });
 }
 
 function makeTicks(duration: number) {

@@ -10,6 +10,10 @@ export type Severity = "low" | "medium" | "high";
 export type R0MarkerKey = "slate_start" | "slate_end" | "guqin_start" | "tail_end" | "next_slate_start";
 export type R1MarkerKey = "pre_idle_end" | "gesture_start" | "render_anchor" | "tail_end";
 export type R2MarkerKey = "phrase_start" | "phrase_end" | "breath_point" | "cadence" | "section_start" | "unclear_boundary";
+export type R1AnchorType = "main_attack" | "gesture_start" | "context_first_attach";
+export type R1PreAttackMusicPolicy = "keep_silence" | "preserve";
+export type R1TailPolicy = "smart_fade_100ms" | "full_tail";
+export type R1SegmentStatus = "candidate" | "render_usable" | "reference_only" | "unclear" | "needs_retake" | "rejected" | "excluded";
 
 export interface MockFlags {
   synthetic_demo?: true;
@@ -36,6 +40,74 @@ export interface Marker<Key extends string = string> {
   review_status?: MarkerReviewStatus;
   nudge_total_ms?: number;
   notes?: string;
+}
+
+export interface R1Marker {
+  marker_id: string;
+  segment_id: string;
+  marker_type: R1MarkerKey;
+  marker_label_zh: string;
+  time_s: number;
+  source: "synthetic_candidate" | "human_adjusted" | "manual" | "derived_from_fixture";
+  confidence?: number | null;
+  review_status: MarkerReviewStatus;
+  nudge_total_ms?: number;
+  notes?: string;
+}
+
+export type R1MarkerSet = Partial<Record<R1MarkerKey, R1Marker>>;
+
+export interface R1SegmentQC {
+  render_usable: boolean;
+  reference_only: boolean;
+  unclear: boolean;
+  needs_retake: boolean;
+  rejected: boolean;
+  reject_reason?: string;
+  noise_issue?: boolean;
+  click_issue?: boolean;
+  tail_clipped?: boolean;
+  attack_clipped?: boolean;
+  slate_residue?: boolean;
+  wrong_take?: boolean;
+}
+
+export interface SplitBatch {
+  batch_id: string;
+  display_name: string;
+  segment_count: number;
+  source: "synthetic_demo" | "real_split_root";
+  review_only: true;
+  production_grade: false;
+}
+
+export interface SplitSegment {
+  segment_id: string;
+  batch_id: string;
+  take_id: string;
+  file_name: string;
+  relative_path: string;
+  event_id?: string;
+  event_range?: string;
+  variant: "clean" | "context" | "retake" | "demo";
+  duration_s: number;
+  sample_rate?: number | null;
+  bit_depth?: number | null;
+  channels?: number | null;
+  markers: R1MarkerSet;
+  anchor_type: R1AnchorType;
+  pre_attack_music_policy: R1PreAttackMusicPolicy;
+  tail_policy: R1TailPolicy;
+  segment_status: R1SegmentStatus;
+  review_status: ReviewStatus;
+  qc: R1SegmentQC;
+  notes?: string;
+  synthetic_demo?: boolean;
+  review_only: true;
+  production_grade: false;
+  not_sample_assets: true;
+  not_render_executed: true;
+  not_ml_training_data?: true;
 }
 
 export interface ReviewUnit {
