@@ -12,7 +12,7 @@ export default function App() {
       <nav className="mode-switcher" aria-label="审校层级切换">
         {(["R0", "R1", "R2"] as ReviewMode[]).map((item) => (
           <button key={item} className={mode === item ? "active" : ""} onClick={() => setMode(item)}>
-            {item === "R0" ? "R0 Raw 审校" : item === "R1" ? "R1 Split 审校" : "句读听评"}
+            {item === "R0" ? "R0 Raw 审校" : item === "R1" ? "R1 Split 审校" : "R2 句读听评"}
           </button>
         ))}
       </nav>

@@ -292,3 +292,174 @@ class R1DraftResponse(BaseModel):
     segments: list[SplitSegment] = Field(default_factory=list)
     review_only: bool = True
     production_grade: bool = False
+
+
+R2VersionCode = Literal["A", "B", "C", "D", "E"]
+R2VersionRole = Literal["literal_dapu", "phrase_dapu", "qinist_style_dapu", "teaching_diagnostic_dapu", "reviewed_dapu"]
+R2BoundarySource = Literal["human_marked", "imported", "derived", "mock"]
+R2BoundaryConfidence = Literal["high", "medium", "low", "unclear"]
+R2ReviewStatus = Literal["candidate", "accepted", "unclear", "needs_retake", "rejected"]
+R2MarkerType = Literal["phrase_start", "phrase_end", "breath_point", "cadence", "section_start", "section_end", "unclear_boundary"]
+R2IssueType = Literal[
+    "too_fast",
+    "too_slow",
+    "tail_short",
+    "wrong_breath",
+    "too_mechanical",
+    "attack_abrupt",
+    "sample_mismatch",
+    "phrase_unclear",
+    "good",
+    "other",
+]
+
+
+class R2SafetyMixin(BaseModel):
+    review_only: bool = True
+    production_grade: bool = False
+    not_render_executed: bool = True
+    not_sample_assets: bool = True
+    not_ml_training_data: bool = True
+
+
+class R2Piece(BaseModel):
+    piece_id: str
+    piece_title: str
+    active_mvp: bool = False
+    mock_only: bool = True
+
+
+class R2Session(BaseModel):
+    recording_session_id: str
+    label: str
+    current_project_session: bool = False
+    mock_only: bool = True
+
+
+class R2RenderSet(R2SafetyMixin):
+    render_set_id: str
+    project_id: str
+    recording_session_id: str
+    piece_id: str
+    piece_title: str
+    qinist_id: str
+    render_stage: Literal["mock"] = "mock"
+    created_at: str
+
+
+class R2RenderVersion(R2SafetyMixin):
+    render_set_id: str
+    version_id: str
+    version_code: R2VersionCode
+    version_label_zh: str
+    version_label_en: str
+    version_role: R2VersionRole
+    audio_path: str
+    duration_s: float
+    waveform_preview: list[float] = Field(default_factory=list)
+    mock_render: bool = True
+
+
+class R2Section(BaseModel):
+    section_id: str
+    section_label: str
+    event_range: str
+    phrase_ids: list[str]
+
+
+class R2PhraseDefinition(BaseModel):
+    phrase_id: str
+    section_id: str
+    phrase_index: int
+    phrase_label: str
+    event_range: str
+    start_event_id: str
+    end_event_id: str
+
+
+class R2RenderPhraseAlignment(BaseModel):
+    render_set_id: str
+    version_id: str
+    phrase_id: str
+    section_id: str
+    event_range: str
+    start_s: float
+    end_s: float
+    breath_points_s: list[float] = Field(default_factory=list)
+    cadence_point_s: float | None = None
+    boundary_source: R2BoundarySource = "mock"
+    boundary_confidence: R2BoundaryConfidence = "medium"
+    review_status: R2ReviewStatus = "candidate"
+    reviewer: str | None = None
+    reviewed_at: str | None = None
+    notes: str = ""
+
+
+class R2PhraseMarker(BaseModel):
+    marker_id: str
+    render_set_id: str
+    version_id: str
+    phrase_id: str
+    marker_type: R2MarkerType
+    marker_label_zh: str
+    time_s: float
+    source: R2BoundarySource = "mock"
+    review_status: R2ReviewStatus = "candidate"
+    nudge_total_ms: int = 0
+    notes: str = ""
+
+
+class R2ListeningReview(R2SafetyMixin):
+    review_id: str
+    render_set_id: str
+    comparison_scope: Literal["phrase"] = "phrase"
+    phrase_id: str
+    section_id: str
+    event_range: str
+    active_version_id: str
+    preferred_version_id: str | None = None
+    issue_type: list[R2IssueType] = Field(default_factory=list)
+    severity: Literal["low", "medium", "high"] = "medium"
+    comment: str = ""
+    suggested_revision: str = ""
+    reviewer: str
+    reviewed_at: str
+    training_usable: bool = False
+
+
+class R2RenderRevisionLog(R2SafetyMixin):
+    revision_id: str
+    render_set_id: str
+    from_version_id: str
+    to_version_id: str | None = None
+    phrase_id: str
+    section_id: str
+    event_range: str
+    change_type: Literal["timing", "breath", "tail", "sample_selection", "phrase_boundary", "render_anchor", "other"] = "other"
+    reason: str
+    based_on_review_id: str
+    accepted: bool | None = None
+
+
+class R2DraftPayload(R2SafetyMixin):
+    render_set_id: str
+    selected_phrase_id: str
+    selected_version_id: str
+    preferred_version_id: str | None = None
+    phrase_markers: list[R2PhraseMarker] = Field(default_factory=list)
+    phrase_alignments: list[R2RenderPhraseAlignment] = Field(default_factory=list)
+    listening_review: R2ListeningReview
+    saved_at: str
+
+
+class R2DraftResponse(R2SafetyMixin):
+    render_set_id: str
+    exists: bool
+    saved_at: str | None = None
+    draft: R2DraftPayload | None = None
+
+
+class R2ExportRequest(BaseModel):
+    render_set_id: str
+    scope: Literal["all", "phrase"] = "all"
+    phrase_id: str | None = None
