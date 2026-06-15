@@ -21,11 +21,6 @@ export const r2SafetyFlags: R2SafetyFlags = {
   not_ml_training_data: true,
 };
 
-export const projectFlags = {
-  ...r2SafetyFlags,
-  training_value_class: ["review_only_phrase_listening_feedback"],
-};
-
 export const mockPieces: R2Piece[] = [
   { piece_id: "XWC", piece_title: "仙翁操", active_mvp: true, mock_only: false },
   { piece_id: "JK", piece_title: "酒狂", active_mvp: false, mock_only: true },
@@ -93,8 +88,6 @@ export const phraseAlignments: RenderPhraseAlignment[] = phrases.flatMap((phrase
   versions.map((version, versionIndex) => {
     const start_s = phraseStartByVersion[phrase.phrase_id][versionIndex];
     const length = phraseLengthsByVersion[phrase.phrase_id][versionIndex];
-    const breath = Number((start_s + length * (version.version_code === "D" ? 0.42 : 0.38)).toFixed(3));
-    const cadence = Number((start_s + length * 0.82).toFixed(3));
     return {
       render_set_id: renderSet.render_set_id,
       version_id: version.version_id,
@@ -103,8 +96,8 @@ export const phraseAlignments: RenderPhraseAlignment[] = phrases.flatMap((phrase
       event_range: phrase.event_range,
       start_s,
       end_s: Number((start_s + length).toFixed(3)),
-      breath_points_s: [breath],
-      cadence_point_s: cadence,
+      breath_points_s: [Number((start_s + length * (version.version_code === "D" ? 0.42 : 0.38)).toFixed(3))],
+      cadence_point_s: Number((start_s + length * 0.82).toFixed(3)),
       boundary_source: "mock",
       boundary_confidence: version.version_code === "D" ? "medium" : "high",
       review_status: phrase.phrase_id === "PHRASE_03" && version.version_code === "D" ? "unclear" : "candidate",
@@ -151,12 +144,12 @@ export const issueOptions: { key: R2IssueType; label: string }[] = [
 
 export const phraseExports: ExportRow[] = [
   { file: "phrase_structure_review.yaml", group: "句读结构", description: "当前曲目的 section / phrase / marker 结构。", rule: "review-only mock contract", scope: "current piece", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
+  { file: "phrase_boundary_decision.csv", group: "句读结构", description: "句头、句尾、气口、收束、边界状态等决策。", rule: "marker review status and notes", scope: "current phrase", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
   { file: "render_phrase_alignment.csv", group: "版本对齐", description: "A/B/C/D/E 每个 phrase 的 start/end 对齐。", rule: "per-version phrase ranges; no absolute-time switching", scope: "all mock phrases", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
-  { file: "phrase_boundary_decision.csv", group: "句读结构", description: "句头、句尾、气口、收束、边界不明等决策。", rule: "marker review status and notes", scope: "current phrase", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
   { file: "listening_review.yaml", group: "听评记录", description: "issue_type、severity、comment、preferred_version、suggested_revision。", rule: "good also saved as review record", scope: "current phrase", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
+  { file: "issue_list.csv", group: "听评记录", description: "全曲问题清单。", rule: "semantic grouped summary", scope: "all mock phrases", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
   { file: "render_revision_log.yaml", group: "修订依据", description: "从听评到后续修订的依据；不自动生成 E/F。", rule: "revision evidence only", scope: "review-only", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
   { file: "preferred_version_summary.csv", group: "汇总", description: "每个 phrase 的偏好版本汇总。", rule: "semantic grouped summary", scope: "all mock phrases", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
-  { file: "issue_list.csv", group: "汇总", description: "全曲问题清单。", rule: "semantic grouped summary", scope: "all mock phrases", actor: "mock_reviewer", updatedAt: "2026-06-15 00:00:00" },
 ];
 
 export function getPhrase(phrase_id: string) {
@@ -178,12 +171,10 @@ export function makePhraseMarkers(phrase_id: string, version_id: string): Phrase
     marker("phrase_start", "句头", alignment.start_s, alignment),
     ...alignment.breath_points_s.map((time, index) => marker("breath_point", `气口 ${index + 1}`, time, alignment)),
     marker("cadence", "收束", alignment.cadence_point_s ?? alignment.end_s - 1.2, alignment),
-    marker("unclear_boundary", "边界不明", Number((alignment.end_s - 2.6).toFixed(3)), alignment, "unclear"),
     marker("phrase_end", "句尾", alignment.end_s, alignment),
   ];
-  if (section.phrase_ids[0] === phrase_id) {
-    markers.unshift(marker("section_start", "段落起", alignment.start_s, alignment));
-  }
+  if (section.phrase_ids[0] === phrase_id) markers.unshift(marker("section_start", "段落起", alignment.start_s, alignment));
+  if (section.phrase_ids[section.phrase_ids.length - 1] === phrase_id) markers.push(marker("section_end", "段落止", alignment.end_s, alignment));
   return markers;
 }
 
