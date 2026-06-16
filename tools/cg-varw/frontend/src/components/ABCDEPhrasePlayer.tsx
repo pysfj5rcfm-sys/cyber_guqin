@@ -1,4 +1,5 @@
 import type { MarkerReviewStatus, RenderPhraseAlignment, RenderVersion } from "../types/cgVarw";
+import { markerReviewStatusLabels, markerReviewStatusTone } from "./reviewUi";
 
 export function ABCDEPhrasePlayer({
   versions,
@@ -41,7 +42,7 @@ export function ABCDEPhrasePlayer({
               <button className="version-range-button" title={version.version_id} onClick={() => onSelect(version.version_id)}>
                 {formatAlignment(alignment)}
               </button>
-              <span className="unit-status status-needs_review" title={alignment?.review_status ?? "candidate"}>{statusLabel(alignment?.review_status)}</span>
+              <span className={`unit-status status-${statusTone(alignment?.review_status)}`} title={alignment?.review_status ?? "candidate"}>{statusLabel(alignment?.review_status)}</span>
               <span>{preferred ? <b className="preferred-chip">偏好</b> : <span className="muted-inline">-</span>}</span>
               <span className="row-actions">
                 <button onClick={() => onSetPreferred(version.version_id)}>设为偏好</button>
@@ -61,11 +62,9 @@ function formatAlignment(alignment?: RenderPhraseAlignment) {
 }
 
 function statusLabel(status?: MarkerReviewStatus) {
-  return {
-    candidate: "待确认",
-    accepted: "已确认",
-    unclear: "待复核",
-    needs_retake: "需重录",
-    rejected: "已排除",
-  }[status ?? "candidate"];
+  return markerReviewStatusLabels[status ?? "candidate"];
+}
+
+function statusTone(status?: MarkerReviewStatus) {
+  return markerReviewStatusTone[status ?? "candidate"];
 }

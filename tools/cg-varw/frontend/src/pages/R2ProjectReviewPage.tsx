@@ -3,6 +3,7 @@ import { ABCDEPhrasePlayer } from "../components/ABCDEPhrasePlayer";
 import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
 import { R2ExportPreviewPanel } from "../components/R2ExportPreviewPanel";
+import { markerReviewStatusLabels, markerReviewStatusTone } from "../components/reviewUi";
 import {
   defaultListeningReview,
   getAlignment,
@@ -38,6 +39,7 @@ type R2PlaybackState = {
 
 type BoundaryStatusByKey = Record<string, MarkerReviewStatus>;
 type PreferredVersionByPhrase = Record<string, string>;
+type MarkersByKey = Record<string, PhraseMarker[]>;
 type QuickJudgement = "good" | "usable" | "needs_revision" | "bad";
 
 type R2ListeningReviewDraft = {
@@ -58,6 +60,10 @@ type ListeningReviewByKey = Record<string, R2ListeningReviewDraft>;
 type R2DraftPayloadWithReviewState = R2DraftPayload & {
   preferred_version_by_phrase?: PreferredVersionByPhrase;
   listening_review_by_key?: ListeningReviewByKey;
+  boundary_status_by_key?: BoundaryStatusByKey;
+  markers_by_key?: MarkersByKey;
+  playback_rate?: R2PlaybackRate;
+  loop_phrase?: boolean;
 };
 
 type ProgressOverview = {
@@ -69,14 +75,18 @@ type ProgressOverview = {
   preferredVersionCount: number;
 };
 
-const draftKey = `cg-varw:r2:${renderSet.render_set_id}:draft`;
+const draftKey = `cg-varw:r2:draft:${renderSet.recording_session_id}:${renderSet.piece_id}:${renderSet.render_set_id}`;
+const legacyDraftKey = `cg-varw:r2:${renderSet.render_set_id}:draft`;
 const backendStatus = "后端已连接，当前使用合成演示 Render 根目录。";
+const reviewStatuses: MarkerReviewStatus[] = ["candidate", "accepted", "unclear", "needs_retake", "rejected"];
 
 export function R2ProjectReviewPage() {
   const [activePhraseId, setActivePhraseId] = useState("PHRASE_03");
   const [activeVersionId, setActiveVersionId] = useState("B_PHRASE");
   const [preferredVersionByPhrase, setPreferredVersionByPhrase] = useState<PreferredVersionByPhrase>(() => ({ PHRASE_03: "B_PHRASE" }));
-  const [markers, setMarkers] = useState<PhraseMarker[]>(() => makePhraseMarkers("PHRASE_03", "B_PHRASE"));
+  const [markersByKey, setMarkersByKey] = useState<MarkersByKey>(() => ({
+    [phraseVersionKey("PHRASE_03", "B_PHRASE")]: makePhraseMarkers("PHRASE_03", "B_PHRASE"),
+  }));
   const [selectedMarkerId, setSelectedMarkerId] = useState("PHRASE_03_B_PHRASE_cadence");
   const [boundaryStatusByKey, setBoundaryStatusByKey] = useState<BoundaryStatusByKey>(() => makeInitialBoundaryStatusByKey());
   const [listeningReviewByKey, setListeningReviewByKey] = useState<ListeningReviewByKey>(() => ({
@@ -92,6 +102,7 @@ export function R2ProjectReviewPage() {
     playMode: "idle",
   });
 
+  const activeMarkerStateKey = phraseVersionKey(activePhraseId, activeVersionId);
   const activePhrase = getPhrase(activePhraseId);
   const activeSection = getSection(activePhrase.section_id);
   const reviewedAlignments = useMemo(() => phraseAlignments.map((alignment) => ({
@@ -109,9 +120,17 @@ export function R2ProjectReviewPage() {
     () => deriveProgressOverview(reviewedAlignments, preferredVersionByPhrase, listeningReviewByKey),
     [reviewedAlignments, preferredVersionByPhrase, listeningReviewByKey],
   );
+  const markers = useMemo(
+    () => markersByKey[activeMarkerStateKey] ?? makePhraseMarkers(activePhraseId, activeVersionId),
+    [activeMarkerStateKey, activePhraseId, activeVersionId, markersByKey],
+  );
   const selectedMarker = markers.find((marker) => marker.marker_id === selectedMarkerId) ?? markers[0];
   const playbackRange = getAlignment(activePhraseId, playback.playingVersionId ?? activeVersionId);
   const canvasMarkers = useMemo(() => markers.map(toCanvasMarker), [markers]);
+
+  useEffect(() => {
+    loadDraft({ silentMissing: true, source: "auto" });
+  }, []);
 
   useEffect(() => {
     if (!playback.isPlaying) return;
@@ -145,11 +164,27 @@ export function R2ProjectReviewPage() {
     });
   }
 
+  function ensureMarkerState(phraseId: string, versionId: string) {
+    const key = phraseVersionKey(phraseId, versionId);
+    const nextMarkers = markersByKey[key] ?? makePhraseMarkers(phraseId, versionId);
+    setMarkersByKey((current) => current[key] ? current : { ...current, [key]: nextMarkers });
+    return nextMarkers;
+  }
+
+  function setActiveMarkers(updater: (current: PhraseMarker[]) => PhraseMarker[]) {
+    setMarkersByKey((current) => {
+      const currentMarkers = current[activeMarkerStateKey] ?? makePhraseMarkers(activePhraseId, activeVersionId);
+      return {
+        ...current,
+        [activeMarkerStateKey]: updater(currentMarkers),
+      };
+    });
+  }
+
   function selectPhrase(phraseId: string) {
-    const nextMarkers = makePhraseMarkers(phraseId, activeVersionId);
+    const nextMarkers = ensureMarkerState(phraseId, activeVersionId);
     const alignment = getAlignment(phraseId, activeVersionId);
     setActivePhraseId(phraseId);
-    setMarkers(nextMarkers);
     setSelectedMarkerId(defaultMarkerId(nextMarkers));
     setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: alignment.start_s, playMode: "idle", sequenceQueue: undefined, currentQueueIndex: undefined, playingVersionId: undefined }));
     ensureReviewDraft(phraseId, activeVersionId);
@@ -157,10 +192,9 @@ export function R2ProjectReviewPage() {
   }
 
   function selectVersion(versionId: string) {
-    const nextMarkers = makePhraseMarkers(activePhraseId, versionId);
+    const nextMarkers = ensureMarkerState(activePhraseId, versionId);
     const alignment = getAlignment(activePhraseId, versionId);
     setActiveVersionId(versionId);
-    setMarkers(nextMarkers);
     setSelectedMarkerId(defaultMarkerId(nextMarkers));
     setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: alignment.start_s, playMode: "idle", sequenceQueue: undefined, currentQueueIndex: undefined, playingVersionId: undefined }));
     ensureReviewDraft(activePhraseId, versionId);
@@ -175,9 +209,9 @@ export function R2ProjectReviewPage() {
   function playVersion(versionId: string) {
     const alignment = getAlignment(activePhraseId, versionId);
     if (versionId !== activeVersionId) {
+      const nextMarkers = ensureMarkerState(activePhraseId, versionId);
       setActiveVersionId(versionId);
-      setMarkers(makePhraseMarkers(activePhraseId, versionId));
-      setSelectedMarkerId(defaultMarkerId(makePhraseMarkers(activePhraseId, versionId)));
+      setSelectedMarkerId(defaultMarkerId(nextMarkers));
       ensureReviewDraft(activePhraseId, versionId);
     }
     setPlayback((current) => ({ ...current, isPlaying: true, currentTimeS: alignment.start_s, playMode: "phrase", sequenceQueue: [versionId], currentQueueIndex: 0, playingVersionId: versionId }));
@@ -185,12 +219,12 @@ export function R2ProjectReviewPage() {
   }
 
   function updateMarker(patch: Partial<PhraseMarker>) {
-    setMarkers((current) => current.map((marker) => marker.marker_id === selectedMarkerId ? { ...marker, ...patch } : marker));
+    setActiveMarkers((current) => current.map((marker) => marker.marker_id === selectedMarkerId ? { ...marker, ...patch } : marker));
     if (patch.review_status) setLastActionMessage(`已更新标记状态 · ${statusLabel(patch.review_status)}`);
   }
 
   function nudgeMarker(deltaMs: number) {
-    setMarkers((current) => current.map((marker) => marker.marker_id === selectedMarkerId ? {
+    setActiveMarkers((current) => current.map((marker) => marker.marker_id === selectedMarkerId ? {
       ...marker,
       time_s: Math.max(0, Number((marker.time_s + deltaMs / 1000).toFixed(3))),
       nudge_total_ms: marker.nudge_total_ms + deltaMs,
@@ -231,6 +265,7 @@ export function R2ProjectReviewPage() {
   }
 
   function saveDraft() {
+    const nextMarkersByKey = { ...markersByKey, [activeMarkerStateKey]: markers };
     const payload: R2DraftPayloadWithReviewState = {
       render_set_id: renderSet.render_set_id,
       selected_phrase_id: activePhraseId,
@@ -241,6 +276,10 @@ export function R2ProjectReviewPage() {
       listening_review: { ...activeListeningReview, reviewed_at: activeListeningReview.reviewed_at || new Date().toISOString() },
       preferred_version_by_phrase: preferredVersionByPhrase,
       listening_review_by_key: listeningReviewByKey,
+      boundary_status_by_key: boundaryStatusByKey,
+      markers_by_key: nextMarkersByKey,
+      playback_rate: playback.playbackRate,
+      loop_phrase: playback.loopPhrase,
       saved_at: new Date().toISOString(),
       ...r2SafetyFlags,
     };
@@ -248,10 +287,10 @@ export function R2ProjectReviewPage() {
     setLastActionMessage("draft 已保存");
   }
 
-  function loadDraft() {
-    const raw = localStorage.getItem(draftKey);
+  function loadDraft(options: { silentMissing?: boolean; source?: "auto" | "manual" } = {}) {
+    const raw = localStorage.getItem(draftKey) ?? localStorage.getItem(legacyDraftKey);
     if (!raw) {
-      setLastActionMessage("未找到 R2 draft");
+      if (!options.silentMissing) setLastActionMessage("未找到 R2 draft");
       return;
     }
     try {
@@ -259,17 +298,31 @@ export function R2ProjectReviewPage() {
       const versionId = payload.selected_version_id;
       const phraseId = payload.selected_phrase_id;
       const alignment = getAlignment(phraseId, versionId);
+      const nextMarkersByKey = payload.markers_by_key ?? {
+        [phraseVersionKey(phraseId, versionId)]: payload.phrase_markers?.length ? payload.phrase_markers : makePhraseMarkers(phraseId, versionId),
+      };
+      const nextMarkers = nextMarkersByKey[phraseVersionKey(phraseId, versionId)] ?? makePhraseMarkers(phraseId, versionId);
       setActivePhraseId(phraseId);
       setActiveVersionId(versionId);
       setPreferredVersionByPhrase(payload.preferred_version_by_phrase ?? (payload.preferred_version_id ? { [phraseId]: payload.preferred_version_id } : {}));
-      setMarkers(payload.phrase_markers);
-      setSelectedMarkerId(defaultMarkerId(payload.phrase_markers));
-      setBoundaryStatusByKey(makeBoundaryStatusByKey(payload.phrase_alignments));
+      setMarkersByKey(nextMarkersByKey);
+      setSelectedMarkerId(defaultMarkerId(nextMarkers));
+      setBoundaryStatusByKey(payload.boundary_status_by_key ?? makeBoundaryStatusByKey(payload.phrase_alignments));
       setListeningReviewByKey(payload.listening_review_by_key ?? {
         [phraseVersionKey(payload.listening_review.phrase_id, payload.listening_review.active_version_id)]: draftFromListeningReview(payload.listening_review),
       });
-      setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: alignment.start_s, playMode: "idle", sequenceQueue: undefined, currentQueueIndex: undefined, playingVersionId: undefined }));
-      setLastActionMessage("已加载 R2 draft");
+      setPlayback((current) => ({
+        ...current,
+        isPlaying: false,
+        currentTimeS: alignment.start_s,
+        playbackRate: payload.playback_rate ?? current.playbackRate,
+        loopPhrase: payload.loop_phrase ?? current.loopPhrase,
+        playMode: "idle",
+        sequenceQueue: undefined,
+        currentQueueIndex: undefined,
+        playingVersionId: undefined,
+      }));
+      setLastActionMessage(options.source === "auto" ? "已自动加载 R2 draft" : "已加载 R2 draft");
     } catch (error) {
       setLastActionMessage(`R2 draft 加载失败：${error instanceof Error ? error.message : String(error)}`);
     }
@@ -490,7 +543,7 @@ function LeftPanel({
         <h3>本曲进度概览</h3>
         <div><span>已审 phrase</span><b>{progress.reviewedPhraseCount} / {progress.totalPhraseCount}</b><i style={{ width: percentWidth(progress.reviewedPhraseCount, progress.totalPhraseCount) }} /></div>
         <div><span>待审 phrase</span><b>{progress.pendingPhraseCount} / {progress.totalPhraseCount}</b><i className="gold-line" style={{ width: percentWidth(progress.pendingPhraseCount, progress.totalPhraseCount) }} /></div>
-        <div><span>边界不明</span><b>{progress.unclearBoundaryCount}</b><i className="gold-line" style={{ width: percentWidth(progress.unclearBoundaryCount, phraseAlignments.length) }} /></div>
+        <div><span>待复核边界</span><b>{progress.unclearBoundaryCount}</b><i className="gold-line" style={{ width: percentWidth(progress.unclearBoundaryCount, phraseAlignments.length) }} /></div>
         <div><span>需重录</span><b>{progress.needsRetakeCount}</b><i className="gold-line" style={{ width: percentWidth(progress.needsRetakeCount, phraseAlignments.length) }} /></div>
         <div><span>偏好已设</span><b>{progress.preferredVersionCount} / {progress.totalPhraseCount}</b><i style={{ width: percentWidth(progress.preferredVersionCount, progress.totalPhraseCount) }} /></div>
       </section>
@@ -566,13 +619,21 @@ function RightPanel({
         <div className="info-card marker-info-card">
           <span>当前标记：{selectedMarker?.marker_label_zh ?? "未选择"}</span>
           <b>{(selectedMarker?.time_s ?? 0).toFixed(3)}s</b>
-          <span>状态：{statusLabel(selectedMarker?.review_status ?? "candidate")}</span>
+          <span className={`unit-status status-${statusToneClass(selectedMarker?.review_status ?? "candidate")}`}>状态：{statusLabel(selectedMarker?.review_status ?? "candidate")}</span>
         </div>
         <div className="nudge-grid">{[-50, -10, -5, 5, 10, 50].map((delta) => <button key={delta} onClick={() => nudge(delta)}>{delta > 0 ? "+" : ""}{delta}ms</button>)}</div>
+        <div className="status-grid marker-status-grid">
+          {reviewStatuses.map((status) => (
+            <button
+              key={status}
+              className={`status-option status-${statusToneClass(status)} ${selectedMarker?.review_status === status ? "active" : ""}`}
+              onClick={() => updateMarker({ review_status: status })}
+            >
+              {statusLabel(status)}
+            </button>
+          ))}
+        </div>
         <div className="cg-select-row">
-          <select className="cg-select" value={selectedMarker?.review_status ?? "candidate"} onChange={(event) => updateMarker({ review_status: event.target.value as PhraseMarker["review_status"] })}>
-            {(["candidate", "accepted", "unclear", "needs_retake", "rejected"] as MarkerReviewStatus[]).map((status) => <option key={status} value={status}>{statusLabel(status)}</option>)}
-          </select>
           <textarea value={selectedMarker?.notes ?? ""} onChange={(event) => updateMarker({ notes: event.target.value })} />
         </div>
       </section>
@@ -588,7 +649,15 @@ function RightPanel({
       <section className="editor-section">
         <h3>边界状态</h3>
         <div className="segmented boundary-segmented">
-          {(["candidate", "accepted", "unclear", "needs_retake", "rejected"] as MarkerReviewStatus[]).map((status) => <button key={status} className={boundaryStatus === status ? "active" : ""} onClick={() => setBoundaryStatus(status)}>{statusLabel(status)}</button>)}
+          {reviewStatuses.map((status) => (
+            <button
+              key={status}
+              className={`status-option status-${statusToneClass(status)} ${boundaryStatus === status ? "active" : ""}`}
+              onClick={() => setBoundaryStatus(status)}
+            >
+              {statusLabel(status)}
+            </button>
+          ))}
         </div>
       </section>
       <section className="editor-section">
@@ -811,13 +880,11 @@ function versionLabel(versionId: string) {
 }
 
 function statusLabel(status: MarkerReviewStatus) {
-  return {
-    candidate: "待确认",
-    accepted: "已确认",
-    unclear: "待复核",
-    needs_retake: "需重录",
-    rejected: "已排除",
-  }[status];
+  return markerReviewStatusLabels[status];
+}
+
+function statusToneClass(status: MarkerReviewStatus) {
+  return markerReviewStatusTone[status];
 }
 
 function severityLabel(severity: Severity) {

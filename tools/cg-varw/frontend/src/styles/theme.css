@@ -46,9 +46,9 @@ select, input { width: 100%; min-height: 36px; padding: 0 12px; }
 .mode-switcher { position: fixed; z-index: 20; top: 8px; left: 56%; transform: translateX(-50%); display: flex; gap: 8px; }
 .mode-switcher button { height: 30px; min-height: 30px; font-size: 13px; }
 .workspace-grid { height: calc(100vh - 46px); display: grid; grid-template-columns: 330px minmax(0, 1fr) 330px; grid-template-rows: minmax(0, 1fr) 220px; gap: 8px; padding: 8px 10px 39px; overflow: hidden; }
-.side-panel, .main-panel, .bottom-panel { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(15,30,38,0.94), rgba(8,20,27,0.94)); border-radius: 8px; box-shadow: 0 12px 34px rgba(0,0,0,0.2); overflow: hidden; }
+.side-panel, .main-panel, .bottom-panel { min-height: 0; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(15,30,38,0.94), rgba(8,20,27,0.94)); border-radius: 8px; box-shadow: 0 12px 34px rgba(0,0,0,0.2); overflow: hidden; }
 .left-panel { grid-column: 1; grid-row: 1; }
-.main-panel { grid-column: 2; grid-row: 1; }
+.main-panel { grid-column: 2; grid-row: 1; overflow: auto; }
 .right-panel { grid-column: 3; grid-row: 1; }
 .bottom-panel { grid-column: 1 / 4; grid-row: 2; }
 .statusbar { position: fixed; inset: auto 0 0 0; height: 31px; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 0 16px; border-top: 1px solid var(--line); background: rgba(5, 13, 18, 0.96); color: var(--muted); }
@@ -143,6 +143,7 @@ select, input { width: 100%; min-height: 36px; padding: 0 12px; }
 .export-tabs button { min-height: 30px; border-color: rgba(116,156,166,0.28); background: rgba(255,255,255,0.025); }
 .export-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 0; }
 .export-actions button { min-width: 112px; }
+.review-actions button { min-width: 0; min-height: 28px; height: 28px; padding: 0 9px; border-radius: 6px; font-size: 12px; }
 .primary-action { color: #7ffff8; border-color: var(--cyan); background: rgba(23,210,201,0.14); }
 .active-check { color: #8ffff8; }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
@@ -188,6 +189,13 @@ th { color: #8fa4aa; font-weight: 500; background: rgba(255,255,255,0.025); }
 .context-summary b { color: #fff0c5; font-weight: 500; }
 .muted-note { color: var(--muted); font-size: 13px; }
 .boundary-segmented { grid-template-columns: repeat(2, 1fr); }
+.status-option { width: 100%; justify-content: center; }
+.status-option.active { box-shadow: inset 0 0 0 1px currentColor, 0 0 0 1px rgba(255,255,255,0.08); }
+.status-option.active.status-confirmed { background: rgba(95,214,111,0.16); }
+.status-option.active.status-needs_review { background: rgba(245,174,32,0.16); }
+.status-option.active.status-not_started { background: rgba(159,180,186,0.12); }
+.status-option.active.status-needs_retake,
+.status-option.active.status-excluded { background: rgba(239,90,85,0.16); }
 .review-subsection { display: grid; gap: 7px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(116,156,166,0.16); }
 .review-subsection:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
 .review-subsection h4 { color: #fff0c5; font-size: 13px; font-weight: 500; }
@@ -201,7 +209,6 @@ th { color: #8fa4aa; font-weight: 500; background: rgba(255,255,255,0.025); }
 .unit-queue-panel { position: relative; border-color: rgba(23,210,201,0.26); background: linear-gradient(180deg, rgba(23,210,201,0.045), rgba(255,255,255,0.026)); }
 .unit-queue-panel:after { content: ""; position: absolute; right: -13px; top: 112px; width: 13px; height: 2px; background: linear-gradient(90deg, rgba(23,210,201,0.7), transparent); }
 .unit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 10px; }
-.unit-actions button:last-child { grid-column: 1 / 3; }
 .unit-queue { display: flex; flex-direction: column; gap: 7px; margin-top: 10px; }
 .unit-row { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; gap: 5px; min-height: 74px; height: auto; padding: 9px 10px; text-align: left; border-color: rgba(116,156,166,0.2); background: rgba(7,18,24,0.66); overflow: hidden; }
 .r1-unit-row { grid-template-columns: minmax(0, 1fr); }

@@ -273,13 +273,6 @@ export function R0RawReviewPage() {
     updateSelectedUnit((unit) => ({ ...unit, unit_status: unit.unit_status === "excluded" ? "candidate" : unit.unit_status }));
   }
 
-  function renameSelectedUnit() {
-    if (!selectedUnit) return;
-    const renamedId = selectedUnit.id.endsWith("_R") ? selectedUnit.id : `${selectedUnit.id}_R`;
-    setUnits((current) => current.map((unit) => (unit.id === selectedUnit.id ? { ...unit, id: renamedId } : unit)));
-    setSelectedUnitId(renamedId);
-  }
-
   function playPause() {
     const audio = audioRef.current;
     if (!audio) return;
@@ -381,7 +374,6 @@ export function R0RawReviewPage() {
             onAddUnit={addUnit}
             onExclude={excludeSelectedUnit}
             onRestore={restoreExcludedUnit}
-            onRename={renameSelectedUnit}
           />
         ),
         main: (
@@ -472,7 +464,6 @@ function LeftPanel({
   onAddUnit,
   onExclude,
   onRestore,
-  onRename,
 }: {
   backend: BackendState;
   rawFiles: RawFile[];
@@ -484,7 +475,6 @@ function LeftPanel({
   onAddUnit: () => void;
   onExclude: () => void;
   onRestore: () => void;
-  onRename: () => void;
 }) {
   return (
     <div className="panel-stack">
@@ -511,7 +501,6 @@ function LeftPanel({
         <div className="unit-actions">
           <button onClick={onExclude}>排除当前 T</button>
           <button onClick={onRestore}>恢复已排除 T</button>
-          <button onClick={onRename}>重命名当前 T</button>
         </div>
         <div className="unit-queue">
           {units.map((unit) => (

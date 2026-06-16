@@ -94,7 +94,7 @@ export function R2ExportPreviewPanel({
     <div className="export-panel r2-export-panel">
       <div className="export-header-row">
         <h2>{title}</h2>
-        <div className="export-actions">
+        <div className="export-actions review-actions">
           <button className="primary-action" onClick={onSaveDraft}>保存 draft</button>
           <button onClick={onExportAll}>导出全部</button>
           <button onClick={onExportPhrase}>导出当前 phrase</button>
