@@ -1,0 +1,53 @@
+recording_session_id: RS_XWC_002_BAIYA_PILOT
+recording_id: RS_XWC_002
+piece_id: XWC
+piece_title: 仙翁操
+qinist_id: QINIST_002
+qinist_name: 白牙
+asset_class: mvp_reshoot_raw
+production_grade: false
+source_format_preferred: wav
+sample_rate_preferred: 48000
+bit_depth_preferred: 24
+current_registered_batches:
+  - batch01
+review_only: true
+not_sample_assets: true
+not_render_executed: true
+not_ml_training_data: true
+recording_mode: continuous_batch_wav
+raw_master_policy: preserve_do_not_cut
+retake_policy: keep_all
+bad_take_policy: keep_and_mark
+registered_at: 2026-06-19T07:22:08+08:00
+source_plan:
+  take_plan: reports/rs_xwc_002_baiya_recording_take_plan.csv
+  batch_ranges: reports/rs_xwc_002_baiya_batch_ranges.csv
+  session_manifest_draft: reports/rs_xwc_002_baiya_session_manifest_draft.yaml
+raw_audio:
+  inventory: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/manifests/raw_audio_inventory.csv
+  take_manifest: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/manifests/take_manifest.csv
+actual_audio:
+  batch01:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch01_T001-T010.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch01_T001-T010.wav
+    file_format: wav
+    codec_or_encoding: "NONE (not compressed)"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 115.170476
+    file_size_bytes: 30475814
+    checksum_sha256: f9f3c29a0b289c87106cf6994a1d789ee1055ab13230b8fef8dbf0005e1e814e
+usage_restrictions:
+  split_executed: false
+  r1_started: false
+  sample_assets_written: false
+  render_executed: false
+  ml_training_data_created: false
+r0_intake:
+  raw_archive_ready: true
+  r0_raw_scan_supported: true
+  suggested_raw_root: 02_recordings/raw_audio
+  asr_candidates_generated: false
+  next_action: run RECD-1 slate anchor recognition
