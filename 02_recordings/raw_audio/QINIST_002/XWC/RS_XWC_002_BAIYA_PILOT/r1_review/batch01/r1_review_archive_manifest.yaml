@@ -1,0 +1,22 @@
+recording_session_id: RS_XWC_002_BAIYA_PILOT
+piece_id: XWC
+qinist_id: QINIST_002
+batch_id: batch01
+source_export_dir: tools/cg-varw/review_outputs/r1/exports/batch01
+archived_at: 2026-06-19T09:46:04+08:00
+review_only: true
+production_grade: false
+not_sample_assets: true
+not_render_executed: true
+not_ml_training_data: true
+requires_sample_candidate_gate: true
+files:
+  reviewed_render_anchors:
+    path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch01/reviewed_render_anchors.batch01.csv
+    sha256: 10c7ce29badf349c7630109a9bc062fa8e778661c50f7cd42767fe6ccd4d7422
+  split_marker_review:
+    path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch01/split_marker_review.batch01.csv
+    sha256: cb785738013c501cf1a0f52376e0a31b32d378042360a9f39b00aa4af1088d51
+  segment_qc_sheet:
+    path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch01/segment_qc_sheet.batch01.csv
+    sha256: 3f66b9c59c87e687df533597d45232839136c8428e36d3c3b1143d1665a909c7
