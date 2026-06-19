@@ -11,6 +11,13 @@ sample_rate_preferred: 48000
 bit_depth_preferred: 24
 current_registered_batches:
   - batch01
+  - batch02
+  - batch03
+  - batch04
+  - batch05
+  - batch06
+  - batch07
+  - batch08
 review_only: true
 not_sample_assets: true
 not_render_executed: true
@@ -19,7 +26,7 @@ recording_mode: continuous_batch_wav
 raw_master_policy: preserve_do_not_cut
 retake_policy: keep_all
 bad_take_policy: keep_and_mark
-registered_at: 2026-06-19T07:22:08+08:00
+registered_at: 2026-06-19T17:29:19+08:00
 source_plan:
   take_plan: reports/rs_xwc_002_baiya_recording_take_plan.csv
   batch_ranges: reports/rs_xwc_002_baiya_batch_ranges.csv
@@ -27,27 +34,112 @@ source_plan:
 raw_audio:
   inventory: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/manifests/raw_audio_inventory.csv
   take_manifest: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/manifests/take_manifest.csv
+  batch_range_reconciliation: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/manifests/batch_range_reconciliation.csv
 actual_audio:
   batch01:
     file_name: RS_XWC_002_BAIYA_PILOT_batch01_T001-T010.wav
     source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch01_T001-T010.wav
     file_format: wav
-    codec_or_encoding: "NONE (not compressed)"
+    codec_or_encoding: "PCM"
     sample_rate: 44100
     bit_depth: 24
     channels: 2
     duration_s: 115.170476
     file_size_bytes: 30475814
     checksum_sha256: f9f3c29a0b289c87106cf6994a1d789ee1055ab13230b8fef8dbf0005e1e814e
+  batch02:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch02_T011-T020.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch02_T011-T020.wav
+    file_format: wav
+    codec_or_encoding: "PCM"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 104.024898
+    file_size_bytes: 27526584
+    checksum_sha256: d1495dfe494c2bba16c0bd2499af3b86fbec27502646c9e4763677825c9d9184
+  batch03:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch03_T021-T030.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch03_T021-T030.wav
+    file_format: wav
+    codec_or_encoding: "PCM"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 103.281859
+    file_size_bytes: 27329966
+    checksum_sha256: 40954782138936a68b4e2e15758a4d38b24623bdfa54e7ddc8b7360ffd4e9219
+  batch04:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch04_T031-T040.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch04_T031-T040.wav
+    file_format: wav
+    codec_or_encoding: "PCM"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 103.281859
+    file_size_bytes: 27329968
+    checksum_sha256: c4094f6a621aeba91ad4a79392f6dc04104538f6be0470b7c8d35fc5fbf50b12
+  batch05:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch05_T041-T050.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch05_T041-T050.wav
+    file_format: wav
+    codec_or_encoding: "PCM"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 100.309705
+    file_size_bytes: 26543478
+    checksum_sha256: 9de28c4a6c4f5db0a3d139266f30d493c2de70670327f9c0ce064e9a2e65a6c3
+  batch06:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch06_T051-T060.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch06_T051-T060.wav
+    file_format: wav
+    codec_or_encoding: "PCM"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 107.740091
+    file_size_bytes: 28509668
+    checksum_sha256: f546c7373dc1949ee1c1a62ee80cce780e762aced787e87a65ca13e0466db374
+  batch07:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch07_T061-T070.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch07_T061-T070.wav
+    file_format: wav
+    codec_or_encoding: "PCM"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 98.080590
+    file_size_bytes: 25953640
+    checksum_sha256: 08a1c9d97e0fd6905e9fe46c8060e5ab3e5519b460f6208ac93493b924582f4f
+  batch08:
+    file_name: RS_XWC_002_BAIYA_PILOT_batch08_T071.wav
+    source_raw_audio: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch08_T071.wav
+    file_format: wav
+    codec_or_encoding: "PCM"
+    sample_rate: 44100
+    bit_depth: 24
+    channels: 2
+    duration_s: 17.832426
+    file_size_bytes: 4719216
+    checksum_sha256: 702c7df516aac29f8e6340e348d5030d211802341b40857cab5aa89b2017b978
 usage_restrictions:
   split_executed: false
   r1_started: false
   sample_assets_written: false
   render_executed: false
   ml_training_data_created: false
+range_reconciliation:
+  batch07_actual_range: T061-T070
+  batch08_actual_range: T071
+  t071_batch_id: batch08
+  t071_batch_take_no: "001"
+  t071_is_retake: false
+  batch08_terminal_single_take_batch: true
 r0_intake:
   raw_archive_ready: true
   r0_raw_scan_supported: true
   suggested_raw_root: 02_recordings/raw_audio
-  asr_candidates_generated: false
-  next_action: run RECD-1 slate anchor recognition
+  asr_candidates_generated_for_batch02_to_batch08: false
+  next_action: await explicit RECD-1 authorization; do not infer from this RECD-0 archive registration

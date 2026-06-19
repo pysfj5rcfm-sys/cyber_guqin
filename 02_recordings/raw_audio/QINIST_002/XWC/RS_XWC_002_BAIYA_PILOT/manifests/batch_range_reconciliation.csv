@@ -1,0 +1,8 @@
+batch_id,planned_range,actual_range,actual_raw_audio,take_count,range_status,notes
+batch02,T011-T020,T011-T020,RS_XWC_002_BAIYA_PILOT_batch02_T011-T020.wav,10,as_planned,actual recording matches original plan
+batch03,T021-T030,T021-T030,RS_XWC_002_BAIYA_PILOT_batch03_T021-T030.wav,10,as_planned,actual recording matches original plan
+batch04,T031-T040,T031-T040,RS_XWC_002_BAIYA_PILOT_batch04_T031-T040.wav,10,as_planned,actual recording matches original plan
+batch05,T041-T050,T041-T050,RS_XWC_002_BAIYA_PILOT_batch05_T041-T050.wav,10,as_planned,actual recording matches original plan
+batch06,T051-T060,T051-T060,RS_XWC_002_BAIYA_PILOT_batch06_T051-T060.wav,10,as_planned,actual recording matches original plan
+batch07,T061-T071,T061-T070,RS_XWC_002_BAIYA_PILOT_batch07_T061-T070.wav,10,range_adjusted,planned terminal T071 moved out of batch07 based on actual recording fact
+batch08,<none>,T071,RS_XWC_002_BAIYA_PILOT_batch08_T071.wav,1,added_single_take_batch,T071 recorded as standalone batch08; not a retake; not part of batch07 raw file.
