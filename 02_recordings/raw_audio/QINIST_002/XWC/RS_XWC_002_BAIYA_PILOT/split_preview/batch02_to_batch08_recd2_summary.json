@@ -1,0 +1,96 @@
+{
+  "schema": "cg-recd2.baiya_batch02_to_batch08_summary.v0.1",
+  "recording_session_id": "RS_XWC_002_BAIYA_PILOT",
+  "total_expected_takes": 61,
+  "total_split_manifest_rows": 61,
+  "total_unit_preview_count": 61,
+  "total_clean_preview_count": 61,
+  "total_blocked_count": 0,
+  "review_only": true,
+  "production_grade": false,
+  "split_preview_only": true,
+  "not_sample_assets": true,
+  "not_recording_segments": true,
+  "not_render_executed": true,
+  "not_ml_training_data": true,
+  "requires_r1_review": true,
+  "batches": [
+    {
+      "batch_id": "batch02",
+      "actual_range": "T011-T020",
+      "expected_take_count": 10,
+      "split_manifest_rows": 10,
+      "unit_preview_count": 10,
+      "clean_preview_count": 10,
+      "blocked_count": 0,
+      "r1_intake_ready": "true",
+      "notes": "controlled split preview generated from R0 reviewed split_plan"
+    },
+    {
+      "batch_id": "batch03",
+      "actual_range": "T021-T030",
+      "expected_take_count": 10,
+      "split_manifest_rows": 10,
+      "unit_preview_count": 10,
+      "clean_preview_count": 10,
+      "blocked_count": 0,
+      "r1_intake_ready": "true",
+      "notes": "controlled split preview generated from R0 reviewed split_plan"
+    },
+    {
+      "batch_id": "batch04",
+      "actual_range": "T031-T040",
+      "expected_take_count": 10,
+      "split_manifest_rows": 10,
+      "unit_preview_count": 10,
+      "clean_preview_count": 10,
+      "blocked_count": 0,
+      "r1_intake_ready": "true",
+      "notes": "controlled split preview generated from R0 reviewed split_plan"
+    },
+    {
+      "batch_id": "batch05",
+      "actual_range": "T041-T050",
+      "expected_take_count": 10,
+      "split_manifest_rows": 10,
+      "unit_preview_count": 10,
+      "clean_preview_count": 10,
+      "blocked_count": 0,
+      "r1_intake_ready": "true",
+      "notes": "controlled split preview generated from R0 reviewed split_plan"
+    },
+    {
+      "batch_id": "batch06",
+      "actual_range": "T051-T060",
+      "expected_take_count": 10,
+      "split_manifest_rows": 10,
+      "unit_preview_count": 10,
+      "clean_preview_count": 10,
+      "blocked_count": 0,
+      "r1_intake_ready": "true",
+      "notes": "controlled split preview generated from R0 reviewed split_plan"
+    },
+    {
+      "batch_id": "batch07",
+      "actual_range": "T061-T070",
+      "expected_take_count": 10,
+      "split_manifest_rows": 10,
+      "unit_preview_count": 10,
+      "clean_preview_count": 10,
+      "blocked_count": 0,
+      "r1_intake_ready": "true",
+      "notes": "controlled split preview generated from R0 reviewed split_plan"
+    },
+    {
+      "batch_id": "batch08",
+      "actual_range": "T071",
+      "expected_take_count": 1,
+      "split_manifest_rows": 1,
+      "unit_preview_count": 1,
+      "clean_preview_count": 1,
+      "blocked_count": 0,
+      "r1_intake_ready": "true",
+      "notes": "batch08 terminal single-take split preview; T071 only"
+    }
+  ]
+}

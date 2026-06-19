@@ -1,0 +1,20 @@
+{
+  "batch_id": "batch08",
+  "actual_range": "T071",
+  "expected_take_count": 1,
+  "split_manifest_rows": 1,
+  "unit_preview_count": 1,
+  "clean_preview_count": 1,
+  "blocked_count": 0,
+  "raw_master": "02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch08_T071.wav",
+  "raw_checksum_sha256": "702c7df516aac29f8e6340e348d5030d211802341b40857cab5aa89b2017b978",
+  "created_at": "2026-06-19T19:43:49+08:00",
+  "review_only": true,
+  "production_grade": false,
+  "split_preview_only": true,
+  "not_sample_assets": true,
+  "not_recording_segments": true,
+  "not_render_executed": true,
+  "not_ml_training_data": true,
+  "requires_r1_review": true
+}

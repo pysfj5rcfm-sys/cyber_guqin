@@ -1,0 +1,15 @@
+batch_id: batch04
+archived_at: 2026-06-19T19:43:49+08:00
+review_only: true
+production_grade: false
+not_sample_assets: true
+files:
+  - source_export_path: tools/cg-varw/review_outputs/r0/exports/UUlOSVNUXzAwMi9YV0MvUlNfWFdDXzAwMl9CQUlZQV9QSUxPVC9yYXcvUlNfWFdDXzAwMl9CQUlZQV9QSUxPVF9iYXRjaDA0X1QwMzEtVDA0MC53YXY/reviewed_slate_anchor_manifest.csv
+    archive_path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r0_review/batch04/reviewed_slate_anchor_manifest.batch04.csv
+    checksum_sha256: ae63d6e59d9d2e4b1f78a50c5fcd73939ba67a7e6fe912706143e72815cdb6b9
+  - source_export_path: tools/cg-varw/review_outputs/r0/exports/UUlOSVNUXzAwMi9YV0MvUlNfWFdDXzAwMl9CQUlZQV9QSUxPVC9yYXcvUlNfWFdDXzAwMl9CQUlZQV9QSUxPVF9iYXRjaDA0X1QwMzEtVDA0MC53YXY/raw_marker_review.csv
+    archive_path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r0_review/batch04/raw_marker_review.batch04.csv
+    checksum_sha256: 49d962f887d0bc032d3f9a84f237e626c71d5c0fd61585314b8551693e6d54c6
+  - source_export_path: tools/cg-varw/review_outputs/r0/exports/UUlOSVNUXzAwMi9YV0MvUlNfWFdDXzAwMl9CQUlZQV9QSUxPVC9yYXcvUlNfWFdDXzAwMl9CQUlZQV9QSUxPVF9iYXRjaDA0X1QwMzEtVDA0MC53YXY/split_plan_from_raw_markers.csv
+    archive_path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r0_review/batch04/split_plan_from_raw_markers.batch04.csv
+    checksum_sha256: 78b1f8e6b6b24241059ea286fc5d07afb912fdd4a0037881c97a0b881f9f8310

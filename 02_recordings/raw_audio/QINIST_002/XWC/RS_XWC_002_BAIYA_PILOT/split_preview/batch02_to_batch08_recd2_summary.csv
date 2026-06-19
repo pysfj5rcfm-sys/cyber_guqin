@@ -1,0 +1,8 @@
+batch_id,actual_range,expected_take_count,split_manifest_rows,unit_preview_count,clean_preview_count,blocked_count,r1_intake_ready,notes
+batch02,T011-T020,10,10,10,10,0,true,controlled split preview generated from R0 reviewed split_plan
+batch03,T021-T030,10,10,10,10,0,true,controlled split preview generated from R0 reviewed split_plan
+batch04,T031-T040,10,10,10,10,0,true,controlled split preview generated from R0 reviewed split_plan
+batch05,T041-T050,10,10,10,10,0,true,controlled split preview generated from R0 reviewed split_plan
+batch06,T051-T060,10,10,10,10,0,true,controlled split preview generated from R0 reviewed split_plan
+batch07,T061-T070,10,10,10,10,0,true,controlled split preview generated from R0 reviewed split_plan
+batch08,T071,1,1,1,1,0,true,batch08 terminal single-take split preview; T071 only

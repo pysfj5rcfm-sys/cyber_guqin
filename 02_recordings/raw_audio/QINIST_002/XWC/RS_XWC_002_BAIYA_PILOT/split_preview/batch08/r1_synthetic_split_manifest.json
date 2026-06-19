@@ -1,0 +1,67 @@
+{
+  "schema": "cg-varw.r1.real_split_manifest.v1",
+  "recording_session_id": "RS_XWC_002_BAIYA_PILOT",
+  "batch_id": "batch08",
+  "split_root_role": "recd2_controlled_split_preview",
+  "review_only": true,
+  "production_grade": false,
+  "not_sample_assets": true,
+  "not_recording_segments": true,
+  "not_render_executed": true,
+  "not_ml_training_data": true,
+  "requires_r1_review": true,
+  "synthetic_demo": false,
+  "batches": [
+    {
+      "batch_id": "batch08",
+      "display_name": "Baiya batch08 RECD-2 clean previews",
+      "segment_count": 1,
+      "source": "real_split_root"
+    }
+  ],
+  "segments": [
+    {
+      "segment_id": "RECD2_BATCH08_T071",
+      "batch_id": "batch08",
+      "take_id": "T071",
+      "file_name": "T071_clean_preview.wav",
+      "relative_path": "clean_previews/T071_clean_preview.wav",
+      "recording_session_id": "RS_XWC_002_BAIYA_PILOT",
+      "recording_id": "RS_XWC_002",
+      "piece_id": "XWC",
+      "qinist_id": "QINIST_002",
+      "recording_take_no": "T071",
+      "batch_take_no": "001",
+      "script_id": "RS_XWC_002_071",
+      "source_raw_audio": "02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch08_T071.wav",
+      "source_split_audio": "clean_previews/T071_clean_preview.wav",
+      "event_id": "XWC_P09_N02",
+      "event_range": "XWC_P09_N01_to_N02",
+      "gesture_id": "AN_RING_10_QIAQI",
+      "realization_variant": "clean",
+      "variant": "clean",
+      "duration_s": 12.832426,
+      "sample_rate": 44100,
+      "bit_depth": 24,
+      "channels": 2,
+      "markers": {
+        "pre_idle_end": null,
+        "gesture_start": null,
+        "render_anchor": null,
+        "tail_end": null
+      },
+      "segment_status": "candidate",
+      "review_status": "not_started",
+      "r1_status": "READY_FOR_R1_REVIEW",
+      "synthetic_demo": false,
+      "review_only": true,
+      "production_grade": false,
+      "not_sample_assets": true,
+      "not_recording_segments": true,
+      "not_render_executed": true,
+      "not_ml_training_data": true,
+      "requires_r1_review": true,
+      "notes": "RECD-2 clean preview only; requires VARW-R1 review before any downstream use."
+    }
+  ]
+}

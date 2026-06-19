@@ -1,0 +1,17 @@
+split_root: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/split_preview/batch06
+batch_id: batch06
+manifest: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/split_preview/batch06/manifests/recd2_split_preview_manifest.csv
+r1_manifest: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/split_preview/batch06/r1_synthetic_split_manifest.json
+r1_status: READY_FOR_R1_REVIEW
+requires_r1_review: true
+review_only: true
+production_grade: false
+not_sample_assets: true
+not_recording_segments: true
+not_render_executed: true
+not_ml_training_data: true
+split_preview_only: true
+notes:
+  - Clean preview files are R1 intake candidates only.
+  - No R1 human review was performed in RECD-2.
+  - Do not treat these files as sample assets or production segments.
