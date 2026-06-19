@@ -30,6 +30,7 @@ export const demoAudioFileName = syntheticAsr.audio_file;
 export const demoRawDuration = syntheticAsr.duration_seconds;
 
 export const requiredMarkerKeys: R0MarkerKey[] = ["slate_start", "slate_end", "next_slate_start"];
+export const terminalRequiredMarkerKeys: R0MarkerKey[] = ["slate_start", "slate_end"];
 export const optionalMarkerKeys: R0MarkerKey[] = ["guqin_start", "tail_end"];
 
 export const rawFlags: MockFlags = {
@@ -138,9 +139,10 @@ export const rawReviewUnits: ReviewUnit[] = (syntheticAsr.candidates as Syntheti
 
 export function markerStats(unit: ReviewUnit) {
   const accepted = (key: R0MarkerKey) => unit.markers.find((marker) => marker.key === key)?.review_status === "accepted";
+  const requiredKeys = requiredMarkerKeysForUnit(unit);
   return {
-    requiredAccepted: requiredMarkerKeys.filter(accepted).length,
-    requiredTotal: requiredMarkerKeys.length,
+    requiredAccepted: requiredKeys.filter(accepted).length,
+    requiredTotal: requiredKeys.length,
     optionalAccepted: optionalMarkerKeys.filter(accepted).length,
     optionalTotal: optionalMarkerKeys.length,
   };
@@ -148,17 +150,19 @@ export function markerStats(unit: ReviewUnit) {
 
 export function completionLabel(unit: ReviewUnit) {
   const stats = markerStats(unit);
-  return `必填${stats.requiredAccepted}/${stats.requiredTotal} · 可选${stats.optionalAccepted}/${stats.optionalTotal}`;
+  const terminalLabel = isTerminalUnit(unit) ? " · 末条" : "";
+  return `必填${stats.requiredAccepted}/${stats.requiredTotal} · 可选${stats.optionalAccepted}/${stats.optionalTotal}${terminalLabel}`;
 }
 
 export function deriveUnitReviewStatus(unit: ReviewUnit): ReviewStatus {
   if (unit.unit_status === "excluded" || unit.unit_status === "rejected") return "rejected";
 
-  const requiredMarkers = requiredMarkerKeys
+  const requiredKeys = requiredMarkerKeysForUnit(unit);
+  const requiredMarkers = requiredKeys
     .map((key) => unit.markers.find((marker) => marker.key === key))
     .filter(Boolean);
   const requiredAccepted = requiredMarkers.every((marker) => marker?.review_status === "accepted");
-  if (requiredAccepted && requiredMarkers.length === requiredMarkerKeys.length) return "accepted";
+  if (requiredAccepted && requiredMarkers.length === requiredKeys.length) return "accepted";
   if (requiredMarkers.some((marker) => marker?.review_status === "needs_retake")) return "needs_retake";
   if (requiredMarkers.some((marker) => marker?.review_status === "unclear")) return "unclear";
   if (unit.markers.some((marker) => (marker.review_status && marker.review_status !== "candidate") || (marker.nudge_total_ms ?? 0) !== 0)) return "in_progress";
@@ -222,11 +226,11 @@ export function buildRawExportPreview(units: ReviewUnit[]) {
   );
 
   const splitPlan = normalized
-    .filter((unit) => unit.unit_status !== "excluded" && requiredMarkerKeys.every((key) => unit.markers.find((marker) => marker.key === key)?.review_status === "accepted"))
+    .filter((unit) => unit.unit_status !== "excluded" && requiredMarkerKeysForUnit(unit).every((key) => unit.markers.find((marker) => marker.key === key)?.review_status === "accepted"))
     .map((unit) => {
       const times = markerTimes(unit);
       const unitStart = times.slate_start ?? "";
-      const unitEnd = times.next_slate_start ?? "";
+      const unitEnd = times.next_slate_start ?? (isTerminalUnit(unit) ? "raw_end" : "");
       const cleanStart = times.guqin_start || times.slate_end || "";
       return {
         unit_id: unit.id,
@@ -259,4 +263,12 @@ function contractReviewStatus(status: ReviewStatus | undefined): MarkerReviewSta
 
 function markerTimes(unit: ReviewUnit) {
   return Object.fromEntries(unit.markers.map((marker) => [marker.key, marker.time.toFixed(3)])) as Partial<Record<R0MarkerKey, string>>;
+}
+
+function requiredMarkerKeysForUnit(unit: ReviewUnit): R0MarkerKey[] {
+  return isTerminalUnit(unit) ? terminalRequiredMarkerKeys : requiredMarkerKeys;
+}
+
+function isTerminalUnit(unit: ReviewUnit): boolean {
+  return unit.boundary_type === "file_end" && !unit.markers.some((marker) => marker.key === "next_slate_start");
 }

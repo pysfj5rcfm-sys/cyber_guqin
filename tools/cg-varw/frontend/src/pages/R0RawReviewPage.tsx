@@ -410,7 +410,7 @@ export function R0RawReviewPage() {
             />
             <div className={`boundary-note ${boundaryLinked || isFileEndBoundary ? "is-linked" : "is-unlinked"}`}>
               {selectedUnit && isFileEndBoundary
-                ? `${selectedUnit.id}.next_slate_start 使用文件结束边界：${formatTime(selectedBoundaryMarker?.time ?? duration)}`
+                ? `${selectedUnit.id}：末条 take，无下一口播；终点使用 raw 文件结尾 ${formatTime(duration)}`
                 : selectedUnit && boundaryLinked && nextUnit
                   ? `${selectedUnit.id}.next_slate_start 边界已联动到 ${nextUnit.id}.slate_start`
                   : selectedUnit

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import tempfile
 import unittest
+import wave
+from pathlib import Path
 
 from app.schemas import Marker, R1Marker, R1MarkerSet, R1SegmentQC, ReviewUnit, SplitSegment
 from app.services import r0_export_writer, r1_review_store
@@ -55,6 +58,58 @@ class CsvContractTests(unittest.TestCase):
         self.assertEqual(split["suggested_clean_end_s"], "3.000")
         self.assertEqual(split["tail_end_s"], "2.500")
         self.assertEqual(split["split_plan_role"], "clean_preview")
+        validate_csv_contract("reviewed_slate_anchor_manifest.csv", [manifest])
+        validate_csv_contract("split_plan_from_raw_markers.csv", [split])
+
+    def test_r0_terminal_take_uses_file_end_boundary_without_next_slate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            raw_path = Path(tmp_dir) / "terminal.wav"
+            with wave.open(str(raw_path), "wb") as handle:
+                handle.setnchannels(1)
+                handle.setsampwidth(2)
+                handle.setframerate(10)
+                handle.writeframes(b"\x00\x00" * 25)
+
+            unit = ReviewUnit(
+                id="T010",
+                sequence=10,
+                unit_status="needs_review",
+                review_status="in_progress",
+                source="asr_candidate",
+                takeId="T010",
+                boundary_type="file_end",
+                recording_session_id="RS_TEST",
+                recording_id="REC_TEST",
+                piece_id="PIECE_TEST",
+                qinist_id="QINIST_TEST",
+                batch_id="batch01",
+                recording_take_no="T010",
+                batch_take_no="010",
+                script_id="SCRIPT_TEST",
+                source_raw_audio=str(raw_path),
+                markers=[
+                    Marker(key="slate_start", label="口播起始", time=1.0, review_status="accepted"),
+                    Marker(key="slate_end", label="口播结束", time=1.5, review_status="accepted"),
+                ],
+            )
+
+            manifest = r0_export_writer._manifest_row("FILE_TEST", str(raw_path), unit, "2026-06-12T00:00:00+00:00")
+            split = r0_export_writer._split_row("FILE_TEST", str(raw_path), unit, "2026-06-12T00:00:00+00:00")
+
+        self.assertTrue(r0_export_writer._is_plannable(unit))
+        self.assertEqual(manifest["review_status"], "accepted")
+        self.assertEqual(manifest["unit_status"], "confirmed")
+        self.assertEqual(manifest["is_terminal_take"], "true")
+        self.assertEqual(manifest["terminal_boundary_policy"], "raw_end")
+        self.assertEqual(manifest["terminal_unit_end_s"], "2.500000")
+        self.assertEqual(manifest["next_slate_start_s"], "2.500000")
+        self.assertEqual(manifest["next_slate_marker_source"], "terminal_raw_end")
+        self.assertEqual(split["unit_start_s"], "1.000")
+        self.assertEqual(split["unit_end_s"], "2.500000")
+        self.assertEqual(split["suggested_clean_start_s"], "1.500")
+        self.assertEqual(split["suggested_clean_end_s"], "2.500000")
+        self.assertEqual(split["is_terminal_take"], "true")
+        self.assertEqual(split["terminal_boundary_policy"], "raw_end")
         validate_csv_contract("reviewed_slate_anchor_manifest.csv", [manifest])
         validate_csv_contract("split_plan_from_raw_markers.csv", [split])
 
