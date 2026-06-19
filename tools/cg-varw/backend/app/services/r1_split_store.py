@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import json
 import math
 import wave
@@ -24,6 +25,8 @@ MARKER_LABELS = {
     "render_anchor": "渲染锚点",
     "tail_end": "尾音结束",
 }
+MARKER_ORDER = ("pre_idle_end", "gesture_start", "render_anchor", "tail_end")
+R1_SEED_SOURCES = ("manifest", "audio_seed", "fallback_default")
 
 
 def get_split_root() -> Path:
@@ -186,10 +189,16 @@ def _load_manifest(root: Path) -> dict[str, Any] | None:
 
 
 def _segments_from_manifest(batch_id: str) -> list[SplitSegment]:
-    manifest = _load_manifest(get_split_root())
+    root = get_split_root()
+    manifest = _load_manifest(root)
     if not manifest:
         return []
-    return [SplitSegment(**segment) for segment in manifest.get("segments", []) if segment.get("batch_id") == batch_id]
+    recd2_rows = _load_recd2_rows(root)
+    return [
+        _with_seed_markers(SplitSegment(**segment), root, recd2_rows)
+        for segment in manifest.get("segments", [])
+        if segment.get("batch_id") == batch_id
+    ]
 
 
 def _segments_from_files(batch_id: str) -> list[SplitSegment]:
@@ -203,34 +212,27 @@ def _segments_from_files(batch_id: str) -> list[SplitSegment]:
         duration_s, sample_rate, bit_depth, channels = wav_metadata(path)
         take_id = path.stem.replace("_clean", "")
         segment_id = f"SPLIT_{batch_id.upper()}_{take_id.upper()}"
-        markers = _default_markers(segment_id, duration_s)
-        segments.append(
-            SplitSegment(
-                segment_id=segment_id,
-                batch_id=batch_id,
-                take_id=take_id,
-                file_name=path.name,
-                relative_path=path.relative_to(root).as_posix(),
-                event_id=f"EVENT_{take_id.upper()}",
-                event_range=f"{index:03d}",
-                duration_s=duration_s,
-                sample_rate=sample_rate,
-                bit_depth=bit_depth,
-                channels=channels,
-                markers=markers,
-                synthetic_demo=get_split_root_mode() == "demo",
-            )
+        segment = SplitSegment(
+            segment_id=segment_id,
+            batch_id=batch_id,
+            take_id=take_id,
+            file_name=path.name,
+            relative_path=path.relative_to(root).as_posix(),
+            event_id=f"EVENT_{take_id.upper()}",
+            event_range=f"{index:03d}",
+            duration_s=duration_s,
+            sample_rate=sample_rate,
+            bit_depth=bit_depth,
+            channels=channels,
+            markers=_default_markers(segment_id, duration_s),
+            synthetic_demo=get_split_root_mode() == "demo",
         )
+        segments.append(_with_seed_markers(segment, root, {}))
     return segments
 
 
 def _default_markers(segment_id: str, duration_s: float) -> dict[str, R1Marker]:
-    times = {
-        "pre_idle_end": 0.2,
-        "gesture_start": 0.45,
-        "render_anchor": 0.45,
-        "tail_end": max(0.7, min(duration_s - 0.08, duration_s * 0.86)),
-    }
+    times = _fallback_marker_values(duration_s)
     return {
         key: R1Marker(
             marker_id=f"{segment_id}:{key}",
@@ -238,11 +240,185 @@ def _default_markers(segment_id: str, duration_s: float) -> dict[str, R1Marker]:
             marker_type=key,  # type: ignore[arg-type]
             marker_label_zh=MARKER_LABELS[key],
             time_s=round(time_s, 3),
-            source="derived_from_fixture",
-            confidence=0.92,
+            source="fallback_default",
+            confidence=None,
+            notes="R1 seed marker from fallback_default; requires manual review.",
         )
         for key, time_s in times.items()
     }
+
+
+def _load_recd2_rows(root: Path) -> dict[str, dict[str, str]]:
+    path = root / "manifests" / "recd2_split_preview_manifest.csv"
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    indexed: dict[str, dict[str, str]] = {}
+    for row in rows:
+        for key in {row.get("recording_take_no", ""), row.get("batch_take_no", ""), Path(row.get("clean_preview_audio", "")).stem.replace("_clean_preview", "")}:
+            if key:
+                indexed[key] = row
+    return indexed
+
+
+def _with_seed_markers(segment: SplitSegment, root: Path, recd2_rows: dict[str, dict[str, str]]) -> SplitSegment:
+    existing = segment.markers
+    if all(getattr(existing, key) is not None for key in MARKER_ORDER):
+        return segment
+
+    row = recd2_rows.get(segment.recording_take_no) or recd2_rows.get(segment.take_id) or recd2_rows.get(segment.batch_take_no) or {}
+    seed_values = _seed_marker_values(segment, root, row)
+    markers = existing.model_copy()
+    for key in MARKER_ORDER:
+        if getattr(markers, key) is not None:
+            continue
+        time_s, source = seed_values[key]
+        setattr(
+            markers,
+            key,
+            R1Marker(
+                marker_id=f"{segment.segment_id}:{key}",
+                segment_id=segment.segment_id,
+                marker_type=key,  # type: ignore[arg-type]
+                marker_label_zh=MARKER_LABELS[key],
+                time_s=round(time_s, 3),
+                source=source,  # type: ignore[arg-type]
+                confidence=_seed_confidence(source),
+                review_status="candidate",
+                nudge_total_ms=0,
+                notes=f"R1 seed marker from {source}; requires manual review.",
+            ),
+        )
+    return segment.model_copy(update={"markers": markers, "segment_status": "candidate", "review_status": "not_started"})
+
+
+def _seed_marker_values(segment: SplitSegment, root: Path, recd2_row: dict[str, str]) -> dict[str, tuple[float, str]]:
+    duration_s = max(0.0, float(segment.duration_s or _float_field(recd2_row, "duration_s") or 0.0))
+    candidates = [
+        _manifest_marker_values(duration_s, recd2_row),
+        _audio_marker_values(root, segment, duration_s),
+        {key: (value, "fallback_default") for key, value in _fallback_marker_values(duration_s).items()},
+    ]
+    values: dict[str, tuple[float, str]] = {}
+    for key in MARKER_ORDER:
+        for candidate in candidates:
+            if key in candidate:
+                values[key] = candidate[key]
+                break
+    return _monotonic_seed_values(values, duration_s)
+
+
+def _manifest_marker_values(duration_s: float, row: dict[str, str]) -> dict[str, tuple[float, str]]:
+    clean_start = _float_field(row, "clean_start_s")
+    if clean_start is None:
+        return {}
+
+    values: dict[str, tuple[float, str]] = {}
+    guqin_start = _local_manifest_time(row, "guqin_start_s", clean_start, duration_s)
+    tail_end = _local_manifest_time(row, "tail_end_s", clean_start, duration_s)
+    if guqin_start is not None:
+        pre_idle_end = max(0.0, guqin_start - min(0.05, duration_s * 0.1))
+        values["pre_idle_end"] = (pre_idle_end, "manifest")
+        values["gesture_start"] = (guqin_start, "manifest")
+        values["render_anchor"] = (guqin_start, "manifest")
+    if tail_end is not None:
+        values["tail_end"] = (tail_end, "manifest")
+    return values
+
+
+def _audio_marker_values(root: Path, segment: SplitSegment, duration_s: float) -> dict[str, tuple[float, str]]:
+    if duration_s <= 0:
+        return {}
+    path = ensure_within_root(root, root / segment.relative_path)
+    if path.suffix.lower() not in {".wav", ".wave"} or not path.exists():
+        return {}
+    try:
+        with wave.open(str(path), "rb") as handle:
+            channels = handle.getnchannels()
+            sample_width = handle.getsampwidth()
+            frame_count = handle.getnframes()
+            sample_rate = handle.getframerate()
+            frames = handle.readframes(frame_count)
+    except wave.Error:
+        return {}
+    if sample_width not in {1, 2, 3, 4} or frame_count <= 0 or sample_rate <= 0:
+        return {}
+
+    frame_peaks: list[float] = []
+    max_peak = 0.0
+    for frame_index in range(frame_count):
+        peak = 0.0
+        for channel_index in range(channels):
+            offset = (frame_index * channels + channel_index) * sample_width
+            peak = max(peak, abs(_sample_value(frames, offset, sample_width)))
+        frame_peaks.append(peak)
+        max_peak = max(max_peak, peak)
+    if max_peak < 0.001:
+        return {}
+
+    threshold = max(0.015, max_peak * 0.12)
+    active_frames = [index for index, peak in enumerate(frame_peaks) if peak >= threshold]
+    if not active_frames:
+        return {}
+    first_s = active_frames[0] / sample_rate
+    last_s = min(duration_s, (active_frames[-1] + 1) / sample_rate)
+    pre_idle_end = max(0.0, first_s - min(0.05, duration_s * 0.1))
+    return {
+        "pre_idle_end": (pre_idle_end, "audio_seed"),
+        "gesture_start": (first_s, "audio_seed"),
+        "render_anchor": (first_s, "audio_seed"),
+        "tail_end": (last_s, "audio_seed"),
+    }
+
+
+def _fallback_marker_values(duration_s: float) -> dict[str, float]:
+    duration_s = max(0.0, duration_s)
+    return {
+        "pre_idle_end": 0.0,
+        "gesture_start": min(0.05, duration_s * 0.10),
+        "render_anchor": min(0.15, duration_s * 0.20),
+        "tail_end": duration_s,
+    }
+
+
+def _monotonic_seed_values(values: dict[str, tuple[float, str]], duration_s: float) -> dict[str, tuple[float, str]]:
+    ordered: dict[str, tuple[float, str]] = {}
+    previous = 0.0
+    for key in MARKER_ORDER:
+        time_s, source = values[key]
+        clamped = min(duration_s, max(previous, max(0.0, time_s)))
+        ordered[key] = (round(clamped, 3), source if source in R1_SEED_SOURCES else "fallback_default")
+        previous = clamped
+    return ordered
+
+
+def _local_manifest_time(row: dict[str, str], field: str, clean_start: float, duration_s: float) -> float | None:
+    raw_time = _float_field(row, field)
+    if raw_time is None:
+        return None
+    return min(duration_s, max(0.0, raw_time - clean_start))
+
+
+def _float_field(row: dict[str, str], field: str) -> float | None:
+    value = (row.get(field) or "").strip()
+    if not value:
+        return None
+    try:
+        parsed = float(value)
+    except ValueError:
+        return None
+    if not math.isfinite(parsed):
+        return None
+    return parsed
+
+
+def _seed_confidence(source: str) -> float | None:
+    if source == "manifest":
+        return 0.85
+    if source == "audio_seed":
+        return 0.55
+    return None
 
 
 def _sample_value(data: bytes, offset: int, sample_width: int) -> float:

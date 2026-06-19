@@ -48,10 +48,16 @@ export interface R1Marker {
   marker_type: R1MarkerKey;
   marker_label_zh: string;
   time_s: number;
-  source: "synthetic_candidate" | "human_adjusted" | "manual" | "derived_from_fixture";
+  source: "synthetic_candidate" | "human_adjusted" | "manual" | "derived_from_fixture" | "manifest" | "audio_seed" | "fallback_default";
   confidence?: number | null;
   review_status: MarkerReviewStatus;
   nudge_total_ms?: number;
+  requires_manual_review?: boolean;
+  review_only?: true;
+  production_grade?: false;
+  not_sample_assets?: true;
+  not_render_executed?: true;
+  not_ml_training_data?: true;
   notes?: string;
 }
 

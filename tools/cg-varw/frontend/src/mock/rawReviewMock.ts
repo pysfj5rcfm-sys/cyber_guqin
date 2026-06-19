@@ -151,7 +151,7 @@ export function markerStats(unit: ReviewUnit) {
 export function completionLabel(unit: ReviewUnit) {
   const stats = markerStats(unit);
   const terminalLabel = isTerminalUnit(unit) ? " · 末条" : "";
-  return `必填${stats.requiredAccepted}/${stats.requiredTotal} · 可选${stats.optionalAccepted}/${stats.optionalTotal}${terminalLabel}`;
+  return `必填${stats.requiredAccepted}/${stats.requiredTotal}${terminalLabel}`;
 }
 
 export function deriveUnitReviewStatus(unit: ReviewUnit): ReviewStatus {

@@ -136,10 +136,16 @@ class R1Marker(BaseModel):
     marker_type: R1MarkerType
     marker_label_zh: str
     time_s: float
-    source: Literal["synthetic_candidate", "human_adjusted", "manual", "derived_from_fixture"] = "derived_from_fixture"
+    source: Literal["synthetic_candidate", "human_adjusted", "manual", "derived_from_fixture", "manifest", "audio_seed", "fallback_default"] = "derived_from_fixture"
     confidence: float | None = None
     review_status: R1MarkerReviewStatus = "candidate"
     nudge_total_ms: int = 0
+    requires_manual_review: bool = True
+    review_only: bool = True
+    production_grade: bool = False
+    not_sample_assets: bool = True
+    not_render_executed: bool = True
+    not_ml_training_data: bool = True
     notes: str = ""
 
 
