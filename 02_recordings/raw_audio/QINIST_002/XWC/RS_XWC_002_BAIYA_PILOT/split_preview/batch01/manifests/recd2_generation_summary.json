@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-06-19T08:25:52+08:00",
+  "raw_duration_s": 115.1704761904762,
+  "sample_rate": 44100,
+  "channels": 2,
+  "bit_depth": 24,
+  "r0_archive_rows": 3,
+  "manifest_rows": 10,
+  "preview_created_rows": 10,
+  "blockers": [],
+  "unit_preview_count": 10,
+  "clean_preview_count": 10
+}
