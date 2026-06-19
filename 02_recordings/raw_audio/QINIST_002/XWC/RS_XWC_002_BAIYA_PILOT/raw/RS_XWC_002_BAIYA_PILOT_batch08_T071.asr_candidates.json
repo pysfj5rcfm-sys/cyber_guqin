@@ -1,0 +1,52 @@
+{
+  "schema": "cg-varw.r0.asr_candidates.v1",
+  "recording_session_id": "RS_XWC_002_BAIYA_PILOT",
+  "batch_id": "batch08",
+  "audio_file": "RS_XWC_002_BAIYA_PILOT_batch08_T071.wav",
+  "source_raw_audio": "02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch08_T071.wav",
+  "workspace_role": "real_baiya_batch08_recd1_asr_candidates",
+  "synthetic_demo": false,
+  "review_only": true,
+  "production_grade": false,
+  "not_sample_assets": true,
+  "not_render_executed": true,
+  "not_ml_training_data": true,
+  "requires_manual_review": true,
+  "candidates": [
+    {
+      "unit_id": "T071",
+      "sequence": 1,
+      "source": "faster_whisper_asr_candidate",
+      "status": "candidate",
+      "candidate_status": "candidate",
+      "match_status": "matched",
+      "take_id": "T071",
+      "recording_session_id": "RS_XWC_002_BAIYA_PILOT",
+      "recording_id": "RS_XWC_002",
+      "piece_id": "XWC",
+      "qinist_id": "QINIST_002",
+      "batch_id": "batch08",
+      "recording_take_no": "T071",
+      "batch_take_no": "001",
+      "script_id": "RS_XWC_002_071",
+      "source_raw_audio": "02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw/RS_XWC_002_BAIYA_PILOT_batch08_T071.wav",
+      "recognized_slate_text": "071",
+      "expected_spoken_slate_text": "零七幺",
+      "confidence": "0.824964",
+      "markers": {
+        "slate_start": 3.12,
+        "slate_end": 5.0
+      },
+      "boundary": {
+        "type": "file_end"
+      },
+      "requires_manual_review": true,
+      "review_only": true,
+      "production_grade": false,
+      "not_sample_assets": true,
+      "not_render_executed": true,
+      "not_ml_training_data": true,
+      "notes": "ASR text matched expected slate variant; candidate only, manual review required."
+    }
+  ]
+}

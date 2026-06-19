@@ -1,0 +1,8 @@
+batch_id,actual_range,expected_take_count,candidate_row_count,matched_count,ambiguous_count,duplicate_count,unmatched_count,failed_count,r0_sidecar_created,notes
+batch02,T011-T020,10,10,9,1,1,0,0,true,candidate-only ASR slate anchors generated
+batch03,T021-T030,10,10,10,0,0,0,0,true,candidate-only ASR slate anchors generated
+batch04,T031-T040,10,10,10,0,0,0,0,true,candidate-only ASR slate anchors generated
+batch05,T041-T050,10,10,9,1,1,0,0,true,candidate-only ASR slate anchors generated
+batch06,T051-T060,10,10,10,0,0,0,0,true,candidate-only ASR slate anchors generated
+batch07,T061-T070,10,10,8,2,2,0,0,true,candidate-only ASR slate anchors generated
+batch08,T071,1,1,1,0,0,0,0,true,batch08 terminal single-take batch; no T072 expected
