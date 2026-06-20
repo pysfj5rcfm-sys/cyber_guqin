@@ -45,6 +45,17 @@ class R2RenderSetIntakeTests(unittest.TestCase):
         self.assertTrue(audio_path.exists())
         self.assertEqual("XWC_BAIYA_A_LITERAL.wav", audio_path.name)
 
+    def test_prefers_playback_safe_phrase_alignment_seed(self):
+        with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": str(R2_RENDER_ROOT), "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+            self.assertEqual(R2_INTAKE_ROOT / "r2_phrase_alignment_seed.playback_safe.csv", store.get_r2_alignment_seed_path())
+            alignments = store.list_alignments("R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e")
+
+        self.assertEqual(40, len(alignments))
+        non_final = [item for item in alignments if item.next_phrase_first_attack_s is not None]
+        self.assertEqual(36, len(non_final))
+        self.assertTrue(all(item.phrase_play_end_s <= item.next_phrase_first_attack_s for item in non_final))
+        self.assertTrue(all(item.phrase_tail_end_s >= item.phrase_play_end_s for item in non_final))
+
 
 if __name__ == "__main__":
     unittest.main()

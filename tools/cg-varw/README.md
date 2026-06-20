@@ -60,12 +60,28 @@ This intake is review-only. It does not generate E, choose a best version, write
 
 The R2 frontend loads the same endpoints on page open. It uses the first returned real `experimental_render` render set, loads A/B/C/D versions and backend audio URLs, and keeps the built-in mock fallback only when the backend is unavailable or no real render set is returned.
 
+For the current R2 review workflow, the backend is expected at `http://127.0.0.1:8788`. Start it with:
+
+```bash
+cd tools/cg-varw/backend
+CG_VARW_R2_RENDER_ROOT="/path/to/abcd_experimental_render" \
+CG_VARW_R2_INTAKE_ROOT="/path/to/abcd_experimental_render/r2_review_intake" \
+/opt/homebrew/bin/python3.11 -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8788
+```
+
+The R2 frontend defaults to `http://127.0.0.1:8788` when `VITE_CG_VARW_API_BASE` is unset. To override it:
+
+```bash
+cd tools/cg-varw/frontend
+VITE_CG_VARW_API_BASE="http://127.0.0.1:8788" npm run dev -- --port 5173
+```
+
 ## Windows Frontend
 
 ```powershell
 cd tools/cg-varw/frontend
 npm install
-$env:VITE_CG_VARW_API_BASE="http://127.0.0.1:8787"
+$env:VITE_CG_VARW_API_BASE="http://127.0.0.1:8788"
 npm run dev -- --host 127.0.0.1 --port 5173
 ```
 

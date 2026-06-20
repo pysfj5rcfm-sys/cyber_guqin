@@ -333,6 +333,9 @@ def get_r2_alignment_seed_path() -> Path | None:
     intake_root = get_r2_intake_root()
     if not intake_root:
         return None
+    playback_safe_seed = intake_root / "r2_phrase_alignment_seed.playback_safe.csv"
+    if playback_safe_seed.exists():
+        return playback_safe_seed
     score_lock_seed = intake_root / "r2_phrase_alignment_seed.from_score_phrase_lock.csv"
     if score_lock_seed.exists():
         return score_lock_seed
@@ -476,6 +479,8 @@ def alignments_from_intake(intake: dict[str, Any]) -> list[R2RenderPhraseAlignme
         for item in csv.DictReader(handle):
             start_s = float(item["phrase_start_s"])
             end_s = float(item["phrase_end_s"])
+            play_start_s = parse_optional_float(item.get("phrase_play_start_s"))
+            play_end_s = parse_optional_float(item.get("phrase_play_end_s"))
             rows.append(
                 R2RenderPhraseAlignment(
                     render_set_id=intake["render_set_id"],
@@ -485,8 +490,13 @@ def alignments_from_intake(intake: dict[str, Any]) -> list[R2RenderPhraseAlignme
                     event_range=item["event_range"],
                     start_s=start_s,
                     end_s=end_s,
-                    breath_points_s=[round(start_s + (end_s - start_s) * 0.38, 3)],
-                    cadence_point_s=round(start_s + (end_s - start_s) * 0.82, 3),
+                    phrase_play_start_s=play_start_s,
+                    phrase_play_end_s=play_end_s,
+                    phrase_tail_end_s=parse_optional_float(item.get("phrase_tail_end_s")),
+                    next_phrase_first_attack_s=parse_optional_float(item.get("next_phrase_first_attack_s")),
+                    phrase_end_policy=item.get("phrase_end_policy", ""),
+                    breath_points_s=[round((play_start_s or start_s) + ((play_end_s or end_s) - (play_start_s or start_s)) * 0.38, 3)],
+                    cadence_point_s=round((play_start_s or start_s) + ((play_end_s or end_s) - (play_start_s or start_s)) * 0.82, 3),
                     boundary_source="imported",
                     boundary_confidence="low" if "provisional" in item.get("review_status", "") else "medium",
                     review_status="candidate",
@@ -508,6 +518,15 @@ def load_phrase_lock_rows() -> dict[str, dict[str, str]]:
 
 def parse_optional_int(value: str | None) -> int | None:
     if value is None or value == "":
+        return None
+
+
+def parse_optional_float(value: str | None) -> float | None:
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except ValueError:
         return None
     try:
         return int(value)

@@ -1,0 +1,416 @@
+{
+  "task_name": "CG-VARW-R2_RECENT_CHANGE_AUDIT_AND_SAFE_REPAIR",
+  "source_seed_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_intake/r2_phrase_alignment_seed.csv",
+  "playback_safe_seed_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_intake/r2_phrase_alignment_seed.playback_safe.csv",
+  "epsilon_s": 0.03,
+  "row_count": 40,
+  "phrase_count": 10,
+  "version_count": 4,
+  "non_final_phrase_rows_checked": 36,
+  "violations": [],
+  "validation_status": "passed",
+  "blocker_reason": "",
+  "policy_summary": "Default R2 phrase playback ends before the next phrase first target_attack_time_s; original phrase_end_s is retained as phrase_tail_end_s for tail review.",
+  "rows": [
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
+      "phrase_start_s": 1.284,
+      "original_phrase_end_s": 20.877,
+      "phrase_play_end_s": 16.785,
+      "next_phrase_first_attack_s": 16.815,
+      "trimmed_s": 4.092,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
+      "phrase_start_s": 1.284,
+      "original_phrase_end_s": 20.324,
+      "phrase_play_end_s": 17.572,
+      "next_phrase_first_attack_s": 17.602,
+      "trimmed_s": 2.752,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
+      "phrase_start_s": 1.284,
+      "original_phrase_end_s": 20.051,
+      "phrase_play_end_s": 16.755,
+      "next_phrase_first_attack_s": 16.785,
+      "trimmed_s": 3.296,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
+      "phrase_start_s": 1.284,
+      "original_phrase_end_s": 21.702,
+      "phrase_play_end_s": 18.56,
+      "next_phrase_first_attack_s": 18.59,
+      "trimmed_s": 3.142,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P02_LOCAL_PHRASE",
+      "phrase_start_s": 16.392,
+      "original_phrase_end_s": 35.239,
+      "phrase_play_end_s": 32.738,
+      "next_phrase_first_attack_s": 32.768,
+      "trimmed_s": 2.501,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P02_LOCAL_PHRASE",
+      "phrase_start_s": 17.179,
+      "original_phrase_end_s": 37.434,
+      "phrase_play_end_s": 34.396,
+      "next_phrase_first_attack_s": 34.426,
+      "trimmed_s": 3.038,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P02_LOCAL_PHRASE",
+      "phrase_start_s": 16.362,
+      "original_phrase_end_s": 35.709,
+      "phrase_play_end_s": 32.317,
+      "next_phrase_first_attack_s": 32.347,
+      "trimmed_s": 3.392,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P02_LOCAL_PHRASE",
+      "phrase_start_s": 18.167,
+      "original_phrase_end_s": 39.064,
+      "phrase_play_end_s": 37.369,
+      "next_phrase_first_attack_s": 37.399,
+      "trimmed_s": 1.695,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P03_LOCAL_PHRASE",
+      "phrase_start_s": 30.836,
+      "original_phrase_end_s": 51.542,
+      "phrase_play_end_s": 47.724,
+      "next_phrase_first_attack_s": 47.754,
+      "trimmed_s": 3.818,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P03_LOCAL_PHRASE",
+      "phrase_start_s": 32.494,
+      "original_phrase_end_s": 52.352,
+      "phrase_play_end_s": 49.945,
+      "next_phrase_first_attack_s": 49.975,
+      "trimmed_s": 2.407,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P03_LOCAL_PHRASE",
+      "phrase_start_s": 30.415,
+      "original_phrase_end_s": 49.077,
+      "phrase_play_end_s": 46.515,
+      "next_phrase_first_attack_s": 46.545,
+      "trimmed_s": 2.562,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P03_LOCAL_PHRASE",
+      "phrase_start_s": 35.467,
+      "original_phrase_end_s": 58.223,
+      "phrase_play_end_s": 55.317,
+      "next_phrase_first_attack_s": 55.347,
+      "trimmed_s": 2.906,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P04_LOCAL_PHRASE",
+      "phrase_start_s": 46.502,
+      "original_phrase_end_s": 67.317,
+      "phrase_play_end_s": 62.912,
+      "next_phrase_first_attack_s": 62.942,
+      "trimmed_s": 4.405,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P04_LOCAL_PHRASE",
+      "phrase_start_s": 48.723,
+      "original_phrase_end_s": 68.756,
+      "phrase_play_end_s": 65.94,
+      "next_phrase_first_attack_s": 65.97,
+      "trimmed_s": 2.816,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P04_LOCAL_PHRASE",
+      "phrase_start_s": 45.293,
+      "original_phrase_end_s": 63.779,
+      "phrase_play_end_s": 60.589,
+      "next_phrase_first_attack_s": 60.619,
+      "trimmed_s": 3.19,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P04_LOCAL_PHRASE",
+      "phrase_start_s": 54.095,
+      "original_phrase_end_s": 77.023,
+      "phrase_play_end_s": 73.568,
+      "next_phrase_first_attack_s": 73.598,
+      "trimmed_s": 3.455,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P05_LOCAL_PHRASE",
+      "phrase_start_s": 62.056,
+      "original_phrase_end_s": 81.132,
+      "phrase_play_end_s": 77.892,
+      "next_phrase_first_attack_s": 77.922,
+      "trimmed_s": 3.24,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P05_LOCAL_PHRASE",
+      "phrase_start_s": 65.084,
+      "original_phrase_end_s": 85.225,
+      "phrase_play_end_s": 81.303,
+      "next_phrase_first_attack_s": 81.333,
+      "trimmed_s": 3.922,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P05_LOCAL_PHRASE",
+      "phrase_start_s": 59.733,
+      "original_phrase_end_s": 78.721,
+      "phrase_play_end_s": 74.275,
+      "next_phrase_first_attack_s": 74.305,
+      "trimmed_s": 4.446,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P05_LOCAL_PHRASE",
+      "phrase_start_s": 72.712,
+      "original_phrase_end_s": 94.063,
+      "phrase_play_end_s": 91.65,
+      "next_phrase_first_attack_s": 91.68,
+      "trimmed_s": 2.413,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P06_LOCAL_PHRASE",
+      "phrase_start_s": 77.29,
+      "original_phrase_end_s": 91.38,
+      "phrase_play_end_s": 87.677,
+      "next_phrase_first_attack_s": 87.707,
+      "trimmed_s": 3.703,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P06_LOCAL_PHRASE",
+      "phrase_start_s": 80.701,
+      "original_phrase_end_s": 93.908,
+      "phrase_play_end_s": 91.77,
+      "next_phrase_first_attack_s": 91.8,
+      "trimmed_s": 2.138,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P06_LOCAL_PHRASE",
+      "phrase_start_s": 73.673,
+      "original_phrase_end_s": 86.317,
+      "phrase_play_end_s": 83.651,
+      "next_phrase_first_attack_s": 83.681,
+      "trimmed_s": 2.666,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P06_LOCAL_PHRASE",
+      "phrase_start_s": 91.048,
+      "original_phrase_end_s": 106.603,
+      "phrase_play_end_s": 103.85,
+      "next_phrase_first_attack_s": 103.88,
+      "trimmed_s": 2.753,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P07_LOCAL_PHRASE",
+      "phrase_start_s": 87.06,
+      "original_phrase_end_s": 101.429,
+      "phrase_play_end_s": 97.581,
+      "next_phrase_first_attack_s": 97.611,
+      "trimmed_s": 3.848,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P07_LOCAL_PHRASE",
+      "phrase_start_s": 91.153,
+      "original_phrase_end_s": 105.236,
+      "phrase_play_end_s": 102.017,
+      "next_phrase_first_attack_s": 102.047,
+      "trimmed_s": 3.219,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P07_LOCAL_PHRASE",
+      "phrase_start_s": 83.034,
+      "original_phrase_end_s": 96.324,
+      "phrase_play_end_s": 92.753,
+      "next_phrase_first_attack_s": 92.783,
+      "trimmed_s": 3.571,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P07_LOCAL_PHRASE",
+      "phrase_start_s": 103.233,
+      "original_phrase_end_s": 118.948,
+      "phrase_play_end_s": 116.05,
+      "next_phrase_first_attack_s": 116.08,
+      "trimmed_s": 2.898,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "phrase_start_s": 95.732,
+      "original_phrase_end_s": 110.575,
+      "phrase_play_end_s": 107.451,
+      "next_phrase_first_attack_s": 107.481,
+      "trimmed_s": 3.124,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "phrase_start_s": 100.168,
+      "original_phrase_end_s": 117.927,
+      "phrase_play_end_s": 112.605,
+      "next_phrase_first_attack_s": 112.635,
+      "trimmed_s": 5.322,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "phrase_start_s": 92.258,
+      "original_phrase_end_s": 107.926,
+      "phrase_play_end_s": 101.943,
+      "next_phrase_first_attack_s": 101.973,
+      "trimmed_s": 5.983,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "phrase_start_s": 114.201,
+      "original_phrase_end_s": 130.004,
+      "phrase_play_end_s": 128.25,
+      "next_phrase_first_attack_s": 128.28,
+      "trimmed_s": 1.754,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P09_LOCAL_PHRASE",
+      "phrase_start_s": 104.697,
+      "original_phrase_end_s": 120.539,
+      "phrase_play_end_s": 117.401,
+      "next_phrase_first_attack_s": 117.431,
+      "trimmed_s": 3.138,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P09_LOCAL_PHRASE",
+      "phrase_start_s": 109.851,
+      "original_phrase_end_s": 125.918,
+      "phrase_play_end_s": 123.006,
+      "next_phrase_first_attack_s": 123.036,
+      "trimmed_s": 2.912,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P09_LOCAL_PHRASE",
+      "phrase_start_s": 101.833,
+      "original_phrase_end_s": 115.735,
+      "phrase_play_end_s": 112.49,
+      "next_phrase_first_attack_s": 112.52,
+      "trimmed_s": 3.245,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P09_LOCAL_PHRASE",
+      "phrase_start_s": 125.496,
+      "original_phrase_end_s": 142.838,
+      "phrase_play_end_s": 140.75,
+      "next_phrase_first_attack_s": 140.78,
+      "trimmed_s": 2.088,
+      "phrase_end_policy": "before_next_phrase_first_attack_minus_0.03s"
+    },
+    {
+      "version_id": "A_LITERAL",
+      "phrase_id": "XWC_P10_LOCAL_PHRASE",
+      "phrase_start_s": 116.371,
+      "original_phrase_end_s": 140.721,
+      "phrase_play_end_s": 140.721,
+      "next_phrase_first_attack_s": null,
+      "trimmed_s": 0.0,
+      "phrase_end_policy": "final_phrase_uses_render_duration_or_last_event_safe_tail"
+    },
+    {
+      "version_id": "B_PHRASE",
+      "phrase_id": "XWC_P10_LOCAL_PHRASE",
+      "phrase_start_s": 121.976,
+      "original_phrase_end_s": 146.805,
+      "phrase_play_end_s": 146.805,
+      "next_phrase_first_attack_s": null,
+      "trimmed_s": 0.0,
+      "phrase_end_policy": "final_phrase_uses_render_duration_or_last_event_safe_tail"
+    },
+    {
+      "version_id": "C_QINIST_STYLE",
+      "phrase_id": "XWC_P10_LOCAL_PHRASE",
+      "phrase_start_s": 111.46,
+      "original_phrase_end_s": 134.605,
+      "phrase_play_end_s": 134.605,
+      "next_phrase_first_attack_s": null,
+      "trimmed_s": 0.0,
+      "phrase_end_policy": "final_phrase_uses_render_duration_or_last_event_safe_tail"
+    },
+    {
+      "version_id": "D_TEACHING_DIAGNOSTIC",
+      "phrase_id": "XWC_P10_LOCAL_PHRASE",
+      "phrase_start_s": 139.72,
+      "original_phrase_end_s": 166.573,
+      "phrase_play_end_s": 166.573,
+      "next_phrase_first_attack_s": null,
+      "trimmed_s": 0.0,
+      "phrase_end_policy": "final_phrase_uses_render_duration_or_last_event_safe_tail"
+    }
+  ]
+}

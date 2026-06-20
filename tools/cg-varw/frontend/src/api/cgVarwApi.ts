@@ -1,6 +1,6 @@
 import type { PhraseDefinition, RenderPhraseAlignment, RenderSet, RenderVersion, Section } from "../types/cgVarw";
 
-export const apiBase = import.meta.env.VITE_CG_VARW_API_BASE ?? "http://127.0.0.1:8787";
+export const apiBase = import.meta.env.VITE_CG_VARW_API_BASE ?? "http://127.0.0.1:8788";
 
 type R2RenderSetsResponse = {
   render_sets: RenderSet[];

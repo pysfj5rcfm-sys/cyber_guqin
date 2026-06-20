@@ -284,6 +284,11 @@ export interface RenderPhraseAlignment {
   event_range: string;
   start_s: number;
   end_s: number;
+  phrase_play_start_s?: number | null;
+  phrase_play_end_s?: number | null;
+  phrase_tail_end_s?: number | null;
+  next_phrase_first_attack_s?: number | null;
+  phrase_end_policy?: string;
   breath_points_s: number[];
   cadence_point_s?: number;
   boundary_source: R2BoundarySource;

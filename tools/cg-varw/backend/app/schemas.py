@@ -402,6 +402,11 @@ class R2RenderPhraseAlignment(BaseModel):
     event_range: str
     start_s: float
     end_s: float
+    phrase_play_start_s: float | None = None
+    phrase_play_end_s: float | None = None
+    phrase_tail_end_s: float | None = None
+    next_phrase_first_attack_s: float | None = None
+    phrase_end_policy: str = ""
     breath_points_s: list[float] = Field(default_factory=list)
     cadence_point_s: float | None = None
     boundary_source: R2BoundarySource = "mock"

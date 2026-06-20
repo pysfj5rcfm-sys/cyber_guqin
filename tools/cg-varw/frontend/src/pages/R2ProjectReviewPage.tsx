@@ -34,8 +34,8 @@ type DraftExportPayload = {
   reviewer_role: "human";
   gpt_review_pending: true;
   e_revision_plan_generated: false;
-  selected_phrase_id: string;
-  selected_event_range: string;
+  selected_phrase_id: string | null;
+  selected_event_range: string | null;
   draft_count: number;
   reviews: DraftExportReview[];
 };
@@ -168,7 +168,7 @@ export function R2ProjectReviewPage() {
     stopPlayback();
     setActivePhraseId(phraseId);
     const nextAlignment = getAlignment(alignments, phraseId, activeVersionId);
-    setPlayback((current) => ({ ...current, currentTimeS: nextAlignment.start_s, playMode: "idle", isPlaying: false, playingVersionId: undefined }));
+    setPlayback((current) => ({ ...current, currentTimeS: phrasePlayStart(nextAlignment), playMode: "idle", isPlaying: false, playingVersionId: undefined }));
     setLastActionMessage(`已切换乐句：${phraseId}`);
   }
 
@@ -176,7 +176,7 @@ export function R2ProjectReviewPage() {
     stopPlayback();
     setActiveVersionId(versionId);
     const nextAlignment = getAlignment(alignments, activePhraseId, versionId);
-    setPlayback((current) => ({ ...current, currentTimeS: nextAlignment.start_s, playMode: "idle", isPlaying: false, playingVersionId: undefined }));
+    setPlayback((current) => ({ ...current, currentTimeS: phrasePlayStart(nextAlignment), playMode: "idle", isPlaying: false, playingVersionId: undefined }));
     setLastActionMessage(`已切换版本：${versionLabel(versions, versionId)}`);
   }
 
@@ -188,9 +188,11 @@ export function R2ProjectReviewPage() {
   function playVersion(versionId: string, mode: PlayMode = "phrase", onEnded?: () => void) {
     const version = versions.find((item) => item.version_id === versionId);
     const alignment = getAlignment(alignments, activePhraseId, versionId);
+    const playStartS = phrasePlayStart(alignment);
+    const playEndS = phrasePlayEnd(alignment);
     setActiveVersionId(versionId);
-    setPlayback({ isPlaying: true, currentTimeS: alignment.start_s, playMode: mode, playingVersionId: versionId, playbackRate: playback.playbackRate });
-    setLastActionMessage(`播放 ${activePhraseId} · ${versionLabel(versions, versionId)} · ${alignment.start_s.toFixed(3)}-${alignment.end_s.toFixed(3)}s`);
+    setPlayback({ isPlaying: true, currentTimeS: playStartS, playMode: mode, playingVersionId: versionId, playbackRate: playback.playbackRate });
+    setLastActionMessage(`播放 ${activePhraseId} · ${versionLabel(versions, versionId)} · ${playStartS.toFixed(3)}-${playEndS.toFixed(3)}s`);
     if (!version?.audio_url || version.mock_render) {
       scheduleMockStop(alignment, onEnded);
       return;
@@ -200,14 +202,14 @@ export function R2ProjectReviewPage() {
     clearStopTimer();
     audio.src = version.audio_url;
     audio.playbackRate = playback.playbackRate;
-    audio.currentTime = alignment.start_s;
+    audio.currentTime = playStartS;
     audio.play().catch((error) => setLastActionMessage(`浏览器阻止播放：${error instanceof Error ? error.message : String(error)}`));
     stopTimerRef.current = window.setInterval(() => {
       setPlayback((current) => ({ ...current, currentTimeS: audio.currentTime }));
-      if (audio.currentTime >= alignment.end_s) {
+      if (audio.currentTime >= playEndS) {
         audio.pause();
         clearStopTimer();
-        setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: alignment.end_s, playMode: "idle", playingVersionId: undefined }));
+        setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: playEndS, playMode: "idle", playingVersionId: undefined }));
         onEnded?.();
       }
     }, 120);
@@ -239,13 +241,14 @@ export function R2ProjectReviewPage() {
 
   function scheduleMockStop(alignment: RenderPhraseAlignment, onEnded?: () => void) {
     clearStopTimer();
+    const playEndS = phrasePlayEnd(alignment);
     stopTimerRef.current = window.setInterval(() => {
       setPlayback((current) => {
         const nextTime = Number((current.currentTimeS + 0.25 * current.playbackRate).toFixed(3));
-        if (nextTime < alignment.end_s) return { ...current, currentTimeS: nextTime };
+        if (nextTime < playEndS) return { ...current, currentTimeS: nextTime };
         clearStopTimer();
         onEnded?.();
-        return { ...current, isPlaying: false, currentTimeS: alignment.end_s, playMode: "idle", playingVersionId: undefined };
+        return { ...current, isPlaying: false, currentTimeS: playEndS, playMode: "idle", playingVersionId: undefined };
       });
     }, 250);
   }
@@ -321,7 +324,7 @@ export function R2ProjectReviewPage() {
               <button onClick={() => playVersion(activeVersionId)}>从本版乐句开头播放</button>
               <button onClick={() => playSequenceABCD()}>顺播 A→B→C→D</button>
               <button onClick={playPreferredVersion}>播放偏好版本</button>
-              <strong className="clock">{formatTime(playback.currentTimeS)}<small>/ {formatTime(activeAlignment.end_s)} · {playback.playingVersionId ? versionLabel(versions, playback.playingVersionId) : versionLabel(versions, activeVersionId)}</small></strong>
+              <strong className="clock">{formatTime(playback.currentTimeS)}<small>/ {formatTime(phrasePlayEnd(activeAlignment))} · {playback.playingVersionId ? versionLabel(versions, playback.playingVersionId) : versionLabel(versions, activeVersionId)}</small></strong>
               <span className="speed-label">播放速度</span>
               {([0.5, 1, 1.5] as R2PlaybackRate[]).map((rate) => (
                 <button key={rate} className={playback.playbackRate === rate ? "active" : ""} onClick={() => setPlayback((current) => ({ ...current, playbackRate: rate }))}>{rate}x</button>
@@ -415,7 +418,7 @@ function PhraseAlignmentTable({ versions, alignments }: { versions: RenderVersio
       <div className="export-table-scroll">
         <table className="export-table">
           <thead>
-            <tr><th>版本</th><th>开始 phrase_start_s</th><th>结束 phrase_end_s</th><th>事件范围</th><th>wav / audio_url</th></tr>
+            <tr><th>版本</th><th>播放开始</th><th>播放结束</th><th>尾音参考</th><th>下一句首音</th><th>事件范围</th><th>wav / audio_url</th></tr>
           </thead>
           <tbody>
             {versions.map((version) => {
@@ -423,8 +426,10 @@ function PhraseAlignmentTable({ versions, alignments }: { versions: RenderVersio
               return (
                 <tr key={version.version_id}>
                   <td>{version.version_id}</td>
-                  <td>{alignment?.start_s.toFixed(3) ?? "-"}</td>
-                  <td>{alignment?.end_s.toFixed(3) ?? "-"}</td>
+                  <td>{alignment ? phrasePlayStart(alignment).toFixed(3) : "-"}</td>
+                  <td>{alignment ? phrasePlayEnd(alignment).toFixed(3) : "-"}</td>
+                  <td>{alignment?.phrase_tail_end_s?.toFixed(3) ?? alignment?.end_s.toFixed(3) ?? "-"}</td>
+                  <td>{alignment?.next_phrase_first_attack_s?.toFixed(3) ?? "-"}</td>
                   <td>{alignment?.event_range ?? "-"}</td>
                   <td>{version.audio_url ?? version.audio_path}</td>
                 </tr>
@@ -621,6 +626,11 @@ function getAlignment(alignments: RenderPhraseAlignment[], phraseId: string, ver
     event_range: "",
     start_s: 0,
     end_s: 0,
+    phrase_play_start_s: null,
+    phrase_play_end_s: null,
+    phrase_tail_end_s: null,
+    next_phrase_first_attack_s: null,
+    phrase_end_policy: "",
     breath_points_s: [],
     boundary_source: "mock" as const,
     boundary_confidence: "unclear" as const,
@@ -664,8 +674,8 @@ function buildDraftExportPayload(renderSet: RenderSet, dataSource: DataSource, p
     reviewer_role: "human",
     gpt_review_pending: true,
     e_revision_plan_generated: false,
-    selected_phrase_id: activePhrase.phrase_id,
-    selected_event_range: activePhrase.event_range,
+    selected_phrase_id: activePhrase.phrase_id || null,
+    selected_event_range: activePhrase.event_range || null,
     draft_count: reviews.length,
     reviews,
   };
@@ -693,6 +703,14 @@ function phraseEventRows(phrase: PhraseDefinition) {
 
 function splitList(value?: string) {
   return (value ?? "").split(";").map((item) => item.trim()).filter(Boolean);
+}
+
+function phrasePlayStart(alignment: RenderPhraseAlignment) {
+  return alignment.phrase_play_start_s ?? alignment.start_s;
+}
+
+function phrasePlayEnd(alignment: RenderPhraseAlignment) {
+  return alignment.phrase_play_end_s ?? alignment.end_s;
 }
 
 function makeBoundaryStatusByKey(alignments: RenderPhraseAlignment[]) {
