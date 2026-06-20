@@ -1,516 +1,367 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ABCDEPhrasePlayer } from "../components/ABCDEPhrasePlayer";
 import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
-import { R2ExportPreviewPanel } from "../components/R2ExportPreviewPanel";
-import { markerReviewStatusLabels, markerReviewStatusTone } from "../components/reviewUi";
-import {
-  defaultListeningReview,
-  getAlignment,
-  getPhrase,
-  getSection,
-  issueOptions,
-  makePhraseMarkers,
-  mockPieces,
-  mockSessions,
-  phraseAlignments,
-  phraseExports,
-  phrases,
-  renderSet,
-  r2SafetyFlags,
-  sections,
-  versions,
-} from "../mock/projectReviewMock";
-import type { ListeningReview, Marker, MarkerReviewStatus, PhraseMarker, R2DraftPayload, R2IssueType, R2MarkerKey, RenderPhraseAlignment, Severity } from "../types/cgVarw";
+import { apiBase, loadR2PhraseAlignments, loadR2Phrases, loadR2RenderSets, loadR2Versions } from "../api/cgVarwApi";
+import { issueOptions, mockPieces, mockSessions, phraseAlignments as mockAlignments, phrases as mockPhrases, renderSet as mockRenderSet, r2SafetyFlags, sections as mockSections, versions as mockVersions } from "../mock/projectReviewMock";
+import type { Marker, MarkerReviewStatus, PhraseDefinition, RenderPhraseAlignment, RenderSet, RenderVersion, R2IssueType, Section, Severity } from "../types/cgVarw";
 
+type DataSource = "api" | "mock";
 type R2PlaybackRate = 0.5 | 1 | 1.5;
-type R2PlayMode = "idle" | "phrase" | "marker" | "preroll" | "sequence_abcde" | "preferred" | "ab_compare";
+type PlayMode = "idle" | "phrase" | "sequence_abcd" | "preferred";
 
-type R2PlaybackState = {
-  isPlaying: boolean;
-  currentTimeS: number;
-  playbackRate: R2PlaybackRate;
-  loopPhrase: boolean;
-  playMode: R2PlayMode;
-  sequenceQueue?: string[];
-  currentQueueIndex?: number;
-  playingVersionId?: string;
-};
-
-type BoundaryStatusByKey = Record<string, MarkerReviewStatus>;
-type PreferredVersionByPhrase = Record<string, string>;
-type MarkersByKey = Record<string, PhraseMarker[]>;
-type QuickJudgement = "good" | "usable" | "needs_revision" | "bad";
-
-type R2ListeningReviewDraft = {
+type ReviewDraft = {
   phrase_id: string;
-  version_id: string;
+  event_range: string;
   issue_type: R2IssueType[];
   severity: Severity;
-  quick_judgement?: QuickJudgement;
+  preferred_version: string;
   comment: string;
   suggested_revision: string;
-  reviewer: string;
-  reviewed_at: string;
-  updated_at?: string;
+  reviewer_role: "human";
+  gpt_review_pending: true;
+  e_revision_plan_generated: false;
 };
 
-type ListeningReviewByKey = Record<string, R2ListeningReviewDraft>;
+type DraftByPhrase = Record<string, ReviewDraft>;
 
-type R2DraftPayloadWithReviewState = R2DraftPayload & {
-  preferred_version_by_phrase?: PreferredVersionByPhrase;
-  listening_review_by_key?: ListeningReviewByKey;
-  boundary_status_by_key?: BoundaryStatusByKey;
-  markers_by_key?: MarkersByKey;
-  playback_rate?: R2PlaybackRate;
-  loop_phrase?: boolean;
+type PlaybackState = {
+  isPlaying: boolean;
+  currentTimeS: number;
+  playMode: PlayMode;
+  playingVersionId?: string;
+  playbackRate: R2PlaybackRate;
 };
 
-type ProgressOverview = {
-  totalPhraseCount: number;
-  reviewedPhraseCount: number;
-  pendingPhraseCount: number;
-  unclearBoundaryCount: number;
-  needsRetakeCount: number;
-  preferredVersionCount: number;
-};
-
-const draftKey = `cg-varw:r2:draft:${renderSet.recording_session_id}:${renderSet.piece_id}:${renderSet.render_set_id}`;
-const legacyDraftKey = `cg-varw:r2:${renderSet.render_set_id}:draft`;
-const backendStatus = "后端已连接，当前使用合成演示 Render 根目录。";
+const REAL_RENDER_SET_ID = "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e";
+const VERSION_ORDER = ["A_LITERAL", "B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC"];
 const reviewStatuses: MarkerReviewStatus[] = ["candidate", "accepted", "unclear", "needs_retake", "rejected"];
 
 export function R2ProjectReviewPage() {
-  const [activePhraseId, setActivePhraseId] = useState("PHRASE_03");
-  const [activeVersionId, setActiveVersionId] = useState("B_PHRASE");
-  const [preferredVersionByPhrase, setPreferredVersionByPhrase] = useState<PreferredVersionByPhrase>(() => ({ PHRASE_03: "B_PHRASE" }));
-  const [markersByKey, setMarkersByKey] = useState<MarkersByKey>(() => ({
-    [phraseVersionKey("PHRASE_03", "B_PHRASE")]: makePhraseMarkers("PHRASE_03", "B_PHRASE"),
-  }));
-  const [selectedMarkerId, setSelectedMarkerId] = useState("PHRASE_03_B_PHRASE_cadence");
-  const [boundaryStatusByKey, setBoundaryStatusByKey] = useState<BoundaryStatusByKey>(() => makeInitialBoundaryStatusByKey());
-  const [listeningReviewByKey, setListeningReviewByKey] = useState<ListeningReviewByKey>(() => ({
-    [phraseVersionKey("PHRASE_03", "B_PHRASE")]: draftFromListeningReview(defaultListeningReview),
-  }));
-  const [exportGroup, setExportGroup] = useState("全部");
-  const [lastActionMessage, setLastActionMessage] = useState(`已切换到 PHRASE_03 · ${versionLabel("B_PHRASE")}`);
-  const [playback, setPlayback] = useState<R2PlaybackState>({
-    isPlaying: false,
-    currentTimeS: getAlignment("PHRASE_03", "B_PHRASE").start_s,
-    playbackRate: 1,
-    loopPhrase: false,
-    playMode: "idle",
-  });
-
-  const activeMarkerStateKey = phraseVersionKey(activePhraseId, activeVersionId);
-  const activePhrase = getPhrase(activePhraseId);
-  const activeSection = getSection(activePhrase.section_id);
-  const reviewedAlignments = useMemo(() => phraseAlignments.map((alignment) => ({
-    ...alignment,
-    review_status: boundaryStatusByKey[boundaryKey(alignment.phrase_id, alignment.version_id)] ?? alignment.review_status,
-  })), [boundaryStatusByKey]);
-  const activeAlignment = reviewedAlignments.find((alignment) => alignment.phrase_id === activePhraseId && alignment.version_id === activeVersionId) ?? getAlignment(activePhraseId, activeVersionId);
-  const boundaryStatus = activeAlignment.review_status;
-  const activeVersion = versions.find((version) => version.version_id === activeVersionId) ?? versions[1];
-  const alignmentsForPhrase = reviewedAlignments.filter((alignment) => alignment.phrase_id === activePhraseId);
-  const preferredVersionId = preferredVersionByPhrase[activePhraseId];
-  const activeReviewDraft = listeningReviewByKey[phraseVersionKey(activePhraseId, activeVersionId)] ?? makeReviewDraft(activePhraseId, activeVersionId);
-  const activeListeningReview = toListeningReview(activeReviewDraft, activeSection.section_id, activePhrase.event_range, preferredVersionId);
-  const progress = useMemo(
-    () => deriveProgressOverview(reviewedAlignments, preferredVersionByPhrase, listeningReviewByKey),
-    [reviewedAlignments, preferredVersionByPhrase, listeningReviewByKey],
-  );
-  const markers = useMemo(
-    () => markersByKey[activeMarkerStateKey] ?? makePhraseMarkers(activePhraseId, activeVersionId),
-    [activeMarkerStateKey, activePhraseId, activeVersionId, markersByKey],
-  );
-  const selectedMarker = markers.find((marker) => marker.marker_id === selectedMarkerId) ?? markers[0];
-  const playbackRange = getAlignment(activePhraseId, playback.playingVersionId ?? activeVersionId);
-  const canvasMarkers = useMemo(() => markers.map(toCanvasMarker), [markers]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const stopTimerRef = useRef<number | null>(null);
+  const [dataSource, setDataSource] = useState<DataSource>("mock");
+  const [backendMessage, setBackendMessage] = useState("正在尝试读取 R2 render set API...");
+  const [renderSet, setRenderSet] = useState<RenderSet>(mockRenderSet);
+  const [versions, setVersions] = useState<RenderVersion[]>(abcdVersions(mockVersions));
+  const [sections, setSections] = useState<Section[]>(mockSections);
+  const [phrases, setPhrases] = useState<PhraseDefinition[]>(mockPhrases);
+  const [alignments, setAlignments] = useState<RenderPhraseAlignment[]>(abcdAlignments(mockAlignments));
+  const [activePhraseId, setActivePhraseId] = useState(mockPhrases[0]?.phrase_id ?? "");
+  const [activeVersionId, setActiveVersionId] = useState("A_LITERAL");
+  const [drafts, setDrafts] = useState<DraftByPhrase>({});
+  const [boundaryStatus, setBoundaryStatus] = useState<Record<string, MarkerReviewStatus>>({});
+  const [lastActionMessage, setLastActionMessage] = useState("R2 mock fallback ready");
+  const [playback, setPlayback] = useState<PlaybackState>({ isPlaying: false, currentTimeS: 0, playMode: "idle", playbackRate: 1 });
 
   useEffect(() => {
-    loadDraft({ silentMissing: true, source: "auto" });
+    let cancelled = false;
+    async function loadRealRenderSet() {
+      try {
+        const renderSets = await loadR2RenderSets();
+        const real = renderSets.find((item) => item.render_set_id === REAL_RENDER_SET_ID);
+        if (!real) throw new Error("后端未返回真实 XWC ABCD render set");
+        const [nextVersions, phraseData, nextAlignments] = await Promise.all([
+          loadR2Versions(real.render_set_id),
+          loadR2Phrases(real.render_set_id),
+          loadR2PhraseAlignments(real.render_set_id),
+        ]);
+        if (cancelled) return;
+        const filteredVersions = abcdVersions(nextVersions);
+        const filteredAlignments = abcdAlignments(nextAlignments);
+        setDataSource("api");
+        setRenderSet(real);
+        setVersions(filteredVersions);
+        setSections(phraseData.sections);
+        setPhrases(phraseData.phrases);
+        setAlignments(filteredAlignments);
+        setActivePhraseId(phraseData.phrases[0]?.phrase_id ?? "");
+        setActiveVersionId(filteredVersions[0]?.version_id ?? "A_LITERAL");
+        setBoundaryStatus(makeBoundaryStatusByKey(filteredAlignments));
+        setBackendMessage(`后端真实 R2 render set 已加载：${real.render_set_id}`);
+        setLastActionMessage("已使用真实 ABCD render set API；mock fallback 未启用。");
+      } catch (error) {
+        if (cancelled) return;
+        setDataSource("mock");
+        setRenderSet(mockRenderSet);
+        setVersions(abcdVersions(mockVersions));
+        setSections(mockSections);
+        setPhrases(mockPhrases);
+        setAlignments(abcdAlignments(mockAlignments));
+        setBoundaryStatus(makeBoundaryStatusByKey(abcdAlignments(mockAlignments)));
+        setBackendMessage(`后端不可用或未返回真实 render set，已保留 mock fallback：${error instanceof Error ? error.message : String(error)}`);
+        setLastActionMessage("当前为 mock fallback；请启动 backend 后刷新 R2 页面。");
+      }
+    }
+    loadRealRenderSet();
+    return () => {
+      cancelled = true;
+      clearStopTimer();
+    };
   }, []);
 
+  const draftKey = `cg-varw:r2:frontend-api-draft:${renderSet.render_set_id}`;
+  const activePhrase = getPhrase(phrases, activePhraseId);
+  const activeSection = getSection(sections, activePhrase.section_id);
+  const activeAlignment = getAlignment(alignments, activePhraseId, activeVersionId);
+  const activeVersion = versions.find((version) => version.version_id === activeVersionId) ?? versions[0];
+  const alignmentsForPhrase = alignments.filter((alignment) => alignment.phrase_id === activePhraseId);
+  const activeDraft = drafts[activePhraseId] ?? makeDraft(activePhrase);
+  const markers = useMemo(() => makePhraseMarkers(activeAlignment), [activeAlignment]);
+  const progress = useMemo(() => deriveProgress(phrases, drafts), [phrases, drafts]);
+
   useEffect(() => {
-    if (!playback.isPlaying) return;
-    const timer = window.setInterval(() => {
-      setPlayback((current) => {
-        const currentIndex = current.currentQueueIndex ?? 0;
-        const currentVersionId = current.playingVersionId ?? current.sequenceQueue?.[currentIndex] ?? activeVersionId;
-        const range = getAlignment(activePhraseId, currentVersionId);
-        const nextTime = Number((current.currentTimeS + 0.25 * current.playbackRate).toFixed(3));
-        if (nextTime < range.end_s) return { ...current, currentTimeS: nextTime };
-        if (current.loopPhrase && (!current.sequenceQueue || current.sequenceQueue.length <= 1)) {
-          return { ...current, currentTimeS: range.start_s };
-        }
-        if (current.sequenceQueue && currentIndex < current.sequenceQueue.length - 1) {
-          const nextIndex = currentIndex + 1;
-          const nextVersionId = current.sequenceQueue[nextIndex];
-          const nextRange = getAlignment(activePhraseId, nextVersionId);
-          return { ...current, currentQueueIndex: nextIndex, playingVersionId: nextVersionId, currentTimeS: nextRange.start_s };
-        }
-        return { ...current, isPlaying: false, currentTimeS: range.end_s, playMode: "idle", sequenceQueue: undefined, currentQueueIndex: undefined, playingVersionId: undefined };
-      });
-    }, 250);
-    return () => window.clearInterval(timer);
-  }, [activePhraseId, activeVersionId, playback.isPlaying]);
-
-  function ensureReviewDraft(phraseId: string, versionId: string) {
-    const key = phraseVersionKey(phraseId, versionId);
-    setListeningReviewByKey((current) => current[key] ? current : {
-      ...current,
-      [key]: makeReviewDraft(phraseId, versionId),
-    });
-  }
-
-  function ensureMarkerState(phraseId: string, versionId: string) {
-    const key = phraseVersionKey(phraseId, versionId);
-    const nextMarkers = markersByKey[key] ?? makePhraseMarkers(phraseId, versionId);
-    setMarkersByKey((current) => current[key] ? current : { ...current, [key]: nextMarkers });
-    return nextMarkers;
-  }
-
-  function setActiveMarkers(updater: (current: PhraseMarker[]) => PhraseMarker[]) {
-    setMarkersByKey((current) => {
-      const currentMarkers = current[activeMarkerStateKey] ?? makePhraseMarkers(activePhraseId, activeVersionId);
-      return {
-        ...current,
-        [activeMarkerStateKey]: updater(currentMarkers),
-      };
-    });
-  }
-
-  function selectPhrase(phraseId: string) {
-    const nextMarkers = ensureMarkerState(phraseId, activeVersionId);
-    const alignment = getAlignment(phraseId, activeVersionId);
-    setActivePhraseId(phraseId);
-    setSelectedMarkerId(defaultMarkerId(nextMarkers));
-    setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: alignment.start_s, playMode: "idle", sequenceQueue: undefined, currentQueueIndex: undefined, playingVersionId: undefined }));
-    ensureReviewDraft(phraseId, activeVersionId);
-    setLastActionMessage(`已切换到 ${phraseId} · ${versionLabel(activeVersionId)}`);
-  }
-
-  function selectVersion(versionId: string) {
-    const nextMarkers = ensureMarkerState(activePhraseId, versionId);
-    const alignment = getAlignment(activePhraseId, versionId);
-    setActiveVersionId(versionId);
-    setSelectedMarkerId(defaultMarkerId(nextMarkers));
-    setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: alignment.start_s, playMode: "idle", sequenceQueue: undefined, currentQueueIndex: undefined, playingVersionId: undefined }));
-    ensureReviewDraft(activePhraseId, versionId);
-    setLastActionMessage(`已切换到 ${activePhraseId} · ${versionLabel(versionId)}`);
-  }
-
-  function setPreferred(versionId: string) {
-    setPreferredVersionByPhrase((current) => ({ ...current, [activePhraseId]: versionId }));
-    setLastActionMessage(`已选择偏好版本 · ${activePhraseId} · ${versionLabel(versionId)}`);
-  }
-
-  function playVersion(versionId: string) {
-    const alignment = getAlignment(activePhraseId, versionId);
-    if (versionId !== activeVersionId) {
-      const nextMarkers = ensureMarkerState(activePhraseId, versionId);
-      setActiveVersionId(versionId);
-      setSelectedMarkerId(defaultMarkerId(nextMarkers));
-      ensureReviewDraft(activePhraseId, versionId);
+    const raw = localStorage.getItem(draftKey);
+    if (!raw) {
+      setDrafts({});
+      return;
     }
-    setPlayback((current) => ({ ...current, isPlaying: true, currentTimeS: alignment.start_s, playMode: "phrase", sequenceQueue: [versionId], currentQueueIndex: 0, playingVersionId: versionId }));
-    setLastActionMessage(`播放 ${activePhraseId} · ${versionLabel(versionId)}`);
-  }
+    try {
+      setDrafts(JSON.parse(raw) as DraftByPhrase);
+      setLastActionMessage("已加载本地 R2 review draft JSON。");
+    } catch {
+      setDrafts({});
+    }
+  }, [draftKey]);
 
-  function updateMarker(patch: Partial<PhraseMarker>) {
-    setActiveMarkers((current) => current.map((marker) => marker.marker_id === selectedMarkerId ? { ...marker, ...patch } : marker));
-    if (patch.review_status) setLastActionMessage(`已更新标记状态 · ${statusLabel(patch.review_status)}`);
-  }
-
-  function nudgeMarker(deltaMs: number) {
-    setActiveMarkers((current) => current.map((marker) => marker.marker_id === selectedMarkerId ? {
-      ...marker,
-      time_s: Math.max(0, Number((marker.time_s + deltaMs / 1000).toFixed(3))),
-      nudge_total_ms: marker.nudge_total_ms + deltaMs,
-    } : marker));
-    setLastActionMessage(`已微调 ${selectedMarker?.marker_label_zh ?? "标记"} ${deltaMs > 0 ? "+" : ""}${deltaMs}ms`);
-  }
-
-  function updateBoundaryStatus(status: MarkerReviewStatus) {
-    setBoundaryStatusByKey((current) => ({
-      ...current,
-      [boundaryKey(activePhraseId, activeVersionId)]: status,
-    }));
-    setLastActionMessage(`${activePhraseId} · ${versionLabel(activeVersionId)} 边界状态已更新为${statusLabel(status)}`);
-  }
-
-  function updateReviewDraft(patch: Partial<R2ListeningReviewDraft>) {
-    const key = phraseVersionKey(activePhraseId, activeVersionId);
-    setListeningReviewByKey((current) => {
-      const base = current[key] ?? makeReviewDraft(activePhraseId, activeVersionId);
-      return {
+  function updateDraft(patch: Partial<ReviewDraft>) {
+    setDrafts((current) => {
+      const next = {
         ...current,
-        [key]: {
-          ...base,
+        [activePhraseId]: {
+          ...(current[activePhraseId] ?? makeDraft(activePhrase)),
           ...patch,
           phrase_id: activePhraseId,
-          version_id: activeVersionId,
-          updated_at: new Date().toISOString(),
+          event_range: activePhrase.event_range,
+          reviewer_role: "human" as const,
+          gpt_review_pending: true as const,
+          e_revision_plan_generated: false as const,
         },
       };
+      localStorage.setItem(draftKey, JSON.stringify(next, null, 2));
+      return next;
     });
   }
 
   function toggleIssue(issue: R2IssueType) {
-    const issueType = activeReviewDraft.issue_type.includes(issue)
-      ? activeReviewDraft.issue_type.filter((item) => item !== issue)
-      : [...activeReviewDraft.issue_type, issue];
-    updateReviewDraft({ issue_type: issueType });
+    const issueType = activeDraft.issue_type.includes(issue)
+      ? activeDraft.issue_type.filter((item) => item !== issue)
+      : [...activeDraft.issue_type, issue];
+    updateDraft({ issue_type: issueType });
   }
 
-  function saveDraft() {
-    const nextMarkersByKey = { ...markersByKey, [activeMarkerStateKey]: markers };
-    const payload: R2DraftPayloadWithReviewState = {
-      render_set_id: renderSet.render_set_id,
-      selected_phrase_id: activePhraseId,
-      selected_version_id: activeVersionId,
-      preferred_version_id: preferredVersionId,
-      phrase_markers: markers,
-      phrase_alignments: reviewedAlignments,
-      listening_review: { ...activeListeningReview, reviewed_at: activeListeningReview.reviewed_at || new Date().toISOString() },
-      preferred_version_by_phrase: preferredVersionByPhrase,
-      listening_review_by_key: listeningReviewByKey,
-      boundary_status_by_key: boundaryStatusByKey,
-      markers_by_key: nextMarkersByKey,
-      playback_rate: playback.playbackRate,
-      loop_phrase: playback.loopPhrase,
-      saved_at: new Date().toISOString(),
-      ...r2SafetyFlags,
-    };
-    localStorage.setItem(draftKey, JSON.stringify(payload));
-    setLastActionMessage("draft 已保存");
+  function selectPhrase(phraseId: string) {
+    stopPlayback();
+    setActivePhraseId(phraseId);
+    const nextAlignment = getAlignment(alignments, phraseId, activeVersionId);
+    setPlayback((current) => ({ ...current, currentTimeS: nextAlignment.start_s, playMode: "idle", isPlaying: false, playingVersionId: undefined }));
+    setLastActionMessage(`已切换 phrase：${phraseId}`);
   }
 
-  function loadDraft(options: { silentMissing?: boolean; source?: "auto" | "manual" } = {}) {
-    const raw = localStorage.getItem(draftKey) ?? localStorage.getItem(legacyDraftKey);
-    if (!raw) {
-      if (!options.silentMissing) setLastActionMessage("未找到 R2 draft");
+  function selectVersion(versionId: string) {
+    stopPlayback();
+    setActiveVersionId(versionId);
+    const nextAlignment = getAlignment(alignments, activePhraseId, versionId);
+    setPlayback((current) => ({ ...current, currentTimeS: nextAlignment.start_s, playMode: "idle", isPlaying: false, playingVersionId: undefined }));
+    setLastActionMessage(`已切换版本：${versionLabel(versions, versionId)}`);
+  }
+
+  function setPreferred(versionId: string) {
+    updateDraft({ preferred_version: versionId });
+    setLastActionMessage(`已设置当前 phrase 偏好版本：${versionLabel(versions, versionId)}`);
+  }
+
+  function playVersion(versionId: string, mode: PlayMode = "phrase", onEnded?: () => void) {
+    const version = versions.find((item) => item.version_id === versionId);
+    const alignment = getAlignment(alignments, activePhraseId, versionId);
+    setActiveVersionId(versionId);
+    setPlayback({ isPlaying: true, currentTimeS: alignment.start_s, playMode: mode, playingVersionId: versionId, playbackRate: playback.playbackRate });
+    setLastActionMessage(`播放 ${activePhraseId} · ${versionLabel(versions, versionId)} · ${alignment.start_s.toFixed(3)}-${alignment.end_s.toFixed(3)}s`);
+    if (!version?.audio_url || version.mock_render) {
+      scheduleMockStop(alignment, onEnded);
       return;
     }
-    try {
-      const payload = JSON.parse(raw) as R2DraftPayloadWithReviewState;
-      const versionId = payload.selected_version_id;
-      const phraseId = payload.selected_phrase_id;
-      const alignment = getAlignment(phraseId, versionId);
-      const nextMarkersByKey = payload.markers_by_key ?? {
-        [phraseVersionKey(phraseId, versionId)]: payload.phrase_markers?.length ? payload.phrase_markers : makePhraseMarkers(phraseId, versionId),
-      };
-      const nextMarkers = nextMarkersByKey[phraseVersionKey(phraseId, versionId)] ?? makePhraseMarkers(phraseId, versionId);
-      setActivePhraseId(phraseId);
-      setActiveVersionId(versionId);
-      setPreferredVersionByPhrase(payload.preferred_version_by_phrase ?? (payload.preferred_version_id ? { [phraseId]: payload.preferred_version_id } : {}));
-      setMarkersByKey(nextMarkersByKey);
-      setSelectedMarkerId(defaultMarkerId(nextMarkers));
-      setBoundaryStatusByKey(payload.boundary_status_by_key ?? makeBoundaryStatusByKey(payload.phrase_alignments));
-      setListeningReviewByKey(payload.listening_review_by_key ?? {
-        [phraseVersionKey(payload.listening_review.phrase_id, payload.listening_review.active_version_id)]: draftFromListeningReview(payload.listening_review),
-      });
-      setPlayback((current) => ({
-        ...current,
-        isPlaying: false,
-        currentTimeS: alignment.start_s,
-        playbackRate: payload.playback_rate ?? current.playbackRate,
-        loopPhrase: payload.loop_phrase ?? current.loopPhrase,
-        playMode: "idle",
-        sequenceQueue: undefined,
-        currentQueueIndex: undefined,
-        playingVersionId: undefined,
-      }));
-      setLastActionMessage(options.source === "auto" ? "已自动加载 R2 draft" : "已加载 R2 draft");
-    } catch (error) {
-      setLastActionMessage(`R2 draft 加载失败：${error instanceof Error ? error.message : String(error)}`);
+    const audio = audioRef.current;
+    if (!audio) return;
+    clearStopTimer();
+    audio.src = version.audio_url;
+    audio.playbackRate = playback.playbackRate;
+    audio.currentTime = alignment.start_s;
+    audio.play().catch((error) => setLastActionMessage(`浏览器阻止播放：${error instanceof Error ? error.message : String(error)}`));
+    stopTimerRef.current = window.setInterval(() => {
+      setPlayback((current) => ({ ...current, currentTimeS: audio.currentTime }));
+      if (audio.currentTime >= alignment.end_s) {
+        audio.pause();
+        clearStopTimer();
+        setPlayback((current) => ({ ...current, isPlaying: false, currentTimeS: alignment.end_s, playMode: "idle", playingVersionId: undefined }));
+        onEnded?.();
+      }
+    }, 120);
+  }
+
+  function playSequenceABCD(index = 0) {
+    const queue = versions.map((version) => version.version_id).filter((versionId) => VERSION_ORDER.includes(versionId));
+    const versionId = queue[index];
+    if (!versionId) {
+      stopPlayback();
+      return;
     }
-  }
-
-  function seekMock(time: number, playMode: R2PlayMode, message: string, queue?: string[]) {
-    setPlayback((current) => ({
-      ...current,
-      isPlaying: true,
-      currentTimeS: Number(time.toFixed(3)),
-      playMode,
-      sequenceQueue: queue,
-      currentQueueIndex: queue ? 0 : undefined,
-      playingVersionId: queue?.[0],
-    }));
-    setLastActionMessage(message);
-  }
-
-  function togglePlayPause() {
-    setPlayback((current) => ({ ...current, isPlaying: !current.isPlaying, playMode: current.isPlaying ? "idle" : "phrase" }));
-    setLastActionMessage(playback.isPlaying ? `已暂停 · ${activePhraseId}` : `播放中 · ${activePhraseId} · ${versionLabel(activeVersionId)}`);
-  }
-
-  function playFromPhraseStart() {
-    seekMock(activeAlignment.start_s, "phrase", `从句头播放 · ${activePhraseId} · ${versionLabel(activeVersionId)}`, [activeVersionId]);
-  }
-
-  function playFromSelectedMarker() {
-    seekMock(selectedMarker?.time_s ?? activeAlignment.start_s, "marker", `从当前标记播放 · ${selectedMarker?.marker_label_zh ?? "句头"}`, [activeVersionId]);
-  }
-
-  function playPreroll300ms() {
-    const markerTime = selectedMarker?.time_s ?? activeAlignment.start_s;
-    seekMock(Math.max(activeAlignment.start_s, markerTime - 0.3), "preroll", `前滚 300ms · ${activePhraseId}`, [activeVersionId]);
-  }
-
-  function toggleLoopPhrase() {
-    setPlayback((current) => ({ ...current, loopPhrase: !current.loopPhrase }));
-    setLastActionMessage(playback.loopPhrase ? `已关闭循环 · ${activePhraseId}` : `循环当前 phrase · ${activePhraseId}`);
-  }
-
-  function changeRate(rate: R2PlaybackRate) {
-    setPlayback((current) => ({ ...current, playbackRate: rate }));
-    setLastActionMessage(`播放速度 ${rate}x · ${activePhraseId}`);
-  }
-
-  function jumpPhrase(direction: -1 | 1) {
-    const currentIndex = phrases.findIndex((phrase) => phrase.phrase_id === activePhraseId);
-    const nextPhrase = phrases[Math.min(phrases.length - 1, Math.max(0, currentIndex + direction))];
-    if (nextPhrase && nextPhrase.phrase_id !== activePhraseId) selectPhrase(nextPhrase.phrase_id);
-  }
-
-  function playSequenceABCDE() {
-    const queue = versions.map((version) => version.version_id);
-    const first = getAlignment(activePhraseId, queue[0]);
-    seekMock(first.start_s, "sequence_abcde", `顺播 A→B→C→D→E：${activePhraseId}`, queue);
+    playVersion(versionId, "sequence_abcd", () => playSequenceABCD(index + 1));
   }
 
   function playPreferredVersion() {
-    if (!preferredVersionId) {
-      setLastActionMessage(`当前 phrase 尚未设置偏好版本：${activePhraseId}`);
-      setPlayback((current) => ({ ...current, isPlaying: false, playMode: "idle", sequenceQueue: undefined, currentQueueIndex: undefined, playingVersionId: undefined }));
+    if (!activeDraft.preferred_version || activeDraft.preferred_version === "none") {
+      setLastActionMessage("当前 phrase 尚未设置偏好版本。");
       return;
     }
-    const alignment = getAlignment(activePhraseId, preferredVersionId);
-    seekMock(alignment.start_s, "preferred", `正在播放偏好版本：${versionLabel(preferredVersionId)}`, [preferredVersionId]);
+    playVersion(activeDraft.preferred_version, "preferred");
   }
 
-  function playABCompare() {
-    const queue = ["A_LITERAL", "B_PHRASE"];
-    const first = getAlignment(activePhraseId, queue[0]);
-    seekMock(first.start_s, "ab_compare", `A/B 对比播放：A 直译谱面版 → B 句法呼吸版`, queue);
+  function stopPlayback() {
+    audioRef.current?.pause();
+    clearStopTimer();
+    setPlayback((current) => ({ ...current, isPlaying: false, playMode: "idle", playingVersionId: undefined }));
+  }
+
+  function scheduleMockStop(alignment: RenderPhraseAlignment, onEnded?: () => void) {
+    clearStopTimer();
+    stopTimerRef.current = window.setInterval(() => {
+      setPlayback((current) => {
+        const nextTime = Number((current.currentTimeS + 0.25 * current.playbackRate).toFixed(3));
+        if (nextTime < alignment.end_s) return { ...current, currentTimeS: nextTime };
+        clearStopTimer();
+        onEnded?.();
+        return { ...current, isPlaying: false, currentTimeS: alignment.end_s, playMode: "idle", playingVersionId: undefined };
+      });
+    }, 250);
+  }
+
+  function clearStopTimer() {
+    if (stopTimerRef.current !== null) {
+      window.clearInterval(stopTimerRef.current);
+      stopTimerRef.current = null;
+    }
+  }
+
+  function saveDraft() {
+    localStorage.setItem(draftKey, JSON.stringify(drafts, null, 2));
+    setLastActionMessage("R2 review draft 已保存到浏览器 localStorage。");
+  }
+
+  function exportDraftJson() {
+    const payload = {
+      render_set_id: renderSet.render_set_id,
+      exported_at: new Date().toISOString(),
+      review_completed: false,
+      gpt_review_pending: true,
+      e_revision_plan_generated: false,
+      drafts: phrases.map((phrase) => drafts[phrase.phrase_id] ?? makeDraft(phrase)),
+      ...r2SafetyFlags,
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${renderSet.render_set_id}.review_draft.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+    setLastActionMessage("已导出 Review Draft JSON；未生成 listening_review.yaml 或 e_revision_plan.yaml。");
   }
 
   return (
     <AppShell
       mode="R2"
-      left={<LeftPanel selectedPhraseId={activePhraseId} onSelectPhrase={selectPhrase} progress={progress} />}
+      left={<LeftPanel phrases={phrases} sections={sections} selectedPhraseId={activePhraseId} onSelectPhrase={selectPhrase} progress={progress} dataSource={dataSource} />}
       main={
         <div className="r2-main">
+          <audio ref={audioRef} preload="metadata" />
           <div className="work-title tight">
             <div>
               <h1>XWC / 仙翁操 · R2 句读听评</h1>
-              <p>当前比较：{activeSection.section_id} / {activePhrase.phrase_id} / {activePhrase.event_range}</p>
-              <p>按 phrase_id / event_range 对齐，不按绝对时间切换。</p>
+              <p>render_set_id: {renderSet.render_set_id}</p>
+              <p>experimental_render=true / production_grade=false / e_generated=false</p>
+              <p>按 phrase_id / event_range 对齐，不按同一绝对时间点切换版本。</p>
             </div>
-            <span className="badge badge-blue" title={activeVersionId}>{versionLabel(activeVersionId)}</span>
+            <span className={`badge ${dataSource === "api" ? "badge-blue" : "badge-gold"}`}>{dataSource === "api" ? "真实 API" : "mock fallback"}</span>
           </div>
           <ABCDEPhrasePlayer
             versions={versions}
             alignments={alignmentsForPhrase}
             selectedVersionId={activeVersionId}
-            preferredVersionId={preferredVersionId}
+            preferredVersionId={activeDraft.preferred_version === "none" ? undefined : activeDraft.preferred_version}
             onSelect={selectVersion}
             onSetPreferred={setPreferred}
             onPlay={playVersion}
           />
           <section className="work-area phrase-area">
-            <h2>当前 phrase 波形 / 频谱 · {activeVersion.version_code} {activeVersion.version_label_zh}</h2>
+            <h2>当前 phrase · {activePhrase.phrase_id}</h2>
             <AudioCanvas
-              markers={canvasMarkers}
-              duration={activeVersion.duration_s}
-              selectedKey={selectedMarkerId}
-              onSelect={setSelectedMarkerId}
-              audioFileName={`${versionLabel(activeVersionId)} mock waveform · ${activePhraseId}`}
-              waveformPeaks={activeVersion.waveform_preview}
+              markers={markers.map(toCanvasMarker)}
+              duration={activeVersion?.duration_s ?? activeAlignment.end_s}
+              selectedKey={`${activePhraseId}-${activeVersionId}-phrase_start`}
+              onSelect={() => undefined}
+              audioFileName={`${versionLabel(versions, activeVersionId)} · ${activeVersion?.audio_path ?? "mock waveform"}`}
+              waveformPeaks={activeVersion?.waveform_preview}
             />
-            <div className="event-strip"><span>{activePhrase.start_event_id}</span><span>{activePhrase.event_range}</span><span>{activePhrase.end_event_id}</span></div>
-            <R2PlaybackControls
-              playback={playback}
-              phraseEndS={playbackRange.end_s}
-              onPlayPause={togglePlayPause}
-              onPhraseStart={playFromPhraseStart}
-              onMarkerStart={playFromSelectedMarker}
-              onPreroll={playPreroll300ms}
-              onToggleLoop={toggleLoopPhrase}
-              onRateChange={changeRate}
-              onPrevPhrase={() => jumpPhrase(-1)}
-              onNextPhrase={() => jumpPhrase(1)}
-            />
-            <div className="playback-bar r2-playback-bar">
-              <button onClick={playSequenceABCDE}>顺播 A→B→C→D→E</button>
-              <button onClick={playPreferredVersion}>播放偏好版本</button>
-              <button onClick={playABCompare}>A/B 对比播放</button>
-              <strong className="clock">{activeAlignment.start_s.toFixed(3)}<small>- {activeAlignment.end_s.toFixed(3)}s</small></strong>
+            <div className="event-strip">
+              <span>{activePhrase.start_event_id}</span>
+              <span>{activePhrase.event_range}</span>
+              <span>{activePhrase.end_event_id}</span>
             </div>
+            <div className="playback-bar r2-basic-playback">
+              <button className="play-button" onClick={() => playback.isPlaying ? stopPlayback() : playVersion(activeVersionId)}>
+                {playback.isPlaying ? "停止" : "播放当前版本"}
+                <span>{playModeLabel(playback.playMode)}</span>
+              </button>
+              <button onClick={() => playVersion(activeVersionId)}>从本版 phrase_start 播放</button>
+              <button onClick={() => playSequenceABCD()}>顺播 A→B→C→D</button>
+              <button onClick={playPreferredVersion}>播放偏好版本</button>
+              <strong className="clock">{formatTime(playback.currentTimeS)}<small>/ {formatTime(activeAlignment.end_s)} · {playback.playingVersionId ? versionLabel(versions, playback.playingVersionId) : versionLabel(versions, activeVersionId)}</small></strong>
+              <span className="speed-label">播放速度</span>
+              {([0.5, 1, 1.5] as R2PlaybackRate[]).map((rate) => (
+                <button key={rate} className={playback.playbackRate === rate ? "active" : ""} onClick={() => setPlayback((current) => ({ ...current, playbackRate: rate }))}>{rate}x</button>
+              ))}
+            </div>
+            <PhraseAlignmentTable versions={versions} alignments={alignmentsForPhrase} />
           </section>
         </div>
       }
       right={
         <RightPanel
-          activePhraseId={activePhraseId}
-          activeSection={activeSection}
-          eventRange={activePhrase.event_range}
+          phrase={activePhrase}
           activeVersionId={activeVersionId}
-          preferredVersionId={preferredVersionId}
-          setPreferredVersionId={setPreferred}
-          markers={markers}
-          selectedMarkerId={selectedMarkerId}
-          setSelectedMarkerId={setSelectedMarkerId}
-          updateMarker={updateMarker}
-          nudge={nudgeMarker}
-          review={activeReviewDraft}
-          updateReview={updateReviewDraft}
-          toggleIssue={toggleIssue}
-          saveDraft={saveDraft}
-          loadDraft={loadDraft}
-          boundaryStatus={boundaryStatus}
-          setBoundaryStatus={updateBoundaryStatus}
-        />
-      }
-      bottom={
-        <R2ExportPreviewPanel
-          title="导出与评审历史"
-          rows={phraseExports}
-          group={exportGroup}
-          sections={sections}
-          phrases={phrases}
-          alignments={reviewedAlignments}
-          markers={markers}
-          review={activeListeningReview}
-          preferredVersionByPhrase={preferredVersionByPhrase}
-          listeningReviewByKey={listeningReviewByKey}
-          activePhraseId={activePhraseId}
-          activeVersionId={activeVersionId}
-          preferredVersionId={preferredVersionId}
-          boundaryStatus={boundaryStatus}
-          onGroupChange={setExportGroup}
+          versions={versions}
+          draft={activeDraft}
+          boundaryStatus={boundaryStatus[boundaryKey(activePhraseId, activeVersionId)] ?? "candidate"}
+          onBoundaryStatus={(status) => setBoundaryStatus((current) => ({ ...current, [boundaryKey(activePhraseId, activeVersionId)]: status }))}
+          onPreferred={setPreferred}
+          onToggleIssue={toggleIssue}
+          onDraft={updateDraft}
           onSaveDraft={saveDraft}
-          onExportAll={() => setLastActionMessage("已导出全部")}
-          onExportPhrase={() => setLastActionMessage("已导出当前 phrase")}
-          onPreview={(file) => setLastActionMessage(`已预览 ${file}`)}
+          onExportDraft={exportDraftJson}
         />
       }
-      statusText={backendStatus}
+      bottom={<R2BottomPanel renderSet={renderSet} versions={versions} dataSource={dataSource} />}
+      statusText={backendMessage}
       detailText={lastActionMessage}
     />
   );
 }
 
 function LeftPanel({
+  phrases,
+  sections,
   selectedPhraseId,
   onSelectPhrase,
   progress,
+  dataSource,
 }: {
+  phrases: PhraseDefinition[];
+  sections: Section[];
   selectedPhraseId: string;
   onSelectPhrase: (phraseId: string) => void;
-  progress: ProgressOverview;
+  progress: { reviewed: number; total: number };
+  dataSource: DataSource;
 }) {
   return (
     <div className="panel-stack">
@@ -521,11 +372,11 @@ function LeftPanel({
       </div>
       <section className="editor-section">
         <h3>曲目</h3>
-        {mockPieces.map((piece) => <button key={piece.piece_id} className={`wide ${piece.piece_id === "XWC" ? "active" : ""}`}>{piece.piece_id} / {piece.piece_title}<small>{piece.mock_only ? "R2A UI mock only" : "active MVP piece"}</small></button>)}
+        {mockPieces.map((piece) => <button key={piece.piece_id} className={`wide ${piece.piece_id === "XWC" ? "active" : ""}`}>{piece.piece_id} / {piece.piece_title}<small>{piece.mock_only ? "R2 mock option" : "active MVP piece"}</small></button>)}
       </section>
       <section className="editor-section">
         <h3>Session</h3>
-        {mockSessions.map((session) => <button key={session.recording_session_id} className={`wide ${session.current_project_session ? "active" : ""}`}>{session.recording_session_id}<small>{session.label}</small></button>)}
+        {mockSessions.slice(0, 1).map((session) => <button key={session.recording_session_id} className="wide active">{session.recording_session_id}<small>{dataSource === "api" ? "real ABCD render set" : session.label}</small></button>)}
       </section>
       <section className="editor-section">
         <h3>Section / Phrase</h3>
@@ -533,336 +384,251 @@ function LeftPanel({
           <div className="section-tree" key={section.section_id}>
             <strong>{section.section_id} {section.section_label}</strong>
             {section.phrase_ids.map((phraseId) => {
-              const phrase = getPhrase(phraseId);
+              const phrase = getPhrase(phrases, phraseId);
               return <button key={phraseId} className={`wide ${selectedPhraseId === phraseId ? "active" : ""}`} onClick={() => onSelectPhrase(phraseId)}>{phrase.phrase_id}<small>{phrase.event_range}</small></button>;
             })}
           </div>
         ))}
       </section>
       <section className="phrase-rail">
-        <h3>本曲进度概览</h3>
-        <div><span>已审 phrase</span><b>{progress.reviewedPhraseCount} / {progress.totalPhraseCount}</b><i style={{ width: percentWidth(progress.reviewedPhraseCount, progress.totalPhraseCount) }} /></div>
-        <div><span>待审 phrase</span><b>{progress.pendingPhraseCount} / {progress.totalPhraseCount}</b><i className="gold-line" style={{ width: percentWidth(progress.pendingPhraseCount, progress.totalPhraseCount) }} /></div>
-        <div><span>待复核边界</span><b>{progress.unclearBoundaryCount}</b><i className="gold-line" style={{ width: percentWidth(progress.unclearBoundaryCount, phraseAlignments.length) }} /></div>
-        <div><span>需重录</span><b>{progress.needsRetakeCount}</b><i className="gold-line" style={{ width: percentWidth(progress.needsRetakeCount, phraseAlignments.length) }} /></div>
-        <div><span>偏好已设</span><b>{progress.preferredVersionCount} / {progress.totalPhraseCount}</b><i style={{ width: percentWidth(progress.preferredVersionCount, progress.totalPhraseCount) }} /></div>
+        <h3>草稿进度</h3>
+        <div><span>已填 phrase</span><b>{progress.reviewed} / {progress.total}</b><i style={{ width: percentWidth(progress.reviewed, progress.total) }} /></div>
       </section>
     </div>
+  );
+}
+
+function PhraseAlignmentTable({ versions, alignments }: { versions: RenderVersion[]; alignments: RenderPhraseAlignment[] }) {
+  return (
+    <section className="editor-section">
+      <h3>本 phrase 的 A/B/C/D 独立时间范围</h3>
+      <div className="export-table-scroll">
+        <table className="export-table">
+          <thead>
+            <tr><th>version_id</th><th>phrase_start_s</th><th>phrase_end_s</th><th>event_range</th><th>wav/audio</th></tr>
+          </thead>
+          <tbody>
+            {versions.map((version) => {
+              const alignment = alignments.find((item) => item.version_id === version.version_id);
+              return (
+                <tr key={version.version_id}>
+                  <td>{version.version_id}</td>
+                  <td>{alignment?.start_s.toFixed(3) ?? "-"}</td>
+                  <td>{alignment?.end_s.toFixed(3) ?? "-"}</td>
+                  <td>{alignment?.event_range ?? "-"}</td>
+                  <td>{version.audio_url ?? version.audio_path}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }
 
 function RightPanel({
-  activePhraseId,
-  activeSection,
-  eventRange,
+  phrase,
   activeVersionId,
-  preferredVersionId,
-  setPreferredVersionId,
-  markers,
-  selectedMarkerId,
-  setSelectedMarkerId,
-  updateMarker,
-  nudge,
-  review,
-  updateReview,
-  toggleIssue,
-  saveDraft,
-  loadDraft,
+  versions,
+  draft,
   boundaryStatus,
-  setBoundaryStatus,
+  onBoundaryStatus,
+  onPreferred,
+  onToggleIssue,
+  onDraft,
+  onSaveDraft,
+  onExportDraft,
 }: {
-  activePhraseId: string;
-  activeSection: ReturnType<typeof getSection>;
-  eventRange: string;
+  phrase: PhraseDefinition;
   activeVersionId: string;
-  preferredVersionId?: string;
-  setPreferredVersionId: (versionId: string) => void;
-  markers: PhraseMarker[];
-  selectedMarkerId: string;
-  setSelectedMarkerId: (markerId: string) => void;
-  updateMarker: (patch: Partial<PhraseMarker>) => void;
-  nudge: (delta: number) => void;
-  review: R2ListeningReviewDraft;
-  updateReview: (patch: Partial<R2ListeningReviewDraft>) => void;
-  toggleIssue: (issue: R2IssueType) => void;
-  saveDraft: () => void;
-  loadDraft: () => void;
+  versions: RenderVersion[];
+  draft: ReviewDraft;
   boundaryStatus: MarkerReviewStatus;
-  setBoundaryStatus: (status: MarkerReviewStatus) => void;
+  onBoundaryStatus: (status: MarkerReviewStatus) => void;
+  onPreferred: (versionId: string) => void;
+  onToggleIssue: (issue: R2IssueType) => void;
+  onDraft: (patch: Partial<ReviewDraft>) => void;
+  onSaveDraft: () => void;
+  onExportDraft: () => void;
 }) {
-  const phraseMarkers = markers.filter((marker) => ["phrase_start", "phrase_end", "breath_point", "cadence"].includes(marker.marker_type));
-  const selectedMarker = phraseMarkers.find((marker) => marker.marker_id === selectedMarkerId) ?? phraseMarkers[0];
-  const markerLabels: { key: R2MarkerKey; label: string }[] = [
-    { key: "phrase_start", label: "句头" },
-    { key: "phrase_end", label: "句尾" },
-    { key: "breath_point", label: "气口" },
-    { key: "cadence", label: "收束" },
-  ];
   return (
     <div className="panel-stack">
-      <h2>句读听评编辑</h2>
+      <h2>Review Draft</h2>
       <div className="info-card">
-        <span>当前句读对象：{activePhraseId}</span>
-        <span>所属 section：{activeSection.section_id} {activeSection.section_label}</span>
-        <code>event_range：{eventRange}</code>
-        <span>当前版本：{versionLabel(activeVersionId)}</span>
-        <span>偏好版本：{preferredVersionId ? versionLabel(preferredVersionId) : "未设置偏好"}</span>
+        <span>当前 phrase：{phrase.phrase_id}</span>
+        <code>event_range：{phrase.event_range}</code>
+        <span>当前版本：{versionLabel(versions, activeVersionId)}</span>
+        <span>GPT review pending：true</span>
+        <span>E revision plan generated：false</span>
       </div>
-      <section className="editor-section">
-        <h3>A. 句读标记</h3>
-        <div className="button-grid">
-          {markerLabels.map((item) => {
-            const marker = phraseMarkers.find((candidate) => candidate.marker_type === item.key);
-            return <button key={item.key} className={selectedMarker?.marker_type === item.key ? "active" : ""} title={item.key} onClick={() => marker && setSelectedMarkerId(marker.marker_id)}>{item.label}</button>;
-          })}
-        </div>
-        <div className="info-card marker-info-card">
-          <span>当前标记：{selectedMarker?.marker_label_zh ?? "未选择"}</span>
-          <b>{(selectedMarker?.time_s ?? 0).toFixed(3)}s</b>
-          <span className={`unit-status status-${statusToneClass(selectedMarker?.review_status ?? "candidate")}`}>状态：{statusLabel(selectedMarker?.review_status ?? "candidate")}</span>
-        </div>
-        <div className="nudge-grid">{[-50, -10, -5, 5, 10, 50].map((delta) => <button key={delta} onClick={() => nudge(delta)}>{delta > 0 ? "+" : ""}{delta}ms</button>)}</div>
-        <div className="status-grid marker-status-grid">
-          {reviewStatuses.map((status) => (
-            <button
-              key={status}
-              className={`status-option status-${statusToneClass(status)} ${selectedMarker?.review_status === status ? "active" : ""}`}
-              onClick={() => updateMarker({ review_status: status })}
-            >
-              {statusLabel(status)}
-            </button>
-          ))}
-        </div>
-        <div className="cg-select-row">
-          <textarea value={selectedMarker?.notes ?? ""} onChange={(event) => updateMarker({ notes: event.target.value })} />
-        </div>
-      </section>
-      <section className="editor-section">
-        <h3>Section 上下文</h3>
-        <div className="context-summary">
-          <span>所属 section：<b>{activeSection.section_id} {activeSection.section_label}</b></span>
-          <span>section event_range：<b>{activeSection.event_range}</b></span>
-          <span>本 section phrase 数：<b>{activeSection.phrase_ids.length}</b></span>
-          <span>当前 phrase 序号：<b>{activeSection.phrase_ids.indexOf(activePhraseId) + 1} / {activeSection.phrase_ids.length}</b></span>
-        </div>
-      </section>
       <section className="editor-section">
         <h3>边界状态</h3>
         <div className="segmented boundary-segmented">
-          {reviewStatuses.map((status) => (
-            <button
-              key={status}
-              className={`status-option status-${statusToneClass(status)} ${boundaryStatus === status ? "active" : ""}`}
-              onClick={() => setBoundaryStatus(status)}
-            >
-              {statusLabel(status)}
-            </button>
+          {reviewStatuses.map((status) => <button key={status} className={boundaryStatus === status ? "active" : ""} onClick={() => onBoundaryStatus(status)}>{status}</button>)}
+        </div>
+      </section>
+      <section className="editor-section">
+        <h3>问题类型</h3>
+        <div className="issue-grid">
+          {issueOptions.filter((issue) => issue.key !== "other").map((issue) => (
+            <label key={issue.key} className={draft.issue_type.includes(issue.key) ? "active-check" : ""}>
+              <input type="checkbox" checked={draft.issue_type.includes(issue.key)} onChange={() => onToggleIssue(issue.key)} />
+              {issue.label}
+            </label>
           ))}
         </div>
       </section>
       <section className="editor-section">
-        <h3>B. 当前版本听评批注</h3>
-        <div className="review-subsection">
-          <h4>当前评审对象</h4>
-          <span>当前 phrase：<b>{activePhraseId}</b></span>
-          <span>当前 version：<b>{versionLabel(activeVersionId)}</b></span>
-          <span>当前 preferred：<b>{preferredVersionId ? versionLabel(preferredVersionId) : "未设置偏好"}</b></span>
-          <select className="cg-select" value={preferredVersionId ?? ""} onChange={(event) => event.target.value && setPreferredVersionId(event.target.value)}>
-            <option value="">未设置偏好</option>
-            {versions.map((version) => <option key={version.version_id} value={version.version_id}>{version.version_code} {version.version_label_zh}</option>)}
-          </select>
-        </div>
-        <div className="review-subsection">
-          <h4>快速评价</h4>
-          <div className="segmented">
-            {([
-              ["good", "很好"],
-              ["usable", "可用"],
-              ["needs_revision", "需修"],
-              ["bad", "不可用"],
-            ] as [QuickJudgement, string][]).map(([value, label]) => <button key={value} className={review.quick_judgement === value ? "active" : ""} onClick={() => updateReview({ quick_judgement: value })}>{label}</button>)}
-          </div>
-        </div>
-        <div className="review-subsection">
-          <h4>问题类型</h4>
-          <div className="issue-grid">
-            {issueOptions.map((issue) => <label key={issue.key} className={review.issue_type.includes(issue.key) ? "active-check" : ""}><input type="checkbox" checked={review.issue_type.includes(issue.key)} onChange={() => toggleIssue(issue.key)} />{issue.label}</label>)}
-          </div>
-        </div>
-        <div className="review-subsection">
-          <h4>严重程度</h4>
-          <div className="segmented">{(["low", "medium", "high"] as Severity[]).map((item) => <button key={item} className={review.severity === item ? "active" : ""} onClick={() => updateReview({ severity: item })}>{severityLabel(item)}</button>)}</div>
-        </div>
-        <div className="review-subsection">
-          <h4>文字批注</h4>
-          <textarea value={review.comment} onChange={(event) => updateReview({ comment: event.target.value })} />
-        </div>
-        <div className="review-subsection">
-          <h4>修订建议</h4>
-          <textarea value={review.suggested_revision} onChange={(event) => updateReview({ suggested_revision: event.target.value })} />
-        </div>
-        <div className="action-row"><button className="active" onClick={saveDraft}>保存 draft</button><button onClick={loadDraft}>加载 draft</button></div>
+        <h3>严重程度</h3>
+        <div className="segmented">{(["low", "medium", "high"] as Severity[]).map((item) => <button key={item} className={draft.severity === item ? "active" : ""} onClick={() => onDraft({ severity: item })}>{item}</button>)}</div>
       </section>
+      <section className="editor-section">
+        <h3>偏好版本</h3>
+        <select className="cg-select" value={draft.preferred_version} onChange={(event) => onPreferred(event.target.value)}>
+          <option value="none">none</option>
+          {versions.map((version) => <option key={version.version_id} value={version.version_id}>{version.version_id}</option>)}
+        </select>
+      </section>
+      <section className="editor-section">
+        <h3>comment</h3>
+        <textarea value={draft.comment} onChange={(event) => onDraft({ comment: event.target.value })} />
+      </section>
+      <section className="editor-section">
+        <h3>suggested_revision</h3>
+        <textarea value={draft.suggested_revision} onChange={(event) => onDraft({ suggested_revision: event.target.value })} />
+      </section>
+      <div className="action-row">
+        <button className="active" onClick={onSaveDraft}>保存 draft</button>
+        <button onClick={onExportDraft}>Export Review Draft JSON</button>
+      </div>
     </div>
   );
 }
 
-function R2PlaybackControls({
-  playback,
-  phraseEndS,
-  onPlayPause,
-  onPhraseStart,
-  onMarkerStart,
-  onPreroll,
-  onToggleLoop,
-  onRateChange,
-  onPrevPhrase,
-  onNextPhrase,
-}: {
-  playback: R2PlaybackState;
-  phraseEndS: number;
-  onPlayPause: () => void;
-  onPhraseStart: () => void;
-  onMarkerStart: () => void;
-  onPreroll: () => void;
-  onToggleLoop: () => void;
-  onRateChange: (rate: R2PlaybackRate) => void;
-  onPrevPhrase: () => void;
-  onNextPhrase: () => void;
-}) {
+function R2BottomPanel({ renderSet, versions, dataSource }: { renderSet: RenderSet; versions: RenderVersion[]; dataSource: DataSource }) {
   return (
-    <div className="playback-bar r2-basic-playback">
-      <button className="play-button" onClick={onPlayPause}>{playback.isPlaying ? "暂停" : "播放"}<span>{playModeLabel(playback.playMode)}</span></button>
-      <button onClick={onPhraseStart}>从句头播放</button>
-      <button onClick={onMarkerStart}>从当前标记播放</button>
-      <button onClick={onPreroll}>前滚 300ms</button>
-      <button className={playback.loopPhrase ? "active" : ""} onClick={onToggleLoop}>循环当前 phrase</button>
-      <button onClick={onPrevPhrase}>上一 phrase</button>
-      <button onClick={onNextPhrase}>下一 phrase</button>
-      <strong className="clock">{formatTime(playback.currentTimeS)}<small>/ {formatTime(phraseEndS)} · {playback.playingVersionId ? versionLabel(playback.playingVersionId) : "当前版本"}</small></strong>
-      <span className="speed-label">播放速度</span>
-      {([0.5, 1, 1.5] as R2PlaybackRate[]).map((rate) => (
-        <button key={rate} className={playback.playbackRate === rate ? "active" : ""} onClick={() => onRateChange(rate)}>
-          {rate}x
-        </button>
-      ))}
-    </div>
+    <section className="export-panel">
+      <div className="section-title-row">
+        <h2>R2 Render Set Intake</h2>
+        <span>{dataSource === "api" ? "真实 API 数据" : "mock fallback 数据"}</span>
+      </div>
+      <div className="export-preview-grid">
+        <div className="preview-card">
+          <h3>render_set</h3>
+          <p>{renderSet.render_set_id}</p>
+          <p>experimental_render=true / production_grade=false / e_generated=false</p>
+        </div>
+        <div className="preview-card">
+          <h3>versions</h3>
+          <p>{versions.map((version) => version.version_id).join(" / ")}</p>
+          <p>E_REVIEWED not shown; no best version is selected automatically.</p>
+        </div>
+        <div className="preview-card">
+          <h3>API base</h3>
+          <p>{apiBase}</p>
+          <p>WAV playback uses backend audio endpoint, not local filesystem paths.</p>
+        </div>
+      </div>
+    </section>
   );
 }
 
-function toCanvasMarker(marker: PhraseMarker): Marker {
-  return {
-    id: marker.marker_id,
-    key: marker.marker_id,
-    label: `${marker.marker_label_zh} · ${statusLabel(marker.review_status)}`,
-    time: marker.time_s,
-    color: markerColor(marker.marker_type),
-    source: marker.source,
-    review_status: marker.review_status,
-    nudge_total_ms: marker.nudge_total_ms,
-    notes: marker.notes,
-    displayLabel: true,
-    weak: marker.marker_type === "section_start" || marker.marker_type === "section_end",
+function abcdVersions(items: RenderVersion[]) {
+  return items.filter((version) => VERSION_ORDER.includes(version.version_id)).sort((a, b) => VERSION_ORDER.indexOf(a.version_id) - VERSION_ORDER.indexOf(b.version_id));
+}
+
+function abcdAlignments(items: RenderPhraseAlignment[]) {
+  return items.filter((alignment) => VERSION_ORDER.includes(alignment.version_id));
+}
+
+function getPhrase(phrases: PhraseDefinition[], phraseId: string) {
+  return phrases.find((phrase) => phrase.phrase_id === phraseId) ?? phrases[0] ?? {
+    phrase_id: "",
+    section_id: "",
+    phrase_index: 0,
+    phrase_label: "",
+    event_range: "",
+    start_event_id: "",
+    end_event_id: "",
   };
 }
 
-function markerColor(markerType: R2MarkerKey): Marker["color"] {
-  if (markerType === "phrase_start") return "green";
-  if (markerType === "phrase_end") return "purple";
-  if (markerType === "breath_point") return "blue";
-  if (markerType === "cadence") return "gold";
-  if (markerType === "unclear_boundary") return "red";
-  return "cyan";
+function getSection(sections: Section[], sectionId: string) {
+  return sections.find((section) => section.section_id === sectionId) ?? sections[0] ?? { section_id: "", section_label: "", event_range: "", phrase_ids: [] };
+}
+
+function getAlignment(alignments: RenderPhraseAlignment[], phraseId: string, versionId: string) {
+  return alignments.find((item) => item.phrase_id === phraseId && item.version_id === versionId) ?? alignments.find((item) => item.phrase_id === phraseId) ?? {
+    render_set_id: "",
+    version_id: versionId,
+    phrase_id: phraseId,
+    section_id: "",
+    event_range: "",
+    start_s: 0,
+    end_s: 0,
+    breath_points_s: [],
+    boundary_source: "mock" as const,
+    boundary_confidence: "unclear" as const,
+    review_status: "candidate" as const,
+  };
+}
+
+function makeDraft(phrase: PhraseDefinition): ReviewDraft {
+  return {
+    phrase_id: phrase.phrase_id,
+    event_range: phrase.event_range,
+    issue_type: [],
+    severity: "low",
+    preferred_version: "none",
+    comment: "",
+    suggested_revision: "",
+    reviewer_role: "human",
+    gpt_review_pending: true,
+    e_revision_plan_generated: false,
+  };
+}
+
+function makeBoundaryStatusByKey(alignments: RenderPhraseAlignment[]) {
+  return alignments.reduce<Record<string, MarkerReviewStatus>>((result, alignment) => {
+    result[boundaryKey(alignment.phrase_id, alignment.version_id)] = alignment.review_status;
+    return result;
+  }, {});
+}
+
+function makePhraseMarkers(alignment: RenderPhraseAlignment) {
+  const markers = [
+    marker(`${alignment.phrase_id}-${alignment.version_id}-phrase_start`, "句头", alignment.start_s, "green"),
+    marker(`${alignment.phrase_id}-${alignment.version_id}-phrase_end`, "句尾", alignment.end_s, "purple"),
+  ];
+  alignment.breath_points_s.forEach((time, index) => markers.push(marker(`${alignment.phrase_id}-${alignment.version_id}-breath_${index}`, `气口 ${index + 1}`, time, "blue")));
+  if (alignment.cadence_point_s) markers.push(marker(`${alignment.phrase_id}-${alignment.version_id}-cadence`, "收束", alignment.cadence_point_s, "gold"));
+  return markers;
+}
+
+function marker(id: string, label: string, time: number, color: Marker["color"]): Marker {
+  return { id, key: id, label, time, color, displayLabel: true };
+}
+
+function toCanvasMarker(item: Marker) {
+  return item;
+}
+
+function deriveProgress(phrases: PhraseDefinition[], drafts: DraftByPhrase) {
+  const reviewed = phrases.filter((phrase) => {
+    const draft = drafts[phrase.phrase_id];
+    return draft && (draft.issue_type.length > 0 || draft.comment.trim() || draft.suggested_revision.trim() || draft.preferred_version !== "none");
+  }).length;
+  return { reviewed, total: phrases.length };
 }
 
 function boundaryKey(phraseId: string, versionId: string) {
   return `${phraseId}::${versionId}`;
 }
 
-function phraseVersionKey(phraseId: string, versionId: string) {
-  return `${phraseId}::${versionId}`;
-}
-
-function makeInitialBoundaryStatusByKey() {
-  return makeBoundaryStatusByKey(phraseAlignments);
-}
-
-function makeBoundaryStatusByKey(alignments: RenderPhraseAlignment[]) {
-  return alignments.reduce<BoundaryStatusByKey>((result, alignment) => {
-    result[boundaryKey(alignment.phrase_id, alignment.version_id)] = alignment.review_status;
-    return result;
-  }, {});
-}
-
-function makeReviewDraft(phraseId: string, versionId: string): R2ListeningReviewDraft {
-  return {
-    phrase_id: phraseId,
-    version_id: versionId,
-    issue_type: [],
-    severity: "low",
-    comment: "",
-    suggested_revision: "",
-    reviewer: defaultListeningReview.reviewer,
-    reviewed_at: "",
-  };
-}
-
-function draftFromListeningReview(review: ListeningReview): R2ListeningReviewDraft {
-  return {
-    phrase_id: review.phrase_id,
-    version_id: review.active_version_id,
-    issue_type: review.issue_type,
-    severity: review.severity,
-    quick_judgement: review.issue_type.includes("good") ? "good" : undefined,
-    comment: review.comment,
-    suggested_revision: review.suggested_revision ?? "",
-    reviewer: review.reviewer,
-    reviewed_at: review.reviewed_at,
-    updated_at: review.reviewed_at,
-  };
-}
-
-function toListeningReview(review: R2ListeningReviewDraft, sectionId: string, eventRange: string, preferredVersionId?: string): ListeningReview {
-  return {
-    ...defaultListeningReview,
-    review_id: `R2_REVIEW_${review.phrase_id}_${review.version_id}`,
-    phrase_id: review.phrase_id,
-    section_id: sectionId,
-    event_range: eventRange,
-    active_version_id: review.version_id,
-    preferred_version_id: preferredVersionId,
-    issue_type: review.issue_type,
-    severity: review.severity,
-    comment: review.comment,
-    suggested_revision: review.suggested_revision,
-    reviewer: review.reviewer,
-    reviewed_at: review.reviewed_at,
-  };
-}
-
-function deriveProgressOverview(
-  alignments: RenderPhraseAlignment[],
-  preferredVersionByPhrase: PreferredVersionByPhrase,
-  listeningReviewByKey: ListeningReviewByKey,
-): ProgressOverview {
-  const phraseIds = phrases.map((phrase) => phrase.phrase_id);
-  const reviewedPhraseCount = phraseIds.filter((phraseId) => (
-    alignments.some((alignment) => alignment.phrase_id === phraseId && alignment.review_status === "accepted")
-    || Object.values(listeningReviewByKey).some((review) => review.phrase_id === phraseId && (
-      review.issue_type.length > 0
-      || Boolean(review.quick_judgement)
-      || review.comment.trim().length > 0
-      || review.suggested_revision.trim().length > 0
-    ))
-  )).length;
-  return {
-    totalPhraseCount: phraseIds.length,
-    reviewedPhraseCount,
-    pendingPhraseCount: phraseIds.length - reviewedPhraseCount,
-    unclearBoundaryCount: alignments.filter((alignment) => alignment.review_status === "unclear").length,
-    needsRetakeCount: alignments.filter((alignment) => alignment.review_status === "needs_retake").length,
-    preferredVersionCount: phraseIds.filter((phraseId) => Boolean(preferredVersionByPhrase[phraseId])).length,
-  };
+function versionLabel(versions: RenderVersion[], versionId: string) {
+  const version = versions.find((item) => item.version_id === versionId);
+  return version ? `${version.version_code} ${version.version_label_zh}` : versionId;
 }
 
 function percentWidth(value: number, total: number) {
@@ -870,36 +636,12 @@ function percentWidth(value: number, total: number) {
   return `${Math.min(100, Math.round((value / total) * 100))}%`;
 }
 
-function defaultMarkerId(nextMarkers: PhraseMarker[]) {
-  return nextMarkers.find((marker) => marker.marker_type === "cadence")?.marker_id ?? nextMarkers[0]?.marker_id ?? "";
-}
-
-function versionLabel(versionId: string) {
-  const version = versions.find((item) => item.version_id === versionId);
-  return version ? `${version.version_code} ${version.version_label_zh}` : versionId;
-}
-
-function statusLabel(status: MarkerReviewStatus) {
-  return markerReviewStatusLabels[status];
-}
-
-function statusToneClass(status: MarkerReviewStatus) {
-  return markerReviewStatusTone[status];
-}
-
-function severityLabel(severity: Severity) {
-  return { low: "低", medium: "中", high: "高" }[severity];
-}
-
-function playModeLabel(mode: R2PlayMode) {
+function playModeLabel(mode: PlayMode) {
   return {
-    idle: "mock 已暂停",
+    idle: "已停止",
     phrase: "phrase 播放",
-    marker: "marker 播放",
-    preroll: "前滚播放",
-    sequence_abcde: "A→B→C→D→E",
+    sequence_abcd: "A→B→C→D",
     preferred: "偏好版本",
-    ab_compare: "A/B 对比",
   }[mode];
 }
 

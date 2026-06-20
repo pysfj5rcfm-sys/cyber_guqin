@@ -56,6 +56,8 @@ GET /api/r2/render-sets/R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e/phrase-alignments
 
 This intake is review-only. It does not generate E, choose a best version, write sample assets, or start ML training.
 
+The R2 frontend loads the same endpoints on page open. If the backend returns `R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e`, the page uses real A/B/C/D versions and backend audio URLs. If the backend is unavailable, it keeps the built-in mock fallback.
+
 ## Windows Frontend
 
 ```powershell

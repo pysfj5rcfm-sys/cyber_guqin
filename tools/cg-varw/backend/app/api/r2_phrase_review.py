@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 
 from app.schemas import GenericResponse, R2DraftPayload, R2ExportRequest
 from app.services import r2_mock_store as store
@@ -85,6 +86,11 @@ def r2_spectrogram(render_set_id: str, version_id: str, points: int = 800) -> di
 @router.get("/render-sets/{render_set_id}/versions/{version_id}/audio")
 def r2_audio_mock(render_set_id: str, version_id: str) -> dict[str, Any]:
     _handle(lambda: store.get_render_set(render_set_id))
+    try:
+        path = store.resolve_version_audio_path(render_set_id, version_id)
+        return FileResponse(path=path, filename=path.name, media_type="audio/wav")
+    except ValueError:
+        pass
     return {"render_set_id": render_set_id, "version_id": version_id, "audio_path": f"mock://r2/{version_id}", "message": "R2A mock only; no real audio endpoint.", "mock_render": True, **store.SAFETY}
 
 

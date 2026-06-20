@@ -27,6 +27,12 @@ class R2RenderSetIntakeTests(unittest.TestCase):
         self.assertEqual("candidate", p09_c.review_status)
         self.assertGreater(p09_c.end_s, p09_c.start_s)
 
+    def test_resolves_real_r2_version_audio_path(self):
+        audio_path = store.resolve_version_audio_path("R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e", "A_LITERAL")
+
+        self.assertTrue(audio_path.exists())
+        self.assertEqual("XWC_BAIYA_A_LITERAL.wav", audio_path.name)
+
 
 if __name__ == "__main__":
     unittest.main()

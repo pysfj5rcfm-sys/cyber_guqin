@@ -190,14 +190,17 @@ export type R2VersionRole =
 export type R2BoundarySource = "human_marked" | "imported" | "derived" | "mock";
 export type R2BoundaryConfidence = "high" | "medium" | "low" | "unclear";
 export type R2IssueType =
-  | "too_fast"
-  | "too_slow"
-  | "tail_short"
-  | "wrong_breath"
   | "too_mechanical"
+  | "wrong_breath"
+  | "tail_short"
+  | "tail_too_long"
   | "attack_abrupt"
   | "sample_mismatch"
   | "phrase_unclear"
+  | "transition_unnatural"
+  | "context_take_needed"
+  | "context_take_overused"
+  | "anchor_suspect"
   | "good"
   | "other";
 
@@ -230,8 +233,9 @@ export interface RenderSet extends R2SafetyFlags {
   piece_id: string;
   piece_title: string;
   qinist_id: string;
-  render_stage: "mock";
+  render_stage: "mock" | "experimental_render";
   created_at: string;
+  e_generated?: boolean;
 }
 
 export interface Section {
@@ -259,9 +263,10 @@ export interface RenderVersion extends R2SafetyFlags {
   version_label_en: string;
   version_role: R2VersionRole;
   audio_path: string;
+  audio_url?: string;
   duration_s: number;
   waveform_preview?: number[];
-  mock_render: true;
+  mock_render: boolean;
 }
 
 export interface RenderPhraseAlignment {

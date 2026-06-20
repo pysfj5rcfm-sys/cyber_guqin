@@ -337,6 +337,21 @@ def versions_from_intake(intake: dict[str, Any]) -> list[R2RenderVersion]:
     return versions
 
 
+def resolve_version_audio_path(render_set_id: str, version_id: str) -> Path:
+    intake = load_intake_index()
+    if not intake or render_set_id != intake["render_set_id"]:
+        raise ValueError(f"real R2 audio is not available for render_set_id: {render_set_id}")
+    for item in intake.get("versions", []):
+        if item.get("version_id") == version_id:
+            path = (REPO_ROOT / item["wav_path"]).resolve()
+            if not path.exists() or not path.is_file():
+                raise ValueError(f"R2 version audio not found: {version_id}")
+            if REPO_ROOT.resolve() not in path.parents:
+                raise ValueError(f"R2 version audio outside repository: {version_id}")
+            return path
+    raise ValueError(f"unknown R2 version_id: {version_id}")
+
+
 def phrases_from_intake(intake: dict[str, Any]) -> dict[str, Any]:
     phrase_defs = intake.get("phrases", [])
     phrases = [

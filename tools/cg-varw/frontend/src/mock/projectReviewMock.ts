@@ -130,14 +130,17 @@ export const defaultListeningReview: ListeningReview = {
 };
 
 export const issueOptions: { key: R2IssueType; label: string }[] = [
-  { key: "too_fast", label: "太快" },
-  { key: "too_slow", label: "太拖" },
-  { key: "tail_short", label: "尾音短" },
-  { key: "wrong_breath", label: "气口错" },
   { key: "too_mechanical", label: "像拼接" },
+  { key: "wrong_breath", label: "气口错" },
+  { key: "tail_short", label: "尾音短" },
+  { key: "tail_too_long", label: "尾音过长" },
   { key: "attack_abrupt", label: "音头突兀" },
   { key: "sample_mismatch", label: "样本不匹配" },
   { key: "phrase_unclear", label: "句读不清" },
+  { key: "transition_unnatural", label: "过渡不自然" },
+  { key: "context_take_needed", label: "需要 context" },
+  { key: "context_take_overused", label: "context 过度" },
+  { key: "anchor_suspect", label: "anchor 可疑" },
   { key: "good", label: "很好" },
   { key: "other", label: "其他" },
 ];
