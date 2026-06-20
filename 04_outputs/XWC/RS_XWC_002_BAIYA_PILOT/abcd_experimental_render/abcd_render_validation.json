@@ -1,0 +1,32 @@
+{
+  "task_name": "CG-XWC_BAIYA_ABCD_EXPERIMENTAL_RENDER_FROM_PLANNING",
+  "planning_commit_checked": "228b808",
+  "planning_commit_is_ancestor": true,
+  "generated_versions": 4,
+  "generated_wavs": {
+    "A_LITERAL": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/A_LITERAL/XWC_BAIYA_A_LITERAL.wav",
+    "B_PHRASE": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/B_PHRASE/XWC_BAIYA_B_PHRASE.wav",
+    "C_QINIST_STYLE": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/C_QINIST_STYLE/XWC_BAIYA_C_QINIST_STYLE.wav",
+    "D_TEACHING_DIAGNOSTIC": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/XWC_BAIYA_D_TEACHING_DIAGNOSTIC.wav"
+  },
+  "e_generated": false,
+  "dummy_fallback_used": false,
+  "source_map_rows": 71,
+  "missing_source_audio_count": 0,
+  "unreadable_source_audio_count": 0,
+  "t071_rule_ok": true,
+  "t060_t071_context_rule_ok": true,
+  "render_anchor_alignment_used": true,
+  "file_start_alignment_used": false,
+  "sample_assets_modified": false,
+  "recording_segments_modified": false,
+  "recording_items_enriched_created": false,
+  "score_events_modified": false,
+  "gesture_templates_modified": false,
+  "canon_modified": false,
+  "sources_modified": false,
+  "raw_master_modified": false,
+  "production_grade": false,
+  "validation_status": "passed",
+  "blocker_reason": ""
+}

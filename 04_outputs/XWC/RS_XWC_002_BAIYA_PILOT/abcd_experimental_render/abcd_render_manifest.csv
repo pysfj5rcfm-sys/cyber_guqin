@@ -1,0 +1,5 @@
+version_id,version_label,wav_path,duration_s,sample_rate,channels,event_count,phrase_count,source_map_rows_used,generated_at,experimental_render,production_grade,e_version,not_sample_assets,not_recording_segments,not_ml_training_data
+A_LITERAL,A Literal Dapu / 直译谱面版,04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/A_LITERAL/XWC_BAIYA_A_LITERAL.wav,141.721,44100,2,51,10,51,2026-06-20T04:38:26.451398+00:00,true,false,false,true,true,true
+B_PHRASE,B Phrase Dapu / 句法呼吸版,04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/B_PHRASE/XWC_BAIYA_B_PHRASE.wav,147.805,44100,2,51,10,51,2026-06-20T04:38:39.706643+00:00,true,false,false,true,true,true
+C_QINIST_STYLE,C Qinist Style / 琴人风格版,04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/C_QINIST_STYLE/XWC_BAIYA_C_QINIST_STYLE.wav,135.605,44100,2,51,10,51,2026-06-20T04:38:52.183735+00:00,true,false,false,true,true,true
+D_TEACHING_DIAGNOSTIC,D Teaching Diagnostic / 教学诊断版,04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/XWC_BAIYA_D_TEACHING_DIAGNOSTIC.wav,167.573,44100,2,51,10,51,2026-06-20T04:39:05.296962+00:00,true,false,false,true,true,true
