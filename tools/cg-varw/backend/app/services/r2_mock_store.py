@@ -605,6 +605,30 @@ def e_reviewed_alignment_path() -> Path | None:
     return e_dir / "render_event_alignment.E_REVIEWED.csv" if e_dir else None
 
 
+def f_final_reviewed_dir() -> Path | None:
+    render_root = get_r2_render_root()
+    if render_root:
+        return render_root / "F_FINAL_REVIEWED"
+    candidates = []
+    intake_root = get_r2_intake_root()
+    if intake_root:
+        candidates.append(intake_root.parent / "F_FINAL_REVIEWED")
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0] if candidates else None
+
+
+def f_final_reviewed_audio_path() -> Path | None:
+    f_dir = f_final_reviewed_dir()
+    return f_dir / "XWC_BAIYA_F_FINAL_REVIEWED.wav" if f_dir else None
+
+
+def f_final_reviewed_alignment_path() -> Path | None:
+    f_dir = f_final_reviewed_dir()
+    return f_dir / "render_event_alignment.F_FINAL_REVIEWED.csv" if f_dir else None
+
+
 def wav_duration_s(path: Path) -> float:
     try:
         with wave.open(str(path), "rb") as handle:
@@ -688,27 +712,51 @@ def versions_from_intake(intake: dict[str, Any]) -> list[R2RenderVersion]:
                 **SAFETY,
             )
         )
-    versions.append(
-        R2RenderVersion(
-            render_set_id=intake["render_set_id"],
-            version_id="F_FINAL_REVIEWED",
-            version_code="F",
-            version_label_zh="F_FINAL_REVIEWED（待 E 听评后生成）",
-            version_label_en="Final Reviewed Pending",
-            version_role="final_reviewed_dapu",
-            audio_path="",
-            duration_s=0.0,
-            waveform_preview=[],
-            mock_render=False,
-            status="pending",
-            playable=False,
-            alignment_available=False,
-            source="future_from_e_review",
-            generation_allowed=False,
-            disabled_reason="F_FINAL_REVIEWED 尚未生成，请先完成 E_REVIEWED 听评。",
-            **SAFETY,
+    f_audio_path = f_final_reviewed_audio_path()
+    f_alignment_path = f_final_reviewed_alignment_path()
+    if f_audio_path and f_audio_path.exists():
+        versions.append(
+            R2RenderVersion(
+                render_set_id=intake["render_set_id"],
+                version_id="F_FINAL_REVIEWED",
+                version_code="F",
+                version_label_zh="F_FINAL_REVIEWED（最终听评收束版）",
+                version_label_en="Final Reviewed",
+                version_role="final_reviewed_dapu",
+                audio_path=str(f_audio_path),
+                duration_s=wav_duration_s(f_audio_path),
+                waveform_preview=mock_waveform(120, len(versions)),
+                mock_render=False,
+                status="final_ready",
+                playable=True,
+                alignment_available=bool(f_alignment_path and f_alignment_path.exists()),
+                source="f_final_reviewed_generation",
+                generation_allowed=False,
+                **SAFETY,
+            )
         )
-    )
+    else:
+        versions.append(
+            R2RenderVersion(
+                render_set_id=intake["render_set_id"],
+                version_id="F_FINAL_REVIEWED",
+                version_code="F",
+                version_label_zh="F_FINAL_REVIEWED（待 E 听评后生成）",
+                version_label_en="Final Reviewed Pending",
+                version_role="final_reviewed_dapu",
+                audio_path="",
+                duration_s=0.0,
+                waveform_preview=[],
+                mock_render=False,
+                status="pending",
+                playable=False,
+                alignment_available=False,
+                source="future_from_e_review",
+                generation_allowed=False,
+                disabled_reason="F_FINAL_REVIEWED 尚未生成，请先完成 E_REVIEWED 听评。",
+                **SAFETY,
+            )
+        )
     return versions
 
 
@@ -731,7 +779,10 @@ def resolve_version_audio_path(render_set_id: str, version_id: str) -> Path:
             raise ValueError("E_REVIEWED audio not found")
         return path
     if version_id == "F_FINAL_REVIEWED":
-        raise ValueError("F_FINAL_REVIEWED 尚未生成，请先完成 E_REVIEWED 听评。")
+        path = f_final_reviewed_audio_path()
+        if not path or not path.exists() or not path.is_file():
+            raise ValueError("F_FINAL_REVIEWED 尚未生成，请先完成 E_REVIEWED 听评。")
+        return path
     raise ValueError(f"unknown R2 version_id: {version_id}")
 
 
@@ -824,11 +875,34 @@ def alignments_from_intake(intake: dict[str, Any]) -> list[R2RenderPhraseAlignme
                 )
             )
     rows.extend(e_reviewed_phrase_alignments(intake))
+    rows.extend(f_final_reviewed_phrase_alignments(intake))
     return rows
 
 
 def e_reviewed_phrase_alignments(intake: dict[str, Any]) -> list[R2RenderPhraseAlignment]:
-    path = e_reviewed_alignment_path()
+    return phrase_alignments_from_render_event_alignment(
+        intake,
+        e_reviewed_alignment_path(),
+        "E_REVIEWED",
+        "Imported from E_REVIEWED render_event_alignment; F_FINAL_REVIEWED remains pending.",
+    )
+
+
+def f_final_reviewed_phrase_alignments(intake: dict[str, Any]) -> list[R2RenderPhraseAlignment]:
+    return phrase_alignments_from_render_event_alignment(
+        intake,
+        f_final_reviewed_alignment_path(),
+        "F_FINAL_REVIEWED",
+        "Imported from F_FINAL_REVIEWED render_event_alignment; final reviewed for current iteration.",
+    )
+
+
+def phrase_alignments_from_render_event_alignment(
+    intake: dict[str, Any],
+    path: Path | None,
+    version_id: str,
+    notes: str,
+) -> list[R2RenderPhraseAlignment]:
     if not path or not path.exists():
         return []
     phrase_rows: dict[str, list[dict[str, str]]] = {}
@@ -859,7 +933,7 @@ def e_reviewed_phrase_alignments(intake: dict[str, Any]) -> list[R2RenderPhraseA
         result.append(
             R2RenderPhraseAlignment(
                 render_set_id=intake["render_set_id"],
-                version_id="E_REVIEWED",
+                version_id=version_id,
                 phrase_id=phrase_id,
                 section_id=rows[0].get("section_id", ""),
                 event_range=f"{event_ids[0]}_to_{event_ids[-1]}" if event_ids else "",
@@ -874,10 +948,10 @@ def e_reviewed_phrase_alignments(intake: dict[str, Any]) -> list[R2RenderPhraseA
                 cadence_point_s=round(play_start + (play_end - play_start) * 0.82, 3),
                 boundary_source="imported",
                 boundary_confidence="medium",
-                review_status="candidate",
+                review_status="accepted" if version_id == "F_FINAL_REVIEWED" else "candidate",
                 reviewer=None,
                 reviewed_at=None,
-                notes="Imported from E_REVIEWED render_event_alignment; F_FINAL_REVIEWED remains pending.",
+                notes=notes,
             )
         )
     return result
@@ -1277,15 +1351,24 @@ def canonicalize_project_review_state(state: dict[str, Any], *, archived_at: str
 
 
 def apply_f_pending_flags(state: dict[str, Any]) -> None:
-    state["f_generation_pending"] = True
     state["f_input_source"] = "E_REVIEWED_USER_REVIEW"
-    state["f_not_generated"] = True
+    f_completed = bool(state.get("f_generation_completed")) or (
+        state.get("f_version_id") == "F_FINAL_REVIEWED" and state.get("f_generation_pending") is False
+    )
+    state["f_generation_pending"] = not f_completed
+    state["f_not_generated"] = not f_completed
+    if f_completed:
+        state["f_generation_completed"] = True
+        state["f_version_id"] = "F_FINAL_REVIEWED"
     provenance = state.get("provenance") if isinstance(state.get("provenance"), dict) else {}
     provenance.update({
-        "f_generation_pending": True,
+        "f_generation_pending": state["f_generation_pending"],
         "f_input_source": "E_REVIEWED_USER_REVIEW",
-        "f_not_generated": True,
+        "f_not_generated": state["f_not_generated"],
     })
+    if f_completed:
+        provenance["f_generation_completed"] = True
+        provenance["f_version_id"] = "F_FINAL_REVIEWED"
     state["provenance"] = provenance
 
 
@@ -1379,15 +1462,16 @@ def export_tables_from_canonical_state(render_set_id: str, state: dict[str, Any]
     preferred = preferred_versions_from_state(state, review_rows)
     boundary_status = boundary_status_from_state(state)
     alignments = list_alignments(render_set_id)
+    flags = string_safety_flags(state)
     return {
-        "phrase_structure_review.yaml": table_from_rows("phrase_structure_review.yaml", phrase_structure_rows(render_set_id)),
-        "render_phrase_alignment.csv": render_phrase_alignment_table(alignments),
-        "phrase_boundary_decision.csv": phrase_boundary_decision_table(alignments, boundary_status),
-        "listening_review.csv": table_from_rows("listening_review.csv", ensure_draft_flags(review_rows)),
-        "listening_review.yaml": table_from_rows("listening_review.yaml", ensure_draft_flags(review_rows)),
-        "preferred_version_summary.csv": table_from_rows("preferred_version_summary.csv", preferred_rows_from_map(render_set_id, preferred)),
-        "issue_list.csv": table_from_rows("issue_list.csv", issue_rows_from_reviews(review_rows)),
-        "render_revision_log.yaml": table_from_rows("render_revision_log.yaml", revision_rows_from_reviews(review_rows, preferred)),
+        "phrase_structure_review.yaml": table_from_rows("phrase_structure_review.yaml", phrase_structure_rows(render_set_id, flags)),
+        "render_phrase_alignment.csv": render_phrase_alignment_table(alignments, flags),
+        "phrase_boundary_decision.csv": phrase_boundary_decision_table(alignments, boundary_status, flags),
+        "listening_review.csv": table_from_rows("listening_review.csv", ensure_draft_flags(review_rows, flags)),
+        "listening_review.yaml": table_from_rows("listening_review.yaml", ensure_draft_flags(review_rows, flags)),
+        "preferred_version_summary.csv": table_from_rows("preferred_version_summary.csv", preferred_rows_from_map(render_set_id, preferred, flags)),
+        "issue_list.csv": table_from_rows("issue_list.csv", issue_rows_from_reviews(review_rows, flags)),
+        "render_revision_log.yaml": table_from_rows("render_revision_log.yaml", revision_rows_from_reviews(review_rows, preferred, flags)),
     }
 
 
@@ -1477,8 +1561,9 @@ def boundary_status_from_state(state: dict[str, Any]) -> dict[str, str]:
     return result
 
 
-def phrase_structure_rows(render_set_id: str) -> list[dict[str, str]]:
+def phrase_structure_rows(render_set_id: str, flags: dict[str, str] | None = None) -> list[dict[str, str]]:
     phrase_data = list_phrases(render_set_id)
+    row_flags = flags or string_safety_flags()
     rows = []
     for phrase in phrase_data["phrases"]:
         rows.append(
@@ -1488,13 +1573,14 @@ def phrase_structure_rows(render_set_id: str) -> list[dict[str, str]]:
                 "phrase_id": phrase.phrase_id,
                 "phrase_label": phrase.phrase_label,
                 "event_range": phrase.event_range,
-                **string_safety_flags(),
+                **row_flags,
             }
         )
     return rows
 
 
-def render_phrase_alignment_table(alignments: list[R2RenderPhraseAlignment]) -> dict[str, Any]:
+def render_phrase_alignment_table(alignments: list[R2RenderPhraseAlignment], flags: dict[str, str] | None = None) -> dict[str, Any]:
+    row_flags = flags or string_safety_flags()
     rows = []
     for item in alignments:
         rows.append(
@@ -1513,13 +1599,14 @@ def render_phrase_alignment_table(alignments: list[R2RenderPhraseAlignment]) -> 
                 "phrase_end_policy": item.phrase_end_policy,
                 "boundary_source": item.boundary_source,
                 "review_status": item.review_status,
-                **string_safety_flags(),
+                **row_flags,
             }
         )
     return table_from_rows("render_phrase_alignment.csv", rows)
 
 
-def phrase_boundary_decision_table(alignments: list[R2RenderPhraseAlignment], boundary_status: dict[str, str]) -> dict[str, Any]:
+def phrase_boundary_decision_table(alignments: list[R2RenderPhraseAlignment], boundary_status: dict[str, str], flags: dict[str, str] | None = None) -> dict[str, Any]:
+    row_flags = flags or string_safety_flags()
     rows = []
     for item in alignments:
         key = f"{item.phrase_id}:{item.version_id}"
@@ -1541,20 +1628,22 @@ def phrase_boundary_decision_table(alignments: list[R2RenderPhraseAlignment], bo
                 "breath_points_s": ";".join(f"{value:.3f}" for value in item.breath_points_s),
                 "cadence_point_s": "" if item.cadence_point_s is None else f"{item.cadence_point_s:.3f}",
                 "review_status": "draft",
-                **string_safety_flags(),
+                **row_flags,
             }
         )
     return table_from_rows("phrase_boundary_decision.csv", rows)
 
 
-def preferred_rows_from_map(render_set_id: str, preferred: dict[str, str]) -> list[dict[str, str]]:
+def preferred_rows_from_map(render_set_id: str, preferred: dict[str, str], flags: dict[str, str] | None = None) -> list[dict[str, str]]:
+    row_flags = flags or string_safety_flags()
     return [
-        {"render_set_id": render_set_id, "phrase_id": phrase_id, "preferred_version_id": version_id, **string_safety_flags()}
+        {"render_set_id": render_set_id, "phrase_id": phrase_id, "preferred_version_id": version_id, **row_flags}
         for phrase_id, version_id in preferred.items()
     ]
 
 
-def issue_rows_from_reviews(review_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+def issue_rows_from_reviews(review_rows: list[dict[str, str]], flags: dict[str, str] | None = None) -> list[dict[str, str]]:
+    row_flags = flags or string_safety_flags()
     rows = []
     for review in review_rows:
         for issue in parse_issue_type(review.get("issue_type", "")):
@@ -1566,13 +1655,16 @@ def issue_rows_from_reviews(review_rows: list[dict[str, str]]) -> list[dict[str,
                     "section_id": review.get("section_id", ""),
                     "issue_type": issue,
                     "severity": review.get("severity", "medium"),
-                    **string_safety_flags(),
+                    "comment": review.get("comment", ""),
+                    "suggested_revision": review.get("suggested_revision", ""),
+                    **row_flags,
                 }
             )
     return rows
 
 
-def revision_rows_from_reviews(review_rows: list[dict[str, str]], preferred: dict[str, str]) -> list[dict[str, str]]:
+def revision_rows_from_reviews(review_rows: list[dict[str, str]], preferred: dict[str, str], flags: dict[str, str] | None = None) -> list[dict[str, str]]:
+    row_flags = flags or string_safety_flags()
     rows = []
     for review in review_rows:
         reason = review.get("suggested_revision", "").strip()
@@ -1584,36 +1676,47 @@ def revision_rows_from_reviews(review_rows: list[dict[str, str]], preferred: dic
             {
                 "revision_id": f"R2_REVISION_{phrase_id}_{version_id}",
                 "render_set_id": review.get("render_set_id", ""),
-                "from_version_id": version_id,
-                "to_version_id": preferred.get(phrase_id, review.get("preferred_version_id", "")),
+                "from_version_id": "E_REVIEWED" if version_id == "F_FINAL_REVIEWED" else version_id,
+                "to_version_id": "F_FINAL_REVIEWED" if version_id == "F_FINAL_REVIEWED" else preferred.get(phrase_id, review.get("preferred_version_id", "")),
                 "phrase_id": phrase_id,
                 "section_id": review.get("section_id", ""),
                 "event_range": review.get("event_range", ""),
                 "change_type": "other",
                 "reason": reason,
-                **string_safety_flags(),
+                **row_flags,
             }
         )
     return rows
 
 
-def ensure_draft_flags(rows: list[dict[str, str]]) -> list[dict[str, str]]:
-    return [dict(row) | string_safety_flags() for row in rows]
+def ensure_draft_flags(rows: list[dict[str, str]], flags: dict[str, str] | None = None) -> list[dict[str, str]]:
+    row_flags = flags or string_safety_flags()
+    return [dict(row) | row_flags for row in rows]
 
 
-def string_safety_flags() -> dict[str, str]:
+def string_safety_flags(state: dict[str, Any] | None = None) -> dict[str, str]:
+    state = state or {}
+    f_completed = bool(state.get("f_generation_completed")) or state.get("f_version_id") == "F_FINAL_REVIEWED"
+    f_pending = not f_completed if "f_generation_pending" not in state else bool(state.get("f_generation_pending"))
+    f_not_generated = not f_completed if "f_not_generated" not in state else bool(state.get("f_not_generated"))
     return {
         "review_status": "draft",
         "gpt_review_pending": "true",
         "e_revision_plan_generated": "false",
         "e_generated": "false",
-        "f_generation_pending": "true",
+        "f_generation_pending": json_bool(f_pending),
         "f_input_source": "E_REVIEWED_USER_REVIEW",
-        "f_not_generated": "true",
+        "f_not_generated": json_bool(f_not_generated),
+        "f_generation_completed": json_bool(f_completed),
+        "f_version_id": "F_FINAL_REVIEWED" if f_completed else "",
         "experimental_render": "true",
         "review_only": "true",
         "production_grade": "false",
     }
+
+
+def json_bool(value: bool) -> str:
+    return "true" if value else "false"
 
 
 def table_from_rows(file: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -1670,6 +1773,9 @@ def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: 
     provenance = state.get("provenance", {}) if isinstance(state.get("provenance"), dict) else {}
     counts = canonical_state_counts(state)
     canonical_state_path = latest_dir / "r2_review_state.latest.json"
+    f_completed = bool(state.get("f_generation_completed")) or state.get("f_version_id") == "F_FINAL_REVIEWED"
+    f_pending = not f_completed if "f_generation_pending" not in state else bool(state.get("f_generation_pending"))
+    f_not_generated = not f_completed if "f_not_generated" not in state else bool(state.get("f_not_generated"))
     manifest = {
         "canonical_source": "r2_review_state.latest.json",
         "canonical_state_path": str(canonical_state_path),
@@ -1706,9 +1812,11 @@ def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: 
         "gpt_review_pending": True,
         "e_revision_plan_generated": False,
         "e_generated": False,
-        "f_generation_pending": True,
+        "f_generation_pending": f_pending,
         "f_input_source": "E_REVIEWED_USER_REVIEW",
-        "f_not_generated": True,
+        "f_not_generated": f_not_generated,
+        "f_generation_completed": f_completed,
+        "f_version_id": "F_FINAL_REVIEWED" if f_completed else "",
         "experimental_render": True,
         "production_grade": False,
         **SAFETY,

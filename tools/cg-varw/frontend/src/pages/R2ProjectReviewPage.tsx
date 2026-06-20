@@ -167,7 +167,7 @@ export function R2ProjectReviewPage() {
           playingVersionId: undefined,
         }));
         setBackendStatus(`后端真实 R2 render set 已加载：${real.render_set_id}`);
-        setLastActionMessage("已接入真实 A/B/C/D/E render set；F_FINAL_REVIEWED 为待生成槽位。");
+        setLastActionMessage(fFinalReady(filteredVersions) ? "已接入真实 A/B/C/D/E/F render set；F_FINAL_REVIEWED 可播放。" : "已接入真实 A/B/C/D/E render set；F_FINAL_REVIEWED 为待生成槽位。");
         if (latestDraft?.has_draft && latestDraft.draft) {
           applyProjectDraft(latestDraft.draft, {
             versions: filteredVersions,
@@ -398,7 +398,7 @@ export function R2ProjectReviewPage() {
     }));
     const statusSource = adapted.draftSource === "restored_from_exports" ? "restored_from_exports" : "engineering_dir_latest";
     setProjectDraftStatus(`${statusSource}: ${context.sourceLabel}${context.path ? `：${context.path}` : ""}${context.savedAt ? ` · ${context.savedAt}` : ""}`);
-    setLastActionMessage(`${context.sourceLabel}；F_FINAL_REVIEWED 尚未生成。`);
+    setLastActionMessage(`${context.sourceLabel}；${fFinalReady(context.versions) ? "F_FINAL_REVIEWED 已生成并可播放。" : "F_FINAL_REVIEWED 尚未生成。"}`);
   }
 
   async function saveProjectDraft() {
@@ -455,13 +455,14 @@ export function R2ProjectReviewPage() {
       const exportPath = readString(data.latest_dir) || response.path || "";
       const files = response.files ?? [];
       setProjectDraftStatus(`engineering_dir_latest: ${exportPath}`);
-      setLastActionMessage(`CSV 已导出到工程目录：${exportPath} · files=${files.length}；F_FINAL_REVIEWED 未生成。`);
+      setLastActionMessage(`CSV 已导出到工程目录：${exportPath} · files=${files.length}；${fFinalReady(versions) ? "F_FINAL_REVIEWED 已同步。" : "F_FINAL_REVIEWED 未生成。"}`);
     } catch (error) {
       setLastActionMessage(`工程目录 CSV 导出失败：${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
   function buildProjectReviewStatePayload(): Record<string, unknown> {
+    const fReady = fFinalReady(versions);
     return {
       render_set_id: renderSet.render_set_id,
       data_source: dataSource === "api" ? "api" : "mock_fallback",
@@ -481,13 +482,20 @@ export function R2ProjectReviewPage() {
       gpt_review_pending: true,
       e_revision_plan_generated: false,
       e_generated: false,
-      f_generation_pending: true,
+      f_generation_pending: !fReady,
       f_input_source: "E_REVIEWED_USER_REVIEW",
-      f_not_generated: true,
+      f_not_generated: !fReady,
+      f_generation_completed: fReady,
+      f_version_id: fReady ? "F_FINAL_REVIEWED" : "",
       experimental_render: true,
       provenance: {
         saved_from_frontend: true,
         saved_at: new Date().toISOString(),
+        f_generation_pending: !fReady,
+        f_input_source: "E_REVIEWED_USER_REVIEW",
+        f_not_generated: !fReady,
+        f_generation_completed: fReady,
+        f_version_id: fReady ? "F_FINAL_REVIEWED" : "",
       },
       ...r2SafetyFlags,
     };
@@ -1018,6 +1026,10 @@ function reviewAlignments(items: RenderPhraseAlignment[]) {
 
 function isPlayableVersion(version?: RenderVersion) {
   return Boolean(version && version.playable !== false && version.status !== "pending" && (version.mock_render || version.audio_url));
+}
+
+function fFinalReady(versions: RenderVersion[]) {
+  return isPlayableVersion(versions.find((version) => version.version_id === "F_FINAL_REVIEWED"));
 }
 
 function isReviewableVersion(version?: RenderVersion) {

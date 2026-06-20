@@ -2,6 +2,7 @@ import csv
 import json
 import tempfile
 import unittest
+import wave
 from os import environ
 from pathlib import Path
 from unittest.mock import patch
@@ -189,6 +190,80 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
             self.assertEqual(50, count_csv_rows(latest_dir / "render_phrase_alignment.csv"))
             self.assertEqual(1, yaml_rows(latest_dir / "render_revision_log.yaml"))
 
+    def test_f_final_files_make_f_version_playable(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            write_f_final_outputs(Path(tmp))
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                versions = store.list_versions(RENDER_SET_ID)
+                alignments = store.list_alignments(RENDER_SET_ID)
+                audio_path = store.resolve_version_audio_path(RENDER_SET_ID, "F_FINAL_REVIEWED")
+
+        f_version = next(version for version in versions if version.version_id == "F_FINAL_REVIEWED")
+        self.assertEqual("final_ready", f_version.status)
+        self.assertTrue(f_version.playable)
+        self.assertTrue(f_version.alignment_available)
+        self.assertEqual("f_final_reviewed_generation", f_version.source)
+        self.assertEqual("XWC_BAIYA_F_FINAL_REVIEWED.wav", Path(f_version.audio_path).name)
+        self.assertEqual("XWC_BAIYA_F_FINAL_REVIEWED.wav", audio_path.name)
+        self.assertEqual(10, len([item for item in alignments if item.version_id == "F_FINAL_REVIEWED"]))
+
+    def test_export_preserves_f_completed_state_and_derives_sixty_alignment_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            render_root = Path(tmp)
+            write_f_final_outputs(render_root)
+            state = {
+                "render_set_id": RENDER_SET_ID,
+                "data_source": "api",
+                "review_status": "final_ready",
+                "active_phrase_id": "XWC_P01_LOCAL_PHRASE",
+                "active_version_id": "F_FINAL_REVIEWED",
+                "listeningReviewByKey": {
+                    "XWC_P10_LOCAL_PHRASE:E_REVIEWED": {
+                        "phrase_id": "XWC_P10_LOCAL_PHRASE",
+                        "version_id": "E_REVIEWED",
+                        "issue_type": ["good"],
+                        "severity": "low",
+                        "comment": "全曲整体略散漫",
+                        "suggested_revision": "全曲建议统一提速，听评1.5倍速正好",
+                        "reviewer": "human",
+                        "updated_at": "2026-06-20T02:00:00.000Z",
+                    }
+                },
+                "preferredVersionByPhrase": {f"XWC_P{index:02d}_LOCAL_PHRASE": "F_FINAL_REVIEWED" for index in range(1, 11)},
+                "f_generation_pending": False,
+                "f_not_generated": False,
+                "f_generation_completed": True,
+                "f_input_source": "E_REVIEWED_USER_REVIEW",
+                "f_version_id": "F_FINAL_REVIEWED",
+                "provenance": {
+                    "f_generation_pending": False,
+                    "f_not_generated": False,
+                    "f_generation_completed": True,
+                    "f_input_source": "E_REVIEWED_USER_REVIEW",
+                },
+            }
+            latest_dir = render_root / "r2_review_drafts" / "latest"
+            latest_dir.mkdir(parents=True)
+            (latest_dir / "r2_review_state.latest.json").write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                result = store.export_project_review_draft_csv(RENDER_SET_ID)
+                exported_state = json.loads((latest_dir / "r2_review_state.latest.json").read_text(encoding="utf-8"))
+                manifest = json.loads((latest_dir / "r2_review_state_manifest.json").read_text(encoding="utf-8"))
+                render_alignment_count = count_csv_rows(latest_dir / "render_phrase_alignment.csv")
+                boundary_count = count_csv_rows(latest_dir / "phrase_boundary_decision.csv")
+                preferred_count = count_csv_rows(latest_dir / "preferred_version_summary.csv")
+
+        self.assertFalse(exported_state["f_generation_pending"])
+        self.assertFalse(exported_state["f_not_generated"])
+        self.assertTrue(exported_state["f_generation_completed"])
+        self.assertEqual("F_FINAL_REVIEWED", exported_state["f_version_id"])
+        self.assertFalse(manifest["f_generation_pending"])
+        self.assertTrue(manifest["f_generation_completed"])
+        self.assertEqual(60, render_alignment_count)
+        self.assertEqual(60, boundary_count)
+        self.assertEqual(10, preferred_count)
+        self.assertEqual(8, len(result["files"]))
+
     def test_restore_from_user_export_zip_prefers_listening_review_and_warns_on_partial_alignment(self):
         with tempfile.TemporaryDirectory() as tmp:
             source_dir = Path(tmp) / "restore_input"
@@ -313,6 +388,40 @@ def write_table_yaml(path: Path, rows: list[dict[str, str]]) -> None:
         for field in fields:
             lines.append(f"      {field}: {json.dumps(row.get(field, ''), ensure_ascii=False)}")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_f_final_outputs(render_root: Path) -> None:
+    f_dir = render_root / "F_FINAL_REVIEWED"
+    f_dir.mkdir(parents=True, exist_ok=True)
+    with wave.open(str(f_dir / "XWC_BAIYA_F_FINAL_REVIEWED.wav"), "wb") as handle:
+        handle.setnchannels(2)
+        handle.setsampwidth(3)
+        handle.setframerate(44100)
+        handle.writeframes(b"\x00\x00\x00\x00\x00\x00" * 44100)
+    rows = []
+    for index in range(1, 11):
+        start = float(index - 1)
+        rows.append(
+            {
+                "event_id": f"XWC_P{index:02d}_N01",
+                "phrase_id": f"XWC_P{index:02d}_LOCAL_PHRASE",
+                "section_id": f"XWC_P{index:02d}",
+                "source_version_id": "E_REVIEWED",
+                "source_sample_id": f"RECD2_BATCH{index:02d}_T{index:03d}",
+                "source_take_id": f"T{index:03d}",
+                "source_audio": f"split_preview/T{index:03d}_clean_preview.wav",
+                "target_attack_time_s": f"{start + 0.100:.3f}",
+                "render_anchor_s": "0.000",
+                "phrase_play_start_s": f"{start:.3f}",
+                "phrase_play_end_s": f"{start + 0.800:.3f}",
+                "phrase_tail_end_s": f"{start + 0.900:.3f}",
+                "revision_applied": "E_REVIEWED->F_FINAL_REVIEWED",
+                "user_review_source": "E_REVIEWED_USER_REVIEW",
+                "gpt_review_decision": "test fixture",
+                "flags": "experimental_render=true|production_grade=false",
+            }
+        )
+    write_csv(f_dir / "render_event_alignment.F_FINAL_REVIEWED.csv", rows)
 
 
 def count_csv_rows(path: Path) -> int:

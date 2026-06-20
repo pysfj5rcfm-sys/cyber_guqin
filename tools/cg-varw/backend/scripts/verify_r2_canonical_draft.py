@@ -41,8 +41,9 @@ def main() -> int:
     for file_name in EXPECTED_FILES:
         require((latest_dir / file_name).exists(), failures, f"latest missing {file_name}")
 
-    require(csv_count(latest_dir / "render_phrase_alignment.csv") == 40, failures, "render_phrase_alignment.csv data rows != 40")
-    require(csv_count(latest_dir / "phrase_boundary_decision.csv") == 40, failures, "phrase_boundary_decision.csv data rows != 40")
+    expected_alignment_rows = expected_phrase_alignment_rows(state)
+    require(csv_count(latest_dir / "render_phrase_alignment.csv") == expected_alignment_rows, failures, f"render_phrase_alignment.csv data rows != {expected_alignment_rows}")
+    require(csv_count(latest_dir / "phrase_boundary_decision.csv") == expected_alignment_rows, failures, f"phrase_boundary_decision.csv data rows != {expected_alignment_rows}")
     csv_duplicates = duplicate_review_keys_from_csv(latest_dir / "listening_review.csv")
     require(not csv_duplicates, failures, f"listening_review.csv has duplicate phrase/version rows: {csv_duplicates}")
 
@@ -54,6 +55,9 @@ def main() -> int:
     require(state.get("review_count") == counts["review_count"], failures, "state review_count does not match latest reviews")
     require(state.get("preferred_version_count") == counts["preferred_version_count"], failures, "state preferred_version_count does not match latest preferred versions")
     require(yaml_row_count(latest_dir / "render_revision_log.yaml") == counts["suggested_revision_count"], failures, "render_revision_log.yaml rows do not match non-empty suggested_revision count")
+    if state.get("f_generation_completed") is True:
+        preferred = state.get("preferredVersionByPhrase") or {}
+        require(len(preferred) == 10 and all(value == "F_FINAL_REVIEWED" for value in preferred.values()), failures, "F completed but preferredVersionByPhrase is not all F_FINAL_REVIEWED")
 
     exports_root = render_root / "r2_review_exports"
     leftover_zips = list(exports_root.rglob("*.zip")) if exports_root.exists() else []
@@ -148,6 +152,16 @@ def state_counts(state: dict[str, Any]) -> dict[str, int]:
         "suggested_revision_count": len([item for item in review_items if str(item.get("suggested_revision", "")).strip()]),
         "issue_count": sum(len(item.get("issue_type") or []) for item in review_items if isinstance(item.get("issue_type"), list)),
     }
+
+
+def expected_phrase_alignment_rows(state: dict[str, Any]) -> int:
+    alignments = state.get("phrase_alignments") or []
+    if isinstance(alignments, list) and alignments:
+        phrases = {str(item.get("phrase_id", "")) for item in alignments if isinstance(item, dict) and item.get("phrase_id")}
+        versions = {str(item.get("version_id", "")) for item in alignments if isinstance(item, dict) and item.get("version_id")}
+        if phrases and versions:
+            return len(phrases) * len(versions)
+    return 60 if state.get("f_generation_completed") is True else 50
 
 
 def require(condition: bool, failures: list[str], message: str) -> None:

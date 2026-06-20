@@ -4,24 +4,24 @@
   "generated_exports_path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest",
   "active_render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
   "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
-  "saved_at": "2026-06-20T12:19:33.633854+00:00",
-  "generated_at": "2026-06-20T12:20:39.871982+00:00",
-  "created_at": "2026-06-20T12:19:33.633854+00:00",
+  "saved_at": "2026-06-20T21:20:49.312863+00:00",
+  "generated_at": "2026-06-20T21:20:49.515352+00:00",
+  "created_at": "2026-06-20T21:20:49.312863+00:00",
   "restored_at": "",
   "restored_from_exports": false,
   "source_export_dir": "",
-  "review_count": 29,
+  "review_count": 49,
   "phrase_count": 10,
   "preferred_version_count": 10,
-  "suggested_revision_count": 13,
-  "issue_count": 6,
+  "suggested_revision_count": 33,
+  "issue_count": 43,
   "current_page_load_source": "engineering_dir_latest",
   "stale_sources_quarantined": [],
   "stale_sources_deleted": [],
   "stale_sources_moved": [],
   "warning_count": 0,
-  "active_phrase_id": "XWC_P06_LOCAL_PHRASE",
-  "active_version_id": "B_PHRASE",
+  "active_phrase_id": "XWC_P08_LOCAL_PHRASE",
+  "active_version_id": "F_FINAL_REVIEWED",
   "latest_dir": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest",
   "archive_dir": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest",
   "archive_path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest",
@@ -37,33 +37,11 @@
   ],
   "restore_warnings": [],
   "canonical_dedupe_report": {
-    "duplicate_keys_found": [
-      "XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P05_LOCAL_PHRASE:B_PHRASE",
-      "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P06_LOCAL_PHRASE:A_LITERAL",
-      "XWC_P06_LOCAL_PHRASE:B_PHRASE",
-      "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P07_LOCAL_PHRASE:A_LITERAL",
-      "XWC_P07_LOCAL_PHRASE:B_PHRASE",
-      "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P08_LOCAL_PHRASE:A_LITERAL",
-      "XWC_P08_LOCAL_PHRASE:B_PHRASE",
-      "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P09_LOCAL_PHRASE:A_LITERAL",
-      "XWC_P09_LOCAL_PHRASE:B_PHRASE",
-      "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC",
-      "XWC_P10_LOCAL_PHRASE:A_LITERAL",
-      "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
-    ],
-    "duplicate_rows_removed_or_archived": 21,
-    "retained_review_count": 29,
-    "retained_suggested_revision_count": 13,
-    "retained_issue_count": 6,
+    "duplicate_keys_found": [],
+    "duplicate_rows_removed_or_archived": 0,
+    "retained_review_count": 39,
+    "retained_suggested_revision_count": 23,
+    "retained_issue_count": 23,
     "retained_by_phrase_version": [
       {
         "phrase_id": "XWC_P01_LOCAL_PHRASE",
@@ -209,38 +187,71 @@
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
         "source_key": "XWC_P10_LOCAL_PHRASE:C_QINIST_STYLE"
+      },
+      {
+        "phrase_id": "XWC_P10_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P10_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P01_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P02_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P02_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P03_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P03_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P04_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P04_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P05_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P05_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P06_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P06_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P07_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P07_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P08_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P08_LOCAL_PHRASE:E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P09_LOCAL_PHRASE",
+        "active_version_id": "E_REVIEWED",
+        "source_key": "XWC_P09_LOCAL_PHRASE:E_REVIEWED"
       }
     ],
-    "deduped_at": "2026-06-20T12:19:33.640594+00:00"
+    "deduped_at": "2026-06-20T13:50:14.044594+00:00"
   },
-  "duplicate_keys_found": [
-    "XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P05_LOCAL_PHRASE:B_PHRASE",
-    "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P06_LOCAL_PHRASE:A_LITERAL",
-    "XWC_P06_LOCAL_PHRASE:B_PHRASE",
-    "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P07_LOCAL_PHRASE:A_LITERAL",
-    "XWC_P07_LOCAL_PHRASE:B_PHRASE",
-    "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P08_LOCAL_PHRASE:A_LITERAL",
-    "XWC_P08_LOCAL_PHRASE:B_PHRASE",
-    "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P09_LOCAL_PHRASE:A_LITERAL",
-    "XWC_P09_LOCAL_PHRASE:B_PHRASE",
-    "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE",
-    "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC",
-    "XWC_P10_LOCAL_PHRASE:A_LITERAL",
-    "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
-  ],
-  "duplicate_rows_removed_or_archived": 21,
+  "duplicate_keys_found": [],
+  "duplicate_rows_removed_or_archived": 0,
   "no_downloads_policy": true,
   "gpt_review_pending": true,
   "e_revision_plan_generated": false,
   "e_generated": false,
+  "f_generation_pending": false,
+  "f_input_source": "E_REVIEWED_USER_REVIEW",
+  "f_not_generated": false,
+  "f_generation_completed": true,
+  "f_version_id": "F_FINAL_REVIEWED",
   "experimental_render": true,
   "production_grade": false,
   "review_only": true,
