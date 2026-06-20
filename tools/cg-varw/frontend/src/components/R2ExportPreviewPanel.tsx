@@ -3,7 +3,7 @@ import type { ExportRow, ListeningReview, MarkerReviewStatus, PhraseDefinition, 
 
 const groups = ["全部", "句读结构", "版本对齐", "听评记录", "修订依据", "汇总"];
 
-type PreviewTable = {
+export type R2PreviewTable = {
   file: string;
   columns: string[];
   rows: Record<string, string>[];
@@ -45,6 +45,7 @@ export function R2ExportPreviewPanel({
   onExportAll,
   onExportPhrase,
   onPreview,
+  onDownloadFile,
 }: {
   title: string;
   rows: ExportRow[];
@@ -65,12 +66,13 @@ export function R2ExportPreviewPanel({
   onExportAll?: () => void;
   onExportPhrase?: () => void;
   onPreview?: (file: string) => void;
+  onDownloadFile?: (file: string) => void;
 }) {
   const activeGroup = group ?? "全部";
   const visibleRows = activeGroup === "全部" ? rows : rows.filter((row) => row.group === activeGroup);
   const [focusedFile, setFocusedFile] = useState<string | null>(null);
   const previewTables = useMemo(
-    () => buildPreviewTables({ sections, phrases, alignments, markers, review, preferredVersionByPhrase, listeningReviewByKey, activePhraseId, activeVersionId, preferredVersionId, boundaryStatus }),
+    () => buildR2PreviewTables({ sections, phrases, alignments, markers, review, preferredVersionByPhrase, listeningReviewByKey, activePhraseId, activeVersionId, preferredVersionId, boundaryStatus }),
     [sections, phrases, alignments, markers, review, preferredVersionByPhrase, listeningReviewByKey, activePhraseId, activeVersionId, preferredVersionId, boundaryStatus],
   );
   const focusedRows = useMemo(() => {
@@ -128,7 +130,7 @@ export function R2ExportPreviewPanel({
                   <td>{row.updatedAt}</td>
                   <td className="row-actions export-table-action-column">
                     <button title="预览该文件" onClick={() => previewFile(row)}>预览</button>
-                    <button title="mock 下载动作">下载</button>
+                    <button title="下载该文件" onClick={() => onDownloadFile?.(row.file)}>下载</button>
                     <button title="显示详情">详情</button>
                   </td>
                 </tr>
@@ -153,7 +155,7 @@ export function R2ExportPreviewPanel({
   );
 }
 
-function PreviewCard({ row, table, focused, onPreview }: { row: ExportRow; table?: PreviewTable; focused: boolean; onPreview: () => void }) {
+function PreviewCard({ row, table, focused, onPreview }: { row: ExportRow; table?: R2PreviewTable; focused: boolean; onPreview: () => void }) {
   const preview = table ?? { file: row.file, columns: ["file", "review_only", "production_grade"], rows: [{ file: row.file, review_only: "true", production_grade: "false" }] };
   return (
     <article className={`preview-card ${focused ? "is-focused" : ""}`}>
@@ -180,7 +182,7 @@ function PreviewCard({ row, table, focused, onPreview }: { row: ExportRow; table
   );
 }
 
-function buildPreviewTables({
+export function buildR2PreviewTables({
   sections,
   phrases,
   alignments,
@@ -204,7 +206,7 @@ function buildPreviewTables({
   activeVersionId: string;
   preferredVersionId?: string;
   boundaryStatus: MarkerReviewStatus;
-}): Record<string, PreviewTable> {
+}): Record<string, R2PreviewTable> {
   const activePhrase = phrases.find((phrase) => phrase.phrase_id === activePhraseId) ?? phrases[0];
   const activeSection = sections.find((section) => section.section_id === activePhrase?.section_id) ?? sections[0];
   const activeAlignments = alignments.filter((alignment) => alignment.phrase_id === activePhraseId);
@@ -221,10 +223,53 @@ function buildPreviewTables({
     reviewed_at: review.reviewed_at,
     updated_at: review.reviewed_at,
   }];
+  const listeningColumns = [
+    "review_id",
+    "render_set_id",
+    "phrase_id",
+    "section_id",
+    "event_range",
+    "active_version_id",
+    "preferred_version_id",
+    "quick_judgement",
+    "issue_type",
+    "severity",
+    "comment",
+    "suggested_revision",
+    "review_status",
+    "gpt_review_pending",
+    "e_revision_plan_generated",
+    "e_generated",
+    "experimental_render",
+    "production_grade",
+  ];
+  const listeningPreviewRows = listeningRows.map((item) => {
+    const phrase = phrases.find((candidate) => candidate.phrase_id === item.phrase_id) ?? activePhrase;
+    return {
+      review_id: `R2_REVIEW_${item.phrase_id}_${item.version_id}`,
+      render_set_id: review.render_set_id,
+      phrase_id: item.phrase_id,
+      section_id: phrase?.section_id ?? "",
+      event_range: phrase?.event_range ?? "",
+      active_version_id: item.version_id,
+      preferred_version_id: preferredVersionByPhrase?.[item.phrase_id] ?? "",
+      quick_judgement: item.quick_judgement ?? "",
+      issue_type: JSON.stringify(item.issue_type),
+      severity: item.severity,
+      comment: item.comment,
+      suggested_revision: item.suggested_revision,
+      review_status: "draft",
+      gpt_review_pending: "true",
+      e_revision_plan_generated: "false",
+      e_generated: "false",
+      experimental_render: "true",
+      production_grade: "false",
+    };
+  });
   return {
     "phrase_structure_review.yaml": {
       file: "phrase_structure_review.yaml",
-      columns: ["section_id", "section_label", "phrase_id", "phrase_label", "event_range", "marker_count", "review_only", "production_grade"],
+      columns: ["section_id", "section_label", "phrase_id", "phrase_label", "event_range", "marker_count", "review_status", "gpt_review_pending", "e_revision_plan_generated", "e_generated", "experimental_render", "review_only", "production_grade"],
       rows: phrases.map((phrase) => {
         const section = sections.find((item) => item.section_id === phrase.section_id);
         return {
@@ -234,6 +279,11 @@ function buildPreviewTables({
           phrase_label: phrase.phrase_label,
           event_range: phrase.event_range,
           marker_count: String(markers.filter((marker) => marker.phrase_id === phrase.phrase_id).length),
+          review_status: "draft",
+          gpt_review_pending: "true",
+          e_revision_plan_generated: "false",
+          e_generated: "false",
+          experimental_render: "true",
           review_only: "true",
           production_grade: "false",
         };
@@ -241,7 +291,7 @@ function buildPreviewTables({
     },
     "phrase_boundary_decision.csv": {
       file: "phrase_boundary_decision.csv",
-      columns: ["render_set_id", "version_id", "phrase_id", "section_id", "boundary_status", "phrase_start_s", "phrase_end_s", "breath_points_s", "cadence_point_s", "review_only", "production_grade"],
+      columns: ["render_set_id", "version_id", "phrase_id", "section_id", "boundary_status", "phrase_start_s", "phrase_end_s", "phrase_play_start_s", "phrase_play_end_s", "phrase_tail_end_s", "next_phrase_first_attack_s", "phrase_end_policy", "breath_points_s", "cadence_point_s", "review_status", "gpt_review_pending", "e_revision_plan_generated", "e_generated", "experimental_render", "review_only", "production_grade"],
       rows: activeAlignments.map((alignment) => ({
         render_set_id: alignment.render_set_id,
         version_id: alignment.version_id,
@@ -250,15 +300,25 @@ function buildPreviewTables({
         boundary_status: alignment.version_id === activeVersionId ? boundaryStatus : alignment.review_status,
         phrase_start_s: alignment.start_s.toFixed(3),
         phrase_end_s: alignment.end_s.toFixed(3),
+        phrase_play_start_s: (alignment.phrase_play_start_s ?? alignment.start_s).toFixed(3),
+        phrase_play_end_s: (alignment.phrase_play_end_s ?? alignment.end_s).toFixed(3),
+        phrase_tail_end_s: (alignment.phrase_tail_end_s ?? alignment.end_s).toFixed(3),
+        next_phrase_first_attack_s: alignment.next_phrase_first_attack_s?.toFixed(3) ?? "",
+        phrase_end_policy: alignment.phrase_end_policy ?? "playback_safe_fallback",
         breath_points_s: alignment.breath_points_s.map((time) => time.toFixed(3)).join(";"),
         cadence_point_s: alignment.cadence_point_s?.toFixed(3) ?? "",
+        review_status: "draft",
+        gpt_review_pending: "true",
+        e_revision_plan_generated: "false",
+        e_generated: "false",
+        experimental_render: "true",
         review_only: "true",
         production_grade: "false",
       })),
     },
     "render_phrase_alignment.csv": {
       file: "render_phrase_alignment.csv",
-      columns: ["render_set_id", "version_id", "phrase_id", "section_id", "event_range", "start_s", "end_s", "boundary_source", "review_status", "review_only", "production_grade"],
+      columns: ["render_set_id", "version_id", "phrase_id", "section_id", "event_range", "start_s", "end_s", "phrase_play_start_s", "phrase_play_end_s", "phrase_tail_end_s", "next_phrase_first_attack_s", "phrase_end_policy", "boundary_source", "review_status", "gpt_review_pending", "e_revision_plan_generated", "e_generated", "experimental_render", "review_only", "production_grade"],
       rows: activeAlignments.map((alignment) => ({
         render_set_id: alignment.render_set_id,
         version_id: alignment.version_id,
@@ -267,38 +327,34 @@ function buildPreviewTables({
         event_range: alignment.event_range,
         start_s: alignment.start_s.toFixed(3),
         end_s: alignment.end_s.toFixed(3),
+        phrase_play_start_s: (alignment.phrase_play_start_s ?? alignment.start_s).toFixed(3),
+        phrase_play_end_s: (alignment.phrase_play_end_s ?? alignment.end_s).toFixed(3),
+        phrase_tail_end_s: (alignment.phrase_tail_end_s ?? alignment.end_s).toFixed(3),
+        next_phrase_first_attack_s: alignment.next_phrase_first_attack_s?.toFixed(3) ?? "",
+        phrase_end_policy: alignment.phrase_end_policy ?? "playback_safe_fallback",
         boundary_source: alignment.boundary_source,
         review_status: alignment.review_status,
+        gpt_review_pending: "true",
+        e_revision_plan_generated: "false",
+        e_generated: "false",
+        experimental_render: "true",
         review_only: "true",
         production_grade: "false",
       })),
     },
+    "listening_review.csv": {
+      file: "listening_review.csv",
+      columns: listeningColumns,
+      rows: listeningPreviewRows,
+    },
     "listening_review.yaml": {
       file: "listening_review.yaml",
-      columns: ["review_id", "render_set_id", "phrase_id", "section_id", "event_range", "active_version_id", "preferred_version_id", "quick_judgement", "issue_type", "severity", "comment", "suggested_revision", "review_only", "production_grade"],
-      rows: listeningRows.map((item) => {
-        const phrase = phrases.find((candidate) => candidate.phrase_id === item.phrase_id) ?? activePhrase;
-        return {
-        review_id: `R2_REVIEW_${item.phrase_id}_${item.version_id}`,
-        render_set_id: review.render_set_id,
-        phrase_id: item.phrase_id,
-        section_id: phrase?.section_id ?? "",
-        event_range: phrase?.event_range ?? "",
-        active_version_id: item.version_id,
-        preferred_version_id: preferredVersionByPhrase?.[item.phrase_id] ?? "",
-        quick_judgement: item.quick_judgement ?? "",
-        issue_type: JSON.stringify(item.issue_type),
-        severity: item.severity,
-        comment: item.comment,
-        suggested_revision: item.suggested_revision,
-        review_only: "true",
-        production_grade: "false",
-      };
-      }),
+      columns: listeningColumns,
+      rows: listeningPreviewRows,
     },
     "issue_list.csv": {
       file: "issue_list.csv",
-      columns: ["review_id", "phrase_id", "version_id", "section_id", "issue_type", "severity", "review_only", "production_grade"],
+      columns: ["review_id", "phrase_id", "version_id", "section_id", "issue_type", "severity", "review_status", "gpt_review_pending", "e_revision_plan_generated", "e_generated", "experimental_render", "review_only", "production_grade"],
       rows: listeningRows.flatMap((item) => item.issue_type.map((issue) => ({
         review_id: `R2_REVIEW_${item.phrase_id}_${item.version_id}`,
         phrase_id: item.phrase_id,
@@ -306,13 +362,18 @@ function buildPreviewTables({
         section_id: (phrases.find((phrase) => phrase.phrase_id === item.phrase_id) ?? activePhrase)?.section_id ?? "",
         issue_type: issue,
         severity: item.severity,
+        review_status: "draft",
+        gpt_review_pending: "true",
+        e_revision_plan_generated: "false",
+        e_generated: "false",
+        experimental_render: "true",
         review_only: "true",
         production_grade: "false",
       }))),
     },
     "render_revision_log.yaml": {
       file: "render_revision_log.yaml",
-      columns: ["revision_id", "render_set_id", "from_version_id", "to_version_id", "phrase_id", "section_id", "event_range", "change_type", "reason", "review_only", "production_grade"],
+      columns: ["revision_id", "render_set_id", "from_version_id", "to_version_id", "phrase_id", "section_id", "event_range", "change_type", "reason", "review_status", "gpt_review_pending", "e_revision_plan_generated", "e_generated", "experimental_render", "review_only", "production_grade"],
       rows: [{
         revision_id: `R2_REVISION_${activePhraseId}`,
         render_set_id: review.render_set_id,
@@ -322,14 +383,19 @@ function buildPreviewTables({
         section_id: activePhrase?.section_id ?? "",
         event_range: activePhrase?.event_range ?? "",
         change_type: "other",
-        reason: review.suggested_revision ?? "review-only evidence; no E/F render generated",
+        reason: review.suggested_revision ?? "review-only evidence; no reviewed render generated",
+        review_status: "draft",
+        gpt_review_pending: "true",
+        e_revision_plan_generated: "false",
+        e_generated: "false",
+        experimental_render: "true",
         review_only: "true",
         production_grade: "false",
       }],
     },
     "preferred_version_summary.csv": {
       file: "preferred_version_summary.csv",
-      columns: ["render_set_id", "phrase_id", "section_id", "section_label", "preferred_version_id", "active_version_id", "review_only", "production_grade"],
+      columns: ["render_set_id", "phrase_id", "section_id", "section_label", "preferred_version_id", "active_version_id", "review_status", "gpt_review_pending", "e_revision_plan_generated", "e_generated", "experimental_render", "review_only", "production_grade"],
       rows: phrases.map((phrase) => {
         const section = sections.find((item) => item.section_id === phrase.section_id) ?? activeSection;
         return {
@@ -339,6 +405,11 @@ function buildPreviewTables({
         section_label: section?.section_label ?? "",
         preferred_version_id: preferredVersionByPhrase?.[phrase.phrase_id] ?? "",
         active_version_id: phrase.phrase_id === activePhraseId ? activeVersionId : "",
+        review_status: "draft",
+        gpt_review_pending: "true",
+        e_revision_plan_generated: "false",
+        e_generated: "false",
+        experimental_render: "true",
         review_only: "true",
         production_grade: "false",
       };

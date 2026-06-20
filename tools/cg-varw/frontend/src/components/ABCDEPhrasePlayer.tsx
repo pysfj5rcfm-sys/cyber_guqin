@@ -23,7 +23,7 @@ export function ABCDEPhrasePlayer({
     <section className="version-switcher" aria-label="版本切换">
       <div className="section-title-row">
         <h2>版本切换 / 当前 phrase 对齐</h2>
-        <span>点击 A/B/C/D/E 切换 active version；偏好版本单独设置</span>
+        <span>点击 A/B/C/D 切换 active version；偏好版本单独设置</span>
       </div>
       <div className="version-list">
         <div className="version-head">
@@ -58,7 +58,9 @@ export function ABCDEPhrasePlayer({
 
 function formatAlignment(alignment?: RenderPhraseAlignment) {
   if (!alignment) return "未找到句读对齐";
-  return `${alignment.phrase_id}: ${alignment.start_s.toFixed(3)}-${alignment.end_s.toFixed(3)}s`;
+  const startS = alignment.phrase_play_start_s ?? alignment.start_s;
+  const endS = alignment.phrase_play_end_s ?? alignment.end_s;
+  return `${alignment.phrase_id}: ${startS.toFixed(3)}-${endS.toFixed(3)}s`;
 }
 
 function statusLabel(status?: MarkerReviewStatus) {
