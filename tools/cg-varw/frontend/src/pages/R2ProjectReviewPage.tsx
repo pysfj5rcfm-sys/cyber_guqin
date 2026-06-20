@@ -4,7 +4,16 @@ import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
 import { R2ExportPreviewPanel } from "../components/R2ExportPreviewPanel";
 import { markerReviewStatusLabels, markerReviewStatusTone } from "../components/reviewUi";
-import { apiBase, loadR2PhraseAlignments, loadR2Phrases, loadR2RenderSets, loadR2Versions } from "../api/cgVarwApi";
+import {
+  apiBase,
+  loadR2LatestReviewDraft,
+  loadR2PhraseAlignments,
+  loadR2Phrases,
+  loadR2RenderSets,
+  loadR2Versions,
+  restoreR2ReviewDraftFromExportDir,
+  saveR2ReviewDraftToProject,
+} from "../api/cgVarwApi";
 import { buildR2PreviewTables, type R2PreviewTable } from "../utils/r2ExportPayload";
 import {
   defaultListeningReview,
@@ -120,6 +129,7 @@ export function R2ProjectReviewPage() {
   const [listeningReviewByKey, setListeningReviewByKey] = useState<ListeningReviewByKey>({});
   const [exportGroup, setExportGroup] = useState("全部");
   const [lastActionMessage, setLastActionMessage] = useState("R2 模拟数据兜底已就绪");
+  const [projectDraftStatus, setProjectDraftStatus] = useState("工程目录 draft 尚未加载");
   const [playback, setPlayback] = useState<R2PlaybackState>({
     isPlaying: false,
     currentTimeS: phrasePlayStart(getAlignmentFromList(abcdAlignments(mockAlignments), mockPhrases[2]?.phrase_id ?? mockPhrases[0]?.phrase_id ?? "", "B_PHRASE")),
@@ -140,6 +150,10 @@ export function R2ProjectReviewPage() {
           loadR2Phrases(real.render_set_id),
           loadR2PhraseAlignments(real.render_set_id),
         ]);
+        const latestDraft = await loadR2LatestReviewDraft(real.render_set_id).catch((error) => {
+          setProjectDraftStatus(`工程目录 draft 查询失败：${error instanceof Error ? error.message : String(error)}`);
+          return undefined;
+        });
         if (cancelled) return;
         const filteredVersions = abcdVersions(nextVersions);
         const filteredAlignments = abcdAlignments(nextAlignments);
@@ -170,6 +184,19 @@ export function R2ProjectReviewPage() {
         }));
         setBackendStatus(`后端真实 R2 render set 已加载：${real.render_set_id}`);
         setLastActionMessage("已接入真实 ABCD render set；E_REVIEWED 未启用。");
+        if (latestDraft?.has_draft && latestDraft.draft) {
+          applyProjectDraft(latestDraft.draft, {
+            versions: filteredVersions,
+            phrases: phraseData.phrases,
+            alignments: filteredAlignments,
+            sections: phraseData.sections,
+            sourceLabel: "已加载工程内 draft",
+            path: latestDraft.path,
+            savedAt: latestDraft.saved_at,
+          });
+        } else if (latestDraft && !latestDraft.has_draft) {
+          setProjectDraftStatus("工程目录暂无 latest draft");
+        }
       } catch (error) {
         if (cancelled) return;
         const fallbackVersions = abcdVersions(mockVersions);
@@ -399,6 +426,130 @@ export function R2ProjectReviewPage() {
     } catch (error) {
       setLastActionMessage(`R2 draft 加载失败：${error instanceof Error ? error.message : String(error)}`);
     }
+  }
+
+  function applyProjectDraft(rawDraft: Record<string, unknown>, context: {
+    versions: RenderVersion[];
+    phrases: PhraseDefinition[];
+    alignments: RenderPhraseAlignment[];
+    sections: Section[];
+    sourceLabel: string;
+    path?: string;
+    savedAt?: string;
+  }) {
+    const preferred = readRecord(rawDraft.preferredVersionByPhrase) ?? readRecord(rawDraft.preferred_version_by_phrase) ?? {};
+    const reviews = readRecord(rawDraft.listeningReviewByKey) ?? readRecord(rawDraft.listening_review_by_key) ?? {};
+    const boundary = readRecord(rawDraft.boundaryStatusByKey) ?? readRecord(rawDraft.boundary_status_by_key) ?? {};
+    const markerState = readRecord(rawDraft.markersByKey) ?? readRecord(rawDraft.markers_by_key) ?? {};
+    const phraseId = phraseIdInList(readString(rawDraft.active_phrase_id) || readString(rawDraft.selected_phrase_id), context.phrases);
+    const versionId = versionIdInList(readString(rawDraft.active_version_id) || readString(rawDraft.selected_version_id), context.versions);
+    const alignment = getAlignmentFromList(context.alignments, phraseId, versionId);
+    const key = phraseVersionKey(phraseId, versionId);
+    const restoredMarkers = (markerState[key] as PhraseMarker[] | undefined) ?? makeMarkersForAlignment(alignment, context.sections);
+    const selectedMarker = readString(rawDraft.selected_marker_id);
+    setActivePhraseId(phraseId);
+    setActiveVersionId(versionId);
+    setPreferredVersionByPhrase(filterPreferredVersions(preferred as PreferredVersionByPhrase, context.versions));
+    setListeningReviewByKey(filterReviewDrafts(reviews as ListeningReviewByKey, context.versions));
+    setBoundaryStatusByKey(Object.keys(boundary).length ? boundary as BoundaryStatusByKey : makeBoundaryStatusByKey(context.alignments));
+    setMarkersByKey(Object.keys(markerState).length ? markerState as MarkersByKey : { [key]: restoredMarkers });
+    setSelectedMarkerId(selectedMarker && restoredMarkers.some((marker) => marker.marker_id === selectedMarker) ? selectedMarker : defaultMarkerId(restoredMarkers));
+    setPlayback((current) => ({
+      ...current,
+      isPlaying: false,
+      currentTimeS: phrasePlayStart(alignment),
+      playMode: "idle",
+      sequenceQueue: undefined,
+      currentQueueIndex: undefined,
+      playingVersionId: undefined,
+    }));
+    setProjectDraftStatus(`${context.sourceLabel}${context.path ? `：${context.path}` : ""}${context.savedAt ? ` · ${context.savedAt}` : ""}`);
+    setLastActionMessage(`${context.sourceLabel}；未生成 E。`);
+  }
+
+  async function saveProjectDraft() {
+    if (dataSource !== "api") {
+      setLastActionMessage("当前为模拟数据兜底，未写工程目录 draft。");
+      return;
+    }
+    try {
+      const response = await saveR2ReviewDraftToProject(renderSet.render_set_id, buildProjectReviewStatePayload());
+      const data = response.data ?? {};
+      const latestDir = readString(data.latest_dir) || response.path || "";
+      setProjectDraftStatus(`已保存工程目录 draft：${latestDir}`);
+      setLastActionMessage("已保存听评草稿到工程目录 latest/archive；未生成 E。");
+    } catch (error) {
+      setLastActionMessage(`工程目录 draft 保存失败：${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async function loadProjectDraftLatest() {
+    try {
+      const response = await loadR2LatestReviewDraft(renderSet.render_set_id);
+      if (!response.has_draft || !response.draft) {
+        setProjectDraftStatus("工程目录暂无 latest draft");
+        setLastActionMessage("工程目录暂无 latest draft。");
+        return;
+      }
+      applyProjectDraft(response.draft, {
+        versions,
+        phrases,
+        alignments: reviewedAlignments,
+        sections,
+        sourceLabel: "已从工程目录重新加载 draft",
+        path: response.path,
+        savedAt: response.saved_at,
+      });
+    } catch (error) {
+      setLastActionMessage(`工程目录 draft 加载失败：${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  async function restoreProjectDraftFromExports() {
+    if (dataSource !== "api") {
+      setLastActionMessage("当前为模拟数据兜底，未从导出文件恢复工程 draft。");
+      return;
+    }
+    try {
+      const response = await restoreR2ReviewDraftFromExportDir(renderSet.render_set_id);
+      const data = response.data ?? {};
+      const warningCount = Number(data.warning_count ?? 0);
+      setProjectDraftStatus(`已从导出文件恢复 latest draft：${readString(data.latest_dir) || response.path || ""}`);
+      setLastActionMessage(`已从 8 个导出文件恢复工程 draft；warnings=${warningCount}；未生成 E。`);
+      await loadProjectDraftLatest();
+    } catch (error) {
+      setLastActionMessage(`从导出文件恢复工程 draft 失败：${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+
+  function buildProjectReviewStatePayload(): Record<string, unknown> {
+    return {
+      render_set_id: renderSet.render_set_id,
+      data_source: dataSource === "api" ? "api" : "mock_fallback",
+      review_status: "draft",
+      active_phrase_id: activePhraseId,
+      active_version_id: activeVersionId,
+      selected_marker_id: selectedMarkerId,
+      boundaryStatusByKey,
+      listeningReviewByKey,
+      preferredVersionByPhrase,
+      markersByKey: { ...markersByKey, [activeMarkerStateKey]: markers },
+      phrase_markers: markers,
+      phrase_alignments: reviewedAlignments,
+      listening_review: activeListeningReview,
+      export_tables: previewTables,
+      review_count: Object.keys(listeningReviewByKey).length,
+      preferred_version_count: Object.keys(preferredVersionByPhrase).length,
+      gpt_review_pending: true,
+      e_revision_plan_generated: false,
+      e_generated: false,
+      experimental_render: true,
+      provenance: {
+        saved_from_frontend: true,
+        saved_at: new Date().toISOString(),
+      },
+      ...r2SafetyFlags,
+    };
   }
 
   function startPlayback(queue: string[], playMode: R2PlayMode, startTime: number, message: string) {
@@ -661,6 +812,9 @@ export function R2ProjectReviewPage() {
           boundaryStatus={boundaryStatus}
           onGroupChange={setExportGroup}
           onSaveDraft={saveDraft}
+          onSaveProjectDraft={saveProjectDraft}
+          onLoadProjectDraft={loadProjectDraftLatest}
+          onRestoreProjectDraft={restoreProjectDraftFromExports}
           onExportAll={() => exportFiles("all")}
           onExportPhrase={() => exportFiles("phrase")}
           onPreview={(file) => setLastActionMessage(`已预览 ${file}`)}
@@ -668,7 +822,7 @@ export function R2ProjectReviewPage() {
         />
       }
       statusText={backendStatus}
-      detailText={`${lastActionMessage} · API base: ${apiBase} · E 未生成`}
+      detailText={`${lastActionMessage} · ${projectDraftStatus} · API base: ${apiBase} · E 未生成`}
     />
   );
 }
@@ -1180,6 +1334,22 @@ function tableToYaml(table: R2PreviewTable) {
 function csvCell(value: string) {
   if (!/[",\n]/.test(value)) return value;
   return `"${value.replace(/"/g, '""')}"`;
+}
+
+function readString(value: unknown) {
+  return typeof value === "string" ? value : "";
+}
+
+function readRecord(value: unknown) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : undefined;
+}
+
+function phraseIdInList(value: string, phrases: PhraseDefinition[]) {
+  return phrases.some((phrase) => phrase.phrase_id === value) ? value : phrases[0]?.phrase_id ?? "";
+}
+
+function versionIdInList(value: string, versions: RenderVersion[]) {
+  return versions.some((version) => version.version_id === value) ? value : versions[0]?.version_id ?? "";
 }
 
 function percentWidth(value: number, total: number) {

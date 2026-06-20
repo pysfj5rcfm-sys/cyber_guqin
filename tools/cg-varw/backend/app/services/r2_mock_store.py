@@ -4,6 +4,8 @@ import csv
 import json
 import math
 import os
+import shutil
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -248,6 +250,165 @@ def save_draft(payload: R2DraftPayload) -> dict[str, Any]:
         json.dump(data, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
     return {"path": str(path), "saved": True}
+
+
+def load_project_review_draft_latest(render_set_id: str) -> dict[str, Any]:
+    _require_render_set_or_intake(render_set_id)
+    path = r2_review_draft_latest_dir() / "r2_review_state.latest.json"
+    if not path.exists():
+        return {"render_set_id": render_set_id, "has_draft": False, **SAFETY}
+    with path.open("r", encoding="utf-8") as handle:
+        draft = json.load(handle)
+    return {
+        "render_set_id": render_set_id,
+        "has_draft": True,
+        "path": str(path),
+        "latest_dir": str(path.parent),
+        "saved_at": draft.get("saved_at") or draft.get("provenance", {}).get("restored_at"),
+        "draft": draft,
+        **SAFETY,
+    }
+
+
+def save_project_review_draft(render_set_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+    _require_render_set_or_intake(render_set_id)
+    saved_at = now()
+    state = dict(payload)
+    state["render_set_id"] = render_set_id
+    state["saved_at"] = saved_at
+    state["review_status"] = state.get("review_status") or "draft"
+    state.update(SAFETY)
+    state["gpt_review_pending"] = True
+    state["e_revision_plan_generated"] = False
+    state["e_generated"] = False
+    state["review_count"] = len(state.get("listeningReviewByKey", {}) or state.get("listening_review_by_key", {}))
+    state["preferred_version_count"] = len(state.get("preferredVersionByPhrase", {}) or state.get("preferred_version_by_phrase", {}))
+    state.setdefault("provenance", {})
+    state["provenance"].update({"saved_from_frontend": True, "saved_at": saved_at})
+
+    latest_dir = r2_review_draft_latest_dir()
+    archive_dir = r2_review_draft_archive_dir(saved_at)
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    archive_dir.mkdir(parents=True, exist_ok=True)
+
+    state_path = latest_dir / "r2_review_state.latest.json"
+    write_json(state_path, state)
+    export_tables = state.get("export_tables") if isinstance(state.get("export_tables"), dict) else {}
+    files = write_export_tables(latest_dir, export_tables)
+    manifest = write_review_state_manifest(latest_dir, state, files, archive_dir)
+    copy_latest_to_archive(latest_dir, archive_dir)
+    return {
+        "path": str(state_path),
+        "state_path": str(state_path),
+        "latest_dir": str(latest_dir),
+        "archive_dir": str(archive_dir),
+        "manifest_path": str(manifest),
+        "files": [str(path) for path in files],
+        "review_count": state["review_count"],
+        "preferred_version_count": state["preferred_version_count"],
+        **SAFETY,
+    }
+
+
+def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir: str | Path | None = None) -> dict[str, Any]:
+    _require_render_set_or_intake(render_set_id)
+    source_dir = Path(export_dir).expanduser().resolve() if export_dir else default_restore_export_dir()
+    export_files = load_export_files(source_dir)
+    missing = [name for name in expected_export_files() if name not in export_files]
+    if "listening_review.csv" not in export_files:
+        raise ValueError(f"listening_review.csv not found in export dir: {source_dir}")
+
+    review_rows = read_csv_text(export_files["listening_review.csv"])
+    preferred_rows = read_csv_text(export_files.get("preferred_version_summary.csv", ""))
+    issue_rows = read_csv_text(export_files.get("issue_list.csv", ""))
+    structure_rows = read_yaml_table_rows(export_files.get("phrase_structure_review.yaml", ""))
+    alignment_rows_from_export = read_csv_text(export_files.get("render_phrase_alignment.csv", ""))
+    boundary_rows_from_export = read_csv_text(export_files.get("phrase_boundary_decision.csv", ""))
+    revision_rows_from_export = read_yaml_table_rows(export_files.get("render_revision_log.yaml", ""))
+
+    warnings: list[str] = []
+    if missing:
+        warnings.append(f"missing export files: {', '.join(missing)}")
+    all_alignments = list_alignments(render_set_id)
+    if alignment_rows_from_export and len(alignment_rows_from_export) != len(all_alignments):
+        warnings.append(f"render_phrase_alignment.csv has {len(alignment_rows_from_export)} rows; current render set expects {len(all_alignments)} rows, so it was not used as alignment authority")
+    if boundary_rows_from_export and len(boundary_rows_from_export) != len(all_alignments):
+        warnings.append(f"phrase_boundary_decision.csv has {len(boundary_rows_from_export)} rows; current render set expects {len(all_alignments)} rows, so only explicit boundary_status values were restored")
+    suggested_count = sum(1 for row in review_rows if row.get("suggested_revision", "").strip())
+    if revision_rows_from_export and len(revision_rows_from_export) != suggested_count:
+        warnings.append(f"render_revision_log.yaml has {len(revision_rows_from_export)} rows; listening_review.csv has {suggested_count} non-empty suggested_revision rows, so revision log was regenerated from listening reviews")
+
+    preferred = preferred_versions_from_rows(preferred_rows, review_rows)
+    boundary_status = boundary_status_from_rows(boundary_rows_from_export)
+    listening_by_key = listening_reviews_from_rows(review_rows, preferred)
+    active_review = review_rows[0] if review_rows else {}
+    restored_at = now()
+    state = {
+        "render_set_id": render_set_id,
+        "data_source": "api",
+        "review_status": "draft",
+        "active_phrase_id": active_review.get("phrase_id") or "",
+        "active_version_id": active_review.get("active_version_id") or "",
+        "selected_marker_id": "",
+        "boundaryStatusByKey": boundary_status,
+        "listeningReviewByKey": listening_by_key,
+        "preferredVersionByPhrase": preferred,
+        "review_count": len(review_rows),
+        "phrase_count": len({row.get("phrase_id", "") for row in review_rows if row.get("phrase_id")}),
+        "preferred_version_count": len([value for value in preferred.values() if value]),
+        "issue_count": len(issue_rows),
+        "suggested_revision_count": suggested_count,
+        "gpt_review_pending": True,
+        "e_revision_plan_generated": False,
+        "e_generated": False,
+        "experimental_render": True,
+        "production_grade": False,
+        "provenance": {
+            "restored_from_exports": True,
+            "source_export_dir": str(source_dir),
+            "restored_at": restored_at,
+            "restore_warnings": warnings,
+            "listening_review_csv_rows": len(review_rows),
+            "listening_review_yaml_found": "listening_review.yaml" in export_files,
+            "phrase_structure_rows": len(structure_rows),
+        },
+        **SAFETY,
+    }
+    latest_dir = r2_review_draft_latest_dir()
+    archive_dir = r2_review_draft_archive_dir(restored_at)
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    archive_dir.mkdir(parents=True, exist_ok=True)
+    state_path = latest_dir / "r2_review_state.latest.json"
+    write_json(state_path, state)
+
+    tables = restored_export_tables(
+        render_set_id=render_set_id,
+        review_rows=review_rows,
+        preferred_rows=preferred_rows,
+        issue_rows=issue_rows,
+        structure_rows=structure_rows,
+        alignments=all_alignments,
+        boundary_status=boundary_status,
+        preferred=preferred,
+    )
+    files = write_export_tables(latest_dir, tables)
+    manifest = write_review_state_manifest(latest_dir, state, files, archive_dir)
+    copy_latest_to_archive(latest_dir, archive_dir)
+    return {
+        "path": str(latest_dir),
+        "state_path": str(state_path),
+        "latest_dir": str(latest_dir),
+        "archive_dir": str(archive_dir),
+        "manifest_path": str(manifest),
+        "restored_review_count": len(review_rows),
+        "phrase_count": state["phrase_count"],
+        "preferred_version_count": state["preferred_version_count"],
+        "suggested_revision_count": suggested_count,
+        "warning_count": len(warnings),
+        "restore_warnings": warnings,
+        "files": [str(path) for path in files],
+        **SAFETY,
+    }
 
 
 def save_payload(name: str, payload: dict[str, Any]) -> dict[str, Any]:
@@ -622,6 +783,412 @@ def issue_rows() -> list[dict[str, Any]]:
     return [{"review_id": "R2_REVIEW_PHRASE_03_B_001", "phrase_id": "PHRASE_03", "issue_type": "tail_short;good", "severity": "medium", **SAFETY}]
 
 
+def r2_review_draft_root() -> Path:
+    render_root = get_r2_render_root()
+    if render_root:
+        return render_root / "r2_review_drafts"
+    return REVIEW_OUTPUT_ROOT / "r2_review_drafts"
+
+
+def r2_review_draft_latest_dir() -> Path:
+    return r2_review_draft_root() / "latest"
+
+
+def r2_review_draft_archive_dir(saved_at: str | None = None) -> Path:
+    stamp = safe_timestamp(saved_at or now())
+    return r2_review_draft_root() / "archive" / stamp
+
+
+def default_restore_export_dir() -> Path:
+    render_root = get_r2_render_root()
+    if not render_root:
+        raise ValueError("CG_VARW_R2_RENDER_ROOT is required for default R2 restore export dir")
+    return render_root / "r2_review_exports" / "2026-06-20_user_review_restore_input"
+
+
+def expected_export_files() -> list[str]:
+    return [
+        "issue_list.csv",
+        "listening_review.csv",
+        "listening_review.yaml",
+        "phrase_boundary_decision.csv",
+        "phrase_structure_review.yaml",
+        "preferred_version_summary.csv",
+        "render_phrase_alignment.csv",
+        "render_revision_log.yaml",
+    ]
+
+
+def load_export_files(source_dir: Path) -> dict[str, str]:
+    if not source_dir.exists():
+        raise ValueError(f"R2 restore export dir not found: {source_dir}")
+    files: dict[str, str] = {}
+    for expected in expected_export_files():
+        path = source_dir / expected
+        if path.exists():
+            files[expected] = path.read_text(encoding="utf-8-sig")
+    if files:
+        return files
+    zip_matches = sorted(source_dir.glob("*.zip"))
+    if not zip_matches:
+        return files
+    with zipfile.ZipFile(zip_matches[0]) as archive:
+        for info in archive.infolist():
+            basename = Path(info.filename).name
+            if basename in expected_export_files():
+                files[basename] = archive.read(info).decode("utf-8-sig")
+    return files
+
+
+def read_csv_text(text: str) -> list[dict[str, str]]:
+    if not text.strip():
+        return []
+    return list(csv.DictReader(text.splitlines()))
+
+
+def read_yaml_table_rows(text: str) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    current: dict[str, str] | None = None
+    for raw_line in text.splitlines():
+        line = raw_line.rstrip()
+        if line.strip() == "-":
+            if current is not None:
+                rows.append(current)
+            current = {}
+            continue
+        if current is None or ":" not in line:
+            continue
+        stripped = line.strip()
+        key, raw_value = stripped.split(":", 1)
+        if not key or raw_value == "":
+            continue
+        current[key] = parse_yaml_scalar(raw_value.strip())
+    if current is not None:
+        rows.append(current)
+    return rows
+
+
+def parse_yaml_scalar(value: str) -> str:
+    try:
+        parsed = json.loads(value)
+    except json.JSONDecodeError:
+        return value
+    if parsed is None:
+        return ""
+    if isinstance(parsed, (dict, list)):
+        return json.dumps(parsed, ensure_ascii=False)
+    return str(parsed)
+
+
+def preferred_versions_from_rows(preferred_rows_data: list[dict[str, str]], review_rows: list[dict[str, str]]) -> dict[str, str]:
+    preferred = {
+        row.get("phrase_id", ""): row.get("preferred_version_id", "")
+        for row in preferred_rows_data
+        if row.get("phrase_id") and row.get("preferred_version_id")
+    }
+    for row in review_rows:
+        phrase_id = row.get("phrase_id", "")
+        version_id = row.get("preferred_version_id", "")
+        if phrase_id and version_id and phrase_id not in preferred:
+            preferred[phrase_id] = version_id
+    return preferred
+
+
+def boundary_status_from_rows(rows: list[dict[str, str]]) -> dict[str, str]:
+    result: dict[str, str] = {}
+    for row in rows:
+        phrase_id = row.get("phrase_id", "")
+        version_id = row.get("version_id", "")
+        status = row.get("boundary_status") or row.get("review_status")
+        if phrase_id and version_id and status:
+            result[f"{phrase_id}:{version_id}"] = status
+    return result
+
+
+def listening_reviews_from_rows(rows: list[dict[str, str]], preferred: dict[str, str]) -> dict[str, dict[str, Any]]:
+    result: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        phrase_id = row.get("phrase_id", "")
+        version_id = row.get("active_version_id") or row.get("version_id", "")
+        if not phrase_id or not version_id:
+            continue
+        result[f"{phrase_id}:{version_id}"] = {
+            "phrase_id": phrase_id,
+            "version_id": version_id,
+            "issue_type": parse_issue_type(row.get("issue_type", "")),
+            "severity": row.get("severity") or "medium",
+            "quick_judgement": row.get("quick_judgement") or None,
+            "comment": row.get("comment", ""),
+            "suggested_revision": row.get("suggested_revision", ""),
+            "reviewer": row.get("reviewer") or "human",
+            "reviewed_at": row.get("reviewed_at") or now(),
+            "updated_at": row.get("updated_at") or row.get("reviewed_at") or now(),
+            "preferred_version_id": row.get("preferred_version_id") or preferred.get(phrase_id, ""),
+        }
+    return result
+
+
+def parse_issue_type(value: str) -> list[str]:
+    text = value.strip()
+    if not text or text == "[]":
+        return []
+    try:
+        parsed = json.loads(text)
+        if isinstance(parsed, list):
+            return [str(item) for item in parsed if str(item)]
+    except json.JSONDecodeError:
+        pass
+    return [item.strip() for item in text.replace(";", ",").split(",") if item.strip()]
+
+
+def restored_export_tables(
+    *,
+    render_set_id: str,
+    review_rows: list[dict[str, str]],
+    preferred_rows: list[dict[str, str]],
+    issue_rows: list[dict[str, str]],
+    structure_rows: list[dict[str, str]],
+    alignments: list[R2RenderPhraseAlignment],
+    boundary_status: dict[str, str],
+    preferred: dict[str, str],
+) -> dict[str, dict[str, Any]]:
+    return {
+        "phrase_structure_review.yaml": table_from_rows("phrase_structure_review.yaml", structure_rows or phrase_structure_rows(render_set_id)),
+        "render_phrase_alignment.csv": render_phrase_alignment_table(alignments),
+        "phrase_boundary_decision.csv": phrase_boundary_decision_table(alignments, boundary_status),
+        "listening_review.csv": table_from_rows("listening_review.csv", ensure_draft_flags(review_rows)),
+        "listening_review.yaml": table_from_rows("listening_review.yaml", ensure_draft_flags(review_rows)),
+        "preferred_version_summary.csv": table_from_rows("preferred_version_summary.csv", ensure_draft_flags(preferred_rows or preferred_rows_from_map(render_set_id, preferred))),
+        "issue_list.csv": table_from_rows("issue_list.csv", ensure_draft_flags(issue_rows or issue_rows_from_reviews(review_rows))),
+        "render_revision_log.yaml": table_from_rows("render_revision_log.yaml", revision_rows_from_reviews(review_rows, preferred)),
+    }
+
+
+def phrase_structure_rows(render_set_id: str) -> list[dict[str, str]]:
+    phrase_data = list_phrases(render_set_id)
+    rows = []
+    for phrase in phrase_data["phrases"]:
+        rows.append(
+            {
+                "section_id": phrase.section_id,
+                "section_label": phrase.section_id,
+                "phrase_id": phrase.phrase_id,
+                "phrase_label": phrase.phrase_label,
+                "event_range": phrase.event_range,
+                **string_safety_flags(),
+            }
+        )
+    return rows
+
+
+def render_phrase_alignment_table(alignments: list[R2RenderPhraseAlignment]) -> dict[str, Any]:
+    rows = []
+    for item in alignments:
+        rows.append(
+            {
+                "render_set_id": item.render_set_id,
+                "version_id": item.version_id,
+                "phrase_id": item.phrase_id,
+                "section_id": item.section_id,
+                "event_range": item.event_range,
+                "start_s": f"{item.start_s:.3f}",
+                "end_s": f"{item.end_s:.3f}",
+                "phrase_play_start_s": f"{(item.phrase_play_start_s if item.phrase_play_start_s is not None else item.start_s):.3f}",
+                "phrase_play_end_s": f"{(item.phrase_play_end_s if item.phrase_play_end_s is not None else item.end_s):.3f}",
+                "phrase_tail_end_s": f"{(item.phrase_tail_end_s if item.phrase_tail_end_s is not None else item.end_s):.3f}",
+                "next_phrase_first_attack_s": "" if item.next_phrase_first_attack_s is None else f"{item.next_phrase_first_attack_s:.3f}",
+                "phrase_end_policy": item.phrase_end_policy,
+                "boundary_source": item.boundary_source,
+                "review_status": item.review_status,
+                **string_safety_flags(),
+            }
+        )
+    return table_from_rows("render_phrase_alignment.csv", rows)
+
+
+def phrase_boundary_decision_table(alignments: list[R2RenderPhraseAlignment], boundary_status: dict[str, str]) -> dict[str, Any]:
+    rows = []
+    for item in alignments:
+        key = f"{item.phrase_id}:{item.version_id}"
+        rows.append(
+            {
+                "render_set_id": item.render_set_id,
+                "version_id": item.version_id,
+                "phrase_id": item.phrase_id,
+                "section_id": item.section_id,
+                "boundary_status": boundary_status.get(key, item.review_status),
+                "phrase_start_s": f"{item.start_s:.3f}",
+                "phrase_end_s": f"{item.end_s:.3f}",
+                "phrase_play_start_s": f"{(item.phrase_play_start_s if item.phrase_play_start_s is not None else item.start_s):.3f}",
+                "phrase_play_end_s": f"{(item.phrase_play_end_s if item.phrase_play_end_s is not None else item.end_s):.3f}",
+                "phrase_tail_end_s": f"{(item.phrase_tail_end_s if item.phrase_tail_end_s is not None else item.end_s):.3f}",
+                "next_phrase_first_attack_s": "" if item.next_phrase_first_attack_s is None else f"{item.next_phrase_first_attack_s:.3f}",
+                "phrase_end_policy": item.phrase_end_policy,
+                "breath_points_s": ";".join(f"{value:.3f}" for value in item.breath_points_s),
+                "cadence_point_s": "" if item.cadence_point_s is None else f"{item.cadence_point_s:.3f}",
+                "review_status": "draft",
+                **string_safety_flags(),
+            }
+        )
+    return table_from_rows("phrase_boundary_decision.csv", rows)
+
+
+def preferred_rows_from_map(render_set_id: str, preferred: dict[str, str]) -> list[dict[str, str]]:
+    return [
+        {"render_set_id": render_set_id, "phrase_id": phrase_id, "preferred_version_id": version_id, **string_safety_flags()}
+        for phrase_id, version_id in preferred.items()
+    ]
+
+
+def issue_rows_from_reviews(review_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    rows = []
+    for review in review_rows:
+        for issue in parse_issue_type(review.get("issue_type", "")):
+            rows.append(
+                {
+                    "review_id": review.get("review_id", ""),
+                    "phrase_id": review.get("phrase_id", ""),
+                    "version_id": review.get("active_version_id", ""),
+                    "section_id": review.get("section_id", ""),
+                    "issue_type": issue,
+                    "severity": review.get("severity", "medium"),
+                    **string_safety_flags(),
+                }
+            )
+    return rows
+
+
+def revision_rows_from_reviews(review_rows: list[dict[str, str]], preferred: dict[str, str]) -> list[dict[str, str]]:
+    rows = []
+    for review in review_rows:
+        reason = review.get("suggested_revision", "").strip()
+        phrase_id = review.get("phrase_id", "")
+        version_id = review.get("active_version_id", "")
+        if not reason or not phrase_id or not version_id:
+            continue
+        rows.append(
+            {
+                "revision_id": f"R2_REVISION_{phrase_id}_{version_id}",
+                "render_set_id": review.get("render_set_id", ""),
+                "from_version_id": version_id,
+                "to_version_id": preferred.get(phrase_id, review.get("preferred_version_id", "")),
+                "phrase_id": phrase_id,
+                "section_id": review.get("section_id", ""),
+                "event_range": review.get("event_range", ""),
+                "change_type": "other",
+                "reason": reason,
+                **string_safety_flags(),
+            }
+        )
+    return rows
+
+
+def ensure_draft_flags(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    return [dict(row) | string_safety_flags() for row in rows]
+
+
+def string_safety_flags() -> dict[str, str]:
+    return {
+        "review_status": "draft",
+        "gpt_review_pending": "true",
+        "e_revision_plan_generated": "false",
+        "e_generated": "false",
+        "experimental_render": "true",
+        "review_only": "true",
+        "production_grade": "false",
+    }
+
+
+def table_from_rows(file: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
+    columns: list[str] = []
+    for row in rows:
+        for key in row:
+            if key not in columns:
+                columns.append(key)
+    return {"file": file, "columns": columns, "rows": rows}
+
+
+def write_export_tables(out_dir: Path, tables: dict[str, Any]) -> list[Path]:
+    files: list[Path] = []
+    for file_name in expected_export_files():
+        table = tables.get(file_name)
+        if not isinstance(table, dict):
+            continue
+        path = out_dir / file_name
+        if file_name.endswith(".yaml"):
+            files.append(write_text(path, table_to_yaml(table)))
+        else:
+            files.append(write_table_csv(path, table))
+    return files
+
+
+def write_table_csv(path: Path, table: dict[str, Any]) -> Path:
+    columns = [str(item) for item in table.get("columns", [])]
+    rows = table.get("rows", [])
+    if not columns:
+        for row in rows:
+            for key in row:
+                if key not in columns:
+                    columns.append(key)
+    with path.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=columns)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({column: row.get(column, "") for column in columns})
+    return path
+
+
+def table_to_yaml(table: dict[str, Any]) -> str:
+    columns = [str(item) for item in table.get("columns", [])]
+    rows = table.get("rows", [])
+    lines = [f"file: {json.dumps(table.get('file', ''), ensure_ascii=False)}", "rows:"]
+    for row in rows:
+        lines.append("  -")
+        for column in columns:
+            lines.append(f"      {column}: {json.dumps(row.get(column, ''), ensure_ascii=False)}")
+    return "\n".join(lines) + "\n"
+
+
+def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: list[Path], archive_dir: Path) -> Path:
+    manifest = {
+        "render_set_id": state.get("render_set_id"),
+        "saved_at": state.get("saved_at") or state.get("provenance", {}).get("restored_at"),
+        "review_count": state.get("review_count", 0),
+        "phrase_count": state.get("phrase_count", 0),
+        "preferred_version_count": state.get("preferred_version_count", 0),
+        "latest_dir": str(latest_dir),
+        "archive_dir": str(archive_dir),
+        "files": [path.name for path in files],
+        "restore_warnings": state.get("provenance", {}).get("restore_warnings", []),
+        "gpt_review_pending": True,
+        "e_revision_plan_generated": False,
+        "e_generated": False,
+        "experimental_render": True,
+        "production_grade": False,
+        **SAFETY,
+    }
+    path = latest_dir / "r2_review_state_manifest.json"
+    write_json(path, manifest)
+    return path
+
+
+def copy_latest_to_archive(latest_dir: Path, archive_dir: Path) -> None:
+    for path in latest_dir.iterdir():
+        if path.is_file():
+            shutil.copy2(path, archive_dir / path.name)
+
+
+def write_json(path: Path, data: dict[str, Any]) -> Path:
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(data, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    return path
+
+
+def safe_timestamp(value: str) -> str:
+    return archive_timestamp(value)
+
+
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> Path:
     fields: list[str] = []
     for row in rows:
@@ -674,6 +1241,15 @@ def now_path() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
+def archive_timestamp(value: str | None = None) -> str:
+    if value:
+        try:
+            return datetime.fromisoformat(value.replace("Z", "+00:00")).strftime("%Y%m%d_%H%M%S")
+        except ValueError:
+            pass
+    return datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+
+
 def safe_name(value: str) -> str:
     return value.replace("/", "_").replace("\\", "_").replace("..", "_")
 
@@ -684,3 +1260,7 @@ def _require_render_set(render_set_id: str) -> None:
         return
     if render_set_id != RENDER_SET_ID:
         raise ValueError(f"unknown R2 render_set_id: {render_set_id}")
+
+
+def _require_render_set_or_intake(render_set_id: str) -> None:
+    _require_render_set(render_set_id)

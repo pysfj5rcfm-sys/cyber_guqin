@@ -1,0 +1,33 @@
+{
+  "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+  "saved_at": "2026-06-20T10:50:04.566114+00:00",
+  "review_count": 28,
+  "phrase_count": 10,
+  "preferred_version_count": 10,
+  "latest_dir": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest",
+  "archive_dir": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_105004",
+  "files": [
+    "issue_list.csv",
+    "listening_review.csv",
+    "listening_review.yaml",
+    "phrase_boundary_decision.csv",
+    "phrase_structure_review.yaml",
+    "preferred_version_summary.csv",
+    "render_phrase_alignment.csv",
+    "render_revision_log.yaml"
+  ],
+  "restore_warnings": [
+    "render_phrase_alignment.csv has 4 rows; current render set expects 40 rows, so it was not used as alignment authority",
+    "phrase_boundary_decision.csv has 4 rows; current render set expects 40 rows, so only explicit boundary_status values were restored",
+    "render_revision_log.yaml has 1 rows; listening_review.csv has 10 non-empty suggested_revision rows, so revision log was regenerated from listening reviews"
+  ],
+  "gpt_review_pending": true,
+  "e_revision_plan_generated": false,
+  "e_generated": false,
+  "experimental_render": true,
+  "production_grade": false,
+  "review_only": true,
+  "not_render_executed": true,
+  "not_sample_assets": true,
+  "not_ml_training_data": true
+}

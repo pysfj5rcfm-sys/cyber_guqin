@@ -24,6 +24,9 @@ export function R2ExportPreviewPanel({
   boundaryStatus,
   onGroupChange,
   onSaveDraft,
+  onSaveProjectDraft,
+  onLoadProjectDraft,
+  onRestoreProjectDraft,
   onExportAll,
   onExportPhrase,
   onPreview,
@@ -45,6 +48,9 @@ export function R2ExportPreviewPanel({
   boundaryStatus: MarkerReviewStatus;
   onGroupChange?: (group: string) => void;
   onSaveDraft?: () => void;
+  onSaveProjectDraft?: () => void;
+  onLoadProjectDraft?: () => void;
+  onRestoreProjectDraft?: () => void;
   onExportAll?: () => void;
   onExportPhrase?: () => void;
   onPreview?: (file: string) => void;
@@ -79,7 +85,10 @@ export function R2ExportPreviewPanel({
       <div className="export-header-row">
         <h2>{title}</h2>
         <div className="export-actions review-actions">
-          <button className="primary-action" onClick={onSaveDraft}>保存 draft</button>
+          <button className="primary-action" onClick={onSaveProjectDraft}>保存草稿到工程目录</button>
+          <button onClick={onLoadProjectDraft}>从工程目录重新加载草稿</button>
+          <button onClick={onRestoreProjectDraft}>从导出文件恢复草稿</button>
+          <button onClick={onSaveDraft}>保存浏览器 draft</button>
           <button onClick={onExportAll}>导出全部</button>
           <button onClick={onExportPhrase}>导出当前 phrase</button>
         </div>

@@ -66,6 +66,26 @@ def r2_review_draft(render_set_id: str):
     return _handle(lambda: store.load_draft(render_set_id))
 
 
+@router.get("/render-sets/{render_set_id}/review-draft/latest")
+def r2_project_review_draft_latest(render_set_id: str) -> dict[str, Any]:
+    return _handle(lambda: store.load_project_review_draft_latest(render_set_id))
+
+
+@router.post("/render-sets/{render_set_id}/review-draft/save", response_model=GenericResponse)
+def r2_project_review_draft_save(render_set_id: str, payload: dict[str, Any]) -> GenericResponse:
+    if payload.get("render_set_id") not in {None, "", render_set_id}:
+        raise HTTPException(status_code=400, detail="render_set_id path/body mismatch")
+    result = _handle(lambda: store.save_project_review_draft(render_set_id, payload))
+    return GenericResponse(path=result["state_path"], files=result.get("files", []), data=result)
+
+
+@router.post("/render-sets/{render_set_id}/review-draft/restore-from-export-dir", response_model=GenericResponse)
+def r2_project_review_draft_restore_from_export_dir(render_set_id: str, payload: dict[str, Any] | None = None) -> GenericResponse:
+    export_dir = (payload or {}).get("export_dir")
+    result = _handle(lambda: store.restore_project_review_draft_from_export_dir(render_set_id, export_dir))
+    return GenericResponse(path=result["state_path"], files=result.get("files", []), data=result)
+
+
 @router.get("/render-sets/{render_set_id}/exports")
 def r2_exports(render_set_id: str) -> dict[str, Any]:
     return _handle(lambda: {"exports": store.export_rows(render_set_id), **store.SAFETY})
