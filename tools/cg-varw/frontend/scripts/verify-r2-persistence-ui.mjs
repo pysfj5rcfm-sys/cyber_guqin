@@ -15,10 +15,19 @@ const panelSource = await readFile(panelPath, "utf8");
 const forbiddenBrowserSuccess = "draft 已保存" + "到浏览器";
 assert.equal(pageSource.includes(forbiddenBrowserSuccess), false, "browser-only save must not be phrased as draft save success");
 assert.ok(pageSource.includes("saveR2ReviewDraftToProject"), "R2 page must call project-directory save API");
+assert.ok(pageSource.includes("exportR2ReviewDraftCsvToProject"), "R2 page must call project-directory CSV export API");
 assert.ok(pageSource.includes("saveDraft={saveProjectDraft}"), "right-panel default save must use project-directory save");
-assert.ok(panelSource.includes("临时保存到浏览器"), "browser fallback button must be explicitly temporary");
-assert.ok(panelSource.includes("保存草稿到工程目录"), "project-directory save action must be visible");
-assert.ok(panelSource.includes("导出全部副本"), "download action must be labeled as a copy, not canonical save");
+assert.ok(panelSource.includes("保存 draft"), "project-directory save action must be visible");
+assert.ok(panelSource.includes("导出 CSV"), "project-directory export action must be visible");
+assert.equal(panelSource.includes("临时保存到浏览器"), false, "browser fallback button must not be part of the R2 main workflow");
+assert.equal(panelSource.includes("导出全部副本"), false, "browser download-all action must not be part of the R2 main workflow");
+assert.equal(panelSource.includes("导出当前 phrase 副本"), false, "browser phrase download action must not be part of the R2 main workflow");
+assert.equal(panelSource.includes("从导出文件恢复草稿"), false, "restore-from-export action must not be part of the R2 main workflow");
+assert.equal(panelSource.includes("从工程目录重新加载草稿"), false, "reload action must not be part of the bottom export workflow");
+["URL.createObjectURL", "new Blob", "downloadPreviewFile", "link.download", "link.click", "saveAs", "downloadText", "downloadFile"].forEach((needle) => {
+  assert.equal(pageSource.includes(needle), false, `${needle} must not be used by R2 page main workflow`);
+  assert.equal(panelSource.includes(needle), false, `${needle} must not be used by R2 export panel`);
+});
 
 const source = await readFile(adapterPath, "utf8");
 const compiled = ts.transpileModule(source, {

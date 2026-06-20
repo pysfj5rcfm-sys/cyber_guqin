@@ -43,8 +43,12 @@ def main() -> int:
 
     require(csv_count(latest_dir / "render_phrase_alignment.csv") == 40, failures, "render_phrase_alignment.csv data rows != 40")
     require(csv_count(latest_dir / "phrase_boundary_decision.csv") == 40, failures, "phrase_boundary_decision.csv data rows != 40")
+    csv_duplicates = duplicate_review_keys_from_csv(latest_dir / "listening_review.csv")
+    require(not csv_duplicates, failures, f"listening_review.csv has duplicate phrase/version rows: {csv_duplicates}")
 
     counts = state_counts(state)
+    state_duplicates = duplicate_review_keys_from_state(state)
+    require(not state_duplicates, failures, f"latest state has duplicate phrase/version reviews: {state_duplicates}")
     for key, expected in counts.items():
         require(manifest.get(key) == expected, failures, f"manifest {key}={manifest.get(key)} does not match latest state {expected}")
     require(state.get("review_count") == counts["review_count"], failures, "state review_count does not match latest reviews")
@@ -85,6 +89,40 @@ def read_json(path: Path, failures: list[str]) -> dict[str, Any]:
 def csv_count(path: Path) -> int:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         return sum(1 for _ in csv.DictReader(handle))
+
+
+def duplicate_review_keys_from_csv(path: Path) -> list[str]:
+    counts: dict[str, int] = {}
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle):
+            phrase_id = row.get("phrase_id", "")
+            version_id = row.get("active_version_id") or row.get("version_id", "")
+            if not phrase_id or not version_id:
+                continue
+            key = f"{phrase_id}:{version_id}"
+            counts[key] = counts.get(key, 0) + 1
+    return sorted(key for key, count in counts.items() if count > 1)
+
+
+def duplicate_review_keys_from_state(state: dict[str, Any]) -> list[str]:
+    reviews = state.get("listeningReviewByKey") or state.get("listening_review_by_key") or {}
+    if not isinstance(reviews, dict):
+        return []
+    counts: dict[str, int] = {}
+    for raw_key, item in reviews.items():
+        if not isinstance(item, dict):
+            continue
+        phrase_id = str(item.get("phrase_id") or "")
+        version_id = str(item.get("version_id") or item.get("active_version_id") or "")
+        if (not phrase_id or not version_id) and "::" in str(raw_key):
+            phrase_id, version_id = str(raw_key).split("::", 1)
+        elif (not phrase_id or not version_id) and ":" in str(raw_key):
+            phrase_id, version_id = str(raw_key).split(":", 1)
+        if not phrase_id or not version_id:
+            continue
+        key = f"{phrase_id}:{version_id}"
+        counts[key] = counts.get(key, 0) + 1
+    return sorted(key for key, count in counts.items() if count > 1)
 
 
 def yaml_row_count(path: Path) -> int:

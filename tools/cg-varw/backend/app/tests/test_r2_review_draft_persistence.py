@@ -68,6 +68,89 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
             self.assertTrue(manifest["no_downloads_policy"])
             self.assertFalse(latest["draft"]["e_generated"])
 
+    def test_save_project_review_draft_dedupes_phrase_version_reviews(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            payload = {
+                "render_set_id": RENDER_SET_ID,
+                "data_source": "api",
+                "review_status": "draft",
+                "active_phrase_id": "XWC_P01_LOCAL_PHRASE",
+                "active_version_id": "C_QINIST_STYLE",
+                "listeningReviewByKey": {
+                    "XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE": {
+                        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+                        "version_id": "C_QINIST_STYLE",
+                        "issue_type": ["phrase_unclear"],
+                        "severity": "low",
+                        "comment": "旧评论",
+                        "suggested_revision": "旧修订",
+                        "reviewer": "human",
+                        "updated_at": "2026-06-20T00:00:00.000Z",
+                    },
+                    "XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE": {
+                        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+                        "version_id": "C_QINIST_STYLE",
+                        "issue_type": ["phrase_unclear"],
+                        "severity": "medium",
+                        "comment": "试试其它节拍",
+                        "suggested_revision": "123——4——",
+                        "reviewer": "human",
+                        "updated_at": "2026-06-20T01:00:00.000Z",
+                    },
+                },
+                "preferredVersionByPhrase": {"XWC_P01_LOCAL_PHRASE": "C_QINIST_STYLE"},
+            }
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                result = store.save_project_review_draft(RENDER_SET_ID, payload)
+                latest = store.load_project_review_draft_latest(RENDER_SET_ID)
+
+            state = latest["draft"]
+            self.assertEqual(1, state["review_count"])
+            self.assertIn("XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE", state["listeningReviewByKey"])
+            self.assertNotIn("XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE", state["listeningReviewByKey"])
+            retained = state["listeningReviewByKey"]["XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE"]
+            self.assertEqual("试试其它节拍", retained["comment"])
+            self.assertEqual("123——4——", retained["suggested_revision"])
+            self.assertEqual(1, len(state["review_history_archived"]))
+            self.assertEqual(1, len(state["canonical_dedupe_report"]["duplicate_keys_found"]))
+            self.assertEqual(1, state["canonical_dedupe_report"]["duplicate_rows_removed_or_archived"])
+            self.assertTrue(Path(result["archive_dir"]).exists())
+
+    def test_export_project_review_draft_csv_writes_project_latest_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            payload = {
+                "render_set_id": RENDER_SET_ID,
+                "data_source": "api",
+                "review_status": "draft",
+                "active_phrase_id": "XWC_P10_LOCAL_PHRASE",
+                "active_version_id": "A_LITERAL",
+                "listeningReviewByKey": {
+                    "XWC_P10_LOCAL_PHRASE:A_LITERAL": {
+                        "phrase_id": "XWC_P10_LOCAL_PHRASE",
+                        "version_id": "A_LITERAL",
+                        "issue_type": ["good"],
+                        "severity": "low",
+                        "comment": "试试其它节拍",
+                        "suggested_revision": "1——234——5——6——7——",
+                        "reviewer": "human",
+                        "updated_at": "2026-06-20T01:00:00.000Z",
+                    }
+                },
+                "preferredVersionByPhrase": {"XWC_P10_LOCAL_PHRASE": "A_LITERAL"},
+            }
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                store.save_project_review_draft(RENDER_SET_ID, payload)
+                result = store.export_project_review_draft_csv(RENDER_SET_ID)
+
+            latest_dir = Path(result["latest_dir"])
+            self.assertEqual(str(latest_dir), result["path"])
+            self.assertEqual(8, len(result["files"]))
+            for file_name in store.expected_export_files():
+                self.assertTrue((latest_dir / file_name).exists(), file_name)
+            self.assertEqual(40, count_csv_rows(latest_dir / "render_phrase_alignment.csv"))
+            self.assertEqual(40, count_csv_rows(latest_dir / "phrase_boundary_decision.csv"))
+            self.assertEqual(1, yaml_rows(latest_dir / "render_revision_log.yaml"))
+
     def test_restore_from_user_export_zip_prefers_listening_review_and_warns_on_partial_alignment(self):
         with tempfile.TemporaryDirectory() as tmp:
             source_dir = Path(tmp) / "restore_input"
@@ -192,6 +275,15 @@ def write_table_yaml(path: Path, rows: list[dict[str, str]]) -> None:
         for field in fields:
             lines.append(f"      {field}: {json.dumps(row.get(field, ''), ensure_ascii=False)}")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def count_csv_rows(path: Path) -> int:
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        return sum(1 for _ in csv.DictReader(handle))
+
+
+def yaml_rows(path: Path) -> int:
+    return sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip() == "-")
 
 
 if __name__ == "__main__":

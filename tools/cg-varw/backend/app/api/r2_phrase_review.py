@@ -79,6 +79,12 @@ def r2_project_review_draft_save(render_set_id: str, payload: dict[str, Any]) ->
     return GenericResponse(path=result["state_path"], files=result.get("files", []), data=result)
 
 
+@router.post("/render-sets/{render_set_id}/review-draft/export-csv", response_model=GenericResponse)
+def r2_project_review_draft_export_csv(render_set_id: str) -> GenericResponse:
+    result = _handle(lambda: store.export_project_review_draft_csv(render_set_id))
+    return GenericResponse(path=result["path"], files=result.get("files", []), data=result)
+
+
 @router.post("/render-sets/{render_set_id}/review-draft/restore-from-export-dir", response_model=GenericResponse)
 def r2_project_review_draft_restore_from_export_dir(render_set_id: str, payload: dict[str, Any] | None = None) -> GenericResponse:
     export_dir = (payload or {}).get("export_dir")

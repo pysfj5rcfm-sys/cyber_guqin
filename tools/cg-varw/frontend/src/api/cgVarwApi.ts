@@ -88,6 +88,10 @@ export async function saveR2ReviewDraftToProject(renderSetId: string, payload: R
   return postJson<GenericResponse>(`/api/r2/render-sets/${encodeURIComponent(renderSetId)}/review-draft/save`, payload);
 }
 
+export async function exportR2ReviewDraftCsvToProject(renderSetId: string) {
+  return postJson<GenericResponse>(`/api/r2/render-sets/${encodeURIComponent(renderSetId)}/review-draft/export-csv`, {});
+}
+
 export async function restoreR2ReviewDraftFromExportDir(renderSetId: string, exportDir?: string) {
   return postJson<GenericResponse>(`/api/r2/render-sets/${encodeURIComponent(renderSetId)}/review-draft/restore-from-export-dir`, exportDir ? { export_dir: exportDir } : {});
 }

@@ -23,14 +23,9 @@ export function R2ExportPreviewPanel({
   preferredVersionId,
   boundaryStatus,
   onGroupChange,
-  onSaveDraft,
   onSaveProjectDraft,
-  onLoadProjectDraft,
-  onRestoreProjectDraft,
-  onExportAll,
-  onExportPhrase,
+  onExportCsv,
   onPreview,
-  onDownloadFile,
 }: {
   title: string;
   rows: ExportRow[];
@@ -47,14 +42,9 @@ export function R2ExportPreviewPanel({
   preferredVersionId?: string;
   boundaryStatus: MarkerReviewStatus;
   onGroupChange?: (group: string) => void;
-  onSaveDraft?: () => void;
   onSaveProjectDraft?: () => void;
-  onLoadProjectDraft?: () => void;
-  onRestoreProjectDraft?: () => void;
-  onExportAll?: () => void;
-  onExportPhrase?: () => void;
+  onExportCsv?: () => void;
   onPreview?: (file: string) => void;
-  onDownloadFile?: (file: string) => void;
 }) {
   const activeGroup = group ?? "全部";
   const visibleRows = activeGroup === "全部" ? rows : rows.filter((row) => row.group === activeGroup);
@@ -85,12 +75,8 @@ export function R2ExportPreviewPanel({
       <div className="export-header-row">
         <h2>{title}</h2>
         <div className="export-actions review-actions">
-          <button className="primary-action" onClick={onSaveProjectDraft}>保存草稿到工程目录</button>
-          <button onClick={onLoadProjectDraft}>从工程目录重新加载草稿</button>
-          <button onClick={onRestoreProjectDraft}>从导出文件恢复草稿</button>
-          <button onClick={onSaveDraft}>临时保存到浏览器</button>
-          <button onClick={onExportAll}>导出全部副本</button>
-          <button onClick={onExportPhrase}>导出当前 phrase 副本</button>
+          <button className="primary-action" onClick={onSaveProjectDraft}>保存 draft</button>
+          <button onClick={onExportCsv}>导出 CSV</button>
         </div>
       </div>
       <div className="export-tabs" role="tablist" aria-label="导出分类">
@@ -121,7 +107,6 @@ export function R2ExportPreviewPanel({
                   <td>{row.updatedAt}</td>
                   <td className="row-actions export-table-action-column">
                     <button title="预览该文件" onClick={() => previewFile(row)}>预览</button>
-                    <button title="下载副本；不作为工程草稿权威来源" onClick={() => onDownloadFile?.(row.file)}>下载副本</button>
                     <button title="显示详情">详情</button>
                   </td>
                 </tr>

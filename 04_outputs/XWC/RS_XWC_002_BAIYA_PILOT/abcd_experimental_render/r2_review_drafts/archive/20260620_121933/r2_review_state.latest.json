@@ -3233,22 +3233,22 @@
         "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE",
         "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE",
         "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE",
-        "XWC_P05_LOCAL_PHRASE:B_PHRASE",
         "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE",
-        "XWC_P06_LOCAL_PHRASE:A_LITERAL",
+        "XWC_P05_LOCAL_PHRASE:B_PHRASE",
         "XWC_P06_LOCAL_PHRASE:B_PHRASE",
-        "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE",
+        "XWC_P06_LOCAL_PHRASE:A_LITERAL",
         "XWC_P07_LOCAL_PHRASE:A_LITERAL",
-        "XWC_P07_LOCAL_PHRASE:B_PHRASE",
+        "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE",
         "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE",
-        "XWC_P08_LOCAL_PHRASE:A_LITERAL",
-        "XWC_P08_LOCAL_PHRASE:B_PHRASE",
+        "XWC_P07_LOCAL_PHRASE:B_PHRASE",
         "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE",
-        "XWC_P09_LOCAL_PHRASE:A_LITERAL",
+        "XWC_P08_LOCAL_PHRASE:B_PHRASE",
         "XWC_P09_LOCAL_PHRASE:B_PHRASE",
         "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE",
         "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC",
+        "XWC_P09_LOCAL_PHRASE:A_LITERAL",
         "XWC_P10_LOCAL_PHRASE:A_LITERAL",
+        "XWC_P08_LOCAL_PHRASE:A_LITERAL",
         "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
       ],
       "duplicate_rows_removed_or_archived": 21,
@@ -3259,17 +3259,17 @@
         {
           "phrase_id": "XWC_P01_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P02_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P02_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P03_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P03_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P03_LOCAL_PHRASE",
@@ -3284,12 +3284,12 @@
         {
           "phrase_id": "XWC_P04_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P04_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P05_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P05_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P05_LOCAL_PHRASE",
@@ -3309,7 +3309,7 @@
         {
           "phrase_id": "XWC_P06_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P06_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P06_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P06_LOCAL_PHRASE",
@@ -3334,42 +3334,42 @@
         {
           "phrase_id": "XWC_P06_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P06_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P07_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P07_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P07_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P07_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P07_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P08_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P08_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P08_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P08_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P08_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P09_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P09_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P09_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "D_TEACHING_DIAGNOSTIC",
-          "source_key": "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+          "source_key": "XWC_P09_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
@@ -3379,7 +3379,7 @@
         {
           "phrase_id": "XWC_P10_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P10_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P10_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P08_LOCAL_PHRASE",
@@ -3394,18 +3394,16 @@
         {
           "phrase_id": "XWC_P10_LOCAL_PHRASE",
           "active_version_id": "D_TEACHING_DIAGNOSTIC",
-          "source_key": "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+          "source_key": "XWC_P10_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
         },
         {
           "phrase_id": "XWC_P10_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P10_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P10_LOCAL_PHRASE::C_QINIST_STYLE"
         }
       ],
-      "deduped_at": "2026-06-20T12:19:33.640594+00:00"
-    },
-    "exported_csv_to_project_dir": true,
-    "exported_at": "2026-06-20T12:20:39.866652+00:00"
+      "deduped_at": "2026-06-20T12:19:33.633854+00:00"
+    }
   },
   "review_only": true,
   "production_grade": false,
@@ -3818,22 +3816,22 @@
       "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE",
       "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE",
       "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P05_LOCAL_PHRASE:B_PHRASE",
       "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P06_LOCAL_PHRASE:A_LITERAL",
+      "XWC_P05_LOCAL_PHRASE:B_PHRASE",
       "XWC_P06_LOCAL_PHRASE:B_PHRASE",
-      "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE",
+      "XWC_P06_LOCAL_PHRASE:A_LITERAL",
       "XWC_P07_LOCAL_PHRASE:A_LITERAL",
-      "XWC_P07_LOCAL_PHRASE:B_PHRASE",
+      "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE",
       "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P08_LOCAL_PHRASE:A_LITERAL",
-      "XWC_P08_LOCAL_PHRASE:B_PHRASE",
+      "XWC_P07_LOCAL_PHRASE:B_PHRASE",
       "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE",
-      "XWC_P09_LOCAL_PHRASE:A_LITERAL",
+      "XWC_P08_LOCAL_PHRASE:B_PHRASE",
       "XWC_P09_LOCAL_PHRASE:B_PHRASE",
       "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE",
       "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC",
+      "XWC_P09_LOCAL_PHRASE:A_LITERAL",
       "XWC_P10_LOCAL_PHRASE:A_LITERAL",
+      "XWC_P08_LOCAL_PHRASE:A_LITERAL",
       "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
     ],
     "duplicate_rows_removed_or_archived": 21,
@@ -3844,17 +3842,17 @@
       {
         "phrase_id": "XWC_P01_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P02_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P02_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P03_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P03_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P03_LOCAL_PHRASE",
@@ -3869,12 +3867,12 @@
       {
         "phrase_id": "XWC_P04_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P04_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P05_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P05_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P05_LOCAL_PHRASE",
@@ -3894,7 +3892,7 @@
       {
         "phrase_id": "XWC_P06_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P06_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P06_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P06_LOCAL_PHRASE",
@@ -3919,42 +3917,42 @@
       {
         "phrase_id": "XWC_P06_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P06_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P07_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P07_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P07_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P07_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P07_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P08_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P08_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P08_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P08_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P08_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P09_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P09_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P09_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "D_TEACHING_DIAGNOSTIC",
-        "source_key": "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+        "source_key": "XWC_P09_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
@@ -3964,7 +3962,7 @@
       {
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P10_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P10_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P08_LOCAL_PHRASE",
@@ -3979,14 +3977,14 @@
       {
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "D_TEACHING_DIAGNOSTIC",
-        "source_key": "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+        "source_key": "XWC_P10_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
       },
       {
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P10_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P10_LOCAL_PHRASE::C_QINIST_STYLE"
       }
     ],
-    "deduped_at": "2026-06-20T12:19:33.640594+00:00"
+    "deduped_at": "2026-06-20T12:19:33.633854+00:00"
   }
 }

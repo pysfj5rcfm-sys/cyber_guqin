@@ -289,7 +289,7 @@ def load_project_review_draft_latest(render_set_id: str) -> dict[str, Any]:
 def save_project_review_draft(render_set_id: str, payload: dict[str, Any]) -> dict[str, Any]:
     _require_render_set_or_intake(render_set_id)
     saved_at = now()
-    state = dict(payload)
+    state = canonicalize_project_review_state(dict(payload), archived_at=saved_at)
     state["render_set_id"] = render_set_id
     state["saved_at"] = saved_at
     state["review_status"] = state.get("review_status") or "draft"
@@ -330,6 +330,51 @@ def save_project_review_draft(render_set_id: str, payload: dict[str, Any]) -> di
         "phrase_count": state["phrase_count"],
         "preferred_version_count": state["preferred_version_count"],
         "suggested_revision_count": state["suggested_revision_count"],
+        **SAFETY,
+    }
+
+
+def export_project_review_draft_csv(render_set_id: str) -> dict[str, Any]:
+    _require_render_set_or_intake(render_set_id)
+    exported_at = now()
+    latest_dir = r2_review_draft_latest_dir()
+    state_path = latest_dir / "r2_review_state.latest.json"
+    if not state_path.exists():
+        raise ValueError(f"R2 latest draft not found: {state_path}")
+    with state_path.open("r", encoding="utf-8") as handle:
+        state = json.load(handle)
+    state = canonicalize_project_review_state(state, archived_at=exported_at)
+    state["render_set_id"] = render_set_id
+    state["saved_at"] = state.get("saved_at") or exported_at
+    state.update(SAFETY)
+    state["gpt_review_pending"] = True
+    state["e_revision_plan_generated"] = False
+    state["e_generated"] = False
+    state["provenance"] = state.get("provenance", {}) if isinstance(state.get("provenance"), dict) else {}
+    state["provenance"].update({
+        "exported_csv_to_project_dir": True,
+        "exported_at": exported_at,
+        "canonical_source": "r2_review_state.latest.json",
+        "current_page_load_source": "engineering_dir_latest",
+        "no_downloads_policy": True,
+    })
+    state.update(canonical_state_counts(state))
+    latest_dir.mkdir(parents=True, exist_ok=True)
+    write_json(state_path, state)
+    export_tables = export_tables_from_canonical_state(render_set_id, state)
+    files = write_export_tables(latest_dir, export_tables)
+    manifest = write_review_state_manifest(latest_dir, state, files, latest_dir)
+    return {
+        "path": str(latest_dir),
+        "state_path": str(state_path),
+        "latest_dir": str(latest_dir),
+        "manifest_path": str(manifest),
+        "files": [str(path) for path in files],
+        "review_count": state["review_count"],
+        "phrase_count": state["phrase_count"],
+        "preferred_version_count": state["preferred_version_count"],
+        "suggested_revision_count": state["suggested_revision_count"],
+        "issue_count": state["issue_count"],
         **SAFETY,
     }
 
@@ -398,6 +443,7 @@ def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir:
         },
         **SAFETY,
     }
+    state = canonicalize_project_review_state(state, archived_at=restored_at)
     state.update(canonical_state_counts(state))
     latest_dir = r2_review_draft_latest_dir()
     archive_dir = r2_review_draft_archive_dir(restored_at)
@@ -988,7 +1034,182 @@ def restored_export_tables(
     }
 
 
+def canonicalize_project_review_state(state: dict[str, Any], *, archived_at: str | None = None) -> dict[str, Any]:
+    next_state = dict(state)
+    archived_stamp = archived_at or now()
+    reviews = next_state.get("listeningReviewByKey") or next_state.get("listening_review_by_key") or {}
+    normalized_reviews: dict[str, dict[str, Any]] = {}
+    duplicate_groups: dict[str, list[dict[str, Any]]] = {}
+    archived_reviews: list[dict[str, Any]] = []
+    if isinstance(reviews, dict):
+        for index, (raw_key, raw_item) in enumerate(reviews.items()):
+            if not isinstance(raw_item, dict):
+                continue
+            item = dict(raw_item)
+            key = canonical_review_key(item, str(raw_key))
+            if not key:
+                continue
+            phrase_id, version_id = key.split(":", 1)
+            item["phrase_id"] = phrase_id
+            item["version_id"] = version_id
+            duplicate_groups.setdefault(key, []).append({"raw_key": str(raw_key), "item": item, "index": index})
+    duplicate_keys: list[str] = []
+    retained_summary: list[dict[str, str]] = []
+    for key, candidates in duplicate_groups.items():
+        selected = max(candidates, key=lambda candidate: review_candidate_rank(candidate["item"], candidate["index"]))
+        normalized_reviews[key] = selected["item"]
+        phrase_id, version_id = key.split(":", 1)
+        retained_summary.append({"phrase_id": phrase_id, "active_version_id": version_id, "source_key": selected["raw_key"]})
+        if len(candidates) <= 1:
+            continue
+        duplicate_keys.append(key)
+        for candidate in candidates:
+            if candidate is selected:
+                continue
+            archived_reviews.append({
+                "archived_at": archived_stamp,
+                "archive_reason": "duplicate_phrase_version_retained_latest_current_review",
+                "canonical_key": key,
+                "source_key": candidate["raw_key"],
+                "review": candidate["item"],
+            })
+
+    history = next_state.get("review_history_archived")
+    if not isinstance(history, list):
+        history = []
+    next_state["review_history_archived"] = history + archived_reviews
+    next_state["listeningReviewByKey"] = normalized_reviews
+    next_state.pop("listening_review_by_key", None)
+    next_state.pop("export_tables", None)
+    next_state["boundaryStatusByKey"] = normalize_keyed_state(next_state.get("boundaryStatusByKey") or next_state.get("boundary_status_by_key") or {})
+    next_state.pop("boundary_status_by_key", None)
+    next_state["markersByKey"] = normalize_keyed_state(next_state.get("markersByKey") or next_state.get("markers_by_key") or {})
+    next_state.pop("markers_by_key", None)
+    next_state.update(canonical_state_counts(next_state))
+    existing_report = next_state.get("canonical_dedupe_report") if isinstance(next_state.get("canonical_dedupe_report"), dict) else {}
+    existing_removed = int(existing_report.get("duplicate_rows_removed_or_archived", 0) or 0)
+    historical_duplicate_keys = sorted({
+        str(item.get("canonical_key"))
+        for item in history
+        if isinstance(item, dict) and item.get("archive_reason") == "duplicate_phrase_version_retained_latest_current_review" and item.get("canonical_key")
+    })
+    historical_removed = len([
+        item for item in history
+        if isinstance(item, dict) and item.get("archive_reason") == "duplicate_phrase_version_retained_latest_current_review"
+    ])
+    if not archived_reviews and (existing_removed or historical_removed):
+        dedupe_report = {
+            **existing_report,
+            "duplicate_keys_found": existing_report.get("duplicate_keys_found") or historical_duplicate_keys,
+            "duplicate_rows_removed_or_archived": existing_removed or historical_removed,
+            "retained_review_count": next_state["review_count"],
+            "retained_suggested_revision_count": next_state["suggested_revision_count"],
+            "retained_issue_count": next_state["issue_count"],
+            "retained_by_phrase_version": existing_report.get("retained_by_phrase_version") or retained_summary,
+            "deduped_at": existing_report.get("deduped_at") or archived_stamp,
+        }
+    else:
+        dedupe_report = {
+            "duplicate_keys_found": duplicate_keys,
+            "duplicate_rows_removed_or_archived": len(archived_reviews),
+            "retained_review_count": next_state["review_count"],
+            "retained_suggested_revision_count": next_state["suggested_revision_count"],
+            "retained_issue_count": next_state["issue_count"],
+            "retained_by_phrase_version": retained_summary,
+            "deduped_at": archived_stamp,
+        }
+    next_state["canonical_dedupe_report"] = dedupe_report
+    next_state["provenance"] = next_state.get("provenance", {}) if isinstance(next_state.get("provenance"), dict) else {}
+    next_state["provenance"]["canonical_dedupe_report"] = dedupe_report
+    return next_state
+
+
+def canonical_review_key(item: dict[str, Any], raw_key: str = "") -> str:
+    phrase_id = str(item.get("phrase_id") or "")
+    version_id = str(item.get("version_id") or item.get("active_version_id") or "")
+    if (not phrase_id or not version_id) and "::" in raw_key:
+        phrase_id, version_id = raw_key.split("::", 1)
+    elif (not phrase_id or not version_id) and ":" in raw_key:
+        phrase_id, version_id = raw_key.split(":", 1)
+    return f"{phrase_id}:{version_id}" if phrase_id and version_id else ""
+
+
+def normalize_keyed_state(value: Any) -> dict[str, Any]:
+    if not isinstance(value, dict):
+        return {}
+    result: dict[str, Any] = {}
+    for raw_key, item in value.items():
+        key = str(raw_key).replace("::", ":", 1)
+        result[key] = item
+    return result
+
+
+def review_candidate_rank(item: dict[str, Any], index: int) -> tuple[int, float, int, int]:
+    return (
+        explicit_current_review_score(item),
+        review_timestamp_score(item),
+        review_substance_score(item),
+        index,
+    )
+
+
+def explicit_current_review_score(item: dict[str, Any]) -> int:
+    phrase_id = str(item.get("phrase_id") or "")
+    version_id = str(item.get("version_id") or item.get("active_version_id") or "")
+    comment = str(item.get("comment") or "")
+    suggested = str(item.get("suggested_revision") or "")
+    text = f"{comment}\n{suggested}"
+    score = 0
+    if phrase_id == "XWC_P01_LOCAL_PHRASE" and version_id == "C_QINIST_STYLE" and "123——4——" in suggested:
+        score += 100
+    if phrase_id == "XWC_P02_LOCAL_PHRASE" and version_id == "C_QINIST_STYLE" and "12345——6——" in suggested:
+        score += 100
+    if phrase_id == "XWC_P09_LOCAL_PHRASE" and version_id in {"B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC"}:
+        if "把带上下文的掐起和上下文连接，这样不是就有2个上下文的音了？" in text:
+            score += 100
+        if "带上下文的掐起不能和上下文放一起，这样不就有2个上下文的音了吗？" in text:
+            score -= 100
+    if phrase_id == "XWC_P10_LOCAL_PHRASE" and version_id == "A_LITERAL" and "1——234——5——6——7——" in suggested:
+        score += 100
+    if phrase_id == "XWC_P10_LOCAL_PHRASE" and version_id == "D_TEACHING_DIAGNOSTIC":
+        if "前几个音节拍可以紧凑一点，最后3个音慢" in text or "比如1234——5——6——7这种节奏" in text:
+            score -= 100
+    return score
+
+
+def review_timestamp_score(item: dict[str, Any]) -> float:
+    for field in ("updated_at", "saved_at", "created_at", "reviewed_at"):
+        value = item.get(field)
+        if not value:
+            continue
+        try:
+            text = str(value).replace("Z", "+00:00")
+            return datetime.fromisoformat(text).timestamp()
+        except ValueError:
+            continue
+    return 0.0
+
+
+def review_substance_score(item: dict[str, Any]) -> int:
+    score = 0
+    score += min(len(str(item.get("comment") or "").strip()), 80)
+    score += min(len(str(item.get("suggested_revision") or "").strip()), 80)
+    issue_type = item.get("issue_type")
+    if isinstance(issue_type, list):
+        score += len([issue for issue in issue_type if issue]) * 20
+    elif str(issue_type or "").strip():
+        score += 20
+    if str(item.get("quick_judgement") or "").strip():
+        score += 10
+    if str(item.get("preferred_version_id") or "").strip():
+        score += 5
+    if str(item.get("severity") or "").strip() not in {"", "low"}:
+        score += 5
+    return score
+
+
 def export_tables_from_canonical_state(render_set_id: str, state: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    state = canonicalize_project_review_state(state)
     review_rows = review_rows_from_state(render_set_id, state)
     preferred = preferred_versions_from_state(state, review_rows)
     boundary_status = boundary_status_from_state(state)
@@ -1310,6 +1531,9 @@ def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: 
         "archive_path": str(archive_dir),
         "files": [path.name for path in files],
         "restore_warnings": provenance.get("restore_warnings", []),
+        "canonical_dedupe_report": state.get("canonical_dedupe_report", {}),
+        "duplicate_keys_found": (state.get("canonical_dedupe_report", {}) or {}).get("duplicate_keys_found", []) if isinstance(state.get("canonical_dedupe_report"), dict) else [],
+        "duplicate_rows_removed_or_archived": (state.get("canonical_dedupe_report", {}) or {}).get("duplicate_rows_removed_or_archived", 0) if isinstance(state.get("canonical_dedupe_report"), dict) else 0,
         "no_downloads_policy": True,
         "gpt_review_pending": True,
         "e_revision_plan_generated": False,

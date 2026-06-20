@@ -6,15 +6,14 @@ import { R2ExportPreviewPanel } from "../components/R2ExportPreviewPanel";
 import { markerReviewStatusLabels, markerReviewStatusTone } from "../components/reviewUi";
 import {
   apiBase,
+  exportR2ReviewDraftCsvToProject,
   loadR2LatestReviewDraft,
   loadR2PhraseAlignments,
   loadR2Phrases,
   loadR2RenderSets,
   loadR2Versions,
-  restoreR2ReviewDraftFromExportDir,
   saveR2ReviewDraftToProject,
 } from "../api/cgVarwApi";
-import { buildR2PreviewTables, type R2PreviewTable } from "../utils/r2ExportPayload";
 import { adaptR2ProjectDraftState } from "../utils/r2ReviewDraftState";
 import {
   defaultListeningReview,
@@ -78,23 +77,6 @@ type R2ListeningReviewDraft = {
 };
 
 type ListeningReviewByKey = Record<string, R2ListeningReviewDraft>;
-
-type R2DraftPayloadWithReviewState = {
-  render_set_id: string;
-  selected_phrase_id: string;
-  selected_version_id: string;
-  preferred_version_id?: string;
-  phrase_markers: PhraseMarker[];
-  phrase_alignments: RenderPhraseAlignment[];
-  listening_review: ListeningReview;
-  preferred_version_by_phrase?: PreferredVersionByPhrase;
-  listening_review_by_key?: ListeningReviewByKey;
-  boundary_status_by_key?: BoundaryStatusByKey;
-  markers_by_key?: MarkersByKey;
-  playback_rate?: R2PlaybackRate;
-  loop_phrase?: boolean;
-  saved_at: string;
-};
 
 type ProgressOverview = {
   totalPhraseCount: number;
@@ -228,8 +210,6 @@ export function R2ProjectReviewPage() {
     };
   }, []);
 
-  const draftKey = `cg-varw:r2:draft:${renderSet.recording_session_id}:${renderSet.piece_id}:${renderSet.render_set_id}`;
-  const legacyDraftKey = `cg-varw:r2:${renderSet.render_set_id}:draft`;
   const activeMarkerStateKey = phraseVersionKey(activePhraseId, activeVersionId);
   const activePhrase = getPhraseFromList(phrases, activePhraseId);
   const activeSection = getSectionFromList(sections, activePhrase.section_id);
@@ -365,71 +345,6 @@ export function R2ProjectReviewPage() {
     updateReviewDraft({ issue_type: issueType });
   }
 
-  function saveBrowserDraftTemp() {
-    const nextMarkersByKey = { ...markersByKey, [activeMarkerStateKey]: markers };
-    const payload: R2DraftPayloadWithReviewState = {
-      render_set_id: renderSet.render_set_id,
-      selected_phrase_id: activePhraseId,
-      selected_version_id: activeVersionId,
-      preferred_version_id: preferredVersionId,
-      phrase_markers: markers,
-      phrase_alignments: reviewedAlignments,
-      listening_review: { ...activeListeningReview, reviewed_at: activeListeningReview.reviewed_at || new Date().toISOString() },
-      preferred_version_by_phrase: preferredVersionByPhrase,
-      listening_review_by_key: listeningReviewByKey,
-      boundary_status_by_key: boundaryStatusByKey,
-      markers_by_key: nextMarkersByKey,
-      playback_rate: playback.playbackRate,
-      loop_phrase: playback.loopPhrase,
-      saved_at: new Date().toISOString(),
-      ...r2SafetyFlags,
-    };
-    localStorage.setItem(draftKey, JSON.stringify(payload));
-    setProjectDraftStatus("browser_fallback_temp: 仅临时保存到浏览器");
-    setLastActionMessage("后端保存未执行，仅临时保存到浏览器；刷新/换浏览器可能丢失。未生成 E。");
-  }
-
-  function loadDraft(options: { silentMissing?: boolean; source?: "auto" | "manual" } = {}) {
-    const raw = localStorage.getItem(draftKey) ?? localStorage.getItem(legacyDraftKey);
-    if (!raw) {
-      if (!options.silentMissing) setLastActionMessage("未找到 R2 draft");
-      return;
-    }
-    try {
-      const payload = JSON.parse(raw) as R2DraftPayloadWithReviewState;
-      const versionId = abcdVersionId(payload.selected_version_id, versions) ?? versions[0]?.version_id ?? "";
-      const phraseId = phrases.some((phrase) => phrase.phrase_id === payload.selected_phrase_id) ? payload.selected_phrase_id : phrases[0]?.phrase_id ?? "";
-      const alignment = getAlignmentFromList(reviewedAlignments, phraseId, versionId);
-      const nextMarkersByKey = payload.markers_by_key ?? {
-        [phraseVersionKey(phraseId, versionId)]: payload.phrase_markers?.length ? payload.phrase_markers : makeMarkersForAlignment(alignment, sections),
-      };
-      const nextMarkers = nextMarkersByKey[phraseVersionKey(phraseId, versionId)] ?? makeMarkersForAlignment(alignment, sections);
-      setActivePhraseId(phraseId);
-      setActiveVersionId(versionId);
-      setPreferredVersionByPhrase(filterPreferredVersions(payload.preferred_version_by_phrase ?? (payload.preferred_version_id ? { [phraseId]: payload.preferred_version_id } : {}), versions));
-      setMarkersByKey(nextMarkersByKey);
-      setSelectedMarkerId(defaultMarkerId(nextMarkers));
-      setBoundaryStatusByKey(payload.boundary_status_by_key ?? makeBoundaryStatusByKey(payload.phrase_alignments));
-      setListeningReviewByKey(filterReviewDrafts(payload.listening_review_by_key ?? {
-        [phraseVersionKey(payload.listening_review.phrase_id, payload.listening_review.active_version_id)]: draftFromListeningReview(payload.listening_review),
-      }, versions));
-      setPlayback((current) => ({
-        ...current,
-        isPlaying: false,
-        currentTimeS: phrasePlayStart(alignment),
-        playbackRate: payload.playback_rate ?? current.playbackRate,
-        loopPhrase: payload.loop_phrase ?? current.loopPhrase,
-        playMode: "idle",
-        sequenceQueue: undefined,
-        currentQueueIndex: undefined,
-        playingVersionId: undefined,
-      }));
-      setLastActionMessage(options.source === "auto" ? "已自动加载 R2 draft" : "已加载 R2 draft");
-    } catch (error) {
-      setLastActionMessage(`R2 draft 加载失败：${error instanceof Error ? error.message : String(error)}`);
-    }
-  }
-
   function applyProjectDraft(rawDraft: Record<string, unknown>, context: {
     versions: RenderVersion[];
     phrases: PhraseDefinition[];
@@ -513,20 +428,21 @@ export function R2ProjectReviewPage() {
     }
   }
 
-  async function restoreProjectDraftFromExports() {
+  async function exportCsvToProject() {
     if (dataSource !== "api") {
-      setLastActionMessage("当前为模拟数据兜底，未从导出文件恢复工程 draft。");
+      setLastActionMessage("当前为模拟数据兜底，未写工程目录 CSV。");
       return;
     }
     try {
-      const response = await restoreR2ReviewDraftFromExportDir(renderSet.render_set_id);
+      await saveR2ReviewDraftToProject(renderSet.render_set_id, buildProjectReviewStatePayload());
+      const response = await exportR2ReviewDraftCsvToProject(renderSet.render_set_id);
       const data = response.data ?? {};
-      const warningCount = Number(data.warning_count ?? 0);
-      setProjectDraftStatus(`已从导出文件恢复 latest draft：${readString(data.latest_dir) || response.path || ""}`);
-      setLastActionMessage(`已从 8 个导出文件恢复工程 draft；warnings=${warningCount}；未生成 E。`);
-      await loadProjectDraftLatest();
+      const exportPath = readString(data.latest_dir) || response.path || "";
+      const files = response.files ?? [];
+      setProjectDraftStatus(`engineering_dir_latest: ${exportPath}`);
+      setLastActionMessage(`CSV 已导出到工程目录：${exportPath} · files=${files.length}；未生成 E。`);
     } catch (error) {
-      setLastActionMessage(`从导出文件恢复工程 draft 失败：${error instanceof Error ? error.message : String(error)}`);
+      setLastActionMessage(`工程目录 CSV 导出失败：${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -545,7 +461,6 @@ export function R2ProjectReviewPage() {
       phrase_markers: markers,
       phrase_alignments: reviewedAlignments,
       listening_review: activeListeningReview,
-      export_tables: previewTables,
       review_count: Object.keys(listeningReviewByKey).length,
       preferred_version_count: Object.keys(preferredVersionByPhrase).length,
       gpt_review_pending: true,
@@ -699,30 +614,6 @@ export function R2ProjectReviewPage() {
     return clearStopTimer;
   }, [activePhraseId, activeVersionId, playback.isPlaying, reviewedAlignments, versions]);
 
-  const previewTables = useMemo(
-    () => buildR2PreviewTables({ sections, phrases, alignments: reviewedAlignments, markers, review: activeListeningReview, preferredVersionByPhrase, listeningReviewByKey, activePhraseId, activeVersionId, preferredVersionId, boundaryStatus }),
-    [sections, phrases, reviewedAlignments, markers, activeListeningReview, preferredVersionByPhrase, listeningReviewByKey, activePhraseId, activeVersionId, preferredVersionId, boundaryStatus],
-  );
-
-  function exportFiles(scope: "all" | "phrase") {
-    const files = Object.keys(previewTables);
-    const selectedFiles = scope === "all" ? files : files.filter((file) => ["phrase_boundary_decision.csv", "render_phrase_alignment.csv", "listening_review.csv", "listening_review.yaml", "render_revision_log.yaml"].includes(file));
-    selectedFiles.forEach((file) => downloadPreviewFile(file, previewTables[file]));
-    setLastActionMessage(scope === "all" ? "已下载全部 R2 draft 副本；不作为工程草稿权威来源；未生成 E。" : "已下载当前 phrase draft 副本；不作为工程草稿权威来源；未生成 E。");
-  }
-
-  function downloadPreviewFile(file: string, table?: R2PreviewTable) {
-    if (!table) return;
-    const text = file.endsWith(".yaml") ? tableToYaml(table) : tableToCsv(table);
-    const blob = new Blob([text], { type: file.endsWith(".yaml") ? "text/yaml;charset=utf-8" : "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = file;
-    link.click();
-    URL.revokeObjectURL(url);
-  }
-
   return (
     <AppShell
       mode="R2"
@@ -819,14 +710,9 @@ export function R2ProjectReviewPage() {
           preferredVersionId={preferredVersionId}
           boundaryStatus={boundaryStatus}
           onGroupChange={setExportGroup}
-          onSaveDraft={saveBrowserDraftTemp}
           onSaveProjectDraft={saveProjectDraft}
-          onLoadProjectDraft={loadProjectDraftLatest}
-          onRestoreProjectDraft={restoreProjectDraftFromExports}
-          onExportAll={() => exportFiles("all")}
-          onExportPhrase={() => exportFiles("phrase")}
+          onExportCsv={exportCsvToProject}
           onPreview={(file) => setLastActionMessage(`已预览 ${file}`)}
-          onDownloadFile={(file) => downloadPreviewFile(file, previewTables[file])}
         />
       }
       statusText={backendStatus}
@@ -1237,21 +1123,6 @@ function makeReviewDraft(phraseId: string, versionId: string): R2ListeningReview
   };
 }
 
-function draftFromListeningReview(review: ListeningReview): R2ListeningReviewDraft {
-  return {
-    phrase_id: review.phrase_id,
-    version_id: review.active_version_id,
-    issue_type: review.issue_type,
-    severity: review.severity,
-    quick_judgement: review.issue_type.includes("good") ? "good" : undefined,
-    comment: review.comment,
-    suggested_revision: review.suggested_revision ?? "",
-    reviewer: review.reviewer,
-    reviewed_at: review.reviewed_at,
-    updated_at: review.reviewed_at,
-  };
-}
-
 function toListeningReview(review: R2ListeningReviewDraft, renderSet: RenderSet, sectionId: string, eventRange: string, preferredVersionId?: string): ListeningReview {
   return {
     ...defaultListeningReview,
@@ -1309,39 +1180,15 @@ function filterReviewDrafts(drafts: ListeningReviewByKey, versions: RenderVersio
   return Object.fromEntries(Object.entries(drafts).filter(([, draft]) => allowed.has(draft.version_id)));
 }
 
-function abcdVersionId(versionId: string, versions: RenderVersion[]) {
-  return versions.some((version) => version.version_id === versionId) ? versionId : undefined;
-}
-
 function r2ExportRows() {
   const now = new Date().toLocaleString("zh-CN", { hour12: false });
   const baseRows = phraseExports.filter((row) => row.file !== "listening_review.yaml");
   return [
     ...baseRows.slice(0, 3),
-    { file: "listening_review.csv", group: "听评记录", description: "当前工程目录 draft 的下载副本，不作为权威来源。", rule: "draft review only", scope: "all reviewed phrases", actor: "human", updatedAt: now },
-    { file: "listening_review.yaml", group: "听评记录", description: "当前工程目录 draft 的 YAML 下载副本，不生成 e_revision_plan。", rule: "draft review only; no e_revision_plan", scope: "all reviewed phrases", actor: "human", updatedAt: now },
+    { file: "listening_review.csv", group: "听评记录", description: "当前工程目录 draft 派生的 CSV；导出 CSV 会写入工程目录。", rule: "draft review only", scope: "all reviewed phrases", actor: "human", updatedAt: now },
+    { file: "listening_review.yaml", group: "听评记录", description: "当前工程目录 draft 派生的 YAML；不生成 e_revision_plan。", rule: "draft review only; no e_revision_plan", scope: "all reviewed phrases", actor: "human", updatedAt: now },
     ...baseRows.slice(3),
   ];
-}
-
-function tableToCsv(table: R2PreviewTable) {
-  const lines = [table.columns.join(",")];
-  table.rows.forEach((row) => lines.push(table.columns.map((column) => csvCell(row[column] ?? "")).join(",")));
-  return `${lines.join("\n")}\n`;
-}
-
-function tableToYaml(table: R2PreviewTable) {
-  const lines = [`file: ${JSON.stringify(table.file)}`, "rows:"];
-  table.rows.forEach((row) => {
-    lines.push("  -");
-    table.columns.forEach((column) => lines.push(`      ${column}: ${JSON.stringify(row[column] ?? "")}`));
-  });
-  return `${lines.join("\n")}\n`;
-}
-
-function csvCell(value: string) {
-  if (!/[",\n]/.test(value)) return value;
-  return `"${value.replace(/"/g, '""')}"`;
 }
 
 function readString(value: unknown) {

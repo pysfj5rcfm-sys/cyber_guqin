@@ -1,0 +1,53 @@
+{
+  "cleanup_id": "final_canonical_cleanup_20260620_122000",
+  "task_name": "CG-VARW-R2_FINALIZE_CANONICAL_DRAFT_AND_PROJECT_EXPORT_ONLY",
+  "canonical_source": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json",
+  "generated_exports_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest",
+  "cleanup_policy": "project_directory_only_no_browser_downloads",
+  "latest_files_retained": [
+    "issue_list.csv",
+    "listening_review.csv",
+    "listening_review.yaml",
+    "phrase_boundary_decision.csv",
+    "phrase_structure_review.yaml",
+    "preferred_version_summary.csv",
+    "r2_review_state.latest.json",
+    "r2_review_state_manifest.json",
+    "render_phrase_alignment.csv",
+    "render_revision_log.yaml"
+  ],
+  "archive_dirs_retained_as_read_only_backup": [
+    "20260620_114355",
+    "20260620_121933"
+  ],
+  "r2_review_exports_current_source": false,
+  "r2_review_exports_contents": [],
+  "stale_sources_moved": [
+    {
+      "from": "r2_review_drafts/archive/20260620_120110/",
+      "to": "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/",
+      "reason": "pre-finalization mixed duplicate review archive; retained as quarantine history, not current latest"
+    }
+  ],
+  "stale_sources_deleted": [],
+  "downloads_written": false,
+  "e_generated": false,
+  "e_revision_plan_generated": false,
+  "sample_assets_modified": false,
+  "recording_segments_modified": false,
+  "recording_items_enriched_created": false,
+  "quarantine_contents": [
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/cleanup_manifest.json",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/issue_list.csv",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/listening_review.csv",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/listening_review.yaml",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/phrase_boundary_decision.csv",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/phrase_structure_review.yaml",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/preferred_version_summary.csv",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/r2_review_state.latest.json",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/r2_review_state_manifest.json",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/render_phrase_alignment.csv",
+    "r2_review_drafts/_quarantine/final_canonical_cleanup_20260620_122000/stale_archive_20260620_120110/render_revision_log.yaml"
+  ]
+}
