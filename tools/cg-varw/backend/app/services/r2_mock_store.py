@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from app.config import REVIEW_OUTPUT_ROOT
+from app.config import REVIEW_OUTPUT_ROOT, TOOL_DIR
 from app.schemas import (
     R2DraftPayload,
     R2DraftResponse,
@@ -34,6 +34,10 @@ SAFETY = {
 }
 
 RENDER_SET_ID = "R2A_MOCK_XWC_BAIYA_001"
+REPO_ROOT = TOOL_DIR.parents[1]
+INTAKE_DIR = REPO_ROOT / "04_outputs" / "XWC" / "RS_XWC_002_BAIYA_PILOT" / "abcd_experimental_render" / "r2_review_intake"
+INTAKE_INDEX_PATH = INTAKE_DIR / "r2_render_set_index.json"
+INTAKE_ALIGNMENT_PATH = INTAKE_DIR / "r2_phrase_alignment_seed.csv"
 
 PIECES = [
     R2Piece(piece_id="XWC", piece_title="仙翁操", active_mvp=True, mock_only=False),
@@ -87,15 +91,24 @@ def list_sessions() -> list[R2Session]:
 
 
 def list_render_sets() -> list[R2RenderSet]:
+    intake = load_intake_index()
+    if intake:
+        return [render_set_from_intake(intake)]
     return [RENDER_SET]
 
 
 def get_render_set(render_set_id: str) -> R2RenderSet:
+    intake = load_intake_index()
+    if intake and render_set_id == intake["render_set_id"]:
+        return render_set_from_intake(intake)
     _require_render_set(render_set_id)
     return RENDER_SET
 
 
 def list_versions(render_set_id: str) -> list[R2RenderVersion]:
+    intake = load_intake_index()
+    if intake and render_set_id == intake["render_set_id"]:
+        return versions_from_intake(intake)
     _require_render_set(render_set_id)
     specs = [
         ("A_LITERAL", "A", "直译谱面版", "Literal Dapu", "literal_dapu", 108.4),
@@ -123,11 +136,17 @@ def list_versions(render_set_id: str) -> list[R2RenderVersion]:
 
 
 def list_phrases(render_set_id: str) -> dict[str, Any]:
+    intake = load_intake_index()
+    if intake and render_set_id == intake["render_set_id"]:
+        return phrases_from_intake(intake)
     _require_render_set(render_set_id)
     return {"sections": SECTIONS, "phrases": PHRASES, **SAFETY}
 
 
 def list_alignments(render_set_id: str) -> list[R2RenderPhraseAlignment]:
+    intake = load_intake_index()
+    if intake and render_set_id == intake["render_set_id"]:
+        return alignments_from_intake(intake)
     _require_render_set(render_set_id)
     starts = {
         "PHRASE_01": [0.4, 0.2, 0.6, 0.3, 0.4],
@@ -171,6 +190,18 @@ def list_alignments(render_set_id: str) -> list[R2RenderPhraseAlignment]:
 
 
 def event_timeline(render_set_id: str) -> dict[str, Any]:
+    intake = load_intake_index()
+    if intake and render_set_id == intake["render_set_id"]:
+        phrases = phrases_from_intake(intake)["phrases"]
+        return {
+            "render_set_id": render_set_id,
+            "events": [
+                {"event_id": phrase.start_event_id, "phrase_id": phrase.phrase_id, "role": "start"}
+                for phrase in phrases
+            ]
+            + [{"event_id": phrase.end_event_id, "phrase_id": phrase.phrase_id, "role": "end"} for phrase in phrases],
+            **SAFETY,
+        }
     _require_render_set(render_set_id)
     return {
         "render_set_id": render_set_id,
@@ -252,6 +283,117 @@ def export_rows(render_set_id: str) -> list[dict[str, Any]]:
         {"file": "preferred_version_summary.csv", "group": "汇总", "description": "偏好版本汇总", "scope": "all mock phrases", "actor": "mock_reviewer", "updated_at": "2026-06-15T00:00:00+08:00"},
         {"file": "issue_list.csv", "group": "汇总", "description": "全曲问题清单", "scope": "all mock phrases", "actor": "mock_reviewer", "updated_at": "2026-06-15T00:00:00+08:00"},
     ]
+
+
+def load_intake_index() -> dict[str, Any] | None:
+    if not INTAKE_INDEX_PATH.exists():
+        return None
+    with INTAKE_INDEX_PATH.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def render_set_from_intake(intake: dict[str, Any]) -> R2RenderSet:
+    return R2RenderSet(
+        render_set_id=intake["render_set_id"],
+        project_id="CG_VARW",
+        recording_session_id=intake["recording_session_id"],
+        piece_id=intake["piece_id"],
+        piece_title=intake["piece_title"],
+        qinist_id=intake["qinist_id"],
+        render_stage="experimental_render",
+        created_at=intake.get("created_at", now()),
+        **SAFETY,
+    )
+
+
+def versions_from_intake(intake: dict[str, Any]) -> list[R2RenderVersion]:
+    role_map = {
+        "A_LITERAL": ("A", "直译谱面版", "Literal Dapu", "literal_dapu"),
+        "B_PHRASE": ("B", "句法呼吸版", "Phrase Dapu", "phrase_dapu"),
+        "C_QINIST_STYLE": ("C", "琴人风格版", "Qinist Style Dapu", "qinist_style_dapu"),
+        "D_TEACHING_DIAGNOSTIC": ("D", "教学诊断版", "Teaching Diagnostic Dapu", "teaching_diagnostic_dapu"),
+    }
+    versions: list[R2RenderVersion] = []
+    for index, item in enumerate(intake.get("versions", [])):
+        version_id = item["version_id"]
+        if version_id not in role_map:
+            continue
+        code, label_zh, label_en, role = role_map[version_id]
+        versions.append(
+            R2RenderVersion(
+                render_set_id=intake["render_set_id"],
+                version_id=version_id,
+                version_code=code,  # type: ignore[arg-type]
+                version_label_zh=label_zh,
+                version_label_en=label_en,
+                version_role=role,  # type: ignore[arg-type]
+                audio_path=item["wav_path"],
+                duration_s=float(item.get("duration_s") or 0),
+                waveform_preview=mock_waveform(120, index),
+                mock_render=False,
+                **SAFETY,
+            )
+        )
+    return versions
+
+
+def phrases_from_intake(intake: dict[str, Any]) -> dict[str, Any]:
+    phrase_defs = intake.get("phrases", [])
+    phrases = [
+        R2PhraseDefinition(
+            phrase_id=item["phrase_id"],
+            section_id=item["section_id"],
+            phrase_index=index,
+            phrase_label=item["phrase_id"],
+            event_range=item["event_range"],
+            start_event_id=item["start_event_id"],
+            end_event_id=item["end_event_id"],
+        )
+        for index, item in enumerate(phrase_defs, start=1)
+    ]
+    by_section: dict[str, list[R2PhraseDefinition]] = {}
+    for phrase in phrases:
+        by_section.setdefault(phrase.section_id, []).append(phrase)
+    sections = [
+        R2Section(
+            section_id=section_id,
+            section_label=section_id,
+            event_range=f"{items[0].start_event_id}_to_{items[-1].end_event_id}",
+            phrase_ids=[item.phrase_id for item in items],
+        )
+        for section_id, items in by_section.items()
+    ]
+    return {"sections": sections, "phrases": phrases, **SAFETY}
+
+
+def alignments_from_intake(intake: dict[str, Any]) -> list[R2RenderPhraseAlignment]:
+    if not INTAKE_ALIGNMENT_PATH.exists():
+        return []
+    rows: list[R2RenderPhraseAlignment] = []
+    with INTAKE_ALIGNMENT_PATH.open("r", encoding="utf-8", newline="") as handle:
+        for item in csv.DictReader(handle):
+            start_s = float(item["phrase_start_s"])
+            end_s = float(item["phrase_end_s"])
+            rows.append(
+                R2RenderPhraseAlignment(
+                    render_set_id=intake["render_set_id"],
+                    version_id=item["version_id"],
+                    phrase_id=item["phrase_id"],
+                    section_id=item["section_id"],
+                    event_range=item["event_range"],
+                    start_s=start_s,
+                    end_s=end_s,
+                    breath_points_s=[round(start_s + (end_s - start_s) * 0.38, 3)],
+                    cadence_point_s=round(start_s + (end_s - start_s) * 0.82, 3),
+                    boundary_source="imported",
+                    boundary_confidence="low" if "provisional" in item.get("review_status", "") else "medium",
+                    review_status="candidate",
+                    reviewer=None,
+                    reviewed_at=None,
+                    notes="Imported from XWC ABCD r2_review_intake; review not completed.",
+                )
+            )
+    return rows
 
 
 def mock_waveform(points: int, seed: int = 0) -> list[float]:
@@ -399,5 +541,8 @@ def safe_name(value: str) -> str:
 
 
 def _require_render_set(render_set_id: str) -> None:
+    intake = load_intake_index()
+    if intake and render_set_id == intake["render_set_id"]:
+        return
     if render_set_id != RENDER_SET_ID:
         raise ValueError(f"unknown R2 render_set_id: {render_set_id}")

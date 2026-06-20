@@ -353,7 +353,7 @@ class R2RenderSet(R2SafetyMixin):
     piece_id: str
     piece_title: str
     qinist_id: str
-    render_stage: Literal["mock"] = "mock"
+    render_stage: Literal["mock", "experimental_render"] = "mock"
     created_at: str
 
 
