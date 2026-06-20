@@ -58,6 +58,20 @@ const adapted = adaptR2ProjectDraftState(latest, {
 
 assert.equal(Object.keys(adapted.listeningReviewByKey).length, latestReviewCount, "latest draft adapter should restore every review");
 assert.equal(Object.keys(adapted.preferredVersionByPhrase).length, latestPreferredCount, "latest draft adapter should restore every preferred version");
+assert.ok(adapted.listeningReviewByKey["XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE"], "adapter must expose P01 C review under frontend double-colon key");
+assert.equal(adapted.listeningReviewByKey["XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE"].comment, "试试其它节拍", "P01 C comment must restore");
+assert.equal(adapted.listeningReviewByKey["XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE"].suggested_revision, "123——4——", "P01 C suggested revision must restore");
+assert.equal(adapted.listeningReviewByKey["XWC_P02_LOCAL_PHRASE::C_QINIST_STYLE"].comment, "试试其它节拍", "P02 C comment must restore");
+assert.equal(adapted.listeningReviewByKey["XWC_P02_LOCAL_PHRASE::C_QINIST_STYLE"].suggested_revision, "12345——6——", "P02 C suggested revision must restore");
+["B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC"].forEach((versionId) => {
+  assert.equal(
+    adapted.listeningReviewByKey[`XWC_P09_LOCAL_PHRASE::${versionId}`].comment,
+    "把带上下文的掐起和上下文连接，这样不是就有2个上下文的音了？",
+    `P09 ${versionId} comment must restore`,
+  );
+});
+assert.equal(adapted.listeningReviewByKey["XWC_P10_LOCAL_PHRASE::A_LITERAL"].comment, "试试其它节拍", "P10 A comment must restore");
+assert.equal(adapted.listeningReviewByKey["XWC_P10_LOCAL_PHRASE::A_LITERAL"].suggested_revision, "1——234——5——6——7——", "P10 A suggested revision must restore");
 assert.equal(adapted.draftSource, latest.provenance?.restored_from_exports === true ? "restored_from_exports" : "engineering_dir_latest", "latest draft should preserve canonical source");
 assert.equal(adapted.e_generated, false, "adapter must keep E disabled");
 assert.equal(adapted.e_revision_plan_generated, false, "adapter must not generate e revision plan");
