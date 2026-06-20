@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AppShell } from "../components/AppShell";
-import { AudioCanvas } from "../components/AudioCanvas";
-import { KeyValueList, SearchBox } from "../components/FileNavigator";
+import { KeyValueList } from "../components/FileNavigator";
+import { MarkerNudgeControls } from "../components/MarkerNudgeControls";
+import { ReviewPrimarySelector } from "../components/ReviewPrimarySelector";
+import { ReviewSecondarySearchList } from "../components/ReviewSecondarySearchList";
+import { WaveformAsyncLayer } from "../components/WaveformAsyncLayer";
 import { buildR1HeaderRows, formatClockTime, markerReviewStatusLabels, markerReviewStatusTone, reviewStatusLabels, segmentStatusLabels } from "../components/reviewUi";
 import type {
   Marker,
@@ -46,13 +49,6 @@ interface R1Metadata {
   waveform_supported: boolean;
 }
 
-interface R1Waveform {
-  segment_id: string;
-  duration_s: number;
-  peaks: number[];
-  waveform_supported: boolean;
-}
-
 interface R1DraftResponse {
   batch_id: string;
   exists: boolean;
@@ -62,6 +58,8 @@ interface R1DraftResponse {
 
 export function R1SplitReviewPage() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const selectedSegmentByBatchRef = useRef<Record<string, string>>({});
+  const metadataRequestRef = useRef(0);
   const [backend, setBackend] = useState<BackendState>({
     status: "connecting",
     splitRootMode: "demo",
@@ -74,7 +72,6 @@ export function R1SplitReviewPage() {
   const [selectedSegmentId, setSelectedSegmentId] = useState("");
   const [selectedMarkerType, setSelectedMarkerType] = useState<R1MarkerKey>("render_anchor");
   const [metadata, setMetadata] = useState<R1Metadata | null>(null);
-  const [waveformPeaks, setWaveformPeaks] = useState<number[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
@@ -151,6 +148,7 @@ export function R1SplitReviewPage() {
   );
 
   async function loadBatchReviewState(batchId: string, preferredSegmentId?: string) {
+    if (selectedBatchId && selectedSegmentId) selectedSegmentByBatchRef.current[selectedBatchId] = selectedSegmentId;
     setSelectedBatchId(batchId);
     window.localStorage.setItem("cg-varw:r1:selectedBatchId", batchId);
     setOperationMessage("正在加载当前批次 Segment...");
@@ -174,11 +172,13 @@ export function R1SplitReviewPage() {
       draftMessage = `${batchId} draft 加载失败`;
     }
     setSegments(nextSegments);
-    const nextSelected = nextSegments.find((segment) => segment.segment_id === preferredSegmentId) ?? nextSegments[0];
+    const rememberedSegmentId = preferredSegmentId ?? selectedSegmentByBatchRef.current[batchId];
+    const nextSelected = nextSegments.find((segment) => segment.segment_id === rememberedSegmentId) ?? nextSegments[0];
     if (nextSelected) {
       setSelectedSegmentId(nextSelected.segment_id);
       setSelectedMarkerType("render_anchor");
-      await loadSegmentAssets(nextSelected);
+      setMetadata(null);
+      void loadSegmentMetadata(nextSelected);
     }
     setOperationMessage(draftMessage);
   }
@@ -190,26 +190,26 @@ export function R1SplitReviewPage() {
   async function selectSegment(segmentId: string) {
     const segment = segments.find((item) => item.segment_id === segmentId);
     if (!segment) return;
+    if (selectedBatchId) selectedSegmentByBatchRef.current[selectedBatchId] = segment.segment_id;
     setSelectedSegmentId(segment.segment_id);
     setSelectedMarkerType("render_anchor");
     setCurrentTime(0);
     setLoopAuditionEnabled(false);
-    await loadSegmentAssets(segment);
+    setMetadata(null);
+    void loadSegmentMetadata(segment);
   }
 
-  async function loadSegmentAssets(segment: SplitSegment) {
+  async function loadSegmentMetadata(segment: SplitSegment) {
+    const requestId = metadataRequestRef.current + 1;
+    metadataRequestRef.current = requestId;
     try {
-      const [metadataResponse, waveformResponse] = await Promise.all([
-        fetch(`${apiBase}/api/r1/segments/${segment.segment_id}/metadata`),
-        fetch(`${apiBase}/api/r1/segments/${segment.segment_id}/waveform?points=1600`),
-      ]);
-      if (metadataResponse.ok) setMetadata(await metadataResponse.json() as R1Metadata);
-      if (waveformResponse.ok) {
-        const waveform = await waveformResponse.json() as R1Waveform;
-        setWaveformPeaks(waveform.waveform_supported ? waveform.peaks : []);
+      const metadataResponse = await fetch(`${apiBase}/api/r1/segments/${segment.segment_id}/metadata`);
+      if (metadataRequestRef.current !== requestId) return;
+      if (metadataResponse.ok) {
+        setMetadata(await metadataResponse.json() as R1Metadata);
       }
     } catch {
-      setWaveformPeaks([]);
+      if (metadataRequestRef.current === requestId) setMetadata(null);
     }
   }
 
@@ -251,7 +251,7 @@ export function R1SplitReviewPage() {
   function nudge(deltaMs: number) {
     updateSelectedMarker((marker) => ({
       ...marker,
-      time_s: Math.max(0, Number((marker.time_s + deltaMs / 1000).toFixed(3))),
+      time_s: clampTime(marker.time_s + deltaMs / 1000, duration),
       source: "human_adjusted",
       nudge_total_ms: (marker.nudge_total_ms ?? 0) + deltaMs,
     }));
@@ -391,21 +391,23 @@ export function R1SplitReviewPage() {
         ),
         main: (
           <div className="work-area">
-            <audio
-              ref={audioRef}
-              src={audioUrl}
-              preload="auto"
-              onTimeUpdate={handleTimeUpdate}
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              onEnded={() => setIsPlaying(false)}
-              onLoadedMetadata={(event) => {
-                const loadedDuration = event.currentTarget.duration;
-                if (!metadata && Number.isFinite(loadedDuration) && loadedDuration > 0) {
-                  setMetadata({ duration_s: loadedDuration, sample_rate: null, bit_depth: null, channels: null, waveform_supported: true });
-                }
-              }}
-            />
+            {audioUrl && (
+              <audio
+                ref={audioRef}
+                src={audioUrl || undefined}
+                preload="auto"
+                onTimeUpdate={handleTimeUpdate}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onEnded={() => setIsPlaying(false)}
+                onLoadedMetadata={(event) => {
+                  const loadedDuration = event.currentTarget.duration;
+                  if (!metadata && Number.isFinite(loadedDuration) && loadedDuration > 0) {
+                    setMetadata({ duration_s: loadedDuration, sample_rate: null, bit_depth: null, channels: null, waveform_supported: true });
+                  }
+                }}
+              />
+            )}
             <div className="work-title r0-work-title">
               <div>
                 <h1>{headerRows?.title ?? "R1 Split 审校：未选择 Segment"}</h1>
@@ -418,15 +420,15 @@ export function R1SplitReviewPage() {
               </div>
               <span>{headerRows?.duration ?? `时长：${formatTime(duration)}`}</span>
             </div>
-            <AudioCanvas
+            <WaveformAsyncLayer
+              audioId={selectedSegment?.segment_id ?? ""}
+              waveformUrl={selectedSegment ? `${apiBase}/api/r1/segments/${selectedSegment.segment_id}/waveform?points=1600` : ""}
               markers={canvasMarkers}
               duration={duration}
               selectedKey={selectedMarkerType}
               onSelect={(key) => jumpToMarker(key as R1MarkerKey, false)}
-              audioUrl={audioUrl}
               audioFileName={selectedSegment?.file_name}
               metadata={metadata ?? undefined}
-              waveformPeaks={waveformPeaks}
             />
             <R1PlaybackBar
               time={formatTime(currentTime)}
@@ -488,37 +490,49 @@ function LeftPanel({
   return (
     <div className="panel-stack">
       <h2>Split 文件审校</h2>
-      <section className="editor-section">
-        <h3>批次筛选</h3>
-        <select value={selectedBatchId} onChange={(event) => onSelectBatch(event.target.value)}>
-          {batches.map((batch) => <option key={batch.batch_id} value={batch.batch_id}>{batch.display_name}</option>)}
-        </select>
-      </section>
-      <section className="editor-section unit-queue-panel">
-        <div className="section-title-row">
-          <h3>录音单元 / Segment</h3>
-          <span>当前批次：{selectedBatchId || "未加载"}</span>
-        </div>
-        <SearchBox placeholder="搜索 T / segment..." />
-        <div className="unit-queue">
-          {segments.map((segment) => (
-            <button
-              key={segment.segment_id}
-              className={`unit-row r1-unit-row ${selectedSegmentId === segment.segment_id ? "selected" : ""} ${segment.segment_status === "excluded" ? "is-excluded" : ""}`}
-              onClick={() => onSelectSegment(segment.segment_id)}
-            >
-              <strong title={segment.segment_id}>{segment.file_name.replace(/\.wav$/i, "")}</strong>
-              <span className={`unit-status status-${segmentStatusClass(segment.segment_status)}`}>
-                {reviewStatusLabels[segment.review_status]} · {segmentStatusLabels[segment.segment_status]}
-              </span>
-              <span className="progress-chip">核心{acceptedCount(segment, coreMarkerKeys)}/2 · 标记{acceptedCount(segment, markerOrder)}/4</span>
-            </button>
-          ))}
-        </div>
-      </section>
+      <ReviewPrimarySelector
+        title="Split 批次"
+        items={batches}
+        selectedId={selectedBatchId}
+        onSelect={(batch) => onSelectBatch(batch.batch_id)}
+        getId={(batch) => batch.batch_id}
+        getSearchText={(batch) => `${batch.batch_id} ${batch.display_name} ${batch.segment_count} ${batch.clean_preview_count ?? ""}`}
+        placeholder="搜索 batch02 / batch08 / T071"
+        renderItem={(batch) => (
+          <>
+            <strong>{batch.display_name} · {batch.clean_preview_count ?? batch.segment_count} 条 clean preview · {batch.ready_for_r1_review ? "R1 ready" : "not ready"}</strong>
+            <span>{batch.batch_id}</span>
+            <small>{batch.source} | {batch.split_root ?? ""}</small>
+          </>
+        )}
+      />
+      <ReviewSecondarySearchList
+        title="当前 Batch 下 clean preview"
+        subtitle={`当前 Batch：${selectedBatchId || "未加载"}`}
+        items={segments}
+        selectedId={selectedSegmentId}
+        onSelect={(segment) => onSelectSegment(segment.segment_id)}
+        getId={(segment) => segment.segment_id}
+        getSearchText={(segment) => `${segment.take_id} ${segment.recording_take_no ?? ""} ${segment.segment_id} ${segment.event_id ?? ""} ${segment.gesture_id ?? ""} ${segment.file_name} ${segment.source_split_audio ?? ""}`}
+        getItemClassName={(segment) => `r1-unit-row ${segment.segment_status === "excluded" ? "is-excluded" : ""}`}
+        searchPlaceholder="搜索 T / segment / event / gesture / 文件名"
+        resetKey={selectedBatchId}
+        renderItem={(segment) => (
+          <>
+            <strong title={segment.segment_id}>{segment.file_name.replace(/\.wav$/i, "")}</strong>
+            <span className={`unit-status status-${segmentStatusClass(segment.segment_status)}`}>
+              {reviewStatusLabels[segment.review_status]} · {segmentStatusLabels[segment.segment_status]}
+            </span>
+            <span className="progress-chip">核心{acceptedCount(segment, coreMarkerKeys)}/2 · 标记{acceptedCount(segment, markerOrder)}/4</span>
+            <code>{segment.event_id || segment.gesture_id || segment.segment_id}</code>
+          </>
+        )}
+      />
       <KeyValueList rows={[
         ["当前批次", selectedBatch?.display_name ?? ""],
         ["segment_count", String(selectedBatch?.segment_count ?? segments.length)],
+        ["clean_preview_count", String(selectedBatch?.clean_preview_count ?? segments.length)],
+        ["ready_for_r1_review", String(selectedBatch?.ready_for_r1_review ?? false)],
         ["source", selectedBatch?.source ?? ""],
       ]} />
     </div>
@@ -580,11 +594,7 @@ function R1MarkerEditor({
       </section>
       <section className="editor-section">
         <h3>微调</h3>
-        <div className="nudge-grid">
-          {[-50, -10, -5, 5, 10, 50].map((delta) => (
-            <button key={delta} onClick={() => onNudge(delta)}>{delta > 0 ? "+" : ""}{delta}ms</button>
-          ))}
-        </div>
+        <MarkerNudgeControls nudgeTotalMs={marker.nudge_total_ms ?? 0} onNudge={onNudge} />
       </section>
       <section className="editor-section">
         <h3>标记审校状态</h3>
@@ -966,6 +976,11 @@ function segmentStatusClass(status: R1SegmentStatus) {
   if (status === "needs_retake" || status === "rejected") return "needs_retake";
   if (status === "excluded") return "excluded";
   return "not_started";
+}
+
+function clampTime(value: number, duration: number) {
+  const upper = Number.isFinite(duration) && duration > 0 ? duration : Number.POSITIVE_INFINITY;
+  return Number(Math.min(upper, Math.max(0, value)).toFixed(3));
 }
 
 function formatTime(time: number) {

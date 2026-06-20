@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AppShell } from "../components/AppShell";
-import { AudioCanvas } from "../components/AudioCanvas";
-import { KeyValueList, SearchBox } from "../components/FileNavigator";
+import { KeyValueList } from "../components/FileNavigator";
+import { MarkerNudgeControls } from "../components/MarkerNudgeControls";
 import { PlaybackBar } from "../components/ReviewStatusBar";
+import { ReviewPrimarySelector } from "../components/ReviewPrimarySelector";
+import { ReviewSecondarySearchList } from "../components/ReviewSecondarySearchList";
+import { WaveformAsyncLayer } from "../components/WaveformAsyncLayer";
 import { buildR0HeaderRows, formatClockTime, markerReviewStatusLabels, markerReviewStatusTone, unitReviewStatusLabels, unitStatusLabels } from "../components/reviewUi";
 import {
   buildRawExportPreview,
@@ -54,6 +57,7 @@ type BackendState =
 
 export function R0RawReviewPage() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const selectedUnitByFileRef = useRef<Record<string, string>>({});
   const [units, setUnits] = useState<ReviewUnit[]>(rawReviewUnits.map(withDerivedUnitState));
   const [selectedUnitId, setSelectedUnitId] = useState("T003");
   const [selectedMarkerKey, setSelectedMarkerKey] = useState<R0MarkerKey>("guqin_start");
@@ -170,6 +174,8 @@ export function R0RawReviewPage() {
   );
 
   async function selectBackendFile(file: RawFile) {
+    const previousUnitId = selectedFileId && selectedUnit ? selectedUnit.id : "";
+    if (selectedFileId && previousUnitId) selectedUnitByFileRef.current[selectedFileId] = previousUnitId;
     setSelectedFileId(file.file_id);
     setSourceAudio(file.name);
     setAudioUrl(`${apiBase}/api/r0/raw-files/${file.file_id}/audio`);
@@ -184,11 +190,20 @@ export function R0RawReviewPage() {
     setDuration(metadataDuration !== null && Number.isFinite(metadataDuration) && metadataDuration > 0 ? metadataDuration : demoRawDuration);
     const nextUnits = reviewData.units.length ? normalizeUnits(reviewData.units) : [];
     setUnits(nextUnits);
-    if (nextUnits[0]) {
-      setSelectedUnitId(nextUnits[0].id);
-      jumpToMarker(nextUnits[0], "guqin_start", false);
+    const rememberedUnitId = selectedUnitByFileRef.current[file.file_id];
+    const nextSelected = nextUnits.find((unit) => unit.id === rememberedUnitId) ?? nextUnits[0];
+    if (nextSelected) {
+      setSelectedUnitId(nextSelected.id);
+      jumpToMarker(nextSelected, "guqin_start", false);
     }
     if (reviewData.message) setOperationMessage(reviewData.message);
+  }
+
+  function selectUnitById(id: string) {
+    const unit = units.find((item) => item.id === id);
+    if (!unit) return;
+    if (selectedFileId) selectedUnitByFileRef.current[selectedFileId] = unit.id;
+    jumpToMarker(unit, "guqin_start", false);
   }
 
   function selectMarkerInstance(instanceId: string) {
@@ -224,7 +239,7 @@ export function R0RawReviewPage() {
           marker.key === selectedMarkerKey
             ? {
                 ...marker,
-                time: Math.max(0, marker.time + deltaMs / 1000),
+                time: clampTime(marker.time + deltaMs / 1000, duration),
                 nudge_total_ms: (marker.nudge_total_ms ?? 0) + deltaMs,
               }
             : marker,
@@ -368,8 +383,7 @@ export function R0RawReviewPage() {
             selectedUnitId={selectedUnit?.id ?? ""}
             onSelectBackendFile={selectBackendFile}
             onSelectUnit={(id) => {
-              const unit = units.find((item) => item.id === id);
-              if (unit) jumpToMarker(unit, "guqin_start", false);
+              selectUnitById(id);
             }}
             onAddUnit={addUnit}
             onExclude={excludeSelectedUnit}
@@ -380,7 +394,7 @@ export function R0RawReviewPage() {
           <div className="work-area">
             <audio
               ref={audioRef}
-              src={audioUrl}
+              src={audioUrl || undefined}
               preload="auto"
               onTimeUpdate={handleTimeUpdate}
               onPlay={() => setIsPlaying(true)}
@@ -399,12 +413,13 @@ export function R0RawReviewPage() {
               </div>
               <span>{headerRows.duration}</span>
             </div>
-            <AudioCanvas
+            <WaveformAsyncLayer
+              audioId={selectedFileId ?? audioUrl}
+              waveformUrl={selectedFileId ? `${apiBase}/api/r0/raw-files/${selectedFileId}/waveform?points=2000` : ""}
               markers={canvasMarkers}
               duration={duration}
               selectedKey={selectedUnit && selectedMarker ? `${selectedUnit.id}:${selectedMarker.key}` : undefined}
               onSelect={selectMarkerInstance}
-              audioUrl={audioUrl}
               audioFileName={sourceAudio}
               metadata={metadata ?? undefined}
             />
@@ -479,43 +494,63 @@ function LeftPanel({
   return (
     <div className="panel-stack">
       <h2>R0 原始 Raw 文件</h2>
-      <section className="editor-section">
-        <h3>{backend.status === "online" ? "Raw 根目录文件" : "合成演示音频"}</h3>
-        <SearchBox placeholder="搜索演示文件..." />
-        <div className="file-list">
-          {backend.status === "online"
-            ? rawFiles.map((file) => (
-                <button key={file.file_id} className={selectedFileId === file.file_id ? "selected" : ""} onClick={() => onSelectBackendFile(file)}>
-                  <strong>{file.name}</strong>
-                  <span>{file.source_format.toUpperCase()} | {formatBytes(file.size_bytes)} | review_only</span>
-                </button>
-              ))
-            : fallbackRawFiles.map((file) => <button key={file.name} className={file.selected ? "selected" : ""}><strong>{file.name}</strong><span>{file.meta}</span></button>)}
-        </div>
-      </section>
-      <section className="editor-section unit-queue-panel">
-        <div className="section-title-row">
-          <h3>本文件内录音单元</h3>
-          <button onClick={onAddUnit}>+ 新增 T</button>
-        </div>
-        <div className="unit-actions">
-          <button onClick={onExclude}>排除当前 T</button>
-          <button onClick={onRestore}>恢复已排除 T</button>
-        </div>
-        <div className="unit-queue">
-          {units.map((unit) => (
-            <button
-              key={unit.id}
-              className={`unit-row ${selectedUnitId === unit.id ? "selected" : ""} ${unit.unit_status === "excluded" ? "is-excluded" : ""}`}
-              onClick={() => onSelectUnit(unit.id)}
-            >
-              <strong title={unit.takeId}>{unit.id}</strong>
-              <span className={`unit-status status-${unitStatusClass(unit.unit_status)}`}>{unitStatusLabels[unit.unit_status]}</span>
-              <span className="progress-chip">{completionLabel(unit)}</span>
-            </button>
-          ))}
-        </div>
-      </section>
+      {backend.status === "online" ? (
+        <ReviewPrimarySelector
+          title="Raw 文件"
+          items={rawFiles}
+          selectedId={selectedFileId ?? ""}
+          onSelect={onSelectBackendFile}
+          getId={(file) => file.file_id}
+          getSearchText={(file) => `${file.name} ${file.relative_path} ${rawBatchId(file)} ${rawTakeRange(file)}`}
+          placeholder="搜索 batch / T / raw 文件名"
+          loading={false}
+          renderItem={(file) => (
+            <>
+              <strong>{rawBatchId(file) || "raw"} · {rawTakeRange(file) || "T?"} · {fileUnitCount(file) || "?"} 条</strong>
+              <span>{file.name}</span>
+              <small>{file.source_format.toUpperCase()} | {formatBytes(file.size_bytes)} | review_only</small>
+            </>
+          )}
+        />
+      ) : (
+        <section className="editor-section">
+          <h3>合成演示音频</h3>
+          <div className="file-list">
+            {fallbackRawFiles.map((file) => <button key={file.name} className={file.selected ? "selected" : ""}><strong>{file.name}</strong><span>{file.meta}</span></button>)}
+          </div>
+        </section>
+      )}
+      <ReviewSecondarySearchList
+        title="当前 Raw 下 T 单元"
+        subtitle={selectedFileId ? rawFiles.find((file) => file.file_id === selectedFileId)?.name ?? "已选择 Raw" : "未选择 Raw"}
+        items={units}
+        selectedId={selectedUnitId}
+        onSelect={(unit) => onSelectUnit(unit.id)}
+        getId={(unit) => unit.id}
+        getSearchText={(unit) => `${unit.id} ${unit.takeId} ${unit.batch_id ?? ""} ${unit.script_id ?? ""} ${unit.event_id ?? ""} ${unit.source_raw_audio ?? ""}`}
+        getItemClassName={(unit) => unit.unit_status === "excluded" ? "is-excluded" : ""}
+        searchPlaceholder="搜索 T / unit_id / batch_id / event_id"
+        resetKey={selectedFileId ?? "demo"}
+        actions={(
+          <>
+            <div className="unit-actions">
+              <button onClick={onExclude}>排除当前 T</button>
+              <button onClick={onRestore}>恢复已排除 T</button>
+            </div>
+            <div className="unit-actions unit-actions-single">
+              <button onClick={onAddUnit}>+ 新增 T</button>
+            </div>
+          </>
+        )}
+        renderItem={(unit) => (
+          <>
+            <strong title={unit.takeId}>{unit.id}</strong>
+            <span className={`unit-status status-${unitStatusClass(unit.unit_status)}`}>{unitStatusLabels[unit.unit_status]}</span>
+            <span className="progress-chip">{completionLabel(unit)}</span>
+            <code>{unit.event_id || unit.script_id || unit.takeId}</code>
+          </>
+        )}
+      />
       <KeyValueList rows={[
         ["当前使用", backend.rawRootMode === "real" ? "真实 Raw 根目录" : "合成演示 Raw 根目录"],
         ["连接状态", backend.status === "online" ? "后端已连接" : "未连接真实 Raw 根目录"],
@@ -578,11 +613,7 @@ function R0MarkerEditor({
       </section>
       <section className="editor-section">
         <h3>微调</h3>
-        <div className="nudge-grid">
-          {[-50, -10, -5, 5, 10, 50].map((delta) => (
-            <button key={delta} onClick={() => onNudge(delta)}>{delta > 0 ? "+" : ""}{delta}ms</button>
-          ))}
-        </div>
+        <MarkerNudgeControls nudgeTotalMs={selected.nudge_total_ms ?? 0} onNudge={onNudge} />
       </section>
       <section className="editor-section">
         <h3>标记审校状态</h3>
@@ -713,6 +744,28 @@ function loopWindowForMarker(unit: ReviewUnit, markerKey: R0MarkerKey, duration:
 
 function sourceLabel(source: string) {
   return source === "asr_candidate" ? "ASR 候选" : "手动新增";
+}
+
+function rawBatchId(file: RawFile) {
+  return file.name.match(/batch\d+/i)?.[0] ?? file.relative_path.match(/batch\d+/i)?.[0] ?? "";
+}
+
+function rawTakeRange(file: RawFile) {
+  return file.name.match(/T\d{3}(?:-T\d{3})?/i)?.[0] ?? "";
+}
+
+function fileUnitCount(file: RawFile) {
+  const range = rawTakeRange(file);
+  const matched = range.match(/T(\d{3})(?:-T(\d{3}))?/i);
+  if (!matched) return 0;
+  const start = Number(matched[1]);
+  const end = Number(matched[2] ?? matched[1]);
+  return Number.isFinite(start) && Number.isFinite(end) && end >= start ? end - start + 1 : 0;
+}
+
+function clampTime(value: number, duration: number) {
+  const upper = Number.isFinite(duration) && duration > 0 ? duration : Number.POSITIVE_INFINITY;
+  return Number(Math.min(upper, Math.max(0, value)).toFixed(3));
 }
 
 function formatBytes(value: number) {

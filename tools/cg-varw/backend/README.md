@@ -16,7 +16,8 @@ Example `config.local.json`:
 
 ```json
 {
-  "raw_root": "D:\\path\\to\\your\\raw_audio"
+  "raw_root": "D:\\path\\to\\your\\raw_audio",
+  "split_root": "D:\\path\\to\\your\\split_preview"
 }
 ```
 
@@ -73,6 +74,17 @@ http://127.0.0.1:5173/
 - `GET /api/r0/raw-files/{file_id}/review-units`
 - `POST /api/r0/reviews/save`
 - `POST /api/r0/reviews/export`
+- `GET /api/r1/batches`
+- `GET /api/r1/batches/{batch_id}/segments`
+- `GET /api/r1/segments/{segment_id}/metadata`
+- `GET /api/r1/segments/{segment_id}/audio`
+- `GET /api/r1/segments/{segment_id}/waveform?points=1600`
+- `POST /api/r1/reviews/save`
+- `POST /api/r1/reviews/export`
+
+R1 `CG_VARW_SPLIT_ROOT` supports both a single batch root and a parent `split_preview` root. Parent mode discovers child `batchXX` folders that contain `r1_synthetic_split_manifest.json`, `manifests/recd2_split_preview_manifest.csv`, `manifests/r1_intake_pointer.yaml`, or `clean_previews/`.
+
+R0 and R1 waveform endpoints share the same downsample/cache service. The cache is in-process only and is not written to recording, sample, render, or repo asset directories.
 
 Drafts are saved under:
 
@@ -93,4 +105,5 @@ Generated drafts and CSV exports are ignored by git.
 ```powershell
 cd tools\cg-varw\backend
 python -m compileall app
+python -m unittest app.tests.test_csv_contracts app.tests.test_r1_marker_seed app.tests.test_waveform_service
 ```

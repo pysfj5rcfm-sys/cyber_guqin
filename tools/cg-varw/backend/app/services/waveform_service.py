@@ -2,16 +2,68 @@ from __future__ import annotations
 
 import math
 import wave
+from collections import OrderedDict
+from dataclasses import dataclass
 from pathlib import Path
 
 from app.schemas import WaveformResponse
 
 
+MAX_POINTS = 20000
+MAX_CACHE_ENTRIES = 128
+
+
+@dataclass(frozen=True)
+class WaveformPeaks:
+    waveform_supported: bool
+    points: int
+    peaks: list[float]
+    warning: str | None = None
+
+
+_WaveformCacheKey = tuple[str, int, int, int]
+_waveform_cache: OrderedDict[_WaveformCacheKey, WaveformPeaks] = OrderedDict()
+
+
 def waveform_for_file(file_id: str, path: Path, points: int = 1600) -> WaveformResponse:
-    points = max(1, min(points, 20000))
+    result = waveform_peaks_for_path(path, points)
+    return WaveformResponse(
+        file_id=file_id,
+        waveform_supported=result.waveform_supported,
+        points=result.points,
+        peaks=result.peaks,
+        warning=result.warning,
+    )
+
+
+def waveform_peaks_for_path(path: Path, points: int = 1600) -> WaveformPeaks:
+    points = max(1, min(points, MAX_POINTS))
+    cache_key = _cache_key(path, points)
+    cached = _waveform_cache.get(cache_key)
+    if cached is not None:
+        _waveform_cache.move_to_end(cache_key)
+        return cached
+
+    result = _build_waveform_peaks(path, points)
+    _waveform_cache[cache_key] = result
+    _waveform_cache.move_to_end(cache_key)
+    while len(_waveform_cache) > MAX_CACHE_ENTRIES:
+        _waveform_cache.popitem(last=False)
+    return result
+
+
+def clear_waveform_cache() -> None:
+    _waveform_cache.clear()
+
+
+def _cache_key(path: Path, points: int) -> _WaveformCacheKey:
+    stat = path.stat()
+    return (str(path.resolve()), stat.st_mtime_ns, stat.st_size, points)
+
+
+def _build_waveform_peaks(path: Path, points: int) -> WaveformPeaks:
     if path.suffix.lower() not in {".wav", ".wave"}:
-        return WaveformResponse(
-            file_id=file_id,
+        return WaveformPeaks(
             waveform_supported=False,
             points=points,
             peaks=[],
@@ -25,11 +77,10 @@ def waveform_for_file(file_id: str, path: Path, points: int = 1600) -> WaveformR
             frame_count = handle.getnframes()
             frames = handle.readframes(frame_count)
     except wave.Error as exc:
-        return WaveformResponse(file_id=file_id, waveform_supported=False, points=points, peaks=[], warning=str(exc))
+        return WaveformPeaks(waveform_supported=False, points=points, peaks=[], warning=str(exc))
 
     if sample_width not in {1, 2, 3, 4}:
-        return WaveformResponse(
-            file_id=file_id,
+        return WaveformPeaks(
             waveform_supported=False,
             points=points,
             peaks=[],
@@ -51,7 +102,7 @@ def waveform_for_file(file_id: str, path: Path, points: int = 1600) -> WaveformR
     while len(peaks) < points:
         peaks.append(0.0)
 
-    return WaveformResponse(file_id=file_id, waveform_supported=True, points=points, peaks=peaks[:points])
+    return WaveformPeaks(waveform_supported=True, points=points, peaks=peaks[:points])
 
 
 def _sample_value(data: bytes, offset: int, sample_width: int) -> float:

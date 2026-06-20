@@ -83,6 +83,10 @@ export interface SplitBatch {
   display_name: string;
   segment_count: number;
   source: "synthetic_demo" | "real_split_root";
+  split_root?: string;
+  manifest_path?: string;
+  clean_preview_count?: number;
+  ready_for_r1_review?: boolean;
   review_only: true;
   production_grade: false;
 }

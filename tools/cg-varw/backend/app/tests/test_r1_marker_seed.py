@@ -12,6 +12,40 @@ from app.services import r1_split_store
 
 
 class R1MarkerSeedTests(unittest.TestCase):
+    def test_parent_split_root_discovers_child_batches(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            parent = Path(tmp_dir)
+            _write_batch(parent / "batch02", "batch02", [{"take": "T011", "duration_s": 0.5}, {"take": "T012", "duration_s": 0.6}])
+            _write_batch(parent / "batch08", "batch08", [{"take": "T071", "duration_s": 0.4}])
+
+            with _split_root_env(parent):
+                batches = r1_split_store.list_batches()
+                batch_ids = [batch.batch_id for batch in batches]
+                batch08 = next(batch for batch in batches if batch.batch_id == "batch08")
+                batch08_segments = r1_split_store.list_segments("batch08").segments
+
+        self.assertEqual(batch_ids, ["batch02", "batch08"])
+        self.assertEqual(batch08.segment_count, 1)
+        self.assertEqual(batch08.clean_preview_count, 1)
+        self.assertTrue(batch08.ready_for_r1_review)
+        self.assertTrue(batch08.split_root.endswith("/batch08"))
+        self.assertTrue(batch08.manifest_path.endswith("/batch08/r1_synthetic_split_manifest.json"))
+        self.assertEqual([segment.take_id for segment in batch08_segments], ["T071"])
+        self.assertEqual(batch08_segments[0].relative_path, "clean_previews/T071_clean_preview.wav")
+
+    def test_single_batch_split_root_remains_compatible(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            _write_batch(root, "batch03", [{"take": "T021", "duration_s": 0.5}])
+
+            with _split_root_env(root):
+                batches = r1_split_store.list_batches()
+                segments = r1_split_store.list_segments("batch03").segments
+
+        self.assertEqual([batch.batch_id for batch in batches], ["batch03"])
+        self.assertEqual(batches[0].split_root, str(root.resolve()))
+        self.assertEqual(segments[0].take_id, "T021")
+
     def test_manifest_values_seed_missing_markers_as_candidates(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             root = Path(tmp_dir)
@@ -136,6 +170,55 @@ def _write_r1_manifest(root: Path, segments: list[dict[str, object]]) -> None:
             {
                 "segment_id": f"RECD2_BATCH01_{segment['take']}",
                 "batch_id": "batch01",
+                "take_id": segment["take"],
+                "file_name": f"{segment['take']}_clean_preview.wav",
+                "relative_path": f"clean_previews/{segment['take']}_clean_preview.wav",
+                "recording_take_no": segment["take"],
+                "source_split_audio": f"clean_previews/{segment['take']}_clean_preview.wav",
+                "duration_s": segment["duration_s"],
+                "markers": {"pre_idle_end": None, "gesture_start": None, "render_anchor": None, "tail_end": None},
+                "segment_status": "candidate",
+                "review_status": "not_started",
+                "synthetic_demo": False,
+            }
+            for segment in segments
+        ],
+    }
+    (root / "r1_synthetic_split_manifest.json").write_text(json.dumps(payload), encoding="utf-8")
+
+
+def _write_batch(root: Path, batch_id: str, segments: list[dict[str, object]]) -> None:
+    for segment in segments:
+        _write_wav(
+            root / "clean_previews" / f"{segment['take']}_clean_preview.wav",
+            duration_s=float(segment["duration_s"]),
+            tone_start_s=0.1,
+            tone_end_s=max(0.1, float(segment["duration_s"]) - 0.1),
+        )
+    _write_manifest(
+        root,
+        [
+            {
+                "recording_take_no": str(segment["take"]),
+                "clean_start_s": "0.000",
+                "duration_s": str(segment["duration_s"]),
+                "guqin_start_s": "",
+                "tail_end_s": "",
+            }
+            for segment in segments
+        ],
+    )
+    (root / "manifests" / "r1_intake_pointer.yaml").write_text("ready_for_r1_review: true\n", encoding="utf-8")
+    _write_r1_manifest_for_batch(root, batch_id, segments)
+
+
+def _write_r1_manifest_for_batch(root: Path, batch_id: str, segments: list[dict[str, object]]) -> None:
+    payload = {
+        "batches": [{"batch_id": batch_id, "display_name": batch_id, "segment_count": len(segments), "source": "real_split_root"}],
+        "segments": [
+            {
+                "segment_id": f"RECD2_{batch_id.upper()}_{segment['take']}",
+                "batch_id": batch_id,
                 "take_id": segment["take"],
                 "file_name": f"{segment['take']}_clean_preview.wav",
                 "relative_path": f"clean_previews/{segment['take']}_clean_preview.wav",

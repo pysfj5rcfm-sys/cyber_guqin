@@ -176,6 +176,10 @@ class SplitBatch(BaseModel):
     display_name: str
     segment_count: int
     source: Literal["synthetic_demo", "real_split_root"]
+    split_root: str = ""
+    manifest_path: str = ""
+    clean_preview_count: int = 0
+    ready_for_r1_review: bool = False
     review_only: bool = True
     production_grade: bool = False
 

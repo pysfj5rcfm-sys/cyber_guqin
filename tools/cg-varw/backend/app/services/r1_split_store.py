@@ -17,6 +17,7 @@ from app.schemas import (
     SplitSegment,
 )
 from app.services.audio_metadata import wav_metadata
+from app.services.waveform_service import waveform_peaks_for_path
 
 
 MARKER_LABELS = {
@@ -27,6 +28,7 @@ MARKER_LABELS = {
 }
 MARKER_ORDER = ("pre_idle_end", "gesture_start", "render_anchor", "tail_end")
 R1_SEED_SOURCES = ("manifest", "audio_seed", "fallback_default")
+SUPPORTED_AUDIO_SUFFIXES = {".wav", ".wave", ".mp3", ".m4a", ".flac", ".aiff", ".aif"}
 
 
 def get_split_root() -> Path:
@@ -39,28 +41,18 @@ def get_split_root_mode() -> str:
 
 def list_batches() -> list[SplitBatch]:
     root = get_split_root()
-    manifest = _load_manifest(root)
-    if manifest:
-        return [SplitBatch(**batch) for batch in manifest.get("batches", [])]
-
-    batches: list[SplitBatch] = []
-    if root.exists():
-        for batch_dir in sorted(path for path in root.iterdir() if path.is_dir()):
-            segment_count = len(list(batch_dir.glob("*.wav")))
-            if segment_count:
-                batches.append(
-                    SplitBatch(
-                        batch_id=batch_dir.name,
-                        display_name=batch_dir.name,
-                        segment_count=segment_count,
-                        source="real_split_root" if get_split_root_mode() == "real" else "synthetic_demo",
-                    )
-                )
-    return batches
+    batch_roots = _discover_batch_roots(root)
+    if batch_roots == [root]:
+        manifest = _load_manifest(root)
+        manifest_batches = manifest.get("batches", []) if manifest else []
+        if len(manifest_batches) > 1:
+            return [_batch_from_root(root, batch) for batch in manifest_batches if isinstance(batch, dict)]
+    return [_batch_from_root(batch_root) for batch_root in batch_roots]
 
 
 def list_segments(batch_id: str) -> R1SegmentsResponse:
-    segments = _segments_from_manifest(batch_id) or _segments_from_files(batch_id)
+    batch_root = _batch_root_for(batch_id)
+    segments = _segments_from_manifest(batch_id, batch_root) or _segments_from_files(batch_id, batch_root)
     return R1SegmentsResponse(batch_id=batch_id, segments=segments)
 
 
@@ -74,7 +66,8 @@ def get_segment(segment_id: str) -> SplitSegment:
 
 def resolve_segment_path(segment_id: str) -> Path:
     segment = get_segment(segment_id)
-    return ensure_within_root(get_split_root(), get_split_root() / segment.relative_path)
+    batch_root = _batch_root_for(segment.batch_id)
+    return ensure_within_root(get_split_root(), batch_root / segment.relative_path)
 
 
 def segment_metadata(segment_id: str) -> R1SegmentMetadata:
@@ -121,63 +114,105 @@ def segment_waveform(segment_id: str, points: int = 1600) -> R1WaveformResponse:
     path = resolve_segment_path(segment_id)
     metadata = segment_metadata(segment_id)
     points = max(1, min(points, 20000))
-    if path.suffix.lower() not in {".wav", ".wave"}:
-        return R1WaveformResponse(
-            segment_id=segment_id,
-            duration_s=metadata.duration_s,
-            points=points,
-            peaks=[],
-            waveform_supported=False,
-            fallback_reason="Non-WAV waveform extraction is not enabled for R1A.",
-        )
-
-    try:
-        with wave.open(str(path), "rb") as handle:
-            channels = handle.getnchannels()
-            sample_width = handle.getsampwidth()
-            frame_count = handle.getnframes()
-            frames = handle.readframes(frame_count)
-    except wave.Error as exc:
-        return R1WaveformResponse(
-            segment_id=segment_id,
-            duration_s=metadata.duration_s,
-            points=points,
-            peaks=[],
-            waveform_supported=False,
-            fallback_reason=str(exc),
-        )
-
-    if sample_width not in {1, 2, 3, 4}:
-        return R1WaveformResponse(
-            segment_id=segment_id,
-            duration_s=metadata.duration_s,
-            points=points,
-            peaks=[],
-            waveform_supported=False,
-            fallback_reason=f"Unsupported WAV sample width: {sample_width}",
-        )
-
-    bucket_size = max(1, math.ceil(frame_count / points))
-    peaks: list[float] = []
-    for bucket_start in range(0, frame_count, bucket_size):
-        bucket_end = min(frame_count, bucket_start + bucket_size)
-        peak = 0.0
-        for frame_index in range(bucket_start, bucket_end):
-            for channel_index in range(channels):
-                offset = (frame_index * channels + channel_index) * sample_width
-                peak = max(peak, abs(_sample_value(frames, offset, sample_width)))
-        peaks.append(round(min(1.0, peak), 6))
-
-    while len(peaks) < points:
-        peaks.append(0.0)
-
+    waveform = waveform_peaks_for_path(path, points)
     return R1WaveformResponse(
         segment_id=segment_id,
         duration_s=metadata.duration_s,
-        points=points,
-        peaks=peaks[:points],
-        waveform_supported=True,
+        points=waveform.points,
+        peaks=waveform.peaks,
+        waveform_supported=waveform.waveform_supported,
+        fallback_reason=waveform.warning,
     )
+
+
+def _discover_batch_roots(root: Path) -> list[Path]:
+    if not root.exists():
+        return []
+    if _is_batch_root(root):
+        return [root]
+    return sorted(path for path in root.iterdir() if path.is_dir() and _is_batch_root(path))
+
+
+def _is_batch_root(path: Path) -> bool:
+    return any(
+        candidate.exists()
+        for candidate in (
+            path / "r1_synthetic_split_manifest.json",
+            path / "manifests" / "recd2_split_preview_manifest.csv",
+            path / "manifests" / "r1_intake_pointer.yaml",
+            path / "clean_previews",
+        )
+    )
+
+
+def _batch_root_for(batch_id: str) -> Path:
+    root = get_split_root()
+    for batch_root in _discover_batch_roots(root):
+        if any(batch.batch_id == batch_id for batch in _batches_for_root(batch_root)):
+            return batch_root
+    raise ValueError(f"unknown R1 batch_id: {batch_id}")
+
+
+def _batches_for_root(batch_root: Path) -> list[SplitBatch]:
+    manifest = _load_manifest(batch_root)
+    manifest_batches = manifest.get("batches", []) if manifest else []
+    if len(manifest_batches) > 1:
+        return [_batch_from_root(batch_root, batch) for batch in manifest_batches if isinstance(batch, dict)]
+    return [_batch_from_root(batch_root)]
+
+
+def _batch_from_root(batch_root: Path, manifest_batch: dict[str, Any] | None = None) -> SplitBatch:
+    manifest = _load_manifest(batch_root) or {}
+    manifest_batches = [batch for batch in manifest.get("batches", []) if isinstance(batch, dict)]
+    manifest_segments = [segment for segment in manifest.get("segments", []) if isinstance(segment, dict)]
+    manifest_batch = manifest_batch or (manifest_batches[0] if manifest_batches else {})
+    batch_id = str(manifest_batch.get("batch_id") or _batch_id_from_segments(manifest_segments) or batch_root.name)
+    clean_preview_count = _clean_preview_count(batch_root)
+    segment_count = int(manifest_batch.get("segment_count") or _manifest_segment_count(manifest_segments, batch_id) or clean_preview_count)
+    manifest_path = _manifest_path(batch_root)
+    return SplitBatch(
+        batch_id=batch_id,
+        display_name=str(manifest_batch.get("display_name") or batch_id),
+        segment_count=segment_count,
+        source="real_split_root" if get_split_root_mode() == "real" else "synthetic_demo",
+        split_root=str(batch_root),
+        manifest_path=str(manifest_path) if manifest_path else "",
+        clean_preview_count=clean_preview_count,
+        ready_for_r1_review=clean_preview_count > 0 and manifest_path is not None,
+    )
+
+
+def _batch_id_from_segments(segments: list[dict[str, Any]]) -> str:
+    for segment in segments:
+        batch_id = str(segment.get("batch_id") or "")
+        if batch_id:
+            return batch_id
+    return ""
+
+
+def _manifest_segment_count(segments: list[dict[str, Any]], batch_id: str) -> int:
+    if not segments:
+        return 0
+    matched = [segment for segment in segments if str(segment.get("batch_id") or batch_id) == batch_id]
+    return len(matched)
+
+
+def _manifest_path(root: Path) -> Path | None:
+    for candidate in (
+        root / "r1_synthetic_split_manifest.json",
+        root / "manifests" / "recd2_split_preview_manifest.csv",
+        root / "manifests" / "r1_intake_pointer.yaml",
+    ):
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def _clean_preview_count(root: Path) -> int:
+    clean_dir = root / "clean_previews"
+    if clean_dir.exists():
+        return sum(1 for path in clean_dir.iterdir() if path.is_file() and path.suffix.lower() in SUPPORTED_AUDIO_SUFFIXES)
+    return sum(1 for path in root.iterdir() if path.is_file() and path.suffix.lower() in SUPPORTED_AUDIO_SUFFIXES)
 
 
 def _load_manifest(root: Path) -> dict[str, Any] | None:
@@ -188,8 +223,7 @@ def _load_manifest(root: Path) -> dict[str, Any] | None:
         return json.load(handle)
 
 
-def _segments_from_manifest(batch_id: str) -> list[SplitSegment]:
-    root = get_split_root()
+def _segments_from_manifest(batch_id: str, root: Path) -> list[SplitSegment]:
     manifest = _load_manifest(root)
     if not manifest:
         return []
@@ -201,14 +235,14 @@ def _segments_from_manifest(batch_id: str) -> list[SplitSegment]:
     ]
 
 
-def _segments_from_files(batch_id: str) -> list[SplitSegment]:
-    root = get_split_root()
-    batch_dir = ensure_within_root(root, root / batch_id)
+def _segments_from_files(batch_id: str, root: Path) -> list[SplitSegment]:
+    batch_dir = ensure_within_root(get_split_root(), root)
     if not batch_dir.exists() or not batch_dir.is_dir():
         return []
 
     segments: list[SplitSegment] = []
-    for index, path in enumerate(sorted(batch_dir.glob("*.wav")), start=1):
+    audio_paths = sorted((batch_dir / "clean_previews").glob("*.wav")) if (batch_dir / "clean_previews").exists() else sorted(batch_dir.glob("*.wav"))
+    for index, path in enumerate(audio_paths, start=1):
         duration_s, sample_rate, bit_depth, channels = wav_metadata(path)
         take_id = path.stem.replace("_clean", "")
         segment_id = f"SPLIT_{batch_id.upper()}_{take_id.upper()}"
