@@ -1,0 +1,61 @@
+batch_id: batch03
+actual_range: T021-T030
+recording_session_id: RS_XWC_002_BAIYA_PILOT
+recording_id: RS_XWC_002
+piece_id: XWC
+piece_title: 仙翁操
+qinist_id: QINIST_002
+qinist_name: 白牙
+source_export_dir: tools/cg-varw/review_outputs/r1/exports/batch03
+source_export_path:
+  reviewed_render_anchors: tools/cg-varw/review_outputs/r1/exports/batch03/reviewed_render_anchors.csv
+  split_marker_review: tools/cg-varw/review_outputs/r1/exports/batch03/split_marker_review.csv
+  segment_qc_sheet: tools/cg-varw/review_outputs/r1/exports/batch03/segment_qc_sheet.csv
+archived_at: "2026-06-20T11:32:48+08:00"
+review_only: true
+production_grade: false
+not_sample_assets: true
+not_recording_segments: true
+not_render_executed: true
+not_ml_training_data: true
+archived_files:
+  reviewed_render_anchors:
+    path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch03/reviewed_render_anchors.batch03.csv
+    checksum_sha256: 5c1fd326b85ad521661bd70d5044b1da8fa51166059af9cd9300cdb46300a0a3
+    source_checksum_sha256: 5c1fd326b85ad521661bd70d5044b1da8fa51166059af9cd9300cdb46300a0a3
+    archive_action: copied
+  split_marker_review:
+    path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch03/split_marker_review.batch03.csv
+    checksum_sha256: 2230d03e78cc2a2e8ade86224f652d6cf2ca591af55735cc8b512de9e27f1714
+    source_checksum_sha256: 2230d03e78cc2a2e8ade86224f652d6cf2ca591af55735cc8b512de9e27f1714
+    archive_action: copied
+  segment_qc_sheet:
+    path: 02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch03/segment_qc_sheet.batch03.csv
+    checksum_sha256: b5181fa18a8883b94544c9d13045b4ec59a07c9445824f676406e3378c49776d
+    source_checksum_sha256: b5181fa18a8883b94544c9d13045b4ec59a07c9445824f676406e3378c49776d
+    archive_action: copied
+checksum_sha256:
+  reviewed_render_anchors: 5c1fd326b85ad521661bd70d5044b1da8fa51166059af9cd9300cdb46300a0a3
+  split_marker_review: 2230d03e78cc2a2e8ade86224f652d6cf2ca591af55735cc8b512de9e27f1714
+  segment_qc_sheet: b5181fa18a8883b94544c9d13045b4ec59a07c9445824f676406e3378c49776d
+row_counts:
+  reviewed_render_anchors: 10
+  split_marker_review: 40
+  segment_qc_sheet: 10
+segment_status_counts:
+  render_usable: 10
+  reference_only: 0
+  unclear: 0
+  needs_retake: 0
+  rejected: 0
+  excluded: 0
+  candidate: 0
+marker_status_counts:
+  accepted: 40
+  unclear: 0
+  needs_retake: 0
+  rejected: 0
+  candidate: 0
+hard_error_count: 0
+warning_count: 0
+next_action: ready_for_human_listening_gate; no sample candidate gate executed
