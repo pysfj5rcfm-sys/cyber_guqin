@@ -1,0 +1,96 @@
+schema_id: "CG-XWC_E_REVIEWED_CO_REVIEW_SCHEMA_LOCAL_R0"
+version_id: "E_REVIEWED"
+version_label: "Human+GPT Co-Created Reviewed Dapu"
+scope: "input schema for future E review; not an E render plan"
+e_audio_generated: false
+requires_human_confirmation: true
+requires_gpt_review: true
+not_average_of_abcd: true
+not_codex_auto_best_version: true
+not_user_score_only_version: true
+review_flow:
+  - "ABCD render outputs"
+  - "user listening notes"
+  - "GPT listening review / structure analysis / engineering diagnosis / dapu interpretation diagnosis"
+  - "e_revision_plan"
+  - "future E render after explicit confirmation"
+required_fields:
+  review_session_id:
+    type: "string"
+    required: true
+  source_render_set:
+    type: "object"
+    required: true
+    contains_versions:
+      - "A_LITERAL"
+      - "B_PHRASE"
+      - "C_QINIST_STYLE"
+      - "D_TEACHING_DIAGNOSTIC"
+  user_listening_notes:
+    type: "array"
+    required: true
+    item_schema: "human_note"
+  gpt_listening_review:
+    type: "object"
+    required: true
+  phrase_level_review:
+    type: "array"
+    required: true
+  issue_list:
+    type: "array"
+    required: true
+    item_schema: "issue"
+  preferred_version_summary:
+    type: "object"
+    required: true
+  sample_selection_diagnosis:
+    type: "object"
+    required: true
+  render_alignment_diagnosis:
+    type: "object"
+    required: true
+  e_revision_plan:
+    type: "object"
+    required: true
+    final_content_allowed_now: false
+  requires_human_confirmation:
+    type: "boolean"
+    const: true
+  requires_gpt_review:
+    type: "boolean"
+    const: true
+  e_audio_generated:
+    type: "boolean"
+    const: false
+issue_type_enum:
+  - "too_mechanical"
+  - "wrong_breath"
+  - "tail_short"
+  - "tail_too_long"
+  - "attack_abrupt"
+  - "sample_mismatch"
+  - "phrase_unclear"
+  - "transition_unnatural"
+  - "context_take_needed"
+  - "context_take_overused"
+  - "anchor_suspect"
+  - "good"
+issue_schema:
+  issue_id: "string"
+  issue_type: "issue_type_enum"
+  version_id: "A_LITERAL|B_PHRASE|C_QINIST_STYLE|D_TEACHING_DIAGNOSTIC|cross_version"
+  event_id: "string optional"
+  event_range: "string optional"
+  take_reference: "string optional"
+  human_note: "string optional"
+  gpt_diagnosis: "string optional"
+  e_revision_hint: "string optional"
+  severity: "low|medium|high|good"
+e_revision_plan_guardrails:
+  may_select_from_abcd_evidence: true
+  may_combine_reviewed_decisions: true
+  must_preserve_score_facts: true
+  must_preserve_qinist_id_QINIST_002_for_baiya: true
+  must_not_overwrite_QINIST_001_sanman: true
+  must_not_use_dummy_fallback: true
+  must_not_generate_audio_until_confirmed: true

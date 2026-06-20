@@ -1,0 +1,177 @@
+schema_id: "CG-XWC_RENDER_PHRASE_PLAN_LOCAL_R0"
+scope: "ABCD experimental render local phrase inference only"
+piece_id: "XWC"
+recording_session_id: "RS_XWC_002_BAIYA_PILOT"
+planning_only: true
+local_render_only: true
+provisional_where_not_explicit: true
+not_final_verified_dapu_interpretation: true
+not_score_events_update: true
+evidence_level_policy:
+  L1_score_fact: "existing score/event facts only"
+  L2_canon_supported: "supported by canon but not newly written here"
+  L3_piece_context_inference: "local phrase inference from current piece/event order"
+  L4_qinist_profile_inference: "local Baiya performance-continuity inference"
+  L5_gpt_human_aesthetic_hypothesis: "reserved for review discussion"
+  L6_post_listening_revision: "reserved for E_REVIEWED; not used in current ABCD planning"
+phrases:
+  -
+    phrase_id: "XWC_P01_LOCAL_PHRASE"
+    section_id: "XWC_P01"
+    event_range: "XWC_P01_N01_to_XWC_P01_N04"
+    phrase_role: "opening_statement"
+    phrase_start_event_id: "XWC_P01_N01"
+    phrase_end_event_id: "XWC_P01_N04"
+    breath_policy: "minimal_but_clear"
+    cadence_policy: "ordinary_local_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P02_LOCAL_PHRASE"
+    section_id: "XWC_P02"
+    event_range: "XWC_P02_N01_to_XWC_P02_N06"
+    phrase_role: "local_dapu_phrase"
+    phrase_start_event_id: "XWC_P02_N01"
+    phrase_end_event_id: "XWC_P02_N06"
+    breath_policy: "phrase_boundary_sensitive"
+    cadence_policy: "stepwise_sequence_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P03_LOCAL_PHRASE"
+    section_id: "XWC_P03"
+    event_range: "XWC_P03_N01_to_XWC_P03_N06"
+    phrase_role: "local_dapu_phrase"
+    phrase_start_event_id: "XWC_P03_N01"
+    phrase_end_event_id: "XWC_P03_N06"
+    breath_policy: "phrase_boundary_sensitive"
+    cadence_policy: "stepwise_sequence_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P04_LOCAL_PHRASE"
+    section_id: "XWC_P04"
+    event_range: "XWC_P04_N01_to_XWC_P04_N06"
+    phrase_role: "local_dapu_phrase"
+    phrase_start_event_id: "XWC_P04_N01"
+    phrase_end_event_id: "XWC_P04_N06"
+    breath_policy: "phrase_boundary_sensitive"
+    cadence_policy: "stepwise_sequence_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P05_LOCAL_PHRASE"
+    section_id: "XWC_P05"
+    event_range: "XWC_P05_N01_to_XWC_P05_N06"
+    phrase_role: "local_dapu_phrase"
+    phrase_start_event_id: "XWC_P05_N01"
+    phrase_end_event_id: "XWC_P05_N06"
+    breath_policy: "phrase_boundary_sensitive"
+    cadence_policy: "stepwise_sequence_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P06_LOCAL_PHRASE"
+    section_id: "XWC_P06"
+    event_range: "XWC_P06_N01_to_XWC_P06_N04"
+    phrase_role: "local_dapu_phrase"
+    phrase_start_event_id: "XWC_P06_N01"
+    phrase_end_event_id: "XWC_P06_N04"
+    breath_policy: "phrase_boundary_sensitive"
+    cadence_policy: "stepwise_sequence_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P07_LOCAL_PHRASE"
+    section_id: "XWC_P07"
+    event_range: "XWC_P07_N01_to_XWC_P07_N04"
+    phrase_role: "local_dapu_phrase"
+    phrase_start_event_id: "XWC_P07_N01"
+    phrase_end_event_id: "XWC_P07_N04"
+    breath_policy: "phrase_boundary_sensitive"
+    cadence_policy: "stepwise_sequence_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P08_LOCAL_PHRASE"
+    section_id: "XWC_P08"
+    event_range: "XWC_P08_N01_to_XWC_P08_N04"
+    phrase_role: "local_dapu_phrase"
+    phrase_start_event_id: "XWC_P08_N01"
+    phrase_end_event_id: "XWC_P08_N04"
+    breath_policy: "phrase_boundary_sensitive"
+    cadence_policy: "stepwise_sequence_cadence"
+    phrase_end_pause_class: "short"
+    transition_policy: "event_order_preserving"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "按 readiness manifest 事件顺序做 render-local 句法分组；不声明为最终打谱解释。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P09_LOCAL_PHRASE"
+    section_id: "XWC_P09"
+    event_range: "XWC_P09_N01_to_XWC_P09_N04"
+    phrase_role: "transition_phrase_with_context_reference"
+    phrase_start_event_id: "XWC_P09_N01"
+    phrase_end_event_id: "XWC_P09_N04"
+    breath_policy: "transition_breath_preserve_context"
+    cadence_policy: "prepare_final_harmonic_section"
+    phrase_end_pause_class: "medium"
+    transition_policy: "use_context_references_without_atomic_coercion"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "T060/T071 作为 XWC_P09_N01_to_N02 的 context references；仅供 ABCD render-local transition 使用。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
+  -
+    phrase_id: "XWC_P10_LOCAL_PHRASE"
+    section_id: "XWC_P10"
+    event_range: "XWC_P10_N01_to_XWC_P10_N07"
+    phrase_role: "closing_harmonic_cadence"
+    phrase_start_event_id: "XWC_P10_N01"
+    phrase_end_event_id: "XWC_P10_N07"
+    breath_policy: "let_final_harmonics_settle"
+    cadence_policy: "final_resonance_cadence"
+    phrase_end_pause_class: "long"
+    transition_policy: "clear_terminal_boundary"
+    evidence_level: "L3_piece_context_inference"
+    evidence_note: "泛音收束段的 render-local 尾音与停顿计划；不得反写 score_events。"
+    provisional: true
+    local_render_only: true
+    not_score_events_update: true
