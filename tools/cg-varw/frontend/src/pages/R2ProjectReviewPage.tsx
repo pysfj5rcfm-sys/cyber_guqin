@@ -2,9 +2,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ABCDEPhrasePlayer } from "../components/ABCDEPhrasePlayer";
 import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
-import { buildR2PreviewTables, R2ExportPreviewPanel, type R2PreviewTable } from "../components/R2ExportPreviewPanel";
+import { R2ExportPreviewPanel } from "../components/R2ExportPreviewPanel";
 import { markerReviewStatusLabels, markerReviewStatusTone } from "../components/reviewUi";
 import { apiBase, loadR2PhraseAlignments, loadR2Phrases, loadR2RenderSets, loadR2Versions } from "../api/cgVarwApi";
+import { buildR2PreviewTables, type R2PreviewTable } from "../utils/r2ExportPayload";
 import {
   defaultListeningReview,
   issueOptions,
