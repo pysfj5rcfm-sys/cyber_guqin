@@ -3,7 +3,7 @@ import { ABCDEPhrasePlayer } from "../components/ABCDEPhrasePlayer";
 import { AppShell } from "../components/AppShell";
 import { AudioCanvas } from "../components/AudioCanvas";
 import { apiBase, loadR2PhraseAlignments, loadR2Phrases, loadR2RenderSets, loadR2Versions } from "../api/cgVarwApi";
-import { issueOptions, mockPieces, mockSessions, phraseAlignments as mockAlignments, phrases as mockPhrases, renderSet as mockRenderSet, r2SafetyFlags, sections as mockSections, versions as mockVersions } from "../mock/projectReviewMock";
+import { issueOptions, mockPieces, mockSessions, phraseAlignments as mockAlignments, phrases as mockPhrases, renderSet as mockRenderSet, sections as mockSections, versions as mockVersions } from "../mock/projectReviewMock";
 import type { Marker, MarkerReviewStatus, PhraseDefinition, RenderPhraseAlignment, RenderSet, RenderVersion, R2IssueType, Section, Severity } from "../types/cgVarw";
 
 type DataSource = "api" | "mock";
@@ -24,6 +24,21 @@ type ReviewDraft = {
 };
 
 type DraftByPhrase = Record<string, ReviewDraft>;
+type DraftExportReview = Omit<ReviewDraft, "preferred_version"> & {
+  phrase_order: number;
+  preferred_version: string | null;
+};
+type DraftExportPayload = {
+  render_set_id: string;
+  data_source: "real_api" | "mock_fallback";
+  reviewer_role: "human";
+  gpt_review_pending: true;
+  e_revision_plan_generated: false;
+  selected_phrase_id: string;
+  selected_event_range: string;
+  draft_count: number;
+  reviews: DraftExportReview[];
+};
 
 type PlaybackState = {
   isPlaying: boolean;
@@ -33,7 +48,6 @@ type PlaybackState = {
   playbackRate: R2PlaybackRate;
 };
 
-const REAL_RENDER_SET_ID = "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e";
 const VERSION_ORDER = ["A_LITERAL", "B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC"];
 const reviewStatuses: MarkerReviewStatus[] = ["candidate", "accepted", "unclear", "needs_retake", "rejected"];
 
@@ -51,7 +65,7 @@ export function R2ProjectReviewPage() {
   const [activeVersionId, setActiveVersionId] = useState("A_LITERAL");
   const [drafts, setDrafts] = useState<DraftByPhrase>({});
   const [boundaryStatus, setBoundaryStatus] = useState<Record<string, MarkerReviewStatus>>({});
-  const [lastActionMessage, setLastActionMessage] = useState("R2 mock fallback ready");
+  const [lastActionMessage, setLastActionMessage] = useState("R2 模拟数据兜底已就绪");
   const [playback, setPlayback] = useState<PlaybackState>({ isPlaying: false, currentTimeS: 0, playMode: "idle", playbackRate: 1 });
 
   useEffect(() => {
@@ -59,8 +73,8 @@ export function R2ProjectReviewPage() {
     async function loadRealRenderSet() {
       try {
         const renderSets = await loadR2RenderSets();
-        const real = renderSets.find((item) => item.render_set_id === REAL_RENDER_SET_ID);
-        if (!real) throw new Error("后端未返回真实 XWC ABCD render set");
+        const real = renderSets.find(isRealRenderSet);
+        if (!real) throw new Error("后端未返回真实 experimental render set");
         const [nextVersions, phraseData, nextAlignments] = await Promise.all([
           loadR2Versions(real.render_set_id),
           loadR2Phrases(real.render_set_id),
@@ -79,7 +93,7 @@ export function R2ProjectReviewPage() {
         setActiveVersionId(filteredVersions[0]?.version_id ?? "A_LITERAL");
         setBoundaryStatus(makeBoundaryStatusByKey(filteredAlignments));
         setBackendMessage(`后端真实 R2 render set 已加载：${real.render_set_id}`);
-        setLastActionMessage("已使用真实 ABCD render set API；mock fallback 未启用。");
+        setLastActionMessage("已使用真实 ABCD render set API；模拟数据兜底未启用。");
       } catch (error) {
         if (cancelled) return;
         setDataSource("mock");
@@ -89,8 +103,8 @@ export function R2ProjectReviewPage() {
         setPhrases(mockPhrases);
         setAlignments(abcdAlignments(mockAlignments));
         setBoundaryStatus(makeBoundaryStatusByKey(abcdAlignments(mockAlignments)));
-        setBackendMessage(`后端不可用或未返回真实 render set，已保留 mock fallback：${error instanceof Error ? error.message : String(error)}`);
-        setLastActionMessage("当前为 mock fallback；请启动 backend 后刷新 R2 页面。");
+        setBackendMessage(`后端不可用或未返回真实 render set，已保留模拟数据兜底：${error instanceof Error ? error.message : String(error)}`);
+        setLastActionMessage("当前为模拟数据兜底；请启动 backend 后刷新 R2 页面。");
       }
     }
     loadRealRenderSet();
@@ -102,13 +116,13 @@ export function R2ProjectReviewPage() {
 
   const draftKey = `cg-varw:r2:frontend-api-draft:${renderSet.render_set_id}`;
   const activePhrase = getPhrase(phrases, activePhraseId);
-  const activeSection = getSection(sections, activePhrase.section_id);
   const activeAlignment = getAlignment(alignments, activePhraseId, activeVersionId);
   const activeVersion = versions.find((version) => version.version_id === activeVersionId) ?? versions[0];
   const alignmentsForPhrase = alignments.filter((alignment) => alignment.phrase_id === activePhraseId);
   const activeDraft = drafts[activePhraseId] ?? makeDraft(activePhrase);
   const markers = useMemo(() => makePhraseMarkers(activeAlignment), [activeAlignment]);
   const progress = useMemo(() => deriveProgress(phrases, drafts), [phrases, drafts]);
+  const exportPreviewPayload = useMemo(() => buildDraftExportPayload(renderSet, dataSource, phrases, drafts, activePhrase), [renderSet, dataSource, phrases, drafts, activePhrase]);
 
   useEffect(() => {
     const raw = localStorage.getItem(draftKey);
@@ -155,7 +169,7 @@ export function R2ProjectReviewPage() {
     setActivePhraseId(phraseId);
     const nextAlignment = getAlignment(alignments, phraseId, activeVersionId);
     setPlayback((current) => ({ ...current, currentTimeS: nextAlignment.start_s, playMode: "idle", isPlaying: false, playingVersionId: undefined }));
-    setLastActionMessage(`已切换 phrase：${phraseId}`);
+    setLastActionMessage(`已切换乐句：${phraseId}`);
   }
 
   function selectVersion(versionId: string) {
@@ -168,7 +182,7 @@ export function R2ProjectReviewPage() {
 
   function setPreferred(versionId: string) {
     updateDraft({ preferred_version: versionId });
-    setLastActionMessage(`已设置当前 phrase 偏好版本：${versionLabel(versions, versionId)}`);
+    setLastActionMessage(`已设置当前乐句偏好版本：${versionLabel(versions, versionId)}`);
   }
 
   function playVersion(versionId: string, mode: PlayMode = "phrase", onEnded?: () => void) {
@@ -249,23 +263,14 @@ export function R2ProjectReviewPage() {
   }
 
   function exportDraftJson() {
-    const payload = {
-      render_set_id: renderSet.render_set_id,
-      exported_at: new Date().toISOString(),
-      review_completed: false,
-      gpt_review_pending: true,
-      e_revision_plan_generated: false,
-      drafts: phrases.map((phrase) => drafts[phrase.phrase_id] ?? makeDraft(phrase)),
-      ...r2SafetyFlags,
-    };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(exportPreviewPayload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
     link.download = `${renderSet.render_set_id}.review_draft.json`;
     link.click();
     URL.revokeObjectURL(url);
-    setLastActionMessage("已导出 Review Draft JSON；未生成 listening_review.yaml 或 e_revision_plan.yaml。");
+    setLastActionMessage("已导出听评草稿 JSON；未生成 listening_review.yaml 或 e_revision_plan.yaml。");
   }
 
   return (
@@ -278,11 +283,11 @@ export function R2ProjectReviewPage() {
           <div className="work-title tight">
             <div>
               <h1>XWC / 仙翁操 · R2 句读听评</h1>
-              <p>render_set_id: {renderSet.render_set_id}</p>
-              <p>experimental_render=true / production_grade=false / e_generated=false</p>
+              <p>渲染集 ID：{renderSet.render_set_id}</p>
+              <p>实验渲染 experimental_render=true / 非生产级 production_grade=false / E 未生成 e_generated=false</p>
               <p>按 phrase_id / event_range 对齐，不按同一绝对时间点切换版本。</p>
             </div>
-            <span className={`badge ${dataSource === "api" ? "badge-blue" : "badge-gold"}`}>{dataSource === "api" ? "真实 API" : "mock fallback"}</span>
+            <span className={`badge ${dataSource === "api" ? "badge-blue" : "badge-gold"}`}>{dataSource === "api" ? "真实 API" : "模拟数据兜底"}</span>
           </div>
           <ABCDEPhrasePlayer
             versions={versions}
@@ -294,13 +299,13 @@ export function R2ProjectReviewPage() {
             onPlay={playVersion}
           />
           <section className="work-area phrase-area">
-            <h2>当前 phrase · {activePhrase.phrase_id}</h2>
+            <h2>当前乐句 · 第{phraseOrder(activePhrase)}句 · {activePhrase.phrase_id}</h2>
             <AudioCanvas
               markers={markers.map(toCanvasMarker)}
               duration={activeVersion?.duration_s ?? activeAlignment.end_s}
               selectedKey={`${activePhraseId}-${activeVersionId}-phrase_start`}
               onSelect={() => undefined}
-              audioFileName={`${versionLabel(versions, activeVersionId)} · ${activeVersion?.audio_path ?? "mock waveform"}`}
+              audioFileName={`${versionLabel(versions, activeVersionId)} · ${activeVersion?.audio_path ?? "模拟波形"}`}
               waveformPeaks={activeVersion?.waveform_preview}
             />
             <div className="event-strip">
@@ -313,7 +318,7 @@ export function R2ProjectReviewPage() {
                 {playback.isPlaying ? "停止" : "播放当前版本"}
                 <span>{playModeLabel(playback.playMode)}</span>
               </button>
-              <button onClick={() => playVersion(activeVersionId)}>从本版 phrase_start 播放</button>
+              <button onClick={() => playVersion(activeVersionId)}>从本版乐句开头播放</button>
               <button onClick={() => playSequenceABCD()}>顺播 A→B→C→D</button>
               <button onClick={playPreferredVersion}>播放偏好版本</button>
               <strong className="clock">{formatTime(playback.currentTimeS)}<small>/ {formatTime(activeAlignment.end_s)} · {playback.playingVersionId ? versionLabel(versions, playback.playingVersionId) : versionLabel(versions, activeVersionId)}</small></strong>
@@ -341,7 +346,7 @@ export function R2ProjectReviewPage() {
           onExportDraft={exportDraftJson}
         />
       }
-      bottom={<R2BottomPanel renderSet={renderSet} versions={versions} dataSource={dataSource} />}
+      bottom={<R2BottomPanel renderSet={renderSet} versions={versions} dataSource={dataSource} exportPreviewPayload={exportPreviewPayload} />}
       statusText={backendMessage}
       detailText={lastActionMessage}
     />
@@ -371,21 +376,26 @@ function LeftPanel({
         <button className="active">RS_XWC_002_BAIYA_PILOT</button>
       </div>
       <section className="editor-section">
-        <h3>曲目</h3>
-        {mockPieces.map((piece) => <button key={piece.piece_id} className={`wide ${piece.piece_id === "XWC" ? "active" : ""}`}>{piece.piece_id} / {piece.piece_title}<small>{piece.mock_only ? "R2 mock option" : "active MVP piece"}</small></button>)}
+        <h3>当前曲目</h3>
+        {mockPieces.map((piece) => <button key={piece.piece_id} className={`wide ${piece.piece_id === "XWC" ? "active" : ""}`}>{piece.piece_id} / {piece.piece_title}<small>{piece.mock_only ? "R2 模拟选项" : "当前 MVP 曲目"}</small></button>)}
       </section>
       <section className="editor-section">
-        <h3>Session</h3>
-        {mockSessions.slice(0, 1).map((session) => <button key={session.recording_session_id} className="wide active">{session.recording_session_id}<small>{dataSource === "api" ? "real ABCD render set" : session.label}</small></button>)}
+        <h3>当前 session</h3>
+        {mockSessions.slice(0, 1).map((session) => <button key={session.recording_session_id} className="wide active">{session.recording_session_id}<small>{dataSource === "api" ? "真实 ABCD render set" : session.label}</small></button>)}
       </section>
       <section className="editor-section">
-        <h3>Section / Phrase</h3>
+        <h3>谱面句 / Section</h3>
         {sections.map((section) => (
           <div className="section-tree" key={section.section_id}>
             <strong>{section.section_id} {section.section_label}</strong>
             {section.phrase_ids.map((phraseId) => {
               const phrase = getPhrase(phrases, phraseId);
-              return <button key={phraseId} className={`wide ${selectedPhraseId === phraseId ? "active" : ""}`} onClick={() => onSelectPhrase(phraseId)}>{phrase.phrase_id}<small>{phrase.event_range}</small></button>;
+              return (
+                <button key={phraseId} className={`wide ${selectedPhraseId === phraseId ? "active" : ""}`} onClick={() => onSelectPhrase(phraseId)}>
+                  第{phraseOrder(phrase)}句 · {phrase.phrase_id}
+                  <small>{phrase.event_range} · 事件数 {phrase.event_count ?? "-"} · {phrase.gesture_summary || phrase.gesture_ids || "指法待补"}</small>
+                </button>
+              );
             })}
           </div>
         ))}
@@ -405,7 +415,7 @@ function PhraseAlignmentTable({ versions, alignments }: { versions: RenderVersio
       <div className="export-table-scroll">
         <table className="export-table">
           <thead>
-            <tr><th>version_id</th><th>phrase_start_s</th><th>phrase_end_s</th><th>event_range</th><th>wav/audio</th></tr>
+            <tr><th>版本</th><th>开始 phrase_start_s</th><th>结束 phrase_end_s</th><th>事件范围</th><th>wav / audio_url</th></tr>
           </thead>
           <tbody>
             {versions.map((version) => {
@@ -454,18 +464,23 @@ function RightPanel({
 }) {
   return (
     <div className="panel-stack">
-      <h2>Review Draft</h2>
+      <h2>听评草稿</h2>
       <div className="info-card">
-        <span>当前 phrase：{phrase.phrase_id}</span>
-        <code>event_range：{phrase.event_range}</code>
+        <span>当前乐句：第{phraseOrder(phrase)}句 · {phrase.phrase_id}</span>
+        <code>事件范围：{phrase.event_range}</code>
+        <span>事件数：{phrase.event_count ?? "-"}</span>
         <span>当前版本：{versionLabel(versions, activeVersionId)}</span>
-        <span>GPT review pending：true</span>
-        <span>E revision plan generated：false</span>
+        <span>GPT 共评待处理：true</span>
+        <span>E 修订计划已生成：false</span>
       </div>
+      <section className="editor-section">
+        <h3>本句事件明细</h3>
+        <PhraseEventDetailList phrase={phrase} />
+      </section>
       <section className="editor-section">
         <h3>边界状态</h3>
         <div className="segmented boundary-segmented">
-          {reviewStatuses.map((status) => <button key={status} className={boundaryStatus === status ? "active" : ""} onClick={() => onBoundaryStatus(status)}>{status}</button>)}
+          {reviewStatuses.map((status) => <button key={status} className={boundaryStatus === status ? "active" : ""} onClick={() => onBoundaryStatus(status)}>{boundaryStatusLabel(status)}</button>)}
         </div>
       </section>
       <section className="editor-section">
@@ -481,55 +496,83 @@ function RightPanel({
       </section>
       <section className="editor-section">
         <h3>严重程度</h3>
-        <div className="segmented">{(["low", "medium", "high"] as Severity[]).map((item) => <button key={item} className={draft.severity === item ? "active" : ""} onClick={() => onDraft({ severity: item })}>{item}</button>)}</div>
+        <div className="segmented">{(["low", "medium", "high"] as Severity[]).map((item) => <button key={item} className={draft.severity === item ? "active" : ""} onClick={() => onDraft({ severity: item })}>{severityLabel(item)}</button>)}</div>
       </section>
       <section className="editor-section">
         <h3>偏好版本</h3>
         <select className="cg-select" value={draft.preferred_version} onChange={(event) => onPreferred(event.target.value)}>
-          <option value="none">none</option>
+          <option value="none">none / 未设置</option>
           {versions.map((version) => <option key={version.version_id} value={version.version_id}>{version.version_id}</option>)}
         </select>
       </section>
       <section className="editor-section">
-        <h3>comment</h3>
+        <h3>评论</h3>
         <textarea value={draft.comment} onChange={(event) => onDraft({ comment: event.target.value })} />
       </section>
       <section className="editor-section">
-        <h3>suggested_revision</h3>
+        <h3>修订建议</h3>
         <textarea value={draft.suggested_revision} onChange={(event) => onDraft({ suggested_revision: event.target.value })} />
       </section>
       <div className="action-row">
-        <button className="active" onClick={onSaveDraft}>保存 draft</button>
-        <button onClick={onExportDraft}>Export Review Draft JSON</button>
+        <button className="active" onClick={onSaveDraft}>保存草稿</button>
+        <button onClick={onExportDraft}>导出听评草稿 JSON</button>
       </div>
     </div>
   );
 }
 
-function R2BottomPanel({ renderSet, versions, dataSource }: { renderSet: RenderSet; versions: RenderVersion[]; dataSource: DataSource }) {
+function PhraseEventDetailList({ phrase }: { phrase: PhraseDefinition }) {
+  const rows = phraseEventRows(phrase);
+  if (rows.length === 0) return <p>本句事件明细待从 phrase lock 补入。</p>;
+  return (
+    <div className="export-table-scroll">
+      <table className="export-table">
+        <thead>
+          <tr><th>序号</th><th>event_id</th><th>gesture_id</th><th>指法/归一名</th></tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={`${row.event_id}-${row.index}`}>
+              <td>{row.index}</td>
+              <td>{row.event_id}</td>
+              <td>{row.gesture_id}</td>
+              <td>{row.normalized_name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function R2BottomPanel({ renderSet, versions, dataSource, exportPreviewPayload }: { renderSet: RenderSet; versions: RenderVersion[]; dataSource: DataSource; exportPreviewPayload: DraftExportPayload }) {
   return (
     <section className="export-panel">
       <div className="section-title-row">
-        <h2>R2 Render Set Intake</h2>
-        <span>{dataSource === "api" ? "真实 API 数据" : "mock fallback 数据"}</span>
+        <h2>R2 渲染集接入</h2>
+        <span>{dataSource === "api" ? "真实 API 数据" : "模拟数据兜底"}</span>
       </div>
       <div className="export-preview-grid">
         <div className="preview-card">
-          <h3>render_set</h3>
+          <h3>渲染集</h3>
           <p>{renderSet.render_set_id}</p>
-          <p>experimental_render=true / production_grade=false / e_generated=false</p>
+          <p>实验渲染 experimental_render=true / 非生产级 production_grade=false / E 未生成 e_generated=false</p>
         </div>
         <div className="preview-card">
-          <h3>versions</h3>
+          <h3>版本</h3>
           <p>{versions.map((version) => version.version_id).join(" / ")}</p>
-          <p>E_REVIEWED not shown; no best version is selected automatically.</p>
+          <p>不显示 E_REVIEWED；不自动选择最佳版本。</p>
         </div>
         <div className="preview-card">
-          <h3>API base</h3>
+          <h3>API 地址</h3>
           <p>{apiBase}</p>
-          <p>WAV playback uses backend audio endpoint, not local filesystem paths.</p>
+          <p>WAV 播放使用后端 audio endpoint，不把本地绝对路径直接塞入浏览器。</p>
         </div>
       </div>
+      <section className="editor-section">
+        <h3>导出预览</h3>
+        <pre className="export-preview-code">{JSON.stringify(exportPreviewPayload, null, 2)}</pre>
+      </section>
     </section>
   );
 }
@@ -542,6 +585,10 @@ function abcdAlignments(items: RenderPhraseAlignment[]) {
   return items.filter((alignment) => VERSION_ORDER.includes(alignment.version_id));
 }
 
+function isRealRenderSet(item: RenderSet) {
+  return item.render_stage === "experimental_render" && item.review_only === true && item.production_grade === false;
+}
+
 function getPhrase(phrases: PhraseDefinition[], phraseId: string) {
   return phrases.find((phrase) => phrase.phrase_id === phraseId) ?? phrases[0] ?? {
     phrase_id: "",
@@ -551,6 +598,13 @@ function getPhrase(phrases: PhraseDefinition[], phraseId: string) {
     event_range: "",
     start_event_id: "",
     end_event_id: "",
+    phrase_order: 0,
+    event_count: 0,
+    event_ids: "",
+    gesture_ids: "",
+    normalized_names: "",
+    gesture_summary: "",
+    lock_status: "",
   };
 }
 
@@ -587,6 +641,58 @@ function makeDraft(phrase: PhraseDefinition): ReviewDraft {
     gpt_review_pending: true,
     e_revision_plan_generated: false,
   };
+}
+
+function buildDraftExportPayload(renderSet: RenderSet, dataSource: DataSource, phrases: PhraseDefinition[], drafts: DraftByPhrase, activePhrase: PhraseDefinition): DraftExportPayload {
+  const reviews = phrases
+    .map((phrase) => drafts[phrase.phrase_id] ?? makeDraft(phrase))
+    .filter(isMeaningfulDraft)
+    .map((draft) => {
+      const phrase = getPhrase(phrases, draft.phrase_id);
+      return {
+        ...draft,
+        phrase_order: phraseOrder(phrase),
+        preferred_version: draft.preferred_version && draft.preferred_version !== "none" ? draft.preferred_version : null,
+        reviewer_role: "human" as const,
+        gpt_review_pending: true as const,
+        e_revision_plan_generated: false as const,
+      };
+    });
+  return {
+    render_set_id: renderSet.render_set_id,
+    data_source: dataSource === "api" ? "real_api" : "mock_fallback",
+    reviewer_role: "human",
+    gpt_review_pending: true,
+    e_revision_plan_generated: false,
+    selected_phrase_id: activePhrase.phrase_id,
+    selected_event_range: activePhrase.event_range,
+    draft_count: reviews.length,
+    reviews,
+  };
+}
+
+function isMeaningfulDraft(draft: ReviewDraft) {
+  return draft.issue_type.length > 0 || draft.comment.trim().length > 0 || draft.suggested_revision.trim().length > 0 || (draft.preferred_version && draft.preferred_version !== "none");
+}
+
+function phraseOrder(phrase: PhraseDefinition) {
+  return phrase.phrase_order ?? phrase.phrase_index ?? 0;
+}
+
+function phraseEventRows(phrase: PhraseDefinition) {
+  const eventIds = splitList(phrase.event_ids);
+  const gestureIds = splitList(phrase.gesture_ids);
+  const normalizedNames = splitList(phrase.normalized_names || phrase.gesture_summary);
+  return eventIds.map((eventId, index) => ({
+    index: index + 1,
+    event_id: eventId,
+    gesture_id: gestureIds[index] ?? "",
+    normalized_name: normalizedNames[index] ?? "",
+  }));
+}
+
+function splitList(value?: string) {
+  return (value ?? "").split(";").map((item) => item.trim()).filter(Boolean);
 }
 
 function makeBoundaryStatusByKey(alignments: RenderPhraseAlignment[]) {
@@ -639,10 +745,28 @@ function percentWidth(value: number, total: number) {
 function playModeLabel(mode: PlayMode) {
   return {
     idle: "已停止",
-    phrase: "phrase 播放",
+    phrase: "乐句播放",
     sequence_abcd: "A→B→C→D",
     preferred: "偏好版本",
   }[mode];
+}
+
+function severityLabel(value: Severity) {
+  return {
+    low: "低",
+    medium: "中",
+    high: "高",
+  }[value];
+}
+
+function boundaryStatusLabel(value: MarkerReviewStatus) {
+  return {
+    candidate: "候选",
+    accepted: "接受",
+    unclear: "不清楚",
+    needs_retake: "需复核",
+    rejected: "拒绝",
+  }[value];
 }
 
 function formatTime(seconds: number) {

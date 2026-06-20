@@ -40,23 +40,25 @@ When the split root is the parent directory, the backend discovers child `batchX
 
 ## R2 ABCD render-set intake
 
-When the XWC Baiya ABCD intake package exists at:
+When an R2 ABCD intake package exists under the configured render/intake roots:
 
 ```text
-04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_intake/
+CG_VARW_R2_RENDER_ROOT=/path/to/abcd_experimental_render
+CG_VARW_R2_INTAKE_ROOT=/path/to/abcd_experimental_render/r2_review_intake
 ```
 
-the R2 backend prefers that real experimental render set over the built-in mock store. Start the backend as usual, then inspect:
+the R2 backend prefers that real experimental render set over the built-in mock store. If those environment variables are absent, the backend can discover a repository-local `04_outputs/*/*/abcd_experimental_render/r2_review_intake/r2_render_set_index.json` package. Start the backend as usual, then inspect:
 
 ```text
 GET /api/r2/render-sets
-GET /api/r2/render-sets/R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e/versions
-GET /api/r2/render-sets/R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e/phrase-alignments
+GET /api/r2/render-sets/{render_set_id}/versions
+GET /api/r2/render-sets/{render_set_id}/phrase-alignments
+GET /api/r2/render-sets/{render_set_id}/versions/{version_id}/audio
 ```
 
 This intake is review-only. It does not generate E, choose a best version, write sample assets, or start ML training.
 
-The R2 frontend loads the same endpoints on page open. If the backend returns `R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e`, the page uses real A/B/C/D versions and backend audio URLs. If the backend is unavailable, it keeps the built-in mock fallback.
+The R2 frontend loads the same endpoints on page open. It uses the first returned real `experimental_render` render set, loads A/B/C/D versions and backend audio URLs, and keeps the built-in mock fallback only when the backend is unavailable or no real render set is returned.
 
 ## Windows Frontend
 

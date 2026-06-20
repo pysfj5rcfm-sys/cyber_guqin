@@ -246,6 +246,7 @@ th { color: #8fa4aa; font-weight: 500; background: rgba(255,255,255,0.025); }
 .preview-card h3 { display: flex; align-items: center; gap: 4px; color: #d7e6e8; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .preview-card small { margin: 3px 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .preview-card pre { margin: 8px 0 0; padding: 9px; min-height: 84px; overflow: auto; border: 1px solid rgba(116,156,166,0.16); border-radius: 6px; background: rgba(0,0,0,0.18); color: #cbd9dc; font: 12px/1.45 ui-monospace, Consolas, monospace; }
+.export-preview-code { width: 100%; min-height: 180px; max-height: 360px; margin: 0; padding: 10px; overflow: auto; border: 1px solid rgba(116,156,166,0.16); border-radius: 6px; background: rgba(0,0,0,0.2); color: #cbd9dc; font: 12px/1.45 ui-monospace, Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
 .field-preview-table { min-width: 100%; font-size: 12px; margin-top: 8px; }
 .field-preview-table th, .field-preview-table td { height: 28px; padding: 5px 7px; white-space: normal; vertical-align: top; }
 

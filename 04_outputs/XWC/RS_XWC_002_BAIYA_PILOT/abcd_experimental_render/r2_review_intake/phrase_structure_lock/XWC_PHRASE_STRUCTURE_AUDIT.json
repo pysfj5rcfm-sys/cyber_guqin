@@ -1,0 +1,36 @@
+{
+  "score_events_total": 51,
+  "phrase_count_detected_from_score": 10,
+  "phrase_count_in_render_phrase_plan": 10,
+  "phrase_count_in_r2_seed_unique": 10,
+  "r2_seed_total_rows": 40,
+  "expected_r2_seed_rows_if_abcd": 40,
+  "phrase_seed_matches_score_structure": true,
+  "mismatch_reasons": [],
+  "unique_phrase_ids": [
+    "XWC_P01_LOCAL_PHRASE",
+    "XWC_P02_LOCAL_PHRASE",
+    "XWC_P03_LOCAL_PHRASE",
+    "XWC_P04_LOCAL_PHRASE",
+    "XWC_P05_LOCAL_PHRASE",
+    "XWC_P06_LOCAL_PHRASE",
+    "XWC_P07_LOCAL_PHRASE",
+    "XWC_P08_LOCAL_PHRASE",
+    "XWC_P09_LOCAL_PHRASE",
+    "XWC_P10_LOCAL_PHRASE"
+  ],
+  "phrase_event_counts": {
+    "XWC_P01_LOCAL_PHRASE": 4,
+    "XWC_P02_LOCAL_PHRASE": 6,
+    "XWC_P03_LOCAL_PHRASE": 6,
+    "XWC_P04_LOCAL_PHRASE": 6,
+    "XWC_P05_LOCAL_PHRASE": 6,
+    "XWC_P06_LOCAL_PHRASE": 4,
+    "XWC_P07_LOCAL_PHRASE": 4,
+    "XWC_P08_LOCAL_PHRASE": 4,
+    "XWC_P09_LOCAL_PHRASE": 4,
+    "XWC_P10_LOCAL_PHRASE": 7
+  },
+  "validation_status": "passed",
+  "blocker_reason": ""
+}

@@ -253,6 +253,13 @@ export interface PhraseDefinition {
   event_range: string;
   start_event_id: string;
   end_event_id: string;
+  phrase_order?: number | null;
+  event_count?: number | null;
+  event_ids?: string;
+  gesture_ids?: string;
+  normalized_names?: string;
+  gesture_summary?: string;
+  lock_status?: string;
 }
 
 export interface RenderVersion extends R2SafetyFlags {

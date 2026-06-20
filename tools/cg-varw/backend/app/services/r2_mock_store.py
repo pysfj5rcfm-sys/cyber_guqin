@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -35,9 +36,6 @@ SAFETY = {
 
 RENDER_SET_ID = "R2A_MOCK_XWC_BAIYA_001"
 REPO_ROOT = TOOL_DIR.parents[1]
-INTAKE_DIR = REPO_ROOT / "04_outputs" / "XWC" / "RS_XWC_002_BAIYA_PILOT" / "abcd_experimental_render" / "r2_review_intake"
-INTAKE_INDEX_PATH = INTAKE_DIR / "r2_render_set_index.json"
-INTAKE_ALIGNMENT_PATH = INTAKE_DIR / "r2_phrase_alignment_seed.csv"
 
 PIECES = [
     R2Piece(piece_id="XWC", piece_title="仙翁操", active_mvp=True, mock_only=False),
@@ -83,10 +81,23 @@ def list_projects() -> list[dict[str, Any]]:
 
 
 def list_pieces() -> list[R2Piece]:
+    intake = load_intake_index()
+    if intake:
+        return [R2Piece(piece_id=intake["piece_id"], piece_title=intake["piece_title"], active_mvp=True, mock_only=False)]
     return PIECES
 
 
 def list_sessions() -> list[R2Session]:
+    intake = load_intake_index()
+    if intake:
+        return [
+            R2Session(
+                recording_session_id=intake["recording_session_id"],
+                label=f"{intake.get('qinist_name', intake['qinist_id'])} / render set intake",
+                current_project_session=True,
+                mock_only=False,
+            )
+        ]
     return SESSIONS
 
 
@@ -286,10 +297,60 @@ def export_rows(render_set_id: str) -> list[dict[str, Any]]:
 
 
 def load_intake_index() -> dict[str, Any] | None:
-    if not INTAKE_INDEX_PATH.exists():
+    path = get_r2_intake_index_path()
+    if not path or not path.exists():
         return None
-    with INTAKE_INDEX_PATH.open("r", encoding="utf-8") as handle:
+    with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def get_r2_intake_root() -> Path | None:
+    configured = os.environ.get("CG_VARW_R2_INTAKE_ROOT")
+    if configured:
+        return Path(configured).expanduser().resolve()
+    path = discover_r2_intake_index_path()
+    return path.parent if path else None
+
+
+def get_r2_render_root() -> Path | None:
+    configured = os.environ.get("CG_VARW_R2_RENDER_ROOT")
+    if configured:
+        return Path(configured).expanduser().resolve()
+    intake_root = get_r2_intake_root()
+    if intake_root and intake_root.name == "r2_review_intake":
+        return intake_root.parent.resolve()
+    return None
+
+
+def get_r2_intake_index_path() -> Path | None:
+    intake_root = get_r2_intake_root()
+    if intake_root:
+        return intake_root / "r2_render_set_index.json"
+    return discover_r2_intake_index_path()
+
+
+def get_r2_alignment_seed_path() -> Path | None:
+    intake_root = get_r2_intake_root()
+    if not intake_root:
+        return None
+    score_lock_seed = intake_root / "r2_phrase_alignment_seed.from_score_phrase_lock.csv"
+    if score_lock_seed.exists():
+        return score_lock_seed
+    return intake_root / "r2_phrase_alignment_seed.csv"
+
+
+def get_r2_phrase_lock_path() -> Path | None:
+    intake_root = get_r2_intake_root()
+    if not intake_root:
+        return None
+    lock_dir = intake_root / "phrase_structure_lock"
+    matches = sorted(lock_dir.glob("*_PHRASE_STRUCTURE_LOCK_DRAFT.csv"))
+    return matches[0] if matches else None
+
+
+def discover_r2_intake_index_path() -> Path | None:
+    matches = sorted(REPO_ROOT.glob("04_outputs/*/*/abcd_experimental_render/r2_review_intake/r2_render_set_index.json"))
+    return matches[0] if matches else None
 
 
 def render_set_from_intake(intake: dict[str, Any]) -> R2RenderSet:
@@ -343,26 +404,51 @@ def resolve_version_audio_path(render_set_id: str, version_id: str) -> Path:
         raise ValueError(f"real R2 audio is not available for render_set_id: {render_set_id}")
     for item in intake.get("versions", []):
         if item.get("version_id") == version_id:
-            path = (REPO_ROOT / item["wav_path"]).resolve()
+            path = resolve_render_path(str(item["wav_path"]))
             if not path.exists() or not path.is_file():
                 raise ValueError(f"R2 version audio not found: {version_id}")
-            if REPO_ROOT.resolve() not in path.parents:
+            allowed_root = (get_r2_render_root() or REPO_ROOT).resolve()
+            if path != allowed_root and allowed_root not in path.parents:
                 raise ValueError(f"R2 version audio outside repository: {version_id}")
             return path
     raise ValueError(f"unknown R2 version_id: {version_id}")
 
 
+def resolve_render_path(value: str) -> Path:
+    raw = Path(value).expanduser()
+    candidates = [raw] if raw.is_absolute() else []
+    render_root = get_r2_render_root()
+    if render_root and not raw.is_absolute():
+        candidates.append(render_root / raw)
+        candidates.append(render_root / raw.name)
+    if not raw.is_absolute():
+        candidates.append(REPO_ROOT / raw)
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        if resolved.exists():
+            return resolved
+    return (candidates[-1] if candidates else raw).resolve()
+
+
 def phrases_from_intake(intake: dict[str, Any]) -> dict[str, Any]:
     phrase_defs = intake.get("phrases", [])
+    lock_rows = load_phrase_lock_rows()
     phrases = [
         R2PhraseDefinition(
             phrase_id=item["phrase_id"],
             section_id=item["section_id"],
-            phrase_index=index,
-            phrase_label=item["phrase_id"],
+            phrase_index=int(lock_rows.get(item["phrase_id"], {}).get("phrase_order") or index),
+            phrase_label=lock_rows.get(item["phrase_id"], {}).get("score_phrase_label") or item["phrase_id"],
             event_range=item["event_range"],
             start_event_id=item["start_event_id"],
             end_event_id=item["end_event_id"],
+            phrase_order=int(lock_rows.get(item["phrase_id"], {}).get("phrase_order") or index),
+            event_count=parse_optional_int(lock_rows.get(item["phrase_id"], {}).get("event_count")),
+            event_ids=lock_rows.get(item["phrase_id"], {}).get("event_ids") or "",
+            gesture_ids=lock_rows.get(item["phrase_id"], {}).get("gesture_ids") or "",
+            normalized_names=lock_rows.get(item["phrase_id"], {}).get("normalized_names") or "",
+            gesture_summary=lock_rows.get(item["phrase_id"], {}).get("normalized_names") or lock_rows.get(item["phrase_id"], {}).get("gesture_ids") or "",
+            lock_status=lock_rows.get(item["phrase_id"], {}).get("lock_status") or "",
         )
         for index, item in enumerate(phrase_defs, start=1)
     ]
@@ -382,10 +468,11 @@ def phrases_from_intake(intake: dict[str, Any]) -> dict[str, Any]:
 
 
 def alignments_from_intake(intake: dict[str, Any]) -> list[R2RenderPhraseAlignment]:
-    if not INTAKE_ALIGNMENT_PATH.exists():
+    path = get_r2_alignment_seed_path()
+    if not path or not path.exists():
         return []
     rows: list[R2RenderPhraseAlignment] = []
-    with INTAKE_ALIGNMENT_PATH.open("r", encoding="utf-8", newline="") as handle:
+    with path.open("r", encoding="utf-8", newline="") as handle:
         for item in csv.DictReader(handle):
             start_s = float(item["phrase_start_s"])
             end_s = float(item["phrase_end_s"])
@@ -409,6 +496,23 @@ def alignments_from_intake(intake: dict[str, Any]) -> list[R2RenderPhraseAlignme
                 )
             )
     return rows
+
+
+def load_phrase_lock_rows() -> dict[str, dict[str, str]]:
+    path = get_r2_phrase_lock_path()
+    if not path or not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        return {row["phrase_id"]: row for row in csv.DictReader(handle)}
+
+
+def parse_optional_int(value: str | None) -> int | None:
+    if value is None or value == "":
+        return None
+    try:
+        return int(value)
+    except ValueError:
+        return None
 
 
 def mock_waveform(points: int, seed: int = 0) -> list[float]:

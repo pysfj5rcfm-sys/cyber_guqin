@@ -385,6 +385,13 @@ class R2PhraseDefinition(BaseModel):
     event_range: str
     start_event_id: str
     end_event_id: str
+    phrase_order: int | None = None
+    event_count: int | None = None
+    event_ids: str = ""
+    gesture_ids: str = ""
+    normalized_names: str = ""
+    gesture_summary: str = ""
+    lock_status: str = ""
 
 
 class R2RenderPhraseAlignment(BaseModel):
