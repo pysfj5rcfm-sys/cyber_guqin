@@ -1,0 +1,173 @@
+{
+  "schema_id": "CG_VARW_R2_E_REVIEWED_VALIDATION_v0.1",
+  "generated_at": "2026-06-20T12:50:04.430305+00:00",
+  "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+  "e_version_id": "E_REVIEWED",
+  "authority_inputs": [
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_revision_log.yaml",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/preferred_version_summary.csv",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/phrase_boundary_decision.csv"
+  ],
+  "latest_counts": {
+    "review_count": 29,
+    "phrase_count": 10,
+    "preferred_version_count": 10,
+    "suggested_revision_count": 13,
+    "issue_count": 6
+  },
+  "latest_row_counts": {
+    "listening_review.csv": 29,
+    "preferred_version_summary.csv": 10,
+    "render_phrase_alignment.csv": 40,
+    "phrase_boundary_decision.csv": 40,
+    "render_revision_log.yaml": 13,
+    "issue_list.csv": 6
+  },
+  "duplicate_phrase_version_keys": {
+    "render_phrase_alignment.csv": 0,
+    "phrase_boundary_decision.csv": 0
+  },
+  "outputs": {
+    "e_revision_plan.yaml": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/E_REVIEWED/e_revision_plan.yaml",
+    "wav": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/E_REVIEWED/XWC_BAIYA_E_REVIEWED.wav",
+    "render_event_alignment.E_REVIEWED.csv": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/E_REVIEWED/render_event_alignment.E_REVIEWED.csv",
+    "e_reviewed_render_report.md": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/E_REVIEWED/e_reviewed_render_report.md",
+    "e_reviewed_validation.json": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/E_REVIEWED/e_reviewed_validation.json"
+  },
+  "event_count": 51,
+  "phrase_count": 10,
+  "wav_metadata": {
+    "channels": 2,
+    "sample_width_bytes": 3,
+    "sample_rate_hz": 44100,
+    "frame_count": 5445891,
+    "duration_s": 123.489592
+  },
+  "abcd_wav_metadata": {
+    "A_LITERAL": {
+      "channels": 2,
+      "sample_width_bytes": 3,
+      "sample_rate_hz": 44100,
+      "duration_s": 141.721111
+    },
+    "B_PHRASE": {
+      "channels": 2,
+      "sample_width_bytes": 3,
+      "sample_rate_hz": 44100,
+      "duration_s": 147.805329
+    },
+    "C_QINIST_STYLE": {
+      "channels": 2,
+      "sample_width_bytes": 3,
+      "sample_rate_hz": 44100,
+      "duration_s": 135.60458
+    },
+    "D_TEACHING_DIAGNOSTIC": {
+      "channels": 2,
+      "sample_width_bytes": 3,
+      "sample_rate_hz": 44100,
+      "duration_s": 167.573492
+    }
+  },
+  "wav_format_matches_abcd": true,
+  "p09_validation": {
+    "source_version": "A_LITERAL",
+    "source_takes": [
+      "T057",
+      "T059",
+      "T061",
+      "T062"
+    ],
+    "context_take_used": false,
+    "context_audio_trimmed": false,
+    "context_audio_trimmed_reason": "not needed because E uses A_LITERAL atomic/current-event takes rather than T060/T071 context takes",
+    "duplicate_context_audio_avoided": true,
+    "blocked_context_takes": [
+      "T060",
+      "T071"
+    ]
+  },
+  "p10_validation": {
+    "source_version": "A_LITERAL",
+    "source_takes": [
+      "T064",
+      "T065",
+      "T066",
+      "T067",
+      "T068",
+      "T069",
+      "T070"
+    ],
+    "first_note_extended": true,
+    "notes_2_3_4_grouped": true,
+    "notes_5_6_7_individually_slowed": true,
+    "issue_type_good_treated_as_positive_preference": true
+  },
+  "safety": {
+    "experimental_render": true,
+    "production_grade": false,
+    "experimental_only": true,
+    "not_sample_assets": true,
+    "not_recording_segments": true,
+    "not_ml_training_data": true,
+    "not_score_events_update": true,
+    "not_gesture_templates_update": true,
+    "no_downloads_touched_by_generator": true,
+    "no_r2_frontend_touched_by_generator": true,
+    "a_b_c_d_original_files_unchanged": true,
+    "e_generated_only_in_e_outputs": true,
+    "latest_e_generated_counts": {
+      "r2_review_state.latest.json": {
+        "true": 0,
+        "false_mentions": 1
+      },
+      "render_revision_log.yaml": {
+        "true": 0,
+        "false_mentions": 13
+      },
+      "preferred_version_summary.csv": {
+        "true": 0,
+        "false_mentions": 1
+      },
+      "listening_review.csv": {
+        "true": 0,
+        "false_mentions": 1
+      },
+      "render_phrase_alignment.csv": {
+        "true": 0,
+        "false_mentions": 1
+      },
+      "phrase_boundary_decision.csv": {
+        "true": 0,
+        "false_mentions": 1
+      }
+    },
+    "normalization_gain": 0.9610206428949268,
+    "mix_peak_before_normalization": 8554275,
+    "e_generated_true_scope": "E output validation/report only; latest draft remains e_generated=false."
+  },
+  "abcd_sha256_before": {
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/A_LITERAL/XWC_BAIYA_A_LITERAL.wav": "1096498668425ceafaa09f09f7f11503758e28bd66d382b234ea4c1ae773bf8a",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/A_LITERAL/render_event_alignment.A_LITERAL.csv": "cb0f195702a37e0611772c6ea5c1b29ff321265956c3c94945a90a1ddb7287a3",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/B_PHRASE/XWC_BAIYA_B_PHRASE.wav": "b795f78202b474b0e7ff1c070b94e4083f974e96ef4857cba0fba2ea3021d7e3",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/B_PHRASE/render_event_alignment.B_PHRASE.csv": "b664a85d5ce77604d3beeace82be73b89a3cc9fb2ab3efda946aaf1fbf482c7f",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/C_QINIST_STYLE/XWC_BAIYA_C_QINIST_STYLE.wav": "47cc4c39cb2b8827fdf4a640bfa1b98cc80fdcd34c2c5188837378c7989f3c9c",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/C_QINIST_STYLE/render_event_alignment.C_QINIST_STYLE.csv": "fbdc117f6e50ddab906468ddee727f107c373a6f93599d20cc24701d807d3ca5",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/XWC_BAIYA_D_TEACHING_DIAGNOSTIC.wav": "68309f3e0d5bc154b6895e49df2989bf7a311e1731f4b02ba6fbec35f5c6c39f",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/render_event_alignment.D_TEACHING_DIAGNOSTIC.csv": "f0c7215aff348e04f81a070f9a54f7b96ce290aa151bb4b9a1f753eedea95e68"
+  },
+  "abcd_sha256_after": {
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/A_LITERAL/XWC_BAIYA_A_LITERAL.wav": "1096498668425ceafaa09f09f7f11503758e28bd66d382b234ea4c1ae773bf8a",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/A_LITERAL/render_event_alignment.A_LITERAL.csv": "cb0f195702a37e0611772c6ea5c1b29ff321265956c3c94945a90a1ddb7287a3",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/B_PHRASE/XWC_BAIYA_B_PHRASE.wav": "b795f78202b474b0e7ff1c070b94e4083f974e96ef4857cba0fba2ea3021d7e3",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/B_PHRASE/render_event_alignment.B_PHRASE.csv": "b664a85d5ce77604d3beeace82be73b89a3cc9fb2ab3efda946aaf1fbf482c7f",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/C_QINIST_STYLE/XWC_BAIYA_C_QINIST_STYLE.wav": "47cc4c39cb2b8827fdf4a640bfa1b98cc80fdcd34c2c5188837378c7989f3c9c",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/C_QINIST_STYLE/render_event_alignment.C_QINIST_STYLE.csv": "fbdc117f6e50ddab906468ddee727f107c373a6f93599d20cc24701d807d3ca5",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/XWC_BAIYA_D_TEACHING_DIAGNOSTIC.wav": "68309f3e0d5bc154b6895e49df2989bf7a311e1731f4b02ba6fbec35f5c6c39f",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/render_event_alignment.D_TEACHING_DIAGNOSTIC.csv": "f0c7215aff348e04f81a070f9a54f7b96ce290aa151bb4b9a1f753eedea95e68"
+  },
+  "e_generated": true
+}

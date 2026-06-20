@@ -304,8 +304,8 @@ class R1DraftResponse(BaseModel):
     production_grade: bool = False
 
 
-R2VersionCode = Literal["A", "B", "C", "D", "E"]
-R2VersionRole = Literal["literal_dapu", "phrase_dapu", "qinist_style_dapu", "teaching_diagnostic_dapu", "reviewed_dapu"]
+R2VersionCode = Literal["A", "B", "C", "D", "E", "F"]
+R2VersionRole = Literal["literal_dapu", "phrase_dapu", "qinist_style_dapu", "teaching_diagnostic_dapu", "reviewed_dapu", "final_reviewed_dapu"]
 R2BoundarySource = Literal["human_marked", "imported", "derived", "mock"]
 R2BoundaryConfidence = Literal["high", "medium", "low", "unclear"]
 R2ReviewStatus = Literal["candidate", "accepted", "unclear", "needs_retake", "rejected"]
@@ -368,6 +368,12 @@ class R2RenderVersion(R2SafetyMixin):
     duration_s: float
     waveform_preview: list[float] = Field(default_factory=list)
     mock_render: bool = True
+    status: str = "available"
+    playable: bool = True
+    alignment_available: bool = True
+    source: str = ""
+    generation_allowed: bool = True
+    disabled_reason: str = ""
 
 
 class R2Section(BaseModel):

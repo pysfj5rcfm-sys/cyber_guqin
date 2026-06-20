@@ -183,3 +183,16 @@ per_phrase_plan:
       tail_policy: "尾音按源片段自然 tail_end 保留，相邻句以气口间距承接。"
       boundary_policy: "下一句入句前保留气口；phrase_play_end 取下一句 first_attack - 0.03s，末句使用自然尾音。"
       expected_effect: "第一音延展，2/3/4 紧凑成组，5/6/7 分别拉开；good 作为正向偏好。"
+
+
+t008_safety_audit:
+  original_e_used_t008: true
+  unsafe_take_id: "T008"
+  unsafe_reason: "T008 标注目标为散挑六，实际弹成散挑七，用户已排除。"
+  original_archived_to: "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/E_REVIEWED_ORIGINAL_BEFORE_T008_FIX"
+  replacement_event_id: "XWC_P02_N03"
+  replacement_take_id: "T014"
+  replacement_sample_id: "RECD2_BATCH02_T014"
+  replacement_source_audio: "02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/split_preview/batch02/clean_previews/T014_clean_preview.wav"
+  replacement_priority: "exact_baiya_san_tiao_6"
+  current_e_t008_safe: true

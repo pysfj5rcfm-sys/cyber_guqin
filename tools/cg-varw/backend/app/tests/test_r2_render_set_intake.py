@@ -22,15 +22,29 @@ class R2RenderSetIntakeTests(unittest.TestCase):
 
             versions = store.list_versions(render_sets[0].render_set_id)
             self.assertEqual(
-                ["A_LITERAL", "B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC"],
+                ["A_LITERAL", "B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC", "E_REVIEWED", "F_FINAL_REVIEWED"],
                 [item.version_id for item in versions],
             )
-            self.assertNotIn("E_REVIEWED", [item.version_id for item in versions])
+            e_version = next(item for item in versions if item.version_id == "E_REVIEWED")
+            f_version = next(item for item in versions if item.version_id == "F_FINAL_REVIEWED")
+            self.assertFalse(e_version.mock_render)
+            self.assertTrue(e_version.playable)
+            self.assertEqual("review_ready", e_version.status)
+            self.assertTrue(e_version.alignment_available)
+            self.assertTrue(e_version.audio_path.endswith("XWC_BAIYA_E_REVIEWED.wav"))
+            self.assertFalse(f_version.playable)
+            self.assertEqual("pending", f_version.status)
+            self.assertEqual("", f_version.audio_path)
+            self.assertFalse(f_version.alignment_available)
+            self.assertFalse(f_version.generation_allowed)
+            self.assertEqual("future_from_e_review", f_version.source)
             self.assertTrue(all(not item.mock_render for item in versions))
-            self.assertTrue(all(item.audio_path.endswith(".wav") for item in versions))
+            self.assertTrue(all(item.audio_path.endswith(".wav") for item in versions if item.playable))
 
             alignments = store.list_alignments(render_sets[0].render_set_id)
-            self.assertEqual(40, len(alignments))
+            self.assertEqual(50, len(alignments))
+            self.assertEqual(10, len([item for item in alignments if item.version_id == "E_REVIEWED"]))
+            self.assertFalse([item for item in alignments if item.version_id == "F_FINAL_REVIEWED"])
             p09_c = next(item for item in alignments if item.phrase_id == "XWC_P09_LOCAL_PHRASE" and item.version_id == "C_QINIST_STYLE")
             self.assertEqual("imported", p09_c.boundary_source)
             self.assertEqual("candidate", p09_c.review_status)
@@ -41,18 +55,23 @@ class R2RenderSetIntakeTests(unittest.TestCase):
             self.assertEqual(R2_INTAKE_ROOT, store.get_r2_intake_root())
             self.assertEqual(R2_RENDER_ROOT, store.get_r2_render_root())
             audio_path = store.resolve_version_audio_path("R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e", "A_LITERAL")
+            e_audio_path = store.resolve_version_audio_path("R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e", "E_REVIEWED")
+            with self.assertRaisesRegex(ValueError, "F_FINAL_REVIEWED.*尚未生成"):
+                store.resolve_version_audio_path("R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e", "F_FINAL_REVIEWED")
 
         self.assertTrue(audio_path.exists())
         self.assertEqual("XWC_BAIYA_A_LITERAL.wav", audio_path.name)
+        self.assertTrue(e_audio_path.exists())
+        self.assertEqual("XWC_BAIYA_E_REVIEWED.wav", e_audio_path.name)
 
     def test_prefers_playback_safe_phrase_alignment_seed(self):
         with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": str(R2_RENDER_ROOT), "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
             self.assertEqual(R2_INTAKE_ROOT / "r2_phrase_alignment_seed.playback_safe.csv", store.get_r2_alignment_seed_path())
             alignments = store.list_alignments("R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e")
 
-        self.assertEqual(40, len(alignments))
+        self.assertEqual(50, len(alignments))
         non_final = [item for item in alignments if item.next_phrase_first_attack_s is not None]
-        self.assertEqual(36, len(non_final))
+        self.assertEqual(45, len(non_final))
         self.assertTrue(all(item.phrase_play_end_s <= item.next_phrase_first_attack_s for item in non_final))
         self.assertTrue(all(item.phrase_tail_end_s >= item.phrase_play_end_s for item in non_final))
 

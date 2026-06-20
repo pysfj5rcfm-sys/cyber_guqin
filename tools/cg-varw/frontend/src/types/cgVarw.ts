@@ -139,7 +139,7 @@ export interface ReviewUnit {
   sequence: number;
   unit_status: ReviewUnitStatus;
   review_status?: ReviewStatus;
-  source: "asr_candidate" | "manual";
+  source: "asr_candidate" | "manual" | "exported_csv";
   takeId: string;
   boundary_type?: "next_slate_start" | "file_end";
   boundary_unlinked?: boolean;
@@ -180,13 +180,14 @@ export interface VersionRow {
   selected?: boolean;
 }
 
-export type R2VersionCode = "A" | "B" | "C" | "D" | "E";
+export type R2VersionCode = "A" | "B" | "C" | "D" | "E" | "F";
 export type R2VersionRole =
   | "literal_dapu"
   | "phrase_dapu"
   | "qinist_style_dapu"
   | "teaching_diagnostic_dapu"
-  | "reviewed_dapu";
+  | "reviewed_dapu"
+  | "final_reviewed_dapu";
 export type R2BoundarySource = "human_marked" | "imported" | "derived" | "mock";
 export type R2BoundaryConfidence = "high" | "medium" | "low" | "unclear";
 export type R2IssueType =
@@ -274,6 +275,12 @@ export interface RenderVersion extends R2SafetyFlags {
   duration_s: number;
   waveform_preview?: number[];
   mock_render: boolean;
+  status?: "available" | "review_ready" | "pending" | string;
+  playable?: boolean;
+  alignment_available?: boolean;
+  source?: string;
+  generation_allowed?: boolean;
+  disabled_reason?: string;
 }
 
 export interface RenderPhraseAlignment {

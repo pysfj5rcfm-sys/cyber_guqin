@@ -5,6 +5,7 @@ import json
 import math
 import os
 import shutil
+import wave
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -297,6 +298,7 @@ def save_project_review_draft(render_set_id: str, payload: dict[str, Any]) -> di
     state["gpt_review_pending"] = True
     state["e_revision_plan_generated"] = False
     state["e_generated"] = False
+    apply_f_pending_flags(state)
     counts = canonical_state_counts(state)
     state.update(counts)
     state.setdefault("provenance", {})
@@ -350,6 +352,7 @@ def export_project_review_draft_csv(render_set_id: str) -> dict[str, Any]:
     state["gpt_review_pending"] = True
     state["e_revision_plan_generated"] = False
     state["e_generated"] = False
+    apply_f_pending_flags(state)
     state["provenance"] = state.get("provenance", {}) if isinstance(state.get("provenance"), dict) else {}
     state["provenance"].update({
         "exported_csv_to_project_dir": True,
@@ -430,6 +433,9 @@ def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir:
         "gpt_review_pending": True,
         "e_revision_plan_generated": False,
         "e_generated": False,
+        "f_generation_pending": True,
+        "f_input_source": "E_REVIEWED_USER_REVIEW",
+        "f_not_generated": True,
         "experimental_render": True,
         "production_grade": False,
         "provenance": {
@@ -444,6 +450,7 @@ def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir:
         **SAFETY,
     }
     state = canonicalize_project_review_state(state, archived_at=restored_at)
+    apply_f_pending_flags(state)
     state.update(canonical_state_counts(state))
     latest_dir = r2_review_draft_latest_dir()
     archive_dir = r2_review_draft_archive_dir(restored_at)
@@ -574,6 +581,38 @@ def get_r2_phrase_lock_path() -> Path | None:
     return matches[0] if matches else None
 
 
+def e_reviewed_dir() -> Path | None:
+    render_root = get_r2_render_root()
+    candidates = []
+    if render_root:
+        candidates.append(render_root / "E_REVIEWED")
+    intake_root = get_r2_intake_root()
+    if intake_root:
+        candidates.append(intake_root.parent / "E_REVIEWED")
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0] if candidates else None
+
+
+def e_reviewed_audio_path() -> Path | None:
+    e_dir = e_reviewed_dir()
+    return e_dir / "XWC_BAIYA_E_REVIEWED.wav" if e_dir else None
+
+
+def e_reviewed_alignment_path() -> Path | None:
+    e_dir = e_reviewed_dir()
+    return e_dir / "render_event_alignment.E_REVIEWED.csv" if e_dir else None
+
+
+def wav_duration_s(path: Path) -> float:
+    try:
+        with wave.open(str(path), "rb") as handle:
+            return round(handle.getnframes() / float(handle.getframerate()), 6)
+    except (wave.Error, OSError, ZeroDivisionError):
+        return 0.0
+
+
 def discover_r2_intake_index_path() -> Path | None:
     matches = sorted(REPO_ROOT.glob("04_outputs/*/*/abcd_experimental_render/r2_review_intake/r2_render_set_index.json"))
     return matches[0] if matches else None
@@ -618,9 +657,58 @@ def versions_from_intake(intake: dict[str, Any]) -> list[R2RenderVersion]:
                 duration_s=float(item.get("duration_s") or 0),
                 waveform_preview=mock_waveform(120, index),
                 mock_render=False,
+                status="available",
+                playable=True,
+                alignment_available=True,
+                source="abcd_experimental_render",
+                generation_allowed=False,
                 **SAFETY,
             )
         )
+    e_audio_path = e_reviewed_audio_path()
+    e_alignment_path = e_reviewed_alignment_path()
+    if e_audio_path and e_audio_path.exists():
+        versions.append(
+            R2RenderVersion(
+                render_set_id=intake["render_set_id"],
+                version_id="E_REVIEWED",
+                version_code="E",
+                version_label_zh="听评修订版",
+                version_label_en="Reviewed Dapu",
+                version_role="reviewed_dapu",
+                audio_path=str(e_audio_path),
+                duration_s=wav_duration_s(e_audio_path),
+                waveform_preview=mock_waveform(120, len(versions)),
+                mock_render=False,
+                status="review_ready",
+                playable=True,
+                alignment_available=bool(e_alignment_path and e_alignment_path.exists()),
+                source="e_reviewed_generation",
+                generation_allowed=False,
+                **SAFETY,
+            )
+        )
+    versions.append(
+        R2RenderVersion(
+            render_set_id=intake["render_set_id"],
+            version_id="F_FINAL_REVIEWED",
+            version_code="F",
+            version_label_zh="F_FINAL_REVIEWED（待 E 听评后生成）",
+            version_label_en="Final Reviewed Pending",
+            version_role="final_reviewed_dapu",
+            audio_path="",
+            duration_s=0.0,
+            waveform_preview=[],
+            mock_render=False,
+            status="pending",
+            playable=False,
+            alignment_available=False,
+            source="future_from_e_review",
+            generation_allowed=False,
+            disabled_reason="F_FINAL_REVIEWED 尚未生成，请先完成 E_REVIEWED 听评。",
+            **SAFETY,
+        )
+    )
     return versions
 
 
@@ -637,6 +725,13 @@ def resolve_version_audio_path(render_set_id: str, version_id: str) -> Path:
             if path != allowed_root and allowed_root not in path.parents:
                 raise ValueError(f"R2 version audio outside repository: {version_id}")
             return path
+    if version_id == "E_REVIEWED":
+        path = e_reviewed_audio_path()
+        if not path or not path.exists() or not path.is_file():
+            raise ValueError("E_REVIEWED audio not found")
+        return path
+    if version_id == "F_FINAL_REVIEWED":
+        raise ValueError("F_FINAL_REVIEWED 尚未生成，请先完成 E_REVIEWED 听评。")
     raise ValueError(f"unknown R2 version_id: {version_id}")
 
 
@@ -728,7 +823,64 @@ def alignments_from_intake(intake: dict[str, Any]) -> list[R2RenderPhraseAlignme
                     notes="Imported from XWC ABCD r2_review_intake; review not completed.",
                 )
             )
+    rows.extend(e_reviewed_phrase_alignments(intake))
     return rows
+
+
+def e_reviewed_phrase_alignments(intake: dict[str, Any]) -> list[R2RenderPhraseAlignment]:
+    path = e_reviewed_alignment_path()
+    if not path or not path.exists():
+        return []
+    phrase_rows: dict[str, list[dict[str, str]]] = {}
+    phrase_order: list[str] = []
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle):
+            phrase_id = row.get("phrase_id", "")
+            if not phrase_id:
+                continue
+            if phrase_id not in phrase_rows:
+                phrase_order.append(phrase_id)
+            phrase_rows.setdefault(phrase_id, []).append(row)
+
+    result: list[R2RenderPhraseAlignment] = []
+    first_attack_by_phrase = {
+        phrase_id: parse_optional_float(rows[0].get("target_attack_time_s"))
+        for phrase_id, rows in phrase_rows.items()
+        if rows
+    }
+    for index, phrase_id in enumerate(phrase_order):
+        rows = phrase_rows[phrase_id]
+        play_start = parse_optional_float(rows[0].get("phrase_play_start_s")) or 0.0
+        play_end = max(parse_optional_float(row.get("phrase_play_end_s")) or play_start for row in rows)
+        tail_end = max(play_end, max(parse_optional_float(row.get("phrase_tail_end_s")) or play_end for row in rows))
+        next_phrase_id = phrase_order[index + 1] if index + 1 < len(phrase_order) else ""
+        next_attack = first_attack_by_phrase.get(next_phrase_id) if next_phrase_id else None
+        event_ids = [row.get("event_id", "") for row in rows if row.get("event_id")]
+        result.append(
+            R2RenderPhraseAlignment(
+                render_set_id=intake["render_set_id"],
+                version_id="E_REVIEWED",
+                phrase_id=phrase_id,
+                section_id=rows[0].get("section_id", ""),
+                event_range=f"{event_ids[0]}_to_{event_ids[-1]}" if event_ids else "",
+                start_s=play_start,
+                end_s=tail_end,
+                phrase_play_start_s=play_start,
+                phrase_play_end_s=play_end,
+                phrase_tail_end_s=tail_end,
+                next_phrase_first_attack_s=next_attack,
+                phrase_end_policy="E_REVIEWED phrase boundary from event alignment; render_anchor based.",
+                breath_points_s=[round(play_start + (play_end - play_start) * 0.38, 3)],
+                cadence_point_s=round(play_start + (play_end - play_start) * 0.82, 3),
+                boundary_source="imported",
+                boundary_confidence="medium",
+                review_status="candidate",
+                reviewer=None,
+                reviewed_at=None,
+                notes="Imported from E_REVIEWED render_event_alignment; F_FINAL_REVIEWED remains pending.",
+            )
+        )
+    return result
 
 
 def load_phrase_lock_rows() -> dict[str, dict[str, str]]:
@@ -1124,6 +1276,19 @@ def canonicalize_project_review_state(state: dict[str, Any], *, archived_at: str
     return next_state
 
 
+def apply_f_pending_flags(state: dict[str, Any]) -> None:
+    state["f_generation_pending"] = True
+    state["f_input_source"] = "E_REVIEWED_USER_REVIEW"
+    state["f_not_generated"] = True
+    provenance = state.get("provenance") if isinstance(state.get("provenance"), dict) else {}
+    provenance.update({
+        "f_generation_pending": True,
+        "f_input_source": "E_REVIEWED_USER_REVIEW",
+        "f_not_generated": True,
+    })
+    state["provenance"] = provenance
+
+
 def canonical_review_key(item: dict[str, Any], raw_key: str = "") -> str:
     phrase_id = str(item.get("phrase_id") or "")
     version_id = str(item.get("version_id") or item.get("active_version_id") or "")
@@ -1442,6 +1607,9 @@ def string_safety_flags() -> dict[str, str]:
         "gpt_review_pending": "true",
         "e_revision_plan_generated": "false",
         "e_generated": "false",
+        "f_generation_pending": "true",
+        "f_input_source": "E_REVIEWED_USER_REVIEW",
+        "f_not_generated": "true",
         "experimental_render": "true",
         "review_only": "true",
         "production_grade": "false",
@@ -1538,6 +1706,9 @@ def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: 
         "gpt_review_pending": True,
         "e_revision_plan_generated": False,
         "e_generated": False,
+        "f_generation_pending": True,
+        "f_input_source": "E_REVIEWED_USER_REVIEW",
+        "f_not_generated": True,
         "experimental_render": True,
         "production_grade": False,
         **SAFETY,

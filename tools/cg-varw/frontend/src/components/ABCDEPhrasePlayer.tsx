@@ -23,7 +23,7 @@ export function ABCDEPhrasePlayer({
     <section className="version-switcher" aria-label="版本切换">
       <div className="section-title-row">
         <h2>版本切换 / 当前 phrase 对齐</h2>
-        <span>点击 A/B/C/D 切换 active version；偏好版本单独设置</span>
+        <span>A/B/C/D/E 可听评；F 为待 E 听评后生成的预留槽位</span>
       </div>
       <div className="version-list">
         <div className="version-head">
@@ -33,20 +33,21 @@ export function ABCDEPhrasePlayer({
           const alignment = alignmentByVersion.get(version.version_id);
           const selected = selectedVersionId === version.version_id;
           const preferred = preferredVersionId === version.version_id;
+          const pending = version.playable === false || version.status === "pending" || version.alignment_available === false;
           return (
-            <div key={version.version_id} className={`version-row ${selected ? "selected" : ""}`} data-version-id={version.version_id}>
-              <button className="version-main-button" title={version.version_id} onClick={() => onSelect(version.version_id)}>
+            <div key={version.version_id} className={`version-row ${selected ? "selected" : ""} ${pending ? "disabled" : ""}`} data-version-id={version.version_id}>
+              <button className="version-main-button" title={version.disabled_reason || version.version_id} aria-disabled={pending} onClick={() => onSelect(version.version_id)}>
                 <b className={`version-letter letter-${version.version_code}`}>{version.version_code}</b>
-                <span>{version.version_code} {version.version_label_zh}<small>{version.version_label_en}</small></span>
+                <span>{version.version_code} {version.version_label_zh}<small>{pending ? "待 E 听评后生成" : version.version_label_en}</small></span>
               </button>
-              <button className="version-range-button" title={version.version_id} onClick={() => onSelect(version.version_id)}>
-                {formatAlignment(alignment)}
+              <button className="version-range-button" title={version.disabled_reason || version.version_id} aria-disabled={pending} onClick={() => onSelect(version.version_id)}>
+                {pending ? "pending / disabled" : formatAlignment(alignment)}
               </button>
-              <span className={`unit-status status-${statusTone(alignment?.review_status)}`} title={alignment?.review_status ?? "candidate"}>{statusLabel(alignment?.review_status)}</span>
+              <span className={`unit-status status-${pending ? "muted" : statusTone(alignment?.review_status)}`} title={pending ? "pending" : alignment?.review_status ?? "candidate"}>{pending ? "待生成" : statusLabel(alignment?.review_status)}</span>
               <span>{preferred ? <b className="preferred-chip">偏好</b> : <span className="muted-inline">-</span>}</span>
               <span className="row-actions">
-                <button onClick={() => onSetPreferred(version.version_id)}>设为偏好</button>
-                <button onClick={() => onPlay(version.version_id)}>播放</button>
+                <button aria-disabled={pending} onClick={() => onSetPreferred(version.version_id)}>{pending ? "不可设偏好" : "设为偏好"}</button>
+                <button aria-disabled={pending} onClick={() => onPlay(version.version_id)}>{pending ? "待生成" : "播放"}</button>
               </span>
             </div>
           );

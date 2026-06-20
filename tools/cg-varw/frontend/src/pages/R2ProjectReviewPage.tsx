@@ -87,7 +87,8 @@ type ProgressOverview = {
   preferredVersionCount: number;
 };
 
-const VERSION_ORDER = ["A_LITERAL", "B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC", "D_TEACHING"];
+const VERSION_ORDER = ["A_LITERAL", "B_PHRASE", "C_QINIST_STYLE", "D_TEACHING_DIAGNOSTIC", "D_TEACHING", "E_REVIEWED", "F_FINAL_REVIEWED"];
+const F_PENDING_MESSAGE = "F_FINAL_REVIEWED 尚未生成，请先完成 E_REVIEWED 听评。";
 const reviewStatuses: MarkerReviewStatus[] = ["candidate", "accepted", "unclear", "needs_retake", "rejected"];
 
 export function R2ProjectReviewPage() {
@@ -96,10 +97,10 @@ export function R2ProjectReviewPage() {
   const [dataSource, setDataSource] = useState<DataSource>("mock");
   const [backendStatus, setBackendStatus] = useState("正在尝试读取 R2 真实 render set API...");
   const [renderSet, setRenderSet] = useState<RenderSet>(mockRenderSet);
-  const [versions, setVersions] = useState<RenderVersion[]>(abcdVersions(mockVersions));
+  const [versions, setVersions] = useState<RenderVersion[]>(reviewVersions(mockVersions));
   const [sections, setSections] = useState<Section[]>(mockSections);
   const [phrases, setPhrases] = useState<PhraseDefinition[]>(mockPhrases);
-  const [alignments, setAlignments] = useState<RenderPhraseAlignment[]>(abcdAlignments(mockAlignments));
+  const [alignments, setAlignments] = useState<RenderPhraseAlignment[]>(reviewAlignments(mockAlignments));
   const [activePhraseId, setActivePhraseId] = useState(mockPhrases[2]?.phrase_id ?? mockPhrases[0]?.phrase_id ?? "");
   const [activeVersionId, setActiveVersionId] = useState("B_PHRASE");
   const [preferredVersionByPhrase, setPreferredVersionByPhrase] = useState<PreferredVersionByPhrase>(() => {
@@ -108,14 +109,14 @@ export function R2ProjectReviewPage() {
   });
   const [markersByKey, setMarkersByKey] = useState<MarkersByKey>({});
   const [selectedMarkerId, setSelectedMarkerId] = useState("");
-  const [boundaryStatusByKey, setBoundaryStatusByKey] = useState<BoundaryStatusByKey>(() => makeBoundaryStatusByKey(abcdAlignments(mockAlignments)));
+  const [boundaryStatusByKey, setBoundaryStatusByKey] = useState<BoundaryStatusByKey>(() => makeBoundaryStatusByKey(reviewAlignments(mockAlignments)));
   const [listeningReviewByKey, setListeningReviewByKey] = useState<ListeningReviewByKey>({});
   const [exportGroup, setExportGroup] = useState("全部");
   const [lastActionMessage, setLastActionMessage] = useState("R2 模拟数据兜底已就绪");
   const [projectDraftStatus, setProjectDraftStatus] = useState("none: 工程目录 draft 尚未加载");
   const [playback, setPlayback] = useState<R2PlaybackState>({
     isPlaying: false,
-    currentTimeS: phrasePlayStart(getAlignmentFromList(abcdAlignments(mockAlignments), mockPhrases[2]?.phrase_id ?? mockPhrases[0]?.phrase_id ?? "", "B_PHRASE")),
+    currentTimeS: phrasePlayStart(getAlignmentFromList(reviewAlignments(mockAlignments), mockPhrases[2]?.phrase_id ?? mockPhrases[0]?.phrase_id ?? "", "B_PHRASE")),
     playbackRate: 1,
     loopPhrase: false,
     playMode: "idle",
@@ -138,8 +139,8 @@ export function R2ProjectReviewPage() {
           return undefined;
         });
         if (cancelled) return;
-        const filteredVersions = abcdVersions(nextVersions);
-        const filteredAlignments = abcdAlignments(nextAlignments);
+        const filteredVersions = reviewVersions(nextVersions);
+        const filteredAlignments = reviewAlignments(nextAlignments);
         const firstPhrase = phraseData.phrases[0]?.phrase_id ?? "";
         const firstVersion = filteredVersions[0]?.version_id ?? "A_LITERAL";
         const nextMarkers = makeMarkersForAlignment(getAlignmentFromList(filteredAlignments, firstPhrase, firstVersion), phraseData.sections);
@@ -166,7 +167,7 @@ export function R2ProjectReviewPage() {
           playingVersionId: undefined,
         }));
         setBackendStatus(`后端真实 R2 render set 已加载：${real.render_set_id}`);
-        setLastActionMessage("已接入真实 ABCD render set；E_REVIEWED 未启用。");
+        setLastActionMessage("已接入真实 A/B/C/D/E render set；F_FINAL_REVIEWED 为待生成槽位。");
         if (latestDraft?.has_draft && latestDraft.draft) {
           applyProjectDraft(latestDraft.draft, {
             versions: filteredVersions,
@@ -182,8 +183,8 @@ export function R2ProjectReviewPage() {
         }
       } catch (error) {
         if (cancelled) return;
-        const fallbackVersions = abcdVersions(mockVersions);
-        const fallbackAlignments = abcdAlignments(mockAlignments);
+        const fallbackVersions = reviewVersions(mockVersions);
+        const fallbackAlignments = reviewAlignments(mockAlignments);
         const fallbackPhraseId = mockPhrases[2]?.phrase_id ?? mockPhrases[0]?.phrase_id ?? "";
         const fallbackVersionId = fallbackVersions.find((version) => version.version_id === "B_PHRASE")?.version_id ?? fallbackVersions[0]?.version_id ?? "";
         const nextMarkers = makeMarkersForAlignment(getAlignmentFromList(fallbackAlignments, fallbackPhraseId, fallbackVersionId), mockSections);
@@ -273,6 +274,11 @@ export function R2ProjectReviewPage() {
   }
 
   function selectVersion(versionId: string) {
+    if (!isReviewableVersionId(versions, versionId)) {
+      setLastActionMessage(pendingVersionMessage(versions, versionId));
+      stopPlayback();
+      return;
+    }
     stopPlayback();
     const nextMarkers = ensureMarkerState(activePhraseId, versionId);
     const alignment = getAlignmentFromList(reviewedAlignments, activePhraseId, versionId);
@@ -284,11 +290,20 @@ export function R2ProjectReviewPage() {
   }
 
   function setPreferred(versionId: string) {
+    if (!isReviewableVersionId(versions, versionId)) {
+      setLastActionMessage(pendingVersionMessage(versions, versionId));
+      return;
+    }
     setPreferredVersionByPhrase((current) => ({ ...current, [activePhraseId]: versionId }));
     setLastActionMessage(`已选择偏好版本 · ${activePhraseId} · ${versionLabel(versions, versionId)}`);
   }
 
   function playVersion(versionId: string) {
+    if (!isPlayableVersionId(versions, versionId)) {
+      setLastActionMessage(pendingVersionMessage(versions, versionId));
+      stopPlayback();
+      return;
+    }
     const alignment = getAlignmentFromList(reviewedAlignments, activePhraseId, versionId);
     if (versionId !== activeVersionId) {
       const nextMarkers = ensureMarkerState(activePhraseId, versionId);
@@ -383,7 +398,7 @@ export function R2ProjectReviewPage() {
     }));
     const statusSource = adapted.draftSource === "restored_from_exports" ? "restored_from_exports" : "engineering_dir_latest";
     setProjectDraftStatus(`${statusSource}: ${context.sourceLabel}${context.path ? `：${context.path}` : ""}${context.savedAt ? ` · ${context.savedAt}` : ""}`);
-    setLastActionMessage(`${context.sourceLabel}；未生成 E。`);
+    setLastActionMessage(`${context.sourceLabel}；F_FINAL_REVIEWED 尚未生成。`);
   }
 
   async function saveProjectDraft() {
@@ -440,7 +455,7 @@ export function R2ProjectReviewPage() {
       const exportPath = readString(data.latest_dir) || response.path || "";
       const files = response.files ?? [];
       setProjectDraftStatus(`engineering_dir_latest: ${exportPath}`);
-      setLastActionMessage(`CSV 已导出到工程目录：${exportPath} · files=${files.length}；未生成 E。`);
+      setLastActionMessage(`CSV 已导出到工程目录：${exportPath} · files=${files.length}；F_FINAL_REVIEWED 未生成。`);
     } catch (error) {
       setLastActionMessage(`工程目录 CSV 导出失败：${error instanceof Error ? error.message : String(error)}`);
     }
@@ -466,6 +481,9 @@ export function R2ProjectReviewPage() {
       gpt_review_pending: true,
       e_revision_plan_generated: false,
       e_generated: false,
+      f_generation_pending: true,
+      f_input_source: "E_REVIEWED_USER_REVIEW",
+      f_not_generated: true,
       experimental_render: true,
       provenance: {
         saved_from_frontend: true,
@@ -476,14 +494,20 @@ export function R2ProjectReviewPage() {
   }
 
   function startPlayback(queue: string[], playMode: R2PlayMode, startTime: number, message: string) {
-    const firstVersionId = queue[0] ?? activeVersionId;
+    const playableQueue = queue.filter((versionId) => isPlayableVersionId(versions, versionId));
+    const firstVersionId = playableQueue[0] ?? activeVersionId;
+    if (!playableQueue.length) {
+      setLastActionMessage(pendingVersionMessage(versions, queue[0] ?? activeVersionId));
+      stopPlayback();
+      return;
+    }
     clearStopTimer();
     setPlayback((current) => ({
       ...current,
       isPlaying: true,
       currentTimeS: Number(startTime.toFixed(3)),
       playMode,
-      sequenceQueue: queue,
+      sequenceQueue: playableQueue,
       currentQueueIndex: 0,
       playingVersionId: firstVersionId,
     }));
@@ -494,7 +518,7 @@ export function R2ProjectReviewPage() {
   function startAudioIfAvailable(versionId: string, startTime: number) {
     const version = versions.find((item) => item.version_id === versionId);
     const audio = audioRef.current;
-    if (!audio || !version?.audio_url || version.mock_render) return;
+    if (!audio || !version?.audio_url || version.mock_render || version.playable === false) return;
     audio.src = version.audio_url;
     audio.playbackRate = playback.playbackRate;
     audio.currentTime = startTime;
@@ -546,14 +570,19 @@ export function R2ProjectReviewPage() {
   }
 
   function playSequenceABCD() {
-    const queue = versions.map((version) => version.version_id);
+    const queue = versions.filter(isPlayableVersion).map((version) => version.version_id);
     const first = getAlignmentFromList(reviewedAlignments, activePhraseId, queue[0]);
-    startPlayback(queue, "sequence_abcd", phrasePlayStart(first), `顺播 A→B→C→D：${activePhraseId}`);
+    startPlayback(queue, "sequence_abcd", phrasePlayStart(first), `顺播 A→B→C→D→E：${activePhraseId}`);
   }
 
   function playPreferredVersion() {
     if (!preferredVersionId) {
       setLastActionMessage(`当前 phrase 尚未设置偏好版本：${activePhraseId}`);
+      stopPlayback();
+      return;
+    }
+    if (!isPlayableVersionId(versions, preferredVersionId)) {
+      setLastActionMessage(pendingVersionMessage(versions, preferredVersionId));
       stopPlayback();
       return;
     }
@@ -662,7 +691,7 @@ export function R2ProjectReviewPage() {
               onNextPhrase={() => jumpPhrase(1)}
             />
             <div className="playback-bar r2-playback-bar">
-              <button onClick={playSequenceABCD}>顺播 A→B→C→D</button>
+              <button onClick={playSequenceABCD}>顺播 A→B→C→D→E</button>
               <button onClick={playPreferredVersion}>播放偏好版本</button>
               <button onClick={playABCompare}>A/B 对比播放</button>
               <strong className="clock">{phrasePlayStart(activeAlignment).toFixed(3)}<small>- {phrasePlayEnd(activeAlignment).toFixed(3)}s · 尾音参考 {phraseTailEnd(activeAlignment).toFixed(3)}s</small></strong>
@@ -716,7 +745,7 @@ export function R2ProjectReviewPage() {
         />
       }
       statusText={backendStatus}
-      detailText={`${lastActionMessage} · ${projectDraftStatus} · API base: ${apiBase} · E 未生成`}
+      detailText={`${lastActionMessage} · ${projectDraftStatus} · API base: ${apiBase} · F 未生成`}
     />
   );
 }
@@ -897,7 +926,7 @@ function RightPanel({
           <span>当前 preferred：<b>{preferredVersionId ? versionLabel(versions, preferredVersionId) : "未设置偏好"}</b></span>
           <select className="cg-select" value={preferredVersionId ?? ""} onChange={(event) => event.target.value && setPreferredVersionId(event.target.value)}>
             <option value="">未设置偏好</option>
-            {versions.map((version) => <option key={version.version_id} value={version.version_id}>{version.version_code} {version.version_label_zh}</option>)}
+            {versions.filter(isReviewableVersion).map((version) => <option key={version.version_id} value={version.version_id}>{version.version_code} {version.version_label_zh}</option>)}
           </select>
         </div>
         <div className="review-subsection">
@@ -978,14 +1007,33 @@ function R2PlaybackControls({
   );
 }
 
-function abcdVersions(items: RenderVersion[]) {
-  const filtered = items.filter((version) => version.version_code !== "E" && version.version_id !== "E_REVIEWED");
-  return filtered.sort((a, b) => VERSION_ORDER.indexOf(a.version_id) - VERSION_ORDER.indexOf(b.version_id));
+function reviewVersions(items: RenderVersion[]) {
+  return [...items].sort((a, b) => VERSION_ORDER.indexOf(a.version_id) - VERSION_ORDER.indexOf(b.version_id));
 }
 
-function abcdAlignments(items: RenderPhraseAlignment[]) {
+function reviewAlignments(items: RenderPhraseAlignment[]) {
   const allowedVersions = new Set(VERSION_ORDER);
   return items.filter((alignment) => allowedVersions.has(alignment.version_id));
+}
+
+function isPlayableVersion(version?: RenderVersion) {
+  return Boolean(version && version.playable !== false && version.status !== "pending" && (version.mock_render || version.audio_url));
+}
+
+function isReviewableVersion(version?: RenderVersion) {
+  return Boolean(version && version.playable !== false && version.status !== "pending" && version.alignment_available !== false);
+}
+
+function isPlayableVersionId(versions: RenderVersion[], versionId: string) {
+  return isPlayableVersion(versions.find((version) => version.version_id === versionId));
+}
+
+function isReviewableVersionId(versions: RenderVersion[], versionId: string) {
+  return isReviewableVersion(versions.find((version) => version.version_id === versionId));
+}
+
+function pendingVersionMessage(versions: RenderVersion[], versionId: string) {
+  return versions.find((version) => version.version_id === versionId)?.disabled_reason || F_PENDING_MESSAGE;
 }
 
 function isRealRenderSet(item: RenderSet) {
@@ -1171,12 +1219,12 @@ function deriveProgressOverview(
 }
 
 function filterPreferredVersions(preferred: PreferredVersionByPhrase, versions: RenderVersion[]) {
-  const allowed = new Set(versions.map((version) => version.version_id));
+  const allowed = new Set(versions.filter(isReviewableVersion).map((version) => version.version_id));
   return Object.fromEntries(Object.entries(preferred).filter(([, versionId]) => allowed.has(versionId)));
 }
 
 function filterReviewDrafts(drafts: ListeningReviewByKey, versions: RenderVersion[]) {
-  const allowed = new Set(versions.map((version) => version.version_id));
+  const allowed = new Set(versions.filter(isReviewableVersion).map((version) => version.version_id));
   return Object.fromEntries(Object.entries(drafts).filter(([, draft]) => allowed.has(draft.version_id)));
 }
 

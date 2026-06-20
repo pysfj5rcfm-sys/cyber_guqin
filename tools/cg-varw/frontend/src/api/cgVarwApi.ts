@@ -67,7 +67,7 @@ export async function loadR2Versions(renderSetId: string) {
   const data = await getJson<R2VersionsResponse>(`/api/r2/render-sets/${encodeURIComponent(renderSetId)}/versions`);
   return data.versions.map((version) => ({
     ...version,
-    audio_url: version.mock_render ? undefined : r2VersionAudioUrl(renderSetId, version.version_id),
+    audio_url: version.mock_render || version.playable === false || !version.audio_path ? undefined : r2VersionAudioUrl(renderSetId, version.version_id),
   }));
 }
 

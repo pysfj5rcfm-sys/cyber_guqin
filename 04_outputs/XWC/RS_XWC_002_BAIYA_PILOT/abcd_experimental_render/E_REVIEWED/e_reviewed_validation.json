@@ -40,11 +40,12 @@
   "event_count": 51,
   "phrase_count": 10,
   "wav_metadata": {
+    "duration_s": 122.8578,
+    "sample_rate_hz": 44100,
     "channels": 2,
     "sample_width_bytes": 3,
-    "sample_rate_hz": 44100,
-    "frame_count": 5445891,
-    "duration_s": 123.489592
+    "bit_depth": 24,
+    "frame_count": 5418029
   },
   "abcd_wav_metadata": {
     "A_LITERAL": {
@@ -169,5 +170,19 @@
     "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/XWC_BAIYA_D_TEACHING_DIAGNOSTIC.wav": "68309f3e0d5bc154b6895e49df2989bf7a311e1731f4b02ba6fbec35f5c6c39f",
     "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/D_TEACHING_DIAGNOSTIC/render_event_alignment.D_TEACHING_DIAGNOSTIC.csv": "f0c7215aff348e04f81a070f9a54f7b96ce290aa151bb4b9a1f753eedea95e68"
   },
-  "e_generated": true
+  "e_generated": true,
+  "t008_audit": {
+    "original_e_used_t008": true,
+    "unsafe_take_id": "T008",
+    "unsafe_reason": "T008 标注目标为散挑六，实际弹成散挑七，用户已排除。",
+    "original_archived_to": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/E_REVIEWED_ORIGINAL_BEFORE_T008_FIX",
+    "replacement_event_id": "XWC_P02_N03",
+    "replacement_take_id": "T014",
+    "replacement_sample_id": "RECD2_BATCH02_T014",
+    "replacement_source_audio": "02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/split_preview/batch02/clean_previews/T014_clean_preview.wav",
+    "replacement_priority": "exact_baiya_san_tiao_6",
+    "current_e_t008_safe": true,
+    "original_e_wav_sha256": "2e5b2b545e0b54e3d5a937a6e7bef45f4b20ad2d7dc2882a7dde1280f0bd3d6c",
+    "current_e_wav_sha256": "2b0e4271928e4af71c57df2f70efb8300f42caf9e93797cdfbb6868b2fce752a"
+  }
 }

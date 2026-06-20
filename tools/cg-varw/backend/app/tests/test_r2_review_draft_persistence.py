@@ -147,8 +147,46 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
             self.assertEqual(8, len(result["files"]))
             for file_name in store.expected_export_files():
                 self.assertTrue((latest_dir / file_name).exists(), file_name)
-            self.assertEqual(40, count_csv_rows(latest_dir / "render_phrase_alignment.csv"))
-            self.assertEqual(40, count_csv_rows(latest_dir / "phrase_boundary_decision.csv"))
+            self.assertEqual(50, count_csv_rows(latest_dir / "render_phrase_alignment.csv"))
+            self.assertEqual(50, count_csv_rows(latest_dir / "phrase_boundary_decision.csv"))
+            self.assertEqual(1, yaml_rows(latest_dir / "render_revision_log.yaml"))
+
+    def test_e_review_persists_as_future_f_input_without_generating_f(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            payload = {
+                "render_set_id": RENDER_SET_ID,
+                "data_source": "api",
+                "review_status": "draft",
+                "active_phrase_id": "XWC_P02_LOCAL_PHRASE",
+                "active_version_id": "E_REVIEWED",
+                "listeningReviewByKey": {
+                    "XWC_P02_LOCAL_PHRASE:E_REVIEWED": {
+                        "phrase_id": "XWC_P02_LOCAL_PHRASE",
+                        "version_id": "E_REVIEWED",
+                        "issue_type": ["too_slow"],
+                        "severity": "medium",
+                        "comment": "整体建议调整为 1.5 倍速",
+                        "suggested_revision": "未来 F 按 E 听评统一收束",
+                        "reviewer": "human",
+                        "updated_at": "2026-06-20T02:00:00.000Z",
+                    }
+                },
+                "preferredVersionByPhrase": {"XWC_P02_LOCAL_PHRASE": "E_REVIEWED"},
+            }
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                store.save_project_review_draft(RENDER_SET_ID, payload)
+                result = store.export_project_review_draft_csv(RENDER_SET_ID)
+                latest = store.load_project_review_draft_latest(RENDER_SET_ID)
+
+            latest_dir = Path(result["latest_dir"])
+            state = latest["draft"]
+            self.assertTrue(state["f_generation_pending"])
+            self.assertEqual("E_REVIEWED_USER_REVIEW", state["f_input_source"])
+            self.assertTrue(state["f_not_generated"])
+            self.assertFalse(state["e_generated"])
+            self.assertIn("XWC_P02_LOCAL_PHRASE:E_REVIEWED", state["listeningReviewByKey"])
+            self.assertEqual("E_REVIEWED", state["preferredVersionByPhrase"]["XWC_P02_LOCAL_PHRASE"])
+            self.assertEqual(50, count_csv_rows(latest_dir / "render_phrase_alignment.csv"))
             self.assertEqual(1, yaml_rows(latest_dir / "render_revision_log.yaml"))
 
     def test_restore_from_user_export_zip_prefers_listening_review_and_warns_on_partial_alignment(self):

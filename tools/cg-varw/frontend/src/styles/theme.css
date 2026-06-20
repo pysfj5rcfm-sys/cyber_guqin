@@ -166,12 +166,14 @@ th { color: #8fa4aa; font-weight: 500; background: rgba(255,255,255,0.025); }
 .version-head { min-height: 34px; color: var(--muted); background: rgba(255,255,255,0.035); font-size: 12px; }
 .version-row { width: 100%; border-left: 0; border-right: 0; border-bottom: 0; border-radius: 0; text-align: left; }
 .version-row.selected { outline: 1px solid var(--cyan); outline-offset: -1px; background: rgba(23,210,201,0.12); }
+.version-row.disabled { opacity: 0.68; background: rgba(255,255,255,0.012); }
+.version-row [aria-disabled="true"] { color: var(--muted); border-color: transparent; cursor: not-allowed; }
 .version-main-button, .version-range-button { width: 100%; min-height: 42px; border-color: transparent; background: transparent; text-align: left; }
 .version-main-button { display: flex; align-items: center; gap: 10px; padding: 5px 6px; }
 .version-main-button:hover, .version-range-button:hover { border-color: rgba(23,210,201,0.42); background: rgba(23,210,201,0.08); }
 .version-range-button { padding: 5px 8px; color: #cbd9dc; }
 .version-letter { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid currentColor; border-radius: 7px; font-size: 18px; }
-.letter-A { color: var(--blue); } .letter-B { color: var(--green); } .letter-C { color: var(--gold); } .letter-D { color: var(--purple); } .letter-E { color: var(--cyan); }
+.letter-A { color: var(--blue); } .letter-B { color: var(--green); } .letter-C { color: var(--gold); } .letter-D { color: var(--purple); } .letter-E { color: var(--cyan); } .letter-F { color: var(--muted); }
 .mini-wave { height: 16px; background: repeating-linear-gradient(90deg, rgba(23,210,201,0.2) 0 3px, rgba(23,210,201,0.9) 3px 5px, transparent 5px 8px); clip-path: polygon(0 45%, 8% 60%, 16% 25%, 27% 72%, 38% 40%, 47% 62%, 57% 28%, 66% 76%, 75% 52%, 86% 64%, 100% 45%); }
 .stars { color: #ffd16a; letter-spacing: 1px; }
 .kebab { text-align: right; font-size: 24px; }
