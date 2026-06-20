@@ -91,6 +91,7 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
 
             state_path = Path(result["state_path"])
             state = json.loads(state_path.read_text(encoding="utf-8"))
+            manifest = json.loads((state_path.parent / "r2_review_state_manifest.json").read_text(encoding="utf-8"))
 
         self.assertTrue(latest["has_draft"])
         self.assertEqual(28, result["restored_review_count"])
@@ -103,6 +104,14 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
         self.assertFalse(state["e_generated"])
         self.assertFalse(state["e_revision_plan_generated"])
         self.assertIn("XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE", state["listeningReviewByKey"])
+        self.assertTrue(manifest["restored_from_exports"])
+        self.assertEqual(28, manifest["review_count"])
+        self.assertEqual(10, manifest["phrase_count"])
+        self.assertEqual(10, manifest["preferred_version_count"])
+        self.assertEqual(10, manifest["suggested_revision_count"])
+        self.assertEqual(3, manifest["warning_count"])
+        self.assertEqual("XWC_P01_LOCAL_PHRASE", manifest["active_phrase_id"])
+        self.assertEqual("C_QINIST_STYLE", manifest["active_version_id"])
 
 
 if __name__ == "__main__":

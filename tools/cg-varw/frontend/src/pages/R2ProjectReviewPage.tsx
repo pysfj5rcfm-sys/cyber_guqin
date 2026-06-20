@@ -15,6 +15,7 @@ import {
   saveR2ReviewDraftToProject,
 } from "../api/cgVarwApi";
 import { buildR2PreviewTables, type R2PreviewTable } from "../utils/r2ExportPayload";
+import { adaptR2ProjectDraftState } from "../utils/r2ReviewDraftState";
 import {
   defaultListeningReview,
   issueOptions,
@@ -129,7 +130,7 @@ export function R2ProjectReviewPage() {
   const [listeningReviewByKey, setListeningReviewByKey] = useState<ListeningReviewByKey>({});
   const [exportGroup, setExportGroup] = useState("全部");
   const [lastActionMessage, setLastActionMessage] = useState("R2 模拟数据兜底已就绪");
-  const [projectDraftStatus, setProjectDraftStatus] = useState("工程目录 draft 尚未加载");
+  const [projectDraftStatus, setProjectDraftStatus] = useState("none: 工程目录 draft 尚未加载");
   const [playback, setPlayback] = useState<R2PlaybackState>({
     isPlaying: false,
     currentTimeS: phrasePlayStart(getAlignmentFromList(abcdAlignments(mockAlignments), mockPhrases[2]?.phrase_id ?? mockPhrases[0]?.phrase_id ?? "", "B_PHRASE")),
@@ -364,7 +365,7 @@ export function R2ProjectReviewPage() {
     updateReviewDraft({ issue_type: issueType });
   }
 
-  function saveDraft() {
+  function saveBrowserDraftTemp() {
     const nextMarkersByKey = { ...markersByKey, [activeMarkerStateKey]: markers };
     const payload: R2DraftPayloadWithReviewState = {
       render_set_id: renderSet.render_set_id,
@@ -384,7 +385,8 @@ export function R2ProjectReviewPage() {
       ...r2SafetyFlags,
     };
     localStorage.setItem(draftKey, JSON.stringify(payload));
-    setLastActionMessage("draft 已保存到浏览器；未生成 E 或 e_revision_plan。");
+    setProjectDraftStatus("browser_fallback_temp: 仅临时保存到浏览器");
+    setLastActionMessage("后端保存未执行，仅临时保存到浏览器；刷新/换浏览器可能丢失。未生成 E。");
   }
 
   function loadDraft(options: { silentMissing?: boolean; source?: "auto" | "manual" } = {}) {
@@ -437,16 +439,17 @@ export function R2ProjectReviewPage() {
     path?: string;
     savedAt?: string;
   }) {
-    const preferred = readRecord(rawDraft.preferredVersionByPhrase) ?? readRecord(rawDraft.preferred_version_by_phrase) ?? {};
-    const reviews = readRecord(rawDraft.listeningReviewByKey) ?? readRecord(rawDraft.listening_review_by_key) ?? {};
-    const boundary = readRecord(rawDraft.boundaryStatusByKey) ?? readRecord(rawDraft.boundary_status_by_key) ?? {};
-    const markerState = readRecord(rawDraft.markersByKey) ?? readRecord(rawDraft.markers_by_key) ?? {};
-    const phraseId = phraseIdInList(readString(rawDraft.active_phrase_id) || readString(rawDraft.selected_phrase_id), context.phrases);
-    const versionId = versionIdInList(readString(rawDraft.active_version_id) || readString(rawDraft.selected_version_id), context.versions);
+    const adapted = adaptR2ProjectDraftState(rawDraft, { versions: context.versions, phrases: context.phrases });
+    const preferred = adapted.preferredVersionByPhrase;
+    const reviews = adapted.listeningReviewByKey;
+    const boundary = adapted.boundaryStatusByKey;
+    const markerState = adapted.markersByKey;
+    const phraseId = adapted.activePhraseId;
+    const versionId = adapted.activeVersionId;
     const alignment = getAlignmentFromList(context.alignments, phraseId, versionId);
     const key = phraseVersionKey(phraseId, versionId);
     const restoredMarkers = (markerState[key] as PhraseMarker[] | undefined) ?? makeMarkersForAlignment(alignment, context.sections);
-    const selectedMarker = readString(rawDraft.selected_marker_id);
+    const selectedMarker = adapted.selectedMarkerId;
     setActivePhraseId(phraseId);
     setActiveVersionId(versionId);
     setPreferredVersionByPhrase(filterPreferredVersions(preferred as PreferredVersionByPhrase, context.versions));
@@ -463,7 +466,8 @@ export function R2ProjectReviewPage() {
       currentQueueIndex: undefined,
       playingVersionId: undefined,
     }));
-    setProjectDraftStatus(`${context.sourceLabel}${context.path ? `：${context.path}` : ""}${context.savedAt ? ` · ${context.savedAt}` : ""}`);
+    const statusSource = adapted.draftSource === "restored_from_exports" ? "restored_from_exports" : "engineering_dir_latest";
+    setProjectDraftStatus(`${statusSource}: ${context.sourceLabel}${context.path ? `：${context.path}` : ""}${context.savedAt ? ` · ${context.savedAt}` : ""}`);
     setLastActionMessage(`${context.sourceLabel}；未生成 E。`);
   }
 
@@ -475,9 +479,9 @@ export function R2ProjectReviewPage() {
     try {
       const response = await saveR2ReviewDraftToProject(renderSet.render_set_id, buildProjectReviewStatePayload());
       const data = response.data ?? {};
-      const latestDir = readString(data.latest_dir) || response.path || "";
-      setProjectDraftStatus(`已保存工程目录 draft：${latestDir}`);
-      setLastActionMessage("已保存听评草稿到工程目录 latest/archive；未生成 E。");
+      const statePath = readString(data.state_path) || response.path || "";
+      setProjectDraftStatus(`engineering_dir_latest: ${statePath}`);
+      setLastActionMessage(`已保存到工程目录：${statePath}`);
     } catch (error) {
       setLastActionMessage(`工程目录 draft 保存失败：${error instanceof Error ? error.message : String(error)}`);
     }
@@ -788,8 +792,8 @@ export function R2ProjectReviewPage() {
           review={activeReviewDraft}
           updateReview={updateReviewDraft}
           toggleIssue={toggleIssue}
-          saveDraft={saveDraft}
-          loadDraft={loadDraft}
+          saveDraft={saveProjectDraft}
+          loadDraft={loadProjectDraftLatest}
           boundaryStatus={boundaryStatus}
           setBoundaryStatus={updateBoundaryStatus}
         />
@@ -811,7 +815,7 @@ export function R2ProjectReviewPage() {
           preferredVersionId={preferredVersionId}
           boundaryStatus={boundaryStatus}
           onGroupChange={setExportGroup}
-          onSaveDraft={saveDraft}
+          onSaveDraft={saveBrowserDraftTemp}
           onSaveProjectDraft={saveProjectDraft}
           onLoadProjectDraft={loadProjectDraftLatest}
           onRestoreProjectDraft={restoreProjectDraftFromExports}

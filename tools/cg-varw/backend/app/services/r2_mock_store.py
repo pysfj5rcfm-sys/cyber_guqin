@@ -796,7 +796,15 @@ def r2_review_draft_latest_dir() -> Path:
 
 def r2_review_draft_archive_dir(saved_at: str | None = None) -> Path:
     stamp = safe_timestamp(saved_at or now())
-    return r2_review_draft_root() / "archive" / stamp
+    archive_root = r2_review_draft_root() / "archive"
+    candidate = archive_root / stamp
+    if not candidate.exists():
+        return candidate
+    for index in range(2, 100):
+        candidate = archive_root / f"{stamp}_{index:02d}"
+        if not candidate.exists():
+            return candidate
+    return archive_root / f"{stamp}_{now_path()}"
 
 
 def default_restore_export_dir() -> Path:
@@ -1150,16 +1158,26 @@ def table_to_yaml(table: dict[str, Any]) -> str:
 
 
 def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: list[Path], archive_dir: Path) -> Path:
+    provenance = state.get("provenance", {}) if isinstance(state.get("provenance"), dict) else {}
     manifest = {
         "render_set_id": state.get("render_set_id"),
         "saved_at": state.get("saved_at") or state.get("provenance", {}).get("restored_at"),
+        "created_at": state.get("saved_at") or provenance.get("restored_at") or now(),
+        "restored_at": provenance.get("restored_at", ""),
+        "restored_from_exports": provenance.get("restored_from_exports", False),
+        "source_export_dir": provenance.get("source_export_dir", ""),
         "review_count": state.get("review_count", 0),
         "phrase_count": state.get("phrase_count", 0),
         "preferred_version_count": state.get("preferred_version_count", 0),
+        "suggested_revision_count": state.get("suggested_revision_count", 0),
+        "issue_count": state.get("issue_count", 0),
+        "warning_count": len(provenance.get("restore_warnings", [])),
+        "active_phrase_id": state.get("active_phrase_id", ""),
+        "active_version_id": state.get("active_version_id", ""),
         "latest_dir": str(latest_dir),
         "archive_dir": str(archive_dir),
         "files": [path.name for path in files],
-        "restore_warnings": state.get("provenance", {}).get("restore_warnings", []),
+        "restore_warnings": provenance.get("restore_warnings", []),
         "gpt_review_pending": True,
         "e_revision_plan_generated": False,
         "e_generated": False,

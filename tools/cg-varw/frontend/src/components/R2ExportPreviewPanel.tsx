@@ -88,7 +88,7 @@ export function R2ExportPreviewPanel({
           <button className="primary-action" onClick={onSaveProjectDraft}>保存草稿到工程目录</button>
           <button onClick={onLoadProjectDraft}>从工程目录重新加载草稿</button>
           <button onClick={onRestoreProjectDraft}>从导出文件恢复草稿</button>
-          <button onClick={onSaveDraft}>保存浏览器 draft</button>
+          <button onClick={onSaveDraft}>临时保存到浏览器</button>
           <button onClick={onExportAll}>导出全部</button>
           <button onClick={onExportPhrase}>导出当前 phrase</button>
         </div>
