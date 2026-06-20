@@ -89,8 +89,8 @@ export function R2ExportPreviewPanel({
           <button onClick={onLoadProjectDraft}>从工程目录重新加载草稿</button>
           <button onClick={onRestoreProjectDraft}>从导出文件恢复草稿</button>
           <button onClick={onSaveDraft}>临时保存到浏览器</button>
-          <button onClick={onExportAll}>导出全部</button>
-          <button onClick={onExportPhrase}>导出当前 phrase</button>
+          <button onClick={onExportAll}>导出全部副本</button>
+          <button onClick={onExportPhrase}>导出当前 phrase 副本</button>
         </div>
       </div>
       <div className="export-tabs" role="tablist" aria-label="导出分类">
@@ -121,7 +121,7 @@ export function R2ExportPreviewPanel({
                   <td>{row.updatedAt}</td>
                   <td className="row-actions export-table-action-column">
                     <button title="预览该文件" onClick={() => previewFile(row)}>预览</button>
-                    <button title="下载该文件" onClick={() => onDownloadFile?.(row.file)}>下载</button>
+                    <button title="下载副本；不作为工程草稿权威来源" onClick={() => onDownloadFile?.(row.file)}>下载副本</button>
                     <button title="显示详情">详情</button>
                   </td>
                 </tr>

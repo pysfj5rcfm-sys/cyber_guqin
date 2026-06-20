@@ -256,15 +256,31 @@ def load_project_review_draft_latest(render_set_id: str) -> dict[str, Any]:
     _require_render_set_or_intake(render_set_id)
     path = r2_review_draft_latest_dir() / "r2_review_state.latest.json"
     if not path.exists():
-        return {"render_set_id": render_set_id, "has_draft": False, **SAFETY}
+        return {
+            "render_set_id": render_set_id,
+            "has_draft": False,
+            "draft_source": "none",
+            "canonical_state_path": str(path),
+            **SAFETY,
+        }
     with path.open("r", encoding="utf-8") as handle:
         draft = json.load(handle)
+    manifest_path = path.parent / "r2_review_state_manifest.json"
+    manifest = read_json_if_exists(manifest_path)
+    counts = canonical_state_counts(draft)
     return {
         "render_set_id": render_set_id,
         "has_draft": True,
+        "draft_source": "engineering_dir_latest",
+        "canonical_state_path": str(path),
         "path": str(path),
         "latest_dir": str(path.parent),
-        "saved_at": draft.get("saved_at") or draft.get("provenance", {}).get("restored_at"),
+        "saved_at": draft.get("saved_at") or draft.get("provenance", {}).get("restored_at") or manifest.get("saved_at", ""),
+        "review_count": counts["review_count"],
+        "phrase_count": counts["phrase_count"],
+        "preferred_version_count": counts["preferred_version_count"],
+        "suggested_revision_count": counts["suggested_revision_count"],
+        "manifest": manifest,
         "draft": draft,
         **SAFETY,
     }
@@ -281,10 +297,16 @@ def save_project_review_draft(render_set_id: str, payload: dict[str, Any]) -> di
     state["gpt_review_pending"] = True
     state["e_revision_plan_generated"] = False
     state["e_generated"] = False
-    state["review_count"] = len(state.get("listeningReviewByKey", {}) or state.get("listening_review_by_key", {}))
-    state["preferred_version_count"] = len(state.get("preferredVersionByPhrase", {}) or state.get("preferred_version_by_phrase", {}))
+    counts = canonical_state_counts(state)
+    state.update(counts)
     state.setdefault("provenance", {})
-    state["provenance"].update({"saved_from_frontend": True, "saved_at": saved_at})
+    state["provenance"].update({
+        "saved_from_frontend": True,
+        "saved_at": saved_at,
+        "canonical_source": "r2_review_state.latest.json",
+        "current_page_load_source": "engineering_dir_latest",
+        "no_downloads_policy": True,
+    })
 
     latest_dir = r2_review_draft_latest_dir()
     archive_dir = r2_review_draft_archive_dir(saved_at)
@@ -293,7 +315,7 @@ def save_project_review_draft(render_set_id: str, payload: dict[str, Any]) -> di
 
     state_path = latest_dir / "r2_review_state.latest.json"
     write_json(state_path, state)
-    export_tables = state.get("export_tables") if isinstance(state.get("export_tables"), dict) else {}
+    export_tables = export_tables_from_canonical_state(render_set_id, state)
     files = write_export_tables(latest_dir, export_tables)
     manifest = write_review_state_manifest(latest_dir, state, files, archive_dir)
     copy_latest_to_archive(latest_dir, archive_dir)
@@ -305,7 +327,9 @@ def save_project_review_draft(render_set_id: str, payload: dict[str, Any]) -> di
         "manifest_path": str(manifest),
         "files": [str(path) for path in files],
         "review_count": state["review_count"],
+        "phrase_count": state["phrase_count"],
         "preferred_version_count": state["preferred_version_count"],
+        "suggested_revision_count": state["suggested_revision_count"],
         **SAFETY,
     }
 
@@ -374,6 +398,7 @@ def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir:
         },
         **SAFETY,
     }
+    state.update(canonical_state_counts(state))
     latest_dir = r2_review_draft_latest_dir()
     archive_dir = r2_review_draft_archive_dir(restored_at)
     latest_dir.mkdir(parents=True, exist_ok=True)
@@ -381,16 +406,7 @@ def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir:
     state_path = latest_dir / "r2_review_state.latest.json"
     write_json(state_path, state)
 
-    tables = restored_export_tables(
-        render_set_id=render_set_id,
-        review_rows=review_rows,
-        preferred_rows=preferred_rows,
-        issue_rows=issue_rows,
-        structure_rows=structure_rows,
-        alignments=all_alignments,
-        boundary_status=boundary_status,
-        preferred=preferred,
-    )
+    tables = export_tables_from_canonical_state(render_set_id, state)
     files = write_export_tables(latest_dir, tables)
     manifest = write_review_state_manifest(latest_dir, state, files, archive_dir)
     copy_latest_to_archive(latest_dir, archive_dir)
@@ -972,6 +988,109 @@ def restored_export_tables(
     }
 
 
+def export_tables_from_canonical_state(render_set_id: str, state: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    review_rows = review_rows_from_state(render_set_id, state)
+    preferred = preferred_versions_from_state(state, review_rows)
+    boundary_status = boundary_status_from_state(state)
+    alignments = list_alignments(render_set_id)
+    return {
+        "phrase_structure_review.yaml": table_from_rows("phrase_structure_review.yaml", phrase_structure_rows(render_set_id)),
+        "render_phrase_alignment.csv": render_phrase_alignment_table(alignments),
+        "phrase_boundary_decision.csv": phrase_boundary_decision_table(alignments, boundary_status),
+        "listening_review.csv": table_from_rows("listening_review.csv", ensure_draft_flags(review_rows)),
+        "listening_review.yaml": table_from_rows("listening_review.yaml", ensure_draft_flags(review_rows)),
+        "preferred_version_summary.csv": table_from_rows("preferred_version_summary.csv", preferred_rows_from_map(render_set_id, preferred)),
+        "issue_list.csv": table_from_rows("issue_list.csv", issue_rows_from_reviews(review_rows)),
+        "render_revision_log.yaml": table_from_rows("render_revision_log.yaml", revision_rows_from_reviews(review_rows, preferred)),
+    }
+
+
+def canonical_state_counts(state: dict[str, Any]) -> dict[str, int]:
+    reviews = review_items_from_state(state)
+    preferred = state.get("preferredVersionByPhrase") or state.get("preferred_version_by_phrase") or {}
+    if not isinstance(preferred, dict):
+        preferred = {}
+    return {
+        "review_count": len(reviews),
+        "phrase_count": len({str(item.get("phrase_id", "")) for item in reviews if item.get("phrase_id")}),
+        "preferred_version_count": len([value for value in preferred.values() if value]),
+        "suggested_revision_count": len([item for item in reviews if str(item.get("suggested_revision", "")).strip()]),
+        "issue_count": sum(len(item.get("issue_type") or []) for item in reviews if isinstance(item.get("issue_type"), list)),
+    }
+
+
+def review_items_from_state(state: dict[str, Any]) -> list[dict[str, Any]]:
+    reviews = state.get("listeningReviewByKey") or state.get("listening_review_by_key") or {}
+    if not isinstance(reviews, dict):
+        return []
+    return [item for item in reviews.values() if isinstance(item, dict)]
+
+
+def review_rows_from_state(render_set_id: str, state: dict[str, Any]) -> list[dict[str, str]]:
+    phrase_data = list_phrases(render_set_id)
+    phrases = {phrase.phrase_id: phrase for phrase in phrase_data["phrases"]}
+    preferred = state.get("preferredVersionByPhrase") or state.get("preferred_version_by_phrase") or {}
+    if not isinstance(preferred, dict):
+        preferred = {}
+    rows = []
+    for item in review_items_from_state(state):
+        phrase_id = str(item.get("phrase_id", ""))
+        version_id = str(item.get("version_id") or item.get("active_version_id") or "")
+        if not phrase_id or not version_id:
+            continue
+        phrase = phrases.get(phrase_id)
+        rows.append(
+            {
+                "review_id": f"R2_REVIEW_{phrase_id}_{version_id}",
+                "render_set_id": render_set_id,
+                "phrase_id": phrase_id,
+                "section_id": phrase.section_id if phrase else "",
+                "event_range": phrase.event_range if phrase else "",
+                "active_version_id": version_id,
+                "preferred_version_id": str(item.get("preferred_version_id") or preferred.get(phrase_id, "")),
+                "quick_judgement": "" if item.get("quick_judgement") is None else str(item.get("quick_judgement", "")),
+                "issue_type": json.dumps(item.get("issue_type") or [], ensure_ascii=False),
+                "severity": str(item.get("severity") or "low"),
+                "comment": str(item.get("comment", "")),
+                "suggested_revision": str(item.get("suggested_revision", "")),
+                "reviewer": str(item.get("reviewer") or "human"),
+                "reviewed_at": str(item.get("reviewed_at") or ""),
+                "updated_at": str(item.get("updated_at") or item.get("reviewed_at") or ""),
+            }
+        )
+    return rows
+
+
+def preferred_versions_from_state(state: dict[str, Any], review_rows: list[dict[str, str]]) -> dict[str, str]:
+    preferred = state.get("preferredVersionByPhrase") or state.get("preferred_version_by_phrase") or {}
+    if not isinstance(preferred, dict):
+        preferred = {}
+    result = {str(key): str(value) for key, value in preferred.items() if value}
+    for row in review_rows:
+        phrase_id = row.get("phrase_id", "")
+        version_id = row.get("preferred_version_id", "")
+        if phrase_id and version_id and phrase_id not in result:
+            result[phrase_id] = version_id
+    return result
+
+
+def boundary_status_from_state(state: dict[str, Any]) -> dict[str, str]:
+    boundary = state.get("boundaryStatusByKey") or state.get("boundary_status_by_key") or {}
+    if not isinstance(boundary, dict):
+        return {}
+    result: dict[str, str] = {}
+    for key, value in boundary.items():
+        if not value:
+            continue
+        raw_key = str(key)
+        result[raw_key] = str(value)
+        if "::" in raw_key:
+            result[raw_key.replace("::", ":", 1)] = str(value)
+        elif ":" in raw_key:
+            result[raw_key.replace(":", "::", 1)] = str(value)
+    return result
+
+
 def phrase_structure_rows(render_set_id: str) -> list[dict[str, str]]:
     phrase_data = list_phrases(render_set_id)
     rows = []
@@ -1018,13 +1137,14 @@ def phrase_boundary_decision_table(alignments: list[R2RenderPhraseAlignment], bo
     rows = []
     for item in alignments:
         key = f"{item.phrase_id}:{item.version_id}"
+        alt_key = f"{item.phrase_id}::{item.version_id}"
         rows.append(
             {
                 "render_set_id": item.render_set_id,
                 "version_id": item.version_id,
                 "phrase_id": item.phrase_id,
                 "section_id": item.section_id,
-                "boundary_status": boundary_status.get(key, item.review_status),
+                "boundary_status": boundary_status.get(key) or boundary_status.get(alt_key) or item.review_status,
                 "phrase_start_s": f"{item.start_s:.3f}",
                 "phrase_end_s": f"{item.end_s:.3f}",
                 "phrase_play_start_s": f"{(item.phrase_play_start_s if item.phrase_play_start_s is not None else item.start_s):.3f}",
@@ -1139,7 +1259,7 @@ def write_table_csv(path: Path, table: dict[str, Any]) -> Path:
                 if key not in columns:
                     columns.append(key)
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
+        writer = csv.DictWriter(handle, fieldnames=columns, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({column: row.get(column, "") for column in columns})
@@ -1159,25 +1279,38 @@ def table_to_yaml(table: dict[str, Any]) -> str:
 
 def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: list[Path], archive_dir: Path) -> Path:
     provenance = state.get("provenance", {}) if isinstance(state.get("provenance"), dict) else {}
+    counts = canonical_state_counts(state)
+    canonical_state_path = latest_dir / "r2_review_state.latest.json"
     manifest = {
+        "canonical_source": "r2_review_state.latest.json",
+        "canonical_state_path": str(canonical_state_path),
+        "generated_exports_path": str(latest_dir),
+        "active_render_set_id": state.get("render_set_id"),
         "render_set_id": state.get("render_set_id"),
         "saved_at": state.get("saved_at") or state.get("provenance", {}).get("restored_at"),
+        "generated_at": now(),
         "created_at": state.get("saved_at") or provenance.get("restored_at") or now(),
         "restored_at": provenance.get("restored_at", ""),
         "restored_from_exports": provenance.get("restored_from_exports", False),
         "source_export_dir": provenance.get("source_export_dir", ""),
-        "review_count": state.get("review_count", 0),
-        "phrase_count": state.get("phrase_count", 0),
-        "preferred_version_count": state.get("preferred_version_count", 0),
-        "suggested_revision_count": state.get("suggested_revision_count", 0),
-        "issue_count": state.get("issue_count", 0),
+        "review_count": counts["review_count"],
+        "phrase_count": counts["phrase_count"],
+        "preferred_version_count": counts["preferred_version_count"],
+        "suggested_revision_count": counts["suggested_revision_count"],
+        "issue_count": counts["issue_count"],
+        "current_page_load_source": provenance.get("current_page_load_source") or "engineering_dir_latest",
+        "stale_sources_quarantined": provenance.get("stale_sources_quarantined", []),
+        "stale_sources_deleted": provenance.get("stale_sources_deleted", []),
+        "stale_sources_moved": provenance.get("stale_sources_moved", []),
         "warning_count": len(provenance.get("restore_warnings", [])),
         "active_phrase_id": state.get("active_phrase_id", ""),
         "active_version_id": state.get("active_version_id", ""),
         "latest_dir": str(latest_dir),
         "archive_dir": str(archive_dir),
+        "archive_path": str(archive_dir),
         "files": [path.name for path in files],
         "restore_warnings": provenance.get("restore_warnings", []),
+        "no_downloads_policy": True,
         "gpt_review_pending": True,
         "e_revision_plan_generated": False,
         "e_generated": False,
@@ -1188,6 +1321,14 @@ def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: 
     path = latest_dir / "r2_review_state_manifest.json"
     write_json(path, manifest)
     return path
+
+
+def read_json_if_exists(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8") as handle:
+        data = json.load(handle)
+    return data if isinstance(data, dict) else {}
 
 
 def copy_latest_to_archive(latest_dir: Path, archive_dir: Path) -> None:
@@ -1214,7 +1355,7 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> Path:
             if key not in fields:
                 fields.append(key)
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     return path

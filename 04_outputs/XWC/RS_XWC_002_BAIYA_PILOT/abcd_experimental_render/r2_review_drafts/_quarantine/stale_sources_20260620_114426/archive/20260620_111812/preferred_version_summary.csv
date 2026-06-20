@@ -1,0 +1,11 @@
+﻿render_set_id,phrase_id,section_id,section_label,preferred_version_id,active_version_id,review_status,gpt_review_pending,e_revision_plan_generated,e_generated,experimental_render,review_only,production_grade
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P01_LOCAL_PHRASE,XWC_P01,XWC_P01,C_QINIST_STYLE,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P02_LOCAL_PHRASE,XWC_P02,XWC_P02,C_QINIST_STYLE,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P03_LOCAL_PHRASE,XWC_P03,XWC_P03,C_QINIST_STYLE,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P04_LOCAL_PHRASE,XWC_P04,XWC_P04,C_QINIST_STYLE,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P05_LOCAL_PHRASE,XWC_P05,XWC_P05,C_QINIST_STYLE,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P06_LOCAL_PHRASE,XWC_P06,XWC_P06,B_PHRASE,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P07_LOCAL_PHRASE,XWC_P07,XWC_P07,B_PHRASE,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P08_LOCAL_PHRASE,XWC_P08,XWC_P08,B_PHRASE,B_PHRASE,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P09_LOCAL_PHRASE,XWC_P09,XWC_P09,A_LITERAL,,draft,true,false,false,true,true,false
+R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e,XWC_P10_LOCAL_PHRASE,XWC_P10,XWC_P10,A_LITERAL,,draft,true,false,false,true,true,false

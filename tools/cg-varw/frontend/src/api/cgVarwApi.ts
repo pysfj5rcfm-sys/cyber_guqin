@@ -22,9 +22,16 @@ type R2AlignmentsResponse = {
 export type R2LatestReviewDraftResponse = {
   render_set_id: string;
   has_draft: boolean;
+  draft_source?: string;
+  canonical_state_path?: string;
   path?: string;
   latest_dir?: string;
   saved_at?: string;
+  review_count?: number;
+  phrase_count?: number;
+  preferred_version_count?: number;
+  suggested_revision_count?: number;
+  manifest?: Record<string, unknown>;
   draft?: Record<string, unknown>;
 };
 

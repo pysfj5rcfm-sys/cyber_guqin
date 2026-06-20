@@ -18,6 +18,7 @@ assert.ok(pageSource.includes("saveR2ReviewDraftToProject"), "R2 page must call 
 assert.ok(pageSource.includes("saveDraft={saveProjectDraft}"), "right-panel default save must use project-directory save");
 assert.ok(panelSource.includes("临时保存到浏览器"), "browser fallback button must be explicitly temporary");
 assert.ok(panelSource.includes("保存草稿到工程目录"), "project-directory save action must be visible");
+assert.ok(panelSource.includes("导出全部副本"), "download action must be labeled as a copy, not canonical save");
 
 const source = await readFile(adapterPath, "utf8");
 const compiled = ts.transpileModule(source, {
@@ -34,6 +35,8 @@ const tempModule = join(tempDir, "r2ReviewDraftState.mjs");
 await writeFile(tempModule, compiled, "utf8");
 const { adaptR2ProjectDraftState } = await import(`file://${tempModule}`);
 const latest = JSON.parse(await readFile(latestPath, "utf8"));
+const latestReviewCount = Object.keys(latest.listeningReviewByKey ?? latest.listening_review_by_key ?? {}).length;
+const latestPreferredCount = Object.keys(latest.preferredVersionByPhrase ?? latest.preferred_version_by_phrase ?? {}).length;
 const adapted = adaptR2ProjectDraftState(latest, {
   versions: [
     { version_id: "A_LITERAL" },
@@ -44,9 +47,9 @@ const adapted = adaptR2ProjectDraftState(latest, {
   phrases: Array.from({ length: 10 }, (_, index) => ({ phrase_id: `XWC_P${String(index + 1).padStart(2, "0")}_LOCAL_PHRASE` })),
 });
 
-assert.equal(Object.keys(adapted.listeningReviewByKey).length, 28, "latest draft adapter should restore 28 reviews");
-assert.equal(Object.keys(adapted.preferredVersionByPhrase).length, 10, "latest draft adapter should restore 10 preferred versions");
-assert.equal(adapted.draftSource, "restored_from_exports", "latest draft should preserve restored_from_exports source");
+assert.equal(Object.keys(adapted.listeningReviewByKey).length, latestReviewCount, "latest draft adapter should restore every review");
+assert.equal(Object.keys(adapted.preferredVersionByPhrase).length, latestPreferredCount, "latest draft adapter should restore every preferred version");
+assert.equal(adapted.draftSource, latest.provenance?.restored_from_exports === true ? "restored_from_exports" : "engineering_dir_latest", "latest draft should preserve canonical source");
 assert.equal(adapted.e_generated, false, "adapter must keep E disabled");
 assert.equal(adapted.e_revision_plan_generated, false, "adapter must not generate e revision plan");
 

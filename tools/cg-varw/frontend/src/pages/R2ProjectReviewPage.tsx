@@ -191,8 +191,8 @@ export function R2ProjectReviewPage() {
             phrases: phraseData.phrases,
             alignments: filteredAlignments,
             sections: phraseData.sections,
-            sourceLabel: "已加载工程内 draft",
-            path: latestDraft.path,
+            sourceLabel: draftLoadedLabel(latestDraft),
+            path: latestDraft.canonical_state_path ?? latestDraft.path,
             savedAt: latestDraft.saved_at,
           });
         } else if (latestDraft && !latestDraft.has_draft) {
@@ -480,8 +480,12 @@ export function R2ProjectReviewPage() {
       const response = await saveR2ReviewDraftToProject(renderSet.render_set_id, buildProjectReviewStatePayload());
       const data = response.data ?? {};
       const statePath = readString(data.state_path) || response.path || "";
-      setProjectDraftStatus(`engineering_dir_latest: ${statePath}`);
-      setLastActionMessage(`已保存到工程目录：${statePath}`);
+      const reviewCount = readNumber(data.review_count);
+      const phraseCount = readNumber(data.phrase_count);
+      const preferredCount = readNumber(data.preferred_version_count);
+      const suggestedCount = readNumber(data.suggested_revision_count);
+      setProjectDraftStatus(`engineering_dir_latest: ${statePath}${draftCountLabel(reviewCount, phraseCount, preferredCount, suggestedCount)}`);
+      setLastActionMessage(`已保存到工程目录：${statePath}${draftCountLabel(reviewCount, phraseCount, preferredCount, suggestedCount)}`);
     } catch (error) {
       setLastActionMessage(`工程目录 draft 保存失败：${error instanceof Error ? error.message : String(error)}`);
     }
@@ -501,7 +505,7 @@ export function R2ProjectReviewPage() {
         alignments: reviewedAlignments,
         sections,
         sourceLabel: "已从工程目录重新加载 draft",
-        path: response.path,
+        path: response.canonical_state_path ?? response.path,
         savedAt: response.saved_at,
       });
     } catch (error) {
@@ -704,7 +708,7 @@ export function R2ProjectReviewPage() {
     const files = Object.keys(previewTables);
     const selectedFiles = scope === "all" ? files : files.filter((file) => ["phrase_boundary_decision.csv", "render_phrase_alignment.csv", "listening_review.csv", "listening_review.yaml", "render_revision_log.yaml"].includes(file));
     selectedFiles.forEach((file) => downloadPreviewFile(file, previewTables[file]));
-    setLastActionMessage(scope === "all" ? "已导出全部 R2 draft 文件；未生成 E。" : "已导出当前 phrase draft 文件；未生成 E。");
+    setLastActionMessage(scope === "all" ? "已下载全部 R2 draft 副本；不作为工程草稿权威来源；未生成 E。" : "已下载当前 phrase draft 副本；不作为工程草稿权威来源；未生成 E。");
   }
 
   function downloadPreviewFile(file: string, table?: R2PreviewTable) {
@@ -1314,8 +1318,8 @@ function r2ExportRows() {
   const baseRows = phraseExports.filter((row) => row.file !== "listening_review.yaml");
   return [
     ...baseRows.slice(0, 3),
-    { file: "listening_review.csv", group: "听评记录", description: "浏览器导出的当前 draft 听评表。", rule: "draft review only", scope: "all reviewed phrases", actor: "human", updatedAt: now },
-    { file: "listening_review.yaml", group: "听评记录", description: "浏览器导出的当前 draft 听评 YAML。", rule: "draft review only; no e_revision_plan", scope: "all reviewed phrases", actor: "human", updatedAt: now },
+    { file: "listening_review.csv", group: "听评记录", description: "当前工程目录 draft 的下载副本，不作为权威来源。", rule: "draft review only", scope: "all reviewed phrases", actor: "human", updatedAt: now },
+    { file: "listening_review.yaml", group: "听评记录", description: "当前工程目录 draft 的 YAML 下载副本，不生成 e_revision_plan。", rule: "draft review only; no e_revision_plan", scope: "all reviewed phrases", actor: "human", updatedAt: now },
     ...baseRows.slice(3),
   ];
 }
@@ -1342,6 +1346,30 @@ function csvCell(value: string) {
 
 function readString(value: unknown) {
   return typeof value === "string" ? value : "";
+}
+
+function readNumber(value: unknown) {
+  return typeof value === "number" && Number.isFinite(value) ? value : undefined;
+}
+
+function draftCountLabel(reviewCount?: number, phraseCount?: number, preferredCount?: number, suggestedCount?: number) {
+  const parts = [
+    reviewCount === undefined ? "" : `review=${reviewCount}`,
+    phraseCount === undefined ? "" : `phrase=${phraseCount}`,
+    preferredCount === undefined ? "" : `preferred=${preferredCount}`,
+    suggestedCount === undefined ? "" : `revision=${suggestedCount}`,
+  ].filter(Boolean);
+  return parts.length ? ` · ${parts.join(" / ")}` : "";
+}
+
+function draftLoadedLabel(response: {
+  draft_source?: string;
+  review_count?: number;
+  phrase_count?: number;
+  preferred_version_count?: number;
+  suggested_revision_count?: number;
+}) {
+  return `当前加载来源：${response.draft_source === "engineering_dir_latest" ? "工程目录 latest" : response.draft_source ?? "工程目录 latest"}${draftCountLabel(response.review_count, response.phrase_count, response.preferred_version_count, response.suggested_revision_count)}`;
 }
 
 function readRecord(value: unknown) {

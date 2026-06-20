@@ -1,0 +1,139 @@
+{
+  "quarantine_id": "stale_sources_20260620_114426",
+  "created_at": "2026-06-20T11:44:26.232803+00:00",
+  "canonical_state_path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json",
+  "current_archive_retained": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_114355",
+  "moved": [
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_105004",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_105004"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_110916",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_110916"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111512",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111512"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111544",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111544"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111653",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111653"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111726",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111726"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111737",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111737"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111740",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111740"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111744",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111744"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111751",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111751"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111754",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111754"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111757",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111757"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111812",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111812"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111825",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111825"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111839",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111839"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111921",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111921"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111927",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111927"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111931",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111931"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_111950",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_111950"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_112039",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_112039"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_112055",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_112055"
+    },
+    {
+      "reason": "stale_archive_not_current_page_load_source",
+      "from": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_112114",
+      "to": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/_quarantine/stale_sources_20260620_114426/archive/20260620_112114"
+    }
+  ],
+  "deleted": [
+    {
+      "reason": "one_time_restore_input_not_canonical",
+      "path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_exports/2026-06-20_user_review_restore_input/R2_review_export_restore_input_8files.zip"
+    },
+    {
+      "reason": "one_time_restore_input_not_canonical",
+      "path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_exports/.DS_Store"
+    },
+    {
+      "reason": "empty_restore_input_dir_after_cleanup",
+      "path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_exports/2026-06-20_user_review_restore_input"
+    }
+  ],
+  "not_moved_or_deleted": [
+    "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/archive/20260620_114355"
+  ],
+  "reason": "R2 current state is canonical latest JSON; old archives and restore inputs are not current page load sources.",
+  "e_generated": false,
+  "e_revision_plan_generated": false,
+  "no_downloads_policy": true
+}
