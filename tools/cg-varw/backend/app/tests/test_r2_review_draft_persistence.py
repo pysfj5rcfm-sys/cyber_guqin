@@ -1,4 +1,5 @@
 import csv
+import importlib.util
 import json
 import tempfile
 import unittest
@@ -14,6 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parents[5]
 R2_RENDER_ROOT = REPO_ROOT / "04_outputs" / "XWC" / "RS_XWC_002_BAIYA_PILOT" / "abcd_experimental_render"
 R2_INTAKE_ROOT = R2_RENDER_ROOT / "r2_review_intake"
 RENDER_SET_ID = "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e"
+F_GENERATOR_PATH = REPO_ROOT / "tools" / "cg-varw" / "backend" / "scripts" / "generate_xwc_f_final_reviewed.py"
 
 
 class R2ReviewDraftPersistenceTests(unittest.TestCase):
@@ -264,6 +266,37 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
         self.assertEqual(10, preferred_count)
         self.assertEqual(8, len(result["files"]))
 
+    def test_f_alignment_rows_use_full_tail_policy_without_smart_fade(self):
+        generator = load_f_generator_module()
+        e_meta = {"duration_s": 30.0}
+        rows = [
+            {
+                "event_id": f"XWC_P01_N{index:02d}",
+                "phrase_id": "XWC_P01_LOCAL_PHRASE",
+                "section_id": "XWC_P01",
+                "source_version_id": "E_REVIEWED",
+                "source_sample_id": f"RECD2_BATCH01_T{index:03d}",
+                "source_take_id": f"T{index:03d}",
+                "source_audio": f"split_preview/T{index:03d}_clean_preview.wav",
+                "target_attack_time_s": str(1.0 + index),
+                "render_anchor_s": "0.100",
+                "phrase_play_start_s": "0.000",
+                "phrase_play_end_s": "8.000",
+                "phrase_tail_end_s": "9.000",
+                "revision_applied": "E_REVIEWED",
+                "user_review_source": "E_REVIEWED_USER_REVIEW",
+                "gpt_review_decision": "fixture",
+                "flags": "",
+            }
+            for index in range(1, 5)
+        ]
+
+        f_rows, _marker_order = generator.build_f_alignment_rows(rows, e_meta["duration_s"])
+
+        self.assertTrue(all(row["tail_policy"] == "full_tail" for row in f_rows))
+        self.assertTrue(all("full_tail" in row["flags"] for row in f_rows))
+        self.assertTrue(all("smart_fade" not in row["revision_applied"] for row in f_rows))
+
     def test_restore_from_user_export_zip_prefers_listening_review_and_warns_on_partial_alignment(self):
         with tempfile.TemporaryDirectory() as tmp:
             source_dir = Path(tmp) / "restore_input"
@@ -388,6 +421,14 @@ def write_table_yaml(path: Path, rows: list[dict[str, str]]) -> None:
         for field in fields:
             lines.append(f"      {field}: {json.dumps(row.get(field, ''), ensure_ascii=False)}")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def load_f_generator_module():
+    spec = importlib.util.spec_from_file_location("generate_xwc_f_final_reviewed", F_GENERATOR_PATH)
+    module = importlib.util.module_from_spec(spec)
+    assert spec and spec.loader
+    spec.loader.exec_module(module)
+    return module
 
 
 def write_f_final_outputs(render_root: Path) -> None:

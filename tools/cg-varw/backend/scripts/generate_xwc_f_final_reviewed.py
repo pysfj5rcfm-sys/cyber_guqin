@@ -10,8 +10,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import numpy as np
-
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 BACKEND_ROOT = Path(__file__).resolve().parents[1]
@@ -94,16 +92,20 @@ def validate_latest_state(state: dict[str, Any], e_rows: list[dict[str, str]]) -
     if e_review_phrases != set(PHRASE_IDS):
         errors.append(f"E_REVIEWED review phrases mismatch: {sorted(e_review_phrases)}")
     preferred = state.get("preferredVersionByPhrase")
-    if not isinstance(preferred, dict) or any(preferred.get(phrase_id) != "E_REVIEWED" for phrase_id in PHRASE_IDS):
-        errors.append("preferredVersionByPhrase P01-P10 are not all E_REVIEWED")
-    required_flags = {
-        "f_generation_pending": True,
-        "f_input_source": "E_REVIEWED_USER_REVIEW",
-        "f_not_generated": True,
-    }
-    for key, expected in required_flags.items():
-        if state.get(key) != expected:
-            errors.append(f"{key}={state.get(key)!r}, expected {expected!r}")
+    preferred_all_e = isinstance(preferred, dict) and all(preferred.get(phrase_id) == "E_REVIEWED" for phrase_id in PHRASE_IDS)
+    preferred_all_f = isinstance(preferred, dict) and all(preferred.get(phrase_id) == "F_FINAL_REVIEWED" for phrase_id in PHRASE_IDS)
+    f_pending_input = (
+        state.get("f_generation_pending") is True
+        and state.get("f_input_source") == "E_REVIEWED_USER_REVIEW"
+        and state.get("f_not_generated") is True
+    )
+    f_completed_input = (
+        state.get("f_generation_completed") is True
+        and state.get("f_input_source") == "E_REVIEWED_USER_REVIEW"
+        and state.get("f_version_id") == "F_FINAL_REVIEWED"
+    )
+    if not ((preferred_all_e and f_pending_input) or (preferred_all_f and f_completed_input)):
+        errors.append("latest JSON is neither E_REVIEWED pending-F input nor completed F_FINAL_REVIEWED regeneration input")
     alignments = state.get("phrase_alignments")
     if not isinstance(alignments, list) or len(alignments) < 50:
         errors.append("phrase_alignments must contain at least ABCD/E 50 rows")
@@ -159,6 +161,17 @@ def build_f_alignment_rows(e_rows: list[dict[str, str]], e_duration_s: float) ->
     output_duration = round(e_duration_s / 1.5 + offset + 0.2, 6)
     phrase_order = [phrase for phrase in PHRASE_IDS if phrase in by_phrase]
     first_attack_by_phrase = {phrase: min(new_attacks[row["event_id"]] for row in by_phrase[phrase]) for phrase in phrase_order}
+    source_duration_by_event = {
+        row["event_id"]: source_duration_s(row.get("source_audio", ""))
+        for row in e_rows
+    }
+    natural_tail_by_event = {}
+    for row in e_rows:
+        source_duration = source_duration_by_event[row["event_id"]]
+        if source_duration is None:
+            natural_tail_by_event[row["event_id"]] = parse_float(row.get("phrase_tail_end_s"), new_attacks[row["event_id"]])
+        else:
+            natural_tail_by_event[row["event_id"]] = new_attacks[row["event_id"]] - float(row["render_anchor_s"]) + source_duration
     play_ranges: dict[str, dict[str, float]] = {}
     for index, phrase_id in enumerate(phrase_order):
         first_attack = first_attack_by_phrase[phrase_id]
@@ -166,8 +179,10 @@ def build_f_alignment_rows(e_rows: list[dict[str, str]], e_duration_s: float) ->
         next_attack = first_attack_by_phrase.get(phrase_order[index + 1]) if index + 1 < len(phrase_order) else None
         play_start = max(0.0, first_attack - 0.12)
         play_end = min(next_attack - 0.03, output_duration - 0.1) if next_attack else max(last_attack + 0.8, output_duration - 0.35)
-        tail_end = min(next_attack - 0.015, play_end + 0.4) if next_attack else output_duration
-        play_ranges[phrase_id] = {"play_start": play_start, "play_end": play_end, "tail_end": max(tail_end, play_end)}
+        natural_tail_end = max(natural_tail_by_event[row["event_id"]] for row in by_phrase[phrase_id])
+        tail_end = max(play_end, natural_tail_end)
+        play_ranges[phrase_id] = {"play_start": play_start, "play_end": play_end, "tail_end": tail_end}
+    output_duration = round(max(output_duration, max(item["tail_end"] for item in play_ranges.values())), 6)
 
     out_rows: list[dict[str, str]] = []
     for row in e_rows:
@@ -187,8 +202,13 @@ def build_f_alignment_rows(e_rows: list[dict[str, str]], e_duration_s: float) ->
         out["phrase_tail_end_s"] = f"{ranges['tail_end']:.3f}"
         out["revision_applied"] = f"E_REVIEWED->F_FINAL_REVIEWED: global tempo x1.5; {class_flag or 'global tempo policy'}"
         out["user_review_source"] = "E_REVIEWED_USER_REVIEW"
-        out["gpt_review_decision"] = "Use E_REVIEWED as base; compress attack timeline by about 1.5x; keep T008-safe T014 and P09 atomic takes."
-        out["flags"] = "|".join(part for part in [flags, "f_final_reviewed=true", "experimental_render=true", "production_grade=false", class_flag] if part)
+        out["gpt_review_decision"] = "Use E_REVIEWED as base; keep attack timeline; use full_tail source previews; keep T008-safe T014 and P09 atomic takes."
+        out["tail_policy"] = "full_tail"
+        out["source_tail_policy"] = "full_tail"
+        out["tail_preservation_policy"] = "full_tail_no_smart_fade"
+        out["source_preview_refresh"] = "regenerated_from_raw_or_split_manifest"
+        out["source_preview_duration_s"] = "" if source_duration_by_event[row["event_id"]] is None else f"{source_duration_by_event[row['event_id']]:.6f}"
+        out["flags"] = "|".join(part for part in [flags, "f_final_reviewed=true", "experimental_render=true", "production_grade=false", "tail_policy=full_tail", "smart_fade=false", class_flag] if part)
         out_rows.append(out)
 
     marker_order = validate_marker_order(phrase_order, play_ranges)
@@ -199,14 +219,25 @@ def build_f_alignment_rows(e_rows: list[dict[str, str]], e_duration_s: float) ->
 
 
 def render_audio(rows: list[dict[str, str]], e_meta: dict[str, Any]) -> dict[str, Any]:
+    import numpy as np
+
     sample_rate = int(e_meta["sample_rate_hz"])
     channels = int(e_meta["channels"])
-    duration_s = max(float(row["phrase_tail_end_s"]) for row in rows)
+    source_durations: dict[Path, float] = {}
+    for row in rows:
+        source_path = (REPO_ROOT / row["source_audio"]).resolve()
+        source_durations[source_path] = wav_meta(source_path)["duration_s"]
+    duration_s = max(
+        max(float(row["phrase_tail_end_s"]) for row in rows),
+        max(
+            float(row["target_attack_time_s"]) - float(row["render_anchor_s"]) + source_durations[(REPO_ROOT / row["source_audio"]).resolve()]
+            for row in rows
+        ),
+    )
     frame_count = int(round(duration_s * sample_rate))
     mix = np.zeros((frame_count, channels), dtype=np.float64)
     ordered = sorted(rows, key=lambda row: float(row["target_attack_time_s"]))
     source_cache: dict[Path, tuple[np.ndarray, int, int]] = {}
-    trim_count = 0
     for index, row in enumerate(ordered):
         source_path = (REPO_ROOT / row["source_audio"]).resolve()
         if source_path not in source_cache:
@@ -218,20 +249,7 @@ def render_audio(rows: list[dict[str, str]], e_meta: dict[str, Any]) -> dict[str
             raise SystemExit(f"channel mismatch: {source_path} {src_channels} != {channels}")
         anchor = float(row["render_anchor_s"])
         attack = float(row["target_attack_time_s"])
-        next_attack = float(ordered[index + 1]["target_attack_time_s"]) if index + 1 < len(ordered) else None
-        source_keep_s = audio.shape[0] / sample_rate
-        if next_attack is not None:
-            gap = max(0.12, next_attack - attack)
-            source_keep_s = min(source_keep_s, max(anchor + 0.16, anchor + gap - 0.035))
-        else:
-            source_keep_s = min(source_keep_s, anchor + 6.0)
-        keep_frames = max(1, min(audio.shape[0], int(round(source_keep_s * sample_rate))))
-        chunk = audio[:keep_frames].astype(np.float64)
-        if keep_frames < audio.shape[0]:
-            trim_count += 1
-            fade_frames = min(int(sample_rate * 0.08), keep_frames)
-            if fade_frames > 0:
-                chunk[-fade_frames:] *= np.linspace(1.0, 0.0, fade_frames, endpoint=True)[:, None]
+        chunk = audio.astype(np.float64)
         start_frame_float = (attack - anchor) * sample_rate
         start_frame = int(round(start_frame_float))
         if start_frame < 0:
@@ -249,7 +267,9 @@ def render_audio(rows: list[dict[str, str]], e_meta: dict[str, Any]) -> dict[str
     meta = wav_meta(F_WAV)
     return {
         **meta,
-        "safe_trimmed_event_count": trim_count,
+        "tail_trimmed_event_count": 0,
+        "smart_fade_applied": False,
+        "click_safe_fade_ms": 0,
         "normalization_gain": gain,
         "mix_peak_before_normalization": peak,
         "tempo_ratio": e_meta["duration_s"] / meta["duration_s"],
@@ -265,6 +285,9 @@ def update_latest_state(state: dict[str, Any], f_rows: list[dict[str, str]], inp
     next_state["f_input_source"] = "E_REVIEWED_USER_REVIEW"
     next_state["f_generated_from_latest_json_sha256"] = input_sha
     next_state["f_version_id"] = "F_FINAL_REVIEWED"
+    next_state["f_tail_policy"] = "full_tail"
+    next_state["f_tail_refresh_completed"] = True
+    next_state["f_tail_refresh_source"] = "R1_FULL_TAIL_PREVIEW_REFRESH"
     next_state["final_reviewed_for_current_iteration"] = True
     next_state["experimental_render"] = True
     next_state["production_grade"] = False
@@ -278,6 +301,9 @@ def update_latest_state(state: dict[str, Any], f_rows: list[dict[str, str]], inp
         "f_input_source": "E_REVIEWED_USER_REVIEW",
         "f_generated_from_latest_json_sha256": input_sha,
         "f_version_id": "F_FINAL_REVIEWED",
+        "f_tail_policy": "full_tail",
+        "f_tail_refresh_completed": True,
+        "f_tail_refresh_source": "R1_FULL_TAIL_PREVIEW_REFRESH",
         "f_generated_at": generated_at,
         "canonical_source": "r2_review_state.latest.json",
         "current_page_load_source": "engineering_dir_latest",
@@ -301,17 +327,17 @@ def f_final_review_entries(generated_at: str) -> list[dict[str, Any]]:
     entries = []
     for phrase_id in PHRASE_IDS:
         if phrase_id in P01_CLASS:
-            issue_type = ["f_global_tempo_1_5x", "p01_class_n03_to_n04_tightened"]
-            comment = "F 生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接。"
-            revision = "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N03->N04。"
+            issue_type = ["f_global_tempo_1_5x", "p01_class_n03_to_n04_tightened", "f_tail_truncation_fixed_by_full_tail_refresh"]
+            comment = "F full_tail 复生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接，并保留自然尾音。"
+            revision = "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N03->N04，并将 source preview 刷新为 full_tail。"
         elif phrase_id in P02_CLASS:
-            issue_type = ["f_global_tempo_1_5x", "p02_class_n05_to_n06_tightened"]
-            comment = "F 生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接。"
-            revision = "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N05->N06。"
+            issue_type = ["f_global_tempo_1_5x", "p02_class_n05_to_n06_tightened", "f_tail_truncation_fixed_by_full_tail_refresh"]
+            comment = "F full_tail 复生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接，并保留自然尾音。"
+            revision = "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N05->N06，并将 source preview 刷新为 full_tail。"
         else:
-            issue_type = ["f_global_tempo_1_5x"]
-            comment = "F 生成记录：P10 作为全局 tempo policy 来源，而非局部第 10 句修订。"
-            revision = "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速。"
+            issue_type = ["f_global_tempo_1_5x", "f_tail_truncation_fixed_by_full_tail_refresh"]
+            comment = "F full_tail 复生成记录：P10 作为全局 tempo policy 来源，而非局部第 10 句修订；本次保留自然尾音。"
+            revision = "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，并将 source preview 刷新为 full_tail。"
         if phrase_id == "XWC_P02_LOCAL_PHRASE":
             issue_type.append("t008_safety_guard")
             comment += " T008-safe 继承 E 的 XWC_P02_N03=T014，不回退 T008。"
@@ -384,6 +410,10 @@ def build_validation(
         "t008_exclusion": not current_source_uses_take(rows, "T008"),
         "p02_n03_source_take_id": next(row["source_take_id"] for row in rows if row["event_id"] == "XWC_P02_N03"),
         "p09_t008_safe_not_bound": True,
+        "source_tail_policy": "full_tail",
+        "f_source_tail_policy_check": all(row.get("tail_policy") == "full_tail" for row in rows),
+        "smart_fade_applied": False,
+        "tail_trimmed_event_count": audio_stats["tail_trimmed_event_count"],
         "marker_order": marker_order,
         "latest_counts_after_f": latest_counts,
         "latest_export_files": [path.name for path in export_files],
@@ -424,7 +454,11 @@ def write_plan(path: Path, input_sha: str, e_meta: dict[str, Any], audio_stats: 
         "render_method:",
         "  attack_timeline_compression: true",
         "  whole_wav_time_stretch: false",
-        "  safe_trim_smart_fade: true",
+        "  source_tail_policy: \"full_tail\"",
+        "  safe_trim_smart_fade: false",
+        "  aggressive_tail_fade: false",
+        "  click_safe_fade_ms: 0",
+        "  tail_overlap_allowed: true",
         "flags:",
         "  experimental_render: true",
         "  production_grade: false",
@@ -439,12 +473,13 @@ def write_report(path: Path, input_sha: str, e_meta: dict[str, Any], audio_stats
 - 唯一权威输入：`{LATEST_STATE}`
 - latest JSON sha256：`{input_sha}`
 - E_REVIEWED 用户听评数量：10
-- F 解释：E_REVIEWED 整体方向可用；全曲略散漫，因此基于 E 的 attack timeline 约 1.5 倍提速，不做整段 wav time-stretch。
+- F 解释：E_REVIEWED 整体方向可用；全曲略散漫，因此基于 E 的 attack timeline 约 1.5 倍提速，不做整段 wav time-stretch；本次使用 full_tail source preview，不再以 smart fade 作为主要尾音策略。
 - P01 类：P01/P06/P07/P08/P09 收紧 N03 -> N04。
 - P02 类：P02/P03/P04/P05 收紧 N05 -> N06。
 - P09：仅继承 P01 类 timing 修订，不绑定 T008。
 - T008-safe：继承 E 的 XWC_P02_N03=T014 exact SAN_TIAO_6，F 不使用 T008。
 - F wav：{audio_stats['duration_s']:.6f}s，{audio_stats['sample_rate_hz']} Hz，{audio_stats['bit_depth']} bit。
+- 尾音策略：source_tail_policy=full_tail，smart_fade_applied=false，tail_trimmed_event_count={audio_stats['tail_trimmed_event_count']}。
 - 速度比例：E {e_meta['duration_s']:.6f}s / F {audio_stats['duration_s']:.6f}s = {audio_stats['tempo_ratio']:.6f}，接近 1.5 倍。
 - R2 接入：F_FINAL_REVIEWED 已由后端从 F 输出目录识别为 playable/final_ready/alignment_available。
 - preferredVersionByPhrase：P01-P10 已切换为 F_FINAL_REVIEWED。
@@ -471,6 +506,8 @@ f334880 曾将 R0 加载优先级改为 draft -> exported CSV -> ASR/raw -> empt
 
 
 def read_wav_int(path: Path) -> tuple[np.ndarray, int, int]:
+    import numpy as np
+
     with wave.open(str(path), "rb") as handle:
         channels = handle.getnchannels()
         width = handle.getsampwidth()
@@ -488,6 +525,8 @@ def read_wav_int(path: Path) -> tuple[np.ndarray, int, int]:
 
 
 def write_wav_int24(path: Path, data: np.ndarray, sample_rate: int) -> None:
+    import numpy as np
+
     clipped = np.clip(data, INT24_MIN, INT24_MAX).astype(np.int32)
     unsigned = np.where(clipped < 0, clipped + 0x1000000, clipped).astype(np.uint32)
     out = np.empty((unsigned.size, 3), dtype=np.uint8)
@@ -554,6 +593,22 @@ def current_source_uses_take(rows: list[dict[str, str]], take_id: str) -> bool:
         take_id in "|".join(row.get(key, "") for key in ("source_take_id", "source_sample_id", "source_audio"))
         for row in rows
     )
+
+
+def source_duration_s(source_audio: str) -> float | None:
+    path = (REPO_ROOT / source_audio).resolve()
+    if not path.exists():
+        return None
+    return float(wav_meta(path)["duration_s"])
+
+
+def parse_float(value: str | None, fallback: float) -> float:
+    if value is None or value == "":
+        return fallback
+    try:
+        return float(value)
+    except ValueError:
+        return fallback
 
 
 def forbidden_paths_not_modified() -> dict[str, bool]:

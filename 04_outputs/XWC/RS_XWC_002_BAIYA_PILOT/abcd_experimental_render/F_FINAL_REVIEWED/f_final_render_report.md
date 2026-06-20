@@ -1,15 +1,16 @@
 # XWC 白牙 F_FINAL_REVIEWED 生成报告
 
 - 唯一权威输入：`/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json`
-- latest JSON sha256：`d26eade164c967eb2b053c6a1582d083f2d0d72e4a22fb3852d0781a0aa0670c`
+- latest JSON sha256：`94b1a58ef43eeb9864671bd2bf6457d65a26298f87a29014bfbfca30499ea885`
 - E_REVIEWED 用户听评数量：10
-- F 解释：E_REVIEWED 整体方向可用；全曲略散漫，因此基于 E 的 attack timeline 约 1.5 倍提速，不做整段 wav time-stretch。
+- F 解释：E_REVIEWED 整体方向可用；全曲略散漫，因此基于 E 的 attack timeline 约 1.5 倍提速，不做整段 wav time-stretch；本次使用 full_tail source preview，不再以 smart fade 作为主要尾音策略。
 - P01 类：P01/P06/P07/P08/P09 收紧 N03 -> N04。
 - P02 类：P02/P03/P04/P05 收紧 N05 -> N06。
 - P09：仅继承 P01 类 timing 修订，不绑定 T008。
 - T008-safe：继承 E 的 XWC_P02_N03=T014 exact SAN_TIAO_6，F 不使用 T008。
-- F wav：82.255011s，44100 Hz，24 bit。
-- 速度比例：E 122.857800s / F 82.255011s = 1.493621，接近 1.5 倍。
+- F wav：84.708005s，44100 Hz，24 bit。
+- 尾音策略：source_tail_policy=full_tail，smart_fade_applied=false，tail_trimmed_event_count=0。
+- 速度比例：E 122.857800s / F 84.708005s = 1.450368，接近 1.5 倍。
 - R2 接入：F_FINAL_REVIEWED 已由后端从 F 输出目录识别为 playable/final_ready/alignment_available。
 - preferredVersionByPhrase：P01-P10 已切换为 F_FINAL_REVIEWED。
 - 8 个 CSV/YAML：已从 latest JSON/canonical state 重新派生，不使用旧 exports。

@@ -2,15 +2,15 @@ render_set_id: "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e"
 f_version_id: "F_FINAL_REVIEWED"
 source_version_id: "E_REVIEWED"
 source_latest_json: "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json"
-input_latest_json_sha256: "d26eade164c967eb2b053c6a1582d083f2d0d72e4a22fb3852d0781a0aa0670c"
+input_latest_json_sha256: "94b1a58ef43eeb9864671bd2bf6457d65a26298f87a29014bfbfca30499ea885"
 input_policy: "latest JSON only; old CSV/YAML, Downloads, archive, and restore zip are not F inputs"
 global_tempo_policy:
   source: "E_REVIEWED user review P10"
   interpretation: "全曲整体略散漫；全曲建议统一提速，听评1.5倍速正好"
   target_tempo_ratio: 1.5
   e_duration_s: 122.857800
-  f_duration_s: 82.255011
-  actual_ratio: 1.493621
+  f_duration_s: 84.708005
+  actual_ratio: 1.450368
 phrase_timing_policy:
   p01_class: "P01/P06/P07/P08/P09 收紧 N03 -> N04，不截断末音"
   p02_class: "P02/P03/P04/P05 收紧 N05 -> N06，不截断末音"
@@ -22,7 +22,11 @@ sample_safety:
 render_method:
   attack_timeline_compression: true
   whole_wav_time_stretch: false
-  safe_trim_smart_fade: true
+  source_tail_policy: "full_tail"
+  safe_trim_smart_fade: false
+  aggressive_tail_fade: false
+  click_safe_fade_ms: 0
+  tail_overlap_allowed: true
 flags:
   experimental_render: true
   production_grade: false

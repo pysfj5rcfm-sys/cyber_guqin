@@ -2,9 +2,9 @@
   "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
   "data_source": "api",
   "review_status": "draft",
-  "active_phrase_id": "XWC_P08_LOCAL_PHRASE",
+  "active_phrase_id": "XWC_P01_LOCAL_PHRASE",
   "active_version_id": "F_FINAL_REVIEWED",
-  "selected_marker_id": "XWC_P08_LOCAL_PHRASE_E_REVIEWED_cadence",
+  "selected_marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_cadence",
   "boundaryStatusByKey": {
     "XWC_P10_LOCAL_PHRASE:A_LITERAL": "accepted",
     "XWC_P10_LOCAL_PHRASE:B_PHRASE": "candidate",
@@ -549,14 +549,15 @@
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p01_class_n03_to_n04_tightened"
+        "p01_class_n03_to_n04_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N03->N04。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接，并保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N03->N04，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P02_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P02_LOCAL_PHRASE",
@@ -564,125 +565,134 @@
       "issue_type": [
         "f_global_tempo_1_5x",
         "p02_class_n05_to_n06_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh",
         "t008_safety_guard"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接。 T008-safe 继承 E 的 XWC_P02_N03=T014，不回退 T008。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N05->N06。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接，并保留自然尾音。 T008-safe 继承 E 的 XWC_P02_N03=T014，不回退 T008。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N05->N06，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P03_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P03_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p02_class_n05_to_n06_tightened"
+        "p02_class_n05_to_n06_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N05->N06。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接，并保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N05->N06，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P04_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P04_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p02_class_n05_to_n06_tightened"
+        "p02_class_n05_to_n06_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N05->N06。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接，并保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N05->N06，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P05_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P05_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p02_class_n05_to_n06_tightened"
+        "p02_class_n05_to_n06_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N05->N06。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P02 类收紧 N05 到 N06 的连接，并保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N05->N06，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P06_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P06_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p01_class_n03_to_n04_tightened"
+        "p01_class_n03_to_n04_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N03->N04。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接，并保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N03->N04，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P07_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P07_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p01_class_n03_to_n04_tightened"
+        "p01_class_n03_to_n04_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N03->N04。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接，并保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N03->N04，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P08_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P08_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p01_class_n03_to_n04_tightened"
+        "p01_class_n03_to_n04_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N03->N04。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接，并保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N03->N04，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P09_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P09_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
         "f_global_tempo_1_5x",
-        "p01_class_n03_to_n04_tightened"
+        "p01_class_n03_to_n04_tightened",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接。 P09 只继承 P01 类 timing 修订，不绑定 T008-safe。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N03->N04。",
+      "comment": "F full_tail 复生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接，并保留自然尾音。 P09 只继承 P01 类 timing 修订，不绑定 T008-safe。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，收紧 N03->N04，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     },
     "XWC_P10_LOCAL_PHRASE:F_FINAL_REVIEWED": {
       "phrase_id": "XWC_P10_LOCAL_PHRASE",
       "version_id": "F_FINAL_REVIEWED",
       "issue_type": [
-        "f_global_tempo_1_5x"
+        "f_global_tempo_1_5x",
+        "f_tail_truncation_fixed_by_full_tail_refresh"
       ],
       "severity": "low",
-      "comment": "F 生成记录：P10 作为全局 tempo policy 来源，而非局部第 10 句修订。",
-      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速。",
+      "comment": "F full_tail 复生成记录：P10 作为全局 tempo policy 来源，而非局部第 10 句修订；本次保留自然尾音。",
+      "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：保持既有 attack timeline 约 1.5 倍提速，并将 source preview 刷新为 full_tail。",
       "reviewer": "codex_f_generation",
       "reviewed_at": "",
-      "updated_at": "2026-06-20T21:20:49.312863+00:00"
+      "updated_at": "2026-06-20T21:54:37.380481+00:00"
     }
   },
   "preferredVersionByPhrase": {
@@ -3337,82 +3347,162 @@
         "nudge_total_ms": 0,
         "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
       }
+    ],
+    "XWC_P01_LOCAL_PHRASE:F_FINAL_REVIEWED": [
+      {
+        "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_section_start",
+        "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+        "version_id": "F_FINAL_REVIEWED",
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "marker_type": "section_start",
+        "marker_label_zh": "段落起",
+        "time_s": 2.697,
+        "source": "imported",
+        "review_status": "candidate",
+        "nudge_total_ms": 0,
+        "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
+      },
+      {
+        "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_phrase_start",
+        "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+        "version_id": "F_FINAL_REVIEWED",
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "marker_type": "phrase_start",
+        "marker_label_zh": "句头",
+        "time_s": 2.697,
+        "source": "imported",
+        "review_status": "candidate",
+        "nudge_total_ms": 0,
+        "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
+      },
+      {
+        "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_breath_point",
+        "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+        "version_id": "F_FINAL_REVIEWED",
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "marker_type": "breath_point",
+        "marker_label_zh": "气口 1",
+        "time_s": 5.178,
+        "source": "imported",
+        "review_status": "candidate",
+        "nudge_total_ms": 0,
+        "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
+      },
+      {
+        "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_cadence",
+        "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+        "version_id": "F_FINAL_REVIEWED",
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "marker_type": "cadence",
+        "marker_label_zh": "收束",
+        "time_s": 8.05,
+        "source": "imported",
+        "review_status": "candidate",
+        "nudge_total_ms": 0,
+        "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
+      },
+      {
+        "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_phrase_end",
+        "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+        "version_id": "F_FINAL_REVIEWED",
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "marker_type": "phrase_end",
+        "marker_label_zh": "句尾",
+        "time_s": 9.225,
+        "source": "imported",
+        "review_status": "candidate",
+        "nudge_total_ms": 0,
+        "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
+      },
+      {
+        "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_section_end",
+        "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+        "version_id": "F_FINAL_REVIEWED",
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "marker_type": "section_end",
+        "marker_label_zh": "段落止",
+        "time_s": 9.225,
+        "source": "imported",
+        "review_status": "candidate",
+        "nudge_total_ms": 0,
+        "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
+      }
     ]
   },
   "phrase_markers": [
     {
-      "marker_id": "XWC_P08_LOCAL_PHRASE_E_REVIEWED_section_start",
+      "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_section_start",
       "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
-      "version_id": "E_REVIEWED",
-      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "version_id": "F_FINAL_REVIEWED",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
       "marker_type": "section_start",
       "marker_label_zh": "段落起",
-      "time_s": 77.417,
+      "time_s": 2.697,
       "source": "imported",
       "review_status": "candidate",
       "nudge_total_ms": 0,
       "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
     },
     {
-      "marker_id": "XWC_P08_LOCAL_PHRASE_E_REVIEWED_phrase_start",
+      "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_phrase_start",
       "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
-      "version_id": "E_REVIEWED",
-      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "version_id": "F_FINAL_REVIEWED",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
       "marker_type": "phrase_start",
       "marker_label_zh": "句头",
-      "time_s": 77.417,
+      "time_s": 2.697,
       "source": "imported",
       "review_status": "candidate",
       "nudge_total_ms": 0,
       "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
     },
     {
-      "marker_id": "XWC_P08_LOCAL_PHRASE_E_REVIEWED_breath_point",
+      "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_breath_point",
       "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
-      "version_id": "E_REVIEWED",
-      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "version_id": "F_FINAL_REVIEWED",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
       "marker_type": "breath_point",
       "marker_label_zh": "气口 1",
-      "time_s": 81.654,
+      "time_s": 5.178,
       "source": "imported",
       "review_status": "candidate",
       "nudge_total_ms": 0,
       "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
     },
     {
-      "marker_id": "XWC_P08_LOCAL_PHRASE_E_REVIEWED_cadence",
+      "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_cadence",
       "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
-      "version_id": "E_REVIEWED",
-      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "version_id": "F_FINAL_REVIEWED",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
       "marker_type": "cadence",
       "marker_label_zh": "收束",
-      "time_s": 86.559,
+      "time_s": 8.05,
       "source": "imported",
       "review_status": "candidate",
       "nudge_total_ms": 0,
       "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
     },
     {
-      "marker_id": "XWC_P08_LOCAL_PHRASE_E_REVIEWED_phrase_end",
+      "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_phrase_end",
       "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
-      "version_id": "E_REVIEWED",
-      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "version_id": "F_FINAL_REVIEWED",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
       "marker_type": "phrase_end",
       "marker_label_zh": "句尾",
-      "time_s": 88.566,
+      "time_s": 9.225,
       "source": "imported",
       "review_status": "candidate",
       "nudge_total_ms": 0,
       "notes": "playback-safe: E_REVIEWED phrase boundary from event alignment; render_anchor based."
     },
     {
-      "marker_id": "XWC_P08_LOCAL_PHRASE_E_REVIEWED_section_end",
+      "marker_id": "XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED_section_end",
       "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
-      "version_id": "E_REVIEWED",
-      "phrase_id": "XWC_P08_LOCAL_PHRASE",
+      "version_id": "F_FINAL_REVIEWED",
+      "phrase_id": "XWC_P01_LOCAL_PHRASE",
       "marker_type": "section_end",
       "marker_label_zh": "段落止",
-      "time_s": 88.566,
+      "time_s": 9.225,
       "source": "imported",
       "review_status": "candidate",
       "nudge_total_ms": 0,
@@ -4627,10 +4717,10 @@
       "section_id": "XWC_P01",
       "event_range": "XWC_P01_N01_to_XWC_P01_N04",
       "start_s": 2.697,
-      "end_s": 9.24,
+      "end_s": 14.182,
       "phrase_play_start_s": 2.697,
       "phrase_play_end_s": 9.225,
-      "phrase_tail_end_s": 9.24,
+      "phrase_tail_end_s": 14.182,
       "next_phrase_first_attack_s": 9.255,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4651,10 +4741,10 @@
       "section_id": "XWC_P02",
       "event_range": "XWC_P02_N01_to_XWC_P02_N06",
       "start_s": 9.135,
-      "end_s": 17.599,
+      "end_s": 21.69,
       "phrase_play_start_s": 9.135,
       "phrase_play_end_s": 17.584,
-      "phrase_tail_end_s": 17.599,
+      "phrase_tail_end_s": 21.69,
       "next_phrase_first_attack_s": 17.614,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4675,10 +4765,10 @@
       "section_id": "XWC_P03",
       "event_range": "XWC_P03_N01_to_XWC_P03_N06",
       "start_s": 17.494,
-      "end_s": 25.266,
+      "end_s": 27.874,
       "phrase_play_start_s": 17.494,
       "phrase_play_end_s": 25.251,
-      "phrase_tail_end_s": 25.266,
+      "phrase_tail_end_s": 27.874,
       "next_phrase_first_attack_s": 25.281,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4699,10 +4789,10 @@
       "section_id": "XWC_P04",
       "event_range": "XWC_P04_N01_to_XWC_P04_N06",
       "start_s": 25.161,
-      "end_s": 32.932,
+      "end_s": 36.051,
       "phrase_play_start_s": 25.161,
       "phrase_play_end_s": 32.917,
-      "phrase_tail_end_s": 32.932,
+      "phrase_tail_end_s": 36.051,
       "next_phrase_first_attack_s": 32.947,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4723,10 +4813,10 @@
       "section_id": "XWC_P05",
       "event_range": "XWC_P05_N01_to_XWC_P05_N06",
       "start_s": 32.827,
-      "end_s": 40.599,
+      "end_s": 44.855,
       "phrase_play_start_s": 32.827,
       "phrase_play_end_s": 40.584,
-      "phrase_tail_end_s": 40.599,
+      "phrase_tail_end_s": 44.855,
       "next_phrase_first_attack_s": 40.614,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4747,10 +4837,10 @@
       "section_id": "XWC_P06",
       "event_range": "XWC_P06_N01_to_XWC_P06_N04",
       "start_s": 40.494,
-      "end_s": 46.799,
+      "end_s": 49.396,
       "phrase_play_start_s": 40.494,
       "phrase_play_end_s": 46.784,
-      "phrase_tail_end_s": 46.799,
+      "phrase_tail_end_s": 49.396,
       "next_phrase_first_attack_s": 46.814,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4771,10 +4861,10 @@
       "section_id": "XWC_P07",
       "event_range": "XWC_P07_N01_to_XWC_P07_N04",
       "start_s": 46.694,
-      "end_s": 52.999,
+      "end_s": 56.714,
       "phrase_play_start_s": 46.694,
       "phrase_play_end_s": 52.984,
-      "phrase_tail_end_s": 52.999,
+      "phrase_tail_end_s": 56.714,
       "next_phrase_first_attack_s": 53.014,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4795,10 +4885,10 @@
       "section_id": "XWC_P08",
       "event_range": "XWC_P08_N01_to_XWC_P08_N04",
       "start_s": 52.894,
-      "end_s": 59.199,
+      "end_s": 65.034,
       "phrase_play_start_s": 52.894,
       "phrase_play_end_s": 59.184,
-      "phrase_tail_end_s": 59.199,
+      "phrase_tail_end_s": 65.034,
       "next_phrase_first_attack_s": 59.214,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4819,10 +4909,10 @@
       "section_id": "XWC_P09",
       "event_range": "XWC_P09_N01_to_XWC_P09_N04",
       "start_s": 59.094,
-      "end_s": 65.399,
+      "end_s": 68.858,
       "phrase_play_start_s": 59.094,
       "phrase_play_end_s": 65.384,
-      "phrase_tail_end_s": 65.399,
+      "phrase_tail_end_s": 68.858,
       "next_phrase_first_attack_s": 65.414,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4843,10 +4933,10 @@
       "section_id": "XWC_P10",
       "event_range": "XWC_P10_N01_to_XWC_P10_N07",
       "start_s": 65.294,
-      "end_s": 82.255,
+      "end_s": 84.708,
       "phrase_play_start_s": 65.294,
       "phrase_play_end_s": 81.905,
-      "phrase_tail_end_s": 82.255,
+      "phrase_tail_end_s": 84.708,
       "next_phrase_first_attack_s": null,
       "phrase_end_policy": "E_REVIEWED phrase boundary from event alignment; render_anchor based.",
       "breath_points_s": [
@@ -4862,21 +4952,24 @@
     }
   ],
   "listening_review": {
-    "review_id": "R2_REVIEW_XWC_P08_LOCAL_PHRASE_E_REVIEWED",
+    "review_id": "R2_REVIEW_XWC_P01_LOCAL_PHRASE_F_FINAL_REVIEWED",
     "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
     "comparison_scope": "phrase",
-    "phrase_id": "XWC_P08_LOCAL_PHRASE",
-    "section_id": "XWC_P08",
-    "event_range": "XWC_P08_N01_to_XWC_P08_N04",
-    "active_version_id": "E_REVIEWED",
-    "preferred_version_id": "E_REVIEWED",
+    "phrase_id": "XWC_P01_LOCAL_PHRASE",
+    "section_id": "XWC_P01",
+    "event_range": "XWC_P01_N01_to_XWC_P01_N04",
+    "active_version_id": "F_FINAL_REVIEWED",
+    "preferred_version_id": "F_FINAL_REVIEWED",
     "issue_type": [
-      "good"
+      "f_global_tempo_1_5x",
+      "p01_class_n03_to_n04_tightened",
+      "too_mechanical",
+      "tail_short"
     ],
-    "severity": "low",
-    "comment": "同第1句",
-    "suggested_revision": "同第1句",
-    "reviewer": "human",
+    "severity": "high",
+    "comment": "F 生成记录：继承 E 听评；P01 类收紧 N03 到 N04 的连接。",
+    "suggested_revision": "E_REVIEWED -> F_FINAL_REVIEWED：全曲 attack timeline 约 1.5 倍提速，并收紧 N03->N04。",
+    "reviewer": "codex_f_generation",
     "reviewed_at": "",
     "training_usable": false,
     "review_only": true,
@@ -4893,227 +4986,280 @@
   "f_generation_pending": false,
   "f_input_source": "E_REVIEWED_USER_REVIEW",
   "f_not_generated": false,
+  "f_generation_completed": true,
+  "f_version_id": "F_FINAL_REVIEWED",
   "experimental_render": true,
   "provenance": {
     "saved_from_frontend": true,
-    "saved_at": "2026-06-20T13:50:14.016972+00:00",
+    "saved_at": "2026-06-20T21:35:39.600117+00:00",
+    "f_generation_pending": false,
+    "f_input_source": "E_REVIEWED_USER_REVIEW",
+    "f_not_generated": false,
+    "f_generation_completed": true,
+    "f_version_id": "F_FINAL_REVIEWED",
     "canonical_dedupe_report": {
       "duplicate_keys_found": [],
       "duplicate_rows_removed_or_archived": 0,
-      "retained_review_count": 39,
-      "retained_suggested_revision_count": 23,
-      "retained_issue_count": 23,
+      "retained_review_count": 49,
+      "retained_suggested_revision_count": 33,
+      "retained_issue_count": 45,
       "retained_by_phrase_version": [
         {
           "phrase_id": "XWC_P01_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P02_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P02_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P03_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P03_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P03_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P03_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P03_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P03_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P03_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P03_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P04_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P04_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P05_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P05_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P05_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P05_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P05_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P04_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P04_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P04_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P02_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P02_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P02_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P06_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P06_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P06_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P06_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P06_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P06_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P07_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P07_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P07_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P01_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P01_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P01_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P02_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P02_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P02_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P06_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P06_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P07_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P07_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P07_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P07_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P07_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P08_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P08_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P08_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P08_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P08_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P09_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P09_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P09_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "D_TEACHING_DIAGNOSTIC",
-          "source_key": "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+          "source_key": "XWC_P09_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P09_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P09_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P10_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P10_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P10_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P08_LOCAL_PHRASE",
           "active_version_id": "A_LITERAL",
-          "source_key": "XWC_P08_LOCAL_PHRASE:A_LITERAL"
+          "source_key": "XWC_P08_LOCAL_PHRASE::A_LITERAL"
         },
         {
           "phrase_id": "XWC_P01_LOCAL_PHRASE",
           "active_version_id": "B_PHRASE",
-          "source_key": "XWC_P01_LOCAL_PHRASE:B_PHRASE"
+          "source_key": "XWC_P01_LOCAL_PHRASE::B_PHRASE"
         },
         {
           "phrase_id": "XWC_P10_LOCAL_PHRASE",
           "active_version_id": "D_TEACHING_DIAGNOSTIC",
-          "source_key": "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+          "source_key": "XWC_P10_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
         },
         {
           "phrase_id": "XWC_P10_LOCAL_PHRASE",
           "active_version_id": "C_QINIST_STYLE",
-          "source_key": "XWC_P10_LOCAL_PHRASE:C_QINIST_STYLE"
+          "source_key": "XWC_P10_LOCAL_PHRASE::C_QINIST_STYLE"
         },
         {
           "phrase_id": "XWC_P10_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P10_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P10_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P01_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P01_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P01_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P02_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P02_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P02_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P03_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P03_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P03_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P04_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P04_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P04_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P05_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P05_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P05_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P06_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P06_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P06_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P07_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P07_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P07_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P08_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P08_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P08_LOCAL_PHRASE::E_REVIEWED"
         },
         {
           "phrase_id": "XWC_P09_LOCAL_PHRASE",
           "active_version_id": "E_REVIEWED",
-          "source_key": "XWC_P09_LOCAL_PHRASE:E_REVIEWED"
+          "source_key": "XWC_P09_LOCAL_PHRASE::E_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P01_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P01_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P02_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P02_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P03_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P03_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P04_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P04_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P05_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P05_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P06_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P06_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P07_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P07_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P08_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P08_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P09_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P09_LOCAL_PHRASE::F_FINAL_REVIEWED"
+        },
+        {
+          "phrase_id": "XWC_P10_LOCAL_PHRASE",
+          "active_version_id": "F_FINAL_REVIEWED",
+          "source_key": "XWC_P10_LOCAL_PHRASE::F_FINAL_REVIEWED"
         }
       ],
-      "deduped_at": "2026-06-20T13:50:14.044594+00:00"
+      "deduped_at": "2026-06-20T21:35:39.600117+00:00"
     },
-    "f_generation_pending": false,
-    "f_input_source": "E_REVIEWED_USER_REVIEW",
-    "f_not_generated": false,
     "canonical_source": "r2_review_state.latest.json",
     "current_page_load_source": "engineering_dir_latest",
     "no_downloads_policy": true,
-    "exported_csv_to_project_dir": true,
-    "exported_at": "2026-06-20T13:50:14.044594+00:00",
-    "f_generation_completed": true,
-    "f_generated_from_latest_json_sha256": "d26eade164c967eb2b053c6a1582d083f2d0d72e4a22fb3852d0781a0aa0670c",
-    "f_version_id": "F_FINAL_REVIEWED",
-    "f_generated_at": "2026-06-20T21:20:49.312863+00:00"
+    "f_generated_from_latest_json_sha256": "94b1a58ef43eeb9864671bd2bf6457d65a26298f87a29014bfbfca30499ea885",
+    "f_tail_policy": "full_tail",
+    "f_tail_refresh_completed": true,
+    "f_tail_refresh_source": "R1_FULL_TAIL_PREVIEW_REFRESH",
+    "f_generated_at": "2026-06-20T21:54:37.380481+00:00"
   },
   "review_only": true,
   "production_grade": false,
@@ -5123,215 +5269,331 @@
   "review_history_archived": [],
   "phrase_count": 10,
   "suggested_revision_count": 33,
-  "issue_count": 43,
+  "issue_count": 53,
   "canonical_dedupe_report": {
     "duplicate_keys_found": [],
     "duplicate_rows_removed_or_archived": 0,
-    "retained_review_count": 39,
-    "retained_suggested_revision_count": 23,
-    "retained_issue_count": 23,
+    "retained_review_count": 49,
+    "retained_suggested_revision_count": 33,
+    "retained_issue_count": 45,
     "retained_by_phrase_version": [
       {
         "phrase_id": "XWC_P01_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P01_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P02_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P02_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P02_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P03_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P03_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P03_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P03_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P03_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P03_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P03_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P03_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P03_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P04_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P04_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P04_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P05_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P05_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P05_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P05_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P05_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P05_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P04_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P04_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P04_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P02_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P02_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P02_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P06_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P06_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P06_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P06_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P06_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P06_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P07_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P07_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P07_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P01_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P01_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P01_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P02_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P02_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P02_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P06_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P06_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P06_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P07_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P07_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P07_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P07_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P07_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P07_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P08_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P08_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P08_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P08_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P08_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P08_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P09_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P09_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P09_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P09_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "D_TEACHING_DIAGNOSTIC",
-        "source_key": "XWC_P09_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+        "source_key": "XWC_P09_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P09_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P09_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P10_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P10_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P08_LOCAL_PHRASE",
         "active_version_id": "A_LITERAL",
-        "source_key": "XWC_P08_LOCAL_PHRASE:A_LITERAL"
+        "source_key": "XWC_P08_LOCAL_PHRASE::A_LITERAL"
       },
       {
         "phrase_id": "XWC_P01_LOCAL_PHRASE",
         "active_version_id": "B_PHRASE",
-        "source_key": "XWC_P01_LOCAL_PHRASE:B_PHRASE"
+        "source_key": "XWC_P01_LOCAL_PHRASE::B_PHRASE"
       },
       {
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "D_TEACHING_DIAGNOSTIC",
-        "source_key": "XWC_P10_LOCAL_PHRASE:D_TEACHING_DIAGNOSTIC"
+        "source_key": "XWC_P10_LOCAL_PHRASE::D_TEACHING_DIAGNOSTIC"
       },
       {
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "C_QINIST_STYLE",
-        "source_key": "XWC_P10_LOCAL_PHRASE:C_QINIST_STYLE"
+        "source_key": "XWC_P10_LOCAL_PHRASE::C_QINIST_STYLE"
       },
       {
         "phrase_id": "XWC_P10_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P10_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P10_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P01_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P01_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P01_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P02_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P02_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P02_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P03_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P03_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P03_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P04_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P04_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P04_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P05_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P05_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P05_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P06_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P06_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P06_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P07_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P07_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P07_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P08_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P08_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P08_LOCAL_PHRASE::E_REVIEWED"
       },
       {
         "phrase_id": "XWC_P09_LOCAL_PHRASE",
         "active_version_id": "E_REVIEWED",
-        "source_key": "XWC_P09_LOCAL_PHRASE:E_REVIEWED"
+        "source_key": "XWC_P09_LOCAL_PHRASE::E_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P01_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P02_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P02_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P03_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P03_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P04_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P04_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P05_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P05_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P06_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P06_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P07_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P07_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P08_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P08_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P09_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P09_LOCAL_PHRASE::F_FINAL_REVIEWED"
+      },
+      {
+        "phrase_id": "XWC_P10_LOCAL_PHRASE",
+        "active_version_id": "F_FINAL_REVIEWED",
+        "source_key": "XWC_P10_LOCAL_PHRASE::F_FINAL_REVIEWED"
       }
     ],
-    "deduped_at": "2026-06-20T13:50:14.044594+00:00"
+    "deduped_at": "2026-06-20T21:35:39.600117+00:00"
   },
-  "saved_at": "2026-06-20T21:20:49.312863+00:00",
-  "f_generation_completed": true,
-  "f_generated_from_latest_json_sha256": "d26eade164c967eb2b053c6a1582d083f2d0d72e4a22fb3852d0781a0aa0670c",
-  "f_version_id": "F_FINAL_REVIEWED",
-  "final_reviewed_for_current_iteration": true
+  "saved_at": "2026-06-20T21:54:37.052187+00:00",
+  "f_generated_from_latest_json_sha256": "94b1a58ef43eeb9864671bd2bf6457d65a26298f87a29014bfbfca30499ea885",
+  "f_tail_policy": "full_tail",
+  "f_tail_refresh_completed": true,
+  "f_tail_refresh_source": "R1_FULL_TAIL_PREVIEW_REFRESH",
+  "final_reviewed_for_current_iteration": true,
+  "f_full_tail_refresh": {
+    "schema_id": "CG_VARW_R1_FULL_TAIL_REFRESH_v0.1",
+    "generated_at": "2026-06-20T21:54:37.052187+00:00",
+    "old_f_archive": {
+      "archive_path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED_BEFORE_FULL_TAIL_FIX",
+      "old_f_sha256": "88096718ffaca3b6a1ec6a54e0a113f220118551c0819987d2f58b4d6a1b1ee1",
+      "old_f_wav_metadata": {
+        "channels": 2,
+        "sample_width_bytes": 3,
+        "sample_rate_hz": 44100,
+        "bit_depth": 24,
+        "frame_count": 3627446,
+        "duration_s": 82.25501133786848
+      },
+      "old_f_tempo_ratio": 1.4936208561064728
+    },
+    "new_f_sha256": "cc522c94f4e1db2ca23a07c85a1f4c25f72112a2a51379a0506754ce091a8aa8",
+    "new_f_wav_metadata": {
+      "channels": 2,
+      "sample_width_bytes": 3,
+      "sample_rate_hz": 44100,
+      "bit_depth": 24,
+      "frame_count": 3735623,
+      "duration_s": 84.7080045351474
+    },
+    "new_f_tempo_ratio": 1.4503682518284098,
+    "r1_policy": {
+      "generated_at": "2026-06-20T21:54:37.052187+00:00",
+      "tail_policy": "full_tail",
+      "changed_rows": 71,
+      "changed_files": [
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch01/reviewed_render_anchors.batch01.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch02/reviewed_render_anchors.batch02.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch03/reviewed_render_anchors.batch03.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch04/reviewed_render_anchors.batch04.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch05/reviewed_render_anchors.batch05.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch06/reviewed_render_anchors.batch06.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch07/reviewed_render_anchors.batch07.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/02_recordings/raw_audio/QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/r1_review/batch08/reviewed_render_anchors.batch08.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch01/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch02/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch03/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch04/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch05/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch06/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch07/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/exports/batch08/reviewed_render_anchors.csv",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/drafts/batch01.split_review.json",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/drafts/batch04.split_review.json",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/drafts/batch05.split_review.json",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/drafts/batch06.split_review.json",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/drafts/batch07.split_review.json",
+        "/Users/chenyulin/Documents/AIProjects/cyber_guqin/tools/cg-varw/review_outputs/r1/drafts/batch08.split_review.json"
+      ],
+      "tracked_r1_archive_files": 8
+    },
+    "preview_refresh": {
+      "row_count": 71,
+      "regenerated_from_raw_count": 71,
+      "clean_preview_changed_count": 0,
+      "unit_preview_changed_count": 0,
+      "tail_recovery_unavailable_count": 0
+    },
+    "unresolved_tail_recovery": []
+  }
 }

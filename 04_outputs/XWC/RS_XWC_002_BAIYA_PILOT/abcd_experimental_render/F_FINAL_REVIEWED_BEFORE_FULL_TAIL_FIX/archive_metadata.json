@@ -1,0 +1,13 @@
+{
+  "archive_path": "/Users/chenyulin/Documents/AIProjects/cyber_guqin/04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED_BEFORE_FULL_TAIL_FIX",
+  "old_f_sha256": "88096718ffaca3b6a1ec6a54e0a113f220118551c0819987d2f58b4d6a1b1ee1",
+  "old_f_wav_metadata": {
+    "channels": 2,
+    "sample_width_bytes": 3,
+    "sample_rate_hz": 44100,
+    "bit_depth": 24,
+    "frame_count": 3627446,
+    "duration_s": 82.25501133786848
+  },
+  "old_f_tempo_ratio": 1.4936208561064728
+}
