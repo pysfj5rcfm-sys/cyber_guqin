@@ -2,7 +2,25 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
+
+
+DEFAULT_GUQIN_TAIL_POLICY = "full_tail"
+LEGACY_DEMO_TAIL_POLICY = "smart_fade_100ms"
+
+
+def _looks_like_guqin_context(data: dict[str, Any]) -> bool:
+    if data.get("synthetic_demo") is True or data.get("variant") == "demo" or data.get("realization_variant") == "demo":
+        return False
+    fields = (
+        data.get("qinist_id"),
+        data.get("piece_id"),
+        data.get("recording_session_id"),
+        data.get("source_raw_audio"),
+        data.get("source_split_audio"),
+    )
+    haystack = " ".join(str(value).upper() for value in fields if value)
+    return "QINIST" in haystack or "XWC" in haystack or "GUQIN" in haystack
 
 
 class Marker(BaseModel):
@@ -211,7 +229,7 @@ class SplitSegment(BaseModel):
     markers: R1MarkerSet
     anchor_type: R1AnchorType = "main_attack"
     pre_attack_music_policy: R1PreAttackMusicPolicy = "keep_silence"
-    tail_policy: R1TailPolicy = "smart_fade_100ms"
+    tail_policy: R1TailPolicy = LEGACY_DEMO_TAIL_POLICY
     segment_status: R1SegmentStatus = "candidate"
     review_status: R1ReviewStatus = "not_started"
     qc: R1SegmentQC = Field(default_factory=R1SegmentQC)
@@ -225,6 +243,13 @@ class SplitSegment(BaseModel):
     not_sample_assets: bool = True
     not_render_executed: bool = True
     not_ml_training_data: bool = True
+
+    @model_validator(mode="before")
+    @classmethod
+    def default_guqin_tail_policy(cls, data: Any) -> Any:
+        if isinstance(data, dict) and not data.get("tail_policy") and _looks_like_guqin_context(data):
+            return {**data, "tail_policy": DEFAULT_GUQIN_TAIL_POLICY}
+        return data
 
 
 class R1BatchesResponse(BaseModel):

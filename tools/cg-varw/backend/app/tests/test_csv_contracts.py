@@ -11,6 +11,38 @@ from app.services.csv_contract_validator import validate_csv_contract
 
 
 class CsvContractTests(unittest.TestCase):
+    def _r1_segment(self, **overrides) -> SplitSegment:
+        payload = {
+            "segment_id": "SEG_001",
+            "batch_id": "BATCH_TEST",
+            "take_id": "DISPLAY_TAKE_001",
+            "file_name": "SEG_001.wav",
+            "relative_path": "batch/SEG_001.wav",
+            "recording_session_id": "RS_TEST",
+            "recording_id": "REC_TEST",
+            "piece_id": "XWC",
+            "qinist_id": "QINIST_TEST",
+            "recording_take_no": "001",
+            "batch_take_no": "A01",
+            "script_id": "SCRIPT_TEST",
+            "source_raw_audio": "raw/test.wav",
+            "source_split_audio": "split/SEG_001.wav",
+            "event_id": "EVT_001",
+            "event_range": "001",
+            "gesture_id": "GESTURE_001",
+            "realization_variant": "clean",
+            "duration_s": 2.5,
+            "markers": R1MarkerSet(
+                pre_idle_end=R1Marker(marker_id="SEG_001:pre_idle_end", segment_id="SEG_001", marker_type="pre_idle_end", marker_label_zh="前置空白结束", time_s=0.2, review_status="accepted"),
+                gesture_start=R1Marker(marker_id="SEG_001:gesture_start", segment_id="SEG_001", marker_type="gesture_start", marker_label_zh="前导起势", time_s=0.4, review_status="accepted"),
+                render_anchor=R1Marker(marker_id="SEG_001:render_anchor", segment_id="SEG_001", marker_type="render_anchor", marker_label_zh="渲染锚点", time_s=0.45, review_status="accepted"),
+                tail_end=R1Marker(marker_id="SEG_001:tail_end", segment_id="SEG_001", marker_type="tail_end", marker_label_zh="尾音结束", time_s=2.2, review_status="accepted"),
+            ),
+            "qc": R1SegmentQC(),
+        }
+        payload.update(overrides)
+        return SplitSegment(**payload)
+
     def test_r0_rows_include_canonical_provenance_and_split_boundaries(self) -> None:
         unit = ReviewUnit(
             id="UNIT_001",
@@ -114,33 +146,8 @@ class CsvContractTests(unittest.TestCase):
         validate_csv_contract("split_plan_from_raw_markers.csv", [split])
 
     def test_r1_rows_include_canonical_provenance_aliases_and_human_review_fields(self) -> None:
-        segment = SplitSegment(
-            segment_id="SEG_001",
-            batch_id="BATCH_TEST",
-            take_id="DISPLAY_TAKE_001",
-            file_name="SEG_001.wav",
-            relative_path="batch/SEG_001.wav",
-            recording_session_id="RS_TEST",
-            recording_id="REC_TEST",
+        segment = self._r1_segment(
             piece_id="PIECE_TEST",
-            qinist_id="QINIST_TEST",
-            recording_take_no="001",
-            batch_take_no="A01",
-            script_id="SCRIPT_TEST",
-            source_raw_audio="raw/test.wav",
-            source_split_audio="split/SEG_001.wav",
-            event_id="EVT_001",
-            event_range="001",
-            gesture_id="GESTURE_001",
-            realization_variant="clean",
-            duration_s=2.5,
-            markers=R1MarkerSet(
-                pre_idle_end=R1Marker(marker_id="SEG_001:pre_idle_end", segment_id="SEG_001", marker_type="pre_idle_end", marker_label_zh="前置空白结束", time_s=0.2, review_status="accepted"),
-                gesture_start=R1Marker(marker_id="SEG_001:gesture_start", segment_id="SEG_001", marker_type="gesture_start", marker_label_zh="前导起势", time_s=0.4, review_status="accepted"),
-                render_anchor=R1Marker(marker_id="SEG_001:render_anchor", segment_id="SEG_001", marker_type="render_anchor", marker_label_zh="渲染锚点", time_s=0.45, review_status="accepted"),
-                tail_end=R1Marker(marker_id="SEG_001:tail_end", segment_id="SEG_001", marker_type="tail_end", marker_label_zh="尾音结束", time_s=2.2, review_status="accepted"),
-            ),
-            qc=R1SegmentQC(),
             reviewed_by="reviewer_test",
             reviewed_at="2026-06-12T00:01:00+00:00",
         )
@@ -171,6 +178,42 @@ class CsvContractTests(unittest.TestCase):
         validate_csv_contract("reviewed_render_anchors.csv", [anchor])
         validate_csv_contract("split_marker_review.csv", [marker])
         validate_csv_contract("segment_qc_sheet.csv", [qc])
+
+    def test_missing_tail_policy_defaults_to_full_tail_for_guqin_context(self) -> None:
+        segment = self._r1_segment()
+
+        self.assertEqual(segment.tail_policy, "full_tail")
+
+    def test_explicit_full_tail_policy_is_preserved(self) -> None:
+        segment = self._r1_segment(tail_policy="full_tail")
+
+        self.assertEqual(segment.tail_policy, "full_tail")
+
+    def test_explicit_smart_fade_policy_is_preserved_as_override(self) -> None:
+        segment = self._r1_segment(tail_policy="smart_fade_100ms")
+
+        self.assertEqual(segment.tail_policy, "smart_fade_100ms")
+
+    def test_demo_context_keeps_legacy_tail_policy_default(self) -> None:
+        segment = self._r1_segment(
+            piece_id="",
+            qinist_id="",
+            recording_session_id="DEMO_SESSION",
+            source_raw_audio="",
+            source_split_audio="sample_workspace/split_audio/demo.wav",
+            variant="demo",
+            realization_variant="demo",
+            synthetic_demo=True,
+        )
+
+        self.assertEqual(segment.tail_policy, "smart_fade_100ms")
+
+    def test_r1_export_uses_guqin_full_tail_default_without_smart_fade(self) -> None:
+        segment = r1_review_store.with_derived_state(self._r1_segment())
+
+        anchor = r1_review_store.reviewed_render_anchor_rows([segment], "2026-06-21T00:00:00+00:00")[0]
+
+        self.assertEqual(anchor["tail_policy"], "full_tail")
 
 
 if __name__ == "__main__":

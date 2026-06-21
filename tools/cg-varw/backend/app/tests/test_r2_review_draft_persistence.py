@@ -384,6 +384,39 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
         self.assertTrue(all("full_tail" in row["flags"] for row in f_rows))
         self.assertTrue(all("smart_fade" not in row["revision_applied"] for row in f_rows))
 
+    def test_f_full_tail_duration_uses_source_natural_decay_not_play_end(self):
+        generator = load_f_generator_module()
+        e_meta = {"duration_s": 30.0}
+        rows = [
+            {
+                "event_id": f"XWC_P01_N{index:02d}",
+                "phrase_id": "XWC_P01_LOCAL_PHRASE",
+                "section_id": "XWC_P01",
+                "source_version_id": "E_REVIEWED",
+                "source_sample_id": f"RECD2_BATCH01_T{index:03d}",
+                "source_take_id": f"T{index:03d}",
+                "source_audio": f"split_preview/T{index:03d}_clean_preview.wav",
+                "target_attack_time_s": str(1.0 + index),
+                "render_anchor_s": "0.100",
+                "phrase_play_start_s": "0.000",
+                "phrase_play_end_s": "1.000",
+                "phrase_tail_end_s": "1.200",
+                "revision_applied": "E_REVIEWED",
+                "user_review_source": "E_REVIEWED_USER_REVIEW",
+                "gpt_review_decision": "fixture",
+                "flags": "",
+            }
+            for index in range(1, 5)
+        ]
+
+        with patch.object(generator, "source_duration_s", return_value=4.25):
+            f_rows, _marker_order = generator.build_f_alignment_rows(rows, e_meta["duration_s"])
+
+        expected_tail_end = max(float(row["target_attack_time_s"]) - float(row["render_anchor_s"]) + 4.25 for row in f_rows)
+        self.assertGreaterEqual(max(float(row["phrase_tail_end_s"]) for row in f_rows), expected_tail_end)
+        self.assertTrue(all(row["tail_preservation_policy"] == "full_tail_no_smart_fade" for row in f_rows))
+        self.assertTrue(all(row["source_tail_policy"] == "full_tail" for row in f_rows))
+
     def test_restore_from_user_export_zip_prefers_listening_review_and_warns_on_partial_alignment(self):
         with tempfile.TemporaryDirectory() as tmp:
             source_dir = Path(tmp) / "restore_input"

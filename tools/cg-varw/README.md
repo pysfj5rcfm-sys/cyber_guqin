@@ -38,6 +38,16 @@ CG_VARW_SPLIT_ROOT="/path/to/split_preview/batch02" /opt/homebrew/bin/python3.11
 
 When the split root is the parent directory, the backend discovers child `batchXX` directories with R1 intake files and keeps each batch separate in the R1 UI.
 
+## R1/R2 Guqin Tail Policy
+
+For guqin review/render inputs, a missing R1 `tail_policy` defaults to `full_tail`. Existing explicit values are preserved: `full_tail` remains `full_tail`, and an intentionally selected `smart_fade_100ms` remains an explicit override. Synthetic demo segments keep the legacy demo default so fixture behavior does not change by accident.
+
+`full_tail` means the render path must preserve the musical tail through its natural decay. In practical guqin terms this is the default `natural_decay` behavior: the source preview or source segment may overlap the next event, but it must not be shortened merely to make the timeline look cleaner. `safe_trim_smart_fade` / `smart_fade_100ms` is a destructive trim-style policy when used as the default musical-tail handler, and should not be the default for guqin material.
+
+A click-safe fade may still be used only as a non-destructive anti-click treatment at a boundary. It must not shorten `phrase_tail_end_s`, `tail_end_s`, source preview duration, or any other requested full-tail duration semantics. Any destructive tail trim needs an explicit, non-default override and should be documented in the render plan/report.
+
+For new guqin pieces, leave `tail_policy` unset unless a reviewer is making an explicit exception; the backend will default guqin context to `full_tail`. If an override is necessary, record why the trim/fade is musically safe and keep it out of sample ingest unless separately approved.
+
 ## R2 ABCD render-set intake
 
 When an R2 ABCD intake package exists under the configured render/intake roots:
