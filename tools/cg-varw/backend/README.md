@@ -17,11 +17,22 @@ Example `config.local.json`:
 ```json
 {
   "raw_root": "D:\\path\\to\\your\\raw_audio",
+  "raw_include_prefix": "QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw",
   "split_root": "D:\\path\\to\\your\\split_preview"
 }
 ```
 
 Do not commit `.env.local` or `config.local.json`.
+
+`CG_VARW_RAW_ROOT` is the file-id base. R0 draft and export paths are keyed by file IDs derived from paths relative to this root, so changing the root depth changes the generated IDs. To narrow the R0 raw file list without changing file IDs, keep `CG_VARW_RAW_ROOT` at the stable parent root and set `CG_VARW_RAW_INCLUDE_PREFIX` to a POSIX relative prefix under that root:
+
+```bash
+CG_VARW_RAW_ROOT="/path/to/raw_audio" \
+CG_VARW_RAW_INCLUDE_PREFIX="QINIST_002/XWC/RS_XWC_002_BAIYA_PILOT/raw" \
+/opt/homebrew/bin/python3.11 -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+```
+
+The include prefix only filters `GET /api/r0/raw-files`; direct `review-units`, audio, metadata, waveform, draft, and export lookup continue to use the unchanged file ID.
 
 ## Local Startup
 

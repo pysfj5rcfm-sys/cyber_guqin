@@ -17,6 +17,7 @@ REVIEW_OUTPUT_ROOT = TOOL_DIR / "review_outputs"
 class Settings:
     raw_root: Path
     raw_root_mode: str
+    raw_include_prefix: str | None
     split_root: Path
     split_root_mode: str
     review_only: bool = True
@@ -30,6 +31,7 @@ def load_settings() -> Settings:
         return Settings(
             raw_root=Path(env_root).expanduser().resolve(),
             raw_root_mode="real",
+            raw_include_prefix=_load_raw_include_prefix(),
             split_root=split_root,
             split_root_mode=split_root_mode,
         )
@@ -43,6 +45,7 @@ def load_settings() -> Settings:
             return Settings(
                 raw_root=Path(configured).expanduser().resolve(),
                 raw_root_mode="real",
+                raw_include_prefix=_load_raw_include_prefix(data),
                 split_root=split_root,
                 split_root_mode=split_root_mode,
             )
@@ -50,6 +53,7 @@ def load_settings() -> Settings:
     return Settings(
         raw_root=DEMO_RAW_ROOT.resolve(),
         raw_root_mode="demo",
+        raw_include_prefix=_load_raw_include_prefix(),
         split_root=split_root,
         split_root_mode=split_root_mode,
     )
@@ -69,6 +73,26 @@ def _load_split_root() -> tuple[Path, str]:
             return Path(configured).expanduser().resolve(), "real"
 
     return DEMO_SPLIT_ROOT.resolve(), "demo"
+
+
+def _load_raw_include_prefix(config_data: dict[str, object] | None = None) -> str | None:
+    raw_value = os.environ.get("CG_VARW_RAW_INCLUDE_PREFIX")
+    if raw_value is None and config_data:
+        configured = config_data.get("raw_include_prefix")
+        raw_value = configured if isinstance(configured, str) else None
+    return normalize_raw_include_prefix(raw_value)
+
+
+def normalize_raw_include_prefix(raw_value: str | None) -> str | None:
+    value = (raw_value or "").strip().replace("\\", "/")
+    if not value:
+        return None
+    if value.startswith("/"):
+        return None
+    parts = [part for part in value.split("/") if part]
+    if not parts or any(part == ".." for part in parts):
+        return None
+    return "/".join(parts)
 
 
 def ensure_within_root(root: Path, candidate: Path) -> Path:

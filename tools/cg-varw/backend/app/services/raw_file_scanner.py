@@ -19,6 +19,8 @@ def scan_raw_files() -> RawFilesResponse:
             if not path.is_file() or path.suffix.lower() not in SUPPORTED_AUDIO_SUFFIXES:
                 continue
             relative = path.relative_to(settings.raw_root).as_posix()
+            if settings.raw_include_prefix and not _matches_include_prefix(relative, settings.raw_include_prefix):
+                continue
             stat = path.stat()
             files.append(
                 RawFileItem(
@@ -31,3 +33,7 @@ def scan_raw_files() -> RawFilesResponse:
                 )
             )
     return RawFilesResponse(raw_root=str(settings.raw_root), raw_root_mode=settings.raw_root_mode, files=files)
+
+
+def _matches_include_prefix(relative_path: str, include_prefix: str) -> bool:
+    return relative_path == include_prefix or relative_path.startswith(f"{include_prefix}/")
