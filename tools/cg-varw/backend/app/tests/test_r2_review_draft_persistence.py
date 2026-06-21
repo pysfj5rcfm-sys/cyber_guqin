@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import importlib.util
 import json
 import tempfile
@@ -68,6 +69,20 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
             self.assertEqual(1, latest["draft"]["suggested_revision_count"])
             self.assertEqual("r2_review_state.latest.json", manifest["canonical_source"])
             self.assertEqual(str(latest_dir / "r2_review_state.latest.json"), manifest["canonical_state_path"])
+            self.assertEqual("varw_export_contract.v0.1", manifest["manifest_version"])
+            self.assertEqual("R2", manifest["stage"])
+            self.assertEqual("primary", manifest["canonical_source_role"])
+            self.assertTrue(manifest["derived_export_only"])
+            self.assertEqual(store.expected_export_files(), manifest["derived_outputs"])
+            self.assertEqual(
+                sha256_file(latest_dir / "r2_review_state.latest.json"),
+                manifest["input_state_hash"]["value"],
+            )
+            self.assertEqual("sha256", manifest["input_state_hash"]["algorithm"])
+            self.assertEqual("r2_review_state.latest.json", manifest["input_state_hash"]["path"])
+            self.assertEqual(store.expected_export_files(), [item["path"] for item in manifest["output_hashes"]])
+            self.assertEqual("pass", manifest["reload_validation"]["status"])
+            self.assertEqual("r2_derived_export_reload_v0.1", manifest["reload_validation"]["validator"])
             self.assertTrue(manifest["no_downloads_policy"])
             self.assertFalse(latest["draft"]["e_generated"])
 
@@ -154,6 +169,44 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
             self.assertEqual(50, count_csv_rows(latest_dir / "phrase_boundary_decision.csv"))
             self.assertEqual(1, yaml_rows(latest_dir / "render_revision_log.yaml"))
 
+    def test_latest_load_does_not_promote_derived_exports_as_canonical(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            latest_dir = Path(tmp) / "r2_review_drafts" / "latest"
+            latest_dir.mkdir(parents=True)
+            canonical_state = {
+                "render_set_id": RENDER_SET_ID,
+                "data_source": "api",
+                "review_status": "draft",
+                "listeningReviewByKey": {},
+                "preferredVersionByPhrase": {},
+            }
+            (latest_dir / "r2_review_state.latest.json").write_text(
+                json.dumps(canonical_state, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            write_csv(
+                latest_dir / "listening_review.csv",
+                [
+                    {
+                        "review_id": "R2_REVIEW_STALE",
+                        "render_set_id": RENDER_SET_ID,
+                        "phrase_id": "XWC_P01_LOCAL_PHRASE",
+                        "active_version_id": "C_QINIST_STYLE",
+                        "issue_type": "[\"phrase_unclear\"]",
+                        "severity": "medium",
+                        "comment": "stale derived row must not become canonical",
+                    }
+                ],
+            )
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                latest = store.load_project_review_draft_latest(RENDER_SET_ID)
+
+        self.assertTrue(latest["has_draft"])
+        self.assertEqual("engineering_dir_latest", latest["draft_source"])
+        self.assertEqual(0, latest["review_count"])
+        self.assertEqual({}, latest["draft"]["listeningReviewByKey"])
+        self.assertNotEqual("explicit_restore_from_derived_exports", latest["draft"].get("provenance", {}).get("restore_provenance"))
+
     def test_e_review_persists_as_future_f_input_without_generating_f(self):
         with tempfile.TemporaryDirectory() as tmp:
             payload = {
@@ -211,7 +264,7 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
 
     def test_export_preserves_f_completed_state_and_derives_sixty_alignment_rows(self):
         with tempfile.TemporaryDirectory() as tmp:
-            render_root = Path(tmp)
+            render_root = Path(tmp).resolve()
             write_f_final_outputs(render_root)
             state = {
                 "render_set_id": RENDER_SET_ID,
@@ -265,6 +318,40 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
         self.assertEqual(60, boundary_count)
         self.assertEqual(10, preferred_count)
         self.assertEqual(8, len(result["files"]))
+
+    def test_derived_reload_validation_detects_stale_output_without_rewriting_canonical(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            payload = {
+                "render_set_id": RENDER_SET_ID,
+                "data_source": "api",
+                "review_status": "draft",
+                "active_phrase_id": "XWC_P10_LOCAL_PHRASE",
+                "active_version_id": "A_LITERAL",
+                "listeningReviewByKey": {
+                    "XWC_P10_LOCAL_PHRASE:A_LITERAL": {
+                        "phrase_id": "XWC_P10_LOCAL_PHRASE",
+                        "version_id": "A_LITERAL",
+                        "issue_type": ["good"],
+                        "severity": "low",
+                        "comment": "试试其它节拍",
+                        "suggested_revision": "1——234——5——6——7",
+                        "reviewer": "human",
+                        "updated_at": "2026-06-20T01:00:00.000Z",
+                    }
+                },
+                "preferredVersionByPhrase": {"XWC_P10_LOCAL_PHRASE": "A_LITERAL"},
+            }
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                result = store.save_project_review_draft(RENDER_SET_ID, payload)
+                latest_dir = Path(result["latest_dir"])
+                canonical_before = (latest_dir / "r2_review_state.latest.json").read_text(encoding="utf-8")
+                write_csv(latest_dir / "issue_list.csv", [])
+                validation = store.validate_r2_derived_export_reload(latest_dir)
+                canonical_after = (latest_dir / "r2_review_state.latest.json").read_text(encoding="utf-8")
+
+        self.assertEqual("fail", validation["status"])
+        self.assertTrue(any("issue_count" in note for note in validation["notes"]))
+        self.assertEqual(canonical_before, canonical_after)
 
     def test_f_alignment_rows_use_full_tail_policy_without_smart_fade(self):
         generator = load_f_generator_module()
@@ -325,6 +412,11 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
         self.assertFalse(state["e_revision_plan_generated"])
         self.assertIn("XWC_P01_LOCAL_PHRASE:C_QINIST_STYLE", state["listeningReviewByKey"])
         self.assertTrue(manifest["restored_from_exports"])
+        self.assertEqual("explicit_restore_from_derived_exports", state["provenance"]["restore_provenance"])
+        self.assertEqual("explicit_restore_from_derived_exports", manifest["restore_provenance"])
+        self.assertEqual(str(source_dir.resolve()), manifest["restore_source"]["path"])
+        self.assertEqual("manual restore-from-export-dir request", manifest["restore_source"]["reason"])
+        self.assertEqual(store.expected_export_files(), [item["path"] for item in manifest["restore_source"]["hashes"]])
         self.assertEqual(28, manifest["review_count"])
         self.assertEqual(10, manifest["phrase_count"])
         self.assertEqual(10, manifest["preferred_version_count"])
@@ -338,6 +430,31 @@ class R2ReviewDraftPersistenceTests(unittest.TestCase):
         self.assertTrue(manifest["no_downloads_policy"])
         self.assertEqual("XWC_P01_LOCAL_PHRASE", manifest["active_phrase_id"])
         self.assertEqual("C_QINIST_STYLE", manifest["active_version_id"])
+
+    def test_f_input_snapshot_guard_keeps_latest_json_as_authority(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            render_root = Path(tmp).resolve()
+            snapshot_dir = render_root / "F_FINAL_REVIEWED" / "input_snapshot"
+            snapshot_dir.mkdir(parents=True)
+            latest_json = render_root / "r2_review_drafts" / "latest" / "r2_review_state.latest.json"
+            latest_json.parent.mkdir(parents=True)
+            latest_json.write_text("{}\n", encoding="utf-8")
+            snapshot_json = snapshot_dir / "r2_review_state.latest.input_for_f.json"
+            snapshot_json.write_text(latest_json.read_text(encoding="utf-8"), encoding="utf-8")
+            snapshot_hash = hashlib.sha256(snapshot_json.read_bytes()).hexdigest()
+            (snapshot_dir / "r2_review_state.latest.input_for_f.sha256").write_text(
+                f"{snapshot_hash}  r2_review_state.latest.input_for_f.json\n",
+                encoding="utf-8",
+            )
+
+            with patch.dict(environ, {"CG_VARW_R2_RENDER_ROOT": tmp, "CG_VARW_R2_INTAKE_ROOT": str(R2_INTAKE_ROOT)}):
+                guard = store.r2_f_input_snapshot_guard()
+
+        self.assertEqual("r2_review_state.latest.json", guard["canonical_source"])
+        self.assertEqual(str(latest_json), guard["latest_json_path"])
+        self.assertEqual(str(snapshot_json), guard["input_snapshot_path"])
+        self.assertEqual(snapshot_hash, guard["input_snapshot_hash"])
+        self.assertEqual([], guard["derived_canonical_sources"])
 
 
 def write_restore_input(source_dir: Path) -> None:
@@ -472,6 +589,10 @@ def count_csv_rows(path: Path) -> int:
 
 def yaml_rows(path: Path) -> int:
     return sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip() == "-")
+
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 if __name__ == "__main__":

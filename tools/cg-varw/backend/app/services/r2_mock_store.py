@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
 import os
@@ -36,6 +37,10 @@ SAFETY = {
     "not_sample_assets": True,
     "not_ml_training_data": True,
 }
+
+R2_EXPORT_CONTRACT_VERSION = "varw_export_contract.v0.1"
+R2_DERIVED_RELOAD_VALIDATOR = "r2_derived_export_reload_v0.1"
+R2_FORBIDDEN_AUTHORITIES = ["Downloads", "restore_zip", "browser_Blob", "old_exports"]
 
 RENDER_SET_ID = "R2A_MOCK_XWC_BAIYA_001"
 REPO_ROOT = TOOL_DIR.parents[1]
@@ -415,6 +420,7 @@ def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir:
     listening_by_key = listening_reviews_from_rows(review_rows, preferred)
     active_review = review_rows[0] if review_rows else {}
     restored_at = now()
+    restore_hashes = restore_source_hashes(source_dir, export_files)
     state = {
         "render_set_id": render_set_id,
         "data_source": "api",
@@ -440,7 +446,14 @@ def restore_project_review_draft_from_export_dir(render_set_id: str, export_dir:
         "production_grade": False,
         "provenance": {
             "restored_from_exports": True,
+            "restore_provenance": "explicit_restore_from_derived_exports",
             "source_export_dir": str(source_dir),
+            "restore_source": {
+                "path": str(source_dir),
+                "hashes": restore_hashes,
+                "warnings": warnings,
+                "reason": "manual restore-from-export-dir request",
+            },
             "restored_at": restored_at,
             "restore_warnings": warnings,
             "listening_review_csv_rows": len(review_rows),
@@ -1115,6 +1128,10 @@ def expected_export_files() -> list[str]:
     ]
 
 
+def derived_output_paths(latest_dir: Path) -> list[Path]:
+    return [latest_dir / file_name for file_name in expected_export_files()]
+
+
 def load_export_files(source_dir: Path) -> dict[str, str]:
     if not source_dir.exists():
         raise ValueError(f"R2 restore export dir not found: {source_dir}")
@@ -1140,6 +1157,14 @@ def read_csv_text(text: str) -> list[dict[str, str]]:
     if not text.strip():
         return []
     return list(csv.DictReader(text.splitlines()))
+
+
+def read_csv_path(path: Path) -> list[dict[str, str]]:
+    return read_csv_text(path.read_text(encoding="utf-8-sig"))
+
+
+def read_yaml_table_path(path: Path) -> list[dict[str, str]]:
+    return read_yaml_table_rows(path.read_text(encoding="utf-8"))
 
 
 def read_yaml_table_rows(text: str) -> list[dict[str, str]]:
@@ -1174,6 +1199,132 @@ def parse_yaml_scalar(value: str) -> str:
     if isinstance(parsed, (dict, list)):
         return json.dumps(parsed, ensure_ascii=False)
     return str(parsed)
+
+
+def sha256_path(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def hash_record(path: Path, *, base_dir: Path | None = None) -> dict[str, str]:
+    relative = path.relative_to(base_dir).as_posix() if base_dir else path.name
+    return {"path": relative, "sha256": sha256_path(path)}
+
+
+def restore_source_hashes(source_dir: Path, export_files: dict[str, str]) -> list[dict[str, str]]:
+    hashes: list[dict[str, str]] = []
+    for file_name in expected_export_files():
+        path = source_dir / file_name
+        if path.exists():
+            hashes.append(hash_record(path))
+        elif file_name in export_files:
+            hashes.append({"path": file_name, "sha256": sha256_text(export_files[file_name])})
+    return hashes
+
+
+def output_hash_records(latest_dir: Path) -> list[dict[str, str]]:
+    return [hash_record(path) for path in derived_output_paths(latest_dir) if path.exists()]
+
+
+def validation_notes_for_count_mismatch(canonical_counts: dict[str, int], derived_counts: dict[str, int]) -> list[str]:
+    notes: list[str] = []
+    for key in ("review_count", "phrase_count", "preferred_version_count", "suggested_revision_count", "issue_count"):
+        if canonical_counts.get(key) != derived_counts.get(key):
+            notes.append(f"{key} mismatch: canonical={canonical_counts.get(key)} derived={derived_counts.get(key)}")
+    return notes
+
+
+def validate_r2_derived_export_reload(
+    latest_dir: str | Path,
+    *,
+    output_hashes: list[dict[str, str]] | None = None,
+) -> dict[str, Any]:
+    latest_dir = Path(latest_dir)
+    checked_at = now()
+    notes: list[str] = []
+    state_path = latest_dir / "r2_review_state.latest.json"
+    missing = [path.name for path in [state_path, *derived_output_paths(latest_dir)] if not path.exists()]
+    if missing:
+        notes.append(f"missing files: {', '.join(missing)}")
+        return {
+            "status": "fail",
+            "validator": R2_DERIVED_RELOAD_VALIDATOR,
+            "checked_at": checked_at,
+            "notes": notes,
+        }
+
+    try:
+        with state_path.open("r", encoding="utf-8") as handle:
+            state = json.load(handle)
+        canonical_counts = canonical_state_counts(state)
+        review_rows = read_csv_path(latest_dir / "listening_review.csv")
+        review_yaml_rows = read_yaml_table_path(latest_dir / "listening_review.yaml")
+        preferred_rows = read_csv_path(latest_dir / "preferred_version_summary.csv")
+        issue_rows = read_csv_path(latest_dir / "issue_list.csv")
+        revision_rows = read_yaml_table_path(latest_dir / "render_revision_log.yaml")
+        read_yaml_table_path(latest_dir / "phrase_structure_review.yaml")
+        read_csv_path(latest_dir / "phrase_boundary_decision.csv")
+        read_csv_path(latest_dir / "render_phrase_alignment.csv")
+    except Exception as exc:  # pragma: no cover - defensive manifest reporting
+        return {
+            "status": "fail",
+            "validator": R2_DERIVED_RELOAD_VALIDATOR,
+            "checked_at": checked_at,
+            "notes": [f"parse error: {exc}"],
+        }
+
+    review_keys = {
+        f"{row.get('phrase_id', '')}:{row.get('active_version_id') or row.get('version_id', '')}"
+        for row in review_rows
+        if row.get("phrase_id") and (row.get("active_version_id") or row.get("version_id"))
+    }
+    yaml_review_keys = {
+        f"{row.get('phrase_id', '')}:{row.get('active_version_id') or row.get('version_id', '')}"
+        for row in review_yaml_rows
+        if row.get("phrase_id") and (row.get("active_version_id") or row.get("version_id"))
+    }
+    canonical_keys = set((state.get("listeningReviewByKey") or {}).keys()) if isinstance(state.get("listeningReviewByKey"), dict) else set()
+    if review_keys != canonical_keys:
+        notes.append("listening_review.csv keys mismatch canonical latest JSON")
+    if yaml_review_keys != canonical_keys:
+        notes.append("listening_review.yaml keys mismatch canonical latest JSON")
+
+    preferred_keys = {row.get("phrase_id", "") for row in preferred_rows if row.get("phrase_id") and row.get("preferred_version_id")}
+    canonical_preferred = state.get("preferredVersionByPhrase") if isinstance(state.get("preferredVersionByPhrase"), dict) else {}
+    canonical_preferred_keys = {str(key) for key, value in canonical_preferred.items() if value}
+    if preferred_keys != canonical_preferred_keys:
+        notes.append("preferred_version_summary.csv phrase keys mismatch canonical latest JSON")
+
+    derived_counts = {
+        "review_count": len(review_rows),
+        "phrase_count": len({row.get("phrase_id", "") for row in review_rows if row.get("phrase_id")}),
+        "preferred_version_count": len(preferred_rows),
+        "suggested_revision_count": len(revision_rows),
+        "issue_count": len(issue_rows),
+    }
+    notes.extend(validation_notes_for_count_mismatch(canonical_counts, derived_counts))
+
+    if output_hashes is not None:
+        expected_names = expected_export_files()
+        hash_by_path = {item.get("path"): item.get("sha256") for item in output_hashes if isinstance(item, dict)}
+        if sorted(hash_by_path) != sorted(expected_names):
+            notes.append("output_hashes do not cover all 8 derived outputs")
+        for file_name in expected_names:
+            expected_hash = hash_by_path.get(file_name)
+            actual_hash = sha256_path(latest_dir / file_name)
+            if expected_hash != actual_hash:
+                notes.append(f"output_hash stale: {file_name}")
+
+    return {
+        "status": "fail" if notes else "pass",
+        "validator": R2_DERIVED_RELOAD_VALIDATOR,
+        "checked_at": checked_at,
+        "notes": notes,
+        "counts": derived_counts,
+    }
 
 
 def preferred_versions_from_rows(preferred_rows_data: list[dict[str, str]], review_rows: list[dict[str, str]]) -> dict[str, str]:
@@ -1773,12 +1924,28 @@ def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: 
     provenance = state.get("provenance", {}) if isinstance(state.get("provenance"), dict) else {}
     counts = canonical_state_counts(state)
     canonical_state_path = latest_dir / "r2_review_state.latest.json"
+    output_hashes = output_hash_records(latest_dir)
+    reload_validation = validate_r2_derived_export_reload(latest_dir, output_hashes=output_hashes)
     f_completed = bool(state.get("f_generation_completed")) or state.get("f_version_id") == "F_FINAL_REVIEWED"
     f_pending = not f_completed if "f_generation_pending" not in state else bool(state.get("f_generation_pending"))
     f_not_generated = not f_completed if "f_not_generated" not in state else bool(state.get("f_not_generated"))
     manifest = {
+        "manifest_version": R2_EXPORT_CONTRACT_VERSION,
+        "stage": "R2",
         "canonical_source": "r2_review_state.latest.json",
+        "canonical_source_role": "primary",
         "canonical_state_path": str(canonical_state_path),
+        "derived_export_only": True,
+        "derived_outputs": expected_export_files(),
+        "input_state_hash": {
+            "algorithm": "sha256",
+            "path": "r2_review_state.latest.json",
+            "value": sha256_path(canonical_state_path) if canonical_state_path.exists() else "",
+        },
+        "output_hashes": output_hashes,
+        "row_counts": counts,
+        "reload_validation": reload_validation,
+        "forbidden_authority": R2_FORBIDDEN_AUTHORITIES,
         "generated_exports_path": str(latest_dir),
         "active_render_set_id": state.get("render_set_id"),
         "render_set_id": state.get("render_set_id"),
@@ -1787,6 +1954,8 @@ def write_review_state_manifest(latest_dir: Path, state: dict[str, Any], files: 
         "created_at": state.get("saved_at") or provenance.get("restored_at") or now(),
         "restored_at": provenance.get("restored_at", ""),
         "restored_from_exports": provenance.get("restored_from_exports", False),
+        "restore_provenance": provenance.get("restore_provenance", ""),
+        "restore_source": provenance.get("restore_source", {}),
         "source_export_dir": provenance.get("source_export_dir", ""),
         "review_count": counts["review_count"],
         "phrase_count": counts["phrase_count"],
@@ -1845,6 +2014,28 @@ def write_json(path: Path, data: dict[str, Any]) -> Path:
         json.dump(data, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
     return path
+
+
+def r2_f_input_snapshot_guard() -> dict[str, Any]:
+    render_root = get_r2_render_root()
+    if not render_root:
+        raise ValueError("CG_VARW_R2_RENDER_ROOT is required for R2 F input snapshot guard")
+    latest_json_path = render_root / "r2_review_drafts" / "latest" / "r2_review_state.latest.json"
+    input_snapshot_path = render_root / "F_FINAL_REVIEWED" / "input_snapshot" / "r2_review_state.latest.input_for_f.json"
+    input_snapshot_sha_path = input_snapshot_path.with_suffix(".sha256")
+    input_snapshot_hash = ""
+    if input_snapshot_sha_path.exists():
+        input_snapshot_hash = input_snapshot_sha_path.read_text(encoding="utf-8").strip().split()[0]
+    elif input_snapshot_path.exists():
+        input_snapshot_hash = sha256_path(input_snapshot_path)
+    return {
+        "canonical_source": "r2_review_state.latest.json",
+        "latest_json_path": str(latest_json_path),
+        "input_snapshot_path": str(input_snapshot_path),
+        "input_snapshot_hash": input_snapshot_hash,
+        "derived_canonical_sources": [],
+        "forbidden_authority": R2_FORBIDDEN_AUTHORITIES,
+    }
 
 
 def safe_timestamp(value: str) -> str:
