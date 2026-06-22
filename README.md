@@ -1,11 +1,14 @@
 # 赛博古琴 Cyber Guqin v1.0
 
-当前阶段：Phase 0.1 / Gesture Ontology v1.1 + Dummy Audio Skeleton
-当前模式：Dapu Mode 古谱打谱模式
-第一位数字琴人：QINIST_001 三曼
-当前曲目：仙翁操 XWC
+当前阶段：XWC F reproduction ready / Sanman digitization startup
 
-当前目标：用《仙翁操》51 个事件跑通 dummy audio 全链路，并固化古琴指法本体。本轮不是最终音频效果，只是工程骨架。
+当前工程基线：XWC / 《仙翁操》 / QINIST_002 白牙 / RS_XWC_002_BAIYA_PILOT / F_FINAL_REVIEWED
+
+当前主线：QINIST_001 = 三曼数字琴人采集协议、controlled fingering samples、ML-ready candidate sidecar
+
+当前不是：第二首执行 / sample ingest / ML training / Arrangement Mode production / accepted F 重跑
+
+工程状态：P1-F self-contained dry-run reproduction toolchain 已完成。repo 可通过 workflow skill、runbook、script registry、examples 与 generic scripts dry-run 复现 XWC F 工程路径；这不是一个真实 wav renderer，也不是 sample ingest 或 ML 入口。
 
 ## 如何运行 smoke test
 
@@ -27,9 +30,7 @@ python 05_scripts/smoke_test.py
 
 ## 当前不做
 
-本轮不做 OCR / Web UI / 机器学习 / 真实切分 / Arrangement Mode / reference performance 对齐 / DDSP / 神经音频生成。
-
-下一步是真实录音与 `split_recording_session.py` 实现。再下一步才是 reference_performance、timing_profile、sample_selection_policy 真实化、review_taxonomy。
+当前不进入第二首执行、三曼采集实现、sample ingest、ML training、真实 render、Arrangement Mode production 或 accepted `F_FINAL_REVIEWED` 重跑。旧 `scripts/generate_baiya_recording_plan.py` 仅保留为 historical template；不得作为当前 workflow 入口直接运行、移动、删除、归档或误提交。
 
 ## XWC F 自包含 dry-run 复现
 
