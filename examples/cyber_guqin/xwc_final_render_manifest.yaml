@@ -1,0 +1,39 @@
+{
+  "manifest_kind": "final_reviewed_render",
+  "schema_id": "cyber_guqin.final_reviewed_render_manifest.v0.1",
+  "piece_id": "XWC",
+  "session_id": "RS_XWC_002_BAIYA_PILOT",
+  "qinist_id": "QINIST_002",
+  "source_review_state": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json",
+  "source_version": "E_REVIEWED",
+  "target_version": "F_FINAL_REVIEWED",
+  "output_root": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/reproduction_runs/EXAMPLE_RUN/final",
+  "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+  "input_snapshot_policy": {
+    "authority": "latest_json_or_explicit_input_snapshot",
+    "snapshot_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED/input_snapshot/r2_review_state.latest.input_for_f.json",
+    "hash_required": true
+  },
+  "phrase_revision_policy": {
+    "default_intent": "preserve_reviewed_intent",
+    "human_listening_gate_required": true
+  },
+  "tail_policy": "full_tail",
+  "forbidden_authority": [
+    "Downloads",
+    "browser Blob",
+    "restore zip",
+    "old exports",
+    "derived CSV/YAML"
+  ],
+  "sample_safety_rules": {
+    "not_sample_assets": true,
+    "not_recording_segments": true,
+    "not_ml_training_data": true,
+    "production_grade": false
+  },
+  "dry_run_default": true,
+  "forbid_overwrite_accepted_baseline": true,
+  "reproduction_sandbox_required": true,
+  "allow_execute": true
+}

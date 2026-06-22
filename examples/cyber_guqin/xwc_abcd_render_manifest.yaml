@@ -1,0 +1,36 @@
+{
+  "manifest_kind": "abcd_render",
+  "schema_id": "cyber_guqin.abcd_render_manifest.v0.1",
+  "piece_id": "XWC",
+  "session_id": "RS_XWC_002_BAIYA_PILOT",
+  "qinist_id": "QINIST_002",
+  "render_set_id": "R2_XWC_BAIYA_ABCD_EXPERIMENTAL_354811e",
+  "source_review_state": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json",
+  "source_map": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/_planning/render_source_map.local.json",
+  "phrase_plan": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/_planning/render_phrase_plan.local.yaml",
+  "version_policy": {
+    "A_LITERAL": "literal timing baseline",
+    "B_PHRASE": "phrase-aware timing",
+    "C_QINIST_STYLE": "qinist-style interpretation",
+    "D_TEACHING_DIAGNOSTIC": "diagnostic teaching spacing"
+  },
+  "phrase_plan_items": [
+    {"phrase_id": "XWC_CASE_P01", "event_id": "XWC_CASE_EVENT_001", "source_ref": "render_source_map.local.json"},
+    {"phrase_id": "XWC_CASE_P02", "event_id": "XWC_CASE_EVENT_002", "source_ref": "render_source_map.local.json"}
+  ],
+  "output_versions": {
+    "A_LITERAL": {"output_name": "XWC_BAIYA_A_LITERAL.wav"},
+    "B_PHRASE": {"output_name": "XWC_BAIYA_B_PHRASE.wav"},
+    "C_QINIST_STYLE": {"output_name": "XWC_BAIYA_C_QINIST_STYLE.wav"},
+    "D_TEACHING_DIAGNOSTIC": {"output_name": "XWC_BAIYA_D_TEACHING_DIAGNOSTIC.wav"}
+  },
+  "tail_policy": "full_tail",
+  "context_take_policy": "manifest_driven_context_only_not_atomic_sample",
+  "output_root": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/reproduction_runs/EXAMPLE_RUN/abcd",
+  "dry_run_default": true,
+  "forbid_overwrite_accepted_baseline": true,
+  "derived_outputs": [
+    "render_phrase_alignment.csv",
+    "phrase_boundary_decision.csv"
+  ]
+}

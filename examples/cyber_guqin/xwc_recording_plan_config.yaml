@@ -1,0 +1,26 @@
+{
+  "schema_id": "cyber_guqin.recording_plan_config.v0.1",
+  "case_study": "XWC F reproduction minimal fixture",
+  "dry_run_default": true,
+  "max_batch_size": 10,
+  "tail_policy": {
+    "default": "full_tail",
+    "long_tail": "full_tail",
+    "natural_decay_required": true,
+    "smart_fade_requires_explicit_override": true
+  },
+  "context_take_policy": {
+    "source": "manifest_driven",
+    "duplicate_context_allowed_only_if_listed": true,
+    "context_takes_are_not_atomic_samples": true
+  },
+  "slate_policy": {
+    "template": "slate {take_no} {event_id} {technique}"
+  },
+  "output_settings": {
+    "write_manifest": true,
+    "write_human_review_checklist": true,
+    "not_sample_ingest": true,
+    "not_ml_training": true
+  }
+}
