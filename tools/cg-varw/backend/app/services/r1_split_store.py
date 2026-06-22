@@ -228,11 +228,38 @@ def _segments_from_manifest(batch_id: str, root: Path) -> list[SplitSegment]:
     if not manifest:
         return []
     recd2_rows = _load_recd2_rows(root)
+    manifest_scope = {
+        "recording_session_id": str(manifest.get("recording_session_id") or ""),
+        "piece_id": str(manifest.get("piece_id") or ""),
+        "qinist_id": str(manifest.get("qinist_id") or ""),
+    }
     return [
-        _with_seed_markers(SplitSegment(**segment), root, recd2_rows)
+        _with_seed_markers(SplitSegment(**_validated_manifest_segment(segment, batch_id, root, manifest_scope)), root, recd2_rows)
         for segment in manifest.get("segments", [])
         if segment.get("batch_id") == batch_id
     ]
+
+
+def _validated_manifest_segment(segment: dict[str, Any], batch_id: str, root: Path, manifest_scope: dict[str, str]) -> dict[str, Any]:
+    segment_id = str(segment.get("segment_id") or "")
+    if not segment_id:
+        raise ValueError(f"R1 manifest segment in {batch_id}: segment_id is required; file-derived segment_id cannot replace manifest identity")
+    if str(segment.get("batch_id") or "") != batch_id:
+        raise ValueError(f"R1 manifest segment {segment_id}: batch_id mismatch")
+    for field, expected in manifest_scope.items():
+        actual = str(segment.get(field) or "")
+        if expected and actual and actual != expected:
+            raise ValueError(f"R1 manifest segment {segment_id}: {field} mismatch with manifest scope")
+    if segment.get("take_id") and not segment.get("recording_take_no"):
+        raise ValueError(f"R1 manifest segment {segment_id}: take_id cannot replace recording_take_no")
+    relative_path = str(segment.get("relative_path") or "")
+    source_split_audio = str(segment.get("source_split_audio") or "")
+    if not source_split_audio:
+        raise ValueError(f"R1 manifest segment {segment_id}: source_split_audio is required")
+    if source_split_audio != relative_path:
+        raise ValueError(f"R1 manifest segment {segment_id}: source_split_audio must match manifest relative_path")
+    ensure_within_root(root, root / source_split_audio)
+    return segment
 
 
 def _segments_from_files(batch_id: str, root: Path) -> list[SplitSegment]:

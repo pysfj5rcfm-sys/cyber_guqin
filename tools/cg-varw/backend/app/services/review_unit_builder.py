@@ -8,6 +8,7 @@ from typing import Any
 from app.config import REVIEW_OUTPUT_ROOT
 from app.schemas import Marker, ReviewUnit
 from app.services.asr_candidate_loader import load_asr_candidates
+from app.services.export_safety_manifest import read_csv_rows, read_manifest, sha256_path
 
 
 MARKER_COLORS = {
@@ -61,6 +62,9 @@ def load_units_from_exported_csv(file_id: str, raw_path: Path) -> dict[str, Any]
     csv_path = exported_marker_review_path(file_id)
     if not csv_path:
         return None
+    guard = _r0_fallback_manifest_guard(csv_path)
+    if guard["status"] != "pass":
+        return None
     with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = [row for row in csv.DictReader(handle) if row.get("file_id") == file_id or not row.get("file_id")]
     if not rows:
@@ -71,14 +75,51 @@ def load_units_from_exported_csv(file_id: str, raw_path: Path) -> dict[str, Any]
     return {
         "file_id": file_id,
         "source_audio": raw_path.name,
-        "source": "exported_csv",
-        "message": f"已从工程目录导出 CSV 恢复 R0 初始状态：{csv_path}",
+        "source": "exported_csv_manifest_guarded",
+        "message": f"已从工程目录导出 CSV 以 manifest guard 恢复 R0 兼容初始状态：{csv_path}",
         "units": [unit.model_dump() for unit in units],
+        "restored_from_export": True,
+        "compatibility_restore": True,
+        "canonical_active_draft": False,
+        "provenance": {
+            "fallback_manifest": guard["manifest_path"],
+            "source_csv": str(csv_path),
+            "source_hash": guard["source_hash"],
+            "warning": "R0 CSV fallback is compatibility restore evidence only; it must not silently become canonical active draft.",
+        },
         "review_only": True,
         "production_grade": False,
         "not_sample_ingest": True,
         "not_recording_segments": True,
         "not_sample_assets": True,
+    }
+
+
+def _r0_fallback_manifest_guard(csv_path: Path) -> dict[str, Any]:
+    export_dir = csv_path.parent
+    manifest = read_manifest(export_dir)
+    if not manifest:
+        return {"status": "fail", "notes": ["missing export_manifest.json"]}
+    if manifest.get("stage") != "R0":
+        return {"status": "fail", "notes": [f"stage mismatch: {manifest.get('stage')}"]}
+    fallback_guard = manifest.get("fallback_guard") if isinstance(manifest.get("fallback_guard"), dict) else {}
+    if fallback_guard.get("source_path") != "raw_marker_review.csv":
+        return {"status": "fail", "notes": ["fallback_guard source_path missing or not raw_marker_review.csv"]}
+    expected_hash = fallback_guard.get("source_hash")
+    actual_hash = sha256_path(csv_path)
+    if expected_hash != actual_hash:
+        return {"status": "fail", "notes": ["raw_marker_review.csv hash mismatch"]}
+    expected_count = fallback_guard.get("row_count")
+    actual_count = len(read_csv_rows(csv_path))
+    if expected_count != actual_count:
+        return {"status": "fail", "notes": ["raw_marker_review.csv row count mismatch"]}
+    if not fallback_guard.get("reason"):
+        return {"status": "fail", "notes": ["fallback_guard reason missing"]}
+    return {
+        "status": "pass",
+        "manifest_path": str(export_dir / "export_manifest.json"),
+        "source_hash": actual_hash,
+        "row_count": actual_count,
     }
 
 

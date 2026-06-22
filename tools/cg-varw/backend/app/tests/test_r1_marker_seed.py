@@ -138,6 +138,33 @@ class R1MarkerSeedTests(unittest.TestCase):
         self.assertLessEqual(times[-1], 0.3)
         self.assertTrue(all(marker.review_status == "candidate" for marker in _markers(segment)))
 
+    def test_manifest_segment_id_wins_over_file_derived_segment_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            _write_wav(root / "clean_previews" / "T009_clean_preview.wav", duration_s=0.5, tone_start_s=0.1, tone_end_s=0.4)
+            _write_manifest(root, [{"recording_take_no": "T009", "clean_start_s": "0.000", "duration_s": "0.500", "guqin_start_s": "", "tail_end_s": ""}])
+            _write_r1_manifest(root, [{"take": "T009", "duration_s": 0.5, "segment_id": "MANIFEST_SEGMENT_009"}])
+
+            with _split_root_env(root):
+                segment = r1_split_store.list_segments("batch01").segments[0]
+
+        self.assertEqual("MANIFEST_SEGMENT_009", segment.segment_id)
+        self.assertNotEqual("SPLIT_BATCH01_T009", segment.segment_id)
+
+    def test_split_root_manifest_source_split_audio_mismatch_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            root = Path(tmp_dir)
+            _write_wav(root / "clean_previews" / "T010_clean_preview.wav", duration_s=0.5, tone_start_s=0.1, tone_end_s=0.4)
+            _write_manifest(root, [{"recording_take_no": "T010", "clean_start_s": "0.000", "duration_s": "0.500", "guqin_start_s": "", "tail_end_s": ""}])
+            _write_r1_manifest(
+                root,
+                [{"take": "T010", "duration_s": 0.5, "source_split_audio": "../other_batch/T010_clean_preview.wav"}],
+            )
+
+            with _split_root_env(root):
+                with self.assertRaisesRegex(ValueError, "source_split_audio"):
+                    r1_split_store.list_segments("batch01")
+
 
 def _split_root_env(root: Path):
     class SplitRootEnv:
@@ -168,13 +195,13 @@ def _write_r1_manifest(root: Path, segments: list[dict[str, object]]) -> None:
         "batches": [{"batch_id": "batch01", "display_name": "batch01", "segment_count": len(segments), "source": "real_split_root"}],
         "segments": [
             {
-                "segment_id": f"RECD2_BATCH01_{segment['take']}",
+                "segment_id": segment.get("segment_id") or f"RECD2_BATCH01_{segment['take']}",
                 "batch_id": "batch01",
                 "take_id": segment["take"],
                 "file_name": f"{segment['take']}_clean_preview.wav",
                 "relative_path": f"clean_previews/{segment['take']}_clean_preview.wav",
                 "recording_take_no": segment["take"],
-                "source_split_audio": f"clean_previews/{segment['take']}_clean_preview.wav",
+                "source_split_audio": segment.get("source_split_audio") or f"clean_previews/{segment['take']}_clean_preview.wav",
                 "duration_s": segment["duration_s"],
                 "markers": {"pre_idle_end": None, "gesture_start": None, "render_anchor": None, "tail_end": None},
                 "segment_status": "candidate",

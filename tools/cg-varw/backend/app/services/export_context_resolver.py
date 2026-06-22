@@ -67,8 +67,8 @@ class R1ExportContextResolver:
     )
 
     def resolve(self, segment: SplitSegment) -> ExportContext:
-        realization_variant = segment.realization_variant or segment.variant
-        source_split_audio = segment.source_split_audio or segment.relative_path
+        realization_variant = segment.realization_variant or ""
+        source_split_audio = segment.source_split_audio
         values = {
             "recording_session_id": segment.recording_session_id,
             "recording_id": segment.recording_id,
@@ -92,6 +92,8 @@ class R1ExportContextResolver:
         warnings = _missing_warnings("R1", segment.segment_id, values, self.required_fields)
         if segment.take_id and not segment.recording_take_no:
             warnings.append(f"R1 {segment.segment_id}: recording_take_no missing; take_id retained only as display alias")
+        if segment.variant and not segment.realization_variant:
+            warnings.append(f"R1 {segment.segment_id}: realization_variant missing; variant retained only as display alias")
         return ExportContext(values=values, warnings=warnings)
 
 

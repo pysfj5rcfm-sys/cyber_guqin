@@ -9,6 +9,15 @@ from app.config import REVIEW_OUTPUT_ROOT
 from app.schemas import ExportReviewRequest, ReviewUnit
 from app.services.csv_contract_validator import CSV_REQUIRED_FIELDS, validate_csv_contract
 from app.services.export_context_resolver import R0ExportContextResolver
+from app.services.export_safety_manifest import (
+    EXPORT_MANIFEST_NAME,
+    base_reload_validation,
+    output_hashes,
+    read_manifest,
+    row_counts,
+    sha256_path,
+    write_export_manifest,
+)
 
 
 REQUIRED_MARKERS = ("slate_start", "slate_end", "next_slate_start")
@@ -16,6 +25,33 @@ R0_CONTEXT_RESOLVER = R0ExportContextResolver()
 MANIFEST_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["reviewed_slate_anchor_manifest.csv"])
 MARKER_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["raw_marker_review.csv"])
 SPLIT_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["split_plan_from_raw_markers.csv"])
+R0_EXPORT_FILES = [
+    "reviewed_slate_anchor_manifest.csv",
+    "raw_marker_review.csv",
+    "split_plan_from_raw_markers.csv",
+]
+R0_RELOAD_VALIDATOR = "r0_export_reload_v0.1"
+R0_RELOAD_REQUIRED_FIELDS = {
+    "reviewed_slate_anchor_manifest.csv": (
+        "unit_id",
+        "source_raw_audio",
+        "recording_take_no",
+        "review_status",
+    ),
+    "raw_marker_review.csv": (
+        "unit_id",
+        "marker_type",
+        "source_raw_audio",
+        "recording_take_no",
+        "review_status",
+    ),
+    "split_plan_from_raw_markers.csv": (
+        "unit_id",
+        "source_raw_audio",
+        "recording_take_no",
+        "split_plan_role",
+    ),
+}
 
 MANIFEST_FIELDS = MANIFEST_REQUIRED_FIELDS + [
     "file_id",
@@ -96,7 +132,91 @@ def export_review_csv(request: ExportReviewRequest) -> dict[str, list[str] | str
         _write_csv(out_dir / "raw_marker_review.csv", MARKER_FIELDS, marker_rows),
         _write_csv(out_dir / "split_plan_from_raw_markers.csv", SPLIT_FIELDS, split_rows),
     ]
-    return {"path": str(out_dir), "files": [str(path) for path in files], "contract_warnings": contract_warnings}
+    validation = _validate_r0_export_reload(
+        out_dir,
+        expected_row_counts=row_counts(out_dir, R0_EXPORT_FILES),
+        expected_output_hashes=output_hashes(out_dir, R0_EXPORT_FILES),
+    )
+    manifest_path = write_export_manifest(
+        out_dir,
+        stage="R0",
+        canonical_source="ExportReviewRequest.units",
+        input_payload=request.model_dump(),
+        file_names=R0_EXPORT_FILES,
+        generator="app.services.r0_export_writer.export_review_csv",
+        warnings=contract_warnings,
+        reload_validation=validation,
+        extra_fields={
+            "fallback_guard": {
+                "source_path": "raw_marker_review.csv",
+                "source_hash": sha256_path(out_dir / "raw_marker_review.csv"),
+                "row_count": len(marker_rows),
+                "stage": "R0",
+                "reason": "compatibility restore requires manifest guard; export is not active canonical authority",
+                "restore_mode_required": True,
+            }
+        },
+    )
+    return {"path": str(out_dir), "files": [str(path) for path in files], "manifest_path": str(manifest_path), "contract_warnings": contract_warnings}
+
+
+def validate_r0_export_reload(export_dir: str | Path) -> dict[str, object]:
+    export_dir = Path(export_dir)
+    manifest = read_manifest(export_dir)
+    if manifest is None:
+        return {
+            "status": "fail",
+            "validator": R0_RELOAD_VALIDATOR,
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "checks": {},
+            "notes": [f"missing {EXPORT_MANIFEST_NAME}"],
+        }
+    if manifest.get("stage") != "R0":
+        return {
+            "status": "fail",
+            "validator": R0_RELOAD_VALIDATOR,
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "checks": {},
+            "notes": [f"manifest stage mismatch: {manifest.get('stage')}"],
+        }
+    return _validate_r0_export_reload(
+        export_dir,
+        expected_row_counts=manifest.get("row_counts") if isinstance(manifest.get("row_counts"), dict) else {},
+        expected_output_hashes=manifest.get("output_hashes") if isinstance(manifest.get("output_hashes"), list) else [],
+    )
+
+
+def _validate_r0_export_reload(
+    export_dir: Path,
+    *,
+    expected_row_counts: dict[str, int],
+    expected_output_hashes: list[dict[str, str]],
+) -> dict[str, object]:
+    extra_notes = []
+    marker_path = export_dir / "raw_marker_review.csv"
+    if marker_path.exists():
+        with marker_path.open("r", encoding="utf-8-sig", newline="") as handle:
+            marker_rows = list(csv.DictReader(handle))
+        invalid_markers = sorted({row.get("marker_type", "") for row in marker_rows if row.get("marker_type") not in {"slate_start", "slate_end", "guqin_start", "tail_end", "next_slate_start"}})
+        if invalid_markers:
+            extra_notes.append(f"raw_marker_review.csv invalid marker_type: {', '.join(invalid_markers)}")
+        units_without_markers = [
+            unit_id
+            for unit_id in sorted({row.get("unit_id", "") for row in marker_rows if row.get("unit_id")})
+            if not any(row.get("unit_id") == unit_id and row.get("marker_type") for row in marker_rows)
+        ]
+        if units_without_markers:
+            extra_notes.append(f"raw_marker_review.csv marker counts lost for units: {', '.join(units_without_markers)}")
+    return base_reload_validation(
+        export_dir,
+        stage="R0",
+        validator=R0_RELOAD_VALIDATOR,
+        file_names=R0_EXPORT_FILES,
+        required_by_file=R0_RELOAD_REQUIRED_FIELDS,
+        expected_row_counts=expected_row_counts,
+        expected_output_hashes=expected_output_hashes,
+        extra_checks={"marker_identity": extra_notes},
+    )
 
 
 def _manifest_row(file_id: str, source_audio: str, unit: ReviewUnit, updated_at: str) -> dict[str, object]:

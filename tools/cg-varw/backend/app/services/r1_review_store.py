@@ -10,12 +10,87 @@ from app.config import REVIEW_OUTPUT_ROOT
 from app.schemas import R1DraftResponse, R1Marker, R1ReviewExportRequest, R1ReviewSaveRequest, SplitSegment
 from app.services.csv_contract_validator import CSV_REQUIRED_FIELDS, validate_csv_contract
 from app.services.export_context_resolver import R1ExportContextResolver
+from app.services.export_safety_manifest import (
+    EXPORT_MANIFEST_NAME,
+    base_reload_validation,
+    output_hashes,
+    read_manifest,
+    row_counts,
+    write_export_manifest,
+)
 
 
 R1_CONTEXT_RESOLVER = R1ExportContextResolver()
 RENDER_ANCHOR_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["reviewed_render_anchors.csv"])
 MARKER_REVIEW_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["split_marker_review.csv"])
 SEGMENT_QC_REQUIRED_FIELDS = list(CSV_REQUIRED_FIELDS["segment_qc_sheet.csv"])
+R1_EXPORT_FILES = [
+    "reviewed_render_anchors.csv",
+    "split_marker_review.csv",
+    "segment_qc_sheet.csv",
+]
+R1_RELOAD_VALIDATOR = "r1_export_reload_v0.1"
+R1_RELOAD_REQUIRED_FIELDS = {
+    "reviewed_render_anchors.csv": (
+        "segment_id",
+        "source_split_audio",
+        "recording_take_no",
+        "batch_take_no",
+        "script_id",
+        "event_id",
+        "event_range",
+        "gesture_id",
+        "realization_variant",
+        "render_anchor_s",
+        "render_anchor_type",
+        "tail_policy",
+        "segment_status",
+    ),
+    "split_marker_review.csv": (
+        "segment_id",
+        "source_split_audio",
+        "recording_take_no",
+        "batch_take_no",
+        "script_id",
+        "event_id",
+        "event_range",
+        "gesture_id",
+        "realization_variant",
+        "marker_type",
+        "review_status",
+    ),
+    "segment_qc_sheet.csv": (
+        "segment_id",
+        "source_split_audio",
+        "recording_take_no",
+        "batch_take_no",
+        "script_id",
+        "event_id",
+        "event_range",
+        "gesture_id",
+        "realization_variant",
+        "segment_status",
+        "human_accepted",
+        "reviewed_at",
+    ),
+}
+R1_EXPORT_REQUIRED_SEGMENT_FIELDS = (
+    "segment_id",
+    "recording_session_id",
+    "recording_id",
+    "piece_id",
+    "qinist_id",
+    "batch_id",
+    "recording_take_no",
+    "batch_take_no",
+    "script_id",
+    "source_split_audio",
+    "event_id",
+    "event_range",
+    "gesture_id",
+    "realization_variant",
+    "reviewed_at",
+)
 
 RENDER_ANCHOR_FIELDS = RENDER_ANCHOR_REQUIRED_FIELDS + [
     "source_raw_audio",
@@ -197,6 +272,7 @@ def export_r1_csv(request: R1ReviewExportRequest) -> dict[str, list[str] | str]:
     out_dir = REVIEW_OUTPUT_ROOT / "r1" / "exports" / request.batch_id
     out_dir.mkdir(parents=True, exist_ok=True)
     segments = [with_derived_state(segment) for segment in request.segments]
+    _validate_r1_export_identity(request.batch_id, segments)
     render_anchor_rows = reviewed_render_anchor_rows(segments, updated_at)
     marker_rows = marker_review_rows(segments, updated_at)
     qc_rows = segment_qc_rows(segments, updated_at)
@@ -210,7 +286,84 @@ def export_r1_csv(request: R1ReviewExportRequest) -> dict[str, list[str] | str]:
         _write_csv(out_dir / "split_marker_review.csv", MARKER_REVIEW_FIELDS, marker_rows),
         _write_csv(out_dir / "segment_qc_sheet.csv", SEGMENT_QC_FIELDS, qc_rows),
     ]
-    return {"path": str(out_dir), "files": [str(path) for path in files], "contract_warnings": contract_warnings}
+    validation = _validate_r1_export_reload(
+        out_dir,
+        expected_row_counts=row_counts(out_dir, R1_EXPORT_FILES),
+        expected_output_hashes=output_hashes(out_dir, R1_EXPORT_FILES),
+    )
+    manifest_path = write_export_manifest(
+        out_dir,
+        stage="R1",
+        canonical_source="R1ReviewExportRequest.segments",
+        input_payload=request.model_dump(),
+        file_names=R1_EXPORT_FILES,
+        generator="app.services.r1_review_store.export_r1_csv",
+        warnings=contract_warnings,
+        reload_validation=validation,
+    )
+    return {"path": str(out_dir), "files": [str(path) for path in files], "manifest_path": str(manifest_path), "contract_warnings": contract_warnings}
+
+
+def validate_r1_export_reload(export_dir: str | Path) -> dict[str, object]:
+    export_dir = Path(export_dir)
+    manifest = read_manifest(export_dir)
+    if manifest is None:
+        return {
+            "status": "fail",
+            "validator": R1_RELOAD_VALIDATOR,
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "checks": {},
+            "notes": [f"missing {EXPORT_MANIFEST_NAME}"],
+        }
+    if manifest.get("stage") != "R1":
+        return {
+            "status": "fail",
+            "validator": R1_RELOAD_VALIDATOR,
+            "checked_at": datetime.now(timezone.utc).isoformat(),
+            "checks": {},
+            "notes": [f"manifest stage mismatch: {manifest.get('stage')}"],
+        }
+    return _validate_r1_export_reload(
+        export_dir,
+        expected_row_counts=manifest.get("row_counts") if isinstance(manifest.get("row_counts"), dict) else {},
+        expected_output_hashes=manifest.get("output_hashes") if isinstance(manifest.get("output_hashes"), list) else [],
+    )
+
+
+def _validate_r1_export_reload(
+    export_dir: Path,
+    *,
+    expected_row_counts: dict[str, int],
+    expected_output_hashes: list[dict[str, str]],
+) -> dict[str, object]:
+    return base_reload_validation(
+        export_dir,
+        stage="R1",
+        validator=R1_RELOAD_VALIDATOR,
+        file_names=R1_EXPORT_FILES,
+        required_by_file=R1_RELOAD_REQUIRED_FIELDS,
+        expected_row_counts=expected_row_counts,
+        expected_output_hashes=expected_output_hashes,
+    )
+
+
+def _validate_r1_export_identity(batch_id: str, segments: list[SplitSegment]) -> None:
+    errors: list[str] = []
+    for segment in segments:
+        if segment.batch_id != batch_id:
+            errors.append(f"{segment.segment_id}: batch_id {segment.batch_id!r} does not match export batch {batch_id!r}")
+        data = segment.model_dump()
+        for field in R1_EXPORT_REQUIRED_SEGMENT_FIELDS:
+            if data.get(field) in {"", None}:
+                errors.append(f"{segment.segment_id}: missing {field}")
+        if segment.take_id and not segment.recording_take_no:
+            errors.append(f"{segment.segment_id}: take_id cannot replace recording_take_no")
+        if segment.variant and not segment.realization_variant:
+            errors.append(f"{segment.segment_id}: variant cannot replace realization_variant")
+        if segment.source_split_audio != segment.relative_path:
+            errors.append(f"{segment.segment_id}: source_split_audio must be the canonical split audio path and match relative_path")
+    if errors:
+        raise ValueError("; ".join(errors))
 
 
 def reviewed_render_anchor_rows(segments: list[SplitSegment], updated_at: str) -> list[dict[str, object]]:

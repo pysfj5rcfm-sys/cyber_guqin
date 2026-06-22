@@ -1,14 +1,16 @@
 import csv
+import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from app.services import review_unit_builder
+from app.services.export_safety_manifest import sha256_path
 
 
 class R0ReviewUnitLoadingTests(unittest.TestCase):
-    def test_load_or_build_review_units_prefers_exported_csv_before_raw_manifest(self):
+    def test_load_or_build_review_units_uses_manifest_guarded_exported_csv(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             raw_path = root / "raw" / "batch01.wav"
@@ -19,12 +21,16 @@ class R0ReviewUnitLoadingTests(unittest.TestCase):
             export_dir = review_root / "r0" / "exports" / file_id
             export_dir.mkdir(parents=True, exist_ok=True)
             write_raw_marker_review(export_dir / "raw_marker_review.csv", file_id)
+            write_export_manifest(export_dir)
 
             with patch.object(review_unit_builder, "REVIEW_OUTPUT_ROOT", review_root):
                 result = review_unit_builder.load_or_build_review_units(file_id, raw_path)
 
-        self.assertEqual("exported_csv", result["source"])
+        self.assertEqual("exported_csv_manifest_guarded", result["source"])
         self.assertIn("导出 CSV", result["message"])
+        self.assertTrue(result["restored_from_export"])
+        self.assertTrue(result["compatibility_restore"])
+        self.assertFalse(result["canonical_active_draft"])
         self.assertEqual(1, len(result["units"]))
         unit = result["units"][0]
         self.assertEqual("T001", unit["id"])
@@ -82,6 +88,25 @@ def write_raw_marker_review(path: Path, file_id: str) -> None:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
+
+
+def write_export_manifest(export_dir: Path) -> None:
+    csv_path = export_dir / "raw_marker_review.csv"
+    payload = {
+        "manifest_version": "varw_export_contract.v0.1",
+        "stage": "R0",
+        "row_counts": {"raw_marker_review.csv": 5},
+        "output_hashes": [{"path": "raw_marker_review.csv", "algorithm": "sha256", "sha256": sha256_path(csv_path)}],
+        "fallback_guard": {
+            "source_path": "raw_marker_review.csv",
+            "source_hash": sha256_path(csv_path),
+            "row_count": 5,
+            "stage": "R0",
+            "reason": "test compatibility restore",
+            "restore_mode_required": True,
+        },
+    }
+    (export_dir / "export_manifest.json").write_text(json.dumps(payload), encoding="utf-8")
 
 
 if __name__ == "__main__":
