@@ -1,0 +1,66 @@
+mock_status: MOCK_ONLY
+production_grade: false
+not_sample_assets: true
+not_recording_segments: true
+not_recording_items_enriched: true
+not_ml_training_data: true
+not_real_sanman_data: true
+warning: MOCK / NOT REAL SANMAN DATA / DO NOT GENERATE TTS AUDIO
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+prompt_manifest_id: PM_QINIST_001_SANMAN_STARTER_B01_MOCK
+qinist_id: QINIST_001
+qinist_name: 三曼
+session_id: MOCK_SESSION_NOT_APPROVED
+recording_session_id: ""
+batch_id: B01_MOCK
+default_prompt_interval_s: 10
+items:
+  - prompt_id: T001_MOCK
+    prompt_order: 1
+    starter_item_id: KIT_P0_SAN_TIAO_7_MOCK
+    event_id: MOCK_XWC_P01_N01
+    score_event_id: MOCK_XWC_P01_N01
+    normalized_name: 散挑七
+    primary_sound_type: 散音
+    gesture_family: single_pluck
+    gesture_id: SAN_TIAO_7
+    string_no: 7
+    hui: open
+    prompt_text_zh: 散挑七弦
+    trigger_text: 开始
+    prompt_interval_s: 10
+    retake_policy: human_marks_retake_before_r0
+    bad_take_policy: keep_for_exclusion_label_only
+  - prompt_id: T002_MOCK
+    prompt_order: 2
+    starter_item_id: KIT_P0_FAN_7_6_MOCK
+    event_id: MOCK_FAN_7_6
+    score_event_id: MOCK_FAN_7_6
+    normalized_name: 泛七徽六弦
+    primary_sound_type: 泛音
+    gesture_family: harmonic_pluck
+    gesture_id: MOCK_FAN_7_6
+    string_no: 6
+    hui: "7"
+    prompt_text_zh: 泛七徽六弦
+    trigger_text: 开始
+    prompt_interval_s: 10
+    retake_policy: human_marks_retake_before_r0
+    bad_take_policy: keep_for_exclusion_label_only
+  - prompt_id: T003_MOCK
+    prompt_order: 3
+    starter_item_id: KIT_P1_AN_7_9_TIAO_6_MOCK
+    event_id: MOCK_XWC_P01_N02
+    score_event_id: MOCK_XWC_P01_N02
+    normalized_name: 按七徽九分六弦挑
+    primary_sound_type: 按音
+    gesture_family: pressed_pluck
+    gesture_id: MOCK_AN_7_9_TIAO_6
+    string_no: 6
+    hui: "7.9"
+    prompt_text_zh: 按七徽九分六弦挑
+    trigger_text: 开始
+    prompt_interval_s: 12
+    retake_policy: human_marks_retake_before_r0
+    bad_take_policy: keep_for_exclusion_label_only
+

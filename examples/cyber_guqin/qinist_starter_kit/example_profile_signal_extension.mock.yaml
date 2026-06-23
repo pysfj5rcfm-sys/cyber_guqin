@@ -1,0 +1,35 @@
+mock_status: MOCK_ONLY
+production_grade: false
+not_sample_assets: true
+not_recording_segments: true
+not_recording_items_enriched: true
+not_ml_training_data: true
+not_real_sanman_data: true
+warning: MOCK / NOT REAL SANMAN DATA / PROFILE SIGNAL SHAPE ONLY
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+signals:
+  - profile_signal_id: PROF_SIG_MOCK_QINIST001_TAIL_001
+    profile_signal_type: tail_preference
+    qinist_id: QINIST_001
+    piece_id: XWC_MOCK
+    render_set_id: R2_MOCK_SHAPE_ONLY
+    phrase_id: MOCK_XWC_P01
+    section_id: MOCK_SECTION_01
+    version_id: C_HUMAN_INITIALIZED_QINIST_PRIOR
+    preferred_version_id: ""
+    issue_type: []
+    severity: low
+    comment: mock tail signal shape only; not derived from Sanman listening data
+    suggested_revision: ""
+    phrase_play_start_s: 1.0
+    phrase_play_end_s: 8.0
+    phrase_tail_end_s: 10.2
+    breath_points_s: [4.0]
+    cadence_point_s: 7.5
+    phrase_end_policy: mock_full_tail_reference
+    boundary_source: mock
+    boundary_confidence: low
+    confidence: 0.1
+    evidence_refs:
+      - mock://not-real-sanman-data
+

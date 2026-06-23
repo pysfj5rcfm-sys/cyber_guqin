@@ -1,0 +1,1384 @@
+{
+  "matrix_version": "CG-QINIST-STARTER-KIT-AND-SANMAN-INSTANCE-DESIGN-v0.1",
+  "warning": "DRAFT FIELD SOURCE MATRIX ONLY. NOT PRODUCTION CONTRACT. NOT SAMPLE INGEST. NOT ML TRAINING DATA.",
+  "fields": {
+    "active_mainline": {
+      "status": "documented_contract_field",
+      "source": [
+        {"doc_path": "/Users/chenyulin/Downloads/Core_Instructions_v1.6.md"},
+        {"doc_path": "/Users/chenyulin/Downloads/NEXT_CHAT_HANDOFF_SANMAN_DIGITIZATION_STARTUP_v0.2.md"},
+        {"doc_path": "README.md"}
+      ],
+      "canonical_owner": "project_phase_control",
+      "allowed_aliases": [],
+      "stage": ["starter_kit"],
+      "notes": "Current mainline is QINIST_001 Sanman starter collection, not Baiya second-piece expansion."
+    },
+    "qid": {
+      "status": "rejected_or_unsafe_field",
+      "source": [],
+      "canonical_owner": "none",
+      "allowed_aliases": [],
+      "stage": ["starter_kit"],
+      "notes": "Rejected placeholder; use qinist_id, qin_id, or explicit IDs."
+    },
+    "qinist_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "00_global/qinists.csv"},
+        {"code_path": "00_global/qinist_profiles/QINIST_001_sanman.yaml"},
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "global_identity",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "raw_archive", "r0", "r1", "r2", "candidate_sidecar", "starter_kit", "prompt_manifest", "profile_signal_extension"],
+      "notes": "QINIST_001 is Sanman; QINIST_002 Baiya is comparison/reference only."
+    },
+    "qinist_name": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "00_global/qinist_profiles/QINIST_001_sanman.yaml"},
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_recording_plan_config.yaml"}
+      ],
+      "canonical_owner": "global_identity_display",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "starter_kit", "prompt_manifest"],
+      "notes": "Display/support field; qinist_id remains the stable key."
+    },
+    "piece_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "01_pieces/xianwengcao/score_events.csv"},
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "examples/cyber_guqin/xwc_abcd_render_manifest.yaml"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["work_id"],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "recording_plan", "r0", "r1", "r2", "candidate_sidecar", "starter_kit"],
+      "notes": "Current V1 score CSV uses piece_id; formal Dapu schema uses work_id."
+    },
+    "work_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "schemas/dapu_token.schema.json"}
+      ],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["piece_id"],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Formal Dapu IR work key. Starter intake may map piece_id to work_id explicitly."
+    },
+    "piece_title": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_render_readiness/abcd_render_input_manifest.csv"}
+      ],
+      "canonical_owner": "score_or_canon_display",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "r2", "starter_kit"],
+      "notes": "Display metadata; not a stable key."
+    },
+    "source_score_id": {
+      "status": "documented_contract_field",
+      "source": [
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"},
+        {"doc_path": "/Users/chenyulin/Downloads/Core_Instructions_v1.6.md"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Needed to tie parsed events to score authority; not currently a first-class repo column."
+    },
+    "event_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "01_pieces/xianwengcao/score_events.csv"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["score_event_id"],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "recording_plan", "r0", "r1", "r2", "candidate_sidecar", "starter_kit"],
+      "notes": "Repo canonical event identity; external docs may call the same concept score_event_id."
+    },
+    "score_event_id": {
+      "status": "documented_contract_field",
+      "source": [
+        {"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": ["event_id"],
+      "stage": ["candidate_sidecar", "starter_kit"],
+      "notes": "Use as semantic sidecar label only when explicitly mapped to repo event_id."
+    },
+    "gesture_event_id": {
+      "status": "documented_contract_field",
+      "source": [
+        {"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar", "starter_kit"],
+      "notes": "Documented ML-ready sidecar concept; repo lacks a frozen concrete field."
+    },
+    "event_group_id": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Formal Dapu IR grouping key."
+    },
+    "phrase_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "01_pieces/xianwengcao/score_events.csv"},
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "r2", "profile_signal_extension", "starter_kit"],
+      "notes": "Phrase-level review/profile mapping anchor."
+    },
+    "section_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 phrase grouping metadata."
+    },
+    "event_range": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "r0", "r1", "r2", "candidate_sidecar"],
+      "notes": "Can be empty for atomic events; required for many RECD/VARW review contracts."
+    },
+    "source_token": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "schemas/dapu_token.schema.json"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["raw_input"],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Formal Dapu input token; current score_events.csv equivalent is raw_input."
+    },
+    "raw_input": {
+      "status": "existing_code_field",
+      "source": [{"example_path": "01_pieces/xianwengcao/score_events.csv"}],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["source_token"],
+      "stage": ["score_or_canon"],
+      "notes": "Legacy V1 score-event field; map to source_token for Dapu IR."
+    },
+    "normalized_token": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "schemas/dapu_token.schema.json"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["normalized_input"],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Formal Dapu normalized token."
+    },
+    "normalized_input": {
+      "status": "existing_code_field",
+      "source": [{"example_path": "01_pieces/xianwengcao/score_events.csv"}],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["normalized_token"],
+      "stage": ["score_or_canon"],
+      "notes": "Current V1 equivalent of normalized_token."
+    },
+    "normalized_name": {
+      "status": "existing_code_field",
+      "source": [
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_render_readiness/abcd_render_input_manifest.csv"}
+      ],
+      "canonical_owner": "recording_plan_display",
+      "allowed_aliases": ["normalized_input"],
+      "stage": ["recording_plan", "prompt_manifest", "starter_kit"],
+      "notes": "Human-facing prompt/recording label; not score authority by itself."
+    },
+    "primary_sound_type": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "00_global/gesture_templates.csv"},
+        {"doc_path": "06_docs/GESTURE_ONTOLOGY.md"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["sound_type"],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "candidate_sidecar", "starter_kit"],
+      "notes": "Allowed values in Dapu IR are only 散音, 按音, 泛音."
+    },
+    "sound_type": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"}
+      ],
+      "canonical_owner": "recording_plan_dry_run_fixture",
+      "allowed_aliases": ["primary_sound_type"],
+      "stage": ["single_piece_dapu_ir", "recording_plan"],
+      "notes": "Existing P1-F dry-run field; starter design should normalize it to primary_sound_type before freezing any future schema."
+    },
+    "sound_profile": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "00_global/guqin_fingering_ontology.yaml"},
+        {"doc_path": "references/validation_rules.md"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Needed for complex techniques and pressed-sound structure validation."
+    },
+    "gesture_family": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "00_global/gesture_family_catalog.csv"},
+        {"code_path": "00_global/gesture_templates.csv"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "candidate_sidecar", "starter_kit"],
+      "notes": "Use existing families such as single_pluck, pressed_pluck, harmonic_pluck, left_hand_sound, post_motion."
+    },
+    "gesture_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "00_global/gesture_templates.csv"},
+        {"example_path": "01_pieces/xianwengcao/score_events.csv"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["gesture_id_candidate"],
+      "stage": ["score_or_canon", "recording_plan", "r0", "r1", "candidate_sidecar", "starter_kit"],
+      "notes": "Canonical V1 gesture identifier; do not collapse complex techniques into opaque gesture-only labels."
+    },
+    "gesture_id_candidate": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["gesture_id"],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Candidate key for parser output before canon/human confirmation."
+    },
+    "technique": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"},
+        {"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}
+      ],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["component_name", "primary_right_action"],
+      "stage": ["single_piece_dapu_ir", "recording_plan", "candidate_sidecar", "starter_kit", "prompt_manifest"],
+      "notes": "Useful human-facing extraction term; should be backed by components/gesture_id."
+    },
+    "special_technique": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir", "candidate_sidecar", "starter_kit"],
+      "notes": "Keeps special techniques out of primary_sound_type."
+    },
+    "components": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "00_global/gesture_components.csv"}
+      ],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["gesture_components"],
+      "stage": ["single_piece_dapu_ir", "starter_kit"],
+      "notes": "Required for pressed-sound and complex technique validation."
+    },
+    "component_name": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "00_global/gesture_components.csv"},
+        {"code_path": "00_global/gesture_component_lexicon.csv"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["technique"],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Use standard internal names; aliases like 劈/pi and 拨 are not canonical internal names."
+    },
+    "component_category": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "00_global/gesture_components.csv"},
+        {"code_path": "00_global/gesture_component_lexicon.csv"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Important for pre/post action and motion validation."
+    },
+    "component_role": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "00_global/gesture_components.csv"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir", "starter_kit"],
+      "notes": "Used to distinguish attack, pre_action, post_motion, etc."
+    },
+    "component_hand": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "00_global/gesture_components.csv"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir", "starter_kit"],
+      "notes": "Needed for right/left/both-hand separation."
+    },
+    "component_sound_type": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"doc_path": "references/validation_rules.md"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir", "starter_kit"],
+      "notes": "Allowed values are 散音, 按音, 泛音, none."
+    },
+    "string_no": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "00_global/gesture_components.csv"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["string", "primary_string_no"],
+      "stage": ["single_piece_dapu_ir", "starter_kit", "prompt_manifest", "candidate_sidecar"],
+      "notes": "Component-level string number. External docs often say string."
+    },
+    "string": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "recording_plan_dry_run_fixture",
+      "allowed_aliases": ["string_no"],
+      "stage": ["single_piece_dapu_ir", "recording_plan", "candidate_sidecar", "prompt_manifest"],
+      "notes": "Existing dry-run and documented sidecar field; map to component string_no where Dapu schema is authoritative."
+    },
+    "hui": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "00_global/gesture_components.csv"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["hui_position", "primary_hui"],
+      "stage": ["single_piece_dapu_ir", "starter_kit", "prompt_manifest", "candidate_sidecar"],
+      "notes": "Component-level hui. Pressed sound may need source and target hui."
+    },
+    "hui_position": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "recording_plan_dry_run_fixture",
+      "allowed_aliases": ["hui"],
+      "stage": ["single_piece_dapu_ir", "recording_plan", "candidate_sidecar", "prompt_manifest"],
+      "notes": "Existing dry-run and documented sidecar field; map to hui/hui_target for structure validation."
+    },
+    "hui_target": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "00_global/gesture_components.csv"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir", "starter_kit"],
+      "notes": "Needed for pressed motion and position shift validation."
+    },
+    "motion_returns": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "00_global/gesture_components.csv"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir", "starter_kit"],
+      "notes": "Important for 进复/退复 and returning motion validation."
+    },
+    "notation_pre_action": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"example_path": "01_pieces/xianwengcao/score_events.csv"},
+        {"doc_path": "references/validation_rules.md"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Explicit score-marked chuo/zhu only; Sanman default chuo belongs to realization, not score facts."
+    },
+    "notation_vibrato": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"example_path": "01_pieces/xianwengcao/score_events.csv"},
+        {"doc_path": "references/validation_rules.md"}
+      ],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Explicit score-marked yin/nao only; defaults belong to realization."
+    },
+    "context_dependency": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"example_path": "01_pieces/xianwengcao/score_events.csv"}
+      ],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Key for context-take requirements and inheritance review."
+    },
+    "needs_context_take": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": ["requires_context_sample"],
+      "stage": ["single_piece_dapu_ir", "recording_plan", "starter_kit"],
+      "notes": "Dry-run coverage field; must not make context takes atomic samples."
+    },
+    "requires_context_sample": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "00_global/gesture_templates.csv"}, {"code_path": "00_global/sample_selection_policy.yaml"}],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["needs_context_take"],
+      "stage": ["score_or_canon", "starter_kit"],
+      "notes": "Template-level context requirement."
+    },
+    "needs_long_tail": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir", "recording_plan", "starter_kit"],
+      "notes": "Dry-run field; maps to full_tail/natural_decay policy."
+    },
+    "needs_retake": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "r0", "r1", "candidate_sidecar", "starter_kit"],
+      "notes": "Review/control status; not a sample asset state."
+    },
+    "needs_review": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "schemas/dapu_event_ir.schema.json"},
+        {"code_path": "schemas/dapu_token.schema.json"},
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"}
+      ],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "recording_plan", "starter_kit"],
+      "notes": "OCR/canon/parser uncertainty guard."
+    },
+    "source_status": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "schemas/dapu_token.schema.json"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["parse_status"],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Formal parser source status; OCR candidates require needs_review=true."
+    },
+    "parse_status": {
+      "status": "existing_code_field",
+      "source": [{"example_path": "01_pieces/xianwengcao/score_events.csv"}],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": ["source_status"],
+      "stage": ["score_or_canon"],
+      "notes": "V1 score-event status equivalent; map carefully."
+    },
+    "source_confidence": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"}, {"example_path": "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl"}],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": ["certainty", "confidence"],
+      "stage": ["single_piece_dapu_ir", "recording_plan", "starter_kit"],
+      "notes": "Dry-run confidence field; formal Dapu schema uses certainty."
+    },
+    "certainty": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "schemas/dapu_token.schema.json"}],
+      "canonical_owner": "single_piece_dapu_ir",
+      "allowed_aliases": ["source_confidence", "confidence"],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Formal confidence field."
+    },
+    "source_refs": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "schemas/dapu_event_ir.schema.json"}, {"code_path": "schemas/dapu_token.schema.json"}],
+      "canonical_owner": "score_or_canon",
+      "allowed_aliases": [],
+      "stage": ["score_or_canon", "single_piece_dapu_ir", "starter_kit"],
+      "notes": "Evidence references for canon/parser decisions."
+    },
+    "recording_session_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"example_path": "02_recordings/session_manifests/RS_XWC_001_MVP_PILOT_session_manifest.yaml"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "raw_archive",
+      "allowed_aliases": ["session_id"],
+      "stage": ["raw_archive", "r0", "r1", "candidate_sidecar", "prompt_manifest"],
+      "notes": "Canonical recording-session identity in RECD/VARW."
+    },
+    "session_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"},
+        {"example_path": "examples/cyber_guqin/xwc_abcd_render_manifest.yaml"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": ["recording_session_id"],
+      "stage": ["recording_plan", "r2", "candidate_sidecar", "prompt_manifest"],
+      "notes": "Used by generic scripts/manifests; map to recording_session_id for RECD/VARW CSVs."
+    },
+    "recording_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"example_path": "02_recordings/recording_sessions.csv"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "raw_archive",
+      "allowed_aliases": [],
+      "stage": ["raw_archive", "r0", "r1", "candidate_sidecar", "prompt_manifest"],
+      "notes": "Stable recording identity; not equivalent to take_id."
+    },
+    "recording_take_no": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "raw_archive", "r0", "r1", "candidate_sidecar", "prompt_manifest"],
+      "notes": "Stable whole-session take number; take_id cannot replace it."
+    },
+    "batch_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"code_path": "scripts/generate_recording_plan_from_dapu_ir.py"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "raw_archive", "r0", "r1", "prompt_manifest", "starter_kit"],
+      "notes": "Batch identity; Baiya T071 belongs to batch08 in existing baseline, but Sanman kit must not reuse Baiya batch facts as Sanman data."
+    },
+    "batch_take_no": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "raw_archive", "r0", "r1", "prompt_manifest"],
+      "notes": "Batch-local execution order."
+    },
+    "script_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "r0", "r1", "prompt_manifest"],
+      "notes": "Plan/script identity for linking prompts/takes to review rows."
+    },
+    "source_take_id": {
+      "status": "documented_contract_field",
+      "source": [
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"},
+        {"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}
+      ],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": ["recording_take_no"],
+      "stage": ["candidate_sidecar"],
+      "notes": "Candidate-sidecar provenance concept; implementation must bind it to recording_take_no/source paths without replacing them."
+    },
+    "take_id": {
+      "status": "legacy_alias",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/export_context_resolver.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "ui_display_alias",
+      "allowed_aliases": ["recording_take_no"],
+      "stage": ["r0", "r1"],
+      "notes": "Display/compatibility alias only; cannot replace recording_take_no."
+    },
+    "source_raw_audio": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "raw_archive",
+      "allowed_aliases": ["source_audio"],
+      "stage": ["raw_archive", "r0", "candidate_sidecar"],
+      "notes": "Canonical raw audio provenance for R0; keep distinct from source_split_audio."
+    },
+    "source_split_audio": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": ["source_audio"],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "Canonical split audio path for R1; not interchangeable with raw source."
+    },
+    "source_audio": {
+      "status": "legacy_alias",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/export_context_resolver.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "compatibility_alias",
+      "allowed_aliases": ["source_raw_audio", "source_split_audio"],
+      "stage": ["r0", "r1"],
+      "notes": "Stage-specific compatibility alias only; must not become canonical."
+    },
+    "segment_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "03_samples/recording_segments.csv"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": [],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "R1 split segment identity; existing recording_segments.csv is not to be written in this task."
+    },
+    "audio_segment_ref": {
+      "status": "documented_contract_field",
+      "source": [{"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": ["source_split_audio", "segment_id"],
+      "stage": ["candidate_sidecar"],
+      "notes": "Sidecar reference only; not a sample ingest row."
+    },
+    "realization_variant": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "recording_plan",
+      "allowed_aliases": ["variant"],
+      "stage": ["recording_plan", "r1", "candidate_sidecar", "starter_kit"],
+      "notes": "Qinist realization field, not score fact."
+    },
+    "variant": {
+      "status": "legacy_alias",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/export_context_resolver.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "compatibility_alias",
+      "allowed_aliases": ["realization_variant"],
+      "stage": ["r1"],
+      "notes": "Compatibility alias only; cannot replace realization_variant."
+    },
+    "realization_pre_action": {
+      "status": "existing_code_field",
+      "source": [
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"},
+        {"example_path": "03_samples/sample_assets.csv"},
+        {"code_path": "00_global/sample_selection_policy.yaml"}
+      ],
+      "canonical_owner": "qinist_realization",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "candidate_sidecar", "starter_kit"],
+      "notes": "Qinist realization, not score facts."
+    },
+    "realization_vibrato": {
+      "status": "existing_code_field",
+      "source": [
+        {"example_path": "01_pieces/xianwengcao/recording_script_human.csv"},
+        {"example_path": "03_samples/sample_assets.csv"},
+        {"code_path": "00_global/sample_selection_policy.yaml"}
+      ],
+      "canonical_owner": "qinist_realization",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "candidate_sidecar", "starter_kit"],
+      "notes": "Qinist realization, not score facts."
+    },
+    "tail_policy": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "00_global/sample_selection_policy.yaml"},
+        {"doc_path": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": [],
+      "stage": ["recording_plan", "r1", "abcde_render_review", "candidate_sidecar", "starter_kit"],
+      "notes": "Guqin default is full_tail/natural_decay; smart_fade_100ms requires explicit override."
+    },
+    "pre_attack_music_policy": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_render_readiness/abcd_render_input_manifest.csv"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": [],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "R1 segment policy field."
+    },
+    "render_anchor_type": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": ["anchor_type"],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "Active enum: main_attack, gesture_start, context_first_attach."
+    },
+    "anchor_type": {
+      "status": "legacy_alias",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/r1_review_store.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "compatibility_alias",
+      "allowed_aliases": ["render_anchor_type"],
+      "stage": ["r1"],
+      "notes": "Compatibility alias only; cannot replace render_anchor_type."
+    },
+    "marker_type": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "r0_r1_review",
+      "allowed_aliases": [],
+      "stage": ["r0", "r1", "r2"],
+      "notes": "R0/R1/R2 marker families differ; do not merge enums blindly."
+    },
+    "review_status": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "varw_review",
+      "allowed_aliases": [],
+      "stage": ["r0", "r1", "r2", "candidate_sidecar"],
+      "notes": "Internal enum values only; Chinese labels belong only in *_label_zh fields."
+    },
+    "segment_status": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": [],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "R1 enum: candidate, render_usable, reference_only, unclear, needs_retake, rejected, excluded."
+    },
+    "human_accepted": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": [],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "Does not mean sample asset creation."
+    },
+    "reviewed_by": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}],
+      "canonical_owner": "r1",
+      "allowed_aliases": ["reviewer"],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "Human/reviewer identity field."
+    },
+    "reviewer": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": ["reviewed_by"],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 reviewer field."
+    },
+    "reviewed_at": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"doc_path": "tools/cg-varw/docs/RECD_VARW_CSV_CONTRACT_SPEC_v0.1.md"}
+      ],
+      "canonical_owner": "varw_review",
+      "allowed_aliases": [],
+      "stage": ["r1", "r2", "candidate_sidecar", "profile_signal_extension"],
+      "notes": "Must not be faked from updated_at."
+    },
+    "updated_at": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/r0_export_writer.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/r1_review_store.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv"}
+      ],
+      "canonical_owner": "export_metadata",
+      "allowed_aliases": [],
+      "stage": ["r0", "r1", "r2"],
+      "notes": "Export/update timestamp; not a substitute for reviewed_at."
+    },
+    "wrong_take": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/r1_review_store.py"},
+        {"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}
+      ],
+      "canonical_owner": "r1",
+      "allowed_aliases": ["is_wrong_take"],
+      "stage": ["r1", "candidate_sidecar"],
+      "notes": "Wrong takes must be excluded from candidate pool."
+    },
+    "is_wrong_take": {
+      "status": "documented_contract_field",
+      "source": [{"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": ["wrong_take"],
+      "stage": ["candidate_sidecar"],
+      "notes": "Sidecar boolean wrapper around review exclusion semantics."
+    },
+    "is_failed_take": {
+      "status": "documented_contract_field",
+      "source": [{"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Must exclude failed takes; repo has needs_retake/rejected but no frozen failed-take sidecar field."
+    },
+    "is_context_only": {
+      "status": "documented_contract_field",
+      "source": [{"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Prevents context candidates from becoming atomic samples."
+    },
+    "exclusion_reason": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": ["reject_reason"],
+      "stage": ["candidate_sidecar"],
+      "notes": "Needed to keep wrong/failed/context-only exclusions auditable; existing reject_reason is R1 QC-specific. Requires user approval before implementation."
+    },
+    "candidate_id": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Needed as stable sidecar row identity; existing sample_id is sample ingest, so it is insufficient. Requires user approval before implementation."
+    },
+    "candidate_status": {
+      "status": "documented_contract_field",
+      "source": [{"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Documented values include candidate, hold, reject."
+    },
+    "required_review_missing": {
+      "status": "documented_contract_field",
+      "source": [{"doc_path": "/Users/chenyulin/Downloads/CYBER_GUQIN_LONG_TERM_CREATIVE_ML_ROADMAP_v1.4.md"}],
+      "canonical_owner": "candidate_sidecar",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Blocks ML-ready interpretation when labels are incomplete."
+    },
+    "not_sample_assets": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"doc_path": "/Users/chenyulin/Downloads/Core_Instructions_v1.6.md"}
+      ],
+      "canonical_owner": "safety",
+      "allowed_aliases": [],
+      "stage": ["r0", "r1", "r2", "abcde_render_review", "candidate_sidecar", "starter_kit", "prompt_manifest"],
+      "notes": "Safety flag; must remain true in this design."
+    },
+    "not_recording_segments": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"code_path": "scripts/render_abcd_from_manifest.py"},
+        {"doc_path": "/Users/chenyulin/Downloads/Core_Instructions_v1.6.md"}
+      ],
+      "canonical_owner": "safety",
+      "allowed_aliases": [],
+      "stage": ["r0", "abcde_render_review", "candidate_sidecar", "starter_kit", "prompt_manifest"],
+      "notes": "Safety flag; this task must not write recording_segments.csv."
+    },
+    "not_recording_items_enriched": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "safety",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar", "starter_kit", "prompt_manifest"],
+      "notes": "Needed in mock/draft artifacts because the hard red line explicitly forbids recording_items_enriched.jsonl. Requires user approval before production use."
+    },
+    "not_ml_training_data": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"},
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"doc_path": "/Users/chenyulin/Downloads/Core_Instructions_v1.6.md"}
+      ],
+      "canonical_owner": "safety",
+      "allowed_aliases": [],
+      "stage": ["r1", "r2", "abcde_render_review", "candidate_sidecar", "starter_kit", "prompt_manifest"],
+      "notes": "Safety flag; ML-ready sidecar design is not ML training data."
+    },
+    "review_only": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "safety",
+      "allowed_aliases": [],
+      "stage": ["r0", "r1", "r2", "abcde_render_review", "candidate_sidecar", "starter_kit", "prompt_manifest"],
+      "notes": "Must remain true for these artifacts."
+    },
+    "production_grade": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "tools/cg-varw/backend/app/services/csv_contract_validator.py"}
+      ],
+      "canonical_owner": "safety",
+      "allowed_aliases": [],
+      "stage": ["r0", "r1", "r2", "abcde_render_review", "candidate_sidecar", "starter_kit", "prompt_manifest"],
+      "notes": "Must remain false for these artifacts."
+    },
+    "render_set_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "abcde_render_review", "profile_signal_extension"],
+      "notes": "R2 render/review set identity."
+    },
+    "version_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": ["active_version_id", "preferred_version_id"],
+      "stage": ["r2", "abcde_render_review", "profile_signal_extension"],
+      "notes": "R2 version identity."
+    },
+    "active_version_id": {
+      "status": "existing_code_field",
+      "source": [{"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": ["version_id"],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "Version under review."
+    },
+    "preferred_version_id": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/preferred_version_summary.csv"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "Existing VARW preference summary field; use for profile mapping rather than inventing disconnected labels."
+    },
+    "preferredVersionByPhrase": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/r2_mock_store.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": ["preferred_version_by_phrase"],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "Canonical latest JSON map for phrase preference."
+    },
+    "listeningReviewByKey": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/services/r2_mock_store.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": ["listening_review_by_key"],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "Canonical latest JSON review map. Backend single-colon keys may require frontend double-colon normalization, but mapping should not rewrite authority."
+    },
+    "issue_type": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/issue_list.csv"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "candidate_sidecar", "profile_signal_extension"],
+      "notes": "Existing R2 issue taxonomy; do not create disconnected R2 label system."
+    },
+    "severity": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/issue_list.csv"}
+      ],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "candidate_sidecar", "profile_signal_extension"],
+      "notes": "R2 review severity."
+    },
+    "comment": {
+      "status": "existing_code_field",
+      "source": [{"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "Human/GPT listening review comment."
+    },
+    "suggested_revision": {
+      "status": "existing_code_field",
+      "source": [{"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/listening_review.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 revision intent source."
+    },
+    "start_s": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": ["phrase_start_s"],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 phrase alignment timing field."
+    },
+    "end_s": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": ["phrase_end_s"],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 phrase alignment timing field."
+    },
+    "phrase_play_start_s": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 playback boundary field."
+    },
+    "phrase_play_end_s": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 playback boundary field."
+    },
+    "phrase_tail_end_s": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 tail preference/profile evidence field."
+    },
+    "breath_points_s": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/phrase_boundary_decision.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 phrase breath/cadence evidence."
+    },
+    "cadence_point_s": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/phrase_boundary_decision.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 phrase cadence evidence."
+    },
+    "phrase_end_policy": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "R2 boundary policy evidence."
+    },
+    "boundary_source": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/render_phrase_alignment.csv"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "Boundary provenance enum."
+    },
+    "boundary_confidence": {
+      "status": "existing_code_field",
+      "source": [{"code_path": "tools/cg-varw/backend/app/schemas.py"}, {"example_path": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json"}],
+      "canonical_owner": "r2",
+      "allowed_aliases": [],
+      "stage": ["r2", "profile_signal_extension"],
+      "notes": "Boundary confidence enum."
+    },
+    "profile_signal_id": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "profile_signal_extension",
+      "allowed_aliases": [],
+      "stage": ["profile_signal_extension"],
+      "notes": "Needed to identify a derived Qinist Profile signal without creating a new R2 label system. Requires user approval before implementation."
+    },
+    "profile_signal_type": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "profile_signal_extension",
+      "allowed_aliases": [],
+      "stage": ["profile_signal_extension"],
+      "notes": "Needed to group timing/tail/ornament/cadence/rejection-pattern signals. Requires user approval before implementation."
+    },
+    "confidence": {
+      "status": "existing_code_field",
+      "source": [
+        {"code_path": "tools/cg-varw/backend/app/schemas.py"},
+        {"code_path": "00_global/gesture_component_lexicon.csv"}
+      ],
+      "canonical_owner": "review_or_canon_confidence",
+      "allowed_aliases": ["certainty", "source_confidence"],
+      "stage": ["score_or_canon", "r0", "r1", "profile_signal_extension"],
+      "notes": "Existing confidence-like field; profile use must cite evidence."
+    },
+    "evidence_refs": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "profile_signal_extension",
+      "allowed_aliases": ["source_refs"],
+      "stage": ["profile_signal_extension", "candidate_sidecar", "starter_kit"],
+      "notes": "Needed for profile/sidecar traceability across VARW latest JSON and derived exports. Requires user approval before implementation."
+    },
+    "starter_item_id": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "starter_kit",
+      "allowed_aliases": [],
+      "stage": ["starter_kit"],
+      "notes": "Needed to identify kit items independent of real take IDs. Existing script_id is plan-specific and insufficient. Requires user approval before implementation."
+    },
+    "kit_id": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "starter_kit",
+      "allowed_aliases": [],
+      "stage": ["starter_kit"],
+      "notes": "Needed to keep the universal kit separate from Sanman instance. Requires user approval before implementation."
+    },
+    "priority_tier": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "starter_kit",
+      "allowed_aliases": [],
+      "stage": ["starter_kit"],
+      "notes": "Needed for P0/P1/P2/P3/SKIP design priority. Requires user approval before implementation."
+    },
+    "coverage_status": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "starter_kit",
+      "allowed_aliases": [],
+      "stage": ["starter_kit"],
+      "notes": "Needed for coverage diff outputs such as already_covered/missing/must_record_atomic. Requires user approval before implementation."
+    },
+    "prompt_manifest_id": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": [],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed to identify a collection prompt manifest. Requires user approval before implementation."
+    },
+    "prompt_id": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": [],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed to identify one prompted collection item before recording. Requires user approval before implementation."
+    },
+    "prompt_text_zh": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": ["human_instruction"],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed for concise qinist-facing prompt; existing human_instruction is longer recording-script prose. Requires user approval before implementation."
+    },
+    "trigger_text": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": [],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed to model 发令枪 text such as 开始. Requires user approval before implementation."
+    },
+    "prompt_interval_s": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": ["recommended_pause_s"],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed for prompt cadence; existing recommended_pause_s is post-take silence in old recording script, not the same as next prompt interval. Requires user approval before implementation."
+    },
+    "prompt_order": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": ["order_no", "recording_take_no"],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed to order prompt playback without claiming a real take was recorded. Requires user approval before implementation."
+    },
+    "retake_policy": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": [],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed to keep bad/retake behavior auditable before R0. Requires user approval before implementation."
+    },
+    "bad_take_policy": {
+      "status": "proposed_extension_field",
+      "source": [],
+      "canonical_owner": "prompt_manifest",
+      "allowed_aliases": [],
+      "stage": ["prompt_manifest"],
+      "notes": "Needed to keep bad takes from becoming candidates. Requires user approval before implementation."
+    },
+    "sample_id": {
+      "status": "rejected_or_unsafe_field",
+      "source": [{"example_path": "03_samples/sample_assets.csv"}],
+      "canonical_owner": "sample_ingest",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Existing sample ingest field; unsafe for this design because task forbids writing sample_assets.csv."
+    },
+    "sample_asset_created": {
+      "status": "rejected_or_unsafe_field",
+      "source": [],
+      "canonical_owner": "none",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Rejected because human acceptance or sidecar candidate must not imply sample asset creation."
+    },
+    "recording_segments_write": {
+      "status": "rejected_or_unsafe_field",
+      "source": [],
+      "canonical_owner": "none",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Rejected because this task must not write recording_segments.csv."
+    },
+    "recording_items_enriched_jsonl": {
+      "status": "rejected_or_unsafe_field",
+      "source": [],
+      "canonical_owner": "none",
+      "allowed_aliases": [],
+      "stage": ["candidate_sidecar"],
+      "notes": "Rejected because this task must not write recording_items_enriched.jsonl."
+    },
+    "baiya_as_sanman_style": {
+      "status": "rejected_or_unsafe_field",
+      "source": [],
+      "canonical_owner": "none",
+      "allowed_aliases": [],
+      "stage": ["starter_kit"],
+      "notes": "Rejected: Baiya is workflow baseline/comparison only, not Sanman style data."
+    },
+    "multi_piece_parser_input": {
+      "status": "rejected_or_unsafe_field",
+      "source": [],
+      "canonical_owner": "none",
+      "allowed_aliases": [],
+      "stage": ["single_piece_dapu_ir"],
+      "notes": "Rejected: guqin-dapu-parser must remain single-piece; aggregation belongs to workflow/diff layer."
+    }
+  }
+}

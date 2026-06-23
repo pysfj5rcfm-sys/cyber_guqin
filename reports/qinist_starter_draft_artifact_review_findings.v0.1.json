@@ -1,0 +1,90 @@
+{
+  "task_id": "CG-QINIST-STARTER-KIT-DRAFT-ARTIFACT-REVIEW-v0.1",
+  "review_status": "ready_for_user_review",
+  "files_reviewed": [
+    "reports/qinist_starter_field_source_matrix.v0.1.json",
+    "schemas/qinist_starter_collection_item.schema.draft.yaml",
+    "schemas/qinist_candidate_sidecar.schema.draft.yaml",
+    "schemas/prompt_manifest.schema.draft.yaml",
+    "schemas/profile_signal_extension.schema.draft.yaml",
+    "examples/cyber_guqin/qinist_starter_kit/example_single_piece_dapu_ir_input.XWC.mock.yaml",
+    "examples/cyber_guqin/qinist_starter_kit/example_prompt_manifest.B01.mock.yaml",
+    "examples/cyber_guqin/qinist_starter_kit/example_candidate_sidecar.mock.yaml",
+    "examples/cyber_guqin/qinist_starter_kit/example_profile_signal_extension.mock.yaml",
+    "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md",
+    "reports/qinist_starter_missing_inputs.v0.1.md",
+    "reports/qinist_starter_field_source_audit.v0.1.md",
+    "reports/qinist_starter_kit_and_sanman_instance_design.v0.1.md",
+    "reports/single_piece_dapu_ir_input_contract.v0.1.md",
+    "reports/piece_demand_aggregation_and_coverage_diff_design.v0.1.md",
+    "reports/qinist_candidate_sidecar_design.v0.1.md",
+    "reports/varw_r2_to_qinist_profile_signal_mapping.v0.1.md"
+  ],
+  "checks": {
+    "field_matrix_parses": true,
+    "field_matrix_version_present": true,
+    "field_matrix_warning_present": true,
+    "field_matrix_all_fields_have_status": true,
+    "field_matrix_all_fields_have_canonical_owner": true,
+    "proposed_fields_require_approval": true,
+    "unsafe_fields_remain_rejected": true,
+    "schema_refs_all_resolved": true,
+    "schema_warnings_present": true,
+    "schema_no_rejected_refs_as_active_identity": true,
+    "schema_no_legacy_alias_as_canonical_identity": true,
+    "mock_flags_present": true,
+    "mock_yaml_parses": true,
+    "prompt_manifest_no_recording_take_no": true,
+    "candidate_sidecar_does_not_imply_sample_ingest": true,
+    "profile_signal_mapping_varw_based": true,
+    "no_sample_ingest_files_written": true,
+    "no_runtime_code_modified": true,
+    "recd_varw_v11_used": true,
+    "recd_varw_v10_status": "missing_not_blocking_current_review_required_before_implementation_if_historical_delta_is_needed",
+    "parser_single_piece_boundary_preserved": true,
+    "r2_profile_mapping_varw_based": true,
+    "score_facts_vs_qinist_realization_preserved": true,
+    "baiya_not_used_as_sanman_style_data": true
+  },
+  "findings": [
+    {
+      "id": "PASS_FIELD_MATRIX_INTEGRITY",
+      "severity": "pass",
+      "summary": "Field matrix parses, has required draft warnings, all fields have status and canonical_owner, proposed fields remain proposed, and unsafe fields remain rejected."
+    },
+    {
+      "id": "PASS_SCHEMA_CROSS_REFERENCES",
+      "severity": "pass",
+      "summary": "All draft schema source_matrix_ref values resolve to matrix fields; no rejected_or_unsafe_field or legacy_alias is used as an active canonical identity."
+    },
+    {
+      "id": "PASS_MOCK_FIXTURE_SAFETY",
+      "severity": "pass",
+      "summary": "All mock fixtures parse, carry MOCK_ONLY and safety flags, and do not claim real Sanman data, sample assets, accepted candidates, sample ingest, or ML training data."
+    },
+    {
+      "id": "PASS_PROMPT_IDENTITY_BOUNDARY",
+      "severity": "pass",
+      "summary": "Prompt manifest uses prompt_id and prompt_order only; it does not allocate recording_take_no before recording authorization."
+    },
+    {
+      "id": "PASS_RECD_VARW_V11_AUTHORITY",
+      "severity": "pass",
+      "summary": "Current artifacts align with RECD_VARW_Cyber_Guqin_v1.1 authority, including JSON authority for R0/R1/R2, derived-only R2 CSV/YAML, and future-sidecar-not-sample-ingest boundary."
+    },
+    {
+      "id": "INFO_V10_MISSING",
+      "severity": "info",
+      "summary": "Exact RECD&VARW v1.0 txt remains missing and is not inferred from v1.1; this is not blocking for current review but remains required before implementation if historical delta audit is needed."
+    }
+  ],
+  "fixes_made": [
+    "Updated reports/qinist_starter_missing_inputs.v0.1.md to distinguish RECD_VARW_Cyber_Guqin_v1.1.md as current authority from the still-missing historical RECD&VARW v1.0 txt."
+  ],
+  "remaining_questions": [
+    "Should proposed extension fields be approved as-is, renamed, or narrowed before any implementation task?",
+    "Is a historical delta audit against exact RECD&VARW v1.0 required before implementation?",
+    "What approved Sanman starter Dapu IR and collection inventory should be used for a future implementation task?",
+    "Should profile signal extraction remain report-only until enough Sanman R2 evidence exists?"
+  ]
+}

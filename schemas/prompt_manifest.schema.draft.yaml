@@ -1,0 +1,106 @@
+warning:
+  - DRAFT ONLY
+  - NOT PRODUCTION CONTRACT
+  - NOT SAMPLE INGEST
+  - NOT ML TRAINING DATA
+  - REQUIRES USER APPROVAL BEFORE IMPLEMENTATION
+schema_id: cyber_guqin.prompt_manifest.schema.draft.v0.1
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+description: Draft prompt manifest for concise AI-prompted collection.
+fields:
+  prompt_manifest_id:
+    type: string
+    required: true
+    source_matrix_ref: prompt_manifest_id
+  qinist_id:
+    type: string
+    required: true
+    source_matrix_ref: qinist_id
+  qinist_name:
+    type: string
+    required: false
+    source_matrix_ref: qinist_name
+  session_id:
+    type: string
+    required: false
+    source_matrix_ref: session_id
+  recording_session_id:
+    type: string
+    required: false
+    source_matrix_ref: recording_session_id
+  batch_id:
+    type: string
+    required: true
+    source_matrix_ref: batch_id
+  items:
+    type: array
+    required: true
+    item_fields:
+      prompt_id:
+        type: string
+        source_matrix_ref: prompt_id
+      prompt_order:
+        type: integer
+        source_matrix_ref: prompt_order
+      starter_item_id:
+        type: string
+        source_matrix_ref: starter_item_id
+      event_id:
+        type: string
+        source_matrix_ref: event_id
+      score_event_id:
+        type: string
+        source_matrix_ref: score_event_id
+      normalized_name:
+        type: string
+        source_matrix_ref: normalized_name
+      primary_sound_type:
+        type: string
+        source_matrix_ref: primary_sound_type
+      gesture_family:
+        type: string
+        source_matrix_ref: gesture_family
+      gesture_id:
+        type: string
+        source_matrix_ref: gesture_id
+      string_no:
+        type: integer_or_null
+        source_matrix_ref: string_no
+      hui:
+        type: string_or_number_or_null
+        source_matrix_ref: hui
+      prompt_text_zh:
+        type: string
+        source_matrix_ref: prompt_text_zh
+      trigger_text:
+        type: string
+        source_matrix_ref: trigger_text
+      prompt_interval_s:
+        type: number
+        source_matrix_ref: prompt_interval_s
+      retake_policy:
+        type: string
+        source_matrix_ref: retake_policy
+      bad_take_policy:
+        type: string
+        source_matrix_ref: bad_take_policy
+safety_fields:
+  review_only:
+    const: true
+    source_matrix_ref: review_only
+  production_grade:
+    const: false
+    source_matrix_ref: production_grade
+  not_sample_assets:
+    const: true
+    source_matrix_ref: not_sample_assets
+  not_recording_segments:
+    const: true
+    source_matrix_ref: not_recording_segments
+  not_recording_items_enriched:
+    const: true
+    source_matrix_ref: not_recording_items_enriched
+  not_ml_training_data:
+    const: true
+    source_matrix_ref: not_ml_training_data
+

@@ -1,0 +1,129 @@
+warning:
+  - DRAFT ONLY
+  - NOT PRODUCTION CONTRACT
+  - NOT SAMPLE INGEST
+  - NOT ML TRAINING DATA
+  - REQUIRES USER APPROVAL BEFORE IMPLEMENTATION
+schema_id: cyber_guqin.profile_signal_extension.schema.draft.v0.1
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+description: Draft extension layer mapping VARW R2 evidence to Qinist Profile signals.
+fields:
+  profile_signal_id:
+    type: string
+    required: true
+    source_matrix_ref: profile_signal_id
+  profile_signal_type:
+    type: enum
+    values:
+      - timing_preference
+      - tail_preference
+      - ornament_density_preference
+      - phrase_motion_preference
+      - breath_cadence_preference
+      - rejection_reason_pattern
+    required: true
+    source_matrix_ref: profile_signal_type
+  qinist_id:
+    type: string
+    required: true
+    source_matrix_ref: qinist_id
+  piece_id:
+    type: string
+    required: false
+    source_matrix_ref: piece_id
+  render_set_id:
+    type: string
+    required: true
+    source_matrix_ref: render_set_id
+  phrase_id:
+    type: string
+    required: false
+    source_matrix_ref: phrase_id
+  section_id:
+    type: string
+    required: false
+    source_matrix_ref: section_id
+  version_id:
+    type: string
+    required: false
+    source_matrix_ref: version_id
+  preferred_version_id:
+    type: string
+    required: false
+    source_matrix_ref: preferred_version_id
+  issue_type:
+    type: array_or_string
+    required: false
+    source_matrix_ref: issue_type
+  severity:
+    type: string
+    required: false
+    source_matrix_ref: severity
+  comment:
+    type: string
+    required: false
+    source_matrix_ref: comment
+  suggested_revision:
+    type: string
+    required: false
+    source_matrix_ref: suggested_revision
+  phrase_play_start_s:
+    type: number_or_null
+    required: false
+    source_matrix_ref: phrase_play_start_s
+  phrase_play_end_s:
+    type: number_or_null
+    required: false
+    source_matrix_ref: phrase_play_end_s
+  phrase_tail_end_s:
+    type: number_or_null
+    required: false
+    source_matrix_ref: phrase_tail_end_s
+  breath_points_s:
+    type: array
+    required: false
+    source_matrix_ref: breath_points_s
+  cadence_point_s:
+    type: number_or_null
+    required: false
+    source_matrix_ref: cadence_point_s
+  phrase_end_policy:
+    type: string
+    required: false
+    source_matrix_ref: phrase_end_policy
+  boundary_source:
+    type: string
+    required: false
+    source_matrix_ref: boundary_source
+  boundary_confidence:
+    type: string
+    required: false
+    source_matrix_ref: boundary_confidence
+  confidence:
+    type: number
+    required: true
+    source_matrix_ref: confidence
+  evidence_refs:
+    type: array
+    required: true
+    source_matrix_ref: evidence_refs
+safety_fields:
+  review_only:
+    const: true
+    source_matrix_ref: review_only
+  production_grade:
+    const: false
+    source_matrix_ref: production_grade
+  not_sample_assets:
+    const: true
+    source_matrix_ref: not_sample_assets
+  not_recording_segments:
+    const: true
+    source_matrix_ref: not_recording_segments
+  not_recording_items_enriched:
+    const: true
+    source_matrix_ref: not_recording_items_enriched
+  not_ml_training_data:
+    const: true
+    source_matrix_ref: not_ml_training_data
+

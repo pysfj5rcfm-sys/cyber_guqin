@@ -1,0 +1,57 @@
+mock_status: MOCK_ONLY
+production_grade: false
+not_sample_assets: true
+not_recording_segments: true
+not_recording_items_enriched: true
+not_ml_training_data: true
+not_real_sanman_data: true
+warning: MOCK / NOT REAL SANMAN DATA / NOT ACCEPTED CANDIDATE / NOT SAMPLE ASSET
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+candidates:
+  - candidate_id: CAND_MOCK_QINIST001_SAN_TIAO_7_001
+    qinist_id: QINIST_001
+    piece_id: XWC_MOCK
+    work_id: XWC_MOCK
+    event_id: MOCK_XWC_P01_N01
+    score_event_id: MOCK_XWC_P01_N01
+    gesture_event_id: MOCK_GESTURE_EVENT_001
+    gesture_id: SAN_TIAO_7
+    recording_session_id: ""
+    session_id: MOCK_SESSION_NOT_APPROVED
+    recording_id: ""
+    recording_take_no: ""
+    source_take_id: ""
+    segment_id: ""
+    source_raw_audio: ""
+    source_split_audio: ""
+    audio_segment_ref: ""
+    primary_sound_type: 散音
+    gesture_family: single_pluck
+    technique: tiao
+    special_technique: none
+    string_no: 7
+    hui: open
+    hui_target: null
+    notation_pre_action: none
+    notation_vibrato: none
+    realization_variant: straight
+    realization_pre_action: none
+    realization_vibrato: none
+    tail_policy: full_tail
+    review_labels:
+      review_status: candidate
+      segment_status: candidate
+      human_accepted: false
+      reviewed_by: ""
+      reviewed_at: ""
+      preferred_version_id: ""
+      issue_type: []
+      severity: ""
+    exclusion:
+      is_wrong_take: false
+      is_failed_take: false
+      is_context_only: false
+      exclusion_reason: ""
+    candidate_status: hold
+    required_review_missing: true
+

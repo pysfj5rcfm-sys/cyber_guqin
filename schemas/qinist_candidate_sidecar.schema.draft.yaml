@@ -1,0 +1,204 @@
+warning:
+  - DRAFT ONLY
+  - NOT PRODUCTION CONTRACT
+  - NOT SAMPLE INGEST
+  - NOT ML TRAINING DATA
+  - REQUIRES USER APPROVAL BEFORE IMPLEMENTATION
+schema_id: cyber_guqin.qinist_candidate_sidecar.schema.draft.v0.1
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+description: Draft sidecar shape for future ML-ready candidate evidence. This is not sample ingest.
+fields:
+  candidate_id:
+    type: string
+    required: true
+    source_matrix_ref: candidate_id
+  qinist_id:
+    type: string
+    required: true
+    source_matrix_ref: qinist_id
+  piece_id:
+    type: string
+    required: false
+    source_matrix_ref: piece_id
+  work_id:
+    type: string
+    required: false
+    source_matrix_ref: work_id
+  event_id:
+    type: string
+    required: false
+    source_matrix_ref: event_id
+  score_event_id:
+    type: string
+    required: false
+    source_matrix_ref: score_event_id
+  gesture_event_id:
+    type: string
+    required: false
+    source_matrix_ref: gesture_event_id
+  gesture_id:
+    type: string
+    required: false
+    source_matrix_ref: gesture_id
+  recording_session_id:
+    type: string
+    required: false
+    source_matrix_ref: recording_session_id
+  session_id:
+    type: string
+    required: false
+    source_matrix_ref: session_id
+  recording_id:
+    type: string
+    required: false
+    source_matrix_ref: recording_id
+  recording_take_no:
+    type: string
+    required: false
+    source_matrix_ref: recording_take_no
+  source_take_id:
+    type: string
+    required: false
+    source_matrix_ref: source_take_id
+  segment_id:
+    type: string
+    required: false
+    source_matrix_ref: segment_id
+  source_raw_audio:
+    type: string
+    required: false
+    source_matrix_ref: source_raw_audio
+  source_split_audio:
+    type: string
+    required: false
+    source_matrix_ref: source_split_audio
+  audio_segment_ref:
+    type: string
+    required: false
+    source_matrix_ref: audio_segment_ref
+  primary_sound_type:
+    type: enum
+    values: [散音, 按音, 泛音]
+    required: true
+    source_matrix_ref: primary_sound_type
+  gesture_family:
+    type: string
+    required: true
+    source_matrix_ref: gesture_family
+  technique:
+    type: string
+    required: false
+    source_matrix_ref: technique
+  special_technique:
+    type: string
+    required: false
+    source_matrix_ref: special_technique
+  string_no:
+    type: integer_or_null
+    required: false
+    source_matrix_ref: string_no
+  hui:
+    type: string_or_number_or_null
+    required: false
+    source_matrix_ref: hui
+  hui_target:
+    type: string_or_number_or_null
+    required: false
+    source_matrix_ref: hui_target
+  notation_pre_action:
+    type: string
+    required: false
+    source_matrix_ref: notation_pre_action
+  notation_vibrato:
+    type: string
+    required: false
+    source_matrix_ref: notation_vibrato
+  realization_variant:
+    type: string
+    required: false
+    source_matrix_ref: realization_variant
+  realization_pre_action:
+    type: string
+    required: false
+    source_matrix_ref: realization_pre_action
+  realization_vibrato:
+    type: string
+    required: false
+    source_matrix_ref: realization_vibrato
+  tail_policy:
+    type: string
+    required: false
+    source_matrix_ref: tail_policy
+  review_labels:
+    type: object
+    required: false
+    fields:
+      review_status:
+        type: string
+        source_matrix_ref: review_status
+      segment_status:
+        type: string
+        source_matrix_ref: segment_status
+      human_accepted:
+        type: boolean
+        source_matrix_ref: human_accepted
+      reviewed_by:
+        type: string
+        source_matrix_ref: reviewed_by
+      reviewed_at:
+        type: string
+        source_matrix_ref: reviewed_at
+      preferred_version_id:
+        type: string
+        source_matrix_ref: preferred_version_id
+      issue_type:
+        type: array_or_string
+        source_matrix_ref: issue_type
+      severity:
+        type: string
+        source_matrix_ref: severity
+  exclusion:
+    type: object
+    required: true
+    fields:
+      is_wrong_take:
+        type: boolean
+        source_matrix_ref: is_wrong_take
+      is_failed_take:
+        type: boolean
+        source_matrix_ref: is_failed_take
+      is_context_only:
+        type: boolean
+        source_matrix_ref: is_context_only
+      exclusion_reason:
+        type: string
+        source_matrix_ref: exclusion_reason
+  candidate_status:
+    type: enum
+    values: [candidate, hold, reject]
+    required: true
+    source_matrix_ref: candidate_status
+  required_review_missing:
+    type: boolean
+    required: true
+    source_matrix_ref: required_review_missing
+safety_fields:
+  review_only:
+    const: true
+    source_matrix_ref: review_only
+  production_grade:
+    const: false
+    source_matrix_ref: production_grade
+  not_sample_assets:
+    const: true
+    source_matrix_ref: not_sample_assets
+  not_recording_segments:
+    const: true
+    source_matrix_ref: not_recording_segments
+  not_recording_items_enriched:
+    const: true
+    source_matrix_ref: not_recording_items_enriched
+  not_ml_training_data:
+    const: true
+    source_matrix_ref: not_ml_training_data
+

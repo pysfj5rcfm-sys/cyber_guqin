@@ -1,0 +1,82 @@
+mock_status: MOCK_ONLY
+production_grade: false
+not_sample_assets: true
+not_recording_segments: true
+not_recording_items_enriched: true
+not_ml_training_data: true
+not_real_sanman_data: true
+warning: MOCK / NOT REAL SANMAN DATA / NOT PRODUCTION INPUT
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+piece_id: XWC_MOCK
+work_id: XWC_MOCK
+source_score_id: MOCK_SCORE_XWC_SHAPE_ONLY
+items:
+  - event_id: MOCK_XWC_P01_N01
+    phrase_id: MOCK_XWC_P01
+    event_group_id: MOCK_XWC_G01
+    source_token: 散音挑七弦
+    normalized_token: 散挑七
+    primary_sound_type: 散音
+    gesture_family: single_pluck
+    gesture_id: SAN_TIAO_7
+    sound_profile: single
+    notation_pre_action: none
+    notation_vibrato: none
+    context_dependency: none
+    needs_review: false
+    source_status: manual_input
+    certainty: 0.92
+    components:
+      - component_order: 1
+        component_role: attack
+        component_hand: right
+        component_category: single_pluck
+        component_name: tiao
+        component_sound_type: 散音
+        string_no: 7
+        hui: null
+        hui_target: null
+        motion_returns: false
+        is_sound_producing: true
+        is_notation_required: false
+  - event_id: MOCK_XWC_P01_N02
+    phrase_id: MOCK_XWC_P01
+    event_group_id: MOCK_XWC_G02
+    source_token: 按音七徽九分六弦挑
+    normalized_token: 按七徽九分六弦挑
+    primary_sound_type: 按音
+    gesture_family: pressed_pluck
+    gesture_id: MOCK_AN_7_9_TIAO_6
+    sound_profile: single
+    notation_pre_action: none
+    notation_vibrato: none
+    context_dependency: none
+    needs_review: true
+    source_status: manual_input
+    certainty: 0.70
+    components:
+      - component_order: 1
+        component_role: press_position
+        component_hand: left
+        component_category: pressed_position
+        component_name: press
+        component_sound_type: none
+        string_no: 6
+        hui: "7.9"
+        hui_target: null
+        motion_returns: false
+        is_sound_producing: false
+        is_notation_required: true
+      - component_order: 2
+        component_role: attack
+        component_hand: right
+        component_category: single_pluck
+        component_name: tiao
+        component_sound_type: 按音
+        string_no: 6
+        hui: "7.9"
+        hui_target: null
+        motion_returns: false
+        is_sound_producing: true
+        is_notation_required: true
+

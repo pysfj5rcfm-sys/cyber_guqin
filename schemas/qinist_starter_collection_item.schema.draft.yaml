@@ -1,0 +1,154 @@
+warning:
+  - DRAFT ONLY
+  - NOT PRODUCTION CONTRACT
+  - NOT SAMPLE INGEST
+  - NOT ML TRAINING DATA
+  - REQUIRES USER APPROVAL BEFORE IMPLEMENTATION
+schema_id: cyber_guqin.qinist_starter_collection_item.schema.draft.v0.1
+source_matrix: reports/qinist_starter_field_source_matrix.v0.1.json
+description: Draft shape for one universal starter-kit collection item.
+fields:
+  kit_id:
+    type: string
+    required: true
+    source_matrix_ref: kit_id
+  starter_item_id:
+    type: string
+    required: true
+    source_matrix_ref: starter_item_id
+  qinist_id:
+    type: string
+    required: true
+    source_matrix_ref: qinist_id
+  piece_id:
+    type: string
+    required: false
+    source_matrix_ref: piece_id
+  source_score_id:
+    type: string
+    required: false
+    source_matrix_ref: source_score_id
+  event_id:
+    type: string
+    required: false
+    source_matrix_ref: event_id
+  score_event_id:
+    type: string
+    required: false
+    source_matrix_ref: score_event_id
+  primary_sound_type:
+    type: enum
+    values: [散音, 按音, 泛音]
+    required: true
+    source_matrix_ref: primary_sound_type
+  gesture_family:
+    type: string
+    required: true
+    source_matrix_ref: gesture_family
+  gesture_id:
+    type: string
+    required: false
+    source_matrix_ref: gesture_id
+  technique:
+    type: string
+    required: false
+    source_matrix_ref: technique
+  special_technique:
+    type: string
+    required: false
+    source_matrix_ref: special_technique
+  components:
+    type: array
+    required: false
+    source_matrix_ref: components
+    item_fields:
+      component_name:
+        type: string
+        source_matrix_ref: component_name
+      component_category:
+        type: string
+        source_matrix_ref: component_category
+      component_role:
+        type: string
+        source_matrix_ref: component_role
+      component_hand:
+        type: string
+        source_matrix_ref: component_hand
+      component_sound_type:
+        type: string
+        source_matrix_ref: component_sound_type
+      string_no:
+        type: integer_or_null
+        source_matrix_ref: string_no
+      hui:
+        type: string_or_number_or_null
+        source_matrix_ref: hui
+      hui_target:
+        type: string_or_number_or_null
+        source_matrix_ref: hui_target
+      motion_returns:
+        type: boolean
+        source_matrix_ref: motion_returns
+  notation_pre_action:
+    type: enum
+    values: [none, chuo, zhu]
+    required: false
+    source_matrix_ref: notation_pre_action
+  notation_vibrato:
+    type: enum
+    values: [none, yin, nao, yin_nao]
+    required: false
+    source_matrix_ref: notation_vibrato
+  context_dependency:
+    type: string
+    required: false
+    source_matrix_ref: context_dependency
+  requires_context_sample:
+    type: boolean
+    required: false
+    source_matrix_ref: requires_context_sample
+  needs_context_take:
+    type: boolean
+    required: false
+    source_matrix_ref: needs_context_take
+  needs_long_tail:
+    type: boolean
+    required: false
+    source_matrix_ref: needs_long_tail
+  tail_policy:
+    type: string
+    required: false
+    source_matrix_ref: tail_policy
+  priority_tier:
+    type: enum
+    values: [P0, P1, P2, P3, SKIP]
+    required: true
+    source_matrix_ref: priority_tier
+  coverage_status:
+    type: string
+    required: false
+    source_matrix_ref: coverage_status
+  evidence_refs:
+    type: array
+    required: false
+    source_matrix_ref: evidence_refs
+safety_fields:
+  review_only:
+    const: true
+    source_matrix_ref: review_only
+  production_grade:
+    const: false
+    source_matrix_ref: production_grade
+  not_sample_assets:
+    const: true
+    source_matrix_ref: not_sample_assets
+  not_recording_segments:
+    const: true
+    source_matrix_ref: not_recording_segments
+  not_recording_items_enriched:
+    const: true
+    source_matrix_ref: not_recording_items_enriched
+  not_ml_training_data:
+    const: true
+    source_matrix_ref: not_ml_training_data
+
