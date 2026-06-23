@@ -1,0 +1,216 @@
+{
+  "task_id": "CG-QINIST-STARTER-KIT-DESIGN-FREEZE-v0.1",
+  "freeze_status": "DESIGN_FREEZE_RECORDED",
+  "authority": {
+    "current_recd_varw_authority": "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md",
+    "documents_used": [
+      "/Users/chenyulin/Downloads/Core_Instructions_v1.6.md",
+      "/Users/chenyulin/Downloads/NEXT_CHAT_HANDOFF_SANMAN_DIGITIZATION_STARTUP_v0.2.md",
+      "/Users/chenyulin/Downloads/RECD_VARW_Cyber_Guqin_v1.1.md",
+      "reports/qinist_starter_field_source_audit.v0.1.md",
+      "reports/qinist_starter_field_source_matrix.v0.1.json",
+      "reports/qinist_starter_kit_and_sanman_instance_design.v0.1.md",
+      "reports/qinist_starter_draft_artifact_review.v0.1.md",
+      "reports/qinist_starter_missing_inputs.v0.1.md"
+    ],
+    "historical_optional_reference": "RECD&VARW \u00b7 Cyber Guqin v1.0.txt",
+    "v10_policy": {
+      "status": "historical_optional_delta_audit_only",
+      "blocking_current_design_freeze": false,
+      "blocking_next_implementation_planning": false,
+      "required_only_if_user_requests_historical_delta_audit": true,
+      "do_not_infer_v10_from_v11": true
+    }
+  },
+  "mainline": {
+    "active_mainline": "QINIST_STARTER_COLLECTION_KIT",
+    "first_instance": "QINIST_001_SANMAN",
+    "baiya_role": [
+      "accepted XWC baseline",
+      "workflow regression case",
+      "engineering reference",
+      "comparison qinist"
+    ],
+    "baiya_must_not_be_sanman_style_data": true,
+    "baiya_must_not_be_sanman_inventory": true
+  },
+  "qinist": {
+    "qinist_id": "QINIST_001",
+    "sanman_inventory_mode": "EMPTY_BASELINE",
+    "sanman_inventory_status": "EMPTY_BASELINE_CONFIRMED"
+  },
+  "starter_demand_repertoire": [
+    {
+      "piece_id": "XWC",
+      "title_zh": "\u4ed9\u7fc1\u64cd"
+    },
+    {
+      "piece_id": "LXY",
+      "title_zh": "\u826f\u5bb5\u5f15"
+    },
+    {
+      "piece_id": "JK",
+      "title_zh": "\u9152\u72c2"
+    },
+    {
+      "piece_id": "OLWJ",
+      "title_zh": "\u9e25\u9e6d\u5fd8\u673a"
+    },
+    {
+      "piece_id": "PSLY",
+      "title_zh": "\u5e73\u6c99\u843d\u96c1"
+    }
+  ],
+  "parser_boundary": {
+    "guqin_dapu_parser": "single-piece only",
+    "multi_piece_parser_input_approved": false,
+    "score_facts_vs_qinist_realization_must_remain_separate": true
+  },
+  "aggregation_boundary": {
+    "owner": "workflow / coverage diff layer",
+    "allowed_after": "multiple independent single-piece IR outputs exist",
+    "parser_responsibility_changed": false
+  },
+  "approved_draft_extension_fields": [
+    "bad_take_policy",
+    "candidate_id",
+    "coverage_status",
+    "evidence_refs",
+    "exclusion_reason",
+    "kit_id",
+    "not_recording_items_enriched",
+    "priority_tier",
+    "profile_signal_id",
+    "profile_signal_type",
+    "prompt_id",
+    "prompt_interval_s",
+    "prompt_manifest_id",
+    "prompt_order",
+    "prompt_text_zh",
+    "retake_policy",
+    "starter_item_id",
+    "trigger_text"
+  ],
+  "draft_field_approval_scope": {
+    "approved_for_draft_contract": true,
+    "approved_for_implementation_planning": true,
+    "approved_as_production_schema": false,
+    "approved_for_runtime_wiring": false,
+    "approved_for_sample_ingest": false,
+    "approved_for_ml_training": false
+  },
+  "not_approved": [
+    "production schema freeze",
+    "runtime schema wiring",
+    "schema modification in this task",
+    "mock fixture modification in this task",
+    "score import in this task",
+    "recording start",
+    "TTS/audio generation",
+    "R0/R1/R2 execution",
+    "render/audio script execution",
+    "sample ingest",
+    "writing sample_assets.csv",
+    "writing recording_segments.csv",
+    "writing recording_items_enriched.jsonl",
+    "ML training",
+    "second-piece production",
+    "accepted F rewrite",
+    "Baiya-as-Sanman substitution",
+    "score facts / qinist realization mixing",
+    "multi-piece guqin-dapu-parser input",
+    "running or modifying scripts/generate_baiya_recording_plan.py"
+  ],
+  "dry_run_fixture_adapter_policy": {
+    "adapter_normalization_required_before_future_starter_execution": true,
+    "do_not_rewrite_historical_dry_run_fixtures_in_this_task": true,
+    "field_mappings": [
+      {
+        "from": "sound_type",
+        "to": "primary_sound_type"
+      },
+      {
+        "from": "string",
+        "to": "string_no"
+      },
+      {
+        "from": "hui_position",
+        "to": "hui / hui_target as appropriate"
+      }
+    ]
+  },
+  "score_event_id_policy": {
+    "repo_canonical_score_event_identity": "event_id",
+    "score_event_id_allowed_as_sidecar_semantic_alias": true,
+    "requires_explicit_mapping_to_event_id": true,
+    "make_score_event_id_global_first_class_score_schema_key_in_this_task": false
+  },
+  "priority_tiers": {
+    "P0": "\u6563\u97f3 / \u6cdb\u97f3 foundational clean coverage + structure-validated high-frequency pressed sounds only",
+    "P1": "common pressed sounds and common score-marked ornaments",
+    "P2": "context / transition / yin-nao / complex pressed movement",
+    "P3": "long-tail / full-tail / diagnostic cases",
+    "SKIP": "unsafe / unclear / low-value / not justified",
+    "pressed_sounds_must_not_be_blindly_full_covered": true
+  },
+  "prompt_manifest_policy": {
+    "does_not_preallocate_recording_take_no": true,
+    "prompt_id_and_prompt_order_are_prompt_identities_only": true,
+    "formal_recording_session_id_created_only_after_recording_authorized": true,
+    "formal_recording_take_no_created_only_after_recording_authorized": true,
+    "format": "\u7f16\u53f7 / \u7ed9\u7434\u4eba\u542c\u7684\u6307\u6cd5\u5185\u5bb9 / \u53d1\u4ee4\u67aa",
+    "example": "T001\uff0c\u6563\u6311\u4e03\u5f26\uff0c\u5f00\u59cb\u3002"
+  },
+  "profile_signal_policy": {
+    "status": "report-only / draft sidecar until real Sanman R2 evidence exists",
+    "must_map_from_varw_r2_evidence": true,
+    "disconnected_r2_label_system_approved": false,
+    "sanman_style_model_exists": false
+  },
+  "missing_inputs_resolution": {
+    "sanman_inventory": {
+      "status": "EMPTY_BASELINE_CONFIRMED",
+      "blocking_design_freeze": false,
+      "blocking_5_piece_score_import": false,
+      "blocking_later_already_covered_computation": "only after actual Sanman data exists"
+    },
+    "sanman_starter_dapu_ir": {
+      "status": "PENDING_5PIECE_SCORE_IMPORT",
+      "blocking_design_freeze": false,
+      "blocking_real_demand_extraction": true,
+      "next_input": "import and parse the 5 approved pieces independently"
+    },
+    "recd_varw_v10": {
+      "status": "historical optional / delta-audit-only",
+      "blocking_current_authority": false,
+      "blocking_next_implementation_planning": false,
+      "required_only_if_user_requests_historical_delta_audit": true
+    }
+  },
+  "next_stage": {
+    "name": "5-piece score import",
+    "pieces": [
+      "XWC / \u4ed9\u7fc1\u64cd",
+      "\u826f\u5bb5\u5f15",
+      "\u9152\u72c2",
+      "\u9e25\u9e6d\u5fd8\u673a",
+      "\u5e73\u6c99\u843d\u96c1"
+    ],
+    "score_import_started_in_this_task": false,
+    "each_piece_independently_processed": true,
+    "aggregation_later_in_workflow_coverage_diff_only": true
+  },
+  "safety_red_lines": [
+    "sample_assets.csv",
+    "recording_segments.csv",
+    "recording_items_enriched.jsonl",
+    "ML training",
+    "sample ingest",
+    "accepted F rewrite",
+    "audio generation",
+    "TTS generation",
+    "second-piece production",
+    "Baiya-as-Sanman substitution",
+    "score facts / qinist realization mixing"
+  ]
+}
