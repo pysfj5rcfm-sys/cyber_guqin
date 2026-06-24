@@ -1,0 +1,159 @@
+{
+  "task": "CG-REPO-HYGIENE-R2B_REFERENCE_AND_EXECUTION_PLAN_DRY_RUN",
+  "mode": "reference_review_and_execution_plan_only",
+  "guardrails": {
+    "read_only_scan_plus_new_reports_only": true,
+    "only_new_files_under_reports": true,
+    "no_move_delete_archive_clean": true,
+    "no_renderer_ingest_ml_frontend_build_backend_scripts": true,
+    "no_second_piece_g_f2_or_accepted_f_rerun": true,
+    "no_sample_ingest_files_written": true,
+    "accepted_baseline_untouched": true,
+    "r2_csv_yaml_not_canonical": true,
+    "reports_examples_archive_not_current_authority": true,
+    "future_execution_requires_explicit_user_authorization": true
+  },
+  "candidate_counts": {
+    "archive_candidates_reviewed": 7,
+    "delete_candidates_reviewed": 12,
+    "archive_approved_for_future_execution": 0,
+    "archive_deferred": 4,
+    "archive_cancelled": 1,
+    "archive_subsumed_by_parent": 2,
+    "delete_approved_for_future_local_cleanup": 7,
+    "delete_deferred": 2,
+    "delete_subsumed_by_parent": 3
+  },
+  "reference_summary": {
+    "no_current_reference": [
+      "tools/cg-varw/backend/.venv/",
+      "tools/cg-varw/frontend/node_modules/",
+      "tools/cg-varw/frontend/node_modules/.vite/",
+      "tools/cg-varw/backend/app/__pycache__/",
+      "tools/cg-varw/backend/app/api/__pycache__/",
+      "tools/cg-varw/backend/app/services/__pycache__/",
+      "tools/cg-varw/backend/app/tests/__pycache__/",
+      "tools/cg-varw/backend/.venv/**/__pycache__/",
+      "tools/cg-varw/backend/.venv/**/*.pyc"
+    ],
+    "historical_reference_only": [
+      "archive/xwc_mvp_file_audit_cleanup_20260621/",
+      "archive/xwc_mvp_file_audit_cleanup_20260621/reports/archive/generated_validation/",
+      "archive/xwc_mvp_file_audit_cleanup_20260621/reports/archive/staging/skill_install_staging/",
+      "tools/cg-varw/frontend/dist/"
+    ],
+    "current_doc_reference": [
+      "04_outputs/xianwengcao/"
+    ],
+    "current_script_reference": [
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_render_readiness/",
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_intake/"
+    ],
+    "test_reference": [
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_intake/"
+    ],
+    "authority_reference": [
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED_BEFORE_FULL_TAIL_FIX/",
+      "tools/cg-varw/review_outputs/r0/",
+      "tools/cg-varw/review_outputs/r1/"
+    ],
+    "unknown": []
+  },
+  "approved_for_future_execution": [
+    {
+      "path": "tools/cg-varw/backend/.venv/",
+      "scope": "local cleanup only",
+      "condition": "Explicit user approval; dependencies can be recreated from requirements.txt."
+    },
+    {
+      "path": "tools/cg-varw/frontend/node_modules/",
+      "scope": "local cleanup only",
+      "condition": "Explicit user approval; dependencies can be recreated from package-lock.json."
+    },
+    {
+      "path": "tools/cg-varw/frontend/dist/",
+      "scope": "local cleanup only",
+      "condition": "Explicit user approval; not used as deployment or evidence artifact."
+    },
+    {
+      "path": "tools/cg-varw/backend/app/__pycache__/",
+      "scope": "local cleanup only",
+      "condition": "Explicit user approval; no Python process is running from the tree."
+    },
+    {
+      "path": "tools/cg-varw/backend/app/api/__pycache__/",
+      "scope": "local cleanup only",
+      "condition": "Explicit user approval; no Python process is running from the tree."
+    },
+    {
+      "path": "tools/cg-varw/backend/app/services/__pycache__/",
+      "scope": "local cleanup only",
+      "condition": "Explicit user approval; no Python process is running from the tree."
+    },
+    {
+      "path": "tools/cg-varw/backend/app/tests/__pycache__/",
+      "scope": "local cleanup only",
+      "condition": "Explicit user approval; tests are not running."
+    }
+  ],
+  "deferred": [
+    "04_outputs/xianwengcao/",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED_BEFORE_FULL_TAIL_FIX/",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_render_readiness/",
+    "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_intake/",
+    "tools/cg-varw/review_outputs/r0/",
+    "tools/cg-varw/review_outputs/r1/"
+  ],
+  "rejected": [
+    {
+      "path": "archive/xwc_mvp_file_audit_cleanup_20260621/",
+      "decision": "cancel in-repo re-archive",
+      "reason": "Already under archive; moving it again would only churn historical archive references."
+    },
+    {
+      "path": "archive/xwc_mvp_file_audit_cleanup_20260621/reports/archive/generated_validation/",
+      "decision": "subsumed-by-parent",
+      "reason": "Do not execute child path independently."
+    },
+    {
+      "path": "archive/xwc_mvp_file_audit_cleanup_20260621/reports/archive/staging/skill_install_staging/",
+      "decision": "subsumed-by-parent",
+      "reason": "Do not execute child path independently."
+    },
+    {
+      "path": "tools/cg-varw/frontend/node_modules/.vite/",
+      "decision": "subsumed-by-parent",
+      "reason": "Clean only with parent node_modules or explicit frontend cache reset."
+    },
+    {
+      "path": "tools/cg-varw/backend/.venv/**/__pycache__/",
+      "decision": "subsumed-by-parent",
+      "reason": "Clean only with parent backend .venv."
+    },
+    {
+      "path": "tools/cg-varw/backend/.venv/**/*.pyc",
+      "decision": "subsumed-by-parent",
+      "reason": "Clean only with parent backend .venv."
+    }
+  ],
+  "blocked_actions": [
+    "move any archive candidate in this R2B task",
+    "delete any candidate in this R2B task",
+    "archive any candidate in this R2B task",
+    "clean ignored local artifacts in this R2B task",
+    "commit deletion of ignored local artifacts",
+    "archive or move accepted F_FINAL_REVIEWED or its input_snapshot",
+    "archive or move canonical r2_review_state.latest.json",
+    "promote R2 CSV/YAML derived exports to canonical authority",
+    "run renderer",
+    "run ingest",
+    "run ML",
+    "run frontend build",
+    "run backend scripts",
+    "start second-piece workflow",
+    "run G/F2 or rerun accepted F",
+    "write protected sample or ingest files",
+    "process scripts/generate_baiya_recording_plan.py if restored"
+  ],
+  "next_step_recommendation": "For R2C, do not execute archive moves yet. The only candidates suitable for future execution are ignored local cleanup items, and even those require explicit user authorization and should not become git deletions. Archive candidates should remain deferred or cancelled until active references and provenance links are retired or mapped."
+}
