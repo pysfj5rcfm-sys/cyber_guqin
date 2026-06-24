@@ -1,0 +1,393 @@
+{
+  "audit": {
+    "name": "CG-REPO-HYGIENE-R0_REFRESH_LATEST_STATE",
+    "version": "latest.v0.1",
+    "date": "2026-06-24",
+    "repo_root": "D:/AIProjects/cyber_guqin/Cyber_Guqin_v1",
+    "branch": "main",
+    "head": "4a549a33a8c29f627eaebe2856762879465c4e7d",
+    "initial_git_status": "clean",
+    "mode": "readonly_scan_reports_only"
+  },
+  "guardrails": {
+    "no_checkout_pull_reset_stash_clean": true,
+    "no_renderer_ingest_ml_tests_build_backend_scripts": true,
+    "no_second_piece_g_or_f2": true,
+    "no_sample_ingest_files_written": true,
+    "accepted_baseline_untouched": true,
+    "protected_paths": [
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED/",
+      "03_samples/sample_assets.csv",
+      "03_samples/recording_segments.csv",
+      "recording_items_enriched.jsonl",
+      "scripts/generate_baiya_recording_plan.py"
+    ]
+  },
+  "git_baseline": {
+    "recent_commits": [
+      "4a549a3 docs: freeze qinist starter kit design decisions",
+      "3fabbd7 chore(reports): archive historical project reports",
+      "664f1e3 docs(qinist): design starter kit and Sanman instance artifacts",
+      "66e3962 fix(varw): harden R0/R1 export manifests and reload guards",
+      "a7615f2 docs(project): update current state and engineering backlog"
+    ]
+  },
+  "observed_counts": {
+    "top_level_file_counts": {
+      ".agents": 3,
+      ".DS_Store": 1,
+      ".gitignore": 1,
+      "00_global": 14,
+      "01_pieces": 10,
+      "02_recordings": 333,
+      "03_samples": 84,
+      "04_outputs": 73,
+      "05_scripts": 7,
+      "06_docs": 12,
+      "archive": 250,
+      "canon": 9,
+      "docs": 2,
+      "examples": 9,
+      "README.md": 1,
+      "references": 3,
+      "reports": 86,
+      "schemas": 10,
+      "scripts": 19,
+      "sources": 28,
+      "templates": 3,
+      "tests": 4,
+      "tools": 4304
+    },
+    "extension_counts_top_35": {
+      ".js": 1326,
+      ".py": 882,
+      ".pyc": 867,
+      ".map": 297,
+      ".ts": 253,
+      ".wav": 253,
+      ".csv": 251,
+      ".md": 250,
+      ".json": 248,
+      "no_extension": 202,
+      ".yaml": 137,
+      ".txt": 34,
+      ".typed": 31,
+      ".mts": 27,
+      ".cts": 25,
+      ".tsx": 20,
+      ".exe": 18,
+      ".jpg": 16,
+      ".mjs": 16,
+      ".ps1": 14,
+      ".cmd": 13,
+      ".cjs": 13,
+      ".jsonl": 11,
+      ".jpeg": 8,
+      ".m4a": 7,
+      ".pyd": 6,
+      ".pyi": 6,
+      ".gitignore": 4,
+      ".pxd": 3,
+      ".flow": 3,
+      ".sha256": 2,
+      ".css": 2,
+      ".BSD": 2,
+      ".APACHE": 2,
+      ".pyx": 2
+    }
+  },
+  "p1_f_reproduction_toolchain": {
+    "present": true,
+    "docs_cyber_guqin_exists": true,
+    "examples_cyber_guqin_exists": true,
+    "required_paths": [
+      {
+        "path": ".agents/skills/cyber_guqin_mvp_workflow/SKILL.md",
+        "exists": true,
+        "classification": "keep",
+        "role": "workflow skill and gate authority"
+      },
+      {
+        "path": "docs/cyber_guqin/XWC_F_REPRODUCTION_RUNBOOK.md",
+        "exists": true,
+        "classification": "keep",
+        "role": "user-facing dry-run runbook"
+      },
+      {
+        "path": "docs/cyber_guqin/SCRIPT_REGISTRY.md",
+        "exists": true,
+        "classification": "keep",
+        "role": "script safety registry"
+      },
+      {
+        "path": "examples/cyber_guqin/",
+        "exists": true,
+        "classification": "keep",
+        "role": "example manifests and starter-kit examples"
+      },
+      {
+        "path": "scripts/generate_recording_plan_from_dapu_ir.py",
+        "exists": true,
+        "classification": "keep",
+        "role": "generic recording plan generator"
+      },
+      {
+        "path": "scripts/render_abcd_from_manifest.py",
+        "exists": true,
+        "classification": "keep",
+        "role": "generic ABCD manifest planner"
+      },
+      {
+        "path": "scripts/cyber_guqin_reproduction_lib.py",
+        "exists": true,
+        "classification": "keep",
+        "role": "shared authority and sandbox guard library"
+      },
+      {
+        "path": "tools/cg-varw/backend/scripts/generate_final_reviewed_render.py",
+        "exists": true,
+        "classification": "keep",
+        "role": "generic final reviewed render planner"
+      },
+      {
+        "path": "tools/cg-varw/backend/scripts/verify_r2_render_manifest.py",
+        "exists": true,
+        "classification": "keep",
+        "role": "read-only R2/final manifest verifier"
+      }
+    ],
+    "example_files": [
+      "examples/cyber_guqin/xwc_abcd_render_manifest.yaml",
+      "examples/cyber_guqin/xwc_dapu_ir_minimal_fixture.jsonl",
+      "examples/cyber_guqin/xwc_final_render_manifest.yaml",
+      "examples/cyber_guqin/xwc_r2_render_verify_manifest.yaml",
+      "examples/cyber_guqin/xwc_recording_plan_config.yaml",
+      "examples/cyber_guqin/qinist_starter_kit/example_candidate_sidecar.mock.yaml",
+      "examples/cyber_guqin/qinist_starter_kit/example_profile_signal_extension.mock.yaml",
+      "examples/cyber_guqin/qinist_starter_kit/example_prompt_manifest.B01.mock.yaml",
+      "examples/cyber_guqin/qinist_starter_kit/example_single_piece_dapu_ir_input.XWC.mock.yaml"
+    ],
+    "protected_if_restored": [
+      {
+        "path": "scripts/generate_baiya_recording_plan.py",
+        "exists": false,
+        "classification": "forbidden-to-touch",
+        "note": "not present in current HEAD; if restored, record as protected historical template"
+      }
+    ]
+  },
+  "authority": {
+    "r2_canonical_authority": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_drafts/latest/r2_review_state.latest.json",
+    "accepted_baseline": "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED/",
+    "derived_r2_exports": [
+      "listening_review.csv",
+      "listening_review.yaml",
+      "issue_list.csv",
+      "preferred_version_summary.csv",
+      "phrase_structure_review.yaml",
+      "render_phrase_alignment.csv",
+      "phrase_boundary_decision.csv",
+      "render_revision_log.yaml"
+    ],
+    "forbidden_current_authority": [
+      "Downloads",
+      "browser Blob",
+      "restore zip",
+      "old exports",
+      "archived old exports",
+      "derived CSV/YAML"
+    ]
+  },
+  "directory_inventory": [
+    {
+      "path": "00_global/",
+      "role": "V1 runtime global ontology/config data",
+      "classification": "keep"
+    },
+    {
+      "path": "01_pieces/",
+      "role": "XWC piece data",
+      "classification": "keep"
+    },
+    {
+      "path": "02_recordings/",
+      "role": "recording sessions and raw/review evidence",
+      "classification": "keep"
+    },
+    {
+      "path": "03_samples/",
+      "role": "sample assets and indexes",
+      "classification": "keep"
+    },
+    {
+      "path": "04_outputs/",
+      "role": "runtime/render/review outputs including accepted baseline",
+      "classification": "mixed"
+    },
+    {
+      "path": "05_scripts/",
+      "role": "V1 runtime scripts",
+      "classification": "index-only"
+    },
+    {
+      "path": "06_docs/",
+      "role": "legacy V1 documentation",
+      "classification": "index-only"
+    },
+    {
+      "path": ".agents/",
+      "role": "agent skills including cyber_guqin_mvp_workflow",
+      "classification": "keep"
+    },
+    {
+      "path": "canon/",
+      "role": "canon seed and draft YAML",
+      "classification": "keep"
+    },
+    {
+      "path": "docs/cyber_guqin/",
+      "role": "P1-F reproduction runbook and script registry",
+      "classification": "keep"
+    },
+    {
+      "path": "examples/cyber_guqin/",
+      "role": "P1-F example manifests and starter-kit examples",
+      "classification": "keep"
+    },
+    {
+      "path": "references/",
+      "role": "mapping/normalization/validation references",
+      "classification": "keep"
+    },
+    {
+      "path": "reports/",
+      "role": "current reports and report index",
+      "classification": "index-only"
+    },
+    {
+      "path": "reports/archive/",
+      "role": "historical reports archive",
+      "classification": "keep"
+    },
+    {
+      "path": "schemas/",
+      "role": "Dapu/canon/starter/profile/sidecar schemas",
+      "classification": "keep"
+    },
+    {
+      "path": "scripts/",
+      "role": "validators, audits, P1-F generic reproduction scripts, and historical helpers",
+      "classification": "index-only"
+    },
+    {
+      "path": "sources/",
+      "role": "source evidence",
+      "classification": "keep"
+    },
+    {
+      "path": "templates/",
+      "role": "recording templates",
+      "classification": "keep"
+    },
+    {
+      "path": "tests/",
+      "role": "fixtures and P1-F toolchain tests",
+      "classification": "keep"
+    },
+    {
+      "path": "tools/cg-varw/backend/",
+      "role": "CG-VARW backend",
+      "classification": "keep"
+    },
+    {
+      "path": "tools/cg-varw/frontend/",
+      "role": "CG-VARW frontend",
+      "classification": "keep"
+    },
+    {
+      "path": "tools/cg-varw/docs/",
+      "role": "CG-VARW chronological reports",
+      "classification": "index-only"
+    },
+    {
+      "path": "tools/cg-varw/review_outputs/",
+      "role": "local generated workbench outputs area",
+      "classification": "keep"
+    },
+    {
+      "path": "tools/cg-varw/sample_workspace/",
+      "role": "synthetic demo workspace",
+      "classification": "keep"
+    },
+    {
+      "path": "archive/",
+      "role": "historical cleanup snapshot",
+      "classification": "archive-candidate"
+    }
+  ],
+  "duplicate_basename_hotspots": [
+    {
+      "basename": "r2_review_state.latest.json",
+      "count": 24,
+      "classification": "canonical_collision_risk",
+      "note": "active latest JSON is canonical; archived copies are evidence only"
+    },
+    {
+      "basename": "render_phrase_alignment.csv",
+      "count": 24,
+      "classification": "derived_export_repetition"
+    },
+    {
+      "basename": "render_revision_log.yaml",
+      "count": 24,
+      "classification": "derived_export_repetition"
+    },
+    {
+      "basename": "listening_review.yaml",
+      "count": 24,
+      "classification": "derived_export_repetition"
+    },
+    {
+      "basename": "r2_review_state_manifest.json",
+      "count": 24,
+      "classification": "manifest_repetition"
+    },
+    {
+      "basename": "README.md",
+      "count": 9,
+      "classification": "normal_readme_repetition"
+    },
+    {
+      "basename": "r1_synthetic_split_manifest.json",
+      "count": 9,
+      "classification": "batch_or_demo_manifest_repetition"
+    }
+  ],
+  "old_r0_delta": {
+    "outdated": [
+      "docs/cyber_guqin was absent",
+      "examples/cyber_guqin was absent",
+      "P1-F reproduction toolchain was not confirmed",
+      "root README was Phase 0.1-only"
+    ],
+    "still_valid": [
+      "accepted F_FINAL_REVIEWED is forbidden-to-touch",
+      "r2_review_state.latest.json is canonical",
+      "CSV/YAML exports are derived",
+      "reports/archive and archive are historical evidence",
+      "local artifacts must not be cleaned in R0",
+      "script tree overlap requires indexing"
+    ]
+  },
+  "r1_readiness": {
+    "can_enter_CG_REPO_HYGIENE_R1_INDEX_AND_POLICY_DOCS": true,
+    "blocker": null,
+    "recommended_scope": [
+      "refresh reports/REPORTS_INDEX.md",
+      "index docs/cyber_guqin and examples/cyber_guqin",
+      "index 06_docs and tools/cg-varw/docs",
+      "label script categories and authority classes",
+      "do not move/delete/archive files"
+    ]
+  }
+}
