@@ -1,29 +1,46 @@
-.DS_Store
-__pycache__/
-*.pyc
-.pytest_cache/
-
-# Local ASR environment / temporary audio intake
-.venv-asr/
-_incoming_audio/
+# OS
 .DS_Store
 
-# Local Python environments
-.venv/
-**/.venv/
-
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+.venv-asr/
 
-# macOS
-.DS_Store
+# Node / frontend
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
 
-# Local VSCode settings
+# IDE / local
 .vscode/
+.idea/
 
-# Local logs / temp
+# Logs / temp
 *.log
-.tmp/
+tmp/
 temp/
+.tmp/
+_incoming_audio/
+
+# CG-VARW local environments / frontend generated artifacts
+tools/cg-varw/backend/.venv/
+tools/cg-varw/frontend/node_modules/
+tools/cg-varw/frontend/dist/
+tools/cg-varw/frontend/.vite/
+tools/cg-varw/frontend/*.tsbuildinfo
+
+# CG-VARW generated non-canonical local workbench outputs
+tools/cg-varw/review_outputs/**
+!tools/cg-varw/review_outputs/
+!tools/cg-varw/review_outputs/README.md
+!tools/cg-varw/review_outputs/.gitignore
