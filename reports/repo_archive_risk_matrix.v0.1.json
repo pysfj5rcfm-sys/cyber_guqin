@@ -1,0 +1,75 @@
+{
+  "task": "CG-REPO-HYGIENE-R2_ARCHIVE_DRY_RUN_PROPOSAL",
+  "mode": "dry_run_proposal_only",
+  "guardrails": {
+    "read_only_scan_plus_new_reports_only": true,
+    "only_new_files_under_reports": true,
+    "no_move_delete_archive_clean": true,
+    "no_renderer_ingest_ml_frontend_build_backend_scripts": true,
+    "no_second_piece_g_f2_or_accepted_f_rerun": true,
+    "no_sample_ingest_files_written": true,
+    "accepted_baseline_untouched": true,
+    "r2_csv_yaml_not_canonical": true,
+    "reports_examples_archive_not_current_authority": true
+  },
+  "summary_counts": {
+    "archive_candidates": 7,
+    "delete_candidates": 12,
+    "move_candidates": 0,
+    "forbidden_to_touch": 6,
+    "defer_groups": 6,
+    "index_only_groups": 7,
+    "keep_groups": 12
+  },
+  "risk_levels": {
+    "critical": [
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED/",
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED/input_snapshot/",
+      "03_samples/sample_assets.csv",
+      "03_samples/recording_segments.csv",
+      "recording_items_enriched.jsonl if present",
+      "scripts/generate_baiya_recording_plan.py if restored"
+    ],
+    "high": [
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED_BEFORE_FULL_TAIL_FIX/",
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/r2_review_intake/",
+      "archive/xwc_mvp_file_audit_cleanup_20260621/",
+      "tools/cg-varw/backend/scripts/generate_xwc_f_final_reviewed.py",
+      "tools/cg-varw/backend/scripts/refresh_xwc_r1_full_tail_and_regenerate_f.py"
+    ],
+    "medium": [
+      "04_outputs/xianwengcao/",
+      "04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_render_readiness/",
+      "tools/cg-varw/backend/.venv/",
+      "tools/cg-varw/frontend/node_modules/",
+      "tools/cg-varw/review_outputs/r0/",
+      "tools/cg-varw/review_outputs/r1/",
+      "reports/archive/2026-06/"
+    ],
+    "low": [
+      "tools/cg-varw/frontend/dist/",
+      "tools/cg-varw/frontend/node_modules/.vite/",
+      "__pycache__/",
+      "*.pyc"
+    ]
+  },
+  "blocked_actions": [
+    "move any candidate",
+    "delete any candidate",
+    "archive any candidate",
+    "clean ignored local artifacts",
+    "run renderer",
+    "run ingest",
+    "run ML",
+    "run frontend build",
+    "run backend scripts",
+    "start second-piece workflow",
+    "run G/F2 or rerun accepted F",
+    "write 03_samples/sample_assets.csv",
+    "write 03_samples/recording_segments.csv",
+    "write recording_items_enriched.jsonl",
+    "touch accepted F_FINAL_REVIEWED",
+    "process scripts/generate_baiya_recording_plan.py if restored"
+  ],
+  "next_step_recommendation": "Proceed to R2B only as a human-reviewed execution proposal: first approve or reject each archive/delete candidate, then run a second dry-run that verifies references and confirms no accepted baseline, canonical R2 latest JSON, protected sample indexes, docs authority, examples, schemas, canon, sources, templates, or tests will be moved or deleted."
+}

@@ -1,0 +1,7 @@
+path,classification,reason,authority_type,blocked_action
+04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED/,forbidden-to-touch,"Accepted XWC F baseline / regression reference; current engineering baseline depends on this exact stratum.",accepted_baseline,"move; delete; archive; overwrite; regenerate; clean; edit"
+04_outputs/XWC/RS_XWC_002_BAIYA_PILOT/abcd_experimental_render/F_FINAL_REVIEWED/input_snapshot/,forbidden-to-touch,"Accepted F input provenance snapshot; protects the reviewed F reproduction evidence chain.",accepted_baseline_provenance,"move; delete; archive; overwrite; clean; edit"
+03_samples/sample_assets.csv,forbidden-to-touch,"Protected sample asset index; R2 repo hygiene must not write sample ingest surfaces.",sample_index,"write; move; delete; archive; regenerate"
+03_samples/recording_segments.csv,forbidden-to-touch,"Protected recording segment index; R2 repo hygiene must not write sample ingest surfaces.",sample_index,"write; move; delete; archive; regenerate"
+recording_items_enriched.jsonl,forbidden-to-touch,"Protected future enriched ingest output name; currently absent but must remain forbidden if introduced.",protected_if_present,"write; move; delete; archive; regenerate"
+scripts/generate_baiya_recording_plan.py,forbidden-to-touch,"Protected historical template path; absent in current HEAD, but if restored it must not be processed in hygiene tasks.",protected_if_restored_historical_template,"run; stage; move; delete; archive; edit"
