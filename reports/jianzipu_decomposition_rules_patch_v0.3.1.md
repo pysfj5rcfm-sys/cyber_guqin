@@ -113,6 +113,20 @@ conflict_candidate:
   status: NEEDS_HUMAN_REVIEW
 ```
 
+## Human Review Decisions D11-D17
+
+These decisions update the draft v0.3.1 decision baseline only. They do not rewrite v0.3 and do not create canon authority.
+
+- D11: 锁类序列修正. `轮=[摘,剔,挑]`, `锁=[抹,挑,抹]`, `背锁=[剔,抹,挑]`, `长锁=[抹,挑,抹,勾,剔,抹,挑]`, `短锁=[抹,勾,剔,抹,挑]`.
+- D12: 绰/注成对建模 as paired pre-attack approach motions with `sound_type=虚声` and `independent_sounding_event=false`.
+- D13: 进复/退复来源补正 from user note `左下标70页，非 PDF physical page 70`; status `source_found_by_user_needs_structured_update`.
+- D14: 猱来源补正 from user note `右下标65页`; model relation `paired_or_contrasted_with_吟`; status `source_found_by_user_needs_structured_update`.
+- D15: 撞/反撞成对建模 as `position_transition` / `virtual_attack_motion`, with `ordinary_ornament=false`.
+- D16: 掐起/搯起来源确认 from user note `左下标74页`; model policy `special_technique_with_sounding_unit_candidate`; status `source_confirmed_by_user_needs_structured_update`.
+- D17: 爪起术语修正. Preferred term `爪起`; mistaken or alias form `抓起`; user note `左下标76页`; status `source_found_by_user_needs_structured_update`.
+
+All D11-D17 decisions remain `NEEDS_HUMAN_REVIEW` and must not be treated as verified canon or Dapu IR authority.
+
 ## Safety Boundary
 
 - No parser rule was rewritten.

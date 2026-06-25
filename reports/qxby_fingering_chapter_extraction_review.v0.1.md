@@ -138,10 +138,22 @@ The following LXY page01 OCR or visual-surface forms should be deprecated as aut
 
 Deprecated here means rejected as score-fact authority, not deleted from review evidence.
 
+## Human Review Decisions Applied After v0.1
+
+These decisions are written back as `QXBY_HUMAN_REVIEW_DECISION_DRAFT` and do not mark any term verified.
+
+- D11: 锁类序列修正. `轮=[摘,剔,挑]`, `锁=[抹,挑,抹]`, `背锁=[剔,抹,挑]`, `长锁=[抹,挑,抹,勾,剔,抹,挑]`, `短锁=[抹,勾,剔,抹,挑]`. The previous confusion that mapped `锁` to `抹勾剔抹挑` is corrected; that sequence belongs to `短锁`.
+- D12: 绰/注成对建模. Both are modeled as `paired_approach_motion`, `timing=pre_attack`, `sound_type=虚声`, `independent_sounding_event=false` when the paired model applies.
+- D13: 进复/退复来源补正. User supplied `左下标70页，非 PDF physical page 70`; status is `source_found_by_user_needs_structured_update`, not verified.
+- D14: 猱来源补正. User supplied `右下标65页`; model policy is `paired_or_contrasted_with_吟`; status is `source_found_by_user_needs_structured_update`, not verified.
+- D15: 撞/反撞成对建模. Both are `position_transition` / `virtual_attack_motion`, not ordinary ornaments.
+- D16: 掐起/搯起来源确认. User supplied `左下标74页`; model policy is `special_technique_with_sounding_unit_candidate`; status is `source_confirmed_by_user_needs_structured_update`, not verified.
+- D17: 爪起术语修正. Preferred term is `爪起`; `抓起` is retained only as mistaken form / alias. User supplied `左下标76页`; status is `source_found_by_user_needs_structured_update`, not verified.
+
 ## Human Review Checklist
 
 - Confirm exact QXBY page references for all Batch001 terms with page-unconfirmed status.
-- Confirm `反撮`, `猱`, `抓起`, `进复`, `退复`, and `急进复` source pages or mark them out of scope.
+- Confirm `反撮`, `猱`, `爪起/抓起`, `进复`, `退复`, and `急进复` source pages or mark them out of scope.
 - Decide preferred normalization for `拨剌` versus `泼剌`.
 - Decide preferred normalization for `掐起` versus `搯起`.
 - Review whether `泛起` and `泛止` should be represented as non-sounding state boundaries in v0.3.1.

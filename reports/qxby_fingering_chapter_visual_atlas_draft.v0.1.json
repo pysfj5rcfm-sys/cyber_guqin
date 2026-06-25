@@ -8,7 +8,8 @@
     "NOT_DAPU_IR_AUTHORITY",
     "NEEDS_HUMAN_REVIEW",
     "NOT_SAMPLE_INGEST",
-    "NOT_ML_TRAINING_DATA"
+    "NOT_ML_TRAINING_DATA",
+    "QXBY_HUMAN_REVIEW_DECISION_DRAFT"
   ],
   "parser_baseline": "jianzipu parser rule baseline v0.3",
   "does_not_redesign_v0_3": true,
@@ -26,40 +27,889 @@
     }
   ],
   "atlas_items": [
-    {"atlas_id": "QXBY-ATLAS-0001", "term": "轮", "category": "right_hand_sequential_or_compound", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "51", "approx_region": "page upper third", "visual_description": "Heading visually observed; text indicates 摘、剔 on the same string in sequence.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0002", "term": "锁", "category": "right_hand_sequential_or_compound", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "51", "approx_region": "page middle", "visual_description": "Heading visually observed; text indicates a right-hand 食/中 sequence.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0003", "term": "背锁", "category": "right_hand_sequential_or_compound", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "51", "approx_region": "page lower middle", "visual_description": "Heading visually observed near 锁 family; distinction from 锁 needs review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0004", "term": "长锁", "category": "right_hand_sequential_or_compound", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "52", "approx_region": "page upper half", "visual_description": "Heading visually observed as 长/长锁; action length and subaction count need review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0005", "term": "短锁", "category": "right_hand_sequential_or_compound", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "51-52", "approx_region": "page transition", "visual_description": "Heading visually observed as 短锁/索; subaction count needs review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0006", "term": "历", "category": "cross_string_sequential", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "57", "approx_region": "page upper third", "visual_description": "Heading visually observed; text indicates successive 挑 over two or more strings.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0007", "term": "滚", "category": "cross_string_sequential", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "57-58", "approx_region": "page lower 57 to upper 58", "visual_description": "Heading visually observed; exact string span and sequence need review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0008", "term": "拂", "category": "cross_string_sequential", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "58", "approx_region": "page middle", "visual_description": "Heading visually observed; exact string span and sequence need review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0009", "term": "滚拂", "category": "cross_string_sequential", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "58", "approx_region": "page middle to lower", "visual_description": "Compound rolling/sweeping family observed; exact decomposition needs review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0010", "term": "拨剌", "category": "cross_string_sequential", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "54", "approx_region": "page upper half", "visual_description": "泼剌/牵 family visually observed; normalized spelling requires review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0011", "term": "撮", "category": "double_string_or_multi_string", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "QXBY_BATCH_001_PAGE_UNCONFIRMED", "approx_region": "needs focused page confirmation", "visual_description": "Existing Batch001 term; exact QXBY page/visual slots not confirmed in this pass.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-016", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0012", "term": "反撮", "category": "double_string_or_multi_string", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "NOT_FOUND_IN_THIS_PASS", "approx_region": "not found", "visual_description": "Mandatory review term not confidently found.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "missing_or_not_found", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0013", "term": "打圆", "category": "double_string_or_multi_string", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "54, 59", "approx_region": "page 54 lower; page 59 middle", "visual_description": "圆/回 headings observed; relationship to 打圆 needs human confirmation.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0014", "term": "全扶", "category": "double_string_or_multi_string", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "54", "approx_region": "page middle", "visual_description": "全/全扶 heading visually observed; multi-string policy needs review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0015", "term": "绰", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "63", "approx_region": "page upper half", "visual_description": "Existing Batch001 term; visual text observed in 本位取音指法 section.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-009", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0016", "term": "注", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "63", "approx_region": "page middle", "visual_description": "Existing Batch001 term; visual text observed in 本位取音指法 section.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-010", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0017", "term": "上", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "64", "approx_region": "page upper half", "visual_description": "Existing Batch001 term; text visually relates 上 with 绰/吟 compound motion.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-013", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0018", "term": "下", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "64", "approx_region": "page upper half", "visual_description": "Existing Batch001 term; text visually relates 下 with 注/吟 compound motion.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-014", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0019", "term": "进", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "64 vicinity", "approx_region": "page lower half", "visual_description": "Visually located in left-hand motion section; boundaries need focused review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0020", "term": "退", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "64 vicinity", "approx_region": "page lower half", "visual_description": "Visually located in left-hand motion section; boundaries need focused review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0021", "term": "复", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "64 vicinity", "approx_region": "page lower half", "visual_description": "Visually located in left-hand motion section; boundaries need focused review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0022", "term": "进复", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "NOT_FOUND_IN_THIS_PASS", "approx_region": "not found", "visual_description": "Mandatory review term not confidently found.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "missing_or_not_found", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0023", "term": "退复", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "NOT_FOUND_IN_THIS_PASS", "approx_region": "not found", "visual_description": "Mandatory review term not confidently found.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "missing_or_not_found", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0024", "term": "急进复", "category": "left_hand_motion", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "NOT_FOUND_IN_THIS_PASS", "approx_region": "not found", "visual_description": "Mandatory review term not confidently found.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "missing_or_not_found", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0025", "term": "吟", "category": "ornament_or_transition", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "64 vicinity", "approx_region": "compound references in 上/下 section", "visual_description": "Observed as part of compound explanations; standalone entry needs focused review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0026", "term": "猱", "category": "ornament_or_transition", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "NOT_FOUND_IN_THIS_PASS", "approx_region": "not found", "visual_description": "Mandatory review term not confidently found.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "missing_or_not_found", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0027", "term": "撞", "category": "ornament_or_transition", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "QXBY_BATCH_001_PAGE_UNCONFIRMED", "approx_region": "needs focused page confirmation", "visual_description": "Existing Batch001 term; exact visual source page needs confirmation.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-011", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0028", "term": "反撞", "category": "ornament_or_transition", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "QXBY_BATCH_001_PAGE_UNCONFIRMED", "approx_region": "needs focused page confirmation", "visual_description": "Existing Batch001 term; exact visual source page needs confirmation.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-012", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0029", "term": "掐起", "category": "special_technique", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "74", "approx_region": "Batch001 source page; visual page not re-cropped", "visual_description": "Existing Batch001 alias for 搯起; preferred normalization needs review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-015", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0030", "term": "搯起", "category": "special_technique", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "74", "approx_region": "Batch001 source page; visual page not re-cropped", "visual_description": "Existing Batch001 term; alias 掐起 needs normalization review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": {"batch_id": "qxby_batch_001", "item_id": "qxby-001-015", "status": "human-reviewed draft, not verified"}, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0031", "term": "抓起", "category": "special_technique", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf", "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f", "source_page": "NOT_FOUND_IN_THIS_PASS", "approx_region": "not found", "visual_description": "Mandatory review term not confidently found.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "missing_or_not_found", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0032", "term": "少息", "category": "non_sounding_or_timing", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf", "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1", "source_page": "166", "approx_region": "page reading example", "visual_description": "Appears in reading example as breath/timing marker.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0033", "term": "省", "category": "non_sounding_or_timing", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf", "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1", "source_page": "165", "approx_region": "page composition principles", "visual_description": "Appears as omission/context principle area; exact symbol scope needs review.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0034", "term": "泛起", "category": "sound_state", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf", "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1", "source_page": "166", "approx_region": "page reading example", "visual_description": "Appears as harmonic-state start marker in reading example.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true},
-    {"atlas_id": "QXBY-ATLAS-0035", "term": "泛止", "category": "sound_state", "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf", "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1", "source_page": "166", "approx_region": "page reading example", "visual_description": "Appears as harmonic-state stop marker in reading example.", "visual_slots": {"upper": null, "middle": null, "lower": null, "left": null, "right": null}, "matched_existing_qxby_entry": null, "review_status": "needs_review", "not_canon_authority": true}
-  ]
+    {
+      "atlas_id": "QXBY-ATLAS-0001",
+      "term": "轮",
+      "category": "right_hand_sequential_or_compound",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "51",
+      "approx_region": "page upper third",
+      "visual_description": "Heading visually observed; text indicates 摘、剔 on the same string in sequence. Human review sequence candidate: 摘-剔-挑.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D11",
+        "decision": "user_confirmed_v0_3_baseline",
+        "sequence": [
+          "摘",
+          "剔",
+          "挑"
+        ],
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0002",
+      "term": "锁",
+      "category": "right_hand_sequential_or_compound",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "51",
+      "approx_region": "page middle",
+      "visual_description": "Heading visually observed; text indicates a right-hand 食/中 sequence. Human review sequence candidate: 抹-挑-抹.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D11",
+        "decision": "user_corrected",
+        "sequence": [
+          "抹",
+          "挑",
+          "抹"
+        ],
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0003",
+      "term": "背锁",
+      "category": "right_hand_sequential_or_compound",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "51",
+      "approx_region": "page lower middle",
+      "visual_description": "Heading visually observed near 锁 family; distinction from 锁 needs review. Human review sequence candidate: 剔-抹-挑.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D11",
+        "decision": "user_confirmed",
+        "sequence": [
+          "剔",
+          "抹",
+          "挑"
+        ],
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0004",
+      "term": "长锁",
+      "category": "right_hand_sequential_or_compound",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "52",
+      "approx_region": "page upper half",
+      "visual_description": "Heading visually observed as 长/长锁; action length and subaction count need review. Human review sequence candidate: 抹-挑-抹-勾-剔-抹-挑.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D11",
+        "decision": "user_confirmed",
+        "sequence": [
+          "抹",
+          "挑",
+          "抹",
+          "勾",
+          "剔",
+          "抹",
+          "挑"
+        ],
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0005",
+      "term": "短锁",
+      "category": "right_hand_sequential_or_compound",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "51-52",
+      "approx_region": "page transition",
+      "visual_description": "Heading visually observed as 短锁/索; subaction count needs review. Human review sequence candidate: 抹-勾-剔-抹-挑.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D11",
+        "decision": "user_corrected",
+        "sequence": [
+          "抹",
+          "勾",
+          "剔",
+          "抹",
+          "挑"
+        ],
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0006",
+      "term": "历",
+      "category": "cross_string_sequential",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "57",
+      "approx_region": "page upper third",
+      "visual_description": "Heading visually observed; text indicates successive 挑 over two or more strings.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0007",
+      "term": "滚",
+      "category": "cross_string_sequential",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "57-58",
+      "approx_region": "page lower 57 to upper 58",
+      "visual_description": "Heading visually observed; exact string span and sequence need review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0008",
+      "term": "拂",
+      "category": "cross_string_sequential",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "58",
+      "approx_region": "page middle",
+      "visual_description": "Heading visually observed; exact string span and sequence need review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0009",
+      "term": "滚拂",
+      "category": "cross_string_sequential",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "58",
+      "approx_region": "page middle to lower",
+      "visual_description": "Compound rolling/sweeping family observed; exact decomposition needs review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0010",
+      "term": "拨剌",
+      "category": "cross_string_sequential",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "54",
+      "approx_region": "page upper half",
+      "visual_description": "泼剌/牵 family visually observed; normalized spelling requires review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0011",
+      "term": "撮",
+      "category": "double_string_or_multi_string",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "QXBY_BATCH_001_PAGE_UNCONFIRMED",
+      "approx_region": "needs focused page confirmation",
+      "visual_description": "Existing Batch001 term; exact QXBY page/visual slots not confirmed in this pass.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-016",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0012",
+      "term": "反撮",
+      "category": "double_string_or_multi_string",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "NOT_FOUND_IN_THIS_PASS",
+      "approx_region": "not found",
+      "visual_description": "Mandatory review term not confidently found.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "missing_or_not_found",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0013",
+      "term": "打圆",
+      "category": "double_string_or_multi_string",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "54, 59",
+      "approx_region": "page 54 lower; page 59 middle",
+      "visual_description": "圆/回 headings observed; relationship to 打圆 needs human confirmation.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0014",
+      "term": "全扶",
+      "category": "double_string_or_multi_string",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "54",
+      "approx_region": "page middle",
+      "visual_description": "全/全扶 heading visually observed; multi-string policy needs review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0015",
+      "term": "绰",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "63",
+      "approx_region": "page upper half",
+      "visual_description": "Existing Batch001 term; visual text observed in 本位取音指法 section.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-009",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D12",
+        "model_relation": "paired_approach_motion",
+        "timing": "pre_attack",
+        "sound_type": "虚声",
+        "independent_sounding_event": false,
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0016",
+      "term": "注",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "63",
+      "approx_region": "page middle",
+      "visual_description": "Existing Batch001 term; visual text observed in 本位取音指法 section.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-010",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D12",
+        "model_relation": "paired_approach_motion",
+        "timing": "pre_attack",
+        "sound_type": "虚声",
+        "independent_sounding_event": false,
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0017",
+      "term": "上",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "64",
+      "approx_region": "page upper half",
+      "visual_description": "Existing Batch001 term; text visually relates 上 with 绰/吟 compound motion.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-013",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0018",
+      "term": "下",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "64",
+      "approx_region": "page upper half",
+      "visual_description": "Existing Batch001 term; text visually relates 下 with 注/吟 compound motion.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-014",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0019",
+      "term": "进",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "64 vicinity",
+      "approx_region": "page lower half",
+      "visual_description": "Visually located in left-hand motion section; boundaries need focused review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0020",
+      "term": "退",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "64 vicinity",
+      "approx_region": "page lower half",
+      "visual_description": "Visually located in left-hand motion section; boundaries need focused review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0021",
+      "term": "复",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "64 vicinity",
+      "approx_region": "page lower half",
+      "visual_description": "Visually located in left-hand motion section; boundaries need focused review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0022",
+      "term": "进复",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "左下标70页，非 PDF physical page 70",
+      "approx_region": "user source note; needs structured visual extraction",
+      "visual_description": "Source found by user for compound position transition; structured visual slots still need review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "source_found_by_user_needs_structured_update",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D13",
+        "model_policy": "compound_position_transition",
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0023",
+      "term": "退复",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "左下标70页，非 PDF physical page 70",
+      "approx_region": "user source note; needs structured visual extraction",
+      "visual_description": "Source found by user for compound position transition; structured visual slots still need review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "source_found_by_user_needs_structured_update",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D13",
+        "model_policy": "compound_position_transition",
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0024",
+      "term": "急进复",
+      "category": "left_hand_motion",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "NOT_FOUND_IN_THIS_PASS",
+      "approx_region": "not found",
+      "visual_description": "Mandatory review term not confidently found.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "missing_or_not_found",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0025",
+      "term": "吟",
+      "category": "ornament_or_transition",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "64 vicinity",
+      "approx_region": "compound references in 上/下 section",
+      "visual_description": "Observed as part of compound explanations; standalone entry needs focused review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0026",
+      "term": "猱",
+      "category": "ornament_or_transition",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "右下标65页",
+      "approx_region": "user source note; needs structured visual extraction",
+      "visual_description": "Source found by user; model as paired or contrasted with 吟 pending structured update.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "source_found_by_user_needs_structured_update",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D14",
+        "model_policy": "paired_or_contrasted_with_吟",
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0027",
+      "term": "撞",
+      "category": "ornament_or_transition",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "QXBY_BATCH_001_PAGE_UNCONFIRMED",
+      "approx_region": "needs focused page confirmation",
+      "visual_description": "Existing Batch001 term; exact visual source page needs confirmation.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-011",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D15",
+        "model_relation": "paired_virtual_attack_motion",
+        "category": "position_transition",
+        "ordinary_ornament": false,
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0028",
+      "term": "反撞",
+      "category": "ornament_or_transition",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "QXBY_BATCH_001_PAGE_UNCONFIRMED",
+      "approx_region": "needs focused page confirmation",
+      "visual_description": "Existing Batch001 term; exact visual source page needs confirmation.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-012",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "needs_review",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D15",
+        "model_relation": "paired_virtual_attack_motion",
+        "category": "position_transition",
+        "ordinary_ornament": false,
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0029",
+      "term": "掐起",
+      "category": "special_technique",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "左下标74页",
+      "approx_region": "Batch001 source page; visual page not re-cropped",
+      "visual_description": "Existing Batch001 alias for 搯起; preferred normalization needs review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-015",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "source_confirmed_by_user_needs_structured_update",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D16",
+        "model_policy": "special_technique_with_sounding_unit_candidate",
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0030",
+      "term": "搯起",
+      "category": "special_technique",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "左下标74页",
+      "approx_region": "Batch001 source page; visual page not re-cropped",
+      "visual_description": "Existing Batch001 term; alias 掐起 needs normalization review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": {
+        "batch_id": "qxby_batch_001",
+        "item_id": "qxby-001-015",
+        "status": "human-reviewed draft, not verified"
+      },
+      "review_status": "source_confirmed_by_user_needs_structured_update",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D16",
+        "model_policy": "special_technique_with_sounding_unit_candidate",
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0031",
+      "term": "爪起",
+      "category": "special_technique",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf",
+      "source_sha256": "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f",
+      "source_page": "左下标76页",
+      "approx_region": "user source note; needs structured visual extraction",
+      "visual_description": "Preferred term corrected to 爪起. 抓起 retained only as mistaken or alias form.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "source_found_by_user_needs_structured_update",
+      "not_canon_authority": true,
+      "human_review_decision": {
+        "decision_id": "D17",
+        "preferred_term": "爪起",
+        "mistaken_or_alias_form": "抓起",
+        "model_policy": "special_technique_with_sounding_unit_candidate",
+        "not_verified": true
+      }
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0032",
+      "term": "少息",
+      "category": "non_sounding_or_timing",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf",
+      "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1",
+      "source_page": "166",
+      "approx_region": "page reading example",
+      "visual_description": "Appears in reading example as breath/timing marker.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0033",
+      "term": "省",
+      "category": "non_sounding_or_timing",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf",
+      "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1",
+      "source_page": "165",
+      "approx_region": "page composition principles",
+      "visual_description": "Appears as omission/context principle area; exact symbol scope needs review.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0034",
+      "term": "泛起",
+      "category": "sound_state",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf",
+      "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1",
+      "source_page": "166",
+      "approx_region": "page reading example",
+      "visual_description": "Appears as harmonic-state start marker in reading example.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    },
+    {
+      "atlas_id": "QXBY-ATLAS-0035",
+      "term": "泛止",
+      "category": "sound_state",
+      "source_file": "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf",
+      "source_sha256": "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1",
+      "source_page": "166",
+      "approx_region": "page reading example",
+      "visual_description": "Appears as harmonic-state stop marker in reading example.",
+      "visual_slots": {
+        "upper": null,
+        "middle": null,
+        "lower": null,
+        "left": null,
+        "right": null
+      },
+      "matched_existing_qxby_entry": null,
+      "review_status": "needs_review",
+      "not_canon_authority": true
+    }
+  ],
+  "human_review_decisions_applied_after_v0_1": {
+    "D11": {
+      "title": "锁类序列修正",
+      "status": "QXBY_HUMAN_REVIEW_DECISION_DRAFT"
+    },
+    "D12": {
+      "title": "绰/注成对建模",
+      "status": "QXBY_HUMAN_REVIEW_DECISION_DRAFT"
+    },
+    "D13": {
+      "title": "进复/退复来源补正",
+      "status": "source_found_by_user_needs_structured_update"
+    },
+    "D14": {
+      "title": "猱来源补正",
+      "status": "source_found_by_user_needs_structured_update"
+    },
+    "D15": {
+      "title": "撞/反撞成对建模",
+      "status": "QXBY_HUMAN_REVIEW_DECISION_DRAFT"
+    },
+    "D16": {
+      "title": "掐起/搯起来源确认",
+      "status": "source_confirmed_by_user_needs_structured_update"
+    },
+    "D17": {
+      "title": "爪起术语修正",
+      "status": "source_found_by_user_needs_structured_update"
+    }
+  }
 }

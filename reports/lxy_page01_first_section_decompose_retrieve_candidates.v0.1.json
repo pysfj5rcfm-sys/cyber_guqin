@@ -1,0 +1,3659 @@
+{
+  "task_id": "CG-QXBY-DECISIONS-AND-LXY-PAGE01-FIRST-SECTION-CANDIDATES-v0.1",
+  "status_labels": [
+    "LXY_PAGE01_TRANSCRIPTION_DRAFT",
+    "QXBY_HUMAN_REVIEW_DECISION_DRAFT",
+    "NOT_CANON_AUTHORITY",
+    "NOT_REPO_CONTRACT",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NEEDS_HUMAN_REVIEW",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "piece": {
+    "piece_id": "LXY",
+    "title_zh": "良宵引",
+    "source_version": "百瓶斋本",
+    "page": "page01",
+    "scope": "first_section_only",
+    "jianpu_usage": "phrase_locator_only"
+  },
+  "image_input_path": "C:/Users/11028/Downloads/LXY_良宵引_page01.png",
+  "decision_baseline": {
+    "parser_baseline": "jianzipu parser rule baseline v0.3 plus draft v0.3.1 D11-D17 human review decisions",
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "human_reviewed_candidates": false
+  },
+  "method": "Manual visual candidate grouping from PNG only; jianpu used only as rough visible locator; no old OCR/CSV authority.",
+  "candidate_groups": [
+    {
+      "glyph_group_id": "LXY-P01-S1-G001",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          130,
+          266,
+          178,
+          320
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Leftmost first-row group under visible 5.6; 色-like upper form, 勾-like lower strokes, and small side marks.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G001-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G001-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G001-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G002",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          178,
+          266,
+          228,
+          320
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Compact group under visible 1; lower component resembles 勾 or hook-like mark.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G002-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G002-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G002-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G003",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          238,
+          266,
+          282,
+          324
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 111; prominent 蓬/逢-like composite with small 正-like mark; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G003-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G003-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G003-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G004",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          298,
+          266,
+          344,
+          324
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 1.6; 仓-like or side-note-like component; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G004-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G004-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G004-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G005",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          354,
+          266,
+          398,
+          323
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 5; 色/钩-like shape with multiple small strokes.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G005-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G005-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G005-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G006",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          415,
+          266,
+          466,
+          324
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 032; 首/屈-like composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G006-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G006-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G006-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G007",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          480,
+          266,
+          525,
+          323
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 12; 勾/四-like lower shape plus side tick.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G007-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G007-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G007-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G008",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_1",
+        "approximate_bbox": [
+          543,
+          266,
+          580,
+          322
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Rightmost first-row group under visible 1; 勾正-like or hook-plus-straight form.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G008-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G008-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G008-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G009",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_2",
+        "approximate_bbox": [
+          142,
+          340,
+          176,
+          395
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Standalone tall composite under visible 1-- on second line; 蓬-like lower shape; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G009-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G009-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G009-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G010",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_2",
+        "approximate_bbox": [
+          238,
+          340,
+          276,
+          395
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 111 on second line; 蓬-like composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G010-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G010-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G010-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G011",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_2",
+        "approximate_bbox": [
+          296,
+          340,
+          335,
+          397
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 21; 巽首-like stacked form; possible side-note/context material.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G011-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G011-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G011-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G012",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_2",
+        "approximate_bbox": [
+          354,
+          340,
+          410,
+          397
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 666; 蓬干-like or multi-component form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G012-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G012-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G012-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G013",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_2",
+        "approximate_bbox": [
+          425,
+          340,
+          456,
+          397
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 61; 去/立-like small components; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G013-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G013-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G013-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G014",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_2",
+        "approximate_bbox": [
+          480,
+          340,
+          530,
+          397
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 6.5; 花/蓬-like complex form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G014-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G014-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G014-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G015",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_2",
+        "approximate_bbox": [
+          540,
+          340,
+          575,
+          397
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 3; 选/笼-like lower form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G015-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G015-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G015-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G016",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          142,
+          416,
+          176,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 3 on third line; 盖-like large lower component; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G016-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G016-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G016-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G017",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          190,
+          416,
+          230,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 011; 登-like stacked composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G017-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G017-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G017-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G018",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          245,
+          416,
+          280,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 121; 立-like component visible; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G018-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G018-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G018-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G019",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          300,
+          416,
+          340,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 666; 蓬干-like form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G019-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G019-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G019-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G020",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          392,
+          416,
+          428,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 66; 去/立-like components; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G020-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G020-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G020-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G021",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          435,
+          416,
+          475,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 121; 范/蓄-like composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G021-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G021-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G021-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G022",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          495,
+          416,
+          545,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 6765; dense 范晶笼-like multi-component form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G022-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G022-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G022-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G023",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_3",
+        "approximate_bbox": [
+          548,
+          416,
+          580,
+          480
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 3; 选-like ending form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G023-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G023-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G023-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G024",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_4",
+        "approximate_bbox": [
+          142,
+          505,
+          180,
+          560
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 3--; 盖-like lower form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G024-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G024-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G024-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G025",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_4",
+        "approximate_bbox": [
+          235,
+          505,
+          280,
+          560
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 56; 筠池-like complex form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G025-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G025-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G025-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G026",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_4",
+        "approximate_bbox": [
+          290,
+          505,
+          335,
+          560
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 5.6; 筠盖-like form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G026-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G026-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G026-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G027",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_4",
+        "approximate_bbox": [
+          365,
+          505,
+          405,
+          560
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 333; 蓬-like form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G027-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G027-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G027-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G028",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_4",
+        "approximate_bbox": [
+          420,
+          505,
+          475,
+          560
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 3332; 琴/镔-like composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G028-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G028-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G028-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G029",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_4",
+        "approximate_bbox": [
+          486,
+          505,
+          523,
+          560
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 166; 芭/涟-like form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G029-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G029-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G029-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G030",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_4",
+        "approximate_bbox": [
+          530,
+          505,
+          575,
+          560
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 661; 胥/蓝-like dense composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G030-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G030-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G030-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G031",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_5",
+        "approximate_bbox": [
+          135,
+          585,
+          170,
+          645
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 2; 勾-like lower hook form visible.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G031-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G031-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G031-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G032",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_5",
+        "approximate_bbox": [
+          185,
+          585,
+          225,
+          645
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 03; 肖益-like or side-note-like composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G032-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G032-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G032-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G033",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_5",
+        "approximate_bbox": [
+          240,
+          585,
+          280,
+          645
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 5.3; 集旨-like composite; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G033-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G033-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G033-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G034",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_5",
+        "approximate_bbox": [
+          295,
+          585,
+          335,
+          645
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 21; 下-like component and following composite visible.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "下",
+          "match_source": "reports/qxby_fingering_chapter_visual_atlas_draft.v0.1.json",
+          "match_confidence": "low",
+          "evidence_note": "下-like component visible in PNG; transition candidate only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G034-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "下"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G034-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "motion_or_transition_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": "下",
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G034-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "motion_or_transition_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "下"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": true,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G035",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_5",
+        "approximate_bbox": [
+          370,
+          585,
+          415,
+          645
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 1; 易/箕-like composite after vertical divider; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G035-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G035-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G035-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G036",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_5",
+        "approximate_bbox": [
+          480,
+          585,
+          525,
+          645
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 5.6 before 二段 marker; 筠勾-like form.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G036-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G036-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G036-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G037",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_5",
+        "approximate_bbox": [
+          540,
+          585,
+          575,
+          645
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Group under visible 1 before 二段 marker; 勾-like lower form.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G037-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G037-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G037-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G038",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_6",
+        "approximate_bbox": [
+          140,
+          660,
+          170,
+          720
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Lower first-section continuation group under visible 1; 箕-like form; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G038-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G038-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G038-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G039",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_6",
+        "approximate_bbox": [
+          185,
+          660,
+          230,
+          720
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Lower first-section continuation group under visible 11; paired 各/并-like components; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G039-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G039-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G039-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G040",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_6",
+        "approximate_bbox": [
+          240,
+          660,
+          285,
+          720
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Lower first-section continuation group under visible 5.6; 筠勾-like form.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G040-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G040-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G040-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G041",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_6",
+        "approximate_bbox": [
+          300,
+          660,
+          335,
+          720
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Lower first-section continuation group under visible 1; 勾/匂-like form.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [
+        {
+          "term": "勾",
+          "match_source": "reports/qxby_fingering_chapter_lexicon_draft.v0.1.yaml",
+          "match_confidence": "low",
+          "evidence_note": "勾-like component visible in PNG; draft match only"
+        }
+      ],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G041-GG01",
+          "gesture_type": "term_match_candidate",
+          "components": [
+            "勾"
+          ],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G041-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "sounding_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": "勾",
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G041-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "sounding_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": "勾",
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": "勾"
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": true,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "low",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "LOW_CONFIDENCE_VISUAL_MATCH_NEEDS_HUMAN_REVIEW",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    },
+    {
+      "glyph_group_id": "LXY-P01-S1-G042",
+      "source_position": {
+        "page": "page01",
+        "visual_region": "first_section_row_6",
+        "approximate_bbox": [
+          370,
+          660,
+          410,
+          720
+        ],
+        "locator_note": "Located visually before the (二段) marker; jianpu used only as rough row/phrase locator."
+      },
+      "raw_visual_description": "Final first-section continuation group under visible 1--; 箕-like form with punctuation/dot; unresolved.",
+      "visual_slot_evidence": {
+        "upper": "UNCERTAIN_VISUAL_COMPONENT",
+        "middle": "UNCERTAIN_VISUAL_COMPONENT",
+        "lower": "UNCERTAIN_VISUAL_COMPONENT",
+        "left": "UNCERTAIN_VISUAL_COMPONENT",
+        "right": "UNCERTAIN_VISUAL_COMPONENT",
+        "side_note": null,
+        "uncertainty": "handwritten facsimile; no OCR surface accepted as score fact"
+      },
+      "candidate_terms": [],
+      "gesture_groups": [
+        {
+          "gesture_group_id": "LXY-P01-S1-G042-GG01",
+          "gesture_type": "unresolved_visual_glyph_group",
+          "components": [],
+          "context_used": "updated QXBY/v0.3.1 decision baseline; no jianpu score-fact inference",
+          "expansion_policy": "expand only after human review"
+        }
+      ],
+      "score_event_candidates": [
+        {
+          "score_event_candidate_id": "LXY-P01-S1-G042-E01",
+          "notation_event": true,
+          "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+          "state_transitions": {
+            "before": null,
+            "after": null
+          },
+          "left_hand_candidate": null,
+          "right_hand_candidate": null,
+          "string_no_candidate": null,
+          "hui_position_raw_candidate": null,
+          "position_transition_candidate": null,
+          "ornament_or_post_action_candidate": null,
+          "special_technique_candidate": null,
+          "timing_annotation_candidate": null,
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-S1-G042-SU01",
+              "onset_order": 1,
+              "simultaneity_group": 1,
+              "primary_sound_type_candidate": "unknown_visible_glyph_candidate",
+              "left_hand_candidate": null,
+              "right_hand_candidate": null,
+              "string_no_candidate": null,
+              "hui_position_raw_candidate": null,
+              "action_candidate": null
+            }
+          ],
+          "reading_source": {
+            "png_visual_only": true,
+            "qxby_lexicon_matched": false,
+            "visual_atlas_matched": false,
+            "context_inherited": false,
+            "human_reviewed": false,
+            "rejected_ocr_surface": []
+          },
+          "canon_match_confidence": "none",
+          "parse_confidence": "low",
+          "needs_review": true,
+          "needs_review_reason": "UNCERTAIN_GLYPH_GROUP",
+          "forbidden_inference_check": {
+            "used_jianpu_for_event_count": false,
+            "used_old_csv_as_authority": false,
+            "used_ocr_surface_as_score_fact": false,
+            "wrote_dapu_ir": false
+          }
+        }
+      ]
+    }
+  ]
+}
