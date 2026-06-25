@@ -1,0 +1,927 @@
+task_id: "CG-QXBY-FINGERING-LEXICON-AND-VISUAL-ATLAS-DRAFT-v0.1"
+status_labels:
+  - "QXBY_FINGERING_LEXICON_DRAFT"
+  - "VISUAL_COMPONENT_ATLAS_DRAFT"
+  - "NOT_CANON_AUTHORITY"
+  - "NOT_REPO_CONTRACT"
+  - "NOT_DAPU_IR_AUTHORITY"
+  - "NEEDS_HUMAN_REVIEW"
+  - "NOT_SAMPLE_INGEST"
+  - "NOT_ML_TRAINING_DATA"
+parser_baseline: "jianzipu parser rule baseline v0.3"
+baseline_statements:
+  - "This task follows jianzipu parser rule baseline v0.3."
+  - "This task does not redesign v0.3."
+  - "Any conflict is reported as a v0.3.1 patch candidate only."
+source_files:
+  - title: "琴学备要·指法篇"
+    source_file: "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::指法篇.pdf"
+    source_sha256: "75f65bf8b521416b8c83b1b95e268b03ee772f4c936b2085df5a4b722069b75f"
+    extraction_note: "Image-only PDF; visual inspection only; OCR text is not authority."
+  - title: "琴学备要·减字谱组识法"
+    source_file: "C:/Users/11028/Downloads/qinxue_beiyao_two_pdfs_package.zip::减字谱组识法.pdf"
+    source_sha256: "6f976e3e2f2f647539c7e8a8eac02edcf9bf138164b77c9bcb917d8325b33fd1"
+    extraction_note: "Image-only PDF; parser-relevant visual principles only."
+  - title: "减字谱构字与指法解析规则 v0.3 context"
+    source_file: "C:/Users/11028/Downloads/codex_qxby_prompt_package_v0.1.zip::jianzipu_decomposition_rules_v0.3_context.md"
+    source_sha256: "f35344f25574d98494cf87dd9de1e692704345a151f0b3b9da3621ced10f0869"
+existing_repo_coverage_summary:
+  qxby_batch_001:
+    status: "human-reviewed draft, not verified"
+    reused_terms: ["擘", "托", "抹", "挑", "勾", "剔", "打", "摘", "绰", "注", "撞", "反撞", "上", "下", "掐起/搯起", "撮"]
+  qxby_batch_002:
+    status: "draft / needs_review"
+    reused_terms: ["按音", "散音", "大指", "食指", "中指", "名指", "跪指", "泛音"]
+entries:
+  - term: "擘"
+    normalized_term: "擘"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "47"
+    source_locator: "指法篇.pdf#pdf_page=3; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-001", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components were not canonized in this pass."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "擘", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "托"
+    normalized_term: "托"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "47"
+    source_locator: "指法篇.pdf#pdf_page=3; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-002", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components require human visual review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "托", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "抹"
+    normalized_term: "抹"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "48"
+    source_locator: "指法篇.pdf#pdf_page=4; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-003", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components require human visual review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "抹", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "挑"
+    normalized_term: "挑"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "48"
+    source_locator: "指法篇.pdf#pdf_page=4; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-004", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components require human visual review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "挑", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "勾"
+    normalized_term: "勾"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "49"
+    source_locator: "指法篇.pdf#pdf_page=5; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-005", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components require human visual review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "勾", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "剔"
+    normalized_term: "剔"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "49"
+    source_locator: "指法篇.pdf#pdf_page=5; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-006", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components require human visual review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "剔", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "打"
+    normalized_term: "打"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "50"
+    source_locator: "指法篇.pdf#pdf_page=6; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-007", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components require human visual review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "打", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "摘"
+    normalized_term: "摘"
+    aliases: []
+    category: "right_hand_single_pluck"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手单弹指法"
+    source_page: "50"
+    source_locator: "指法篇.pdf#pdf_page=6; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-008", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing QXBY batch term; exact reduced-glyph components require human visual review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_single_pluck", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "摘", left_hand_action: null, hui_or_string_policy: "read_from_visible_jianzipu_only", state_transition_policy: "none", context_dependency: "string/hui/rhythm must not be inferred from jianpu"}
+    event_policy: {notation_event_count: "one visible glyph-group candidate; never from jianpu", sounding_unit_policy: "single sounding unit candidate", subaction_sequence: [], simultaneity_policy: "not simultaneous unless visible glyph evidence says so", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "轮"
+    normalized_term: "轮"
+    aliases: ["半轮"]
+    category: "right_hand_sequential_or_compound"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手复合指法"
+    source_page: "51"
+    source_locator: "指法篇.pdf#pdf_page=7"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Heading visually observed; text describes 摘、剔 on same string in sequence. Exact glyph slots require review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_sequence", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "轮", left_hand_action: null, hui_or_string_policy: "string/hui from visible glyph only", state_transition_policy: "none", context_dependency: "may encode multiple subactions inside one notation group"}
+    event_policy: {notation_event_count: "one glyph group may contain multiple subactions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["摘", "剔"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for event granularity."
+  - term: "锁"
+    normalized_term: "锁"
+    aliases: []
+    category: "right_hand_sequential_or_compound"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手复合指法"
+    source_page: "51"
+    source_locator: "指法篇.pdf#pdf_page=7"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Heading visually observed; text indicates a right-hand sequence using 食/中 fingers. Exact slots require review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_sequence", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "锁", left_hand_action: null, hui_or_string_policy: "string/hui from visible glyph only", state_transition_policy: "none", context_dependency: "may encode multiple subactions inside one notation group"}
+    event_policy: {notation_event_count: "one glyph group may contain multiple subactions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["食指/中指 sequence needs review"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for event granularity."
+  - term: "背锁"
+    normalized_term: "背锁"
+    aliases: []
+    category: "right_hand_sequential_or_compound"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手复合指法"
+    source_page: "51"
+    source_locator: "指法篇.pdf#pdf_page=7"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Heading visually observed near 锁; exact visual distinction from 锁 requires review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_sequence", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "背锁", left_hand_action: null, hui_or_string_policy: "string/hui from visible glyph only", state_transition_policy: "none", context_dependency: "may encode multiple subactions inside one notation group"}
+    event_policy: {notation_event_count: "one glyph group may contain multiple subactions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk and visually close to 锁 family."
+  - term: "长锁"
+    normalized_term: "长锁"
+    aliases: ["长"]
+    category: "right_hand_sequential_or_compound"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手复合指法"
+    source_page: "52"
+    source_locator: "指法篇.pdf#pdf_page=8"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Heading visually observed as 长/长锁; exact slot decomposition requires review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_sequence", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "长锁", left_hand_action: null, hui_or_string_policy: "string/hui from visible glyph only", state_transition_policy: "none", context_dependency: "length affects subaction count and must be human reviewed"}
+    event_policy: {notation_event_count: "one glyph group may contain multiple subactions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for sounding-unit count."
+  - term: "短锁"
+    normalized_term: "短锁"
+    aliases: ["索"]
+    category: "right_hand_sequential_or_compound"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 右手复合指法"
+    source_page: "51-52"
+    source_locator: "指法篇.pdf#pdf_page=7-8"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Heading visually observed as 短锁/索; exact glyph slots require review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_sequence", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "短锁", left_hand_action: null, hui_or_string_policy: "string/hui from visible glyph only", state_transition_policy: "none", context_dependency: "length affects subaction count and must be human reviewed"}
+    event_policy: {notation_event_count: "one glyph group may contain multiple subactions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for sounding-unit count."
+  - term: "撮"
+    normalized_term: "撮"
+    aliases: []
+    category: "double_string_or_multi_string"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 两弦双弹指法"
+    source_page: "QXBY_BATCH_001_PAGE_UNCONFIRMED"
+    source_locator: "canon/drafts/qxby_batch_001.yaml; 指法篇 visual page needs confirmation"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-016", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing batch term; source page and exact visual slots need confirmation against 指法篇."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_multi_string", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "撮", left_hand_action: null, hui_or_string_policy: "all strings/hui from visible glyph only", state_transition_policy: "none", context_dependency: "multi-string simultaneity must be confirmed by glyph/canon evidence"}
+    event_policy: {notation_event_count: "one glyph group may contain simultaneous strings; never from jianpu", sounding_unit_policy: "multi-string sounding unit possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "possibly simultaneous", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only; high-risk for simultaneity."
+  - term: "反撮"
+    normalized_term: "反撮"
+    aliases: []
+    category: "double_string_or_multi_string"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 两弦双弹指法"
+    source_page: "NOT_FOUND_IN_THIS_PASS"
+    source_locator: "指法篇.pdf visual pass incomplete for this term"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Term required for review sheet but not confidently found in this pass."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_multi_string", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "反撮", left_hand_action: null, hui_or_string_policy: "all strings/hui from visible glyph only", state_transition_policy: "none", context_dependency: "requires QXBY page confirmation"}
+    event_policy: {notation_event_count: "unknown until source found; never from jianpu", sounding_unit_policy: "unknown", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "unknown", sound_event: "unknown"}
+    confidence: "low"
+    review_status: "missing_or_not_found"
+    notes: "Do not use as canon or parser input until source evidence is supplied."
+  - term: "打圆"
+    normalized_term: "打圆"
+    aliases: ["圆", "回"]
+    category: "double_string_or_multi_string"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 两弦双弹指法"
+    source_page: "54, 59"
+    source_locator: "指法篇.pdf#pdf_page=10 and #pdf_page=15"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visual heading observed around 圆/回 entries; exact relationship between glyph form and term needs review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_compound_or_multi_string", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "打圆", left_hand_action: null, hui_or_string_policy: "all strings/hui from visible glyph only", state_transition_policy: "none", context_dependency: "compound action; exact sequence and simultaneity need review"}
+    event_policy: {notation_event_count: "one glyph group may encode compound action; never from jianpu", sounding_unit_policy: "multiple or circular sounding units possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "unknown", sound_event: "candidate_sounding_sequence"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for event granularity."
+  - term: "全扶"
+    normalized_term: "全扶"
+    aliases: ["全"]
+    category: "double_string_or_multi_string"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 两弦双弹指法"
+    source_page: "54"
+    source_locator: "指法篇.pdf#pdf_page=10"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visual heading observed as 全/全扶; exact glyph slot decomposition requires review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_multi_string", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: "全扶", left_hand_action: null, hui_or_string_policy: "all strings/hui from visible glyph only", state_transition_policy: "none", context_dependency: "may affect simultaneous multi-string sounding"}
+    event_policy: {notation_event_count: "one glyph group may encode multi-string action; never from jianpu", sounding_unit_policy: "multi-string sounding unit possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "possibly simultaneous", sound_event: "candidate_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for simultaneity."
+  - term: "历"
+    normalized_term: "历"
+    aliases: []
+    category: "cross_string_sequential"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 散弦连弹指法"
+    source_page: "57"
+    source_locator: "指法篇.pdf#pdf_page=13"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visual heading observed; text indicates 食指连续挑 two or more strings."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "cross_string_sequence", primary_sound_type_policy: "usually_sounding_but_context_dependent", right_hand_action: "历", left_hand_action: null, hui_or_string_policy: "all strings from visible glyph only", state_transition_policy: "none", context_dependency: "may span several strings; count must come from glyph/canon/human review"}
+    event_policy: {notation_event_count: "one glyph group may encode multiple string transitions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["successive挑 across strings"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for event granularity."
+  - term: "滚"
+    normalized_term: "滚"
+    aliases: []
+    category: "cross_string_sequential"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 散弦连弹指法"
+    source_page: "57-58"
+    source_locator: "指法篇.pdf#pdf_page=13-14"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visual heading observed; exact string-count and finger sequence require review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "cross_string_sequence", primary_sound_type_policy: "usually_sounding_but_context_dependent", right_hand_action: "滚", left_hand_action: null, hui_or_string_policy: "all strings from visible glyph only", state_transition_policy: "none", context_dependency: "may encode extended string sweep"}
+    event_policy: {notation_event_count: "one glyph group may encode multiple string transitions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for event granularity."
+  - term: "拂"
+    normalized_term: "拂"
+    aliases: []
+    category: "cross_string_sequential"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 散弦连弹指法"
+    source_page: "58"
+    source_locator: "指法篇.pdf#pdf_page=14"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visual heading observed; exact string-count and finger sequence require review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "cross_string_sequence", primary_sound_type_policy: "usually_sounding_but_context_dependent", right_hand_action: "拂", left_hand_action: null, hui_or_string_policy: "all strings from visible glyph only", state_transition_policy: "none", context_dependency: "may encode extended string sweep"}
+    event_policy: {notation_event_count: "one glyph group may encode multiple string transitions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "sequential", sound_event: "candidate_sounding_sequence"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for event granularity."
+  - term: "滚拂"
+    normalized_term: "滚拂"
+    aliases: []
+    category: "cross_string_sequential"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 散弦连弹指法"
+    source_page: "58"
+    source_locator: "指法篇.pdf#pdf_page=14"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Compound cross-string family visually observed; exact decomposition requires review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "cross_string_compound_sequence", primary_sound_type_policy: "usually_sounding_but_context_dependent", right_hand_action: "滚拂", left_hand_action: null, hui_or_string_policy: "all strings from visible glyph only", state_transition_policy: "none", context_dependency: "may combine rolling and sweeping subactions"}
+    event_policy: {notation_event_count: "one glyph group may encode multiple subactions; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["滚", "拂"], simultaneity_policy: "sequential_or_compound_needs_review", sound_event: "candidate_sounding_sequence"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk for event granularity."
+  - term: "拨剌"
+    normalized_term: "拨剌"
+    aliases: ["泼剌", "牵"]
+    category: "cross_string_sequential"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 两弦双弹或连写指法"
+    source_page: "54"
+    source_locator: "指法篇.pdf#pdf_page=10"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visual pass saw 泼剌/牵 family; normalized term spelling needs human confirmation."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "right_hand_compound_sequence", primary_sound_type_policy: "usually_sounding_but_context_dependent", right_hand_action: "拨剌", left_hand_action: null, hui_or_string_policy: "all strings from visible glyph only", state_transition_policy: "none", context_dependency: "orthography and sequence require QXBY confirmation"}
+    event_policy: {notation_event_count: "one glyph group may encode compound action; never from jianpu", sounding_unit_policy: "multiple sounding units possible", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "unknown", sound_event: "candidate_sounding_sequence"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only new term; high-risk spelling and event granularity."
+  - term: "大指"
+    normalized_term: "大指"
+    aliases: ["大"]
+    category: "left_hand_fingers"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手应用各指"
+    source_page: "60"
+    source_locator: "指法篇.pdf#pdf_page=16; canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-003", status: "draft / needs_review"}
+    visual_components:
+      description: "Left-hand finger component; not a complete score event by itself."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_finger_component", primary_sound_type_policy: "depends_on_host_event", right_hand_action: null, left_hand_action: "大指", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "none", context_dependency: "requires host event or fingering context"}
+    event_policy: {notation_event_count: "component only; not an independent event count", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_of_host_event", sound_event: "not_independent"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "食指"
+    normalized_term: "食指"
+    aliases: ["食"]
+    category: "left_hand_fingers"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手应用各指"
+    source_page: "61"
+    source_locator: "指法篇.pdf#pdf_page=17-18; canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-004", status: "draft / needs_review"}
+    visual_components:
+      description: "Left-hand finger component; not a complete score event by itself."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_finger_component", primary_sound_type_policy: "depends_on_host_event", right_hand_action: null, left_hand_action: "食指", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "none", context_dependency: "requires host event or fingering context"}
+    event_policy: {notation_event_count: "component only; not an independent event count", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_of_host_event", sound_event: "not_independent"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "中指"
+    normalized_term: "中指"
+    aliases: ["中"]
+    category: "left_hand_fingers"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手应用各指"
+    source_page: "61"
+    source_locator: "指法篇.pdf#pdf_page=17-18; canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-005", status: "draft / needs_review"}
+    visual_components:
+      description: "Left-hand finger component; not a complete score event by itself."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_finger_component", primary_sound_type_policy: "depends_on_host_event", right_hand_action: null, left_hand_action: "中指", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "none", context_dependency: "requires host event or fingering context"}
+    event_policy: {notation_event_count: "component only; not an independent event count", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_of_host_event", sound_event: "not_independent"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "名指"
+    normalized_term: "名指"
+    aliases: ["名"]
+    category: "left_hand_fingers"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手应用各指"
+    source_page: "62"
+    source_locator: "指法篇.pdf#pdf_page=18; canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-006", status: "draft / needs_review"}
+    visual_components:
+      description: "Left-hand finger component; not a complete score event by itself."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_finger_component", primary_sound_type_policy: "depends_on_host_event", right_hand_action: null, left_hand_action: "名指", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "none", context_dependency: "requires host event or fingering context"}
+    event_policy: {notation_event_count: "component only; not an independent event count", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_of_host_event", sound_event: "not_independent"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "跪指"
+    normalized_term: "跪指"
+    aliases: ["跪"]
+    category: "left_hand_fingers"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手应用各指"
+    source_page: "62"
+    source_locator: "指法篇.pdf#pdf_page=18; canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-007", status: "draft / needs_review"}
+    visual_components:
+      description: "Left-hand finger component; not a complete score event by itself."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_finger_component", primary_sound_type_policy: "depends_on_host_event", right_hand_action: null, left_hand_action: "跪指", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "none", context_dependency: "requires host event or fingering context"}
+    event_policy: {notation_event_count: "component only; not an independent event count", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_of_host_event", sound_event: "not_independent"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "绰"
+    normalized_term: "绰"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "63"
+    source_locator: "指法篇.pdf#pdf_page=19; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-009", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Left-hand motion term; exact relation to host note must be reviewed per v0.3."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "绰", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "motion_into_pitch", context_dependency: "requires host note and direction context"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "usually modifies host sounding unit", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "注"
+    normalized_term: "注"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "63"
+    source_locator: "指法篇.pdf#pdf_page=19; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-010", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Left-hand motion term; exact relation to host note must be reviewed per v0.3."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "注", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "motion_into_pitch", context_dependency: "requires host note and direction context"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "usually modifies host sounding unit", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "上"
+    normalized_term: "上"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "64"
+    source_locator: "指法篇.pdf#pdf_page=20; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-013", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Text visually indicates compound relation with 绰/吟; exact host-event policy requires review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_or_transition", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "上", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "upward_motion_candidate", context_dependency: "requires host note and left-hand path"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus motion; may affect subaction_sequence", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "下"
+    normalized_term: "下"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "64"
+    source_locator: "指法篇.pdf#pdf_page=20; canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-014", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Text visually indicates compound relation with 注/吟; exact host-event policy requires review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_or_transition", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "下", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "downward_motion_candidate", context_dependency: "requires host note and left-hand path"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus motion; may affect subaction_sequence", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "进"
+    normalized_term: "进"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "64 vicinity"
+    source_locator: "指法篇.pdf#pdf_page=20; needs focused confirmation"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visually located in left-hand motion section; exact entry boundaries need review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_or_transition", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "进", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "motion_candidate", context_dependency: "requires host note and left-hand path"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus motion; may affect subaction_sequence", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only new term; needs focused QXBY confirmation."
+  - term: "退"
+    normalized_term: "退"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "64 vicinity"
+    source_locator: "指法篇.pdf#pdf_page=20; needs focused confirmation"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visually located in left-hand motion section; exact entry boundaries need review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_or_transition", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "退", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "motion_candidate", context_dependency: "requires host note and left-hand path"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus motion; may affect subaction_sequence", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only new term; needs focused QXBY confirmation."
+  - term: "复"
+    normalized_term: "复"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "64 vicinity"
+    source_locator: "指法篇.pdf#pdf_page=20; needs focused confirmation"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Visually located in left-hand motion section; exact entry boundaries need review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_or_transition", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "复", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "return_motion_candidate", context_dependency: "requires host note and left-hand path"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus motion; may affect subaction_sequence", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only new term; needs focused QXBY confirmation."
+  - term: "进复"
+    normalized_term: "进复"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "NOT_FOUND_IN_THIS_PASS"
+    source_locator: "指法篇.pdf; focused confirmation needed"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Mandatory review term not confidently found in this pass."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_compound", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "进复", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "compound_motion_candidate", context_dependency: "requires source evidence and host note"}
+    event_policy: {notation_event_count: "unknown until source found; never from jianpu", sounding_unit_policy: "unknown", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event_if_confirmed", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "missing_or_not_found"
+    notes: "Do not use until QXBY evidence is supplied."
+  - term: "退复"
+    normalized_term: "退复"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "NOT_FOUND_IN_THIS_PASS"
+    source_locator: "指法篇.pdf; focused confirmation needed"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Mandatory review term not confidently found in this pass."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_compound", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "退复", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "compound_motion_candidate", context_dependency: "requires source evidence and host note"}
+    event_policy: {notation_event_count: "unknown until source found; never from jianpu", sounding_unit_policy: "unknown", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event_if_confirmed", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "missing_or_not_found"
+    notes: "Do not use until QXBY evidence is supplied."
+  - term: "急进复"
+    normalized_term: "急进复"
+    aliases: []
+    category: "left_hand_motion"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 本位取音指法"
+    source_page: "NOT_FOUND_IN_THIS_PASS"
+    source_locator: "指法篇.pdf; focused confirmation needed"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Mandatory review term not confidently found in this pass."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_motion_compound", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "急进复", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "compound_motion_candidate", context_dependency: "requires source evidence and host note"}
+    event_policy: {notation_event_count: "unknown until source found; never from jianpu", sounding_unit_policy: "unknown", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event_if_confirmed", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "missing_or_not_found"
+    notes: "Do not use until QXBY evidence is supplied."
+  - term: "吟"
+    normalized_term: "吟"
+    aliases: []
+    category: "ornament_or_transition"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手取音与吟猱类"
+    source_page: "64 vicinity"
+    source_locator: "指法篇.pdf#pdf_page=20 and later pages need focused review"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Appears in compound explanations for 上/下; standalone entry not fully extracted."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_ornament", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "吟", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "ornament_motion_candidate", context_dependency: "requires host note and ornament duration review"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus ornament", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Draft-only term; needs focused QXBY extraction before LXY recognition."
+  - term: "猱"
+    normalized_term: "猱"
+    aliases: []
+    category: "ornament_or_transition"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手取音与吟猱类"
+    source_page: "NOT_FOUND_IN_THIS_PASS"
+    source_locator: "指法篇.pdf; focused confirmation needed"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Mandatory review term not confidently found in this pass."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_ornament", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "猱", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "ornament_motion_candidate", context_dependency: "requires source evidence and host note"}
+    event_policy: {notation_event_count: "unknown until source found; never from jianpu", sounding_unit_policy: "unknown", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event_if_confirmed", sound_event: "modifier_candidate"}
+    confidence: "low"
+    review_status: "missing_or_not_found"
+    notes: "Do not use until QXBY evidence is supplied."
+  - term: "撞"
+    normalized_term: "撞"
+    aliases: []
+    category: "ornament_or_transition"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手取音与装饰"
+    source_page: "QXBY_BATCH_001_PAGE_UNCONFIRMED"
+    source_locator: "canon/drafts/qxby_batch_001.yaml; 指法篇 visual page needs confirmation"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-011", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing batch term; exact page and visual slots need focused confirmation."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_ornament_or_transition", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "撞", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "ornament_motion_candidate", context_dependency: "requires host note and motion confirmation"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus ornament", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "反撞"
+    normalized_term: "反撞"
+    aliases: []
+    category: "ornament_or_transition"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 左手取音与装饰"
+    source_page: "QXBY_BATCH_001_PAGE_UNCONFIRMED"
+    source_locator: "canon/drafts/qxby_batch_001.yaml; 指法篇 visual page needs confirmation"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-012", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing batch term; exact page and visual slots need focused confirmation."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "left_hand_ornament_or_transition", primary_sound_type_policy: "modifies_host_sound", right_hand_action: null, left_hand_action: "反撞", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "ornament_motion_candidate", context_dependency: "requires host note and motion confirmation"}
+    event_policy: {notation_event_count: "modifier or subaction; never from jianpu", sounding_unit_policy: "host plus ornament", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "attached_to_host_event", sound_event: "modifier_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "掐起"
+    normalized_term: "掐起"
+    aliases: ["搯起"]
+    category: "special_technique"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 起法"
+    source_page: "74"
+    source_locator: "canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-015", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing batch term; exact variant spelling and visual slots require review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "special_left_hand_or_pluck_technique", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: null, left_hand_action: "掐起", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "attack_or_start_candidate", context_dependency: "requires source variant confirmation"}
+    event_policy: {notation_event_count: "special technique; never from jianpu", sounding_unit_policy: "may produce or modify sounding unit", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "context_dependent", sound_event: "candidate_sounding_or_modifier"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "搯起"
+    normalized_term: "搯起"
+    aliases: ["掐起"]
+    category: "special_technique"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 起法"
+    source_page: "74"
+    source_locator: "canon/drafts/qxby_batch_001.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_001", item_id: "qxby-001-015", status: "human-reviewed draft, not verified"}
+    visual_components:
+      description: "Existing batch variant; exact preferred normalization requires user review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "special_left_hand_or_pluck_technique", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: null, left_hand_action: "搯起", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "attack_or_start_candidate", context_dependency: "requires source variant confirmation"}
+    event_policy: {notation_event_count: "special technique; never from jianpu", sounding_unit_policy: "may produce or modify sounding unit", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "context_dependent", sound_event: "candidate_sounding_or_modifier"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch001 as draft evidence only."
+  - term: "抓起"
+    normalized_term: "抓起"
+    aliases: []
+    category: "special_technique"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 起法"
+    source_page: "NOT_FOUND_IN_THIS_PASS"
+    source_locator: "指法篇.pdf; focused confirmation needed"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Mandatory review term not confidently found in this pass."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "special_left_hand_or_pluck_technique", primary_sound_type_policy: "depends_on_visible_score_context", right_hand_action: null, left_hand_action: "抓起", hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "attack_or_start_candidate", context_dependency: "requires source evidence"}
+    event_policy: {notation_event_count: "unknown until source found; never from jianpu", sounding_unit_policy: "unknown", subaction_sequence: ["NEEDS_HUMAN_REVIEW"], simultaneity_policy: "unknown", sound_event: "unknown"}
+    confidence: "low"
+    review_status: "missing_or_not_found"
+    notes: "Do not use until QXBY evidence is supplied."
+  - term: "散音"
+    normalized_term: "散音"
+    aliases: []
+    category: "sound_state"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 取音状态"
+    source_page: "QXBY_BATCH_002_PAGE_UNCONFIRMED"
+    source_locator: "canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-002", status: "draft / needs_review"}
+    visual_components:
+      description: "Sound-state term; not an event count authority."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "sound_state", primary_sound_type_policy: "open_string_state_candidate", right_hand_action: null, left_hand_action: null, hui_or_string_policy: "state only; string from visible host group", state_transition_policy: "state_label", context_dependency: "must be attached to visible score context"}
+    event_policy: {notation_event_count: "state label only; never from jianpu", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_or_state_of_host_event", sound_event: "state_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "按音"
+    normalized_term: "按音"
+    aliases: []
+    category: "sound_state"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 取音状态"
+    source_page: "QXBY_BATCH_002_PAGE_UNCONFIRMED"
+    source_locator: "canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-001", status: "draft / needs_review"}
+    visual_components:
+      description: "Sound-state term; not an event count authority."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "sound_state", primary_sound_type_policy: "pressed_string_state_candidate", right_hand_action: null, left_hand_action: null, hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "state_label", context_dependency: "must be attached to visible score context"}
+    event_policy: {notation_event_count: "state label only; never from jianpu", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_or_state_of_host_event", sound_event: "state_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "泛音"
+    normalized_term: "泛音"
+    aliases: ["泛"]
+    category: "sound_state"
+    source_title: "琴学备要"
+    source_section: "指法篇 / 取音状态"
+    source_page: "QXBY_BATCH_002_PAGE_UNCONFIRMED"
+    source_locator: "canon/drafts/qxby_batch_002.yaml"
+    existing_repo_evidence:
+      - {batch_id: "qxby_batch_002", item_id: "qxby-002-008", status: "draft / needs_review"}
+    visual_components:
+      description: "Sound-state term; not an event count authority."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "sound_state", primary_sound_type_policy: "harmonic_state_candidate", right_hand_action: null, left_hand_action: null, hui_or_string_policy: "hui/string from visible host group only", state_transition_policy: "state_label", context_dependency: "must be attached to visible score context"}
+    event_policy: {notation_event_count: "state label only; never from jianpu", sounding_unit_policy: "inherits host event", subaction_sequence: [], simultaneity_policy: "component_or_state_of_host_event", sound_event: "state_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Reused from Batch002 as draft evidence only."
+  - term: "泛起"
+    normalized_term: "泛起"
+    aliases: []
+    category: "sound_state"
+    source_title: "琴学备要"
+    source_section: "减字谱组识法 / 顺读例"
+    source_page: "166"
+    source_locator: "减字谱组识法.pdf#pdf_page=2"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Observed in reading examples as a harmonic-state boundary marker."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "sound_state_boundary", primary_sound_type_policy: "state_transition_marker", right_hand_action: null, left_hand_action: null, hui_or_string_policy: "does not provide string/hui by itself", state_transition_policy: "enter_harmonic_state_candidate", context_dependency: "applies to following visible events until closed"}
+    event_policy: {notation_event_count: "state boundary only; never from jianpu", sounding_unit_policy: "non-sounding by itself unless source proves otherwise", subaction_sequence: [], simultaneity_policy: "context_state", sound_event: "non_sounding_state_boundary_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only from 组识法; candidate v0.3.1 patch evidence, not canon."
+  - term: "泛止"
+    normalized_term: "泛止"
+    aliases: []
+    category: "sound_state"
+    source_title: "琴学备要"
+    source_section: "减字谱组识法 / 顺读例"
+    source_page: "166"
+    source_locator: "减字谱组识法.pdf#pdf_page=2"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Observed in reading examples as a harmonic-state boundary marker."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "sound_state_boundary", primary_sound_type_policy: "state_transition_marker", right_hand_action: null, left_hand_action: null, hui_or_string_policy: "does not provide string/hui by itself", state_transition_policy: "exit_harmonic_state_candidate", context_dependency: "closes preceding harmonic-state context"}
+    event_policy: {notation_event_count: "state boundary only; never from jianpu", sounding_unit_policy: "non-sounding by itself unless source proves otherwise", subaction_sequence: [], simultaneity_policy: "context_state", sound_event: "non_sounding_state_boundary_candidate"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only from 组识法; candidate v0.3.1 patch evidence, not canon."
+  - term: "少息"
+    normalized_term: "少息"
+    aliases: []
+    category: "non_sounding_or_timing"
+    source_title: "琴学备要"
+    source_section: "减字谱组识法 / 顺读例"
+    source_page: "166"
+    source_locator: "减字谱组识法.pdf#pdf_page=2"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Observed in reading example as timing/breath marker."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "non_sounding_timing_marker", primary_sound_type_policy: "not_a_pitch_or_pluck", right_hand_action: null, left_hand_action: null, hui_or_string_policy: "none", state_transition_policy: "timing_pause_candidate", context_dependency: "duration and placement need human review"}
+    event_policy: {notation_event_count: "non-sounding marker; never from jianpu", sounding_unit_policy: "no sounding unit", subaction_sequence: [], simultaneity_policy: "n/a", sound_event: "non_sounding"}
+    confidence: "medium"
+    review_status: "needs_review"
+    notes: "Draft-only; not sample ingest or Dapu IR authority."
+  - term: "省"
+    normalized_term: "省"
+    aliases: ["承前省略", "同前"]
+    category: "non_sounding_or_timing"
+    source_title: "琴学备要"
+    source_section: "减字谱组识法 / 构字原则"
+    source_page: "165"
+    source_locator: "减字谱组识法.pdf#pdf_page=1"
+    existing_repo_evidence: []
+    visual_components:
+      description: "Observed as omission/context principle area; exact symbol and scope require review."
+      visual_slots: {upper: "UNCERTAIN_VISUAL_COMPONENT", middle: "UNCERTAIN_VISUAL_COMPONENT", lower: "UNCERTAIN_VISUAL_COMPONENT", left: "UNCERTAIN_VISUAL_COMPONENT", right: "UNCERTAIN_VISUAL_COMPONENT"}
+    semantics: {action_type: "context_inheritance_or_omission_marker", primary_sound_type_policy: "not_a_pitch_or_pluck", right_hand_action: null, left_hand_action: null, hui_or_string_policy: "inherits only when visible/context evidence supports it", state_transition_policy: "context_inherited_candidate", context_dependency: "must be flagged context_inherited and human reviewed"}
+    event_policy: {notation_event_count: "omission/context marker; never from jianpu", sounding_unit_policy: "inherits or none depending on context", subaction_sequence: [], simultaneity_policy: "context_dependent", sound_event: "non_sounding_or_context_candidate"}
+    confidence: "low"
+    review_status: "needs_review"
+    notes: "Potential v0.3.1 patch evidence; do not treat OCR surface 省 as score fact without visual/context match."
