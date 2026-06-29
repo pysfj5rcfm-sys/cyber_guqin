@@ -5,7 +5,7 @@ description: Use when converting user-provided guqin jianzipu phrase crop images
 
 # Cyber Guqin Component-Guided Transcription
 
-Revision note: v0.2 adds cross-phrase inheritance, `注下` lead-in handling, `掐起` attachment / theory-assisted review handling, and v0.4 component roles for `撞`, `轮`, and `急`.
+Revision note: v0.4 adds `就=承前` handling and separates repeated `大指注下七徽` templates by their actual right-hand action, such as `抹七弦` versus `挑七弦`.
 
 ## 1. Purpose
 
@@ -253,6 +253,21 @@ For every matched component, record:
 
 When a visual match is partial, write `match_confidence=low` or `medium_low` and add a review reason.
 
+## 9a. Reusable Human-Confirmed Construction Templates
+
+When the user has corrected a construction in an earlier phrase, treat that construction as a reusable visual template for later phrase crops. Template reuse is still report-only and `NEEDS_HUMAN_REVIEW`, but it should outrank a generic `unknown_from_crop` fallback when the same slot structure recurs.
+
+Reusable LXY templates currently include:
+
+- `名指七徽挑六` / `名指七九徽挑六`: upper-left `名指`, right-upper hui number(s), lower/right-hand `COMP-018 挑`, embedded or lower `六` as string.
+- `散音，挑五弦`: `COMP-027 散音起始` plus `COMP-018 挑` and `COMP-004 五` as embedded/right-hand string number. Treat `散音` as the sound state and `挑五弦` as the sounding action; `句号` remains punctuation.
+- `大指六二徽，轮七弦`: upper-left `大指`, right-upper `六二` as hui, `COMP-029 轮` as right-hand compound action, embedded `七` as string.
+- `大指注下七徽，抹七弦` and `大指注下七徽，挑七弦`: both share the same left-hand / hui / `注下` preparation pattern, but the right-hand action must be read from the visible right-hand component. Do not copy `抹` from a neighboring template when the visible action is `COMP-018 挑`.
+- `急进复`: adjacent timing/position-transition construction using `COMP-030 急` plus `进复`; allow the phrase crop segmentation to merge neighboring visual pieces when the combined construction is more plausible than two independent events.
+- `名指七六徽，掐起`: `名指` holds the target position, `掐起` supplies the sounding special technique; if the hui is supplied by user/theory review, record it as human/theory-assisted evidence.
+
+Do not promote a reusable template into canon authority or Dapu IR authority. Record the source as `human_correction` or `template_reuse_from_prior_phrase`, keep every candidate reviewable, and still report ambiguous boundaries.
+
 ## 10. Slot-Aware Number Semantics
 
 数字在右上槽位优先读作徽位；数字在中下槽位、或嵌入右手指法内部时优先读作弦数；不得仅凭数字形状决定语义，必须结合槽位和构字关系。
@@ -278,6 +293,8 @@ sound_type_candidate: 泛音 (context_inherited from 泛起 context)
 ```
 
 `就` is a context-inheritance candidate when a user-labeled component or strong visual evidence supports it. It is not an independent sounding unit by default.
+
+In continuous phrase reading, `就` should normally be rendered as `承前` behavior rather than spoken as a separate sounding or left-hand action. Keep it in the glyph table and review sheet as a non-sounding context marker, but omit it from the readable phrase line unless the user explicitly asks to surface the marker.
 
 At a phrase opening, context inheritance may cross the phrase boundary. If the first glyph_group has no new left-hand finger, hui position, or sound-state marker, look back to the nearest explicit state in the previous reviewed/candidate phrase. Record the inherited source phrase and glyph_group when known, and keep `context_inherited=true`. Do not silently inherit string number, rhythm, or event count unless the visible construction or user review explicitly supports it.
 

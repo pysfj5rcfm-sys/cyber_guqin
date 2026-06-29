@@ -1,6 +1,6 @@
 # LXY Phrase 4 Component-Guided Candidates v0.1
 
-Task id: `CG-LXY-COMPONENT-GUIDED-TRANSCRIPTION-SKILL-AND-PHRASE3-PHRASE4-v0.3_STAGE_B`
+Task id: `CG-LXY-COMPONENT-GUIDED-TRANSCRIPTION-SKILL-AND-PHRASE3-PHRASE4-v0.5_STAGE_B_CORRECTION`
 
 Status labels: `LXY_TRANSCRIPTION_DRAFT`, `USER_COMPONENT_LABEL_GUIDED`, `NOT_CANON_AUTHORITY`, `NOT_REPO_CONTRACT`, `NOT_DAPU_IR_AUTHORITY`, `NEEDS_HUMAN_REVIEW`, `NOT_SAMPLE_INGEST`, `NOT_ML_TRAINING_DATA`, `NOT_RENDER_OUTPUT`.
 
@@ -17,43 +17,45 @@ This is a report-only component-guided transcription draft. It is not score impo
 ## Method Boundary
 
 - Component names are user-provided guidance, not canon authority.
+- Prior phrase corrections are reusable construction templates, not canon authority.
 - QXBY / v0.3.1 reports are draft lookup evidence only.
 - Jianpu, OCR surface text, old CSV rows, and page layout were not used as score facts.
 - Every candidate remains `NEEDS_HUMAN_REVIEW`.
 
-## Skill Upgrade Applied
+## User Corrections Applied In This Update
 
-- Used upgraded skill v0.2 with cross-phrase inheritance, `注下` lead-in handling, `掐起` attachment review, and v0.4 component roles.
-- v0.4 correction note honored: raw_001=`撞`, raw_002=`轮`, raw_003=`急`; obsolete raw_001=轮/raw_003=撞 mapping was not used.
-- G03 and G07 are read by phrase3 G04 pattern but remain human-review candidates.
+- P4-G005 corrected from `上六三` to `上六二`.
+- Inserted the missing event before `急进复`: `大指注下七徽，挑七弦`.
+- `名指七六徽，掐起` corrected to `名指七六徽，掐起七弦`.
+- Tail glyphs are renumbered after insertion: G008=`急进复`, G009=`名指七六徽，掐起七弦`, G010=`名指七九徽，挑六弦`, G011=`散音，挑五弦，句号`.
 
 ## Continuous Candidate Reading
 
-- 第四句候选：首字未定；撞；大指注下七徽，抹七弦；吟；上六三；撞；大指注下七徽，抹七弦；急就？；轮？；G10未定（下部六？）；散音起始，下部未定，句号。
+- 第四句候选：大指六二徽，轮七弦；撞；大指注下七徽，抹七弦；吟；上六二；撞；大指注下七徽，挑七弦；急进复；名指七六徽，掐起七弦；名指七九徽，挑六弦；散音，挑五弦，句号。
 
 ## Summary Counts
 
 - `component_labels_loaded`: 30
 - `glyph_groups_segmented`: 11
-- `matched_component_instances`: 20
+- `matched_component_instances`: 34
 - `score_event_candidates`: 11
-- `unresolved_or_low_confidence_candidates`: 5
+- `unresolved_or_low_confidence_candidates`: 2
 
 ## Glyph Group Candidate Table
 
 | glyph_group_id | source_image | bbox | matched_components | candidate_reading | confidence | review reason |
 |---|---|---:|---|---|---|---|
-| `LXY-P01-PH04-G001` | `截屏2026-06-28 21.31.57.png` | `2,8,133,131` | unmatched_component_candidate | right_hand_action_candidate=unknown_from_crop; left_hand_candidate=context_inherited? from phrase3 if no new left-hand/hui; string_no_candidate=unknown_from_crop; hui_position_candidate=context_inherited? needs review | seg=medium_high; match=low; parse=low | No confident component match; phrase-opening inheritance source also depends on phrase3 final review. |
-| `LXY-P01-PH04-G002` | `截屏2026-06-28 21.31.57.png` | `264,57,328,112` | COMP-028 撞(high) | left_hand_candidate=撞; hui_position_candidate=context_inherited? needs review; position_transition_candidate=撞 | seg=high; match=high; parse=medium | 撞 is a left-hand transition/virtual attack candidate; host note and inherited position need review. |
-| `LXY-P01-PH04-G003` | `截屏2026-06-28 21.31.57.png` | `427,10,532,123` | COMP-012 大指(medium); COMP-007 七(medium); COMP-025 注(medium); COMP-007 七(medium) | right_hand_action_candidate=抹; left_hand_candidate=大指; string_no_candidate=七; hui_position_candidate=七徽; position_transition_candidate=注下 | seg=medium_high; match=medium; parse=medium | Read by upgraded phrase3 pattern; needs human confirmation for phrase4. |
-| `LXY-P01-PH04-G004` | `截屏2026-06-28 21.31.57.png` | `550,79,597,129` | COMP-010 吟(medium_high) | left_hand_candidate=context_inherited from G003; hui_position_candidate=七徽 context_inherited; ornament_candidate=吟 | seg=high; match=medium_high; parse=medium_high | 吟 likely attaches to preceding G003 position; needs confirmation. |
-| `LXY-P01-PH04-G005` | `截屏2026-06-28 21.31.57.png` | `863,40,918,141` | COMP-026 上(high); COMP-006 六(medium); COMP-016 三(medium) | left_hand_candidate=position transition; hui_position_candidate=六三徽 candidate; position_transition_candidate=上六三 | seg=high; match=high; parse=medium_high | Host/continuation scope needs human review. |
-| `LXY-P01-PH04-G006` | `截屏2026-06-28 21.31.57.png` | `949,73,1012,115` | COMP-028 撞(high) | left_hand_candidate=撞; hui_position_candidate=context_inherited? 六三徽 candidate; position_transition_candidate=撞 | seg=high; match=high; parse=medium | 撞 likely modifies or transitions from the prior position; host note needs review. |
-| `LXY-P01-PH04-G007` | `截屏2026-06-28 21.31.57.png` | `1087,14,1195,137` | COMP-012 大指(medium); COMP-007 七(medium); COMP-025 注(medium); COMP-007 七(medium) | right_hand_action_candidate=抹; left_hand_candidate=大指; string_no_candidate=七; hui_position_candidate=七徽; position_transition_candidate=注下 | seg=medium; match=medium; parse=medium | Pattern match is plausible but boundary near following 急/就 needs review. |
-| `LXY-P01-PH04-G008` | `截屏2026-06-28 21.31.57.png` | `1196,13,1285,137` | COMP-030 急(high); COMP-023 就(medium_low) | left_hand_candidate=context_inherited=true; hui_position_candidate=context_inherited=true; timing_marker_candidate=急; position_transition_candidate=就? | seg=medium; match=medium; parse=low | 急 is visible, but whether it combines with 就 and its scope need review. |
-| `LXY-P01-PH04-G009` | `截屏2026-06-28 21.31.57.png` | `1280,13,1390,137` | COMP-029 轮(low) | right_hand_action_candidate=轮?; left_hand_candidate=context_inherited=true; string_no_candidate=unknown_from_crop; hui_position_candidate=context_inherited? | seg=medium; match=low; parse=low | v0.4 includes 轮 but visual match is weak; do not expand sequence without human review. |
-| `LXY-P01-PH04-G010` | `截屏2026-06-28 21.31.57.png` | `1380,20,1480,134` | COMP-006 六(medium) | right_hand_action_candidate=unknown_from_crop; left_hand_candidate=unknown_from_crop; string_no_candidate=六? unresolved slot semantics; hui_position_candidate=六? unresolved slot semantics | seg=medium_high; match=medium_low; parse=low | Visible separate glyph; needs human reading before any parser handoff. |
-| `LXY-P01-PH04-G011` | `截屏2026-06-28 21.32.14.png` | `26,22,137,134` | COMP-027 散音起始(high); COMP-005 句号(high) | right_hand_action_candidate=unknown_from_crop; string_no_candidate=unknown_from_crop; sound_state_transition_candidate=散音起始; punctuation_candidate=句号 | seg=high; match=medium_high; parse=medium_low | Upper 散音起始 and 句号 are visible; lower host remains unresolved. |
+| `LXY-P01-PH04-G001` | `截屏2026-06-28 21.31.57.png` | `2,8,133,131` | COMP-012 大指(high); COMP-006 六(medium); COMP-015 二(medium); COMP-029 轮(high); COMP-007 七(medium) | right_hand_action_candidate=轮; left_hand_candidate=大指; string_no_candidate=七; hui_position_candidate=六二徽 | seg=high; match=high; parse=high | User correction; 轮 subaction expansion remains parser-stage/review work. |
+| `LXY-P01-PH04-G002` | `截屏2026-06-28 21.31.57.png` | `264,57,328,112` | COMP-028 撞(high) | left_hand_candidate=撞; hui_position_candidate=context_inherited from G001 六二徽?; position_transition_candidate=撞 | seg=high; match=high; parse=medium | Host/attachment to preceding G001 position needs review. |
+| `LXY-P01-PH04-G003` | `截屏2026-06-28 21.31.57.png` | `427,10,532,123` | COMP-012 大指(medium); COMP-007 七(medium); COMP-025 注(medium); COMP-007 七(medium) | right_hand_action_candidate=抹; left_hand_candidate=大指; string_no_candidate=七; hui_position_candidate=七徽; position_transition_candidate=注下 | seg=medium_high; match=medium; parse=medium_high | Template reuse from P3-G04; still reviewable. |
+| `LXY-P01-PH04-G004` | `截屏2026-06-28 21.31.57.png` | `550,79,597,129` | COMP-010 吟(medium_high) | left_hand_candidate=context_inherited from G003; hui_position_candidate=七徽 context_inherited; ornament_candidate=吟 | seg=high; match=high; parse=medium_high | Attachment to preceding position needs review. |
+| `LXY-P01-PH04-G005` | `截屏2026-06-28 21.31.57.png` | `863,40,918,141` | COMP-026 上(high); COMP-006 六(medium); COMP-015 二(medium) | left_hand_candidate=position transition; hui_position_candidate=六二徽 candidate; position_transition_candidate=上六二 | seg=high; match=high; parse=high | User correction from 上六三 to 上六二. |
+| `LXY-P01-PH04-G006` | `截屏2026-06-28 21.31.57.png` | `949,73,1012,115` | COMP-028 撞(high) | left_hand_candidate=撞; hui_position_candidate=context_inherited from G005 六三徽?; position_transition_candidate=撞 | seg=high; match=high; parse=medium | Host/attachment to prior position needs review. |
+| `LXY-P01-PH04-G007` | `截屏2026-06-28 21.31.57.png` | `1087,14,1195,137` | COMP-012 大指(medium); COMP-007 七(medium); COMP-025 注(medium); COMP-018 挑(high); COMP-007 七(medium) | right_hand_action_candidate=挑; left_hand_candidate=大指; string_no_candidate=七; hui_position_candidate=七徽; position_transition_candidate=注下 | seg=medium; match=medium_high; parse=high | User correction: this missing event occurs before 急进复. |
+| `LXY-P01-PH04-G008` | `截屏2026-06-28 21.31.57.png` | `1196,13,1240,137` | COMP-030 急(high); COMP-024 进复(medium) | timing_marker_candidate=急; position_transition_candidate=进复; left_hand_candidate=position transition; hui_position_candidate=context_inherited? needs review | seg=medium; match=medium; parse=medium_high | Boundary remains approximate after user correction. |
+| `LXY-P01-PH04-G009` | `截屏2026-06-28 21.31.57.png` | `1196,13,1285,137` | COMP-008 名指(medium); COMP-007 七(medium); COMP-006 六(medium); COMP-022 掐起(high) | right_hand_action_candidate=掐起 sounding action candidate; left_hand_candidate=名指; string_no_candidate=七; hui_position_candidate=七六徽; special_technique_candidate=掐起 | seg=medium; match=medium; parse=medium_high | User correction adds 七弦 to 掐起. |
+| `LXY-P01-PH04-G010` | `截屏2026-06-28 21.31.57.png` | `1245,13,1480,137` | COMP-008 名指(medium); COMP-007 七(medium); COMP-018 挑(high); COMP-006 六(medium) | right_hand_action_candidate=挑; left_hand_candidate=名指; string_no_candidate=六; hui_position_candidate=七九徽 | seg=medium_high; match=medium_high; parse=high | User correction; bbox merges the earlier over-split tail glyphs. |
+| `LXY-P01-PH04-G011` | `截屏2026-06-28 21.32.14.png` | `26,22,137,134` | COMP-027 散音起始(high); COMP-018 挑(high); COMP-004 五(medium); COMP-005 句号(high) | right_hand_action_candidate=挑; string_no_candidate=五; sound_state_transition_candidate=散音; punctuation_candidate=句号 | seg=high; match=high; parse=high | User correction: same construction as P3-G10. |
 
 ## Safety Boundary Confirmation
 

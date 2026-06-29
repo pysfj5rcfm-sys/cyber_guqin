@@ -1,5 +1,5 @@
 {
-  "task_id": "CG-LXY-COMPONENT-GUIDED-TRANSCRIPTION-SKILL-AND-PHRASE3-PHRASE4-v0.3_STAGE_B",
+  "task_id": "CG-LXY-COMPONENT-GUIDED-TRANSCRIPTION-SKILL-AND-PHRASE3-PHRASE4-v0.5_STAGE_B_CORRECTION",
   "status_labels": [
     "LXY_TRANSCRIPTION_DRAFT",
     "USER_COMPONENT_LABEL_GUIDED",
@@ -19,7 +19,7 @@
   },
   "skill_used": {
     "path": ".agents/skills/cyber_guqin_component_guided_transcription/SKILL.md",
-    "version": "v0.2"
+    "version": "v0.4"
   },
   "inputs": {
     "component_zip": [
@@ -62,7 +62,7 @@
   },
   "component_labels_loaded": {
     "count": 30,
-    "authority_status_note": "User component labels guide recognition only; not canon authority and not Dapu IR authority.",
+    "authority_status_note": "User component labels and corrected construction templates guide recognition only; not canon authority and not Dapu IR authority.",
     "components": [
       {
         "component_id": "COMP-001",
@@ -438,52 +438,117 @@
         "y_max": 131,
         "unit": "pixel"
       },
-      "raw_visual_description": "Phrase4 opening composite glyph; no confident component match from v0.2-v0.4.",
-      "segmentation_confidence": "medium_high",
-      "boundary_needs_review": true,
-      "matched_components": [],
+      "raw_visual_description": "大指六二徽，轮七弦.",
+      "segmentation_confidence": "high",
+      "boundary_needs_review": false,
+      "matched_components": [
+        {
+          "component_id": "COMP-012",
+          "label_zh": "大指",
+          "category": "左手指法",
+          "slot": "upper_left",
+          "match_confidence": "high",
+          "evidence_note": "大指.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-006",
+          "label_zh": "六",
+          "category": "弦数",
+          "slot": "right_upper_hui_1",
+          "match_confidence": "medium",
+          "evidence_note": "六 in 六二徽.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-015",
+          "label_zh": "二",
+          "category": "弦数",
+          "slot": "right_upper_hui_2",
+          "match_confidence": "medium",
+          "evidence_note": "二 in 六二徽.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-029",
+          "label_zh": "轮",
+          "category": "右手指法",
+          "slot": "right_hand_action",
+          "match_confidence": "high",
+          "evidence_note": "轮.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-007",
+          "label_zh": "七",
+          "category": "弦数",
+          "slot": "embedded_right_hand_string",
+          "match_confidence": "medium",
+          "evidence_note": "七弦.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        }
+      ],
       "visual_slot_evidence": {
-        "upper": "unresolved",
-        "middle": "unresolved",
-        "lower": "unresolved",
-        "left": null,
-        "right": null,
+        "upper": "大指 + 六二徽",
+        "middle": "轮 host",
+        "lower": "七弦 embedded",
+        "left": "大指",
+        "right": "六二徽 / 七弦 relation needs review",
         "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": "unknown_from_crop",
-        "left_hand_candidate": "context_inherited? from phrase3 if no new left-hand/hui",
-        "string_no_candidate": "unknown_from_crop",
-        "hui_position_candidate": "context_inherited? needs review",
-        "position_transition_candidate": null,
-        "punctuation_candidate": null
+        "right_hand_action_candidate": "轮",
+        "left_hand_candidate": "大指",
+        "string_no_candidate": "七",
+        "hui_position_candidate": "六二徽",
+        "position_transition_candidate": null
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G001-E001",
-          "notation_event": "首字未定",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "unresolved_phrase_opening_glyph_do_not_infer_from_layout",
-          "sounding_units": [],
+          "notation_event": "大指六二徽，轮七弦",
+          "primary_sound_type_candidate": "按音候选",
+          "event_policy": "compound_right_hand_action_one_visible_glyph_multiple_subactions_possible",
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-PH04-G001-SU01",
+              "onset_order": 1,
+              "simultaneity_group": "LXY-P01-PH04-G001-SG01",
+              "right_hand_action_candidate": "轮",
+              "left_hand_candidate": "大指",
+              "string_no_candidate": "七",
+              "hui_position_candidate": "六二徽",
+              "sound_type_candidate": "按"
+            }
+          ],
           "reading_source": {
             "phrase_crop_visual": true,
-            "user_component_label_matched": [],
-            "qxby_lexicon_matched": [],
+            "user_component_label_matched": [
+              "COMP-012",
+              "COMP-006",
+              "COMP-015",
+              "COMP-029",
+              "COMP-007"
+            ],
+            "qxby_lexicon_matched": [
+              "轮"
+            ],
             "visual_atlas_matched": [],
-            "context_inherited": true,
-            "human_correction": false,
+            "context_inherited": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": "大指六二轮七_template",
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
           },
           "confidence": {
-            "segmentation_confidence": "medium_high",
-            "component_match_confidence": "low",
-            "parse_confidence": "low"
+            "segmentation_confidence": "high",
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "No confident component match; phrase-opening inheritance source also depends on phrase3 final review.",
+          "needs_review_reason": "User correction; 轮 subaction expansion remains parser-stage/review work.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -504,7 +569,7 @@
         "y_max": 112,
         "unit": "pixel"
       },
-      "raw_visual_description": "v0.4 撞 component.",
+      "raw_visual_description": "撞.",
       "segmentation_confidence": "high",
       "boundary_needs_review": false,
       "matched_components": [
@@ -514,7 +579,7 @@
           "category": "左手取音",
           "slot": "whole_glyph",
           "match_confidence": "high",
-          "evidence_note": "v0.4 corrected mapping raw_001=撞.",
+          "evidence_note": "撞.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
@@ -528,19 +593,16 @@
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": null,
         "left_hand_candidate": "撞",
-        "string_no_candidate": null,
-        "hui_position_candidate": "context_inherited? needs review",
-        "position_transition_candidate": "撞",
-        "punctuation_candidate": null
+        "hui_position_candidate": "context_inherited from G001 六二徽?",
+        "position_transition_candidate": "撞"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G002-E001",
           "notation_event": "撞",
           "primary_sound_type_candidate": "virtual_attack_motion_candidate",
-          "event_policy": "left_hand_position_transition_or_virtual_attack_no_independent_sounding_unit_by_default",
+          "event_policy": "left_hand_transition_no_independent_sounding_unit_by_default",
           "sounding_units": [],
           "reading_source": {
             "phrase_crop_visual": true,
@@ -551,8 +613,9 @@
               "撞"
             ],
             "visual_atlas_matched": [],
-            "context_inherited": false,
-            "human_correction": false,
+            "context_inherited": true,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": null,
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
@@ -563,7 +626,7 @@
             "parse_confidence": "medium"
           },
           "needs_review": true,
-          "needs_review_reason": "撞 is a left-hand transition/virtual attack candidate; host note and inherited position need review.",
+          "needs_review_reason": "Host/attachment to preceding G001 position needs review.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -584,7 +647,7 @@
         "y_max": 123,
         "unit": "pixel"
       },
-      "raw_visual_description": "Composite parallel to phrase3 G04: 大指注下七徽，抹七弦 candidate.",
+      "raw_visual_description": "大指注下七徽，抹七弦.",
       "segmentation_confidence": "medium_high",
       "boundary_needs_review": true,
       "matched_components": [
@@ -594,7 +657,7 @@
           "category": "左手指法",
           "slot": "upper_left",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, upper 大指 candidate.",
+          "evidence_note": "大指.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -603,7 +666,7 @@
           "category": "弦数",
           "slot": "right_upper_hui",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, 七徽 candidate.",
+          "evidence_note": "七徽.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -612,7 +675,7 @@
           "category": "左手取音",
           "slot": "lower_left",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, 注下 lead-in candidate.",
+          "evidence_note": "注下.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -621,16 +684,16 @@
           "category": "弦数",
           "slot": "embedded_right_hand_string",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, 七弦 candidate.",
+          "evidence_note": "七弦.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
       "visual_slot_evidence": {
-        "upper": "大指 + 七徽 candidate",
-        "middle": "host right-hand construction; 抹 from QXBY draft evidence",
-        "lower": "注下 + 七弦 candidate",
+        "upper": "大指 + 七徽",
+        "middle": "抹 host template",
+        "lower": "注下 + 七弦",
         "left": "注下",
-        "right": "七弦 candidate",
+        "right": "七弦",
         "side_note": null,
         "punctuation_or_timing": null
       },
@@ -639,22 +702,21 @@
         "left_hand_candidate": "大指",
         "string_no_candidate": "七",
         "hui_position_candidate": "七徽",
-        "position_transition_candidate": "注下",
-        "punctuation_candidate": null
+        "position_transition_candidate": "注下"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G003-E001",
-          "notation_event": "大指注下七徽，抹七弦？",
+          "notation_event": "大指注下七徽，抹七弦",
           "primary_sound_type_candidate": "按音候选",
-          "event_policy": "single_sounding_unit_with_left_hand_pre_attack_lead_in_by_phrase3_pattern",
+          "event_policy": "single_sounding_unit_with_left_hand_pre_attack_lead_in",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH04-G003-SU01",
               "onset_order": 1,
               "simultaneity_group": "LXY-P01-PH04-G003-SG01",
               "right_hand_action_candidate": "抹",
-              "left_hand_candidate": "大指 + 注下 lead-in",
+              "left_hand_candidate": "大指 + 注下",
               "string_no_candidate": "七",
               "hui_position_candidate": "七徽",
               "sound_type_candidate": "按"
@@ -674,7 +736,8 @@
             ],
             "visual_atlas_matched": [],
             "context_inherited": false,
-            "human_correction": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": "P3_G04_注下抹七_template",
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
@@ -682,10 +745,10 @@
           "confidence": {
             "segmentation_confidence": "medium_high",
             "component_match_confidence": "medium",
-            "parse_confidence": "medium"
+            "parse_confidence": "medium_high"
           },
           "needs_review": true,
-          "needs_review_reason": "Read by upgraded phrase3 pattern; needs human confirmation for phrase4.",
+          "needs_review_reason": "Template reuse from P3-G04; still reviewable.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -706,7 +769,7 @@
         "y_max": 129,
         "unit": "pixel"
       },
-      "raw_visual_description": "Compact glyph matching 吟.",
+      "raw_visual_description": "吟.",
       "segmentation_confidence": "high",
       "boundary_needs_review": false,
       "matched_components": [
@@ -716,7 +779,7 @@
           "category": "左手指法",
           "slot": "whole_glyph",
           "match_confidence": "medium_high",
-          "evidence_note": "Shape matches 吟 sample.",
+          "evidence_note": "吟.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
@@ -730,20 +793,16 @@
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": null,
         "left_hand_candidate": "context_inherited from G003",
         "hui_position_candidate": "七徽 context_inherited",
-        "ornament_candidate": "吟",
-        "string_no_candidate": null,
-        "position_transition_candidate": null,
-        "punctuation_candidate": null
+        "ornament_candidate": "吟"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G004-E001",
           "notation_event": "吟",
           "primary_sound_type_candidate": "ornament_candidate",
-          "event_policy": "ornament_attached_to_preceding_pressed_position_no_independent_sounding_unit_by_default",
+          "event_policy": "ornament_attached_to_preceding_position",
           "sounding_units": [],
           "reading_source": {
             "phrase_crop_visual": true,
@@ -755,18 +814,19 @@
             ],
             "visual_atlas_matched": [],
             "context_inherited": true,
-            "human_correction": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": null,
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
           },
           "confidence": {
             "segmentation_confidence": "high",
-            "component_match_confidence": "medium_high",
+            "component_match_confidence": "high",
             "parse_confidence": "medium_high"
           },
           "needs_review": true,
-          "needs_review_reason": "吟 likely attaches to preceding G003 position; needs confirmation.",
+          "needs_review_reason": "Attachment to preceding position needs review.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -787,7 +847,7 @@
         "y_max": 141,
         "unit": "pixel"
       },
-      "raw_visual_description": "上六三 candidate.",
+      "raw_visual_description": "上六二, corrected from previous 上六三.",
       "segmentation_confidence": "high",
       "boundary_needs_review": false,
       "matched_components": [
@@ -797,7 +857,7 @@
           "category": "左手取音",
           "slot": "upper",
           "match_confidence": "high",
-          "evidence_note": "Matches 上 sample.",
+          "evidence_note": "上.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -806,56 +866,54 @@
           "category": "弦数",
           "slot": "middle_hui_number",
           "match_confidence": "medium",
-          "evidence_note": "六 read as hui in 上 construction.",
+          "evidence_note": "六.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
-          "component_id": "COMP-016",
-          "label_zh": "三",
+          "component_id": "COMP-015",
+          "label_zh": "二",
           "category": "弦数",
           "slot": "lower_hui_number",
           "match_confidence": "medium",
-          "evidence_note": "三 read as hui in 上 construction.",
+          "evidence_note": "二; corrected from 三.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
       "visual_slot_evidence": {
         "upper": "上",
-        "middle": "六 as hui target",
-        "lower": "三 as hui target",
+        "middle": "六 hui",
+        "lower": "二 hui",
         "left": null,
         "right": null,
         "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": null,
         "left_hand_candidate": "position transition",
-        "string_no_candidate": null,
-        "hui_position_candidate": "六三徽 candidate",
-        "position_transition_candidate": "上六三",
-        "punctuation_candidate": null
+        "hui_position_candidate": "六二徽 candidate",
+        "position_transition_candidate": "上六二"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G005-E001",
-          "notation_event": "上六三",
+          "notation_event": "上六二",
           "primary_sound_type_candidate": "non_sounding_position_transition_candidate",
-          "event_policy": "left_hand_position_transition_no_sounding_unit_by_default",
+          "event_policy": "left_hand_transition_no_sounding_unit_by_default",
           "sounding_units": [],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": [
               "COMP-026",
               "COMP-006",
-              "COMP-016"
+              "COMP-015"
             ],
             "qxby_lexicon_matched": [
               "上"
             ],
             "visual_atlas_matched": [],
             "context_inherited": false,
-            "human_correction": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": null,
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
@@ -863,10 +921,10 @@
           "confidence": {
             "segmentation_confidence": "high",
             "component_match_confidence": "high",
-            "parse_confidence": "medium_high"
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "Host/continuation scope needs human review.",
+          "needs_review_reason": "User correction from 上六三 to 上六二.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -887,7 +945,7 @@
         "y_max": 115,
         "unit": "pixel"
       },
-      "raw_visual_description": "Second 撞 component in phrase4 crop.",
+      "raw_visual_description": "撞.",
       "segmentation_confidence": "high",
       "boundary_needs_review": false,
       "matched_components": [
@@ -897,7 +955,7 @@
           "category": "左手取音",
           "slot": "whole_glyph",
           "match_confidence": "high",
-          "evidence_note": "v0.4 corrected mapping raw_001=撞.",
+          "evidence_note": "撞.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
@@ -911,19 +969,16 @@
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": null,
         "left_hand_candidate": "撞",
-        "string_no_candidate": null,
-        "hui_position_candidate": "context_inherited? 六三徽 candidate",
-        "position_transition_candidate": "撞",
-        "punctuation_candidate": null
+        "hui_position_candidate": "context_inherited from G005 六三徽?",
+        "position_transition_candidate": "撞"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G006-E001",
           "notation_event": "撞",
           "primary_sound_type_candidate": "virtual_attack_motion_candidate",
-          "event_policy": "left_hand_position_transition_or_virtual_attack_no_independent_sounding_unit_by_default",
+          "event_policy": "left_hand_transition_no_independent_sounding_unit_by_default",
           "sounding_units": [],
           "reading_source": {
             "phrase_crop_visual": true,
@@ -935,7 +990,8 @@
             ],
             "visual_atlas_matched": [],
             "context_inherited": true,
-            "human_correction": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": null,
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
@@ -946,7 +1002,7 @@
             "parse_confidence": "medium"
           },
           "needs_review": true,
-          "needs_review_reason": "撞 likely modifies or transitions from the prior position; host note needs review.",
+          "needs_review_reason": "Host/attachment to prior position needs review.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -967,7 +1023,7 @@
         "y_max": 137,
         "unit": "pixel"
       },
-      "raw_visual_description": "Composite parallel to phrase3 G04/G07: 大指注下七徽，抹七弦 candidate.",
+      "raw_visual_description": "Previously missed before 急进复: 大指注下七徽，挑七弦.",
       "segmentation_confidence": "medium",
       "boundary_needs_review": true,
       "matched_components": [
@@ -977,7 +1033,7 @@
           "category": "左手指法",
           "slot": "upper_left",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, 大指 candidate.",
+          "evidence_note": "大指.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -986,7 +1042,7 @@
           "category": "弦数",
           "slot": "right_upper_hui",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, 七徽 candidate.",
+          "evidence_note": "七徽.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -995,7 +1051,16 @@
           "category": "左手取音",
           "slot": "lower_left",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, 注下 lead-in candidate.",
+          "evidence_note": "注下.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-018",
+          "label_zh": "挑",
+          "category": "右手指法",
+          "slot": "right_hand_action",
+          "match_confidence": "high",
+          "evidence_note": "挑 action.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -1004,40 +1069,39 @@
           "category": "弦数",
           "slot": "embedded_right_hand_string",
           "match_confidence": "medium",
-          "evidence_note": "By phrase3 G04 pattern, 七弦 candidate.",
+          "evidence_note": "七弦.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
       "visual_slot_evidence": {
-        "upper": "大指 + 七徽 candidate",
-        "middle": "host right-hand construction; 抹 draft evidence",
-        "lower": "注下 + 七弦 candidate",
+        "upper": "大指 + 七徽",
+        "middle": "挑 host template",
+        "lower": "注下 + 七弦",
         "left": "注下",
-        "right": "七弦 candidate",
+        "right": "挑七弦",
         "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": "抹",
+        "right_hand_action_candidate": "挑",
         "left_hand_candidate": "大指",
         "string_no_candidate": "七",
         "hui_position_candidate": "七徽",
-        "position_transition_candidate": "注下",
-        "punctuation_candidate": null
+        "position_transition_candidate": "注下"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G007-E001",
-          "notation_event": "大指注下七徽，抹七弦？",
+          "notation_event": "大指注下七徽，挑七弦",
           "primary_sound_type_candidate": "按音候选",
-          "event_policy": "single_sounding_unit_with_left_hand_pre_attack_lead_in_by_phrase3_pattern",
+          "event_policy": "single_sounding_unit_with_left_hand_pre_attack_lead_in_and_tiao_action",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH04-G007-SU01",
               "onset_order": 1,
               "simultaneity_group": "LXY-P01-PH04-G007-SG01",
-              "right_hand_action_candidate": "抹",
-              "left_hand_candidate": "大指 + 注下 lead-in",
+              "right_hand_action_candidate": "挑",
+              "left_hand_candidate": "大指 + 注下",
               "string_no_candidate": "七",
               "hui_position_candidate": "七徽",
               "sound_type_candidate": "按"
@@ -1049,26 +1113,28 @@
               "COMP-012",
               "COMP-007",
               "COMP-025",
+              "COMP-018",
               "COMP-007"
             ],
             "qxby_lexicon_matched": [
-              "抹",
+              "挑",
               "注"
             ],
             "visual_atlas_matched": [],
             "context_inherited": false,
-            "human_correction": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": "大指注下七徽挑七弦_template",
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
           },
           "confidence": {
             "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
-            "parse_confidence": "medium"
+            "component_match_confidence": "medium_high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "Pattern match is plausible but boundary near following 急/就 needs review.",
+          "needs_review_reason": "User correction: this missing event occurs before 急进复.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -1085,11 +1151,11 @@
       "approximate_bbox": {
         "x_min": 1196,
         "y_min": 13,
-        "x_max": 1285,
+        "x_max": 1240,
         "y_max": 137,
         "unit": "pixel"
       },
-      "raw_visual_description": "Possible 急 + 就 context/timing marker cluster after G007.",
+      "raw_visual_description": "急进复 after the inserted 挑七 event.",
       "segmentation_confidence": "medium",
       "boundary_needs_review": true,
       "matched_components": [
@@ -1097,58 +1163,57 @@
           "component_id": "COMP-030",
           "label_zh": "急",
           "category": "节奏谱字",
-          "slot": "left_or_upper",
+          "slot": "timing_or_prefix",
           "match_confidence": "high",
-          "evidence_note": "v0.4 急 component visible.",
+          "evidence_note": "急.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
-          "component_id": "COMP-023",
-          "label_zh": "就",
-          "category": "左手承前",
-          "slot": "right",
-          "match_confidence": "medium_low",
-          "evidence_note": "Right small component may be 就/context marker.",
+          "component_id": "COMP-024",
+          "label_zh": "进复",
+          "category": "左手取音",
+          "slot": "position_transition",
+          "match_confidence": "medium",
+          "evidence_note": "进复.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
       "visual_slot_evidence": {
-        "upper": "急 component candidate",
-        "middle": "possible 就 marker",
-        "lower": "unresolved overlap with neighbors",
-        "left": "急",
-        "right": "就?",
-        "side_note": "timing/context marker candidate",
+        "upper": "急 + 进复 compound candidate",
+        "middle": "进复 continuation",
+        "lower": "复 continuation",
+        "left": "急/进",
+        "right": "复",
+        "side_note": "boundary approximate",
         "punctuation_or_timing": "急"
       },
       "candidate_reading": {
-        "right_hand_action_candidate": null,
-        "left_hand_candidate": "context_inherited=true",
-        "string_no_candidate": null,
-        "hui_position_candidate": "context_inherited=true",
         "timing_marker_candidate": "急",
-        "position_transition_candidate": "就?",
-        "punctuation_candidate": null
+        "position_transition_candidate": "进复",
+        "left_hand_candidate": "position transition",
+        "hui_position_candidate": "context_inherited? needs review"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G008-E001",
-          "notation_event": "急就？",
-          "primary_sound_type_candidate": "non_sounding_timing_or_context_candidate",
-          "event_policy": "timing_context_marker_no_sounding_unit_by_default",
+          "notation_event": "急进复",
+          "primary_sound_type_candidate": "non_sounding_position_transition_candidate",
+          "event_policy": "compound_timing_position_transition_no_sounding_unit_by_default",
           "sounding_units": [],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": [
               "COMP-030",
-              "COMP-023"
+              "COMP-024"
             ],
             "qxby_lexicon_matched": [
-              "急"
+              "急进复",
+              "进复"
             ],
             "visual_atlas_matched": [],
-            "context_inherited": true,
-            "human_correction": false,
+            "context_inherited": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": "急进复_template",
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
@@ -1156,10 +1221,10 @@
           "confidence": {
             "segmentation_confidence": "medium",
             "component_match_confidence": "medium",
-            "parse_confidence": "low"
+            "parse_confidence": "medium_high"
           },
           "needs_review": true,
-          "needs_review_reason": "急 is visible, but whether it combines with 就 and its scope need review.",
+          "needs_review_reason": "Boundary remains approximate after user correction.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -1174,83 +1239,113 @@
       "phrase_candidate_id": "LXY-P01-PH04",
       "source_image": "截屏2026-06-28 21.31.57.png",
       "approximate_bbox": {
-        "x_min": 1280,
+        "x_min": 1196,
         "y_min": 13,
-        "x_max": 1390,
+        "x_max": 1285,
         "y_max": 137,
         "unit": "pixel"
       },
-      "raw_visual_description": "Large compound after 急/就; possible 轮 or another compound right-hand glyph, low confidence.",
+      "raw_visual_description": "名指七六徽，掐起七弦.",
       "segmentation_confidence": "medium",
       "boundary_needs_review": true,
       "matched_components": [
         {
-          "component_id": "COMP-029",
-          "label_zh": "轮",
-          "category": "右手指法",
-          "slot": "whole_or_upper",
-          "match_confidence": "low",
-          "evidence_note": "Possible 轮-related compound; visual match is weak.",
+          "component_id": "COMP-008",
+          "label_zh": "名指",
+          "category": "左手指法",
+          "slot": "upper_or_left",
+          "match_confidence": "medium",
+          "evidence_note": "名指.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-007",
+          "label_zh": "七",
+          "category": "弦数",
+          "slot": "hui_number",
+          "match_confidence": "medium",
+          "evidence_note": "七 in 七六徽 / 七弦.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-006",
+          "label_zh": "六",
+          "category": "弦数",
+          "slot": "hui_number",
+          "match_confidence": "medium",
+          "evidence_note": "六 in 七六徽.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-022",
+          "label_zh": "掐起",
+          "category": "左手指法",
+          "slot": "lower",
+          "match_confidence": "high",
+          "evidence_note": "掐起.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
       "visual_slot_evidence": {
-        "upper": "possible compound right-hand component",
-        "middle": "unresolved",
-        "lower": "unresolved frame/hook",
-        "left": null,
-        "right": null,
+        "upper": "名指七六徽 candidate",
+        "middle": "special technique host",
+        "lower": "掐起七弦",
+        "left": "名指",
+        "right": "七六徽 / 七弦 candidate",
         "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": "轮?",
-        "left_hand_candidate": "context_inherited=true",
-        "string_no_candidate": "unknown_from_crop",
-        "hui_position_candidate": "context_inherited?",
-        "position_transition_candidate": null,
-        "punctuation_candidate": null
+        "right_hand_action_candidate": "掐起 sounding action candidate",
+        "left_hand_candidate": "名指",
+        "string_no_candidate": "七",
+        "hui_position_candidate": "七六徽",
+        "special_technique_candidate": "掐起"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G009-E001",
-          "notation_event": "轮？",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "compound_right_hand_candidate_low_confidence",
+          "notation_event": "名指七六徽，掐起七弦",
+          "primary_sound_type_candidate": "按音候选",
+          "event_policy": "special_technique_sounding_candidate_attached_to_held_position",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH04-G009-SU01",
               "onset_order": 1,
               "simultaneity_group": "LXY-P01-PH04-G009-SG01",
-              "right_hand_action_candidate": "轮?",
-              "left_hand_candidate": "context_inherited=true",
-              "string_no_candidate": "unknown_from_crop",
-              "hui_position_candidate": "context_inherited?",
-              "sound_type_candidate": "unknown_from_crop"
+              "right_hand_action_candidate": "掐起",
+              "left_hand_candidate": "名指",
+              "string_no_candidate": "七",
+              "hui_position_candidate": "七六徽",
+              "sound_type_candidate": "按"
             }
           ],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": [
-              "COMP-029"
+              "COMP-008",
+              "COMP-007",
+              "COMP-006",
+              "COMP-022"
             ],
             "qxby_lexicon_matched": [
-              "轮"
+              "掐起"
             ],
             "visual_atlas_matched": [],
-            "context_inherited": true,
-            "human_correction": false,
+            "context_inherited": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": "名指七六徽掐起七弦_template",
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
           },
           "confidence": {
             "segmentation_confidence": "medium",
-            "component_match_confidence": "low",
-            "parse_confidence": "low"
+            "component_match_confidence": "medium",
+            "parse_confidence": "medium_high"
           },
           "needs_review": true,
-          "needs_review_reason": "v0.4 includes 轮 but visual match is weak; do not expand sequence without human review.",
+          "needs_review_reason": "User correction adds 七弦 to 掐起.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -1265,70 +1360,112 @@
       "phrase_candidate_id": "LXY-P01-PH04",
       "source_image": "截屏2026-06-28 21.31.57.png",
       "approximate_bbox": {
-        "x_min": 1380,
-        "y_min": 20,
+        "x_min": 1245,
+        "y_min": 13,
         "x_max": 1480,
-        "y_max": 134,
+        "y_max": 137,
         "unit": "pixel"
       },
-      "raw_visual_description": "Rightmost wide-image glyph parallel to phrase3 G09; lower 六 visible, host unresolved.",
+      "raw_visual_description": "名指七九徽，挑六弦.",
       "segmentation_confidence": "medium_high",
       "boundary_needs_review": true,
       "matched_components": [
         {
+          "component_id": "COMP-008",
+          "label_zh": "名指",
+          "category": "左手指法",
+          "slot": "upper_left",
+          "match_confidence": "medium",
+          "evidence_note": "名指.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-007",
+          "label_zh": "七",
+          "category": "弦数",
+          "slot": "right_upper_hui",
+          "match_confidence": "medium",
+          "evidence_note": "七九徽 starts with 七; 九 component not in sample set.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-018",
+          "label_zh": "挑",
+          "category": "右手指法",
+          "slot": "lower_right_hand",
+          "match_confidence": "high",
+          "evidence_note": "挑.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
           "component_id": "COMP-006",
           "label_zh": "六",
           "category": "弦数",
-          "slot": "lower_or_embedded_number",
+          "slot": "embedded_right_hand_string",
           "match_confidence": "medium",
-          "evidence_note": "Lower 六 visible; host construction unresolved.",
+          "evidence_note": "六弦.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
       "visual_slot_evidence": {
-        "upper": "unresolved host component",
-        "middle": "unresolved host component",
-        "lower": "六-like component",
-        "left": null,
-        "right": null,
+        "upper": "名指 + 七九徽 candidate",
+        "middle": "挑 host",
+        "lower": "六弦 embedded",
+        "left": "名指",
+        "right": "七九 hui candidate",
         "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "right_hand_action_candidate": "unknown_from_crop",
-        "left_hand_candidate": "unknown_from_crop",
-        "string_no_candidate": "六? unresolved slot semantics",
-        "hui_position_candidate": "六? unresolved slot semantics",
-        "position_transition_candidate": null,
-        "punctuation_candidate": null
+        "right_hand_action_candidate": "挑",
+        "left_hand_candidate": "名指",
+        "string_no_candidate": "六",
+        "hui_position_candidate": "七九徽"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G010-E001",
-          "notation_event": "未定（下部六？）",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "unresolved_visible_glyph_must_not_be_dropped",
-          "sounding_units": [],
+          "notation_event": "名指七九徽，挑六弦",
+          "primary_sound_type_candidate": "按音候选",
+          "event_policy": "single_sounding_unit_reusing_tiao_six_template",
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-PH04-G010-SU01",
+              "onset_order": 1,
+              "simultaneity_group": "LXY-P01-PH04-G010-SG01",
+              "right_hand_action_candidate": "挑",
+              "left_hand_candidate": "名指",
+              "string_no_candidate": "六",
+              "hui_position_candidate": "七九徽",
+              "sound_type_candidate": "按"
+            }
+          ],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": [
+              "COMP-008",
+              "COMP-007",
+              "COMP-018",
               "COMP-006"
             ],
-            "qxby_lexicon_matched": [],
+            "qxby_lexicon_matched": [
+              "挑"
+            ],
             "visual_atlas_matched": [],
             "context_inherited": false,
-            "human_correction": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": "P2/P3_挑六_template",
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
           },
           "confidence": {
             "segmentation_confidence": "medium_high",
-            "component_match_confidence": "medium_low",
-            "parse_confidence": "low"
+            "component_match_confidence": "medium_high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "Visible separate glyph; needs human reading before any parser handoff.",
+          "needs_review_reason": "User correction; bbox merges the earlier over-split tail glyphs.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -1349,7 +1486,7 @@
         "y_max": 134,
         "unit": "pixel"
       },
-      "raw_visual_description": "Second crop final glyph: upper 散音起始 and right-bottom 句号; lower host unresolved.",
+      "raw_visual_description": "Same as P3-G10: 散音，挑五弦，句号.",
       "segmentation_confidence": "high",
       "boundary_needs_review": false,
       "matched_components": [
@@ -1359,7 +1496,25 @@
           "category": "散音起始",
           "slot": "upper",
           "match_confidence": "high",
-          "evidence_note": "Upper component matches 散音起始.",
+          "evidence_note": "散音起始.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-018",
+          "label_zh": "挑",
+          "category": "右手指法",
+          "slot": "right_hand_host",
+          "match_confidence": "high",
+          "evidence_note": "挑.",
+          "authority_status": "USER_PROVIDED_LABEL"
+        },
+        {
+          "component_id": "COMP-004",
+          "label_zh": "五",
+          "category": "弦数",
+          "slot": "embedded_string",
+          "match_confidence": "medium",
+          "evidence_note": "五弦.",
           "authority_status": "USER_PROVIDED_LABEL"
         },
         {
@@ -1368,58 +1523,70 @@
           "category": "节奏谱字",
           "slot": "punctuation_or_timing",
           "match_confidence": "high",
-          "evidence_note": "Right-bottom dot is 句号.",
+          "evidence_note": "句号.",
           "authority_status": "USER_PROVIDED_LABEL"
         }
       ],
       "visual_slot_evidence": {
         "upper": "COMP-027 散音起始",
-        "middle": "unresolved host component",
-        "lower": "unresolved host component",
+        "middle": "挑 host",
+        "lower": "五弦 candidate",
         "left": null,
         "right": null,
         "side_note": null,
         "punctuation_or_timing": "句号"
       },
       "candidate_reading": {
-        "right_hand_action_candidate": "unknown_from_crop",
-        "left_hand_candidate": null,
-        "string_no_candidate": "unknown_from_crop",
-        "hui_position_candidate": null,
-        "sound_state_transition_candidate": "散音起始",
-        "position_transition_candidate": null,
+        "right_hand_action_candidate": "挑",
+        "string_no_candidate": "五",
+        "sound_state_transition_candidate": "散音",
         "punctuation_candidate": "句号"
       },
       "score_event_candidates": [
         {
           "score_event_candidate_id": "LXY-P01-PH04-G011-E001",
-          "notation_event": "散音起始；下部未定；句号",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "sentence_final_state_marker_with_unresolved_host_no_final_sound_fact",
-          "sounding_units": [],
+          "notation_event": "散音，挑五弦，句号",
+          "primary_sound_type_candidate": "散音候选",
+          "event_policy": "single_open_string_sounding_unit_with_punctuation",
+          "sounding_units": [
+            {
+              "sounding_unit_candidate_id": "LXY-P01-PH04-G011-SU01",
+              "onset_order": 1,
+              "simultaneity_group": "LXY-P01-PH04-G011-SG01",
+              "right_hand_action_candidate": "挑",
+              "left_hand_candidate": null,
+              "string_no_candidate": "五",
+              "hui_position_candidate": null,
+              "sound_type_candidate": "散"
+            }
+          ],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": [
               "COMP-027",
+              "COMP-018",
+              "COMP-004",
               "COMP-005"
             ],
             "qxby_lexicon_matched": [
-              "散音"
+              "散音",
+              "挑"
             ],
             "visual_atlas_matched": [],
             "context_inherited": false,
-            "human_correction": false,
+            "human_correction": true,
+            "template_reuse_from_prior_phrase": "P3_G10_散音挑五_template",
             "theory_assisted_review_evidence": false,
             "human_reviewed": false,
             "rejected_ocr_surface": true
           },
           "confidence": {
             "segmentation_confidence": "high",
-            "component_match_confidence": "medium_high",
-            "parse_confidence": "medium_low"
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "Upper 散音起始 and 句号 are visible; lower host remains unresolved.",
+          "needs_review_reason": "User correction: same construction as P3-G10.",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -1431,15 +1598,15 @@
     }
   ],
   "continuous_phrase_reading": {
-    "phrase_candidate": "第四句候选：首字未定；撞；大指注下七徽，抹七弦；吟；上六三；撞；大指注下七徽，抹七弦；急就？；轮？；G10未定（下部六？）；散音起始，下部未定，句号。",
+    "phrase_candidate": "第四句候选：大指六二徽，轮七弦；撞；大指注下七徽，抹七弦；吟；上六二；撞；大指注下七徽，挑七弦；急进复；名指七六徽，掐起七弦；名指七九徽，挑六弦；散音，挑五弦，句号。",
     "authority_status": "LXY_TRANSCRIPTION_DRAFT__NEEDS_HUMAN_REVIEW__NOT_DAPU_IR_AUTHORITY"
   },
   "summary": {
     "component_labels_loaded": 30,
     "glyph_groups_segmented": 11,
-    "matched_component_instances": 20,
+    "matched_component_instances": 34,
     "score_event_candidates": 11,
-    "unresolved_or_low_confidence_candidates": 5
+    "unresolved_or_low_confidence_candidates": 2
   },
   "safety_boundary_confirmation": {
     "no_score_import": true,
