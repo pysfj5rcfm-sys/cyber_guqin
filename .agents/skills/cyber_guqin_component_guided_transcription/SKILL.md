@@ -45,6 +45,14 @@ NOT_ML_TRAINING_DATA
 NOT_RENDER_OUTPUT
 ```
 
+When a repo-local QXBY component atlas registry is used, add or prefer this label in LXY outputs:
+
+```text
+REFERENCE_COMPONENT_ATLAS_GUIDED
+```
+
+The registry label does not remove `NEEDS_HUMAN_REVIEW` and does not create score-event authority.
+
 For LXY reports, use:
 
 ```text
@@ -147,6 +155,8 @@ non-sounding markers are identified
 state boundaries are scoped or marked needs_review
 ```
 
+The parser handoff boundary is mandatory for registry-guided work: a `reference_component_atlas` match may support a draft reading, but only explicit human confirmation or correction can authorize later parser structuring. Even then, this skill must not write Dapu IR itself.
+
 Never bypass:
 
 ```text
@@ -208,6 +218,54 @@ reports/jianzipu_decomposition_rules_patch_v0.3.1.md
 
 When a task provides prior phrase reports as seed evidence, read them as transcription drafts only. They are not canon authority and not Dapu IR authority.
 
+## 7a. Reference Component Atlas
+
+For LXY P5 and later component-guided transcription tasks, first read the repo-local reference registry when it exists:
+
+```text
+references/qxby_component_atlas/component_registry.v0.1.json
+```
+
+Read order:
+
+```text
+reference component atlas registry
+→ task-approved QXBY / v0.3.1 reports
+→ prior LXY phrase reports as transcription-draft template evidence
+→ current phrase crop
+```
+
+`COMP-001..030` in the registry are reference-level component knowledge after user review. This means the component label, category, visual slot semantics, and construction-template hints may be reused as `QXBY_COMPONENT_ATLAS_REFERENCE`.
+
+This does not mean a new phrase reading is final score authority. A reference component match is not a score event, not Dapu IR authority, not sample ingest, not ML training data, not render output, and not a recording plan.
+
+Required boundary flags for registry-guided phrase outputs:
+
+```text
+LXY_TRANSCRIPTION_DRAFT
+REFERENCE_COMPONENT_ATLAS_GUIDED
+NOT_REPO_CONTRACT
+NOT_DAPU_IR_AUTHORITY
+NEEDS_HUMAN_REVIEW
+NOT_SAMPLE_INGEST
+NOT_ML_TRAINING_DATA
+NOT_RENDER_OUTPUT
+```
+
+Preserve the v0.4 correction exactly:
+
+```text
+COMP-028 = 撞 / 左手取音
+COMP-029 = 轮 / 右手指法
+COMP-030 = 急 / 节奏谱字
+```
+
+Do not fall back to obsolete raw mappings such as `raw_001=轮` or `raw_003=撞`.
+
+Reusable construction templates from the registry may outrank a generic `unknown_from_crop` fallback, but every reused template remains report-only and `NEEDS_HUMAN_REVIEW`. Template reuse must record the template id or source phrase report and must not be promoted into final phrase score facts.
+
+If a phrase crop is missing or ambiguous, write a missing-input report instead of inventing a candidate reading.
+
 ## 8. Core Workflow
 
 Use this workflow:
@@ -267,6 +325,8 @@ Reusable LXY templates currently include:
 - `名指七六徽，掐起`: `名指` holds the target position, `掐起` supplies the sounding special technique; if the hui is supplied by user/theory review, record it as human/theory-assisted evidence.
 
 Do not promote a reusable template into canon authority or Dapu IR authority. Record the source as `human_correction` or `template_reuse_from_prior_phrase`, keep every candidate reviewable, and still report ambiguous boundaries.
+
+When the template source is `references/qxby_component_atlas/component_registry.v0.1.json`, record it as `reference_component_atlas_template_reuse` and keep `score_event_authority=false` and `dapu_ir_authority=false`.
 
 ## 10. Slot-Aware Number Semantics
 
@@ -452,6 +512,8 @@ Watch for:
 
 - treating user component labels as canon,
 - treating QXBY draft reports as canon,
+- treating the reference component atlas as final phrase score authority,
+- treating a reference component match as Dapu IR authority,
 - treating a score_event_candidate as Dapu IR,
 - reading right-upper numbers as strings without slot evidence,
 - reading embedded right-hand numbers as hui positions,
