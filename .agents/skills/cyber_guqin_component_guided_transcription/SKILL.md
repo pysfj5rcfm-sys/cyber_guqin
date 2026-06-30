@@ -5,7 +5,7 @@ description: Use when converting user-provided guqin jianzipu phrase crop images
 
 # Cyber Guqin Component-Guided Transcription
 
-Revision note: v0.6 makes the three-layer preflight mandatory for LXY P5 and later work: component registry, construction templates, and regression gold / forbidden fixtures must be read before the current crop. v0.5 added LXY P5 correction rules for `绰上` versus `注下`, empty-upper context inheritance, `少息` versus `就`, v0.5 `抹挑 / 如一声 / 双吟 / 落指猱 / 掩 / 剔` components, and final `剔四弦，散三如一` layer decomposition.
+Revision note: v0.7 adds two-layer segmentation for LXY P5 and later work: first identify visual blocks, then decompose each block into one or more notation units before producing the phrase reading. It forbids early stop after the first construction-template match inside a visual block and requires a coverage ledger for unread ink. v0.6 makes the three-layer preflight mandatory for LXY P5 and later work: component registry, construction templates, and regression gold / forbidden fixtures must be read before the current crop. v0.5 added LXY P5 correction rules for `绰上` versus `注下`, empty-upper context inheritance, `少息` versus `就`, v0.5 `抹挑 / 如一声 / 双吟 / 落指猱 / 掩 / 剔` components, and final `剔四弦，散三如一` layer decomposition.
 
 ## 1. Purpose
 
@@ -232,7 +232,7 @@ tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p4_forbidden_ou
 Read order:
 
 ```text
-component registry: atomic COMP-001..037 labels
+component registry: atomic COMP-001..038 labels
 → construction templates: P1-P5 reviewed construction patterns
 → regression gold / forbidden fixtures: P1-P4 reviewed readings and known misread guards
 → task-approved QXBY / v0.3.1 reports
@@ -240,7 +240,7 @@ component registry: atomic COMP-001..037 labels
 → current phrase crop
 ```
 
-`COMP-001..037` in the registry are reference-level component knowledge after user review. This means the component label, category, and visual slot semantics may be reused as `QXBY_COMPONENT_ATLAS_REFERENCE`.
+`COMP-001..038` in the registry are reference-level component knowledge after user review. This means the component label, category, and visual slot semantics may be reused as `QXBY_COMPONENT_ATLAS_REFERENCE`.
 
 This does not mean a new phrase reading is final score authority. A reference component match is not a score event, not Dapu IR authority, not sample ingest, not ML training data, not render output, and not a recording plan.
 
@@ -283,6 +283,12 @@ COMP-036 = 掩 / 左手指法
 COMP-037 = 剔 / 右手指法
 ```
 
+Preserve the v0.6 phrase6 addition as user-confirmed component guidance:
+
+```text
+COMP-038 = 双弹 / 右手指法
+```
+
 Reusable construction templates may outrank a generic `unknown_from_crop` fallback, but every reused template remains report-only and `NEEDS_HUMAN_REVIEW`. Template reuse must record the template id or source phrase report and must not be promoted into final phrase score facts.
 
 If a phrase crop is missing or ambiguous, write a missing-input report instead of inventing a candidate reading.
@@ -292,12 +298,13 @@ If a phrase crop is missing or ambiguous, write a missing-input report instead o
 For LXY phrase transcription after P4, do this before looking at the new crop:
 
 1. Load `references/qxby_component_atlas/component_registry.v0.1.json`.
-2. Confirm `COMP-001..037` are present and keep them as component evidence only.
+2. Confirm `COMP-001..038` are present and keep them as component evidence only.
 3. Load `references/qxby_component_atlas/construction_templates.v0.1.json`.
 4. Use template ids to test likely constructions before falling back to `unknown_from_crop`.
 5. Load `tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p4_gold_cases.v0.1.json`.
 6. Load `tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p4_forbidden_outputs.v0.1.json`.
 7. During candidate drafting, check the proposed reading against forbidden-output cases. If it hits a known forbidden pattern, repair the reading or mark the glyph unresolved instead of emitting the known-bad output.
+8. For every visual block, run template coverage to exhaustion. Do not stop after the first matching construction template when unread ink remains in the same block.
 
 If one of these files is absent in a future checkout, say exactly which layer is missing and continue only as a lower-confidence report-only draft. Do not compensate by using jianpu, old OCR, old CSV rows, spacing, page layout, or memory as authority.
 
@@ -311,8 +318,10 @@ component_samples
 → construction_templates
 → regression_goldset / forbidden_outputs
 → phrase_crop
-→ glyph_group segmentation
+→ visual_block segmentation
+→ notation_unit decomposition inside each visual block
 → component matching
+→ construction-template coverage scan
 → visual slot decomposition
 → QXBY / v0.3.1 lookup
 → context inheritance
@@ -322,6 +331,64 @@ component_samples
 ```
 
 Candidate reading is not score fact authority. Candidate reading is not Dapu IR. Human correction improves the draft but still does not automatically create canon authority.
+
+## 8a. Two-Layer Segmentation And Coverage
+
+For LXY P5 and later, use two distinct segmentation layers:
+
+```text
+visual_block_bbox = a continuous ink/layout block in the crop
+notation_unit_bbox = one readable jianzipu notation unit inside a visual block
+```
+
+A `visual_block_bbox` may contain one, two, or more `notation_unit_bbox` entries. Never assume one visual block equals one notation unit.
+
+Required procedure for each visual block:
+
+1. Identify the visual block as a generous bbox that includes all connected or tightly associated ink.
+2. Scan the block left-to-right and top-to-bottom for construction templates.
+3. When a template matches, emit a notation unit and mark only the ink covered by that unit.
+4. Continue scanning the remaining ink in the same visual block. Do not stop just because one template matched.
+5. If remaining ink cannot be matched safely, mark it `unread_ink` / `unknown_from_crop` with bbox and review reason.
+6. Record a `coverage_ledger` for the block:
+
+```yaml
+visual_block_id:
+visual_block_bbox:
+contained_units:
+  - notation_unit_id:
+    notation_unit_bbox:
+    candidate_reading:
+    template_id:
+    covered_components:
+unread_ink:
+stop_reason:
+```
+
+Valid `stop_reason` values include:
+
+```text
+all_ink_covered_by_units
+remaining_ink_marked_unknown_from_crop
+missing_component_evidence
+needs_human_review_for_boundary
+```
+
+Invalid `stop_reason`:
+
+```text
+first_template_matched
+```
+
+If the only reason for stopping is that one template matched, keep scanning. A single P5 visual block may contain sequences such as:
+
+```text
+大指绰上七徽，勾六弦；大指注下七徽，挑七弦；大指绰上七徽，勾六弦；上六四
+下七，名指七六徽，掐起
+剔四弦，散三如一，句号
+```
+
+These must be represented as multiple notation units inside one or more visual blocks, not collapsed into one reading or truncated after the first unit.
 
 ## 9. Component Matching Rules
 
@@ -362,7 +429,7 @@ references/qxby_component_atlas/construction_templates.v0.1.json
 Current high-risk templates include:
 
 - `名指七徽挑六` / `名指七九徽挑六`: upper-left `名指`, right-upper hui number(s), lower/right-hand `COMP-018 挑`, embedded or lower `六` as string.
-- `勾四弦（空上部时可承前）`: `COMP-020 勾` plus embedded/lower/nearby `COMP-011 四` as string number. Do not output `勾？`. Do not hardcode `承前`; inherit only when the upper left-hand / hui slots are blank and a prior context exists.
+- `勾 + 可见弦数`: `COMP-020 勾` plus embedded/lower/nearby `一 / 二 / 三 / 四 / 五 / 六 / 七` as string number. Do not output bare `勾` or `勾？` before checking all old string-number components `COMP-004 / 006 / 007 / 009 / 011 / 015 / 016`. Do not hardcode `承前`; inherit only when the upper left-hand / hui slots are blank and a prior context exists.
 - `散音，挑五弦`: `COMP-027 散音起始` plus `COMP-018 挑` and `COMP-004 五` as lower right-hand/string construction. Treat `散音` as the sound state and `挑五弦` as the sounding action; `句号` remains punctuation.
 - `散三如一`: top `COMP-027 散音起始`, middle `COMP-016 三` as string number, lower `COMP-032 如一声` as two-string/as-one marker; final dot remains `COMP-005 句号`.
 - `剔四弦，散三如一`: `COMP-037 剔` with embedded/lower `COMP-011 四` as string number, followed by the layered `散三如一` construction.
@@ -371,6 +438,7 @@ Current high-risk templates include:
 - `大指注下七徽，抹挑七弦`: v0.5 `COMP-031 抹挑` can replace a single right-hand action in the same `大指 + 注下 + 七徽 + right-hand-action + 七弦` construction.
 - `大指绰上七徽，勾六弦`: `绰` and `注` may form paired upward/downward approach logic. When the construction supports `绰 + 七徽`, read it as `绰上七徽` rather than waiting for a separate free-standing `上` component.
 - `大指七徽，掩三弦`: v0.5 `COMP-036 掩` plus embedded/lower `三` is a string candidate when the construction supports it.
+- `双弹三弦`: v0.6 `COMP-038 双弹` plus nearby `COMP-016 三` as string-number candidate. Do not confuse `双弹` with `COMP-034 双吟` or `COMP-032 如一声`; expansion and simultaneity policy remain `NEEDS_HUMAN_REVIEW`.
 - `急进复`: adjacent timing/position-transition construction using `COMP-030 急` plus `进复`; allow the phrase crop segmentation to merge neighboring visual pieces when the combined construction is more plausible than two independent events.
 - `名指七六徽，掐起`: `名指` holds the target position, `掐起` supplies the special technique; if the hui is supplied by user/theory review such as 三分损益 reasoning, record it as human/theory-assisted evidence. Do not hardcode every future `掐起` as 七六徽.
 
@@ -438,10 +506,11 @@ Do not confuse `COMP-027 散音起始` with separate left-hand or hui components
 Use these draft rules:
 
 ```text
-勾：右手动作，可含内嵌弦数。若邻近/内嵌数字为四且构字关系支持，应读作勾四弦，不要只读作裸勾。
+勾：右手动作，可含内嵌/邻近弦数。必须先扫描可见旧数字构件 `COMP-004 五 / COMP-006 六 / COMP-007 七 / COMP-009 一 / COMP-011 四 / COMP-015 二 / COMP-016 三`；若构字关系支持，应读作勾一/勾二/勾三/勾四/勾五/勾六/勾七，不要只读作裸勾或弦数未定。
 托：右手动作，可含内嵌弦数。
 挑：右手动作，COMP-018 的乙形下承结构必须识别为挑，不得漏读为裸弦数。
 剔：右手动作，可含内嵌弦数；在 P5 `剔四弦，散三如一` 中，四按右手动作内部/邻近数字读作弦数。
+双弹：右手动作，可含邻近弦数；`双弹三弦` 是 phrase6 用户确认模板，但双弹的展开、同时性、以及是否多 sounding unit 仍需人工审阅。
 历：连挑；读作 sequential cross-string action candidate。若用户确认“历五四”，按五弦到四弦生成两个 sounding_unit candidates。
 ```
 
@@ -498,6 +567,23 @@ Always give a readable phrase candidate first:
 ```
 
 Then provide structured tables for glyph_group, component matches, candidate readings, score_event_candidate drafts, and review questions.
+
+For LXY P5 and later, the structured output must include both segmentation layers:
+
+```text
+visual_block_id
+visual_block_bbox
+contained_units
+notation_unit_id
+notation_unit_bbox
+candidate_reading
+template_id
+context_inherited
+unread_ink
+stop_reason
+```
+
+When one `visual_block_bbox` contains multiple notation units, print every contained unit in order. Do not summarize the block as a single candidate reading.
 
 Prefer guqin reading language in the phrase candidate, but mark uncertain terms with `？` or a review note instead of silently normalizing them.
 
@@ -557,6 +643,7 @@ Before final response:
 
 - verify the skill/report files are under allowed paths,
 - for LXY P5 and later, verify the three-layer files were read or explicitly reported missing,
+- for LXY P5 and later, verify every visual block has a coverage ledger and no block stops with `first_template_matched`,
 - validate JSON with `python -m json.tool` or the available bundled Python,
 - run a forbidden-output check against the proposed continuous phrase reading when fixtures are available,
 - run `git diff --check`,
@@ -574,6 +661,10 @@ Watch for:
 - treating the reference component atlas as final phrase score authority,
 - skipping the construction-template layer and re-solving known P1-P5 patterns from scratch,
 - skipping the forbidden-output layer and repeating a known bad reading such as `勾？`, `少息` as `就`, or omitted `挑`,
+- treating one `visual_block_bbox` as exactly one notation unit,
+- stopping after the first construction-template match inside a visual block,
+- failing to account for unread ink after a template match,
+- cutting a bbox that contains two or more jianzipu units but emitting only one candidate reading,
 - treating a reference component match as Dapu IR authority,
 - treating a score_event_candidate as Dapu IR,
 - reading right-upper numbers as strings without slot evidence,

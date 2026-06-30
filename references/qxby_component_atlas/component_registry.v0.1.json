@@ -48,6 +48,13 @@
       "component_range": "COMP-037",
       "status": "USER_CONFIRMED_SINGLE_COMPONENT_IMAGE_GUIDANCE_ONLY__NOT_SAMPLE_INGEST__NOT_ML_TRAINING_DATA",
       "note": "single uploaded component image; binary image is not copied into repo"
+    },
+    {
+      "path": "/Users/chenyulin/Desktop/截屏2026-06-30 19.55.43.png",
+      "sha256": "dc696f06da00e76164c078aefd927560793986a602970aeb244d4218cce03d43",
+      "component_range": "COMP-038",
+      "status": "USER_CONFIRMED_SINGLE_COMPONENT_IMAGE_GUIDANCE_ONLY__NOT_SAMPLE_INGEST__NOT_ML_TRAINING_DATA",
+      "note": "single uploaded component image for right-hand 双弹; binary image is not copied into repo"
     }
   ],
   "approved_report_sources": [
@@ -609,7 +616,8 @@
       "shape_notes": "Used in 勾三 inherited constructions.",
       "slot_semantics": "Embedded right-hand number is string 三 when attached to 勾.",
       "construction_templates": [
-        "TEMPLATE-GOU-3"
+        "TEMPLATE-GOU-3",
+        "TEMPLATE-SHUANGTAN-3"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH01-G004",
@@ -1319,10 +1327,44 @@
         "sample_ingest": false,
         "ml_training_data": false
       }
+    },
+    {
+      "component_id": "COMP-038",
+      "label_zh": "双弹",
+      "category": "右手指法",
+      "role": "right_hand_compound_double_pluck_candidate",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "single_uploaded_component_image_v0.6_addendum",
+      "source_zip_sha256": "dc696f06da00e76164c078aefd927560793986a602970aeb244d4218cce03d43",
+      "source_image_filename": "截屏2026-06-30 19.55.43.png",
+      "source_image_sha256": "dc696f06da00e76164c078aefd927560793986a602970aeb244d4218cce03d43",
+      "visual_description": "right-hand 双弹 component from user-provided component image",
+      "shape_notes": "Added as phrase6 addendum; binary source image remains outside repo.",
+      "slot_semantics": "Right-hand action candidate; nearby/side number may be a string-number candidate when construction supports it. Expansion and exact two-string policy remain human-review only.",
+      "construction_templates": [
+        "TEMPLATE-SHUANGTAN-3"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH06-VB004-NU005"
+      ],
+      "known_human_corrections": [
+        "User provided label: COMP-038 右手指法 双弹."
+      ],
+      "known_confusions": [
+        "Do not confuse 双弹 with COMP-034 双吟 or COMP-032 如一声.",
+        "Do not expand 双弹 into final Dapu IR without human review."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     }
   ],
   "summary": {
-    "components_registered": 37,
+    "components_registered": 38,
     "v0_4_correction_preserved": {
       "COMP-028": "撞",
       "COMP-029": "轮",
@@ -1337,16 +1379,19 @@
       "COMP-036": "掩",
       "COMP-037": "剔"
     },
-    "linked_construction_templates_registered": 42,
+    "linked_construction_templates_registered": 43,
     "three_layer_model": {
-      "layer_1": "component_registry: atomic component labels COMP-001..037",
+      "layer_1": "component_registry: atomic component labels COMP-001..038",
       "layer_2": "construction_templates: reusable P1-P5 confirmed constructions",
       "layer_3": "regression_goldset: P1-P4 confirmed readings and forbidden outputs"
+    },
+    "v0_6_component_additions": {
+      "COMP-038": "双弹"
     }
   },
   "construction_template_registry": {
     "path": "references/qxby_component_atlas/construction_templates.v0.1.json",
-    "template_count": 42,
+    "template_count": 43,
     "relationship": "components may reference template ids, but template definitions live in the construction template layer"
   }
 }

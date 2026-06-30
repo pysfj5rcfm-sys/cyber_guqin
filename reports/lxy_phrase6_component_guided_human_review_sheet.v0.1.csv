@@ -1,0 +1,10 @@
+glyph_group_id,visual_block_id,source_image,approx_bbox,proposed_reading,confidence,needs_review_reason,user_decision,user_correction,notes
+LXY-P01-PH06-VB001-NU001,LXY-P01-PH06-VB001,phrase6_front_19.11.50,"3,0,114,149",勾五,medium,OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_5,,,template_id=None; old_component_rescan=true
+LXY-P01-PH06-VB001-NU002,LXY-P01-PH06-VB001,phrase6_front_19.11.50,"121,0,208,149",勾二,medium_high,OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_2,,,template_id=TEMPLATE-GOU-2; old_component_rescan=true
+LXY-P01-PH06-VB002-NU003,LXY-P01-PH06-VB002,phrase6_front_19.11.50,"269,22,354,149",勾三,high,OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3,,,template_id=TEMPLATE-GOU-3; old_component_rescan=true
+LXY-P01-PH06-VB003-NU004,LXY-P01-PH06-VB003,phrase6_back_19.12.04,"25,1,118,141",勾五六？,low,VISIBLE_GOU_PLUS_5_6_BUT_CONSTRUCTION_POLICY_UNCONFIRMED,,,template_id=None; old_component_rescan=true
+LXY-P01-PH06-VB004-NU005,LXY-P01-PH06-VB004,phrase6_back_19.12.04,"207,1,391,141",双弹三弦,medium_high,DOUBLE_PLUCK_EXPANSION_AND_SIMULTANEITY_POLICY_NEEDS_REVIEW,,,template_id=TEMPLATE-SHUANGTAN-3; old_component_rescan=true
+LXY-P01-PH06-VB005-NU006,LXY-P01-PH06-VB005,phrase6_back_19.12.04,"414,1,500,141",勾五,medium,OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_5,,,template_id=None; old_component_rescan=true
+LXY-P01-PH06-VB005-NU007,LXY-P01-PH06-VB005,phrase6_back_19.12.04,"513,1,597,141",勾三,high,OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3,,,template_id=TEMPLATE-GOU-3; old_component_rescan=true
+LXY-P01-PH06-VB006-NU008,LXY-P01-PH06-VB006,phrase6_back_19.12.04,"681,28,769,126",勾三,high,OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3,,,template_id=TEMPLATE-GOU-3; old_component_rescan=true
+LXY-P01-PH06-VB007-NU009,LXY-P01-PH06-VB007,phrase6_back_19.12.04,"930,1,1048,141",勾五六？，句号,low,VISIBLE_GOU_PLUS_5_6_BUT_CONSTRUCTION_POLICY_UNCONFIRMED,,,template_id=None; old_component_rescan=true

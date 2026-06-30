@@ -1002,11 +1002,33 @@
         "Do not merge final 句号 into sounding unit."
       ],
       "not_dapu_ir_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SHUANGTAN-3",
+      "reading_pattern": "双弹三弦",
+      "component_sequence": [
+        "COMP-038",
+        "COMP-016"
+      ],
+      "slot_semantics": "COMP-038 双弹 right-hand action with nearby 三 read as string number when construction supports it",
+      "sound_policy": "candidate right-hand double-pluck / double-action sounding construction; expansion and simultaneity policy remain needs_review",
+      "context_inheritance_policy": "does not itself establish left-hand/hui; inherits only explicit prior sound-state if needed and reviewable",
+      "example_refs": [
+        "LXY-P01-PH06-VB004-NU005"
+      ],
+      "needs_human_review_when": "double-pluck expansion, simultaneity, or exact string-policy is needed",
+      "template_group": "compound_right_hand_sequence",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "COMP-038 双弹 must not be confused with COMP-034 双吟 or COMP-032 如一声.",
+        "Do not expand 双弹 into final Dapu IR without human review."
+      ],
+      "not_dapu_ir_authority": true
     }
   ],
   "summary": {
     "components_referenced": 37,
-    "construction_templates_registered": 42,
+    "construction_templates_registered": 43,
     "template_groups": [
       "basic_right_hand_string",
       "compound_right_hand_sequence",
@@ -1022,6 +1044,6 @@
     ],
     "must_have_templates": 14,
     "should_have_templates": 7,
-    "supporting_templates": 21
+    "supporting_templates": 22
   }
 }

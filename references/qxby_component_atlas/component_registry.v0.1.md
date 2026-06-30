@@ -1,7 +1,7 @@
 # QXBY Component Registry v0.1
 Task id: `CG-QXBY-COMPONENT-ATLAS-REFERENCE-AND-LXY-P5-VALIDATION-v0.1`
 Status labels: `QXBY_COMPONENT_ATLAS_REFERENCE`, `USER_REVIEWED_COMPONENT_LABELS`, `SOURCE_REFERENCE_KNOWLEDGE`, `NOT_SCORE_EVENT_AUTHORITY`, `NOT_DAPU_IR_AUTHORITY`, `NOT_SAMPLE_INGEST`, `NOT_ML_TRAINING_DATA`.
-This registry is layer 1 of the component-guided transcription stack. It records atomic component labels `COMP-001..037`, categories, visual slot semantics, and links to template ids. It is not final phrase score authority and must not be treated as Dapu IR authority.
+This registry is layer 1 of the component-guided transcription stack. It records atomic component labels `COMP-001..038`, categories, visual slot semantics, and links to template ids. It is not final phrase score authority and must not be treated as Dapu IR authority.
 Layer 2 template definitions now live in `references/qxby_component_atlas/construction_templates.v0.1.json`; layer 3 regression fixtures live under `tests/fixtures/cyber_guqin/component_guided_transcription/`.
 ## Registered Components
 | component_id | label_zh | category | source_zip | reference only |
@@ -79,9 +79,17 @@ Registered mappings:
 
 `COMP-037` is recorded from the user-provided single component image `/Users/chenyulin/Desktop/截屏2026-06-29 22.51.49.png`; the binary image is not copied into the repo.
 
+## v0.6 Additions
+
+Registered mapping:
+
+- `COMP-038 = 双弹 / 右手指法`
+
+`COMP-038` is recorded from the user-provided single component image `/Users/chenyulin/Desktop/截屏2026-06-30 19.55.43.png`; the binary image is not copied into the repo. The user-confirmed construction `双弹三弦` is externalized as `TEMPLATE-SHUANGTAN-3` in the construction-template layer.
+
 ## Linked Construction Templates
 
-Template definitions are externalized in `construction_templates.v0.1.json` with `42` reusable report-only templates. Component records may reference template ids, but the registry itself remains the atomic component layer.
+Template definitions are externalized in `construction_templates.v0.1.json` with `43` reusable report-only templates. Component records may reference template ids, but the registry itself remains the atomic component layer.
 
 Every template has `not_dapu_ir_authority: true` and must remain `NEEDS_HUMAN_REVIEW` when reused in a new phrase crop.
 

@@ -36,6 +36,7 @@ component_registry.v0.1.json
 | --- | --- | --- | --- |
 | `TEMPLATE-LI-5-4` | 历五四 | should_have | 历 is 连挑; when user confirms 历五四, read 五到四, not layout-derived order.; Do not use jianpu or spacing to infer the span. |
 | `TEMPLATE-LUN-7` | 轮七 | supporting | Template reuse remains report-only and NEEDS_HUMAN_REVIEW. |
+| `TEMPLATE-SHUANGTAN-3` | 双弹三弦 | supporting | COMP-038 双弹 must not be confused with COMP-034 双吟 or COMP-032 如一声.; Do not expand 双弹 into final Dapu IR without human review. |
 | `TEMPLATE-BEISUO` | 背锁 | supporting | Template reuse remains report-only and NEEDS_HUMAN_REVIEW. |
 
 ### state_plus_right_hand_string
