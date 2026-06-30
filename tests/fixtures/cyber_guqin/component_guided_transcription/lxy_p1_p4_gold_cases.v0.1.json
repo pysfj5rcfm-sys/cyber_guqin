@@ -1,0 +1,239 @@
+{
+  "task_id": "CG-LXY-P1-P4-COMPONENT-GUIDED-REGRESSION-GOLDSET-v0.1",
+  "fixture_id": "lxy_p1_p4_gold_cases.v0.1",
+  "status_labels": [
+    "LXY_TRANSCRIPTION_DRAFT",
+    "REGRESSION_GOLDSET_FOR_DRAFT_REPLAY",
+    "USER_COMPONENT_LABEL_GUIDED",
+    "REFERENCE_COMPONENT_ATLAS_GUIDED",
+    "NOT_CANON_AUTHORITY",
+    "NOT_REPO_CONTRACT",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NEEDS_HUMAN_REVIEW",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "authority_boundary": {
+    "goldset_role": "regression expectation for draft transcription behavior",
+    "score_event_authority": false,
+    "canon_authority": false,
+    "dapu_ir_authority": false,
+    "notes": "These cases encode user-confirmed P1-P4 draft readings so future runs do not repeat known errors. They do not create final score authority."
+  },
+  "source_reports": [
+    "reports/lxy_first_two_phrases_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase3_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase4_component_guided_candidates.v0.1.json"
+  ],
+  "component_match_cases": [
+    {
+      "case_id": "COMP-MATCH-018-TIAO",
+      "component_id": "COMP-018",
+      "expected_label_zh": "挑",
+      "must_not_read_as": "bare string number",
+      "reason": "挑的乙形下承结构必须识别。"
+    },
+    {
+      "case_id": "COMP-MATCH-027-SANYIN",
+      "component_id": "COMP-027",
+      "expected_label_zh": "散音起始",
+      "must_not_read_as": "大指 or hui-number compound",
+      "reason": "散音起始中部连接，不可误拆。"
+    },
+    {
+      "case_id": "COMP-MATCH-029-LUN",
+      "component_id": "COMP-029",
+      "expected_label_zh": "轮",
+      "must_not_read_as": "撞 or raw_001 fallback",
+      "reason": "保留 v0.4 correction。"
+    },
+    {
+      "case_id": "COMP-MATCH-030-JI",
+      "component_id": "COMP-030",
+      "expected_label_zh": "急",
+      "must_not_read_as": "right-hand action",
+      "reason": "急为节奏/急促 marker，默认非独立发声。"
+    }
+  ],
+  "construction_template_cases": [
+    {
+      "case_id": "TPL-P1-DA-6-2-TUO-7",
+      "template_id": "TEMPLATE-DA-6-2-TUO-7",
+      "expected_reading": "大指六二徽，托七弦",
+      "must_preserve": [
+        "right-upper 六二 -> hui",
+        "embedded 七 near 托 -> string"
+      ],
+      "must_not": [
+        "六二 as strings",
+        "句号 as sounding unit"
+      ]
+    },
+    {
+      "case_id": "TPL-P2-LI-5-4",
+      "template_id": "TEMPLATE-LI-5-4",
+      "expected_reading": "历五四",
+      "must_preserve": [
+        "历=连挑",
+        "五到四 from user-confirmed construction"
+      ],
+      "must_not": [
+        "infer span from jianpu",
+        "infer span from spacing"
+      ]
+    },
+    {
+      "case_id": "TPL-P2-SHAOXI",
+      "template_id": "TEMPLATE-SHAOXI",
+      "expected_reading": "少息",
+      "must_preserve": [
+        "non-sounding timing marker"
+      ],
+      "must_not": [
+        "就",
+        "sounding unit"
+      ]
+    },
+    {
+      "case_id": "TPL-P3-JINFU-5-6",
+      "template_id": "TEMPLATE-JINFU-5-6",
+      "expected_reading": "进五六复",
+      "must_preserve": [
+        "五六 as hui/position target"
+      ],
+      "must_not": [
+        "string span 五六"
+      ]
+    },
+    {
+      "case_id": "TPL-P3-ZHUXIA-TIAO-7",
+      "template_id": "TEMPLATE-ZHUXIA-TIAO-7",
+      "expected_reading": "大指注下七徽，挑七弦",
+      "must_preserve": [
+        "注下 lead-in",
+        "visible 挑",
+        "七 as string in right-hand construction"
+      ],
+      "must_not": [
+        "抹七 copied from neighbor"
+      ]
+    },
+    {
+      "case_id": "TPL-P3-MING-7-9-TIAO-6",
+      "template_id": "TEMPLATE-MING-7-TIAO-6",
+      "expected_reading": "名指七九徽，挑六弦",
+      "must_preserve": [
+        "七九 as hui",
+        "挑六 as right-hand/string"
+      ],
+      "must_not": [
+        "unknown G09",
+        "bare 六"
+      ]
+    },
+    {
+      "case_id": "TPL-P3-SAN-TIAO-5",
+      "template_id": "TEMPLATE-SAN-TIAO-5",
+      "expected_reading": "散音，挑五弦",
+      "must_preserve": [
+        "COMP-027 as 散音起始",
+        "挑五 as lower right-hand/string"
+      ],
+      "must_not": [
+        "散音起始 as 大指/hui",
+        "散音 alone as sounding unit"
+      ]
+    },
+    {
+      "case_id": "TPL-P4-DA-6-2-LUN-7",
+      "template_id": "TEMPLATE-DA-6-2-LUN-7",
+      "expected_reading": "大指六二徽，轮七弦",
+      "must_preserve": [
+        "COMP-029 轮",
+        "七 as string"
+      ],
+      "must_not": [
+        "撞",
+        "raw fallback mapping"
+      ]
+    },
+    {
+      "case_id": "TPL-P4-JI-JINFU",
+      "template_id": "TEMPLATE-JI-JINFU",
+      "expected_reading": "急进复",
+      "must_preserve": [
+        "急 + 进复 combined construction"
+      ],
+      "must_not": [
+        "drop preceding 大指注下七徽，挑七弦 when visible"
+      ]
+    }
+  ],
+  "phrase_integration_cases": [
+    {
+      "case_id": "LXY-P1-CONTINUOUS",
+      "phrase_id": "LXY-P01-PH01",
+      "expected_continuous_reading": "泛起：中指七徽勾一，名指七徽勾二，承前勾三，泛止；大指按六二徽，托七弦。",
+      "must_include": [
+        "泛起",
+        "中指七徽勾一",
+        "名指七徽勾二",
+        "承前勾三",
+        "泛止",
+        "大指按六二徽，托七弦"
+      ],
+      "source_report": "reports/lxy_first_two_phrases_component_guided_candidates.v0.1.json"
+    },
+    {
+      "case_id": "LXY-P2-CONTINUOUS",
+      "phrase_id": "LXY-P01-PH02",
+      "expected_continuous_reading": "承前大指六二徽吟，爪起；名指泛七徽挑六，少息，承前历五四，承前勾三，承前挑四，承前勾三，泛止；大指按六二徽，托七弦。",
+      "must_include": [
+        "承前大指六二徽吟",
+        "爪起",
+        "名指泛七徽挑六",
+        "少息",
+        "承前历五四",
+        "承前挑四",
+        "泛止",
+        "大指按六二徽，托七弦"
+      ],
+      "source_report": "reports/lxy_first_two_phrases_component_guided_candidates.v0.1.json"
+    },
+    {
+      "case_id": "LXY-P3-CONTINUOUS",
+      "phrase_id": "LXY-P01-PH03",
+      "expected_continuous_reading": "第三句候选：承前大指六二徽背锁；进五六复；大指注下七徽，抹七弦；吟；上六二；大指注下七徽，挑七弦；名指七六徽，掐起七弦；名指七九徽，挑六弦；散音，挑五弦，句号。",
+      "must_include": [
+        "承前大指六二徽背锁",
+        "进五六复",
+        "大指注下七徽，挑七弦",
+        "名指七六徽，掐起七弦",
+        "名指七九徽，挑六弦",
+        "散音，挑五弦"
+      ],
+      "source_report": "reports/lxy_phrase3_component_guided_candidates.v0.1.json"
+    },
+    {
+      "case_id": "LXY-P4-CONTINUOUS",
+      "phrase_id": "LXY-P01-PH04",
+      "expected_continuous_reading": "第四句候选：大指六二徽，轮七弦；撞；大指注下七徽，抹七弦；吟；上六二；撞；大指注下七徽，挑七弦；急进复；名指七六徽，掐起七弦；名指七九徽，挑六弦；散音，挑五弦，句号。",
+      "must_include": [
+        "大指六二徽，轮七弦",
+        "撞",
+        "上六二",
+        "大指注下七徽，挑七弦",
+        "急进复",
+        "名指七九徽，挑六弦",
+        "散音，挑五弦"
+      ],
+      "source_report": "reports/lxy_phrase4_component_guided_candidates.v0.1.json"
+    }
+  ],
+  "summary": {
+    "phrase_integration_cases": 4,
+    "construction_template_cases": 9,
+    "component_match_cases": 4
+  }
+}

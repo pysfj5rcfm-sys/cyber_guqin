@@ -35,6 +35,19 @@
       "sha256": "569a74b0d644be8c4bef0a90c44dec19fed9f9073de2c0d8524afb76f4e1cc31",
       "component_range": "COMP-028..030",
       "correction_preserved": "COMP-028=撞, COMP-029=轮, COMP-030=急"
+    },
+    {
+      "path": "/Users/chenyulin/Downloads/basic_components_named_v0.5.zip",
+      "sha256": "e6ce2ffbbdfffe6693492aaa02a75bc719a24034712ad7fc11a46ccc16b28740",
+      "component_range": "COMP-031..036",
+      "status": "USER_CONFIRMED_LABEL_GUIDANCE_ONLY__NOT_SAMPLE_INGEST__NOT_ML_TRAINING_DATA"
+    },
+    {
+      "path": "/Users/chenyulin/Desktop/截屏2026-06-29 22.51.49.png",
+      "sha256": "9eb03631a77bc63b5bde6ee59f340fd314636791371c073c5c777ac077405666",
+      "component_range": "COMP-037",
+      "status": "USER_CONFIRMED_SINGLE_COMPONENT_IMAGE_GUIDANCE_ONLY__NOT_SAMPLE_INGEST__NOT_ML_TRAINING_DATA",
+      "note": "single uploaded component image; binary image is not copied into repo"
     }
   ],
   "approved_report_sources": [
@@ -77,11 +90,25 @@
       "visual_description": "右手单弹托字组件。",
       "shape_notes": "Used in LXY reports as the right-hand action in 托七.",
       "slot_semantics": "Right-hand action; embedded or nearby lower number is read as string number when construction supports it.",
-      "construction_templates": ["TEMPLATE-TUO-7"],
-      "example_phrase_refs": ["LXY-P01-PH01-G006", "LXY-P01-PH02-G010"],
+      "construction_templates": [
+        "TEMPLATE-TUO-7",
+        "TEMPLATE-DA-6-2-TUO-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G006",
+        "LXY-P01-PH02-G010"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not infer string number from jianpu or old CSV rows."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not infer string number from jianpu or old CSV rows."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-002",
@@ -96,11 +123,25 @@
       "visual_description": "泛音状态进入标记。",
       "shape_notes": "Appears as a state boundary rather than an independent pitch event.",
       "slot_semantics": "State boundary; scope remains reviewable.",
-      "construction_templates": ["TEMPLATE-FAN-QI"],
-      "example_phrase_refs": ["LXY-P01-PH01-G001"],
-      "known_human_corrections": ["Treat as enter harmonic state boundary candidate."],
-      "known_confusions": ["Do not create a sounding unit from 泛起 by default."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-FAN-QI"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G001"
+      ],
+      "known_human_corrections": [
+        "Treat as enter harmonic state boundary candidate."
+      ],
+      "known_confusions": [
+        "Do not create a sounding unit from 泛起 by default."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-003",
@@ -115,11 +156,23 @@
       "visual_description": "少息 timing / breath marker.",
       "shape_notes": "Used in phrase reports as a non-sounding marker.",
       "slot_semantics": "Timing marker; duration and scope require human review.",
-      "construction_templates": ["TEMPLATE-SHAOXI"],
-      "example_phrase_refs": ["LXY-P01-PH02-G004"],
+      "construction_templates": [
+        "TEMPLATE-SHAOXI"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G004"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not turn 少息 into a sounding event."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not turn 少息 into a sounding event."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-004",
@@ -134,11 +187,29 @@
       "visual_description": "Number five component.",
       "shape_notes": "Read by visual slot, not by raw number alone.",
       "slot_semantics": "Embedded/lower right-hand number is string 五; near left-hand position motion may be hui target.",
-      "construction_templates": ["TEMPLATE-LI-5-4", "TEMPLATE-SAN-TIAO-5", "TEMPLATE-JINFU-5-6"],
-      "example_phrase_refs": ["LXY-P01-PH02-G005", "LXY-P01-PH03-G002", "LXY-P01-PH03-G010"],
-      "known_human_corrections": ["Slot-aware number semantics required."],
-      "known_confusions": ["Do not decide string vs hui from glyph shape alone."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-LI-5-4",
+        "TEMPLATE-SAN-TIAO-5",
+        "TEMPLATE-JINFU-5-6"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G005",
+        "LXY-P01-PH03-G002",
+        "LXY-P01-PH03-G010"
+      ],
+      "known_human_corrections": [
+        "Slot-aware number semantics required."
+      ],
+      "known_confusions": [
+        "Do not decide string vs hui from glyph shape alone."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-005",
@@ -153,11 +224,25 @@
       "visual_description": "Phrase punctuation marker.",
       "shape_notes": "Used at phrase-final constructions.",
       "slot_semantics": "Punctuation / phrase end marker, non-sounding by default.",
-      "construction_templates": ["TEMPLATE-JUHAO"],
-      "example_phrase_refs": ["LXY-P01-PH01-G006", "LXY-P01-PH03-G010", "LXY-P01-PH04-G011"],
+      "construction_templates": [
+        "TEMPLATE-JUHAO"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G006",
+        "LXY-P01-PH03-G010",
+        "LXY-P01-PH04-G011"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not treat punctuation as a pluck or note."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not treat punctuation as a pluck or note."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-006",
@@ -172,11 +257,31 @@
       "visual_description": "Number six component.",
       "shape_notes": "Often participates in 六二, 七六, or 挑六 constructions.",
       "slot_semantics": "Right-upper cluster may be hui; embedded/lower action number may be string.",
-      "construction_templates": ["TEMPLATE-TIAO-6", "TEMPLATE-JINFU-5-6", "TEMPLATE-SHANG-6-2", "TEMPLATE-LH-7-6-QIAQI-7"],
-      "example_phrase_refs": ["LXY-P01-PH02-G003", "LXY-P01-PH03-G002", "LXY-P01-PH04-G005"],
-      "known_human_corrections": ["P4 corrected 上六三 to 上六二."],
-      "known_confusions": ["Do not confuse hui 六二 with string 六."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-TIAO-6",
+        "TEMPLATE-JINFU-5-6",
+        "TEMPLATE-SHANG-6-2",
+        "TEMPLATE-LH-7-6-QIAQI-7",
+        "TEMPLATE-SHANG-6-4"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G003",
+        "LXY-P01-PH03-G002",
+        "LXY-P01-PH04-G005"
+      ],
+      "known_human_corrections": [
+        "P4 corrected 上六三 to 上六二."
+      ],
+      "known_confusions": [
+        "Do not confuse hui 六二 with string 六."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-007",
@@ -191,11 +296,32 @@
       "visual_description": "Number seven component.",
       "shape_notes": "Appears as 七徽 or 七弦 depending on slot.",
       "slot_semantics": "Right-upper number is hui candidate; embedded/lower right-hand number is string candidate.",
-      "construction_templates": ["TEMPLATE-TUO-7", "TEMPLATE-LUN-7", "TEMPLATE-ZHUXIA-MO-7", "TEMPLATE-ZHUXIA-TIAO-7"],
-      "example_phrase_refs": ["LXY-P01-PH01-G002", "LXY-P01-PH03-G004", "LXY-P01-PH04-G001"],
-      "known_human_corrections": ["Slot-aware semantics: right-upper 七 -> 七徽; embedded 七 -> 七弦."],
-      "known_confusions": ["Do not flatten 七 to a single semantic role."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-TUO-7",
+        "TEMPLATE-LUN-7",
+        "TEMPLATE-ZHUXIA-MO-7",
+        "TEMPLATE-ZHUXIA-TIAO-7",
+        "TEMPLATE-XIA-7",
+        "TEMPLATE-DA-6-2-TUO-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G002",
+        "LXY-P01-PH03-G004",
+        "LXY-P01-PH04-G001"
+      ],
+      "known_human_corrections": [
+        "Slot-aware semantics: right-upper 七 -> 七徽; embedded 七 -> 七弦."
+      ],
+      "known_confusions": [
+        "Do not flatten 七 to a single semantic role."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-008",
@@ -210,11 +336,26 @@
       "visual_description": "Left-hand 名指 component.",
       "shape_notes": "Often appears in upper-left or left-hand slot.",
       "slot_semantics": "Left-hand finger; attached hui must be read from visible number slot or human review.",
-      "construction_templates": ["TEMPLATE-MING-7-TIAO-6", "TEMPLATE-LH-7-6-QIAQI-7"],
-      "example_phrase_refs": ["LXY-P01-PH02-G003", "LXY-P01-PH03-G008", "LXY-P01-PH04-G010"],
+      "construction_templates": [
+        "TEMPLATE-MING-7-TIAO-6",
+        "TEMPLATE-LH-7-6-QIAQI-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G003",
+        "LXY-P01-PH03-G008",
+        "LXY-P01-PH04-G010"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not inherit 名指 silently unless context_inherited is marked."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not inherit 名指 silently unless context_inherited is marked."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-009",
@@ -229,11 +370,23 @@
       "visual_description": "Number one component.",
       "shape_notes": "Used in 勾一 template.",
       "slot_semantics": "Embedded right-hand number is string 一; other slots require review.",
-      "construction_templates": ["TEMPLATE-GOU-1"],
-      "example_phrase_refs": ["LXY-P01-PH01-G002"],
+      "construction_templates": [
+        "TEMPLATE-GOU-1"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G002"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not infer pitch from number."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not infer pitch from number."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-010",
@@ -248,11 +401,27 @@
       "visual_description": "Left-hand 吟 ornament / motion component.",
       "shape_notes": "Usually attaches to preceding or host pressed position.",
       "slot_semantics": "Ornament / left-hand motion; non-independent sounding by default.",
-      "construction_templates": ["TEMPLATE-YIN"],
-      "example_phrase_refs": ["LXY-P01-PH02-G001", "LXY-P01-PH03-G005", "LXY-P01-PH04-G004"],
-      "known_human_corrections": ["Attachment to preceding position remains reviewable."],
-      "known_confusions": ["Do not confuse standalone 吟 with 上+number construction."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-YIN"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G001",
+        "LXY-P01-PH03-G005",
+        "LXY-P01-PH04-G004"
+      ],
+      "known_human_corrections": [
+        "Attachment to preceding position remains reviewable."
+      ],
+      "known_confusions": [
+        "Do not confuse standalone 吟 with 上+number construction."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-011",
@@ -265,13 +434,31 @@
       "source_image_filename": "COMP_011_STRING_4.png",
       "source_image_sha256": "8eff474f87d86f684de6e5b18f5802acec22100c6717813508f6eec1c5031e7c",
       "visual_description": "Number four component.",
-      "shape_notes": "Used in 历五四 and 挑四.",
+      "shape_notes": "Used in 历五四 and 挑四. Also used in 勾四 when attached to 勾.",
       "slot_semantics": "Embedded/lower action number is string 四; other positions need slot review.",
-      "construction_templates": ["TEMPLATE-LI-5-4", "TEMPLATE-TIAO-4"],
-      "example_phrase_refs": ["LXY-P01-PH02-G005", "LXY-P01-PH02-G007"],
-      "known_human_corrections": ["User correction: 挑四弦, not bare 四弦."],
-      "known_confusions": ["Do not treat bare number as event without right-hand action."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-LI-5-4",
+        "TEMPLATE-TIAO-4",
+        "TEMPLATE-GOU-4",
+        "TEMPLATE-SHANG-6-4"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G005",
+        "LXY-P01-PH02-G007"
+      ],
+      "known_human_corrections": [
+        "User correction: 挑四弦, not bare 四弦."
+      ],
+      "known_confusions": [
+        "Do not treat bare number as event without right-hand action."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-012",
@@ -286,11 +473,28 @@
       "visual_description": "Left-hand 大指 component.",
       "shape_notes": "Appears in 大指六二徽, 大指注下七徽, and inherited contexts.",
       "slot_semantics": "Left-hand finger; hui and right-hand action must come from visible construction or review.",
-      "construction_templates": ["TEMPLATE-DA-6-2-LUN-7", "TEMPLATE-ZHUXIA-MO-7", "TEMPLATE-ZHUXIA-TIAO-7"],
-      "example_phrase_refs": ["LXY-P01-PH01-G006", "LXY-P01-PH03-G004", "LXY-P01-PH04-G001"],
+      "construction_templates": [
+        "TEMPLATE-DA-6-2-LUN-7",
+        "TEMPLATE-ZHUXIA-MO-7",
+        "TEMPLATE-ZHUXIA-TIAO-7",
+        "TEMPLATE-DA-6-2-TUO-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G006",
+        "LXY-P01-PH03-G004",
+        "LXY-P01-PH04-G001"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not use inherited 大指 without context_inherited marker."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not use inherited 大指 without context_inherited marker."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-013",
@@ -305,11 +509,21 @@
       "visual_description": "Left-hand 中指 component.",
       "shape_notes": "Used in phrase 1 first sounding construction.",
       "slot_semantics": "Left-hand finger; associated hui from right-upper number.",
-      "construction_templates": ["TEMPLATE-GOU-1"],
-      "example_phrase_refs": ["LXY-P01-PH01-G002"],
+      "construction_templates": [
+        "TEMPLATE-GOU-1"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G002"
+      ],
       "known_human_corrections": [],
       "known_confusions": [],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-014",
@@ -324,11 +538,25 @@
       "visual_description": "Right-hand 历 component.",
       "shape_notes": "User-confirmed as 连挑 over visible string numbers.",
       "slot_semantics": "Right-hand sequential action; string span must be visible or reviewed.",
-      "construction_templates": ["TEMPLATE-LI-5-4"],
-      "example_phrase_refs": ["LXY-P01-PH02-G005"],
-      "known_human_corrections": ["历=连挑; 历五四 reads five-string to four-string sequence candidate."],
-      "known_confusions": ["Do not infer span from jianpu or spacing."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-LI-5-4"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G005"
+      ],
+      "known_human_corrections": [
+        "历=连挑; 历五四 reads five-string to four-string sequence candidate."
+      ],
+      "known_confusions": [
+        "Do not infer span from jianpu or spacing."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-015",
@@ -343,11 +571,29 @@
       "visual_description": "Number two component.",
       "shape_notes": "Often part of 六二 hui cluster or 勾二.",
       "slot_semantics": "Slot-aware number; 六二 in right-upper hui slot is hui candidate.",
-      "construction_templates": ["TEMPLATE-GOU-2", "TEMPLATE-SHANG-6-2", "TEMPLATE-DA-6-2-LUN-7"],
-      "example_phrase_refs": ["LXY-P01-PH01-G003", "LXY-P01-PH03-G006", "LXY-P01-PH04-G005"],
-      "known_human_corrections": ["P4 上六二 correction preserved."],
-      "known_confusions": ["Do not read 六二 as string six plus string two when in hui slot."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-GOU-2",
+        "TEMPLATE-SHANG-6-2",
+        "TEMPLATE-DA-6-2-LUN-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G003",
+        "LXY-P01-PH03-G006",
+        "LXY-P01-PH04-G005"
+      ],
+      "known_human_corrections": [
+        "P4 上六二 correction preserved."
+      ],
+      "known_confusions": [
+        "Do not read 六二 as string six plus string two when in hui slot."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-016",
@@ -362,11 +608,25 @@
       "visual_description": "Number three component.",
       "shape_notes": "Used in 勾三 inherited constructions.",
       "slot_semantics": "Embedded right-hand number is string 三 when attached to 勾.",
-      "construction_templates": ["TEMPLATE-GOU-3"],
-      "example_phrase_refs": ["LXY-P01-PH01-G004", "LXY-P01-PH02-G006", "LXY-P01-PH02-G008"],
+      "construction_templates": [
+        "TEMPLATE-GOU-3"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G004",
+        "LXY-P01-PH02-G006",
+        "LXY-P01-PH02-G008"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not use jianpu to infer string 三."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not use jianpu to infer string 三."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-017",
@@ -381,11 +641,26 @@
       "visual_description": "泛音状态退出标记。",
       "shape_notes": "Closes harmonic context in phrase reports.",
       "slot_semantics": "State boundary; non-sounding by default.",
-      "construction_templates": ["TEMPLATE-FAN-ZHI"],
-      "example_phrase_refs": ["LXY-P01-PH01-G005", "LXY-P01-PH02-G009"],
-      "known_human_corrections": ["Treat as exit harmonic state boundary candidate."],
-      "known_confusions": ["Do not create a note from 泛止 alone."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-FAN-ZHI"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G005",
+        "LXY-P01-PH02-G009"
+      ],
+      "known_human_corrections": [
+        "Treat as exit harmonic state boundary candidate."
+      ],
+      "known_confusions": [
+        "Do not create a note from 泛止 alone."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-018",
@@ -400,11 +675,30 @@
       "visual_description": "Right-hand 挑 component with lower support shape.",
       "shape_notes": "乙形下承结构 must be recognized as 挑.",
       "slot_semantics": "Right-hand action; embedded/lower number supplies string candidate.",
-      "construction_templates": ["TEMPLATE-TIAO-6", "TEMPLATE-TIAO-4", "TEMPLATE-ZHUXIA-TIAO-7", "TEMPLATE-SAN-TIAO-5"],
-      "example_phrase_refs": ["LXY-P01-PH02-G003", "LXY-P01-PH03-G007", "LXY-P01-PH04-G011"],
-      "known_human_corrections": ["Do not read 挑六/挑四 as bare string numbers."],
-      "known_confusions": ["Do not copy 抹 into repeated 注下 template when visible action is 挑."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-TIAO-6",
+        "TEMPLATE-TIAO-4",
+        "TEMPLATE-ZHUXIA-TIAO-7",
+        "TEMPLATE-SAN-TIAO-5"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G003",
+        "LXY-P01-PH03-G007",
+        "LXY-P01-PH04-G011"
+      ],
+      "known_human_corrections": [
+        "Do not read 挑六/挑四 as bare string numbers."
+      ],
+      "known_confusions": [
+        "Do not copy 抹 into repeated 注下 template when visible action is 挑."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-019",
@@ -419,11 +713,25 @@
       "visual_description": "Special technique 爪起 component.",
       "shape_notes": "Preferred term 爪起; QXBY review keeps 抓起 only as mistaken or alias form.",
       "slot_semantics": "Special technique; sounding and attachment policy require human review.",
-      "construction_templates": ["TEMPLATE-ZHAOQI"],
-      "example_phrase_refs": ["LXY-P01-PH02-G002"],
-      "known_human_corrections": ["D17 preferred term 爪起."],
-      "known_confusions": ["Do not promote to independent sounding event without review."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-ZHAOQI"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH02-G002"
+      ],
+      "known_human_corrections": [
+        "D17 preferred term 爪起."
+      ],
+      "known_confusions": [
+        "Do not promote to independent sounding event without review."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-020",
@@ -436,13 +744,30 @@
       "source_image_filename": "COMP_020_RH_GOU.png",
       "source_image_sha256": "1cc7d6a883b54784f19eee0465284d8ab2821448c5cc52951d50ff683ba71718",
       "visual_description": "Right-hand 勾 component.",
-      "shape_notes": "Used with embedded string numbers 一/二/三.",
+      "shape_notes": "Used with embedded string numbers 一/二/三. User correction: combine with 四 as 勾四 when construction supports it.",
       "slot_semantics": "Right-hand action; embedded number is string candidate.",
-      "construction_templates": ["TEMPLATE-GOU-1", "TEMPLATE-GOU-2", "TEMPLATE-GOU-3"],
-      "example_phrase_refs": ["LXY-P01-PH01-G002", "LXY-P01-PH01-G003", "LXY-P01-PH02-G006"],
+      "construction_templates": [
+        "TEMPLATE-GOU-1",
+        "TEMPLATE-GOU-2",
+        "TEMPLATE-GOU-3",
+        "TEMPLATE-GOU-4"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH01-G002",
+        "LXY-P01-PH01-G003",
+        "LXY-P01-PH02-G006"
+      ],
       "known_human_corrections": [],
-      "known_confusions": ["Do not infer left-hand/hui context without marking inheritance."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "known_confusions": [
+        "Do not infer left-hand/hui context without marking inheritance."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-021",
@@ -457,11 +782,25 @@
       "visual_description": "Right-hand compound 背锁 component.",
       "shape_notes": "QXBY D11 sequence candidate: 剔-抹-挑.",
       "slot_semantics": "Compound right-hand action; string span and expansion remain reviewable.",
-      "construction_templates": ["TEMPLATE-BEISUO"],
-      "example_phrase_refs": ["LXY-P01-PH03-G001"],
-      "known_human_corrections": ["D11 背锁=[剔,抹,挑] as draft decision."],
-      "known_confusions": ["Do not confuse with 锁/短锁 sequence."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-BEISUO"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH03-G001"
+      ],
+      "known_human_corrections": [
+        "D11 背锁=[剔,抹,挑] as draft decision."
+      ],
+      "known_confusions": [
+        "Do not confuse with 锁/短锁 sequence."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-022",
@@ -476,11 +815,26 @@
       "visual_description": "Special technique 掐起 component.",
       "shape_notes": "Alias/normalization with 搯起 requires review.",
       "slot_semantics": "Special technique; may carry sounding candidate only after review.",
-      "construction_templates": ["TEMPLATE-LH-7-6-QIAQI-7"],
-      "example_phrase_refs": ["LXY-P01-PH03-G008", "LXY-P01-PH04-G009"],
-      "known_human_corrections": ["P4 correction adds 七弦 to 掐起; D16 source-confirmed but not canonized."],
-      "known_confusions": ["Do not treat theory-assisted hui as crop-only evidence."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-LH-7-6-QIAQI-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH03-G008",
+        "LXY-P01-PH04-G009"
+      ],
+      "known_human_corrections": [
+        "P4 correction adds 七弦 to 掐起; D16 source-confirmed but not canonized."
+      ],
+      "known_confusions": [
+        "Do not treat theory-assisted hui as crop-only evidence."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-023",
@@ -495,11 +849,25 @@
       "visual_description": "Context marker 就.",
       "shape_notes": "User correction: 就=承前.",
       "slot_semantics": "Context inheritance marker; normally omitted from continuous spoken phrase line.",
-      "construction_templates": ["TEMPLATE-JIU-CONTEXT"],
-      "example_phrase_refs": ["LXY-P01-PH03-G003"],
-      "known_human_corrections": ["就=承前; non-sounding context marker."],
-      "known_confusions": ["Do not read 就 as a separate sounding action."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-JIU-CONTEXT"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH03-G003"
+      ],
+      "known_human_corrections": [
+        "就=承前; non-sounding context marker."
+      ],
+      "known_confusions": [
+        "Do not read 就 as a separate sounding action."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-024",
@@ -514,11 +882,27 @@
       "visual_description": "Left-hand position transition 进复.",
       "shape_notes": "May merge with nearby numbers or timing marker 急.",
       "slot_semantics": "Position transition; nearby numbers can be hui targets when construction supports it.",
-      "construction_templates": ["TEMPLATE-JINFU-5-6", "TEMPLATE-JI-JINFU"],
-      "example_phrase_refs": ["LXY-P01-PH03-G002", "LXY-P01-PH04-G008"],
-      "known_human_corrections": ["D13 source note; still needs structured update."],
-      "known_confusions": ["Do not generate independent sounding unit by default."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-JINFU-5-6",
+        "TEMPLATE-JI-JINFU"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH03-G002",
+        "LXY-P01-PH04-G008"
+      ],
+      "known_human_corrections": [
+        "D13 source note; still needs structured update."
+      ],
+      "known_confusions": [
+        "Do not generate independent sounding unit by default."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-025",
@@ -533,11 +917,28 @@
       "visual_description": "Left-hand 注 / 注下 component.",
       "shape_notes": "Pre-attack approach motion, not direct pressing without lead-in.",
       "slot_semantics": "Attach to host pluck; target hui and right-hand action must be read separately.",
-      "construction_templates": ["TEMPLATE-ZHUXIA-MO-7", "TEMPLATE-ZHUXIA-TIAO-7"],
-      "example_phrase_refs": ["LXY-P01-PH03-G004", "LXY-P01-PH03-G007", "LXY-P01-PH04-G007"],
-      "known_human_corrections": ["Repeated 注下 templates must be separated by visible right-hand action 抹 vs 挑."],
-      "known_confusions": ["Do not flatten 注下 into direct pressing; do not copy neighboring action."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-ZHUXIA-MO-7",
+        "TEMPLATE-ZHUXIA-TIAO-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH03-G004",
+        "LXY-P01-PH03-G007",
+        "LXY-P01-PH04-G007"
+      ],
+      "known_human_corrections": [
+        "Repeated 注下 templates must be separated by visible right-hand action 抹 vs 挑."
+      ],
+      "known_confusions": [
+        "Do not flatten 注下 into direct pressing; do not copy neighboring action."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-026",
@@ -552,11 +953,27 @@
       "visual_description": "Left-hand 上 transition component.",
       "shape_notes": "Often combines with numeric hui target such as 上六二.",
       "slot_semantics": "Position transition; following/nearby number is hui target when supported.",
-      "construction_templates": ["TEMPLATE-SHANG-6-2"],
-      "example_phrase_refs": ["LXY-P01-PH03-G006", "LXY-P01-PH04-G005"],
-      "known_human_corrections": ["P4 corrected 上六三 to 上六二."],
-      "known_confusions": ["Do not confuse compact 吟 with 上+number."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-SHANG-6-2",
+        "TEMPLATE-SHANG-6-4"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH03-G006",
+        "LXY-P01-PH04-G005"
+      ],
+      "known_human_corrections": [
+        "P4 corrected 上六三 to 上六二."
+      ],
+      "known_confusions": [
+        "Do not confuse compact 吟 with 上+number."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-027",
@@ -571,11 +988,26 @@
       "visual_description": "Open-string state marker with connected middle.",
       "shape_notes": "Grass-head-like connected component distinguishes it from left-hand+hui constructions.",
       "slot_semantics": "Sound-state marker; needs visible right-hand action for sounding candidate.",
-      "construction_templates": ["TEMPLATE-SAN-TIAO-5"],
-      "example_phrase_refs": ["LXY-P01-PH03-G010", "LXY-P01-PH04-G011"],
-      "known_human_corrections": ["散音，挑五弦 phrase-tail template reused from P3/P4."],
-      "known_confusions": ["Do not confuse connected 散音起始 with separate 大指 + hui-number construction."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-SAN-TIAO-5"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH03-G010",
+        "LXY-P01-PH04-G011"
+      ],
+      "known_human_corrections": [
+        "散音，挑五弦 phrase-tail template reused from P3/P4."
+      ],
+      "known_confusions": [
+        "Do not confuse connected 散音起始 with separate 大指 + hui-number construction."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-028",
@@ -590,11 +1022,26 @@
       "visual_description": "Left-hand 撞 component.",
       "shape_notes": "v0.4 corrected mapping; not raw_001=轮.",
       "slot_semantics": "Left-hand position / virtual attack candidate; host attachment requires review.",
-      "construction_templates": ["TEMPLATE-ZHUANG"],
-      "example_phrase_refs": ["LXY-P01-PH04-G002", "LXY-P01-PH04-G006"],
-      "known_human_corrections": ["v0.4 correction: COMP-028=撞 / 左手取音."],
-      "known_confusions": ["Reject earlier wrong raw_003=撞 or raw_001=轮 fallback mappings."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-ZHUANG"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH04-G002",
+        "LXY-P01-PH04-G006"
+      ],
+      "known_human_corrections": [
+        "v0.4 correction: COMP-028=撞 / 左手取音."
+      ],
+      "known_confusions": [
+        "Reject earlier wrong raw_003=撞 or raw_001=轮 fallback mappings."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-029",
@@ -609,11 +1056,26 @@
       "visual_description": "Right-hand compound 轮 component.",
       "shape_notes": "v0.4 corrected mapping; QXBY/v0.3.1 draft sequence candidate 摘-剔-挑.",
       "slot_semantics": "Compound right-hand action; string target and expansion remain reviewable.",
-      "construction_templates": ["TEMPLATE-LUN-7", "TEMPLATE-DA-6-2-LUN-7"],
-      "example_phrase_refs": ["LXY-P01-PH04-G001"],
-      "known_human_corrections": ["v0.4 correction: COMP-029=轮 / 右手指法; D11 draft sequence 轮=[摘,剔,挑]."],
-      "known_confusions": ["Reject earlier wrong raw_001=轮 fallback mapping."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-LUN-7",
+        "TEMPLATE-DA-6-2-LUN-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH04-G001"
+      ],
+      "known_human_corrections": [
+        "v0.4 correction: COMP-029=轮 / 右手指法; D11 draft sequence 轮=[摘,剔,挑]."
+      ],
+      "known_confusions": [
+        "Reject earlier wrong raw_001=轮 fallback mapping."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     },
     {
       "component_id": "COMP-030",
@@ -628,48 +1090,263 @@
       "visual_description": "Timing / urgency marker 急.",
       "shape_notes": "v0.4 corrected mapping.",
       "slot_semantics": "Timing marker; non-sounding by default, often modifies 进复.",
-      "construction_templates": ["TEMPLATE-JI-JINFU"],
-      "example_phrase_refs": ["LXY-P01-PH04-G008"],
-      "known_human_corrections": ["v0.4 correction: COMP-030=急 / 节奏谱字."],
-      "known_confusions": ["Do not create a standalone sounding event from 急."],
-      "authority_status": {"component_reference": true, "score_event_authority": false, "dapu_ir_authority": false, "sample_ingest": false, "ml_training_data": false}
+      "construction_templates": [
+        "TEMPLATE-JI-JINFU"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH04-G008"
+      ],
+      "known_human_corrections": [
+        "v0.4 correction: COMP-030=急 / 节奏谱字."
+      ],
+      "known_confusions": [
+        "Do not create a standalone sounding event from 急."
+      ],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
+    },
+    {
+      "component_id": "COMP-031",
+      "label_zh": "抹挑",
+      "category": "右手指法",
+      "role": "right_hand_compound_action",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "basic_components_named_v0.5.zip",
+      "source_zip_sha256": "e6ce2ffbbdfffe6693492aaa02a75bc719a24034712ad7fc11a46ccc16b28740",
+      "source_image_filename": "COMP_031_RH_MOTIAO.png",
+      "source_image_sha256": "dfa5c28b92bbed4c4735d041ead70cad35f51716dbea5c25b3015a2c52d4930c",
+      "visual_description": "right-hand compound fingering 抹挑",
+      "shape_notes": "Used in LXY P5 as 大指注下七徽，抹挑七弦.",
+      "slot_semantics": "Right-hand compound action; embedded/lower number is string when construction supports it.",
+      "construction_templates": [
+        "TEMPLATE-MOTIAO-7",
+        "TEMPLATE-ZHUXIA-MOTIAO-7"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH05-G005"
+      ],
+      "known_human_corrections": [],
+      "known_confusions": [],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
+    },
+    {
+      "component_id": "COMP-032",
+      "label_zh": "如一声",
+      "category": "两弦双弹",
+      "role": "two_string_as_one_sound_marker",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "basic_components_named_v0.5.zip",
+      "source_zip_sha256": "e6ce2ffbbdfffe6693492aaa02a75bc719a24034712ad7fc11a46ccc16b28740",
+      "source_image_filename": "COMP_032_DOUBLE_RUSHENG.png",
+      "source_image_sha256": "d14468be60b7711274393185e1183945ed14686f5d585c9103c3d4760e288f43",
+      "visual_description": "two-string simultaneous/as-one-sound marker",
+      "shape_notes": "Used in layered final construction 散三如一.",
+      "slot_semantics": "Two-string/as-one marker; do not expand into Dapu IR at transcription stage.",
+      "construction_templates": [
+        "TEMPLATE-RUYISHENG",
+        "TEMPLATE-SAN-3-RUYI"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH05-G016"
+      ],
+      "known_human_corrections": [],
+      "known_confusions": [],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
+    },
+    {
+      "component_id": "COMP-033",
+      "label_zh": "绰",
+      "category": "左手取音",
+      "role": "left_hand_upward_approach_motion",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "basic_components_named_v0.5.zip",
+      "source_zip_sha256": "e6ce2ffbbdfffe6693492aaa02a75bc719a24034712ad7fc11a46ccc16b28740",
+      "source_image_filename": "COMP_033_LH_CHUO.png",
+      "source_image_sha256": "ac278112cdc72681a94bf56f31b52ca64484f75d07b4a5bb655343909029b116",
+      "visual_description": "left-hand pre-attack/approach motion 绰",
+      "shape_notes": "绰与注相对，可读作绰上 when paired with 上 target.",
+      "slot_semantics": "Left-hand approach motion; host pluck and target hui must be explicit or inherited.",
+      "construction_templates": [
+        "TEMPLATE-DA-CHUOSHANG-7-GOU-6",
+        "TEMPLATE-CHUO"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH05-G001",
+        "LXY-P01-PH05-G003"
+      ],
+      "known_human_corrections": [],
+      "known_confusions": [],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
+    },
+    {
+      "component_id": "COMP-034",
+      "label_zh": "双吟",
+      "category": "左手取音",
+      "role": "left_hand_double_yin_ornament",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "basic_components_named_v0.5.zip",
+      "source_zip_sha256": "e6ce2ffbbdfffe6693492aaa02a75bc719a24034712ad7fc11a46ccc16b28740",
+      "source_image_filename": "COMP_034_LH_SHUANGYIN.png",
+      "source_image_sha256": "034bf401760f82d09deac915afd54e68c13aae32c94d13916350f5dc227253ce",
+      "visual_description": "left-hand ornament 双吟",
+      "shape_notes": "Usually non-independent; attachment target needs review.",
+      "slot_semantics": "Left-hand ornament attached to host/inherited position.",
+      "construction_templates": [
+        "TEMPLATE-SHUANGYIN"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH05-G006"
+      ],
+      "known_human_corrections": [],
+      "known_confusions": [],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
+    },
+    {
+      "component_id": "COMP-035",
+      "label_zh": "落指猱",
+      "category": "左手取音",
+      "role": "left_hand_luozhi_nao_motion",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "basic_components_named_v0.5.zip",
+      "source_zip_sha256": "e6ce2ffbbdfffe6693492aaa02a75bc719a24034712ad7fc11a46ccc16b28740",
+      "source_image_filename": "COMP_035_LH_LUOZHI_NAO.png",
+      "source_image_sha256": "2e37edeeaf6179fcca16789e32c6e1d397050aaa2504d3e920e7dee338ee5651",
+      "visual_description": "left-hand motion 落指猱",
+      "shape_notes": "Host position and sounding policy remain reviewable.",
+      "slot_semantics": "Left-hand motion/ornament attached to host position.",
+      "construction_templates": [
+        "TEMPLATE-LUOZHI-NAO"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH05-G009"
+      ],
+      "known_human_corrections": [],
+      "known_confusions": [],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
+    },
+    {
+      "component_id": "COMP-036",
+      "label_zh": "掩",
+      "category": "左手指法",
+      "role": "left_hand_yan_or_attached_action",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "basic_components_named_v0.5.zip",
+      "source_zip_sha256": "e6ce2ffbbdfffe6693492aaa02a75bc719a24034712ad7fc11a46ccc16b28740",
+      "source_image_filename": "COMP_036_LH_YAN.png",
+      "source_image_sha256": "de0e8d0ca2bb83943d58be6720611fef5f2178e5821815e2e27a56dcea05c4b1",
+      "visual_description": "left-hand fingering/action 掩",
+      "shape_notes": "Used in LXY P5 as 大指七徽，掩三弦.",
+      "slot_semantics": "Attached action; embedded/lower number may be string number when construction supports it.",
+      "construction_templates": [
+        "TEMPLATE-YAN-3"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH05-G010"
+      ],
+      "known_human_corrections": [],
+      "known_confusions": [],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
+    },
+    {
+      "component_id": "COMP-037",
+      "label_zh": "剔",
+      "category": "右手指法",
+      "role": "right_hand_single_pluck_ti",
+      "source_level": "user confirmed component guidance; reference only; not score event authority",
+      "source_zip": "single_uploaded_component_image_v0.5_addendum",
+      "source_zip_sha256": "9eb03631a77bc63b5bde6ee59f340fd314636791371c073c5c777ac077405666",
+      "source_image_filename": "截屏2026-06-29 22.51.49.png",
+      "source_image_sha256": "9eb03631a77bc63b5bde6ee59f340fd314636791371c073c5c777ac077405666",
+      "visual_description": "right-hand single pluck 剔 from user-provided component image",
+      "shape_notes": "Added as v0.5 addendum; binary source image remains outside repo.",
+      "slot_semantics": "Right-hand action; embedded/lower 四 in P5 final construction is string number.",
+      "construction_templates": [
+        "TEMPLATE-TI-4",
+        "TEMPLATE-TI-4-SAN-3-RUYI"
+      ],
+      "example_phrase_refs": [
+        "LXY-P01-PH05-G016"
+      ],
+      "known_human_corrections": [
+        "User correction: G016 reads 剔四弦，散三如一."
+      ],
+      "known_confusions": [],
+      "authority_status": {
+        "component_reference": true,
+        "score_event_authority": false,
+        "dapu_ir_authority": false,
+        "sample_ingest": false,
+        "ml_training_data": false
+      }
     }
   ],
-  "construction_templates": [
-    {"template_id": "TEMPLATE-GOU-1", "reading_pattern": "勾一", "component_sequence": ["COMP-020", "COMP-009"], "slot_semantics": "right-hand 勾 plus embedded/lower string 一", "sound_policy": "candidate_sounding_unit", "context_inheritance_policy": "left hand/hui may inherit when explicitly marked", "example_refs": ["LXY-P01-PH01-G002"], "needs_human_review_when": "context source or boundary uncertain", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-GOU-2", "reading_pattern": "勾二", "component_sequence": ["COMP-020", "COMP-015"], "slot_semantics": "right-hand 勾 plus embedded/lower string 二", "sound_policy": "candidate_sounding_unit", "context_inheritance_policy": "left hand/hui may inherit when explicitly marked", "example_refs": ["LXY-P01-PH01-G003"], "needs_human_review_when": "component match is medium_low or inherited context unclear", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-GOU-3", "reading_pattern": "勾三", "component_sequence": ["COMP-020", "COMP-016"], "slot_semantics": "right-hand 勾 plus embedded/lower string 三", "sound_policy": "candidate_sounding_unit", "context_inheritance_policy": "often inherits prior left hand/hui; must mark context_inherited", "example_refs": ["LXY-P01-PH01-G004", "LXY-P01-PH02-G006"], "needs_human_review_when": "inheritance chain crosses groups or phrase boundary", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-TUO-7", "reading_pattern": "托七", "component_sequence": ["COMP-001", "COMP-007"], "slot_semantics": "托 as right-hand action; 七 as string when embedded/lower in action construction", "sound_policy": "candidate_sounding_unit", "context_inheritance_policy": "left hand/hui supplied by visible 大指六二 or reviewed context", "example_refs": ["LXY-P01-PH01-G006", "LXY-P01-PH02-G010"], "needs_human_review_when": "hui cluster or punctuation boundary unclear", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-TIAO-6", "reading_pattern": "挑六", "component_sequence": ["COMP-018", "COMP-006"], "slot_semantics": "COMP-018 lower support shape is 挑; 六 is string in action construction", "sound_policy": "candidate_sounding_unit", "context_inheritance_policy": "left hand/hui from visible 名指七 or context", "example_refs": ["LXY-P01-PH02-G003", "LXY-P01-PH03-G009"], "needs_human_review_when": "hui 七九 uses human-reviewed target without separate 九 component", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-TIAO-4", "reading_pattern": "挑四", "component_sequence": ["COMP-018", "COMP-011"], "slot_semantics": "挑 action plus string 四", "sound_policy": "candidate_sounding_unit", "context_inheritance_policy": "inherits left hand/hui when marked", "example_refs": ["LXY-P01-PH02-G007"], "needs_human_review_when": "candidate could be misread as bare 四", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-LI-5-4", "reading_pattern": "历五四", "component_sequence": ["COMP-014", "COMP-004", "COMP-011"], "slot_semantics": "历 as cross-string sequential action; 五四 are visible string targets", "sound_policy": "sequential candidate; expansion remains reviewable", "context_inheritance_policy": "left hand/hui may inherit; mark context_inherited", "example_refs": ["LXY-P01-PH02-G005"], "needs_human_review_when": "sounding-unit split or direction needs confirmation", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-SAN-TIAO-5", "reading_pattern": "散音，挑五", "component_sequence": ["COMP-027", "COMP-018", "COMP-004"], "slot_semantics": "散音起始 sets open-string state; 挑五 supplies visible sounding action/string", "sound_policy": "candidate_sounding_unit only because right-hand action is visible", "context_inheritance_policy": "no left-hand/hui inheritance required for open-string state unless reviewed", "example_refs": ["LXY-P01-PH03-G010", "LXY-P01-PH04-G011"], "needs_human_review_when": "connected 散音 marker could be confused with separate components", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-DA-6-2-LUN-7", "reading_pattern": "大指六二徽，轮七弦", "component_sequence": ["COMP-012", "COMP-006", "COMP-015", "COMP-029", "COMP-007"], "slot_semantics": "大指 left-hand; 六二 in hui slot; 轮 right-hand compound; 七 string", "sound_policy": "compound action candidate; expansion remains parser-stage/review work", "context_inheritance_policy": "no silent inheritance; host context must be explicit", "example_refs": ["LXY-P01-PH04-G001"], "needs_human_review_when": "轮 subaction expansion or string target scope is needed", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-LUN-7", "reading_pattern": "轮七", "component_sequence": ["COMP-029", "COMP-007"], "slot_semantics": "轮 right-hand compound plus visible string 七", "sound_policy": "compound action candidate", "context_inheritance_policy": "left hand/hui may be supplied by host construction", "example_refs": ["LXY-P01-PH04-G001"], "needs_human_review_when": "expansion into 摘-剔-挑 is requested", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-ZHUANG", "reading_pattern": "撞", "component_sequence": ["COMP-028"], "slot_semantics": "left-hand position / virtual attack candidate", "sound_policy": "non-sounding by default unless human review says otherwise", "context_inheritance_policy": "host/attachment to prior position must be reviewed", "example_refs": ["LXY-P01-PH04-G002", "LXY-P01-PH04-G006"], "needs_human_review_when": "host hui or independent-event status is needed", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-JI-JINFU", "reading_pattern": "急进复", "component_sequence": ["COMP-030", "COMP-024"], "slot_semantics": "急 timing marker plus 进复 position transition", "sound_policy": "non-sounding transition/timing candidate by default", "context_inheritance_policy": "attachment and target remain reviewable", "example_refs": ["LXY-P01-PH04-G008"], "needs_human_review_when": "boundary merges neighboring visual pieces", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-JINFU-5-6", "reading_pattern": "进五六复", "component_sequence": ["COMP-024", "COMP-004", "COMP-006"], "slot_semantics": "进复 with nearby 五六 as hui-position candidate", "sound_policy": "non-sounding left-hand transition by default", "context_inheritance_policy": "host event / attachment scope review required", "example_refs": ["LXY-P01-PH03-G002"], "needs_human_review_when": "attachment or target scope unclear", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-SHANG-6-2", "reading_pattern": "上六二", "component_sequence": ["COMP-026", "COMP-006", "COMP-015"], "slot_semantics": "上 transition with 六二 as hui-position candidate", "sound_policy": "non-sounding transition by default", "context_inheritance_policy": "host/continuation scope review required", "example_refs": ["LXY-P01-PH03-G006", "LXY-P01-PH04-G005"], "needs_human_review_when": "six-two target or correction from six-three is relevant", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-JIU-CONTEXT", "reading_pattern": "就=承前", "component_sequence": ["COMP-023"], "slot_semantics": "context inheritance marker", "sound_policy": "non-sounding by default", "context_inheritance_policy": "must mark context_inherited and source of inherited state", "example_refs": ["LXY-P01-PH03-G003"], "needs_human_review_when": "phrase opening or cross-phrase inheritance is involved", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-FAN-QI", "reading_pattern": "泛起", "component_sequence": ["COMP-002"], "slot_semantics": "enter harmonic state boundary", "sound_policy": "non-sounding state boundary by default", "context_inheritance_policy": "scope must be reviewed", "example_refs": ["LXY-P01-PH01-G001"], "needs_human_review_when": "state scope across following groups matters", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-FAN-ZHI", "reading_pattern": "泛止", "component_sequence": ["COMP-017"], "slot_semantics": "exit harmonic state boundary", "sound_policy": "non-sounding state boundary by default", "context_inheritance_policy": "scope must be reviewed", "example_refs": ["LXY-P01-PH01-G005", "LXY-P01-PH02-G009"], "needs_human_review_when": "boundary placement affects following sound type", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-SHAOXI", "reading_pattern": "少息", "component_sequence": ["COMP-003"], "slot_semantics": "timing / breath marker", "sound_policy": "non-sounding timing marker", "context_inheritance_policy": "does not reset inherited left-hand/hui unless reviewed", "example_refs": ["LXY-P01-PH02-G004"], "needs_human_review_when": "duration/scope is needed", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-JUHAO", "reading_pattern": "句号", "component_sequence": ["COMP-005"], "slot_semantics": "punctuation / phrase end", "sound_policy": "non-sounding punctuation", "context_inheritance_policy": "phrase boundary inheritance must be explicit if used later", "example_refs": ["LXY-P01-PH03-G010", "LXY-P01-PH04-G011"], "needs_human_review_when": "phrase boundary affects next candidate", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-BEISUO", "reading_pattern": "背锁", "component_sequence": ["COMP-021"], "slot_semantics": "right-hand compound action", "sound_policy": "compound sequence candidate; string span unresolved unless visible/reviewed", "context_inheritance_policy": "left hand/hui may inherit; must be marked", "example_refs": ["LXY-P01-PH03-G001"], "needs_human_review_when": "string span or subaction sequence is needed", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-ZHUXIA-MO-7", "reading_pattern": "大指注下七徽，抹七弦", "component_sequence": ["COMP-012", "COMP-025", "COMP-007"], "slot_semantics": "大指 + 注下 pre-attack to 七徽 with reviewed 抹七 action", "sound_policy": "candidate_sounding_unit only as phrase draft; 抹 action is template evidence from prior review", "context_inheritance_policy": "host/advance motion scope needs review", "example_refs": ["LXY-P01-PH03-G004", "LXY-P01-PH04-G003"], "needs_human_review_when": "visible action is not clearly 抹", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-ZHUXIA-TIAO-7", "reading_pattern": "大指注下七徽，挑七弦", "component_sequence": ["COMP-012", "COMP-025", "COMP-018", "COMP-007"], "slot_semantics": "大指 + 注下 pre-attack to 七徽 with visible 挑七 action", "sound_policy": "candidate_sounding_unit only as phrase draft", "context_inheritance_policy": "host/advance motion scope needs review", "example_refs": ["LXY-P01-PH03-G007", "LXY-P01-PH04-G007"], "needs_human_review_when": "neighboring 抹 template might be incorrectly copied", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-LH-7-6-QIAQI-7", "reading_pattern": "名指七六徽，掐起七弦", "component_sequence": ["COMP-008", "COMP-007", "COMP-006", "COMP-022", "COMP-007"], "slot_semantics": "名指 with 七六 hui candidate; 掐起 special technique with 七 string candidate", "sound_policy": "special technique sounding policy requires human review", "context_inheritance_policy": "theory-assisted or human-corrected hui must be marked", "example_refs": ["LXY-P01-PH03-G008", "LXY-P01-PH04-G009"], "needs_human_review_when": "sounding policy or hui target source is required", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-MING-7-TIAO-6", "reading_pattern": "名指七九徽，挑六弦", "component_sequence": ["COMP-008", "COMP-007", "COMP-018", "COMP-006"], "slot_semantics": "名指 with reviewed 七九 hui target; 挑六 right-hand/string construction", "sound_policy": "candidate_sounding_unit; 九 lacks separate component sample and remains human-reviewed evidence", "context_inheritance_policy": "do not infer 九 from layout", "example_refs": ["LXY-P01-PH03-G009", "LXY-P01-PH04-G010"], "needs_human_review_when": "hui target needs crop-only proof", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-YIN", "reading_pattern": "吟", "component_sequence": ["COMP-010"], "slot_semantics": "left-hand ornament attached to prior/host position", "sound_policy": "non-independent sounding by default", "context_inheritance_policy": "must mark inherited left-hand/hui source", "example_refs": ["LXY-P01-PH03-G005", "LXY-P01-PH04-G004"], "needs_human_review_when": "attachment target is ambiguous", "not_dapu_ir_authority": true},
-    {"template_id": "TEMPLATE-ZHAOQI", "reading_pattern": "爪起", "component_sequence": ["COMP-019"], "slot_semantics": "special technique attached to previous/host position", "sound_policy": "sounding policy requires human review", "context_inheritance_policy": "prior pressed position may inherit only when explicit", "example_refs": ["LXY-P01-PH02-G002"], "needs_human_review_when": "standalone vs attached construction is unclear", "not_dapu_ir_authority": true}
-  ],
   "summary": {
-    "components_registered": 30,
-    "construction_templates_registered": 26,
+    "components_registered": 37,
     "v0_4_correction_preserved": {
       "COMP-028": "撞",
       "COMP-029": "轮",
       "COMP-030": "急"
+    },
+    "v0_5_component_additions": {
+      "COMP-031": "抹挑",
+      "COMP-032": "如一声",
+      "COMP-033": "绰",
+      "COMP-034": "双吟",
+      "COMP-035": "落指猱",
+      "COMP-036": "掩",
+      "COMP-037": "剔"
+    },
+    "linked_construction_templates_registered": 42,
+    "three_layer_model": {
+      "layer_1": "component_registry: atomic component labels COMP-001..037",
+      "layer_2": "construction_templates: reusable P1-P5 confirmed constructions",
+      "layer_3": "regression_goldset: P1-P4 confirmed readings and forbidden outputs"
     }
+  },
+  "construction_template_registry": {
+    "path": "references/qxby_component_atlas/construction_templates.v0.1.json",
+    "template_count": 42,
+    "relationship": "components may reference template ids, but template definitions live in the construction template layer"
   }
 }

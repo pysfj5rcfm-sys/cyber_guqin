@@ -1,13 +1,9 @@
 # QXBY Component Registry v0.1
-
 Task id: `CG-QXBY-COMPONENT-ATLAS-REFERENCE-AND-LXY-P5-VALIDATION-v0.1`
-
 Status labels: `QXBY_COMPONENT_ATLAS_REFERENCE`, `USER_REVIEWED_COMPONENT_LABELS`, `SOURCE_REFERENCE_KNOWLEDGE`, `NOT_SCORE_EVENT_AUTHORITY`, `NOT_DAPU_IR_AUTHORITY`, `NOT_SAMPLE_INGEST`, `NOT_ML_TRAINING_DATA`.
-
-This registry converts the already user-reviewed component knowledge used in LXY P1-P4 into a repo-local reference layer. It is a reference atlas for component labels, categories, visual slot semantics, and construction templates. It is not final phrase score authority and must not be treated as Dapu IR authority.
-
+This registry is layer 1 of the component-guided transcription stack. It records atomic component labels `COMP-001..037`, categories, visual slot semantics, and links to template ids. It is not final phrase score authority and must not be treated as Dapu IR authority.
+Layer 2 template definitions now live in `references/qxby_component_atlas/construction_templates.v0.1.json`; layer 3 regression fixtures live under `tests/fixtures/cyber_guqin/component_guided_transcription/`.
 ## Registered Components
-
 | component_id | label_zh | category | source_zip | reference only |
 | --- | --- | --- | --- | --- |
 | `COMP-001` | 托 | 右手指法 | v0.2 | yes |
@@ -40,6 +36,13 @@ This registry converts the already user-reviewed component knowledge used in LXY
 | `COMP-028` | 撞 | 左手取音 | v0.4 | yes |
 | `COMP-029` | 轮 | 右手指法 | v0.4 | yes |
 | `COMP-030` | 急 | 节奏谱字 | v0.4 | yes |
+| `COMP-031` | 抹挑 | 右手指法 | v0.5 | yes |
+| `COMP-032` | 如一声 | 两弦双弹 | v0.5 | yes |
+| `COMP-033` | 绰 | 左手取音 | v0.5 | yes |
+| `COMP-034` | 双吟 | 左手取音 | v0.5 | yes |
+| `COMP-035` | 落指猱 | 左手取音 | v0.5 | yes |
+| `COMP-036` | 掩 | 左手指法 | v0.5 | yes |
+| `COMP-037` | 剔 | 右手指法 | v0.5 | yes |
 
 All components carry:
 
@@ -62,14 +65,35 @@ Rejected fallback mappings:
 - `raw_001=轮`
 - `raw_003=撞`
 
-## Construction Templates
+## v0.5 Additions
 
-The JSON registry contains 26 reusable report-only templates:
+Registered mappings:
 
-`勾一`, `勾二`, `勾三`, `托七`, `挑六`, `挑四`, `历五四`, `散音，挑五`, `大指六二徽，轮七弦`, `轮七`, `撞`, `急进复`, `进五六复`, `上六二`, `就=承前`, `泛起`, `泛止`, `少息`, `句号`, `背锁`, `大指注下七徽，抹七弦`, `大指注下七徽，挑七弦`, `名指七六徽，掐起七弦`, `名指七九徽，挑六弦`, `吟`, `爪起`.
+- `COMP-031 = 抹挑 / 右手指法`
+- `COMP-032 = 如一声 / 两弦双弹`
+- `COMP-033 = 绰 / 左手取音`
+- `COMP-034 = 双吟 / 左手取音`
+- `COMP-035 = 落指猱 / 左手取音`
+- `COMP-036 = 掩 / 左手指法`
+- `COMP-037 = 剔 / 右手指法`
+
+`COMP-037` is recorded from the user-provided single component image `/Users/chenyulin/Desktop/截屏2026-06-29 22.51.49.png`; the binary image is not copied into the repo.
+
+## Linked Construction Templates
+
+Template definitions are externalized in `construction_templates.v0.1.json` with `42` reusable report-only templates. Component records may reference template ids, but the registry itself remains the atomic component layer.
 
 Every template has `not_dapu_ir_authority: true` and must remain `NEEDS_HUMAN_REVIEW` when reused in a new phrase crop.
 
 ## Operating Rule
 
-For LXY P5 and later phrase work, first load `component_registry.v0.1.json`. If a crop is missing or ambiguous, write a missing-input report instead of inventing a candidate reading.
+For LXY P5 and later phrase work, load three layers before reading the new crop:
+
+```text
+component_registry.v0.1.json
+→ construction_templates.v0.1.json
+→ lxy_p1_p4_gold_cases / forbidden_outputs fixtures
+→ current phrase crop
+```
+
+If a crop is missing or ambiguous, write a missing-input report instead of inventing a candidate reading.
