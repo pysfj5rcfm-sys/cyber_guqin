@@ -61,6 +61,22 @@
       "reason": "散音起始不可误拆。"
     },
     {
+      "case_id": "FORBID-COMP027-LOCAL-NUMERIC-SPLIT",
+      "scope": "P6 and generalized",
+      "forbidden_pattern": "COMP-027 散音起始优先整体识别 failure: split as 五/六, 勾五, or local numeric fragments",
+      "when_visible_evidence": "connected COMP-027 散音起始 plus visible right-hand/string construction such as COMP-020 勾 + COMP-009 一",
+      "required_repair": "先整体匹配 COMP-027 as 散音起始，再与可见右手动作合读，例如 散音，勾一弦",
+      "reason": "COMP-027 的整体状态层优先级高于局部数字匹配。"
+    },
+    {
+      "case_id": "FORBID-MING-7-6-GOU-4-AS-GOU-5-6",
+      "scope": "P6 and generalized",
+      "forbidden_pattern": "勾五六？ or bare 五六",
+      "when_visible_evidence": "upper-left COMP-008 名指, right-upper COMP-007 七 + COMP-006 六, lower/right COMP-020 勾 + COMP-011 四",
+      "required_repair": "按复合模板读作 名指七六徽，勾四弦",
+      "reason": "名指 + 右上徽位 + 勾四 必须先按复合减字合读，不得退化成裸数字串。"
+    },
+    {
       "case_id": "FORBID-ZHUXIA-TIAO-AS-MO",
       "scope": "P3/P4",
       "forbidden_pattern": "大指注下七徽，抹七弦",
@@ -126,6 +142,6 @@
     }
   ],
   "summary": {
-    "forbidden_output_cases": 13
+    "forbidden_output_cases": 15
   }
 }

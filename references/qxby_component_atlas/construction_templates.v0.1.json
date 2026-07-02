@@ -22,14 +22,15 @@
     "ml_training_data": false,
     "render_output": false,
     "recording_plan": false,
-    "notes": "Templates preserve user-reviewed construction guidance from LXY P1-P5. Reuse supports draft transcription only and never promotes a crop reading to final score facts."
+    "notes": "Templates preserve user-reviewed construction guidance from LXY P1-P6. Reuse supports draft transcription only and never promotes a crop reading to final score facts."
   },
   "source_component_registry": "references/qxby_component_atlas/component_registry.v0.1.json",
   "source_phrase_reports": [
     "reports/lxy_first_two_phrases_component_guided_candidates.v0.1.json",
     "reports/lxy_phrase3_component_guided_candidates.v0.1.json",
     "reports/lxy_phrase4_component_guided_candidates.v0.1.json",
-    "reports/lxy_phrase5_component_guided_candidates.v0.1.json"
+    "reports/lxy_phrase5_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase6_component_guided_candidates.v0.1.json"
   ],
   "review_guidance_source": {
     "external_file": "/Users/chenyulin/Downloads/review-code-1782800914162.txt",
@@ -226,6 +227,31 @@
         "COMP-027 散音起始 is the upper/open-string state layer; lower 挑五 supplies the right-hand/string construction.",
         "Do not misread the connected grass-head-like COMP-027 as 大指 plus hui number.",
         "散音起始 alone is non-sounding unless paired with visible right-hand/string evidence or human confirmation."
+      ]
+    },
+    {
+      "template_id": "TEMPLATE-SAN-GOU-1",
+      "reading_pattern": "散音，勾一弦",
+      "component_sequence": [
+        "COMP-027",
+        "COMP-020",
+        "COMP-009"
+      ],
+      "slot_semantics": "COMP-027 散音起始 as whole open-string state layer; 勾一 supplies visible right-hand action and string",
+      "sound_policy": "candidate_sounding_unit only because right-hand action and string are visible",
+      "context_inheritance_policy": "no left-hand/hui inheritance required for open-string state unless reviewed",
+      "example_refs": [
+        "LXY-P01-PH06-VB001-NU001",
+        "LXY-P01-PH06-VB005-NU006"
+      ],
+      "needs_human_review_when": "connected 散音 marker or embedded 一 boundary is unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "state_plus_right_hand_string",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "COMP-027 散音起始 must be recognized as a whole open-string state layer before local numeric matching.",
+        "Do not split the connected COMP-027 shape into 五, 六, 大指, or hui fragments.",
+        "勾一 must come from visible COMP-020 plus COMP-009 construction evidence, not jianpu, old OCR, old CSV rows, layout, or spacing."
       ]
     },
     {
@@ -909,6 +935,33 @@
       ]
     },
     {
+      "template_id": "TEMPLATE-MING-7-6-GOU-4",
+      "reading_pattern": "名指七六徽，勾四弦",
+      "component_sequence": [
+        "COMP-008",
+        "COMP-007",
+        "COMP-006",
+        "COMP-020",
+        "COMP-011"
+      ],
+      "slot_semantics": "upper-left 名指 plus right-upper 七六 as hui; lower/right 勾四 supplies right-hand action and string",
+      "sound_policy": "candidate_sounding_unit; later parser promotion requires human-reviewed reading",
+      "context_inheritance_policy": "does not inherit left-hand/hui because 名指七六 is explicit in the construction",
+      "example_refs": [
+        "LXY-P01-PH06-VB003-NU004",
+        "LXY-P01-PH06-VB007-NU009"
+      ],
+      "needs_human_review_when": "名指 or 七六/right-upper slot boundary is unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Run this compound template before generic 勾 + numeric decomposition when 名指 + right-upper 七六 + 勾四 is visible.",
+        "Do not output 勾五六？, bare 五六, or unresolved numeric strings for this construction.",
+        "七六 in right-upper hui context is hui; 四 embedded/lower near 勾 is string."
+      ]
+    },
+    {
       "template_id": "TEMPLATE-GOU-4",
       "reading_pattern": "勾四弦（空上部时可承前）",
       "component_sequence": [
@@ -1027,8 +1080,8 @@
     }
   ],
   "summary": {
-    "components_referenced": 37,
-    "construction_templates_registered": 43,
+    "components_referenced": 38,
+    "construction_templates_registered": 45,
     "template_groups": [
       "basic_right_hand_string",
       "compound_right_hand_sequence",
@@ -1042,7 +1095,7 @@
       "special_technique_attachment",
       "state_plus_right_hand_string"
     ],
-    "must_have_templates": 14,
+    "must_have_templates": 16,
     "should_have_templates": 7,
     "supporting_templates": 22
   }

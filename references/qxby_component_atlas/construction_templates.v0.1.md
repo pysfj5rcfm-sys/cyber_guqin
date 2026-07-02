@@ -4,7 +4,7 @@ Task id: `CG-LXY-THREE-LAYER-COMPONENT-GUIDED-REGRESSION-v0.1`
 
 Status labels: `CONSTRUCTION_TEMPLATE_REFERENCE`, `USER_REVIEWED_CONSTRUCTION_GUIDANCE`, `TRANSCRIPTION_DRAFT_SUPPORT_ONLY`, `NOT_CANON_AUTHORITY`, `NOT_REPO_CONTRACT`, `NOT_DAPU_IR_AUTHORITY`, `NEEDS_HUMAN_REVIEW`, `NOT_SAMPLE_INGEST`, `NOT_ML_TRAINING_DATA`, `NOT_RENDER_OUTPUT`.
 
-This is layer 2 of the component-guided transcription stack. It records reusable P1-P5 construction templates, not canon authority, not repo contract, and not Dapu IR authority.
+This is layer 2 of the component-guided transcription stack. It records reusable P1-P6 construction templates, not canon authority, not repo contract, and not Dapu IR authority.
 
 ## Required Read Order
 
@@ -44,6 +44,7 @@ component_registry.v0.1.json
 | template_id | reading_pattern | priority | guardrail summary |
 | --- | --- | --- | --- |
 | `TEMPLATE-SAN-TIAO-5` | 散音，挑五 | must_have | COMP-027 散音起始 is the upper/open-string state layer; lower 挑五 supplies the right-hand/string construction.; Do not misread the connected grass-head-like COMP-027 as 大指 plus hui number. |
+| `TEMPLATE-SAN-GOU-1` | 散音，勾一弦 | must_have | COMP-027 散音起始 must be recognized as a whole open-string state layer before local numeric matching.; Do not split the connected COMP-027 shape into 五, 六, 大指, or hui fragments. |
 
 ### left_hand_hui_right_hand
 
@@ -57,6 +58,7 @@ component_registry.v0.1.json
 | `TEMPLATE-MING-ZHUXIA-7-9-GOU-3` | 名指注下七九徽，勾三弦 | should_have | 七九 is a hui-position candidate in the upper/right-upper context, not a string pair.; 勾 + 三 must be read as 勾三弦 when construction supports it. |
 | `TEMPLATE-YAN-3` | 大指七徽，掩三弦 | should_have | COMP-036 掩 plus 三 is read as 掩三弦 when construction supports it.; Do not confuse 掩 with COMP-031 抹挑. |
 | `TEMPLATE-DA-6-2-TUO-7` | 大指六二徽，托七弦 | should_have | 数字六二 in right-upper slot is hui position, not strings.; Embedded 七 inside/near 托 is string number. |
+| `TEMPLATE-MING-7-6-GOU-4` | 名指七六徽，勾四弦 | must_have | Run this compound template before generic 勾 + numeric decomposition when 名指 + right-upper 七六 + 勾四 is visible.; Do not output 勾五六？, bare 五六, or unresolved numeric strings. |
 
 ### left_hand_position_transition
 

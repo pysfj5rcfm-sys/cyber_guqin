@@ -43,6 +43,7 @@ Layer 2 template definitions now live in `references/qxby_component_atlas/constr
 | `COMP-035` | 落指猱 | 左手取音 | v0.5 | yes |
 | `COMP-036` | 掩 | 左手指法 | v0.5 | yes |
 | `COMP-037` | 剔 | 右手指法 | v0.5 | yes |
+| `COMP-038` | 双弹 | 右手指法 | v0.6 | yes |
 
 All components carry:
 
@@ -87,9 +88,14 @@ Registered mapping:
 
 `COMP-038` is recorded from the user-provided single component image `/Users/chenyulin/Desktop/截屏2026-06-30 19.55.43.png`; the binary image is not copied into the repo. The user-confirmed construction `双弹三弦` is externalized as `TEMPLATE-SHUANGTAN-3` in the construction-template layer.
 
+## v0.7 Phrase6 Hard Rules
+
+- `COMP-027 散音起始` must be recognized as a whole open-string state component before local numeric matching. Do not split the connected shape into `五 / 六`, `大指`, or hui fragments. The user-corrected construction `散音，勾一弦` is externalized as `TEMPLATE-SAN-GOU-1`.
+- `名指 + right-upper 七六徽 + 勾四` must be read as the compound construction `名指七六徽，勾四弦` before generic `勾 + numeric` decomposition. Do not emit `勾五六？`, bare `五六`, or unresolved numeric strings for this slot structure. The construction is externalized as `TEMPLATE-MING-7-6-GOU-4`.
+
 ## Linked Construction Templates
 
-Template definitions are externalized in `construction_templates.v0.1.json` with `43` reusable report-only templates. Component records may reference template ids, but the registry itself remains the atomic component layer.
+Template definitions are externalized in `construction_templates.v0.1.json` with `45` reusable report-only templates. Component records may reference template ids, but the registry itself remains the atomic component layer.
 
 Every template has `not_dapu_ir_authority: true` and must remain `NEEDS_HUMAN_REVIEW` when reused in a new phrase crop.
 

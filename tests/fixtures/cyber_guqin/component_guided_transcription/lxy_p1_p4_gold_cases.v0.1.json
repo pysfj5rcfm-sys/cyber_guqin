@@ -19,12 +19,13 @@
     "score_event_authority": false,
     "canon_authority": false,
     "dapu_ir_authority": false,
-    "notes": "These cases encode user-confirmed P1-P4 draft readings so future runs do not repeat known errors. They do not create final score authority."
+    "notes": "These cases encode user-confirmed P1-P4 draft readings plus later phrase regression addenda so future runs do not repeat known errors. They do not create final score authority."
   },
   "source_reports": [
     "reports/lxy_first_two_phrases_component_guided_candidates.v0.1.json",
     "reports/lxy_phrase3_component_guided_candidates.v0.1.json",
-    "reports/lxy_phrase4_component_guided_candidates.v0.1.json"
+    "reports/lxy_phrase4_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase6_component_guided_candidates.v0.1.json"
   ],
   "component_match_cases": [
     {
@@ -146,6 +147,35 @@
       ]
     },
     {
+      "case_id": "TPL-P6-SAN-GOU-1",
+      "template_id": "TEMPLATE-SAN-GOU-1",
+      "expected_reading": "散音，勾一弦",
+      "must_preserve": [
+        "COMP-027 as whole 散音起始 before local numeric matching",
+        "COMP-020 勾 + COMP-009 一 as right-hand/string construction"
+      ],
+      "must_not": [
+        "split COMP-027 into 五/六",
+        "勾五",
+        "bare numeric string"
+      ]
+    },
+    {
+      "case_id": "TPL-P6-MING-7-6-GOU-4",
+      "template_id": "TEMPLATE-MING-7-6-GOU-4",
+      "expected_reading": "名指七六徽，勾四弦",
+      "must_preserve": [
+        "名指 as left-hand finger",
+        "right-upper 七六 as hui",
+        "勾四 as right-hand/string construction"
+      ],
+      "must_not": [
+        "勾五六？",
+        "bare 五六",
+        "unresolved numeric string"
+      ]
+    },
+    {
       "case_id": "TPL-P4-DA-6-2-LUN-7",
       "template_id": "TEMPLATE-DA-6-2-LUN-7",
       "expected_reading": "大指六二徽，轮七弦",
@@ -229,11 +259,27 @@
         "散音，挑五弦"
       ],
       "source_report": "reports/lxy_phrase4_component_guided_candidates.v0.1.json"
+    },
+    {
+      "case_id": "LXY-P6-CONTINUOUS-USER-CORRECTED",
+      "phrase_id": "LXY-P01-PH06",
+      "expected_continuous_reading": "第六句候选（用户校正）：散音，勾一弦；勾二；勾三；名指七六徽，勾四弦；双弹三弦；散音，勾一弦；勾三；勾三；名指七六徽，勾四弦，句号。",
+      "must_include": [
+        "散音，勾一弦",
+        "名指七六徽，勾四弦",
+        "双弹三弦",
+        "句号"
+      ],
+      "must_not": [
+        "勾五",
+        "勾五六？"
+      ],
+      "source_report": "reports/lxy_phrase6_component_guided_candidates.v0.1.json"
     }
   ],
   "summary": {
-    "phrase_integration_cases": 4,
-    "construction_template_cases": 9,
+    "phrase_integration_cases": 5,
+    "construction_template_cases": 11,
     "component_match_cases": 4
   }
 }

@@ -269,7 +269,8 @@
         "TEMPLATE-JINFU-5-6",
         "TEMPLATE-SHANG-6-2",
         "TEMPLATE-LH-7-6-QIAQI-7",
-        "TEMPLATE-SHANG-6-4"
+        "TEMPLATE-SHANG-6-4",
+        "TEMPLATE-MING-7-6-GOU-4"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH02-G003",
@@ -277,7 +278,8 @@
         "LXY-P01-PH04-G005"
       ],
       "known_human_corrections": [
-        "P4 corrected 上六三 to 上六二."
+        "P4 corrected 上六三 to 上六二.",
+        "Phrase6 hard rule: in 名指七六徽，勾四弦, 七六 in right-upper slot is hui, not string numbers."
       ],
       "known_confusions": [
         "Do not confuse hui 六二 with string 六."
@@ -309,7 +311,8 @@
         "TEMPLATE-ZHUXIA-MO-7",
         "TEMPLATE-ZHUXIA-TIAO-7",
         "TEMPLATE-XIA-7",
-        "TEMPLATE-DA-6-2-TUO-7"
+        "TEMPLATE-DA-6-2-TUO-7",
+        "TEMPLATE-MING-7-6-GOU-4"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH01-G002",
@@ -317,7 +320,8 @@
         "LXY-P01-PH04-G001"
       ],
       "known_human_corrections": [
-        "Slot-aware semantics: right-upper 七 -> 七徽; embedded 七 -> 七弦."
+        "Slot-aware semantics: right-upper 七 -> 七徽; embedded 七 -> 七弦.",
+        "Phrase6 hard rule: in 名指七六徽，勾四弦, 七六 in right-upper slot is hui, not string numbers."
       ],
       "known_confusions": [
         "Do not flatten 七 to a single semantic role."
@@ -345,14 +349,17 @@
       "slot_semantics": "Left-hand finger; attached hui must be read from visible number slot or human review.",
       "construction_templates": [
         "TEMPLATE-MING-7-TIAO-6",
-        "TEMPLATE-LH-7-6-QIAQI-7"
+        "TEMPLATE-LH-7-6-QIAQI-7",
+        "TEMPLATE-MING-7-6-GOU-4"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH02-G003",
         "LXY-P01-PH03-G008",
         "LXY-P01-PH04-G010"
       ],
-      "known_human_corrections": [],
+      "known_human_corrections": [
+        "Phrase6 hard rule: 名指 + right-upper 七六 + 勾四 is read as 名指七六徽，勾四弦."
+      ],
       "known_confusions": [
         "Do not inherit 名指 silently unless context_inherited is marked."
       ],
@@ -378,7 +385,8 @@
       "shape_notes": "Used in 勾一 template.",
       "slot_semantics": "Embedded right-hand number is string 一; other slots require review.",
       "construction_templates": [
-        "TEMPLATE-GOU-1"
+        "TEMPLATE-GOU-1",
+        "TEMPLATE-SAN-GOU-1"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH01-G002"
@@ -447,14 +455,16 @@
         "TEMPLATE-LI-5-4",
         "TEMPLATE-TIAO-4",
         "TEMPLATE-GOU-4",
-        "TEMPLATE-SHANG-6-4"
+        "TEMPLATE-SHANG-6-4",
+        "TEMPLATE-MING-7-6-GOU-4"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH02-G005",
         "LXY-P01-PH02-G007"
       ],
       "known_human_corrections": [
-        "User correction: 挑四弦, not bare 四弦."
+        "User correction: 挑四弦, not bare 四弦.",
+        "Phrase6 hard rule: 四 inside/lower near 勾 is string 四 in 名指七六徽，勾四弦."
       ],
       "known_confusions": [
         "Do not treat bare number as event without right-hand action."
@@ -758,16 +768,21 @@
         "TEMPLATE-GOU-1",
         "TEMPLATE-GOU-2",
         "TEMPLATE-GOU-3",
-        "TEMPLATE-GOU-4"
+        "TEMPLATE-GOU-4",
+        "TEMPLATE-SAN-GOU-1",
+        "TEMPLATE-MING-7-6-GOU-4"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH01-G002",
         "LXY-P01-PH01-G003",
         "LXY-P01-PH02-G006"
       ],
-      "known_human_corrections": [],
+      "known_human_corrections": [
+        "Phrase6 hard rule: in TEMPLATE-MING-7-6-GOU-4, 勾 + 四 is the right-hand/string portion of 名指七六徽，勾四弦."
+      ],
       "known_confusions": [
-        "Do not infer left-hand/hui context without marking inheritance."
+        "Do not infer left-hand/hui context without marking inheritance.",
+        "Do not output 勾五六？ when the visible construction is 名指 + right-upper 七六 + 勾四."
       ],
       "authority_status": {
         "component_reference": true,
@@ -997,17 +1012,20 @@
       "shape_notes": "Grass-head-like connected component distinguishes it from left-hand+hui constructions.",
       "slot_semantics": "Sound-state marker; needs visible right-hand action for sounding candidate.",
       "construction_templates": [
-        "TEMPLATE-SAN-TIAO-5"
+        "TEMPLATE-SAN-TIAO-5",
+        "TEMPLATE-SAN-GOU-1"
       ],
       "example_phrase_refs": [
         "LXY-P01-PH03-G010",
         "LXY-P01-PH04-G011"
       ],
       "known_human_corrections": [
-        "散音，挑五弦 phrase-tail template reused from P3/P4."
+        "散音，挑五弦 phrase-tail template reused from P3/P4.",
+        "Phrase6 hard rule: recognize COMP-027 散音起始 as a whole component before local numeric matching; template TEMPLATE-SAN-GOU-1 reads 散音，勾一弦."
       ],
       "known_confusions": [
-        "Do not confuse connected 散音起始 with separate 大指 + hui-number construction."
+        "Do not confuse connected 散音起始 with separate 大指 + hui-number construction.",
+        "Do not split connected COMP-027 into 五/六, 大指, or hui fragments."
       ],
       "authority_status": {
         "component_reference": true,
@@ -1379,10 +1397,10 @@
       "COMP-036": "掩",
       "COMP-037": "剔"
     },
-    "linked_construction_templates_registered": 43,
+    "linked_construction_templates_registered": 45,
     "three_layer_model": {
       "layer_1": "component_registry: atomic component labels COMP-001..038",
-      "layer_2": "construction_templates: reusable P1-P5 confirmed constructions",
+      "layer_2": "construction_templates: reusable P1-P6 confirmed constructions",
       "layer_3": "regression_goldset: P1-P4 confirmed readings and forbidden outputs"
     },
     "v0_6_component_additions": {
@@ -1392,6 +1410,11 @@
   "construction_template_registry": {
     "path": "references/qxby_component_atlas/construction_templates.v0.1.json",
     "template_count": 43,
-    "relationship": "components may reference template ids, but template definitions live in the construction template layer"
+    "relationship": "components may reference template ids, but template definitions live in the construction template layer",
+    "construction_templates_registered": 45,
+    "high_risk_phrase6_templates": [
+      "TEMPLATE-SAN-GOU-1",
+      "TEMPLATE-MING-7-6-GOU-4"
+    ]
   }
 }

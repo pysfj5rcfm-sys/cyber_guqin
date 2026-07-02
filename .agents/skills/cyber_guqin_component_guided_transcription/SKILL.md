@@ -5,7 +5,7 @@ description: Use when converting user-provided guqin jianzipu phrase crop images
 
 # Cyber Guqin Component-Guided Transcription
 
-Revision note: v0.7 adds two-layer segmentation for LXY P5 and later work: first identify visual blocks, then decompose each block into one or more notation units before producing the phrase reading. It forbids early stop after the first construction-template match inside a visual block and requires a coverage ledger for unread ink. v0.6 makes the three-layer preflight mandatory for LXY P5 and later work: component registry, construction templates, and regression gold / forbidden fixtures must be read before the current crop. v0.5 added LXY P5 correction rules for `绰上` versus `注下`, empty-upper context inheritance, `少息` versus `就`, v0.5 `抹挑 / 如一声 / 双吟 / 落指猱 / 掩 / 剔` components, and final `剔四弦，散三如一` layer decomposition.
+Revision note: v0.8 hardens two phrase6 regression rules: `COMP-027 散音起始` must be recognized as a whole open-string state component before local numeric matching, and `名指 + right-upper 七六徽 + 勾四` must be read through the compound template before emitting bare numeric-string guesses. v0.7 adds two-layer segmentation for LXY P5 and later work: first identify visual blocks, then decompose each block into one or more notation units before producing the phrase reading. It forbids early stop after the first construction-template match inside a visual block and requires a coverage ledger for unread ink. v0.6 makes the three-layer preflight mandatory for LXY P5 and later work: component registry, construction templates, and regression gold / forbidden fixtures must be read before the current crop. v0.5 added LXY P5 correction rules for `绰上` versus `注下`, empty-upper context inheritance, `少息` versus `就`, v0.5 `抹挑 / 如一声 / 双吟 / 落指猱 / 掩 / 剔` components, and final `剔四弦，散三如一` layer decomposition.
 
 ## 1. Purpose
 
@@ -308,6 +308,17 @@ For LXY phrase transcription after P4, do this before looking at the new crop:
 
 If one of these files is absent in a future checkout, say exactly which layer is missing and continue only as a lower-confidence report-only draft. Do not compensate by using jianpu, old OCR, old CSV rows, spacing, page layout, or memory as authority.
 
+## 7c. Full QXBY Component Atlas
+
+When the full QXBY component atlas exists, read it before phrase recognition:
+
+1. Read `references/qxby_component_atlas/component_registry.full.v0.1.json` before phrase recognition.
+2. Use `references/qxby_component_atlas/component_legacy_alias_map.v0.1.json` to resolve old `COMP-001..037` pilot IDs to full-atlas IDs.
+3. Use `references/qxby_component_atlas/component_to_canon_crosswalk.seed.v0.1.json` only as `seed_pending` canon linkage.
+4. Do not treat component matches as phrase score authority.
+5. Do not treat source images as sample ingest or ML data.
+6. Unknown future glyphs should be marked `component_gap`, not force-matched.
+
 ## 8. Core Workflow
 
 Use this workflow:
@@ -430,6 +441,7 @@ Current high-risk templates include:
 
 - `名指七徽挑六` / `名指七九徽挑六`: upper-left `名指`, right-upper hui number(s), lower/right-hand `COMP-018 挑`, embedded or lower `六` as string.
 - `勾 + 可见弦数`: `COMP-020 勾` plus embedded/lower/nearby `一 / 二 / 三 / 四 / 五 / 六 / 七` as string number. Do not output bare `勾` or `勾？` before checking all old string-number components `COMP-004 / 006 / 007 / 009 / 011 / 015 / 016`. Do not hardcode `承前`; inherit only when the upper left-hand / hui slots are blank and a prior context exists.
+- `散音，勾一弦`: `COMP-027 散音起始` must be recognized as a whole open-string state layer before local numeric matching; pair it with visible `COMP-020 勾` plus embedded/lower `COMP-009 一` as the sounding action. Do not split the connected `COMP-027` shape into `五 / 六` or left-hand/hui fragments.
 - `散音，挑五弦`: `COMP-027 散音起始` plus `COMP-018 挑` and `COMP-004 五` as lower right-hand/string construction. Treat `散音` as the sound state and `挑五弦` as the sounding action; `句号` remains punctuation.
 - `散三如一`: top `COMP-027 散音起始`, middle `COMP-016 三` as string number, lower `COMP-032 如一声` as two-string/as-one marker; final dot remains `COMP-005 句号`.
 - `剔四弦，散三如一`: `COMP-037 剔` with embedded/lower `COMP-011 四` as string number, followed by the layered `散三如一` construction.
@@ -440,6 +452,7 @@ Current high-risk templates include:
 - `大指七徽，掩三弦`: v0.5 `COMP-036 掩` plus embedded/lower `三` is a string candidate when the construction supports it.
 - `双弹三弦`: v0.6 `COMP-038 双弹` plus nearby `COMP-016 三` as string-number candidate. Do not confuse `双弹` with `COMP-034 双吟` or `COMP-032 如一声`; expansion and simultaneity policy remain `NEEDS_HUMAN_REVIEW`.
 - `急进复`: adjacent timing/position-transition construction using `COMP-030 急` plus `进复`; allow the phrase crop segmentation to merge neighboring visual pieces when the combined construction is more plausible than two independent events.
+- `名指七六徽，勾四弦`: upper-left `COMP-008 名指`, right-upper `COMP-007 七 + COMP-006 六` as hui, and lower/right `COMP-020 勾 + COMP-011 四` as right-hand/string construction. This compound template must run before generic numeric decomposition; do not output `勾五六？`, bare `五六`, or an unresolved numeric string when this slot structure is visible.
 - `名指七六徽，掐起`: `名指` holds the target position, `掐起` supplies the special technique; if the hui is supplied by user/theory review such as 三分损益 reasoning, record it as human/theory-assisted evidence. Do not hardcode every future `掐起` as 七六徽.
 
 Do not promote a reusable template into canon authority or Dapu IR authority. Record the source as `human_correction` or `template_reuse_from_prior_phrase`, keep every candidate reviewable, and still report ambiguous boundaries.
@@ -499,7 +512,7 @@ Do not confuse `少息` with `就`. Both can look compact in local crops, but th
 
 `散音起始` is an open-string state marker candidate when user-provided component evidence supports it. It should not automatically generate a sounding_unit without a visible right-hand action or human confirmation.
 
-Do not confuse `COMP-027 散音起始` with separate left-hand or hui components. The `散音起始` grass-head-like component has a connected middle in the user-provided sample. If the top area instead separates into a left-hand finger plus right-upper number, read it as left-hand / hui evidence, not as `散音起始`.
+Do not confuse `COMP-027 散音起始` with separate left-hand or hui components. The `散音起始` grass-head-like component has a connected middle in the user-provided sample. Whole-component recognition has priority over local numeric matching: if the connected `COMP-027` shape is visible, do not split it into `COMP-004 五`, `COMP-006 六`, `大指`, or hui fragments. If the top area instead separates into a left-hand finger plus right-upper number, read it as left-hand / hui evidence, not as `散音起始`.
 
 ## 13. Right-Hand Action Rules
 
@@ -676,6 +689,8 @@ Watch for:
 - missing hui targets on `进复`, `上`, `下`, `注`, or related left-hand position-transition glyphs,
 - stopping context inheritance at the current phrase when the phrase opening requires looking back to the previous phrase,
 - confusing connected `COMP-027 散音起始` with separate 大指 + hui-number construction,
+- splitting `COMP-027 散音起始` into local numeric fragments such as 五/六 before trying the whole open-string component,
+- splitting `名指七六徽，勾四弦` into `勾五六？`, bare `五六`, or unresolved numeric strings instead of applying the compound template,
 - flattening `注下` into direct pressing with no attack lead-in,
 - using theory-assisted hui calculation without marking it as human review evidence,
 - using page layout, old OCR, old CSV, or jianpu to decide score facts.

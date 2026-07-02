@@ -53,7 +53,7 @@
     "component_registry": "references/qxby_component_atlas/component_registry.v0.1.json",
     "component_registry_loaded": 38,
     "construction_templates": "references/qxby_component_atlas/construction_templates.v0.1.json",
-    "construction_templates_loaded": 43,
+    "construction_templates_loaded": 45,
     "gold_cases": "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p4_gold_cases.v0.1.json",
     "forbidden_outputs": "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p4_forbidden_outputs.v0.1.json",
     "prior_phrase_reports_read": [
@@ -78,6 +78,16 @@
       "template_id": "TEMPLATE-SHUANGTAN-3",
       "reading_pattern": "双弹三弦",
       "authority_status": "USER_CONFIRMED_CONSTRUCTION_GUIDANCE_ONLY__NOT_DAPU_IR_AUTHORITY"
+    },
+    {
+      "template_id": "TEMPLATE-SAN-GOU-1",
+      "reading_pattern": "散音，勾一弦",
+      "authority_status": "USER_CONFIRMED_CONSTRUCTION_GUIDANCE_ONLY__NOT_DAPU_IR_AUTHORITY"
+    },
+    {
+      "template_id": "TEMPLATE-MING-7-6-GOU-4",
+      "reading_pattern": "名指七六徽，勾四弦",
+      "authority_status": "USER_CONFIRMED_CONSTRUCTION_GUIDANCE_ONLY__NOT_DAPU_IR_AUTHORITY"
     }
   ],
   "context_note": {
@@ -97,7 +107,8 @@
       "unread_ink": [],
       "stop_reason": "all_ink_covered_by_units",
       "boundary_needs_review": true,
-      "old_component_rescan_applied": true
+      "old_component_rescan_applied": true,
+      "user_corrected_template_applied": "TEMPLATE-SAN-GOU-1"
     },
     {
       "visual_block_id": "LXY-P01-PH06-VB002",
@@ -119,9 +130,10 @@
         "LXY-P01-PH06-VB003-NU004"
       ],
       "unread_ink": [],
-      "stop_reason": "all_visible_components_accounted_but_construction_policy_needs_review",
+      "stop_reason": "all_ink_covered_by_units",
       "boundary_needs_review": true,
-      "old_component_rescan_applied": true
+      "old_component_rescan_applied": true,
+      "user_corrected_template_applied": "TEMPLATE-MING-7-6-GOU-4"
     },
     {
       "visual_block_id": "LXY-P01-PH06-VB004",
@@ -146,7 +158,8 @@
       "unread_ink": [],
       "stop_reason": "all_ink_covered_by_units",
       "boundary_needs_review": true,
-      "old_component_rescan_applied": true
+      "old_component_rescan_applied": true,
+      "user_corrected_template_applied": "TEMPLATE-SAN-GOU-1"
     },
     {
       "visual_block_id": "LXY-P01-PH06-VB006",
@@ -168,9 +181,10 @@
         "LXY-P01-PH06-VB007-NU009"
       ],
       "unread_ink": [],
-      "stop_reason": "all_visible_components_accounted_but_construction_policy_needs_review",
+      "stop_reason": "all_ink_covered_by_units",
       "boundary_needs_review": true,
-      "old_component_rescan_applied": true
+      "old_component_rescan_applied": true,
+      "user_corrected_template_applied": "TEMPLATE-MING-7-6-GOU-4"
     }
   ],
   "glyph_groups": [
@@ -180,86 +194,97 @@
       "visual_block_id": "LXY-P01-PH06-VB001",
       "source_image": "phrase6_front_19.11.50",
       "approximate_bbox": "3,0,114,149",
-      "raw_visual_description": "front-half tightly adjacent 勾-like notation unit",
-      "segmentation_confidence": "medium",
+      "raw_visual_description": "user-corrected whole COMP-027 散音起始 plus 勾一 construction; not local numeric split",
+      "segmentation_confidence": "medium_high",
       "boundary_needs_review": true,
       "matched_components": [
+        {
+          "component_id": "COMP-027",
+          "label_zh": "散音起始",
+          "category": "散音起始",
+          "slot": "upper_state_marker",
+          "match_confidence": "high",
+          "evidence_note": "whole connected 散音起始 component; recognized before local numeric matching",
+          "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
+        },
         {
           "component_id": "COMP-020",
           "label_zh": "勾",
           "category": "右手指法",
           "slot": "right_hand_action",
-          "match_confidence": "medium_high",
-          "evidence_note": "visible old component 勾",
+          "match_confidence": "high",
+          "evidence_note": "visible 勾 in sounding construction",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         },
         {
-          "component_id": "COMP-004",
-          "label_zh": "五",
+          "component_id": "COMP-009",
+          "label_zh": "一",
           "category": "弦数",
-          "slot": "embedded_or_nearby_right_hand_string_number",
-          "match_confidence": "medium",
-          "evidence_note": "old component 五 visible in/near the 勾 construction",
+          "slot": "embedded_or_lower_right_hand_string_number",
+          "match_confidence": "high",
+          "evidence_note": "visible 一 read as string number in 勾一 construction",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         }
       ],
       "visual_slot_evidence": {
-        "upper": null,
+        "upper": "COMP-027 散音起始 whole open-string state layer",
         "middle": null,
-        "lower": "COMP-020 勾 with COMP-004 五 visible in/near action body; not jianpu-assisted",
+        "lower": "COMP-020 勾 with COMP-009 一 as string",
         "left": null,
         "right": null,
-        "side_note": "small upper ink rejected as score fact; may be locator/mark",
+        "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "reading": "勾五",
         "right_hand_action_candidate": "勾",
-        "string_no_candidate": "五",
+        "string_no_candidate": "一",
         "left_hand_candidate": null,
         "hui_position_candidate": null,
-        "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "candidate_sounding_action_but_string_unresolved",
-        "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_5",
-        "parse_confidence": "medium"
+        "primary_sound_type_candidate": "散",
+        "event_policy": "open_string_state_plus_visible_right_hand_string",
+        "template_id": "TEMPLATE-SAN-GOU-1",
+        "reading": "散音，勾一弦",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high"
       },
-      "template_id": null,
+      "template_id": "TEMPLATE-SAN-GOU-1",
       "score_event_candidates": [
         {
-          "score_event_candidate_id": "LXY-P01-PH06-VB001-NU001-SE001",
-          "notation_event": "勾五",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "candidate_sounding_action_but_string_unresolved",
+          "score_event_candidate_id": "LXY-P01-PH06-VB001-SE001",
+          "notation_event": "散音，勾一弦",
+          "primary_sound_type_candidate": "散",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
-              "sounding_unit_candidate_id": "LXY-P01-PH06-VB001-NU001-SU001",
+              "sounding_unit_candidate_id": "LXY-P01-PH06-VB001-SU001",
               "onset_order": 1,
               "simultaneity_group": "A",
               "right_hand_action_candidate": "勾",
               "left_hand_candidate": null,
-              "string_no_candidate": "五",
+              "string_no_candidate": "一",
               "hui_position_candidate": null,
-              "sound_type_candidate": "unknown_from_crop"
+              "sound_type_candidate": "散"
             }
           ],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": true,
             "reference_component_atlas_matched": true,
-            "construction_template_matched": false,
+            "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
+            "human_correction": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
             "old_component_rescan_applied": true
           },
           "confidence": {
-            "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
-            "parse_confidence": "medium"
+            "segmentation_confidence": "medium_high",
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_5",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -315,9 +340,10 @@
         "left_hand_candidate": null,
         "hui_position_candidate": null,
         "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "candidate_sounding_action_but_string_unresolved",
-        "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_2",
-        "parse_confidence": "medium_high"
+        "event_policy": "visible_right_hand_string_template_from_user_corrected_phrase6",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high",
+        "template_id": "TEMPLATE-GOU-2"
       },
       "template_id": "TEMPLATE-GOU-2",
       "score_event_candidates": [
@@ -325,7 +351,7 @@
           "score_event_candidate_id": "LXY-P01-PH06-VB001-NU002-SE001",
           "notation_event": "勾二",
           "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "candidate_sounding_action_but_string_unresolved",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH06-VB001-NU002-SU001",
@@ -344,18 +370,19 @@
             "reference_component_atlas_matched": true,
             "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
-            "old_component_rescan_applied": true
+            "old_component_rescan_applied": true,
+            "human_correction": true
           },
           "confidence": {
             "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
-            "parse_confidence": "medium_high"
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_2",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -409,9 +436,10 @@
         "right_hand_action_candidate": "勾",
         "string_no_candidate": "三",
         "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "candidate_sounding_action_but_string_unresolved",
-        "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3",
-        "parse_confidence": "high"
+        "event_policy": "visible_right_hand_string_template_from_user_corrected_phrase6",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high",
+        "template_id": "TEMPLATE-GOU-3"
       },
       "template_id": "TEMPLATE-GOU-3",
       "score_event_candidates": [
@@ -419,7 +447,7 @@
           "score_event_candidate_id": "LXY-P01-PH06-VB002-NU003-SE001",
           "notation_event": "勾三",
           "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "candidate_sounding_action_but_string_unresolved",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH06-VB002-NU003-SU001",
@@ -438,18 +466,19 @@
             "reference_component_atlas_matched": true,
             "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
-            "old_component_rescan_applied": true
+            "old_component_rescan_applied": true,
+            "human_correction": true
           },
           "confidence": {
             "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
+            "component_match_confidence": "high",
             "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -466,93 +495,115 @@
       "visual_block_id": "LXY-P01-PH06-VB003",
       "source_image": "phrase6_back_19.12.04",
       "approximate_bbox": "25,1,118,141",
-      "raw_visual_description": "large unmatched glyph at beginning of back half",
-      "segmentation_confidence": "medium",
+      "raw_visual_description": "user-corrected compound: 名指 + right-upper 七六 hui + 勾四 string construction",
+      "segmentation_confidence": "high",
       "boundary_needs_review": true,
       "matched_components": [
         {
-          "component_id": "COMP-020",
-          "label_zh": "勾",
-          "category": "右手指法",
-          "slot": "right_hand_action",
-          "match_confidence": "medium",
-          "evidence_note": "visible old component 勾 in lower/right portion",
+          "component_id": "COMP-008",
+          "label_zh": "名指",
+          "category": "左手指法",
+          "slot": "upper_left_left_hand_finger",
+          "match_confidence": "high",
+          "evidence_note": "visible 名指 in compound left-hand slot",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         },
         {
-          "component_id": "COMP-004",
-          "label_zh": "五",
+          "component_id": "COMP-007",
+          "label_zh": "七",
           "category": "弦数",
-          "slot": "nearby_string_number_candidate",
-          "match_confidence": "medium",
-          "evidence_note": "old component 五 visible in upper-left of compound glyph",
+          "slot": "right_upper_hui_number",
+          "match_confidence": "high",
+          "evidence_note": "七 participates in 七六徽 by right-upper slot",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         },
         {
           "component_id": "COMP-006",
           "label_zh": "六",
           "category": "弦数",
-          "slot": "nearby_string_number_candidate",
-          "match_confidence": "medium",
-          "evidence_note": "old component 六 visible in upper-right of compound glyph",
+          "slot": "right_upper_hui_number",
+          "match_confidence": "high",
+          "evidence_note": "六 participates in 七六徽 by right-upper slot",
+          "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
+        },
+        {
+          "component_id": "COMP-020",
+          "label_zh": "勾",
+          "category": "右手指法",
+          "slot": "right_hand_action",
+          "match_confidence": "high",
+          "evidence_note": "visible 勾 in lower/right action slot",
+          "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
+        },
+        {
+          "component_id": "COMP-011",
+          "label_zh": "四",
+          "category": "弦数",
+          "slot": "embedded_or_lower_right_hand_string_number",
+          "match_confidence": "high",
+          "evidence_note": "四 read as string number in 勾四 construction",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         }
       ],
       "visual_slot_evidence": {
-        "upper": "COMP-004 五 + COMP-006 六 visible; nearby to lower COMP-020 勾",
+        "upper": "COMP-008 名指 plus right-upper COMP-007 七 + COMP-006 六 as 七六徽",
         "middle": null,
-        "lower": "COMP-020 勾; compound string interpretation needs review",
-        "left": null,
-        "right": null,
+        "lower": "COMP-020 勾 with COMP-011 四 as string",
+        "left": "名指",
+        "right": "七六 hui cluster",
         "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "reading": "勾五六？",
         "right_hand_action_candidate": "勾",
-        "string_no_candidate": "五六？",
-        "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "visible_components_candidate_but_compound_string_policy_unconfirmed",
-        "needs_review_reason": "VISIBLE_GOU_PLUS_5_6_BUT_CONSTRUCTION_POLICY_UNCONFIRMED",
-        "parse_confidence": "low"
+        "string_no_candidate": "四",
+        "left_hand_candidate": "名指",
+        "hui_position_candidate": "七六徽",
+        "primary_sound_type_candidate": "按",
+        "event_policy": "compound_left_hand_hui_right_hand_string_template",
+        "template_id": "TEMPLATE-MING-7-6-GOU-4",
+        "reading": "名指七六徽，勾四弦",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high"
       },
-      "template_id": null,
+      "template_id": "TEMPLATE-MING-7-6-GOU-4",
       "score_event_candidates": [
         {
-          "score_event_candidate_id": "LXY-P01-PH06-VB003-NU004-SE001",
-          "notation_event": "勾五六？",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "unknown_from_crop_no_sound_policy",
+          "score_event_candidate_id": "LXY-P01-PH06-VB003-SE004",
+          "notation_event": "名指七六徽，勾四弦",
+          "primary_sound_type_candidate": "按",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
-              "sounding_unit_candidate_id": "LXY-P01-PH06-VB003-NU004-SU001",
+              "sounding_unit_candidate_id": "LXY-P01-PH06-VB003-SU004",
               "onset_order": 1,
               "simultaneity_group": "A",
               "right_hand_action_candidate": "勾",
-              "left_hand_candidate": null,
-              "string_no_candidate": "五六？",
-              "hui_position_candidate": null,
-              "sound_type_candidate": "unknown_from_crop"
+              "left_hand_candidate": "名指",
+              "string_no_candidate": "四",
+              "hui_position_candidate": "七六徽",
+              "sound_type_candidate": "按"
             }
           ],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": true,
             "reference_component_atlas_matched": true,
-            "construction_template_matched": false,
+            "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
+            "human_correction": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
             "old_component_rescan_applied": true
           },
           "confidence": {
-            "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
-            "parse_confidence": "low"
+            "segmentation_confidence": "high",
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "VISIBLE_GOU_PLUS_5_6_BUT_CONSTRUCTION_POLICY_UNCONFIRMED",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -606,10 +657,10 @@
         "right_hand_action_candidate": "双弹",
         "string_no_candidate": "三",
         "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "candidate_compound_right_hand_action_expansion_needs_review",
+        "event_policy": "visible_right_hand_string_template_from_user_corrected_phrase6",
         "template_id": "TEMPLATE-SHUANGTAN-3",
-        "needs_review_reason": "DOUBLE_PLUCK_EXPANSION_AND_SIMULTANEITY_POLICY_NEEDS_REVIEW",
-        "parse_confidence": "medium_high",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high",
         "sounding_units": [
           {
             "sounding_unit_candidate_id": "LXY-P01-PH06-VB004-NU005-SU001",
@@ -629,7 +680,7 @@
           "score_event_candidate_id": "LXY-P01-PH06-VB004-NU005-SE001",
           "notation_event": "双弹三弦",
           "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "candidate_compound_right_hand_action_expansion_needs_review",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH06-VB004-NU005-SU001",
@@ -648,17 +699,18 @@
             "reference_component_atlas_matched": true,
             "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
             "rejected_ocr_surface": true,
-            "rejected_jianpu_authority": true
+            "rejected_jianpu_authority": true,
+            "human_correction": true
           },
           "confidence": {
             "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
-            "parse_confidence": "medium_high"
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "DOUBLE_PLUCK_EXPANSION_AND_SIMULTANEITY_POLICY_NEEDS_REVIEW",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -675,84 +727,97 @@
       "visual_block_id": "LXY-P01-PH06-VB005",
       "source_image": "phrase6_back_19.12.04",
       "approximate_bbox": "414,1,500,141",
-      "raw_visual_description": "adjacent 勾-like notation unit in back half",
-      "segmentation_confidence": "medium",
+      "raw_visual_description": "user-corrected whole COMP-027 散音起始 plus 勾一 construction in back half",
+      "segmentation_confidence": "medium_high",
       "boundary_needs_review": true,
       "matched_components": [
+        {
+          "component_id": "COMP-027",
+          "label_zh": "散音起始",
+          "category": "散音起始",
+          "slot": "upper_state_marker",
+          "match_confidence": "high",
+          "evidence_note": "whole connected 散音起始 component; recognized before local numeric matching",
+          "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
+        },
         {
           "component_id": "COMP-020",
           "label_zh": "勾",
           "category": "右手指法",
           "slot": "right_hand_action",
-          "match_confidence": "medium_high",
-          "evidence_note": "visible old component 勾",
+          "match_confidence": "high",
+          "evidence_note": "visible 勾 in sounding construction",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         },
         {
-          "component_id": "COMP-004",
-          "label_zh": "五",
+          "component_id": "COMP-009",
+          "label_zh": "一",
           "category": "弦数",
-          "slot": "embedded_or_nearby_right_hand_string_number",
-          "match_confidence": "medium",
-          "evidence_note": "old component 五 visible in/near the 勾 construction",
+          "slot": "embedded_or_lower_right_hand_string_number",
+          "match_confidence": "high",
+          "evidence_note": "visible 一 read as string number in 勾一 construction",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         }
       ],
       "visual_slot_evidence": {
-        "upper": null,
+        "upper": "COMP-027 散音起始 whole open-string state layer",
         "middle": null,
-        "lower": "COMP-020 勾 with COMP-004 五 visible in/near action body; not jianpu-assisted",
+        "lower": "COMP-020 勾 with COMP-009 一 as string",
         "left": null,
         "right": null,
-        "side_note": "small upper ink rejected as score fact",
+        "side_note": null,
         "punctuation_or_timing": null
       },
       "candidate_reading": {
-        "reading": "勾五",
         "right_hand_action_candidate": "勾",
-        "string_no_candidate": "五",
-        "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "candidate_sounding_action_but_string_unresolved",
-        "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_5",
-        "parse_confidence": "medium"
+        "string_no_candidate": "一",
+        "left_hand_candidate": null,
+        "hui_position_candidate": null,
+        "primary_sound_type_candidate": "散",
+        "event_policy": "open_string_state_plus_visible_right_hand_string",
+        "template_id": "TEMPLATE-SAN-GOU-1",
+        "reading": "散音，勾一弦",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high"
       },
-      "template_id": null,
+      "template_id": "TEMPLATE-SAN-GOU-1",
       "score_event_candidates": [
         {
-          "score_event_candidate_id": "LXY-P01-PH06-VB005-NU006-SE001",
-          "notation_event": "勾五",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "candidate_sounding_action_but_string_unresolved",
+          "score_event_candidate_id": "LXY-P01-PH06-VB005-SE006",
+          "notation_event": "散音，勾一弦",
+          "primary_sound_type_candidate": "散",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
-              "sounding_unit_candidate_id": "LXY-P01-PH06-VB005-NU006-SU001",
+              "sounding_unit_candidate_id": "LXY-P01-PH06-VB005-SU006",
               "onset_order": 1,
               "simultaneity_group": "A",
               "right_hand_action_candidate": "勾",
               "left_hand_candidate": null,
-              "string_no_candidate": "五",
+              "string_no_candidate": "一",
               "hui_position_candidate": null,
-              "sound_type_candidate": "unknown_from_crop"
+              "sound_type_candidate": "散"
             }
           ],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": true,
             "reference_component_atlas_matched": true,
-            "construction_template_matched": false,
+            "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
+            "human_correction": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
             "old_component_rescan_applied": true
           },
           "confidence": {
-            "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
-            "parse_confidence": "medium"
+            "segmentation_confidence": "medium_high",
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_5",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -806,9 +871,10 @@
         "right_hand_action_candidate": "勾",
         "string_no_candidate": "三",
         "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "candidate_sounding_action_but_string_unresolved",
-        "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3",
-        "parse_confidence": "high"
+        "event_policy": "visible_right_hand_string_template_from_user_corrected_phrase6",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high",
+        "template_id": "TEMPLATE-GOU-3"
       },
       "template_id": "TEMPLATE-GOU-3",
       "score_event_candidates": [
@@ -816,7 +882,7 @@
           "score_event_candidate_id": "LXY-P01-PH06-VB005-NU007-SE001",
           "notation_event": "勾三",
           "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "candidate_sounding_action_but_string_unresolved",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH06-VB005-NU007-SU001",
@@ -835,18 +901,19 @@
             "reference_component_atlas_matched": true,
             "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
-            "old_component_rescan_applied": true
+            "old_component_rescan_applied": true,
+            "human_correction": true
           },
           "confidence": {
             "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
+            "component_match_confidence": "high",
             "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -900,9 +967,10 @@
         "right_hand_action_candidate": "勾",
         "string_no_candidate": "三",
         "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "candidate_sounding_action_but_string_unresolved",
-        "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3",
-        "parse_confidence": "high"
+        "event_policy": "visible_right_hand_string_template_from_user_corrected_phrase6",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high",
+        "template_id": "TEMPLATE-GOU-3"
       },
       "template_id": "TEMPLATE-GOU-3",
       "score_event_candidates": [
@@ -910,7 +978,7 @@
           "score_event_candidate_id": "LXY-P01-PH06-VB006-NU008-SE001",
           "notation_event": "勾三",
           "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "candidate_sounding_action_but_string_unresolved",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
               "sounding_unit_candidate_id": "LXY-P01-PH06-VB006-NU008-SU001",
@@ -929,18 +997,19 @@
             "reference_component_atlas_matched": true,
             "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
-            "old_component_rescan_applied": true
+            "old_component_rescan_applied": true,
+            "human_correction": true
           },
           "confidence": {
             "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
+            "component_match_confidence": "high",
             "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "OLD_COMPONENT_RESCAN_MATCHED_GOU_PLUS_VISIBLE_STRING_3",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -957,35 +1026,53 @@
       "visual_block_id": "LXY-P01-PH06-VB007",
       "source_image": "phrase6_back_19.12.04",
       "approximate_bbox": "930,1,1048,141",
-      "raw_visual_description": "large unmatched final glyph plus dot-like punctuation candidate",
-      "segmentation_confidence": "medium",
+      "raw_visual_description": "user-corrected final compound 名指七六徽，勾四弦 plus phrase-ending punctuation",
+      "segmentation_confidence": "high",
       "boundary_needs_review": true,
       "matched_components": [
         {
-          "component_id": "COMP-020",
-          "label_zh": "勾",
-          "category": "右手指法",
-          "slot": "right_hand_action",
-          "match_confidence": "medium",
-          "evidence_note": "visible old component 勾 in lower/right portion",
+          "component_id": "COMP-008",
+          "label_zh": "名指",
+          "category": "左手指法",
+          "slot": "upper_left_left_hand_finger",
+          "match_confidence": "high",
+          "evidence_note": "visible 名指 in compound left-hand slot",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         },
         {
-          "component_id": "COMP-004",
-          "label_zh": "五",
+          "component_id": "COMP-007",
+          "label_zh": "七",
           "category": "弦数",
-          "slot": "nearby_string_number_candidate",
-          "match_confidence": "medium",
-          "evidence_note": "old component 五 visible in upper-left of compound glyph",
+          "slot": "right_upper_hui_number",
+          "match_confidence": "high",
+          "evidence_note": "七 participates in 七六徽 by right-upper slot",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         },
         {
           "component_id": "COMP-006",
           "label_zh": "六",
           "category": "弦数",
-          "slot": "nearby_string_number_candidate",
-          "match_confidence": "medium",
-          "evidence_note": "old component 六 visible in upper-right of compound glyph",
+          "slot": "right_upper_hui_number",
+          "match_confidence": "high",
+          "evidence_note": "六 participates in 七六徽 by right-upper slot",
+          "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
+        },
+        {
+          "component_id": "COMP-020",
+          "label_zh": "勾",
+          "category": "右手指法",
+          "slot": "right_hand_action",
+          "match_confidence": "high",
+          "evidence_note": "visible 勾 in lower/right action slot",
+          "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
+        },
+        {
+          "component_id": "COMP-011",
+          "label_zh": "四",
+          "category": "弦数",
+          "slot": "embedded_or_lower_right_hand_string_number",
+          "match_confidence": "high",
+          "evidence_note": "四 read as string number in 勾四 construction",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         },
         {
@@ -993,67 +1080,71 @@
           "label_zh": "句号",
           "category": "节奏谱字",
           "slot": "punctuation_or_timing",
-          "match_confidence": "medium",
-          "evidence_note": "visible punctuation dot",
+          "match_confidence": "medium_high",
+          "evidence_note": "visible 句号 punctuation, non-sounding",
           "authority_status": "QXBY_COMPONENT_ATLAS_REFERENCE__NOT_CANON_AUTHORITY__NOT_DAPU_IR_AUTHORITY"
         }
       ],
       "visual_slot_evidence": {
-        "upper": "COMP-004 五 + COMP-006 六 visible; nearby to lower COMP-020 勾",
+        "upper": "COMP-008 名指 plus right-upper COMP-007 七 + COMP-006 六 as 七六徽",
         "middle": null,
-        "lower": "COMP-020 勾; compound string interpretation needs review",
-        "left": null,
-        "right": "small dot-like mark, punctuation candidate",
+        "lower": "COMP-020 勾 with COMP-011 四 as string",
+        "left": "名指",
+        "right": "七六 hui cluster plus final punctuation dot",
         "side_note": null,
-        "punctuation_or_timing": "句号 candidate"
+        "punctuation_or_timing": "COMP-005 句号"
       },
       "candidate_reading": {
-        "reading": "勾五六？，句号",
-        "punctuation_candidate": "句号",
-        "primary_sound_type_candidate": "unknown_from_crop",
-        "event_policy": "visible_components_candidate_but_compound_string_policy_unconfirmed",
-        "needs_review_reason": "VISIBLE_GOU_PLUS_5_6_BUT_CONSTRUCTION_POLICY_UNCONFIRMED",
-        "parse_confidence": "low",
         "right_hand_action_candidate": "勾",
-        "string_no_candidate": "五六？"
+        "string_no_candidate": "四",
+        "left_hand_candidate": "名指",
+        "hui_position_candidate": "七六徽",
+        "primary_sound_type_candidate": "按",
+        "punctuation_candidate": "句号",
+        "event_policy": "compound_left_hand_hui_right_hand_string_template_plus_punctuation",
+        "template_id": "TEMPLATE-MING-7-6-GOU-4",
+        "reading": "名指七六徽，勾四弦，句号",
+        "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
+        "parse_confidence": "high"
       },
-      "template_id": null,
+      "template_id": "TEMPLATE-MING-7-6-GOU-4",
       "score_event_candidates": [
         {
-          "score_event_candidate_id": "LXY-P01-PH06-VB007-NU009-SE001",
-          "notation_event": "勾五六？，句号",
-          "primary_sound_type_candidate": "unknown_from_crop",
-          "event_policy": "unknown_glyph_plus_punctuation_candidate",
+          "score_event_candidate_id": "LXY-P01-PH06-VB007-SE009",
+          "notation_event": "名指七六徽，勾四弦，句号",
+          "primary_sound_type_candidate": "按",
+          "event_policy": "candidate_sounding_unit_from_user_corrected_phrase6_reading__report_only",
           "sounding_units": [
             {
-              "sounding_unit_candidate_id": "LXY-P01-PH06-VB007-NU009-SU001",
+              "sounding_unit_candidate_id": "LXY-P01-PH06-VB007-SU009",
               "onset_order": 1,
               "simultaneity_group": "A",
               "right_hand_action_candidate": "勾",
-              "left_hand_candidate": null,
-              "string_no_candidate": "五六？",
-              "hui_position_candidate": null,
-              "sound_type_candidate": "unknown_from_crop"
+              "left_hand_candidate": "名指",
+              "string_no_candidate": "四",
+              "hui_position_candidate": "七六徽",
+              "sound_type_candidate": "按"
             }
           ],
           "reading_source": {
             "phrase_crop_visual": true,
             "user_component_label_matched": true,
             "reference_component_atlas_matched": true,
-            "construction_template_matched": false,
+            "construction_template_matched": true,
             "context_inherited": false,
-            "human_reviewed": false,
+            "human_reviewed": true,
+            "human_correction": true,
             "rejected_ocr_surface": true,
             "rejected_jianpu_authority": true,
             "old_component_rescan_applied": true
           },
           "confidence": {
-            "segmentation_confidence": "medium",
-            "component_match_confidence": "medium",
-            "parse_confidence": "low"
+            "segmentation_confidence": "high",
+            "component_match_confidence": "high",
+            "parse_confidence": "high"
           },
           "needs_review": true,
-          "needs_review_reason": "VISIBLE_GOU_PLUS_5_6_BUT_CONSTRUCTION_POLICY_UNCONFIRMED",
+          "needs_review_reason": "USER_CONFIRMED_PHRASE6_READING__REPORT_ONLY__NOT_DAPU_IR_AUTHORITY",
           "forbidden_inference_check": {
             "used_jianpu_for_event_count": false,
             "used_old_csv_as_authority": false,
@@ -1066,9 +1157,9 @@
     }
   ],
   "continuous_phrase_reading": {
-    "phrase_6_candidate": "第六句候选（旧构件复核）：勾五；勾二；勾三；勾五六？；双弹三弦；勾五；勾三；勾三；勾五六？，句号。",
-    "front_half": "勾五；勾二；勾三。",
-    "back_half": "勾五六？；双弹三弦；勾五；勾三；勾三；勾五六？，句号。",
+    "phrase_6_candidate": "第六句候选（用户校正）：散音，勾一弦；勾二；勾三；名指七六徽，勾四弦；双弹三弦；散音，勾一弦；勾三；勾三；名指七六徽，勾四弦，句号。",
+    "front_half": "散音，勾一弦；勾二；勾三。",
+    "back_half": "名指七六徽，勾四弦；双弹三弦；散音，勾一弦；勾三；勾三；名指七六徽，勾四弦，句号。",
     "authority_status": "LXY_TRANSCRIPTION_DRAFT__NEEDS_HUMAN_REVIEW__NOT_DAPU_IR_AUTHORITY"
   },
   "coverage_validation": {
@@ -1078,19 +1169,20 @@
     "unread_ink_blocks": [],
     "forbidden_output_check": {
       "passed": true,
-      "notes": "No jianpu/OCR/layout authority used; visible old string components are now used where present. Compound 勾五六 remains marked ? because construction policy is unconfirmed."
+      "notes": "User-corrected phrase6 reading rejects prior local numeric-split failures; COMP-027 whole-component and 名指七六徽勾四 compound templates are applied before local numeric decomposition."
     },
-    "old_component_rescan_applied": true
+    "old_component_rescan_applied": true,
+    "user_correction_applied": true
   },
   "summary": {
     "component_labels_loaded": 38,
     "visual_blocks_segmented": 7,
     "glyph_groups_segmented": 9,
     "notation_units_decomposed": 9,
-    "matched_component_instances": 21,
-    "construction_templates_matched": 4,
+    "matched_component_instances": 27,
+    "construction_templates_matched": 9,
     "score_event_candidates": 9,
-    "unresolved_or_low_confidence_candidates": 2
+    "unresolved_or_low_confidence_candidates": 0
   },
   "forbidden_inference_check": {
     "used_jianpu_for_event_count": false,
@@ -1104,5 +1196,5 @@
     "wrote_ml_training_data": false,
     "wrote_render_output": false
   },
-  "revision_note": "revision_2_old_components_rescan: reused visible COMP-001..037, especially embedded/nearby string-number components, while still rejecting jianpu/OCR/layout as score authority."
+  "revision_note": "revision_3_user_corrected_hard_rules: COMP-027 散音起始 is recognized as a whole component before local numeric matching; 名指七六徽，勾四弦 is applied as a compound template before bare numeric-string fallback."
 }
