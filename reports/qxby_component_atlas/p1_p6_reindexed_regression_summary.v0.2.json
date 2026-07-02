@@ -19,6 +19,8 @@
   "construction_template_cases": 21,
   "phrase_integration_cases": 6,
   "forbidden_output_cases": 23,
+  "forbidden_evaluation_mode": "scoped_component_or_template_context",
+  "global_literal_forbidden_scan": false,
   "authority_boundary": {
     "goldset_role": "regression expectation for draft transcription behavior",
     "score_event_authority": false,
@@ -30,8 +32,9 @@
   },
   "validation_results": {
     "json_validation": "PASS using bundled Codex Python or python3 fallback",
-    "reindex_sanity": "PASS full=174 aux=12 legacy=38 source_v01=174 templates=50 gold_phrases=6 forbidden=23",
+    "reindex_sanity": "PASS full=174 aux=12 legacy=38 source_v01=174 templates=50 gold_phrases=6 forbidden=23 scoped_forbidden=23",
+    "scoped_forbidden_semantics": "PASS forbidden outputs are evaluated only when matched component/template/phrase context intersects case scope; legal 少息 under COMP-806 and legal 就 under COMP-907 do not fail cross-scope guards",
     "git_diff_check": "PASS",
-    "notes": "Primary IDs are interpreted under primary_id_system=category_based_v0_2; v0.1 IDs are retained only in source traceability fields."
+    "notes": "Primary IDs are interpreted under primary_id_system=category_based_v0_2; v0.1 IDs are retained only in source traceability fields. Forbidden output literals are not globally banned."
   }
 }

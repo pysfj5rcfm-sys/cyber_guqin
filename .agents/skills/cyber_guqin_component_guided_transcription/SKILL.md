@@ -324,15 +324,20 @@ When the full QXBY component atlas exists, read it before phrase recognition:
 When the reindexed QXBY component ID system exists, use it as the primary component layer:
 
 1. Read `references/qxby_component_atlas/component_registry.reindexed.v0.2.json` as the primary component registry.
-2. Treat `COMP-081..087` as normalized numeric components.
-3. Treat `COMP-091..095` as normalized left-finger-name components.
-4. Treat `COMP-101..999` category ranges as primary full atlas IDs.
-5. Treat `COMP-001..038` as legacy aliases only.
-6. Treat `COMP-100..273` from the v0.1 full atlas as source component IDs only, not current primary IDs.
-7. Normalize both legacy IDs and v0.1 full atlas IDs before matching templates or gold cases.
-8. Use `references/qxby_component_atlas/construction_templates.reindexed.v0.2.json` and `tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_goldset.reindexed.v0.2.json` for P7 and later.
-9. If an ID cannot be normalized, emit `COMPONENT_ID_NORMALIZATION_GAP`.
-10. Component match remains reference evidence, not phrase score authority, not Dapu IR, not sample ingest, not ML data, and not render.
+2. Read `references/qxby_component_atlas/component_legacy_alias_map.reindexed.v0.2.json` before template/goldset matching.
+3. Treat `COMP-081..087` as normalized numeric components.
+4. Treat `COMP-091..095` as normalized left-finger-name components.
+5. Treat `COMP-101..999` category ranges as primary full atlas IDs.
+6. Treat `COMP-001..038` as legacy aliases only.
+7. Treat `COMP-100..273` from the v0.1 full atlas as source component IDs only, not current primary IDs.
+8. Normalize both legacy IDs and v0.1 full atlas IDs before matching templates, gold cases, or forbidden-output cases.
+9. Use `references/qxby_component_atlas/construction_templates.reindexed.v0.2.json`, `tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_goldset.reindexed.v0.2.json`, and `tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_forbidden_outputs.reindexed.v0.2.json` for P7 and later.
+10. Read `tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_forbidden_outputs.reindexed.v0.2.json` before candidate acceptance.
+11. Forbidden output checks are scoped by component/template/phrase context. Do not treat `forbidden_output` literal strings as globally banned.
+12. Legal readings such as `少息` remain legal when the matched component is `COMP-806` / `少息`.
+13. Legal readings such as `就` remain legal when the matched component is `COMP-907` / `就`.
+14. If an ID cannot be normalized, emit `COMPONENT_ID_NORMALIZATION_GAP`.
+15. Component match remains reference evidence, not phrase score authority, not Dapu IR, not sample ingest, not ML data, and not render.
 
 ## 8. Core Workflow
 
