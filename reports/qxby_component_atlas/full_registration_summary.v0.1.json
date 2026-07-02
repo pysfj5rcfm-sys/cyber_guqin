@@ -1,0 +1,159 @@
+{
+  "report_id": "QXBY_FULL_COMPONENT_ATLAS_REGISTRATION_SUMMARY_v0.1",
+  "generated_date": "2026-07-02",
+  "status_labels": [
+    "QXBY_FULL_COMPONENT_ATLAS_REFERENCE",
+    "SOURCE_REFERENCE_IMAGE",
+    "USER_PROVIDED_QXBY_COMPONENT_SET",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT",
+    "NEEDS_CANON_BUILDER_CROSSWALK_REVIEW"
+  ],
+  "authority_boundary": {
+    "component_atlas_reference_authority": {
+      "source_image": true,
+      "filename_derived_label": true,
+      "category": true,
+      "file_hash": true,
+      "registry_id": true,
+      "legacy_alias_evidence": true
+    },
+    "canon_term_authority": false,
+    "seed_crosswalk_only": true,
+    "phrase_score_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "render_output": false
+  },
+  "input_zips_found": [
+    {
+      "zip_filename": "节奏谱字.zip",
+      "path": "/Users/chenyulin/Desktop/节奏谱字.zip"
+    },
+    {
+      "zip_filename": "通用谱字.zip",
+      "path": "/Users/chenyulin/Desktop/通用谱字.zip"
+    },
+    {
+      "zip_filename": "音位谱字.zip",
+      "path": "/Users/chenyulin/Desktop/音位谱字.zip"
+    },
+    {
+      "zip_filename": "右手指法-两弦双弹.zip",
+      "path": "/Users/chenyulin/Desktop/右手指法-两弦双弹.zip"
+    },
+    {
+      "zip_filename": "右手指法-数弦连弹.zip",
+      "path": "/Users/chenyulin/Desktop/右手指法-数弦连弹.zip"
+    },
+    {
+      "zip_filename": "右手指法-一弦单弹.zip",
+      "path": "/Users/chenyulin/Desktop/右手指法-一弦单弹.zip"
+    },
+    {
+      "zip_filename": "左手指法-本位取音.zip",
+      "path": "/Users/chenyulin/Desktop/左手指法-本位取音.zip"
+    },
+    {
+      "zip_filename": "左手指法-隔位取音.zip",
+      "path": "/Users/chenyulin/Desktop/左手指法-隔位取音.zip"
+    },
+    {
+      "zip_filename": "左手指法-散弦取音.zip",
+      "path": "/Users/chenyulin/Desktop/左手指法-散弦取音.zip"
+    }
+  ],
+  "filename_encoding_clean": true,
+  "source_zips_processed": 9,
+  "total_images_registered": 174,
+  "total_categories": 9,
+  "id_range_assigned": "COMP-100..COMP-273",
+  "old_comp_001_037_preserved": true,
+  "observed_comp_038_also_preserved": true,
+  "legacy_alias_count": 25,
+  "duplicate_label_count": 0,
+  "duplicate_hash_count": 0,
+  "excluded_files_count": 192,
+  "category_counts": {
+    "节奏谱字": 22,
+    "通用谱字": 15,
+    "音位谱字": 8,
+    "右手指法-两弦双弹": 17,
+    "右手指法-数弦连弹": 9,
+    "右手指法-一弦单弹": 23,
+    "左手指法-本位取音": 38,
+    "左手指法-隔位取音": 33,
+    "左手指法-散弦取音": 9
+  },
+  "category_id_ranges": [
+    {
+      "category": "节奏谱字",
+      "count": 22,
+      "id_range": "COMP-100..COMP-121"
+    },
+    {
+      "category": "通用谱字",
+      "count": 15,
+      "id_range": "COMP-122..COMP-136"
+    },
+    {
+      "category": "音位谱字",
+      "count": 8,
+      "id_range": "COMP-137..COMP-144"
+    },
+    {
+      "category": "右手指法-两弦双弹",
+      "count": 17,
+      "id_range": "COMP-145..COMP-161"
+    },
+    {
+      "category": "右手指法-数弦连弹",
+      "count": 9,
+      "id_range": "COMP-162..COMP-170"
+    },
+    {
+      "category": "右手指法-一弦单弹",
+      "count": 23,
+      "id_range": "COMP-171..COMP-193"
+    },
+    {
+      "category": "左手指法-本位取音",
+      "count": 38,
+      "id_range": "COMP-194..COMP-231"
+    },
+    {
+      "category": "左手指法-隔位取音",
+      "count": 33,
+      "id_range": "COMP-232..COMP-264"
+    },
+    {
+      "category": "左手指法-散弦取音",
+      "count": 9,
+      "id_range": "COMP-265..COMP-273"
+    }
+  ],
+  "duplicate_labels": [],
+  "duplicate_hashes": [],
+  "files_written": [
+    "sources/qxby_component_atlas/README.md",
+    "sources/qxby_component_atlas/source_inventory.v0.1.json",
+    "sources/qxby_component_atlas/source_inventory.v0.1.csv",
+    "sources/qxby_component_atlas/images/",
+    "references/qxby_component_atlas/README.md",
+    "references/qxby_component_atlas/component_registry.full.v0.1.json",
+    "references/qxby_component_atlas/component_registry.full.v0.1.md",
+    "references/qxby_component_atlas/component_legacy_alias_map.v0.1.json",
+    "references/qxby_component_atlas/component_legacy_alias_map.v0.1.md",
+    "references/qxby_component_atlas/component_to_canon_crosswalk.seed.v0.1.json",
+    "references/qxby_component_atlas/component_to_canon_crosswalk.seed.v0.1.md",
+    "reports/qxby_component_atlas/full_registration_report.v0.1.md",
+    "reports/qxby_component_atlas/full_registration_summary.v0.1.json",
+    "reports/qxby_component_atlas/full_registration_review_sheet.v0.1.csv",
+    ".agents/skills/cyber_guqin_component_guided_transcription/SKILL.md"
+  ],
+  "skill_updated": true
+}

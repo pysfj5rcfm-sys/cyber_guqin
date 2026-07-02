@@ -1,0 +1,592 @@
+{
+  "alias_map_id": "QXBY_FULL_COMPONENT_ATLAS_LEGACY_ALIAS_MAP_v0.1",
+  "generated_date": "2026-07-02",
+  "status_labels": [
+    "QXBY_FULL_COMPONENT_ATLAS_REFERENCE",
+    "SOURCE_REFERENCE_IMAGE",
+    "USER_PROVIDED_QXBY_COMPONENT_SET",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT",
+    "NEEDS_CANON_BUILDER_CROSSWALK_REVIEW"
+  ],
+  "authority_boundary": {
+    "component_atlas_reference_authority": {
+      "source_image": true,
+      "filename_derived_label": true,
+      "category": true,
+      "file_hash": true,
+      "registry_id": true,
+      "legacy_alias_evidence": true
+    },
+    "canon_term_authority": false,
+    "seed_crosswalk_only": true,
+    "phrase_score_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "render_output": false
+  },
+  "policy": {
+    "do_not_delete_old_ids": true,
+    "do_not_renumber_old_ids": true,
+    "do_not_replace_old_reports": true,
+    "do_not_edit_old_phrase_reports": true,
+    "do_not_silently_collapse_distinct_terms_with_same_label_if_category_differs": true
+  },
+  "legacy_source_files_read": [
+    "references/qxby_component_atlas/component_registry.v0.1.json",
+    "reports/lxy_first_two_phrases_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase3_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase4_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase5_component_guided_candidates.v0.1.json",
+    "reports/lxy_phrase6_component_guided_candidates.v0.1.json",
+    ".agents/skills/cyber_guqin_component_guided_transcription/SKILL.md"
+  ],
+  "aliases": [
+    {
+      "legacy_component_id": "COMP-001",
+      "legacy_label_zh": "托",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-182",
+      "full_atlas_label_zh": "托",
+      "full_atlas_category": "右手指法-一弦单弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-002",
+      "legacy_label_zh": "泛起",
+      "legacy_category": "泛音起始",
+      "full_atlas_component_id": "COMP-144",
+      "full_atlas_label_zh": "泛起",
+      "full_atlas_category": "音位谱字",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-003",
+      "legacy_label_zh": "少息",
+      "legacy_category": "节奏谱字",
+      "full_atlas_component_id": "COMP-105",
+      "full_atlas_label_zh": "少息",
+      "full_atlas_category": "节奏谱字",
+      "match_basis": [
+        "label_match",
+        "category_match"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "notes": "Exact label match in full atlas. Legacy category matches full-atlas major category."
+    },
+    {
+      "legacy_component_id": "COMP-010",
+      "legacy_label_zh": "吟",
+      "legacy_category": "左手指法",
+      "full_atlas_component_id": "COMP-198",
+      "full_atlas_label_zh": "吟",
+      "full_atlas_category": "左手指法-本位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-014",
+      "legacy_label_zh": "历",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-163",
+      "full_atlas_label_zh": "历",
+      "full_atlas_category": "右手指法-数弦连弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-017",
+      "legacy_label_zh": "泛止",
+      "legacy_category": "泛音停止",
+      "full_atlas_component_id": "COMP-143",
+      "full_atlas_label_zh": "泛止",
+      "full_atlas_category": "音位谱字",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-018",
+      "legacy_label_zh": "挑",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-186",
+      "full_atlas_label_zh": "挑",
+      "full_atlas_category": "右手指法-一弦单弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-019",
+      "legacy_label_zh": "爪起",
+      "legacy_category": "左手指法",
+      "full_atlas_component_id": "COMP-273",
+      "full_atlas_label_zh": "爪起",
+      "full_atlas_category": "左手指法-散弦取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-020",
+      "legacy_label_zh": "勾",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-173",
+      "full_atlas_label_zh": "勾",
+      "full_atlas_category": "右手指法-一弦单弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-021",
+      "legacy_label_zh": "背锁",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-190",
+      "full_atlas_label_zh": "背锁",
+      "full_atlas_category": "右手指法-一弦单弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-022",
+      "legacy_label_zh": "掐起",
+      "legacy_category": "左手指法",
+      "full_atlas_component_id": "COMP-246",
+      "full_atlas_label_zh": "掐起",
+      "full_atlas_category": "左手指法-隔位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-023",
+      "legacy_label_zh": "就",
+      "legacy_category": "左手承前",
+      "full_atlas_component_id": "COMP-128",
+      "full_atlas_label_zh": "就",
+      "full_atlas_category": "通用谱字",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-024",
+      "legacy_label_zh": "进复",
+      "legacy_category": "左手取音",
+      "full_atlas_component_id": "COMP-258",
+      "full_atlas_label_zh": "进复",
+      "full_atlas_category": "左手指法-隔位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-025",
+      "legacy_label_zh": "注",
+      "legacy_category": "左手取音",
+      "full_atlas_component_id": "COMP-211",
+      "full_atlas_label_zh": "注",
+      "full_atlas_category": "左手指法-本位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-026",
+      "legacy_label_zh": "上",
+      "legacy_category": "左手取音",
+      "full_atlas_component_id": "COMP-232",
+      "full_atlas_label_zh": "上",
+      "full_atlas_category": "左手指法-隔位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-028",
+      "legacy_label_zh": "撞",
+      "legacy_category": "左手取音",
+      "full_atlas_component_id": "COMP-209",
+      "full_atlas_label_zh": "撞",
+      "full_atlas_category": "左手指法-本位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-029",
+      "legacy_label_zh": "轮",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-191",
+      "full_atlas_label_zh": "轮",
+      "full_atlas_category": "右手指法-一弦单弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-030",
+      "legacy_label_zh": "急",
+      "legacy_category": "节奏谱字",
+      "full_atlas_component_id": "COMP-106",
+      "full_atlas_label_zh": "急",
+      "full_atlas_category": "节奏谱字",
+      "match_basis": [
+        "label_match",
+        "category_match"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "notes": "Exact label match in full atlas. Legacy category matches full-atlas major category."
+    },
+    {
+      "legacy_component_id": "COMP-031",
+      "legacy_label_zh": "抹挑",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-185",
+      "full_atlas_label_zh": "抹挑",
+      "full_atlas_category": "右手指法-一弦单弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-033",
+      "legacy_label_zh": "绰",
+      "legacy_category": "左手取音",
+      "full_atlas_component_id": "COMP-219",
+      "full_atlas_label_zh": "绰",
+      "full_atlas_category": "左手指法-本位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-034",
+      "legacy_label_zh": "双吟",
+      "legacy_category": "左手取音",
+      "full_atlas_component_id": "COMP-194",
+      "full_atlas_label_zh": "双吟",
+      "full_atlas_category": "左手指法-本位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-035",
+      "legacy_label_zh": "落指猱",
+      "legacy_category": "左手取音",
+      "full_atlas_component_id": "COMP-227",
+      "full_atlas_label_zh": "落指猱",
+      "full_atlas_category": "左手指法-本位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-036",
+      "legacy_label_zh": "掩",
+      "legacy_category": "左手指法",
+      "full_atlas_component_id": "COMP-247",
+      "full_atlas_label_zh": "掩",
+      "full_atlas_category": "左手指法-隔位取音",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-037",
+      "legacy_label_zh": "剔",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-172",
+      "full_atlas_label_zh": "剔",
+      "full_atlas_category": "右手指法-一弦单弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    },
+    {
+      "legacy_component_id": "COMP-038",
+      "legacy_label_zh": "双弹",
+      "legacy_category": "右手指法",
+      "full_atlas_component_id": "COMP-150",
+      "full_atlas_label_zh": "双弹",
+      "full_atlas_category": "右手指法-两弦双弹",
+      "match_basis": [
+        "label_match"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "notes": "Exact label match in full atlas. Legacy category is a broader or older taxonomy; keep reviewable."
+    }
+  ],
+  "unmapped_legacy_components": [
+    {
+      "legacy_component_id": "COMP-004",
+      "legacy_label_zh": "五",
+      "legacy_category": "弦数",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-005",
+      "legacy_label_zh": "句号",
+      "legacy_category": "节奏谱字",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-127",
+          "label_zh": "句",
+          "major_category": "通用谱字"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-006",
+      "legacy_label_zh": "六",
+      "legacy_category": "弦数",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-007",
+      "legacy_label_zh": "七",
+      "legacy_category": "弦数",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-008",
+      "legacy_label_zh": "名指",
+      "legacy_category": "左手指法",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-139",
+          "label_zh": "指",
+          "major_category": "音位谱字"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-009",
+      "legacy_label_zh": "一",
+      "legacy_category": "弦数",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-153",
+          "label_zh": "如一",
+          "major_category": "右手指法-两弦双弹"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-011",
+      "legacy_label_zh": "四",
+      "legacy_category": "弦数",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-012",
+      "legacy_label_zh": "大指",
+      "legacy_category": "左手指法",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-139",
+          "label_zh": "指",
+          "major_category": "音位谱字"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-013",
+      "legacy_label_zh": "中指",
+      "legacy_category": "左手指法",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-139",
+          "label_zh": "指",
+          "major_category": "音位谱字"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-015",
+      "legacy_label_zh": "二",
+      "legacy_category": "弦数",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-123",
+          "label_zh": "二作",
+          "major_category": "通用谱字"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-016",
+      "legacy_label_zh": "三",
+      "legacy_category": "弦数",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-145",
+          "label_zh": "三弹",
+          "major_category": "右手指法-两弦双弹"
+        },
+        {
+          "component_id": "COMP-155",
+          "label_zh": "掐撮三声",
+          "major_category": "右手指法-两弦双弹"
+        },
+        {
+          "component_id": "COMP-156",
+          "label_zh": "掐泼剌三声",
+          "major_category": "右手指法-两弦双弹"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-027",
+      "legacy_label_zh": "散音起始",
+      "legacy_category": "散音起始",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-141",
+          "label_zh": "散",
+          "major_category": "音位谱字"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    },
+    {
+      "legacy_component_id": "COMP-032",
+      "legacy_label_zh": "如一声",
+      "legacy_category": "两弦双弹",
+      "reason": "no_exact_full_atlas_label_match",
+      "possible_full_atlas_candidates": [
+        {
+          "component_id": "COMP-153",
+          "label_zh": "如一",
+          "major_category": "右手指法-两弦双弹"
+        }
+      ],
+      "needs_review": true,
+      "notes": "Legacy component preserved without full-atlas alias; do not renumber or collapse."
+    }
+  ],
+  "summary": {
+    "legacy_components_observed": 38,
+    "legacy_prompt_range_preserved": "COMP-001..037",
+    "resolved_alias_count": 25,
+    "needs_review_alias_count": 23,
+    "unmapped_legacy_count": 13
+  }
+}

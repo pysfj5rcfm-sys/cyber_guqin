@@ -1,65 +1,19 @@
-# QXBY Component Atlas Reference v0.1
+# QXBY Component Atlas References
 
-Status labels: `QXBY_COMPONENT_ATLAS_REFERENCE`, `USER_REVIEWED_COMPONENT_LABELS`, `SOURCE_REFERENCE_KNOWLEDGE`, `NOT_SCORE_EVENT_AUTHORITY`, `NOT_DAPU_IR_AUTHORITY`, `NOT_SAMPLE_INGEST`, `NOT_ML_TRAINING_DATA`.
+Status labels: `QXBY_FULL_COMPONENT_ATLAS_REFERENCE`, `SOURCE_REFERENCE_IMAGE`, `USER_PROVIDED_QXBY_COMPONENT_SET`, `NOT_SCORE_EVENT_AUTHORITY`, `NOT_DAPU_IR_AUTHORITY`, `NOT_SAMPLE_INGEST`, `NOT_ML_TRAINING_DATA`, `NOT_RENDER_OUTPUT`, `NEEDS_CANON_BUILDER_CROSSWALK_REVIEW`
 
-This directory stores repo-local reference knowledge for the user-reviewed QXBY / 《琴学备要》 component set used across LXY P1-P4.
+This directory contains QXBY component reference registries. The legacy pilot registry remains in `component_registry.v0.1.json`; the new full atlas is registered separately under `component_registry.full.v0.1.json` with IDs starting at `COMP-100`.
 
-It is a component atlas reference only. It is not a score import, not canon authority, not Dapu IR authority, not sample ingest, not ML training data, not render output, and not a recording plan.
+## Current Files
 
-## Files
-
-- `component_registry.v0.1.json`: structured registry for `COMP-001..030` and reusable construction templates.
-- `component_registry.v0.1.md`: human-readable summary of the same registry.
-
-No PNG or ZIP binary assets are copied into this repository by this task.
+- `component_registry.v0.1.json` / `.md`: legacy pilot component reference layer. Do not delete, renumber, or overwrite old IDs.
+- `construction_templates.v0.1.json` / `.md`: legacy/reviewed construction-template reference layer for component-guided transcription.
+- `component_registry.full.v0.1.json` / `.md`: full QXBY component atlas reference from nine user-provided zips.
+- `component_legacy_alias_map.v0.1.json` / `.md`: reviewable mapping from old pilot IDs to full-atlas IDs.
+- `component_to_canon_crosswalk.seed.v0.1.json` / `.md`: seed-only canon-builder crosswalk.
 
 ## Authority Boundary
 
-The registry may be used as reference authority for:
+The full atlas is authoritative only for source image identity, filename-derived labels, categories from zip/folder names, file hashes, registry IDs, and legacy alias evidence. It is not canon term authority, not phrase score authority, not Dapu IR authority, not sample ingest, not ML training data, and not render output.
 
-- component labels,
-- component categories,
-- visual slot semantics,
-- construction-template hints,
-- QXBY / user-review provenance.
-
-The registry must not be used as authority for:
-
-- final phrase score facts,
-- Dapu Event IR,
-- sample ingest,
-- ML training data,
-- render or recording-plan outputs,
-- R0/R1/R2/E/F workflow state.
-
-New LXY phrase readings remain `LXY_TRANSCRIPTION_DRAFT` and `NEEDS_HUMAN_REVIEW`.
-
-## Source Provenance
-
-- `/Users/chenyulin/Downloads/basic_components_named_v0.2.zip`
-  - SHA-256: `ac4330df2c5d8b234d6cdb16ab9141692faf7553ab599391047b7a6a4a9817ac`
-  - Components: `COMP-001..020`
-- `/Users/chenyulin/Downloads/basic_components_named_v0.3.zip`
-  - SHA-256: `77bf5daaffeb9a1c7b0dab6241a2d89ca0bd20cff0c0e73c9070fbaac34c50b5`
-  - Components: `COMP-021..027`
-- `/Users/chenyulin/Downloads/basic_components_named_v0.4.zip`
-  - SHA-256: `569a74b0d644be8c4bef0a90c44dec19fed9f9073de2c0d8524afb76f4e1cc31`
-  - Components: `COMP-028..030`
-
-The v0.4 correction is preserved:
-
-- `COMP-028 = 撞 / 左手取音`
-- `COMP-029 = 轮 / 右手指法`
-- `COMP-030 = 急 / 节奏谱字`
-
-Do not use earlier wrong raw mappings such as `raw_001=轮` or `raw_003=撞`.
-
-## Read Order For Component-Guided Transcription
-
-For P5 and later LXY phrase crops, the component-guided transcription skill should read:
-
-1. `references/qxby_component_atlas/component_registry.v0.1.json`
-2. approved QXBY / v0.3.1 reports
-3. prior LXY phrase reports as transcription-draft template evidence
-
-Any candidate phrase reading produced from this atlas must remain report-only and human-reviewable.
+Future phrase recognition may read the full atlas as reference evidence, but unknown future glyphs must be marked as `component_gap` instead of force-matched.
