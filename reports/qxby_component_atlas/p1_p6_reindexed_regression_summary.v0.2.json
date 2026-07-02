@@ -1,0 +1,37 @@
+{
+  "report_id": "QXBY_P1_P6_REINDEXED_REGRESSION_SUMMARY_v0.2",
+  "generated_date": "2026-07-02",
+  "status_labels": [
+    "LXY_TRANSCRIPTION_DRAFT",
+    "REGRESSION_GOLDSET_FOR_DRAFT_REPLAY",
+    "CATEGORY_REINDEXED_COMPONENT_IDS",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NEEDS_HUMAN_REVIEW",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "primary_id_system": "category_based_v0_2",
+  "p1_p6_reindexed_regression_result": "PASS",
+  "goldset_fixture": "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_goldset.reindexed.v0.2.json",
+  "forbidden_fixture": "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_forbidden_outputs.reindexed.v0.2.json",
+  "component_match_cases": 4,
+  "construction_template_cases": 21,
+  "phrase_integration_cases": 6,
+  "forbidden_output_cases": 23,
+  "authority_boundary": {
+    "goldset_role": "regression expectation for draft transcription behavior",
+    "score_event_authority": false,
+    "canon_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "render_output": false
+  },
+  "validation_results": {
+    "json_validation": "PASS using bundled Codex Python or python3 fallback",
+    "reindex_sanity": "PASS full=174 aux=12 legacy=38 source_v01=174 templates=50 gold_phrases=6 forbidden=23",
+    "git_diff_check": "PASS",
+    "notes": "Primary IDs are interpreted under primary_id_system=category_based_v0_2; v0.1 IDs are retained only in source traceability fields."
+  }
+}

@@ -1,0 +1,1770 @@
+{
+  "alias_map_id": "QXBY_FULL_COMPONENT_ATLAS_REINDEXED_ALIAS_MAP_v0.2",
+  "generated_date": "2026-07-02",
+  "status_labels": [
+    "QXBY_FULL_COMPONENT_ATLAS_REFERENCE",
+    "CATEGORY_REINDEXED_COMPONENT_IDS",
+    "SOURCE_REFERENCE_IMAGE",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "authority_boundary": {
+    "component_reference": true,
+    "source_reference_image": true,
+    "category_reindexed_ids": true,
+    "canon_term_authority": false,
+    "score_event_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "render_output": false,
+    "recording_plan": false
+  },
+  "legacy_to_reindexed": [
+    {
+      "legacy_component_id": "COMP-001",
+      "legacy_label_zh": "托",
+      "source_component_id_v0_1": "COMP-182",
+      "source_label_zh_v0_1": "托",
+      "reindexed_component_id_v0_2": "COMP-112",
+      "reindexed_label_zh": "托",
+      "reindexed_family": "right_hand_single_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-002",
+      "legacy_label_zh": "泛起",
+      "source_component_id_v0_1": "COMP-144",
+      "source_label_zh_v0_1": "泛起",
+      "reindexed_component_id_v0_2": "COMP-708",
+      "reindexed_label_zh": "泛起",
+      "reindexed_family": "sound_position_marker_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-003",
+      "legacy_label_zh": "少息",
+      "source_component_id_v0_1": "COMP-105",
+      "source_label_zh_v0_1": "少息",
+      "reindexed_component_id_v0_2": "COMP-806",
+      "reindexed_label_zh": "少息",
+      "reindexed_family": "rhythm_marker_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-004",
+      "legacy_label_zh": "五",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-085",
+      "reindexed_label_zh": "五",
+      "reindexed_family": "numeric_component_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_numeric_component"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-005",
+      "legacy_label_zh": "句号",
+      "source_component_id_v0_1": "COMP-127",
+      "source_label_zh_v0_1": "句",
+      "reindexed_component_id_v0_2": "COMP-906",
+      "reindexed_label_zh": "句",
+      "reindexed_family": "generic_score_marker_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "semantic_alias_review_required"
+      ],
+      "confidence": "low",
+      "needs_review": true,
+      "review_reason": "punctuation_label_alias",
+      "semantic_alias_type": "punctuation_label_alias",
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-006",
+      "legacy_label_zh": "六",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-086",
+      "reindexed_label_zh": "六",
+      "reindexed_family": "numeric_component_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_numeric_component"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-007",
+      "legacy_label_zh": "七",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-087",
+      "reindexed_label_zh": "七",
+      "reindexed_family": "numeric_component_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_numeric_component"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-008",
+      "legacy_label_zh": "名指",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-094",
+      "reindexed_label_zh": "名指",
+      "reindexed_family": "left_finger_name_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_left_finger_name"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-009",
+      "legacy_label_zh": "一",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-081",
+      "reindexed_label_zh": "一",
+      "reindexed_family": "numeric_component_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_numeric_component"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-010",
+      "legacy_label_zh": "吟",
+      "source_component_id_v0_1": "COMP-198",
+      "source_label_zh_v0_1": "吟",
+      "reindexed_component_id_v0_2": "COMP-405",
+      "reindexed_label_zh": "吟",
+      "reindexed_family": "left_hand_base_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-011",
+      "legacy_label_zh": "四",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-084",
+      "reindexed_label_zh": "四",
+      "reindexed_family": "numeric_component_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_numeric_component"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-012",
+      "legacy_label_zh": "大指",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-091",
+      "reindexed_label_zh": "大指",
+      "reindexed_family": "left_finger_name_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_left_finger_name"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-013",
+      "legacy_label_zh": "中指",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-093",
+      "reindexed_label_zh": "中指",
+      "reindexed_family": "left_finger_name_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_left_finger_name"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-014",
+      "legacy_label_zh": "历",
+      "source_component_id_v0_1": "COMP-163",
+      "source_label_zh_v0_1": "历",
+      "reindexed_component_id_v0_2": "COMP-302",
+      "reindexed_label_zh": "历",
+      "reindexed_family": "right_hand_multi_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-015",
+      "legacy_label_zh": "二",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-082",
+      "reindexed_label_zh": "二",
+      "reindexed_family": "numeric_component_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_numeric_component"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-016",
+      "legacy_label_zh": "三",
+      "source_component_id_v0_1": null,
+      "source_label_zh_v0_1": null,
+      "reindexed_component_id_v0_2": "COMP-083",
+      "reindexed_label_zh": "三",
+      "reindexed_family": "numeric_component_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "auxiliary_numeric_component"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-017",
+      "legacy_label_zh": "泛止",
+      "source_component_id_v0_1": "COMP-143",
+      "source_label_zh_v0_1": "泛止",
+      "reindexed_component_id_v0_2": "COMP-707",
+      "reindexed_label_zh": "泛止",
+      "reindexed_family": "sound_position_marker_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-018",
+      "legacy_label_zh": "挑",
+      "source_component_id_v0_1": "COMP-186",
+      "source_label_zh_v0_1": "挑",
+      "reindexed_component_id_v0_2": "COMP-116",
+      "reindexed_label_zh": "挑",
+      "reindexed_family": "right_hand_single_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-019",
+      "legacy_label_zh": "爪起",
+      "source_component_id_v0_1": "COMP-273",
+      "source_label_zh_v0_1": "爪起",
+      "reindexed_component_id_v0_2": "COMP-609",
+      "reindexed_label_zh": "爪起",
+      "reindexed_family": "left_hand_open_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-020",
+      "legacy_label_zh": "勾",
+      "source_component_id_v0_1": "COMP-173",
+      "source_label_zh_v0_1": "勾",
+      "reindexed_component_id_v0_2": "COMP-103",
+      "reindexed_label_zh": "勾",
+      "reindexed_family": "right_hand_single_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-021",
+      "legacy_label_zh": "背锁",
+      "source_component_id_v0_1": "COMP-190",
+      "source_label_zh_v0_1": "背锁",
+      "reindexed_component_id_v0_2": "COMP-120",
+      "reindexed_label_zh": "背锁",
+      "reindexed_family": "right_hand_single_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-022",
+      "legacy_label_zh": "掐起",
+      "source_component_id_v0_1": "COMP-246",
+      "source_label_zh_v0_1": "掐起",
+      "reindexed_component_id_v0_2": "COMP-515",
+      "reindexed_label_zh": "掐起",
+      "reindexed_family": "left_hand_interval_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-023",
+      "legacy_label_zh": "就",
+      "source_component_id_v0_1": "COMP-128",
+      "source_label_zh_v0_1": "就",
+      "reindexed_component_id_v0_2": "COMP-907",
+      "reindexed_label_zh": "就",
+      "reindexed_family": "generic_score_marker_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-024",
+      "legacy_label_zh": "进复",
+      "source_component_id_v0_1": "COMP-258",
+      "source_label_zh_v0_1": "进复",
+      "reindexed_component_id_v0_2": "COMP-527",
+      "reindexed_label_zh": "进复",
+      "reindexed_family": "left_hand_interval_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-025",
+      "legacy_label_zh": "注",
+      "source_component_id_v0_1": "COMP-211",
+      "source_label_zh_v0_1": "注",
+      "reindexed_component_id_v0_2": "COMP-418",
+      "reindexed_label_zh": "注",
+      "reindexed_family": "left_hand_base_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-026",
+      "legacy_label_zh": "上",
+      "source_component_id_v0_1": "COMP-232",
+      "source_label_zh_v0_1": "上",
+      "reindexed_component_id_v0_2": "COMP-501",
+      "reindexed_label_zh": "上",
+      "reindexed_family": "left_hand_interval_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-027",
+      "legacy_label_zh": "散音起始",
+      "source_component_id_v0_1": "COMP-141",
+      "source_label_zh_v0_1": "散",
+      "reindexed_component_id_v0_2": "COMP-705",
+      "reindexed_label_zh": "散",
+      "reindexed_family": "sound_position_marker_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "semantic_alias_review_required"
+      ],
+      "confidence": "low",
+      "needs_review": true,
+      "review_reason": "sound_state_label_alias",
+      "semantic_alias_type": "sound_state_label_alias",
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-028",
+      "legacy_label_zh": "撞",
+      "source_component_id_v0_1": "COMP-209",
+      "source_label_zh_v0_1": "撞",
+      "reindexed_component_id_v0_2": "COMP-416",
+      "reindexed_label_zh": "撞",
+      "reindexed_family": "left_hand_base_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-029",
+      "legacy_label_zh": "轮",
+      "source_component_id_v0_1": "COMP-191",
+      "source_label_zh_v0_1": "轮",
+      "reindexed_component_id_v0_2": "COMP-121",
+      "reindexed_label_zh": "轮",
+      "reindexed_family": "right_hand_single_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-030",
+      "legacy_label_zh": "急",
+      "source_component_id_v0_1": "COMP-106",
+      "source_label_zh_v0_1": "急",
+      "reindexed_component_id_v0_2": "COMP-807",
+      "reindexed_label_zh": "急",
+      "reindexed_family": "rhythm_marker_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "high",
+      "needs_review": false,
+      "review_reason": "direct normalized component mapping",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-031",
+      "legacy_label_zh": "抹挑",
+      "source_component_id_v0_1": "COMP-185",
+      "source_label_zh_v0_1": "抹挑",
+      "reindexed_component_id_v0_2": "COMP-115",
+      "reindexed_label_zh": "抹挑",
+      "reindexed_family": "right_hand_single_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-032",
+      "legacy_label_zh": "如一声",
+      "source_component_id_v0_1": "COMP-153",
+      "source_label_zh_v0_1": "如一",
+      "reindexed_component_id_v0_2": "COMP-209",
+      "reindexed_label_zh": "如一",
+      "reindexed_family": "right_hand_two_string_family",
+      "match_basis": [
+        "category_reindex_policy",
+        "semantic_alias_review_required"
+      ],
+      "confidence": "low",
+      "needs_review": true,
+      "review_reason": "two_string_double_action_label_alias",
+      "semantic_alias_type": "two_string_double_action_label_alias",
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-033",
+      "legacy_label_zh": "绰",
+      "source_component_id_v0_1": "COMP-219",
+      "source_label_zh_v0_1": "绰",
+      "reindexed_component_id_v0_2": "COMP-426",
+      "reindexed_label_zh": "绰",
+      "reindexed_family": "left_hand_base_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-034",
+      "legacy_label_zh": "双吟",
+      "source_component_id_v0_1": "COMP-194",
+      "source_label_zh_v0_1": "双吟",
+      "reindexed_component_id_v0_2": "COMP-401",
+      "reindexed_label_zh": "双吟",
+      "reindexed_family": "left_hand_base_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-035",
+      "legacy_label_zh": "落指猱",
+      "source_component_id_v0_1": "COMP-227",
+      "source_label_zh_v0_1": "落指猱",
+      "reindexed_component_id_v0_2": "COMP-434",
+      "reindexed_label_zh": "落指猱",
+      "reindexed_family": "left_hand_base_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-036",
+      "legacy_label_zh": "掩",
+      "source_component_id_v0_1": "COMP-247",
+      "source_label_zh_v0_1": "掩",
+      "reindexed_component_id_v0_2": "COMP-516",
+      "reindexed_label_zh": "掩",
+      "reindexed_family": "left_hand_interval_position_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-037",
+      "legacy_label_zh": "剔",
+      "source_component_id_v0_1": "COMP-172",
+      "source_label_zh_v0_1": "剔",
+      "reindexed_component_id_v0_2": "COMP-102",
+      "reindexed_label_zh": "剔",
+      "reindexed_family": "right_hand_single_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    },
+    {
+      "legacy_component_id": "COMP-038",
+      "legacy_label_zh": "双弹",
+      "source_component_id_v0_1": "COMP-150",
+      "source_label_zh_v0_1": "双弹",
+      "reindexed_component_id_v0_2": "COMP-206",
+      "reindexed_label_zh": "双弹",
+      "reindexed_family": "right_hand_two_string_family",
+      "match_basis": [
+        "existing_alias_map_v0_1",
+        "category_reindex_policy"
+      ],
+      "confidence": "medium",
+      "needs_review": true,
+      "review_reason": "legacy taxonomy broader than full-atlas category",
+      "semantic_alias_type": null,
+      "notes": "Legacy IDs are aliases only; primary ID is category_based_v0_2. This mapping is not score-event or Dapu IR authority."
+    }
+  ],
+  "source_v0_1_to_reindexed": [
+    {
+      "source_component_id_v0_1": "COMP-100",
+      "label_zh": "入乱",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-801"
+    },
+    {
+      "source_component_id_v0_1": "COMP-101",
+      "label_zh": "入慢",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-802"
+    },
+    {
+      "source_component_id_v0_1": "COMP-102",
+      "label_zh": "入拍",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-803"
+    },
+    {
+      "source_component_id_v0_1": "COMP-103",
+      "label_zh": "大慢",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-804"
+    },
+    {
+      "source_component_id_v0_1": "COMP-104",
+      "label_zh": "实",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-805"
+    },
+    {
+      "source_component_id_v0_1": "COMP-105",
+      "label_zh": "少息",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-806"
+    },
+    {
+      "source_component_id_v0_1": "COMP-106",
+      "label_zh": "急",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-807"
+    },
+    {
+      "source_component_id_v0_1": "COMP-107",
+      "label_zh": "急作",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-808"
+    },
+    {
+      "source_component_id_v0_1": "COMP-108",
+      "label_zh": "息",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-809"
+    },
+    {
+      "source_component_id_v0_1": "COMP-109",
+      "label_zh": "慢",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-810"
+    },
+    {
+      "source_component_id_v0_1": "COMP-110",
+      "label_zh": "接",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-811"
+    },
+    {
+      "source_component_id_v0_1": "COMP-111",
+      "label_zh": "渐慢",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-812"
+    },
+    {
+      "source_component_id_v0_1": "COMP-112",
+      "label_zh": "紧",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-813"
+    },
+    {
+      "source_component_id_v0_1": "COMP-113",
+      "label_zh": "缓",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-814"
+    },
+    {
+      "source_component_id_v0_1": "COMP-114",
+      "label_zh": "缓作",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-815"
+    },
+    {
+      "source_component_id_v0_1": "COMP-115",
+      "label_zh": "蓄",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-816"
+    },
+    {
+      "source_component_id_v0_1": "COMP-116",
+      "label_zh": "虚",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-817"
+    },
+    {
+      "source_component_id_v0_1": "COMP-117",
+      "label_zh": "踢宕",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-818"
+    },
+    {
+      "source_component_id_v0_1": "COMP-118",
+      "label_zh": "轻",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-819"
+    },
+    {
+      "source_component_id_v0_1": "COMP-119",
+      "label_zh": "连",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-820"
+    },
+    {
+      "source_component_id_v0_1": "COMP-120",
+      "label_zh": "重",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-821"
+    },
+    {
+      "source_component_id_v0_1": "COMP-121",
+      "label_zh": "顿",
+      "major_category": "节奏谱字",
+      "reindexed_component_id_v0_2": "COMP-822"
+    },
+    {
+      "source_component_id_v0_1": "COMP-122",
+      "label_zh": "不动",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-901"
+    },
+    {
+      "source_component_id_v0_1": "COMP-123",
+      "label_zh": "二作",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-902"
+    },
+    {
+      "source_component_id_v0_1": "COMP-124",
+      "label_zh": "从勾再作",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-903"
+    },
+    {
+      "source_component_id_v0_1": "COMP-125",
+      "label_zh": "从头再作",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-904"
+    },
+    {
+      "source_component_id_v0_1": "COMP-126",
+      "label_zh": "再作",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-905"
+    },
+    {
+      "source_component_id_v0_1": "COMP-127",
+      "label_zh": "句",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-906"
+    },
+    {
+      "source_component_id_v0_1": "COMP-128",
+      "label_zh": "就",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-907"
+    },
+    {
+      "source_component_id_v0_1": "COMP-129",
+      "label_zh": "换",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-908"
+    },
+    {
+      "source_component_id_v0_1": "COMP-130",
+      "label_zh": "操终",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-909"
+    },
+    {
+      "source_component_id_v0_1": "COMP-131",
+      "label_zh": "曲终",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-910"
+    },
+    {
+      "source_component_id_v0_1": "COMP-132",
+      "label_zh": "末",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-911"
+    },
+    {
+      "source_component_id_v0_1": "COMP-133",
+      "label_zh": "次",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-912"
+    },
+    {
+      "source_component_id_v0_1": "COMP-134",
+      "label_zh": "段",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-913"
+    },
+    {
+      "source_component_id_v0_1": "COMP-135",
+      "label_zh": "至",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-914"
+    },
+    {
+      "source_component_id_v0_1": "COMP-136",
+      "label_zh": "调终",
+      "major_category": "通用谱字",
+      "reindexed_component_id_v0_2": "COMP-915"
+    },
+    {
+      "source_component_id_v0_1": "COMP-137",
+      "label_zh": "弦",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-701"
+    },
+    {
+      "source_component_id_v0_1": "COMP-138",
+      "label_zh": "徽",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-702"
+    },
+    {
+      "source_component_id_v0_1": "COMP-139",
+      "label_zh": "指",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-703"
+    },
+    {
+      "source_component_id_v0_1": "COMP-140",
+      "label_zh": "按",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-704"
+    },
+    {
+      "source_component_id_v0_1": "COMP-141",
+      "label_zh": "散",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-705"
+    },
+    {
+      "source_component_id_v0_1": "COMP-142",
+      "label_zh": "泛",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-706"
+    },
+    {
+      "source_component_id_v0_1": "COMP-143",
+      "label_zh": "泛止",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-707"
+    },
+    {
+      "source_component_id_v0_1": "COMP-144",
+      "label_zh": "泛起",
+      "major_category": "音位谱字",
+      "reindexed_component_id_v0_2": "COMP-708"
+    },
+    {
+      "source_component_id_v0_1": "COMP-145",
+      "label_zh": "三弹",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-201"
+    },
+    {
+      "source_component_id_v0_1": "COMP-146",
+      "label_zh": "伏",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-202"
+    },
+    {
+      "source_component_id_v0_1": "COMP-147",
+      "label_zh": "全扶",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-203"
+    },
+    {
+      "source_component_id_v0_1": "COMP-148",
+      "label_zh": "剌",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-204"
+    },
+    {
+      "source_component_id_v0_1": "COMP-149",
+      "label_zh": "半扶",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-205"
+    },
+    {
+      "source_component_id_v0_1": "COMP-150",
+      "label_zh": "双弹",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-206"
+    },
+    {
+      "source_component_id_v0_1": "COMP-151",
+      "label_zh": "反撮",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-207"
+    },
+    {
+      "source_component_id_v0_1": "COMP-152",
+      "label_zh": "大撮",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-208"
+    },
+    {
+      "source_component_id_v0_1": "COMP-153",
+      "label_zh": "如一",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-209"
+    },
+    {
+      "source_component_id_v0_1": "COMP-154",
+      "label_zh": "弹",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-210"
+    },
+    {
+      "source_component_id_v0_1": "COMP-155",
+      "label_zh": "掐撮三声",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-211"
+    },
+    {
+      "source_component_id_v0_1": "COMP-156",
+      "label_zh": "掐泼剌三声",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-212"
+    },
+    {
+      "source_component_id_v0_1": "COMP-157",
+      "label_zh": "搂圆",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-213"
+    },
+    {
+      "source_component_id_v0_1": "COMP-158",
+      "label_zh": "摘泼剌",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-214"
+    },
+    {
+      "source_component_id_v0_1": "COMP-159",
+      "label_zh": "撮",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-215"
+    },
+    {
+      "source_component_id_v0_1": "COMP-160",
+      "label_zh": "泼",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-216"
+    },
+    {
+      "source_component_id_v0_1": "COMP-161",
+      "label_zh": "泼剌",
+      "major_category": "右手指法-两弦双弹",
+      "reindexed_component_id_v0_2": "COMP-217"
+    },
+    {
+      "source_component_id_v0_1": "COMP-162",
+      "label_zh": "临",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-301"
+    },
+    {
+      "source_component_id_v0_1": "COMP-163",
+      "label_zh": "历",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-302"
+    },
+    {
+      "source_component_id_v0_1": "COMP-164",
+      "label_zh": "大间勾",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-303"
+    },
+    {
+      "source_component_id_v0_1": "COMP-165",
+      "label_zh": "小间勾",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-304"
+    },
+    {
+      "source_component_id_v0_1": "COMP-166",
+      "label_zh": "打圆",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-305"
+    },
+    {
+      "source_component_id_v0_1": "COMP-167",
+      "label_zh": "拂",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-306"
+    },
+    {
+      "source_component_id_v0_1": "COMP-168",
+      "label_zh": "滚",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-307"
+    },
+    {
+      "source_component_id_v0_1": "COMP-169",
+      "label_zh": "滚拂",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-308"
+    },
+    {
+      "source_component_id_v0_1": "COMP-170",
+      "label_zh": "索铃",
+      "major_category": "右手指法-数弦连弹",
+      "reindexed_component_id_v0_2": "COMP-309"
+    },
+    {
+      "source_component_id_v0_1": "COMP-171",
+      "label_zh": "倒锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-101"
+    },
+    {
+      "source_component_id_v0_1": "COMP-172",
+      "label_zh": "剔",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-102"
+    },
+    {
+      "source_component_id_v0_1": "COMP-173",
+      "label_zh": "勾",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-103"
+    },
+    {
+      "source_component_id_v0_1": "COMP-174",
+      "label_zh": "勾剔",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-104"
+    },
+    {
+      "source_component_id_v0_1": "COMP-175",
+      "label_zh": "半轮",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-105"
+    },
+    {
+      "source_component_id_v0_1": "COMP-176",
+      "label_zh": "反锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-106"
+    },
+    {
+      "source_component_id_v0_1": "COMP-177",
+      "label_zh": "叠涓",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-107"
+    },
+    {
+      "source_component_id_v0_1": "COMP-178",
+      "label_zh": "大锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-108"
+    },
+    {
+      "source_component_id_v0_1": "COMP-179",
+      "label_zh": "小锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-109"
+    },
+    {
+      "source_component_id_v0_1": "COMP-180",
+      "label_zh": "打",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-110"
+    },
+    {
+      "source_component_id_v0_1": "COMP-181",
+      "label_zh": "打摘",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-111"
+    },
+    {
+      "source_component_id_v0_1": "COMP-182",
+      "label_zh": "托",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-112"
+    },
+    {
+      "source_component_id_v0_1": "COMP-183",
+      "label_zh": "抹",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-113"
+    },
+    {
+      "source_component_id_v0_1": "COMP-184",
+      "label_zh": "抹勾",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-114"
+    },
+    {
+      "source_component_id_v0_1": "COMP-185",
+      "label_zh": "抹挑",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-115"
+    },
+    {
+      "source_component_id_v0_1": "COMP-186",
+      "label_zh": "挑",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-116"
+    },
+    {
+      "source_component_id_v0_1": "COMP-187",
+      "label_zh": "摘",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-117"
+    },
+    {
+      "source_component_id_v0_1": "COMP-188",
+      "label_zh": "擘",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-118"
+    },
+    {
+      "source_component_id_v0_1": "COMP-189",
+      "label_zh": "短锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-119"
+    },
+    {
+      "source_component_id_v0_1": "COMP-190",
+      "label_zh": "背锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-120"
+    },
+    {
+      "source_component_id_v0_1": "COMP-191",
+      "label_zh": "轮",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-121"
+    },
+    {
+      "source_component_id_v0_1": "COMP-192",
+      "label_zh": "锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-122"
+    },
+    {
+      "source_component_id_v0_1": "COMP-193",
+      "label_zh": "长锁",
+      "major_category": "右手指法-一弦单弹",
+      "reindexed_component_id_v0_2": "COMP-123"
+    },
+    {
+      "source_component_id_v0_1": "COMP-194",
+      "label_zh": "双吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-401"
+    },
+    {
+      "source_component_id_v0_1": "COMP-195",
+      "label_zh": "双撞",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-402"
+    },
+    {
+      "source_component_id_v0_1": "COMP-196",
+      "label_zh": "双猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-403"
+    },
+    {
+      "source_component_id_v0_1": "COMP-197",
+      "label_zh": "反撞",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-404"
+    },
+    {
+      "source_component_id_v0_1": "COMP-198",
+      "label_zh": "吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-405"
+    },
+    {
+      "source_component_id_v0_1": "COMP-199",
+      "label_zh": "大吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-406"
+    },
+    {
+      "source_component_id_v0_1": "COMP-200",
+      "label_zh": "大撞",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-407"
+    },
+    {
+      "source_component_id_v0_1": "COMP-201",
+      "label_zh": "大猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-408"
+    },
+    {
+      "source_component_id_v0_1": "COMP-202",
+      "label_zh": "定吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-409"
+    },
+    {
+      "source_component_id_v0_1": "COMP-203",
+      "label_zh": "定猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-410"
+    },
+    {
+      "source_component_id_v0_1": "COMP-204",
+      "label_zh": "小撞",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-411"
+    },
+    {
+      "source_component_id_v0_1": "COMP-205",
+      "label_zh": "少吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-412"
+    },
+    {
+      "source_component_id_v0_1": "COMP-206",
+      "label_zh": "少猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-413"
+    },
+    {
+      "source_component_id_v0_1": "COMP-207",
+      "label_zh": "急吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-414"
+    },
+    {
+      "source_component_id_v0_1": "COMP-208",
+      "label_zh": "急猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-415"
+    },
+    {
+      "source_component_id_v0_1": "COMP-209",
+      "label_zh": "撞",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-416"
+    },
+    {
+      "source_component_id_v0_1": "COMP-210",
+      "label_zh": "撞猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-417"
+    },
+    {
+      "source_component_id_v0_1": "COMP-211",
+      "label_zh": "注",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-418"
+    },
+    {
+      "source_component_id_v0_1": "COMP-212",
+      "label_zh": "注吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-419"
+    },
+    {
+      "source_component_id_v0_1": "COMP-213",
+      "label_zh": "注猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-420"
+    },
+    {
+      "source_component_id_v0_1": "COMP-214",
+      "label_zh": "猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-421"
+    },
+    {
+      "source_component_id_v0_1": "COMP-215",
+      "label_zh": "略吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-422"
+    },
+    {
+      "source_component_id_v0_1": "COMP-216",
+      "label_zh": "略猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-423"
+    },
+    {
+      "source_component_id_v0_1": "COMP-217",
+      "label_zh": "短吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-424"
+    },
+    {
+      "source_component_id_v0_1": "COMP-218",
+      "label_zh": "短猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-425"
+    },
+    {
+      "source_component_id_v0_1": "COMP-219",
+      "label_zh": "绰",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-426"
+    },
+    {
+      "source_component_id_v0_1": "COMP-220",
+      "label_zh": "绰吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-427"
+    },
+    {
+      "source_component_id_v0_1": "COMP-221",
+      "label_zh": "绰猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-428"
+    },
+    {
+      "source_component_id_v0_1": "COMP-222",
+      "label_zh": "缓吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-429"
+    },
+    {
+      "source_component_id_v0_1": "COMP-223",
+      "label_zh": "缓急吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-430"
+    },
+    {
+      "source_component_id_v0_1": "COMP-224",
+      "label_zh": "缓急猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-431"
+    },
+    {
+      "source_component_id_v0_1": "COMP-225",
+      "label_zh": "缓猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-432"
+    },
+    {
+      "source_component_id_v0_1": "COMP-226",
+      "label_zh": "落指吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-433"
+    },
+    {
+      "source_component_id_v0_1": "COMP-227",
+      "label_zh": "落指猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-434"
+    },
+    {
+      "source_component_id_v0_1": "COMP-228",
+      "label_zh": "迎猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-435"
+    },
+    {
+      "source_component_id_v0_1": "COMP-229",
+      "label_zh": "逗",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-436"
+    },
+    {
+      "source_component_id_v0_1": "COMP-230",
+      "label_zh": "长吟",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-437"
+    },
+    {
+      "source_component_id_v0_1": "COMP-231",
+      "label_zh": "长猱",
+      "major_category": "左手指法-本位取音",
+      "reindexed_component_id_v0_2": "COMP-438"
+    },
+    {
+      "source_component_id_v0_1": "COMP-232",
+      "label_zh": "上",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-501"
+    },
+    {
+      "source_component_id_v0_1": "COMP-233",
+      "label_zh": "下",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-502"
+    },
+    {
+      "source_component_id_v0_1": "COMP-234",
+      "label_zh": "使",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-503"
+    },
+    {
+      "source_component_id_v0_1": "COMP-235",
+      "label_zh": "分开",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-504"
+    },
+    {
+      "source_component_id_v0_1": "COMP-236",
+      "label_zh": "分开吟",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-505"
+    },
+    {
+      "source_component_id_v0_1": "COMP-237",
+      "label_zh": "唤",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-506"
+    },
+    {
+      "source_component_id_v0_1": "COMP-238",
+      "label_zh": "大往来",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-507"
+    },
+    {
+      "source_component_id_v0_1": "COMP-239",
+      "label_zh": "对按",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-508"
+    },
+    {
+      "source_component_id_v0_1": "COMP-240",
+      "label_zh": "对起",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-509"
+    },
+    {
+      "source_component_id_v0_1": "COMP-241",
+      "label_zh": "小往来",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-510"
+    },
+    {
+      "source_component_id_v0_1": "COMP-242",
+      "label_zh": "应合",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-511"
+    },
+    {
+      "source_component_id_v0_1": "COMP-243",
+      "label_zh": "往来",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-512"
+    },
+    {
+      "source_component_id_v0_1": "COMP-244",
+      "label_zh": "往来吟",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-513"
+    },
+    {
+      "source_component_id_v0_1": "COMP-245",
+      "label_zh": "拖",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-514"
+    },
+    {
+      "source_component_id_v0_1": "COMP-246",
+      "label_zh": "掐起",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-515"
+    },
+    {
+      "source_component_id_v0_1": "COMP-247",
+      "label_zh": "掩",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-516"
+    },
+    {
+      "source_component_id_v0_1": "COMP-248",
+      "label_zh": "注下",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-517"
+    },
+    {
+      "source_component_id_v0_1": "COMP-249",
+      "label_zh": "浒上",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-518"
+    },
+    {
+      "source_component_id_v0_1": "COMP-250",
+      "label_zh": "淌下",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-519"
+    },
+    {
+      "source_component_id_v0_1": "COMP-251",
+      "label_zh": "淌吟",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-520"
+    },
+    {
+      "source_component_id_v0_1": "COMP-252",
+      "label_zh": "游吟",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-521"
+    },
+    {
+      "source_component_id_v0_1": "COMP-253",
+      "label_zh": "硬上",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-522"
+    },
+    {
+      "source_component_id_v0_1": "COMP-254",
+      "label_zh": "绰上",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-523"
+    },
+    {
+      "source_component_id_v0_1": "COMP-255",
+      "label_zh": "荡猱",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-524"
+    },
+    {
+      "source_component_id_v0_1": "COMP-256",
+      "label_zh": "虚撞",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-525"
+    },
+    {
+      "source_component_id_v0_1": "COMP-257",
+      "label_zh": "进吟",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-526"
+    },
+    {
+      "source_component_id_v0_1": "COMP-258",
+      "label_zh": "进复",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-527"
+    },
+    {
+      "source_component_id_v0_1": "COMP-259",
+      "label_zh": "进猱",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-528"
+    },
+    {
+      "source_component_id_v0_1": "COMP-260",
+      "label_zh": "退吟",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-529"
+    },
+    {
+      "source_component_id_v0_1": "COMP-261",
+      "label_zh": "退复",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-530"
+    },
+    {
+      "source_component_id_v0_1": "COMP-262",
+      "label_zh": "退猱",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-531"
+    },
+    {
+      "source_component_id_v0_1": "COMP-263",
+      "label_zh": "飞",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-532"
+    },
+    {
+      "source_component_id_v0_1": "COMP-264",
+      "label_zh": "飞吟",
+      "major_category": "左手指法-隔位取音",
+      "reindexed_component_id_v0_2": "COMP-533"
+    },
+    {
+      "source_component_id_v0_1": "COMP-265",
+      "label_zh": "同声",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-601"
+    },
+    {
+      "source_component_id_v0_1": "COMP-266",
+      "label_zh": "同起",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-602"
+    },
+    {
+      "source_component_id_v0_1": "COMP-267",
+      "label_zh": "带合",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-603"
+    },
+    {
+      "source_component_id_v0_1": "COMP-268",
+      "label_zh": "带起",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-604"
+    },
+    {
+      "source_component_id_v0_1": "COMP-269",
+      "label_zh": "推出",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-605"
+    },
+    {
+      "source_component_id_v0_1": "COMP-270",
+      "label_zh": "撇起",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-606"
+    },
+    {
+      "source_component_id_v0_1": "COMP-271",
+      "label_zh": "放合",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-607"
+    },
+    {
+      "source_component_id_v0_1": "COMP-272",
+      "label_zh": "爪合",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-608"
+    },
+    {
+      "source_component_id_v0_1": "COMP-273",
+      "label_zh": "爪起",
+      "major_category": "左手指法-散弦取音",
+      "reindexed_component_id_v0_2": "COMP-609"
+    }
+  ],
+  "normalization_policy": {
+    "legacy_ids_only_in_legacy_refs": true,
+    "source_v0_1_ids_only_in_source_component_id_v0_1_or_source_refs": true,
+    "primary_id_system": "category_based_v0_2",
+    "component_id_overlap_note": "Some v0.2 category-based IDs reuse numeric strings in COMP-100..273; source identity is disambiguated by source_component_id_v0_1 fields."
+  },
+  "summary": {
+    "legacy_comp_001_038_mapping_count": 38,
+    "source_comp_100_273_mapping_count": 174,
+    "needs_review_count": 26,
+    "semantic_alias_count": 3
+  }
+}

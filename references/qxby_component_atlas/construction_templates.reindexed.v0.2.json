@@ -1,0 +1,2498 @@
+{
+  "task_id": "CG-QXBY-REINDEX-FULL-ATLAS-BY-CATEGORY-AND-MIGRATE-LAYERS-v0.3",
+  "registry_id": "QXBY_CONSTRUCTION_TEMPLATES_REINDEXED_v0.2",
+  "generated_date": "2026-07-02",
+  "status_labels": [
+    "QXBY_FULL_COMPONENT_ATLAS_REFERENCE",
+    "CATEGORY_REINDEXED_COMPONENT_IDS",
+    "SOURCE_REFERENCE_IMAGE",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT",
+    "REFERENCE_COMPONENT_ATLAS_GUIDED",
+    "NEEDS_HUMAN_REVIEW"
+  ],
+  "authority_boundary": {
+    "component_reference": true,
+    "source_reference_image": true,
+    "category_reindexed_ids": true,
+    "canon_term_authority": false,
+    "score_event_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "render_output": false,
+    "recording_plan": false
+  },
+  "source_component_registry_v0_2": "references/qxby_component_atlas/component_registry.reindexed.v0.2.json",
+  "source_construction_templates_v0_1": "references/qxby_component_atlas/construction_templates.v0.1.json",
+  "template_policy": {
+    "primary_component_sequence_id_system": "category_based_v0_2",
+    "legacy_ids_only_in_legacy_refs": true,
+    "source_v0_1_ids_only_in_source_component_refs_v0_1": true,
+    "template_reuse_must_remain_needs_human_review": true,
+    "not_score_event_authority": true,
+    "not_dapu_ir_authority": true
+  },
+  "templates": [
+    {
+      "template_id": "TEMPLATE-GOU-1",
+      "reading_pattern": "勾一",
+      "slot_semantics": "right-hand 勾 plus embedded/lower string 一",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "left hand/hui may inherit when explicitly marked",
+      "example_refs": [
+        "LXY-P01-PH01-G002"
+      ],
+      "needs_human_review_when": "context source or boundary uncertain",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-GOU-1",
+      "component_sequence": [
+        "COMP-103",
+        "COMP-081"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-009",
+          "legacy_label_zh": "一",
+          "normalized_component_id_v0_2": "COMP-081"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-GOU-2",
+      "reading_pattern": "勾二",
+      "slot_semantics": "right-hand 勾 plus embedded/lower string 二",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "left hand/hui may inherit when explicitly marked",
+      "example_refs": [
+        "LXY-P01-PH01-G003"
+      ],
+      "needs_human_review_when": "component match is medium_low or inherited context unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-GOU-2",
+      "component_sequence": [
+        "COMP-103",
+        "COMP-082"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-015",
+          "legacy_label_zh": "二",
+          "normalized_component_id_v0_2": "COMP-082"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-GOU-3",
+      "reading_pattern": "勾三",
+      "slot_semantics": "right-hand 勾 plus embedded/lower string 三",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "often inherits prior left hand/hui; must mark context_inherited",
+      "example_refs": [
+        "LXY-P01-PH01-G004",
+        "LXY-P01-PH02-G006"
+      ],
+      "needs_human_review_when": "inheritance chain crosses groups or phrase boundary",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-GOU-3",
+      "component_sequence": [
+        "COMP-103",
+        "COMP-083"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-016",
+          "legacy_label_zh": "三",
+          "normalized_component_id_v0_2": "COMP-083"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-TUO-7",
+      "reading_pattern": "托七",
+      "slot_semantics": "托 as right-hand action; 七 as string when embedded/lower in action construction",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "left hand/hui supplied by visible 大指六二 or reviewed context",
+      "example_refs": [
+        "LXY-P01-PH01-G006",
+        "LXY-P01-PH02-G010"
+      ],
+      "needs_human_review_when": "hui cluster or punctuation boundary unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-TUO-7",
+      "component_sequence": [
+        "COMP-112",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-001",
+          "legacy_label_zh": "托",
+          "normalized_component_id_v0_2": "COMP-112"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-182"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-TIAO-6",
+      "reading_pattern": "挑六",
+      "slot_semantics": "COMP-116 lower support shape is 挑; 六 is string in action construction",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "left hand/hui from visible 名指七 or context",
+      "example_refs": [
+        "LXY-P01-PH02-G003",
+        "LXY-P01-PH03-G009"
+      ],
+      "needs_human_review_when": "hui 七九 uses human-reviewed target without separate 九 component",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-TIAO-6",
+      "component_sequence": [
+        "COMP-116",
+        "COMP-086"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-TIAO-4",
+      "reading_pattern": "挑四",
+      "slot_semantics": "挑 action plus string 四",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "inherits left hand/hui when marked",
+      "example_refs": [
+        "LXY-P01-PH02-G007"
+      ],
+      "needs_human_review_when": "candidate could be misread as bare 四",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-TIAO-4",
+      "component_sequence": [
+        "COMP-116",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-LI-5-4",
+      "reading_pattern": "历五四",
+      "slot_semantics": "历 as cross-string sequential action; 五四 are visible string targets",
+      "sound_policy": "sequential candidate; expansion remains reviewable",
+      "context_inheritance_policy": "left hand/hui may inherit; mark context_inherited",
+      "example_refs": [
+        "LXY-P01-PH02-G005"
+      ],
+      "needs_human_review_when": "sounding-unit split or direction needs confirmation",
+      "not_dapu_ir_authority": true,
+      "template_group": "compound_right_hand_sequence",
+      "gold_priority": "should_have",
+      "review_guardrails": [
+        "历 is 连挑; when user confirms 历五四, read 五到四, not layout-derived order.",
+        "Do not use jianpu or spacing to infer the span."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-LI-5-4",
+      "component_sequence": [
+        "COMP-302",
+        "COMP-085",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-014",
+          "legacy_label_zh": "历",
+          "normalized_component_id_v0_2": "COMP-302"
+        },
+        {
+          "legacy_component_id": "COMP-004",
+          "legacy_label_zh": "五",
+          "normalized_component_id_v0_2": "COMP-085"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-163"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SAN-TIAO-5",
+      "reading_pattern": "散音，挑五",
+      "slot_semantics": "散音起始 sets open-string state; 挑五 supplies visible sounding action/string",
+      "sound_policy": "candidate_sounding_unit only because right-hand action is visible",
+      "context_inheritance_policy": "no left-hand/hui inheritance required for open-string state unless reviewed",
+      "example_refs": [
+        "LXY-P01-PH03-G010",
+        "LXY-P01-PH04-G011"
+      ],
+      "needs_human_review_when": "connected 散音 marker could be confused with separate components",
+      "not_dapu_ir_authority": true,
+      "template_group": "state_plus_right_hand_string",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "COMP-705 散音起始 is the upper/open-string state layer; lower 挑五 supplies the right-hand/string construction.",
+        "Do not misread the connected grass-head-like COMP-705 as 大指 plus hui number.",
+        "散音起始 alone is non-sounding unless paired with visible right-hand/string evidence or human confirmation."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SAN-TIAO-5",
+      "component_sequence": [
+        "COMP-705",
+        "COMP-116",
+        "COMP-085"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        },
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-004",
+          "legacy_label_zh": "五",
+          "normalized_component_id_v0_2": "COMP-085"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141",
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        }
+      ],
+      "semantic_alias_review_required": true,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SAN-GOU-1",
+      "reading_pattern": "散音，勾一弦",
+      "slot_semantics": "COMP-705 散音起始 as whole open-string state layer; 勾一 supplies visible right-hand action and string",
+      "sound_policy": "candidate_sounding_unit only because right-hand action and string are visible",
+      "context_inheritance_policy": "no left-hand/hui inheritance required for open-string state unless reviewed",
+      "example_refs": [
+        "LXY-P01-PH06-VB001-NU001",
+        "LXY-P01-PH06-VB005-NU006"
+      ],
+      "needs_human_review_when": "connected 散音 marker or embedded 一 boundary is unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "state_plus_right_hand_string",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "COMP-705 散音起始 must be recognized as a whole open-string state layer before local numeric matching.",
+        "Do not split the connected COMP-705 shape into 五, 六, 大指, or hui fragments.",
+        "勾一 must come from visible COMP-103 plus COMP-081 construction evidence, not jianpu, old OCR, old CSV rows, layout, or spacing."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SAN-GOU-1",
+      "component_sequence": [
+        "COMP-705",
+        "COMP-103",
+        "COMP-081"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        },
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-009",
+          "legacy_label_zh": "一",
+          "normalized_component_id_v0_2": "COMP-081"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141",
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        }
+      ],
+      "semantic_alias_review_required": true,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-DA-6-2-LUN-7",
+      "reading_pattern": "大指六二徽，轮七弦",
+      "slot_semantics": "大指 left-hand; 六二 in hui slot; 轮 right-hand compound; 七 string",
+      "sound_policy": "compound action candidate; expansion remains parser-stage/review work",
+      "context_inheritance_policy": "no silent inheritance; host context must be explicit",
+      "example_refs": [
+        "LXY-P01-PH04-G001"
+      ],
+      "needs_human_review_when": "轮 subaction expansion or string target scope is needed",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Preserve v0.4 correction: COMP-121 is 轮 and COMP-416 is 撞.",
+        "Do not fall back to raw_001=轮 or raw_003=撞 mappings."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-DA-6-2-LUN-7",
+      "component_sequence": [
+        "COMP-091",
+        "COMP-086",
+        "COMP-082",
+        "COMP-121",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-012",
+          "legacy_label_zh": "大指",
+          "normalized_component_id_v0_2": "COMP-091"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-015",
+          "legacy_label_zh": "二",
+          "normalized_component_id_v0_2": "COMP-082"
+        },
+        {
+          "legacy_component_id": "COMP-029",
+          "legacy_label_zh": "轮",
+          "normalized_component_id_v0_2": "COMP-121"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-191"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-LUN-7",
+      "reading_pattern": "轮七",
+      "slot_semantics": "轮 right-hand compound plus visible string 七",
+      "sound_policy": "compound action candidate",
+      "context_inheritance_policy": "left hand/hui may be supplied by host construction",
+      "example_refs": [
+        "LXY-P01-PH04-G001"
+      ],
+      "needs_human_review_when": "expansion into 摘-剔-挑 is requested",
+      "not_dapu_ir_authority": true,
+      "template_group": "compound_right_hand_sequence",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-LUN-7",
+      "component_sequence": [
+        "COMP-121",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-029",
+          "legacy_label_zh": "轮",
+          "normalized_component_id_v0_2": "COMP-121"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-191"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-ZHUANG",
+      "reading_pattern": "撞",
+      "slot_semantics": "left-hand position / virtual attack candidate",
+      "sound_policy": "non-sounding by default unless human review says otherwise",
+      "context_inheritance_policy": "host/attachment to prior position must be reviewed",
+      "example_refs": [
+        "LXY-P01-PH04-G002",
+        "LXY-P01-PH04-G006"
+      ],
+      "needs_human_review_when": "host hui or independent-event status is needed",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_position_transition",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-ZHUANG",
+      "component_sequence": [
+        "COMP-416"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-028",
+          "legacy_label_zh": "撞",
+          "normalized_component_id_v0_2": "COMP-416"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-209"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-JI-JINFU",
+      "reading_pattern": "急进复",
+      "slot_semantics": "急 timing marker plus 进复 position transition",
+      "sound_policy": "non-sounding transition/timing candidate by default",
+      "context_inheritance_policy": "attachment and target remain reviewable",
+      "example_refs": [
+        "LXY-P01-PH04-G008"
+      ],
+      "needs_human_review_when": "boundary merges neighboring visual pieces",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_position_transition",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-JI-JINFU",
+      "component_sequence": [
+        "COMP-807",
+        "COMP-527"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-030",
+          "legacy_label_zh": "急",
+          "normalized_component_id_v0_2": "COMP-807"
+        },
+        {
+          "legacy_component_id": "COMP-024",
+          "legacy_label_zh": "进复",
+          "normalized_component_id_v0_2": "COMP-527"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-106",
+        "COMP-258"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-JINFU-5-6",
+      "reading_pattern": "进五六复",
+      "slot_semantics": "进复 with nearby 五六 as hui-position candidate",
+      "sound_policy": "non-sounding left-hand transition by default",
+      "context_inheritance_policy": "host event / attachment scope review required",
+      "example_refs": [
+        "LXY-P01-PH03-G002"
+      ],
+      "needs_human_review_when": "attachment or target scope unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_position_transition",
+      "gold_priority": "should_have",
+      "review_guardrails": [
+        "进五六复 is a left-hand position/hui transition candidate; 五六 is not a string span here.",
+        "Do not infer this from jianpu or spacing."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-JINFU-5-6",
+      "component_sequence": [
+        "COMP-527",
+        "COMP-085",
+        "COMP-086"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-024",
+          "legacy_label_zh": "进复",
+          "normalized_component_id_v0_2": "COMP-527"
+        },
+        {
+          "legacy_component_id": "COMP-004",
+          "legacy_label_zh": "五",
+          "normalized_component_id_v0_2": "COMP-085"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-258"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SHANG-6-2",
+      "reading_pattern": "上六二",
+      "slot_semantics": "上 transition with 六二 as hui-position candidate",
+      "sound_policy": "non-sounding transition by default",
+      "context_inheritance_policy": "host/continuation scope review required",
+      "example_refs": [
+        "LXY-P01-PH03-G006",
+        "LXY-P01-PH04-G005"
+      ],
+      "needs_human_review_when": "six-two target or correction from six-three is relevant",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_position_transition",
+      "gold_priority": "should_have",
+      "review_guardrails": [
+        "上六二 is a left-hand position/hui transition candidate; nearby 六二 is read as hui target by construction.",
+        "Do not read it as strings 六 and 二."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SHANG-6-2",
+      "component_sequence": [
+        "COMP-501",
+        "COMP-086",
+        "COMP-082"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-026",
+          "legacy_label_zh": "上",
+          "normalized_component_id_v0_2": "COMP-501"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-015",
+          "legacy_label_zh": "二",
+          "normalized_component_id_v0_2": "COMP-082"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-232"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-JIU-CONTEXT",
+      "reading_pattern": "就=承前",
+      "slot_semantics": "context inheritance marker",
+      "sound_policy": "non-sounding by default",
+      "context_inheritance_policy": "must mark context_inherited and source of inherited state",
+      "example_refs": [
+        "LXY-P01-PH03-G003"
+      ],
+      "needs_human_review_when": "phrase opening or cross-phrase inheritance is involved",
+      "not_dapu_ir_authority": true,
+      "template_group": "context_inheritance_marker",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "就 is a context-inheritance marker and is normally rendered as 承前 behavior in continuous reading.",
+        "Do not confuse 就 with 少息."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-JIU-CONTEXT",
+      "component_sequence": [
+        "COMP-907"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-023",
+          "legacy_label_zh": "就",
+          "normalized_component_id_v0_2": "COMP-907"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-128"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-FAN-QI",
+      "reading_pattern": "泛起",
+      "slot_semantics": "enter harmonic state boundary",
+      "sound_policy": "non-sounding state boundary by default",
+      "context_inheritance_policy": "scope must be reviewed",
+      "example_refs": [
+        "LXY-P01-PH01-G001"
+      ],
+      "needs_human_review_when": "state scope across following groups matters",
+      "not_dapu_ir_authority": true,
+      "template_group": "non_sounding_marker",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-FAN-QI",
+      "component_sequence": [
+        "COMP-708"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-002",
+          "legacy_label_zh": "泛起",
+          "normalized_component_id_v0_2": "COMP-708"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-144"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-FAN-ZHI",
+      "reading_pattern": "泛止",
+      "slot_semantics": "exit harmonic state boundary",
+      "sound_policy": "non-sounding state boundary by default",
+      "context_inheritance_policy": "scope must be reviewed",
+      "example_refs": [
+        "LXY-P01-PH01-G005",
+        "LXY-P01-PH02-G009"
+      ],
+      "needs_human_review_when": "boundary placement affects following sound type",
+      "not_dapu_ir_authority": true,
+      "template_group": "non_sounding_marker",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-FAN-ZHI",
+      "component_sequence": [
+        "COMP-707"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-017",
+          "legacy_label_zh": "泛止",
+          "normalized_component_id_v0_2": "COMP-707"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-143"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SHAOXI",
+      "reading_pattern": "少息",
+      "slot_semantics": "timing / breath marker",
+      "sound_policy": "non-sounding timing marker",
+      "context_inheritance_policy": "does not reset inherited left-hand/hui unless reviewed",
+      "example_refs": [
+        "LXY-P01-PH02-G004"
+      ],
+      "needs_human_review_when": "duration/scope is needed",
+      "not_dapu_ir_authority": true,
+      "template_group": "non_sounding_marker",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "少息 is a timing marker, not 就.",
+        "Do not generate a sounding_unit for 少息."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SHAOXI",
+      "component_sequence": [
+        "COMP-806"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-003",
+          "legacy_label_zh": "少息",
+          "normalized_component_id_v0_2": "COMP-806"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-105"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-JUHAO",
+      "reading_pattern": "句号",
+      "slot_semantics": "punctuation / phrase end",
+      "sound_policy": "non-sounding punctuation",
+      "context_inheritance_policy": "phrase boundary inheritance must be explicit if used later",
+      "example_refs": [
+        "LXY-P01-PH03-G010",
+        "LXY-P01-PH04-G011"
+      ],
+      "needs_human_review_when": "phrase boundary affects next candidate",
+      "not_dapu_ir_authority": true,
+      "template_group": "non_sounding_marker",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-JUHAO",
+      "component_sequence": [
+        "COMP-906"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-005",
+          "legacy_label_zh": "句号",
+          "normalized_component_id_v0_2": "COMP-906"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-127"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-005",
+          "legacy_label_zh": "句号",
+          "source_component_id_v0_1": "COMP-127",
+          "semantic_alias_type": "punctuation_label_alias",
+          "needs_review": true
+        }
+      ],
+      "semantic_alias_review_required": true,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-BEISUO",
+      "reading_pattern": "背锁",
+      "slot_semantics": "right-hand compound action",
+      "sound_policy": "compound sequence candidate; string span unresolved unless visible/reviewed",
+      "context_inheritance_policy": "left hand/hui may inherit; must be marked",
+      "example_refs": [
+        "LXY-P01-PH03-G001"
+      ],
+      "needs_human_review_when": "string span or subaction sequence is needed",
+      "not_dapu_ir_authority": true,
+      "template_group": "compound_right_hand_sequence",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-BEISUO",
+      "component_sequence": [
+        "COMP-120"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-021",
+          "legacy_label_zh": "背锁",
+          "normalized_component_id_v0_2": "COMP-120"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-190"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-ZHUXIA-MO-7",
+      "reading_pattern": "大指注下七徽，抹七弦",
+      "slot_semantics": "大指 + 注下 pre-attack to 七徽 with reviewed 抹七 action",
+      "sound_policy": "candidate_sounding_unit only as phrase draft; 抹 action is template evidence from prior review",
+      "context_inheritance_policy": "host/advance motion scope needs review",
+      "example_refs": [
+        "LXY-P01-PH03-G004",
+        "LXY-P01-PH04-G003"
+      ],
+      "needs_human_review_when": "visible action is not clearly 抹",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Read visible 抹 as the right-hand action; do not substitute 挑 unless COMP-116 is visible.",
+        "注下 remains an approach/lead-in candidate and stays reviewable."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-ZHUXIA-MO-7",
+      "component_sequence": [
+        "COMP-091",
+        "COMP-418",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-012",
+          "legacy_label_zh": "大指",
+          "normalized_component_id_v0_2": "COMP-091"
+        },
+        {
+          "legacy_component_id": "COMP-025",
+          "legacy_label_zh": "注",
+          "normalized_component_id_v0_2": "COMP-418"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-211"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-ZHUXIA-TIAO-7",
+      "reading_pattern": "大指注下七徽，挑七弦",
+      "slot_semantics": "大指 + 注下 pre-attack to 七徽 with visible 挑七 action",
+      "sound_policy": "candidate_sounding_unit only as phrase draft",
+      "context_inheritance_policy": "host/advance motion scope needs review",
+      "example_refs": [
+        "LXY-P01-PH03-G007",
+        "LXY-P01-PH04-G007"
+      ],
+      "needs_human_review_when": "neighboring 抹 template might be incorrectly copied",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Blank upper slots may inherit the current left-hand/hui context; do not silently drop the inherited left-hand/hui fields.",
+        "Do not copy 抹 from a neighboring template when the visible right-hand action is COMP-116 挑.",
+        "注下 indicates a downward approach/lead-in, not direct static pressing only."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-ZHUXIA-TIAO-7",
+      "component_sequence": [
+        "COMP-091",
+        "COMP-418",
+        "COMP-116",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-012",
+          "legacy_label_zh": "大指",
+          "normalized_component_id_v0_2": "COMP-091"
+        },
+        {
+          "legacy_component_id": "COMP-025",
+          "legacy_label_zh": "注",
+          "normalized_component_id_v0_2": "COMP-418"
+        },
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186",
+        "COMP-211"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-LH-7-6-QIAQI-7",
+      "reading_pattern": "名指七六徽，掐起七弦",
+      "slot_semantics": "名指 with 七六 hui candidate; 掐起 special technique with 七 string candidate",
+      "sound_policy": "special technique sounding policy requires human review",
+      "context_inheritance_policy": "theory-assisted or human-corrected hui must be marked",
+      "example_refs": [
+        "LXY-P01-PH03-G008",
+        "LXY-P01-PH04-G009"
+      ],
+      "needs_human_review_when": "sounding policy or hui target source is required",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "掐起七弦 remains a special-technique reading candidate and needs review for sounding policy.",
+        "Do not detach 掐起 from its left-hand/hui context."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-LH-7-6-QIAQI-7",
+      "component_sequence": [
+        "COMP-094",
+        "COMP-087",
+        "COMP-086",
+        "COMP-515",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-008",
+          "legacy_label_zh": "名指",
+          "normalized_component_id_v0_2": "COMP-094"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-022",
+          "legacy_label_zh": "掐起",
+          "normalized_component_id_v0_2": "COMP-515"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-246"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-MING-7-TIAO-6",
+      "reading_pattern": "名指七九徽，挑六弦",
+      "slot_semantics": "名指 with reviewed 七九 hui target; 挑六 right-hand/string construction",
+      "sound_policy": "candidate_sounding_unit; 九 lacks separate component sample and remains human-reviewed evidence",
+      "context_inheritance_policy": "do not infer 九 from layout",
+      "example_refs": [
+        "LXY-P01-PH03-G009",
+        "LXY-P01-PH04-G010"
+      ],
+      "needs_human_review_when": "hui target needs crop-only proof",
+      "not_dapu_ir_authority": true,
+      "template_group": "general_construction_template",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-MING-7-TIAO-6",
+      "component_sequence": [
+        "COMP-094",
+        "COMP-087",
+        "COMP-116",
+        "COMP-086"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-008",
+          "legacy_label_zh": "名指",
+          "normalized_component_id_v0_2": "COMP-094"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-YIN",
+      "reading_pattern": "吟",
+      "slot_semantics": "left-hand ornament attached to prior/host position",
+      "sound_policy": "non-independent sounding by default",
+      "context_inheritance_policy": "must mark inherited left-hand/hui source",
+      "example_refs": [
+        "LXY-P01-PH03-G005",
+        "LXY-P01-PH04-G004"
+      ],
+      "needs_human_review_when": "attachment target is ambiguous",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-YIN",
+      "component_sequence": [
+        "COMP-405"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-010",
+          "legacy_label_zh": "吟",
+          "normalized_component_id_v0_2": "COMP-405"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-198"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-ZHAOQI",
+      "reading_pattern": "爪起",
+      "slot_semantics": "special technique attached to previous/host position",
+      "sound_policy": "sounding policy requires human review",
+      "context_inheritance_policy": "prior pressed position may inherit only when explicit",
+      "example_refs": [
+        "LXY-P01-PH02-G002"
+      ],
+      "needs_human_review_when": "standalone vs attached construction is unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-ZHAOQI",
+      "component_sequence": [
+        "COMP-609"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-019",
+          "legacy_label_zh": "爪起",
+          "normalized_component_id_v0_2": "COMP-609"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-273"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-DA-CHUOSHANG-7-GOU-6",
+      "reading_pattern": "大指绰上七徽，勾六弦",
+      "slot_semantics": "大指 + 绰上 approach to 七徽; 勾 with 六 as string",
+      "sound_policy": "candidate sounding unit only after review",
+      "context_inheritance_policy": "following blank-upper 注下 constructions may inherit 大指七徽 explicitly",
+      "example_refs": [
+        "LXY-P01-PH05-G001",
+        "LXY-P01-PH05-G003"
+      ],
+      "needs_human_review_when": "source is user correction or visible construction needs review",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "绰 and 注 are paired approach concepts; read 绰 + 七徽 as 绰上七徽 when construction supports it.",
+        "Do not require a separate free-standing 上 component before allowing 绰上.",
+        "勾 + 六 must be read as 勾六弦 when the number is embedded/lower/near the right-hand action."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-DA-CHUOSHANG-7-GOU-6",
+      "component_sequence": [
+        "COMP-091",
+        "COMP-426",
+        "COMP-501",
+        "COMP-087",
+        "COMP-103",
+        "COMP-086"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-012",
+          "legacy_label_zh": "大指",
+          "normalized_component_id_v0_2": "COMP-091"
+        },
+        {
+          "legacy_component_id": "COMP-033",
+          "legacy_label_zh": "绰",
+          "normalized_component_id_v0_2": "COMP-426"
+        },
+        {
+          "legacy_component_id": "COMP-026",
+          "legacy_label_zh": "上",
+          "normalized_component_id_v0_2": "COMP-501"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173",
+        "COMP-219",
+        "COMP-232"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-ZHUXIA-MOTIAO-7",
+      "reading_pattern": "大指注下七徽，抹挑七弦",
+      "slot_semantics": "大指 + 注下 to 七徽; 抹挑 with 七 as string",
+      "sound_policy": "compound right-hand candidate; expansion reviewable",
+      "context_inheritance_policy": "left hand/hui may inherit only when upper slot blank and source is explicit",
+      "example_refs": [
+        "LXY-P01-PH05-G005"
+      ],
+      "needs_human_review_when": "compound action expansion or string target is requested",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "COMP-115 抹挑 is a compound right-hand action and must not be confused with COMP-516 掩.",
+        "Expansion of 抹挑 remains report-only and needs human review."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-ZHUXIA-MOTIAO-7",
+      "component_sequence": [
+        "COMP-091",
+        "COMP-418",
+        "COMP-087",
+        "COMP-115",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-012",
+          "legacy_label_zh": "大指",
+          "normalized_component_id_v0_2": "COMP-091"
+        },
+        {
+          "legacy_component_id": "COMP-025",
+          "legacy_label_zh": "注",
+          "normalized_component_id_v0_2": "COMP-418"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-031",
+          "legacy_label_zh": "抹挑",
+          "normalized_component_id_v0_2": "COMP-115"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-185",
+        "COMP-211"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-MING-7-6-QIAQI",
+      "reading_pattern": "名指七六徽，掐起",
+      "slot_semantics": "名指 七六 hui target with 掐起 special technique",
+      "sound_policy": "special technique sounding policy requires human review",
+      "context_inheritance_policy": "may serve as context source for following 挑四",
+      "example_refs": [
+        "LXY-P01-PH05-G007",
+        "LXY-P01-PH05-G015"
+      ],
+      "needs_human_review_when": "held finger, string, or sounding policy is needed",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "掐起 binds to a held left-hand position, often 名指 or 跪指, but the target hui must not be hardcoded generically as 七六徽.",
+        "If 三分损益法 or tuning logic is used to infer hui, record it as human/theory-assisted review evidence, not crop-only evidence.",
+        "Do not treat 掐起 as an independent sounding unit by default."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-MING-7-6-QIAQI",
+      "component_sequence": [
+        "COMP-094",
+        "COMP-087",
+        "COMP-086",
+        "COMP-515"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-008",
+          "legacy_label_zh": "名指",
+          "normalized_component_id_v0_2": "COMP-094"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-022",
+          "legacy_label_zh": "掐起",
+          "normalized_component_id_v0_2": "COMP-515"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-246"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-INHERIT-TIAO-4",
+      "reading_pattern": "挑四弦（空上部时可承前）",
+      "slot_semantics": "挑 action with 四 as string, inheriting prior left-hand/hui",
+      "sound_policy": "candidate sounding unit with inherited context",
+      "context_inheritance_policy": "must mark context_inherited=true and source glyph",
+      "example_refs": [
+        "LXY-P01-PH05-G008"
+      ],
+      "needs_human_review_when": "context source or boundary uncertain",
+      "not_dapu_ir_authority": true,
+      "template_group": "context_inheritance_and_right_hand_string",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "COMP-116 挑 must not be dropped or read as a bare string number.",
+        "Do not hardcode the inherited left-hand/hui value; resolve it from the nearest explicit prior context and mark context_inherited=true."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-INHERIT-TIAO-4",
+      "component_sequence": [
+        "COMP-116",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-MING-ZHUXIA-7-9-GOU-3",
+      "reading_pattern": "名指注下七九徽，勾三弦",
+      "slot_semantics": "名指 + 注下 to 七九 hui target; 勾三 right-hand/string construction",
+      "sound_policy": "candidate sounding unit only after review",
+      "context_inheritance_policy": "do not infer 九 from layout; mark user-corrected evidence",
+      "example_refs": [
+        "LXY-P01-PH05-G008"
+      ],
+      "needs_human_review_when": "七九 target or component evidence needs crop-only review",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "should_have",
+      "review_guardrails": [
+        "七九 is a hui-position candidate in the upper/right-upper context, not a string pair.",
+        "勾 + 三 must be read as 勾三弦 when construction supports it."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-MING-ZHUXIA-7-9-GOU-3",
+      "component_sequence": [
+        "COMP-094",
+        "COMP-418",
+        "COMP-087",
+        "COMP-103",
+        "COMP-083"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-008",
+          "legacy_label_zh": "名指",
+          "normalized_component_id_v0_2": "COMP-094"
+        },
+        {
+          "legacy_component_id": "COMP-025",
+          "legacy_label_zh": "注",
+          "normalized_component_id_v0_2": "COMP-418"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-016",
+          "legacy_label_zh": "三",
+          "normalized_component_id_v0_2": "COMP-083"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173",
+        "COMP-211"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-YAN-3",
+      "reading_pattern": "大指七徽，掩三弦",
+      "slot_semantics": "大指 七徽 plus 掩 action with 三 as string",
+      "sound_policy": "candidate sounding/attached action; policy reviewable",
+      "context_inheritance_policy": "left hand/hui visible or user-corrected",
+      "example_refs": [
+        "LXY-P01-PH05-G010"
+      ],
+      "needs_human_review_when": "attachment or sounding policy required",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "should_have",
+      "review_guardrails": [
+        "COMP-516 掩 plus 三 is read as 掩三弦 when construction supports it.",
+        "Do not confuse 掩 with COMP-115 抹挑."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-YAN-3",
+      "component_sequence": [
+        "COMP-091",
+        "COMP-087",
+        "COMP-516",
+        "COMP-083"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-012",
+          "legacy_label_zh": "大指",
+          "normalized_component_id_v0_2": "COMP-091"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-036",
+          "legacy_label_zh": "掩",
+          "normalized_component_id_v0_2": "COMP-516"
+        },
+        {
+          "legacy_component_id": "COMP-016",
+          "legacy_label_zh": "三",
+          "normalized_component_id_v0_2": "COMP-083"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-247"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-TI-4",
+      "reading_pattern": "剔四弦",
+      "slot_semantics": "剔 right-hand action with 四 as string",
+      "sound_policy": "candidate sounding unit",
+      "context_inheritance_policy": "left hand/hui may inherit or be absent for open-string context when reviewed",
+      "example_refs": [
+        "LXY-P01-PH05-G016"
+      ],
+      "needs_human_review_when": "context or sound state is uncertain",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-TI-4",
+      "component_sequence": [
+        "COMP-102",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-037",
+          "legacy_label_zh": "剔",
+          "normalized_component_id_v0_2": "COMP-102"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-172"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-TI-4-SAN-3-RUYI",
+      "reading_pattern": "剔四弦，散三如一",
+      "slot_semantics": "剔四 followed by layered 散音-三弦-如一声 construction",
+      "sound_policy": "two adjacent candidate constructions; final expansion reviewable",
+      "context_inheritance_policy": "do not merge punctuation into sounding unit",
+      "example_refs": [
+        "LXY-P01-PH05-G016"
+      ],
+      "needs_human_review_when": "剔四 and 散三如一 boundary or expansion is requested",
+      "not_dapu_ir_authority": true,
+      "template_group": "layered_open_string_construction",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "COMP-102 剔 plus 四 must be read as 剔四弦 when construction supports it.",
+        "Do not merge final 句号 into a sounding unit.",
+        "Keep the 剔四 and 散三如一 boundary reviewable."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-TI-4-SAN-3-RUYI",
+      "component_sequence": [
+        "COMP-102",
+        "COMP-084",
+        "COMP-705",
+        "COMP-083",
+        "COMP-209"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-037",
+          "legacy_label_zh": "剔",
+          "normalized_component_id_v0_2": "COMP-102"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        },
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        },
+        {
+          "legacy_component_id": "COMP-016",
+          "legacy_label_zh": "三",
+          "normalized_component_id_v0_2": "COMP-083"
+        },
+        {
+          "legacy_component_id": "COMP-032",
+          "legacy_label_zh": "如一声",
+          "normalized_component_id_v0_2": "COMP-209"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141",
+        "COMP-153",
+        "COMP-172"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        },
+        {
+          "legacy_component_id": "COMP-032",
+          "legacy_label_zh": "如一声",
+          "source_component_id_v0_1": "COMP-153",
+          "semantic_alias_type": "two_string_double_action_label_alias",
+          "needs_review": true
+        }
+      ],
+      "semantic_alias_review_required": true,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SAN-3-RUYI",
+      "reading_pattern": "散三如一",
+      "slot_semantics": "top 散音 marker, middle 三 string, lower 如一声 parts",
+      "sound_policy": "candidate sounding only because string/action marker is explicit by user correction",
+      "context_inheritance_policy": "open-string state does not create separate sounding unit by itself",
+      "example_refs": [
+        "LXY-P01-PH05-G016"
+      ],
+      "needs_human_review_when": "layer decomposition or two-string expansion is requested",
+      "not_dapu_ir_authority": true,
+      "template_group": "layered_open_string_construction",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Read from top to bottom as 散音 layer, 三弦 layer, 如一声 layer.",
+        "Do not directly expand 如一声 into final Dapu IR at this stage."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SAN-3-RUYI",
+      "component_sequence": [
+        "COMP-705",
+        "COMP-083",
+        "COMP-209"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        },
+        {
+          "legacy_component_id": "COMP-016",
+          "legacy_label_zh": "三",
+          "normalized_component_id_v0_2": "COMP-083"
+        },
+        {
+          "legacy_component_id": "COMP-032",
+          "legacy_label_zh": "如一声",
+          "normalized_component_id_v0_2": "COMP-209"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141",
+        "COMP-153"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        },
+        {
+          "legacy_component_id": "COMP-032",
+          "legacy_label_zh": "如一声",
+          "source_component_id_v0_1": "COMP-153",
+          "semantic_alias_type": "two_string_double_action_label_alias",
+          "needs_review": true
+        }
+      ],
+      "semantic_alias_review_required": true,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SHUANGYIN",
+      "reading_pattern": "双吟",
+      "slot_semantics": "left-hand 双吟 ornament",
+      "sound_policy": "non-independent by default",
+      "context_inheritance_policy": "attach to prior/host position with context_inherited when needed",
+      "example_refs": [
+        "LXY-P01-PH05-G006"
+      ],
+      "needs_human_review_when": "attachment target unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SHUANGYIN",
+      "component_sequence": [
+        "COMP-401"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-034",
+          "legacy_label_zh": "双吟",
+          "normalized_component_id_v0_2": "COMP-401"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-194"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-LUOZHI-NAO",
+      "reading_pattern": "落指猱",
+      "slot_semantics": "left-hand 落指猱 motion",
+      "sound_policy": "non-independent/attached by default unless user confirms sounding",
+      "context_inheritance_policy": "attach to host/inherited position",
+      "example_refs": [
+        "LXY-P01-PH05-G009"
+      ],
+      "needs_human_review_when": "host position or sounding policy unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-LUOZHI-NAO",
+      "component_sequence": [
+        "COMP-434"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-035",
+          "legacy_label_zh": "落指猱",
+          "normalized_component_id_v0_2": "COMP-434"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-227"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-RUYISHENG",
+      "reading_pattern": "如一声",
+      "slot_semantics": "two-string/as-one marker",
+      "sound_policy": "expansion reviewable; not Dapu IR",
+      "context_inheritance_policy": "context/host string source must be explicit",
+      "example_refs": [
+        "LXY-P01-PH05-G016"
+      ],
+      "needs_human_review_when": "two-string expansion requested",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-RUYISHENG",
+      "component_sequence": [
+        "COMP-209"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-032",
+          "legacy_label_zh": "如一声",
+          "normalized_component_id_v0_2": "COMP-209"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-153"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-032",
+          "legacy_label_zh": "如一声",
+          "source_component_id_v0_1": "COMP-153",
+          "semantic_alias_type": "two_string_double_action_label_alias",
+          "needs_review": true
+        }
+      ],
+      "semantic_alias_review_required": true,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-MING-7-6-GOU-4",
+      "reading_pattern": "名指七六徽，勾四弦",
+      "slot_semantics": "upper-left 名指 plus right-upper 七六 as hui; lower/right 勾四 supplies right-hand action and string",
+      "sound_policy": "candidate_sounding_unit; later parser promotion requires human-reviewed reading",
+      "context_inheritance_policy": "does not inherit left-hand/hui because 名指七六 is explicit in the construction",
+      "example_refs": [
+        "LXY-P01-PH06-VB003-NU004",
+        "LXY-P01-PH06-VB007-NU009"
+      ],
+      "needs_human_review_when": "名指 or 七六/right-upper slot boundary is unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Run this compound template before generic 勾 + numeric decomposition when 名指 + right-upper 七六 + 勾四 is visible.",
+        "Do not output 勾五六？, bare 五六, or unresolved numeric strings for this construction.",
+        "七六 in right-upper hui context is hui; 四 embedded/lower near 勾 is string."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-MING-7-6-GOU-4",
+      "component_sequence": [
+        "COMP-094",
+        "COMP-087",
+        "COMP-086",
+        "COMP-103",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-008",
+          "legacy_label_zh": "名指",
+          "normalized_component_id_v0_2": "COMP-094"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-GOU-4",
+      "reading_pattern": "勾四弦（空上部时可承前）",
+      "slot_semantics": "勾 right-hand action plus embedded/lower/nearby 四 as string number",
+      "sound_policy": "candidate sounding unit with inherited left-hand/hui context",
+      "context_inheritance_policy": "must mark context_inherited=true and source of inherited left-hand/hui",
+      "example_refs": [
+        "LXY-P01-PH05-G011"
+      ],
+      "needs_human_review_when": "component boundary or inherited context is unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "context_inheritance_and_right_hand_string",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Do not output 裸勾 or 勾？ when 四 is visibly embedded/lower/nearby and construction supports right-hand string reading.",
+        "Do not make 承前 inherent to all 勾四 cases; only mark context_inherited when upper left-hand/hui slots are blank and a prior context exists.",
+        "String 四 must come from visible construction evidence, not jianpu, spacing, old OCR, or old CSV rows."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-GOU-4",
+      "component_sequence": [
+        "COMP-103",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SHANG-6-4",
+      "reading_pattern": "上六四",
+      "slot_semantics": "上 left-hand position-taking component with nearby 六四 as hui target by construction",
+      "sound_policy": "non-sounding position-transition candidate by default",
+      "context_inheritance_policy": "does not by itself reset inherited right-hand/string context",
+      "example_refs": [
+        "LXY-P01-PH05-G004",
+        "LXY-P01-PH05-G013"
+      ],
+      "needs_human_review_when": "hui target, attachment scope, or host note is unclear",
+      "template_group": "left_hand_position_transition",
+      "gold_priority": "should_have",
+      "review_guardrails": [
+        "上六四 is a hui-position transition candidate, not strings 六 and 四.",
+        "Do not output 上六？ when 四 is visible."
+      ],
+      "not_dapu_ir_authority": true,
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SHANG-6-4",
+      "component_sequence": [
+        "COMP-501",
+        "COMP-086",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-026",
+          "legacy_label_zh": "上",
+          "normalized_component_id_v0_2": "COMP-501"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-232"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-XIA-7",
+      "reading_pattern": "下七",
+      "slot_semantics": "下 position-taking context with nearby 七 as target hui/position cue when construction supports it",
+      "sound_policy": "non-sounding position-transition candidate by default",
+      "context_inheritance_policy": "must attach to neighboring/next note only with review evidence",
+      "example_refs": [
+        "LXY-P01-PH05-G015"
+      ],
+      "needs_human_review_when": "下 marker is not visually isolated enough or attachment to next note is unclear",
+      "template_group": "left_hand_position_transition",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Do not treat 下七 as an independent plucked note by default.",
+        "Attachment to following 名指七六徽，掐起 remains reviewable."
+      ],
+      "not_dapu_ir_authority": true,
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-XIA-7",
+      "component_sequence": [
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-DA-6-2-TUO-7",
+      "reading_pattern": "大指六二徽，托七弦",
+      "slot_semantics": "upper-left 大指 plus right-upper 六二 hui; lower-left 托 with embedded/inner 七 as string number; punctuation may follow separately",
+      "sound_policy": "candidate sounding unit; later parser promotion requires human-reviewed reading",
+      "context_inheritance_policy": "does not inherit left-hand/hui because both are explicit in the construction",
+      "example_refs": [
+        "LXY-P01-PH01-G006",
+        "LXY-P01-PH02-G010"
+      ],
+      "needs_human_review_when": "right-upper 六二 or embedded 七 boundary is unclear",
+      "template_group": "left_hand_hui_right_hand",
+      "gold_priority": "should_have",
+      "review_guardrails": [
+        "数字六二 in right-upper slot is hui position, not strings.",
+        "Embedded 七 inside/near 托 is string number.",
+        "Do not merge final 句号 into sounding unit."
+      ],
+      "not_dapu_ir_authority": true,
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-DA-6-2-TUO-7",
+      "component_sequence": [
+        "COMP-091",
+        "COMP-086",
+        "COMP-082",
+        "COMP-112",
+        "COMP-087"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-012",
+          "legacy_label_zh": "大指",
+          "normalized_component_id_v0_2": "COMP-091"
+        },
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-015",
+          "legacy_label_zh": "二",
+          "normalized_component_id_v0_2": "COMP-082"
+        },
+        {
+          "legacy_component_id": "COMP-001",
+          "legacy_label_zh": "托",
+          "normalized_component_id_v0_2": "COMP-112"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-182"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-SHUANGTAN-3",
+      "reading_pattern": "双弹三弦",
+      "slot_semantics": "COMP-206 双弹 right-hand action with nearby 三 read as string number when construction supports it",
+      "sound_policy": "candidate right-hand double-pluck / double-action sounding construction; expansion and simultaneity policy remain needs_review",
+      "context_inheritance_policy": "does not itself establish left-hand/hui; inherits only explicit prior sound-state if needed and reviewable",
+      "example_refs": [
+        "LXY-P01-PH06-VB004-NU005"
+      ],
+      "needs_human_review_when": "double-pluck expansion, simultaneity, or exact string-policy is needed",
+      "template_group": "compound_right_hand_sequence",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "COMP-206 双弹 must not be confused with COMP-401 双吟 or COMP-209 如一声.",
+        "Do not expand 双弹 into final Dapu IR without human review."
+      ],
+      "not_dapu_ir_authority": true,
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SHUANGTAN-3",
+      "component_sequence": [
+        "COMP-206",
+        "COMP-083"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-038",
+          "legacy_label_zh": "双弹",
+          "normalized_component_id_v0_2": "COMP-206"
+        },
+        {
+          "legacy_component_id": "COMP-016",
+          "legacy_label_zh": "三",
+          "normalized_component_id_v0_2": "COMP-083"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-150"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-INHERIT-GOU-3-CONTEXT",
+      "reading_pattern": "承前勾三",
+      "slot_semantics": "right-hand 勾 plus embedded/lower string 三",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "often inherits prior left hand/hui; must mark context_inherited",
+      "example_refs": [
+        "LXY-P01-PH01-G004",
+        "LXY-P01-PH02-G006"
+      ],
+      "needs_human_review_when": "inheritance chain crosses groups or phrase boundary",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-GOU-3",
+      "component_sequence": [
+        "COMP-103",
+        "COMP-083"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-016",
+          "legacy_label_zh": "三",
+          "normalized_component_id_v0_2": "COMP-083"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true,
+      "migration_note": "Derived context-inheritance reading alias required for v0.2 migration; remains report-only and needs human review."
+    },
+    {
+      "template_id": "TEMPLATE-INHERIT-GOU-4-CONTEXT",
+      "reading_pattern": "承前勾四弦",
+      "slot_semantics": "勾 right-hand action plus embedded/lower/nearby 四 as string number",
+      "sound_policy": "candidate sounding unit with inherited left-hand/hui context",
+      "context_inheritance_policy": "must mark context_inherited=true and source of inherited left-hand/hui",
+      "example_refs": [
+        "LXY-P01-PH05-G011"
+      ],
+      "needs_human_review_when": "component boundary or inherited context is unclear",
+      "not_dapu_ir_authority": true,
+      "template_group": "context_inheritance_and_right_hand_string",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Do not output 裸勾 or 勾？ when 四 is visibly embedded/lower/nearby and construction supports right-hand string reading.",
+        "Do not make 承前 inherent to all 勾四 cases; only mark context_inherited when upper left-hand/hui slots are blank and a prior context exists.",
+        "String 四 must come from visible construction evidence, not jianpu, spacing, old OCR, or old CSV rows."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-GOU-4",
+      "component_sequence": [
+        "COMP-103",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true,
+      "migration_note": "Derived context-inheritance reading alias required for v0.2 migration; remains report-only and needs human review."
+    },
+    {
+      "template_id": "TEMPLATE-INHERIT-TIAO-4-CONTEXT",
+      "reading_pattern": "承前挑四弦",
+      "slot_semantics": "挑 action plus string 四",
+      "sound_policy": "candidate_sounding_unit",
+      "context_inheritance_policy": "inherits left hand/hui when marked",
+      "example_refs": [
+        "LXY-P01-PH02-G007"
+      ],
+      "needs_human_review_when": "candidate could be misread as bare 四",
+      "not_dapu_ir_authority": true,
+      "template_group": "basic_right_hand_string",
+      "gold_priority": "supporting",
+      "review_guardrails": [
+        "Template reuse remains report-only and NEEDS_HUMAN_REVIEW."
+      ],
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-TIAO-4",
+      "component_sequence": [
+        "COMP-116",
+        "COMP-084"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true,
+      "migration_note": "Derived context-inheritance reading alias required for v0.2 migration; remains report-only and needs human review."
+    },
+    {
+      "template_id": "TEMPLATE-SANYIN-STATE",
+      "reading_pattern": "散音起始",
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-SAN-TIAO-5",
+      "component_sequence": [
+        "COMP-705"
+      ],
+      "slot_semantics": "open-string state marker candidate; semantic alias from legacy 散音起始 to v0.1 音位谱字/散",
+      "sound_policy": "non_sounding_state_marker_by_default; needs visible right-hand/string or human confirmation for sounding candidate",
+      "context_inheritance_policy": "state boundary scope needs human review",
+      "example_refs": [
+        "LXY-P01-PH03-G010",
+        "LXY-P01-PH06"
+      ],
+      "needs_human_review_when": "always when used as state boundary or semantic alias",
+      "not_dapu_ir_authority": true,
+      "template_group": "non_sounding_marker",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Recognize 散音起始 as a whole state component before local numeric matching.",
+        "Do not split it into left-hand or hui components."
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        }
+      ],
+      "semantic_alias_review_required": true,
+      "needs_review": true,
+      "not_score_event_authority": true
+    },
+    {
+      "template_id": "TEMPLATE-QIAQI",
+      "reading_pattern": "掐起",
+      "primary_id_system": "category_based_v0_2",
+      "source_template_id_v0_1": "TEMPLATE-MING-7-6-QIAQI",
+      "component_sequence": [
+        "COMP-515"
+      ],
+      "slot_semantics": "special technique candidate; requires left-hand/hui attachment context",
+      "sound_policy": "not independent sounding unit by default; needs human review",
+      "context_inheritance_policy": "attach to explicit or inherited left-hand position when supported",
+      "example_refs": [
+        "LXY-P01-PH03",
+        "LXY-P01-PH05"
+      ],
+      "needs_human_review_when": "always for attachment and sounding policy",
+      "not_dapu_ir_authority": true,
+      "template_group": "special_technique_attachment",
+      "gold_priority": "must_have",
+      "review_guardrails": [
+        "Do not default 掐起 to an independent sounding unit.",
+        "Record attachment scope as needs_review."
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-022",
+          "legacy_label_zh": "掐起",
+          "normalized_component_id_v0_2": "COMP-515"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-246"
+      ],
+      "semantic_alias_refs": [],
+      "semantic_alias_review_required": false,
+      "needs_review": true,
+      "not_score_event_authority": true
+    }
+  ],
+  "required_template_coverage": {
+    "required_readings": [
+      "勾一",
+      "勾二",
+      "勾三",
+      "承前勾四弦",
+      "托七",
+      "挑六",
+      "挑四",
+      "剔四弦",
+      "大指六二徽，轮七弦",
+      "大指注下七徽，抹七弦",
+      "大指注下七徽，挑七弦",
+      "大指注下七徽，抹挑七弦",
+      "大指绰上七徽，勾六弦",
+      "大指七徽，掩三弦",
+      "名指七九徽，挑六弦",
+      "名指注下七九徽，勾三弦",
+      "就=承前",
+      "承前挑四弦",
+      "承前勾三",
+      "承前勾四弦",
+      "上六二",
+      "上六四",
+      "进五六复",
+      "急进复",
+      "下七",
+      "撞",
+      "泛起",
+      "泛止",
+      "少息",
+      "句号",
+      "散音起始",
+      "吟",
+      "双吟",
+      "爪起",
+      "掐起",
+      "名指七六徽，掐起",
+      "名指七六徽，掐起七弦",
+      "落指猱",
+      "如一声",
+      "历五四",
+      "轮七",
+      "背锁",
+      "抹挑七",
+      "散音，挑五",
+      "散三如一",
+      "剔四弦，散三如一",
+      "双弹三弦"
+    ],
+    "missing_readings": [],
+    "coverage_status": "PASS"
+  },
+  "summary": {
+    "source_templates_v0_1": 45,
+    "templates_reindexed_v0_2": 50,
+    "derived_context_alias_templates": 5,
+    "semantic_alias_review_templates": 7
+  }
+}

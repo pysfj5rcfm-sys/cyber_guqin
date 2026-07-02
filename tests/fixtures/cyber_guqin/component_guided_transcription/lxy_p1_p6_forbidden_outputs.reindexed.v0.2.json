@@ -1,0 +1,549 @@
+{
+  "task_id": "CG-QXBY-REINDEX-FULL-ATLAS-BY-CATEGORY-AND-MIGRATE-LAYERS-v0.3",
+  "fixture_id": "lxy_p1_p6_forbidden_outputs.reindexed.v0.2",
+  "generated_date": "2026-07-02",
+  "status_labels": [
+    "LXY_TRANSCRIPTION_DRAFT_GUARDRAILS",
+    "FORBIDDEN_OUTPUT_FIXTURE",
+    "CATEGORY_REINDEXED_COMPONENT_IDS",
+    "NOT_CANON_AUTHORITY",
+    "NOT_REPO_CONTRACT",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NEEDS_HUMAN_REVIEW",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "authority_boundary": {
+    "forbidden_output_role": "regression guardrail for draft transcription behavior",
+    "score_event_authority": false,
+    "canon_authority": false,
+    "dapu_ir_authority": false
+  },
+  "primary_id_system": "category_based_v0_2",
+  "source_fixture_v0_1": "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p4_forbidden_outputs.v0.1.json",
+  "forbidden_outputs": [
+    {
+      "case_id": "FORBID-RH-ACTION-STRING-BARE-GOU",
+      "scope": "generalized_from_review",
+      "forbidden_pattern": "勾？",
+      "when_visible_evidence": "COMP-103 勾 plus visible embedded/lower/nearby string number such as 三 or 四",
+      "required_repair": "合读为 勾三/勾四 and mark context inheritance only if upper slots are blank",
+      "reason": "右手动作 + 数字必须先尝试合读。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-103"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-RH-ACTION-STRING-BARE-TIAO",
+      "scope": "P2/P3/P4",
+      "forbidden_pattern": "裸弦数 or 挑? omitted",
+      "when_visible_evidence": "COMP-116 挑 plus embedded/lower/nearby string number",
+      "required_repair": "合读为 挑六/挑四/挑七 as supported by visible construction",
+      "reason": "挑的乙形下承结构不得漏读。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-116"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-SHAOXI-AS-JIU",
+      "scope": "P2 and generalized",
+      "forbidden_pattern": "就",
+      "when_visible_evidence": "COMP-806 少息 timing marker",
+      "required_repair": "读作 少息 and keep non-sounding timing marker",
+      "reason": "少息和就语义不同。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-806"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-003",
+          "legacy_label_zh": "少息",
+          "normalized_component_id_v0_2": "COMP-806"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-105"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-JIU-AS-SHAOXI",
+      "scope": "P3 and generalized",
+      "forbidden_pattern": "少息",
+      "when_visible_evidence": "COMP-907 就 / context-inheritance marker",
+      "required_repair": "render as 承前 behavior unless user asks to surface 就",
+      "reason": "就是承前 marker，不是 timing marker。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-907"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-023",
+          "legacy_label_zh": "就",
+          "normalized_component_id_v0_2": "COMP-907"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-128"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-COMP027-AS-LEFT-HAND-HUI",
+      "scope": "P3/P4 and generalized",
+      "forbidden_pattern": "大指/徽位 from connected COMP-705 shape",
+      "when_visible_evidence": "COMP-705 散音起始 connected grass-head-like component",
+      "required_repair": "读作 散音起始/open-string state layer; require visible right-hand/string for sounding candidate",
+      "reason": "散音起始不可误拆。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-705"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        }
+      ],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-COMP027-LOCAL-NUMERIC-SPLIT",
+      "scope": "P6 and generalized",
+      "forbidden_pattern": "COMP-705 散音起始优先整体识别 failure: split as 五/六, 勾五, or local numeric fragments",
+      "when_visible_evidence": "connected COMP-705 散音起始 plus visible right-hand/string construction such as COMP-103 勾 + COMP-081 一",
+      "required_repair": "先整体匹配 COMP-705 as 散音起始，再与可见右手动作合读，例如 散音，勾一弦",
+      "reason": "COMP-705 的整体状态层优先级高于局部数字匹配。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-081",
+        "COMP-103",
+        "COMP-705"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-009",
+          "legacy_label_zh": "一",
+          "normalized_component_id_v0_2": "COMP-081"
+        },
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        },
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141",
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        }
+      ],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-MING-7-6-GOU-4-AS-GOU-5-6",
+      "scope": "P6 and generalized",
+      "forbidden_pattern": "勾五六？ or bare 五六",
+      "when_visible_evidence": "upper-left COMP-094 名指, right-upper COMP-087 七 + COMP-086 六, lower/right COMP-103 勾 + COMP-084 四",
+      "required_repair": "按复合模板读作 名指七六徽，勾四弦",
+      "reason": "名指 + 右上徽位 + 勾四 必须先按复合减字合读，不得退化成裸数字串。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-084",
+        "COMP-086",
+        "COMP-087",
+        "COMP-094",
+        "COMP-103"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-006",
+          "legacy_label_zh": "六",
+          "normalized_component_id_v0_2": "COMP-086"
+        },
+        {
+          "legacy_component_id": "COMP-007",
+          "legacy_label_zh": "七",
+          "normalized_component_id_v0_2": "COMP-087"
+        },
+        {
+          "legacy_component_id": "COMP-008",
+          "legacy_label_zh": "名指",
+          "normalized_component_id_v0_2": "COMP-094"
+        },
+        {
+          "legacy_component_id": "COMP-011",
+          "legacy_label_zh": "四",
+          "normalized_component_id_v0_2": "COMP-084"
+        },
+        {
+          "legacy_component_id": "COMP-020",
+          "legacy_label_zh": "勾",
+          "normalized_component_id_v0_2": "COMP-103"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-173"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-ZHUXIA-TIAO-AS-MO",
+      "scope": "P3/P4",
+      "forbidden_pattern": "大指注下七徽，抹七弦",
+      "when_visible_evidence": "COMP-116 挑 visible in right-hand slot",
+      "required_repair": "大指注下七徽，挑七弦",
+      "reason": "不能从邻近模板复制抹。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-116"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-P4-MISSING-PRE-JI-JINFU-PLUCK",
+      "scope": "P4",
+      "forbidden_pattern": "撞；急进复",
+      "when_visible_evidence": "visible 大指注下七徽，挑七弦 before 急进复",
+      "required_repair": "撞；大指注下七徽，挑七弦；急进复",
+      "reason": "急进复前的发声构字不得漏掉。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-P3-G09-UNKNOWN",
+      "scope": "P3",
+      "forbidden_pattern": "G09未定 or 下部六？",
+      "when_visible_evidence": "名指 + 七九徽 + COMP-116 挑 + 六",
+      "required_repair": "名指七九徽，挑六弦",
+      "reason": "P3-G09 已由用户确认。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-116"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-P3P4-SAN-TIAO5-UNKNOWN",
+      "scope": "P3/P4",
+      "forbidden_pattern": "散音起始，下部未定",
+      "when_visible_evidence": "COMP-705 散音起始 plus COMP-116 挑 plus 五",
+      "required_repair": "散音，挑五弦",
+      "reason": "P3/P4 尾部已确认。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-116",
+        "COMP-705"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-018",
+          "legacy_label_zh": "挑",
+          "normalized_component_id_v0_2": "COMP-116"
+        },
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "normalized_component_id_v0_2": "COMP-705"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-141",
+        "COMP-186"
+      ],
+      "semantic_alias_refs": [
+        {
+          "legacy_component_id": "COMP-027",
+          "legacy_label_zh": "散音起始",
+          "source_component_id_v0_1": "COMP-141",
+          "semantic_alias_type": "sound_state_label_alias",
+          "needs_review": true
+        }
+      ],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-LUN-ZHUANG-SWAP",
+      "scope": "P4",
+      "forbidden_pattern": "轮/撞 swapped via raw fallback",
+      "when_visible_evidence": "COMP-416 撞 and COMP-121 轮 after v0.4 correction",
+      "required_repair": "COMP-416=撞, COMP-121=轮",
+      "reason": "禁止回退旧 raw mapping。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-121",
+        "COMP-416"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-028",
+          "legacy_label_zh": "撞",
+          "normalized_component_id_v0_2": "COMP-416"
+        },
+        {
+          "legacy_component_id": "COMP-029",
+          "legacy_label_zh": "轮",
+          "normalized_component_id_v0_2": "COMP-121"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-191",
+        "COMP-209"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-MARKER-SOUNDING-UNIT",
+      "scope": "all",
+      "forbidden_pattern": "泛起/泛止/少息/句号/就 as independent sounding_unit",
+      "when_visible_evidence": "non-sounding marker components",
+      "required_repair": "state_boundary/timing_marker/punctuation/context marker only",
+      "reason": "非发声 marker 默认不生成 sounding_unit。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-JIANPU-AUTHORITY",
+      "scope": "all",
+      "forbidden_pattern": "using jianpu/old OCR/old CSV/page layout as score fact authority",
+      "when_visible_evidence": "any uncertain glyph group",
+      "required_repair": "mark unknown_from_crop or NEEDS_HUMAN_REVIEW; do not infer event count/rhythm/pitch/string/hui/action",
+      "reason": "硬边界。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-QIAQI-INDEPENDENT",
+      "scope": "P3/P4 and generalized",
+      "forbidden_pattern": "掐起 as independent sounding unit with no left-hand/hui attachment",
+      "when_visible_evidence": "COMP-515 掐起 near 名指/position evidence",
+      "required_repair": "attach as special-technique candidate and mark sounding policy needs_review",
+      "reason": "掐起需与名指/跪指等按位绑定，发声策略需审阅。",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [
+        "COMP-515"
+      ],
+      "legacy_refs": [
+        {
+          "legacy_component_id": "COMP-022",
+          "legacy_label_zh": "掐起",
+          "normalized_component_id_v0_2": "COMP-515"
+        }
+      ],
+      "source_component_refs_v0_1": [
+        "COMP-246"
+      ],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-GOU-4-AS-UNKNOWN",
+      "scope": "generalized_P5_P6",
+      "forbidden_pattern": "勾？",
+      "when_visible_evidence": "visible 勾 plus 四 in right-hand/string construction",
+      "required_repair": "读作 勾四弦 and preserve inheritance only when supported",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-TI-4-AS-UNKNOWN",
+      "scope": "P5 generalized",
+      "forbidden_pattern": "剔？",
+      "when_visible_evidence": "visible 剔 plus 四",
+      "required_repair": "读作 剔四弦; keep reviewable",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-TIAO-4-AS-BARE",
+      "scope": "P2/P5 generalized",
+      "forbidden_pattern": "裸挑？",
+      "when_visible_evidence": "visible 挑 plus 四",
+      "required_repair": "读作 挑四弦 or 承前挑四弦 as context supports",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-ZHUXIA-TIAO-7-DROP-CONTEXT",
+      "scope": "P3/P4/P5 generalized",
+      "forbidden_pattern": "空上部 注下挑七 loses prior 大指七徽",
+      "when_visible_evidence": "blank upper slots after explicit 大指七徽 context",
+      "required_repair": "inherit 大指七徽 only when source context is explicit and mark context_inherited",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-MOTIAO-AS-YAN",
+      "scope": "P5 generalized",
+      "forbidden_pattern": "抹挑 read as 掩",
+      "when_visible_evidence": "visible 抹挑 action component in right-hand slot",
+      "required_repair": "读作 抹挑 and keep as right-hand action candidate",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-RUYISHENG-AS-DAPU-IR",
+      "scope": "P5 generalized",
+      "forbidden_pattern": "如一声 directly expanded into Dapu IR",
+      "when_visible_evidence": "如一声 or 如一 semantic alias visible",
+      "required_repair": "keep seed_pending/needs_review and do not write Dapu IR",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-SHUANGTAN-AS-SHUANGYIN-RUYI",
+      "scope": "P6 generalized",
+      "forbidden_pattern": "双弹 read as 双吟 or 如一声",
+      "when_visible_evidence": "visible 双弹 plus string number",
+      "required_repair": "读作 双弹三弦 candidate; expansion policy needs human review",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    },
+    {
+      "case_id": "FORBID-REINDEXED-PRIMARY-ID-DRIFT",
+      "scope": "all reindexed fixtures",
+      "forbidden_pattern": "legacy/source IDs in primary fields",
+      "when_visible_evidence": "any primary matched_components or component_sequence field",
+      "required_repair": "normalize to category_based_v0_2 and keep legacy/source IDs only in traceability fields",
+      "reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "primary_id_system": "category_based_v0_2",
+      "primary_component_refs_v0_2": [],
+      "legacy_refs": [],
+      "source_component_refs_v0_1": [],
+      "semantic_alias_refs": [],
+      "not_dapu_ir_authority": true
+    }
+  ],
+  "summary": {
+    "source_forbidden_cases_v0_1": 15,
+    "added_reindexed_forbidden_cases": 8,
+    "forbidden_output_cases": 23
+  }
+}

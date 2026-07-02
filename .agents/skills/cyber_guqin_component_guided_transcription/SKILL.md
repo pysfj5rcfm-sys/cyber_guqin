@@ -319,6 +319,21 @@ When the full QXBY component atlas exists, read it before phrase recognition:
 5. Do not treat source images as sample ingest or ML data.
 6. Unknown future glyphs should be marked `component_gap`, not force-matched.
 
+## 7d. QXBY Reindexed Component ID System v0.2
+
+When the reindexed QXBY component ID system exists, use it as the primary component layer:
+
+1. Read `references/qxby_component_atlas/component_registry.reindexed.v0.2.json` as the primary component registry.
+2. Treat `COMP-081..087` as normalized numeric components.
+3. Treat `COMP-091..095` as normalized left-finger-name components.
+4. Treat `COMP-101..999` category ranges as primary full atlas IDs.
+5. Treat `COMP-001..038` as legacy aliases only.
+6. Treat `COMP-100..273` from the v0.1 full atlas as source component IDs only, not current primary IDs.
+7. Normalize both legacy IDs and v0.1 full atlas IDs before matching templates or gold cases.
+8. Use `references/qxby_component_atlas/construction_templates.reindexed.v0.2.json` and `tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_goldset.reindexed.v0.2.json` for P7 and later.
+9. If an ID cannot be normalized, emit `COMPONENT_ID_NORMALIZATION_GAP`.
+10. Component match remains reference evidence, not phrase score authority, not Dapu IR, not sample ingest, not ML data, and not render.
+
 ## 8. Core Workflow
 
 Use this workflow:

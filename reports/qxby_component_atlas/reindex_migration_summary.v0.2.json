@@ -1,0 +1,170 @@
+{
+  "report_id": "QXBY_FULL_COMPONENT_ATLAS_REINDEX_MIGRATION_SUMMARY_v0.2",
+  "generated_date": "2026-07-02",
+  "status_labels": [
+    "QXBY_FULL_COMPONENT_ATLAS_REFERENCE",
+    "CATEGORY_REINDEXED_COMPONENT_IDS",
+    "SOURCE_REFERENCE_IMAGE",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "scope_confirmation": {
+    "only": [
+      "QXBY full atlas category-based reindexing",
+      "legacy alias normalization",
+      "construction template migration",
+      "regression goldset migration",
+      "skill ID-normalization update"
+    ],
+    "not": [
+      "score import",
+      "LXY P7 processing",
+      "Dapu IR authority",
+      "parser finalization",
+      "recording plan",
+      "sample ingest",
+      "ML training",
+      "render",
+      "R0/R1/R2/E/F",
+      "Sanman formal collection plan"
+    ]
+  },
+  "v0_1_registry_found": true,
+  "v0_2_registry_created": true,
+  "full_atlas_components_represented": 174,
+  "auxiliary_numeric_components": {
+    "一": "COMP-081",
+    "二": "COMP-082",
+    "三": "COMP-083",
+    "四": "COMP-084",
+    "五": "COMP-085",
+    "六": "COMP-086",
+    "七": "COMP-087"
+  },
+  "auxiliary_left_finger_name_components": {
+    "大指": "COMP-091",
+    "食指": "COMP-092",
+    "中指": "COMP-093",
+    "名指": "COMP-094",
+    "跪指": "COMP-095"
+  },
+  "left_finger_name_reference_zip": {
+    "zip_exists": true,
+    "zip_path": "/Users/chenyulin/Desktop/左手指名.zip",
+    "zip_filename": "左手指名.zip",
+    "zip_sha256": "dff02cf2216a94635212ea00cebdc1528a100591f6f963ee3334c57bcc244da8",
+    "images": {
+      "中指": {
+        "original_internal_path": "左手指名/中指.png",
+        "file_ext": ".png",
+        "image_sha256": "9d98528f89648628ed420d46cb77e9ddae1b58544938cadff4a87977181b7338",
+        "reference_image_not_copied_to_repo": true
+      },
+      "名指": {
+        "original_internal_path": "左手指名/名指.png",
+        "file_ext": ".png",
+        "image_sha256": "c1a4897a563833077a0c4f4e4b8fb25ee7c4aea32f20eaa4fe67d396e3305575",
+        "reference_image_not_copied_to_repo": true
+      },
+      "大指": {
+        "original_internal_path": "左手指名/大指.png",
+        "file_ext": ".png",
+        "image_sha256": "f599e88afa1c4069e79986ec48c55889e9ec353eca91898fb90703810a4ab7e6",
+        "reference_image_not_copied_to_repo": true
+      },
+      "跪指": {
+        "original_internal_path": "左手指名/跪指.png",
+        "file_ext": ".png",
+        "image_sha256": "f57c83a6d2c91d2a784f22534b0437ae162348454765bf1cc16b5b0cb9d8a1fe",
+        "reference_image_not_copied_to_repo": true
+      },
+      "食指": {
+        "original_internal_path": "左手指名/食指.png",
+        "file_ext": ".png",
+        "image_sha256": "84d72e387c23cc9c63060222225869623b33226d8ebf203b7cd2980470626580",
+        "reference_image_not_copied_to_repo": true
+      }
+    }
+  },
+  "legacy_comp_001_038_mapping_count": 38,
+  "source_comp_100_273_to_v0_2_mapping_count": 174,
+  "construction_templates_reindexed": 50,
+  "goldset_reindexed": true,
+  "forbidden_outputs_reindexed": true,
+  "skill_updated": true,
+  "category_ranges": [
+    {
+      "category": "右手指法-一弦单弹",
+      "component_family": "right_hand_single_string_family",
+      "range_reserved": "COMP-101..COMP-199",
+      "assigned_count": 23,
+      "assigned_range": "COMP-101..COMP-123"
+    },
+    {
+      "category": "右手指法-两弦双弹",
+      "component_family": "right_hand_two_string_family",
+      "range_reserved": "COMP-201..COMP-299",
+      "assigned_count": 17,
+      "assigned_range": "COMP-201..COMP-217"
+    },
+    {
+      "category": "右手指法-数弦连弹",
+      "component_family": "right_hand_multi_string_family",
+      "range_reserved": "COMP-301..COMP-399",
+      "assigned_count": 9,
+      "assigned_range": "COMP-301..COMP-309"
+    },
+    {
+      "category": "左手指法-本位取音",
+      "component_family": "left_hand_base_position_family",
+      "range_reserved": "COMP-401..COMP-499",
+      "assigned_count": 38,
+      "assigned_range": "COMP-401..COMP-438"
+    },
+    {
+      "category": "左手指法-隔位取音",
+      "component_family": "left_hand_interval_position_family",
+      "range_reserved": "COMP-501..COMP-599",
+      "assigned_count": 33,
+      "assigned_range": "COMP-501..COMP-533"
+    },
+    {
+      "category": "左手指法-散弦取音",
+      "component_family": "left_hand_open_string_family",
+      "range_reserved": "COMP-601..COMP-699",
+      "assigned_count": 9,
+      "assigned_range": "COMP-601..COMP-609"
+    },
+    {
+      "category": "音位谱字",
+      "component_family": "sound_position_marker_family",
+      "range_reserved": "COMP-701..COMP-799",
+      "assigned_count": 8,
+      "assigned_range": "COMP-701..COMP-708"
+    },
+    {
+      "category": "节奏谱字",
+      "component_family": "rhythm_marker_family",
+      "range_reserved": "COMP-801..COMP-899",
+      "assigned_count": 22,
+      "assigned_range": "COMP-801..COMP-822"
+    },
+    {
+      "category": "通用谱字",
+      "component_family": "generic_score_marker_family",
+      "range_reserved": "COMP-901..COMP-999",
+      "assigned_count": 15,
+      "assigned_range": "COMP-901..COMP-915"
+    }
+  ],
+  "mapping_conflict_check": "PASS",
+  "validation_results": {
+    "json_validation": "PASS using bundled Codex Python or python3 fallback",
+    "reindex_sanity": "PASS full=174 aux=12 legacy=38 source_v01=174 templates=50 gold_phrases=6 forbidden=23",
+    "git_diff_check": "PASS",
+    "notes": "Primary IDs are interpreted under primary_id_system=category_based_v0_2; v0.1 IDs are retained only in source traceability fields."
+  }
+}
