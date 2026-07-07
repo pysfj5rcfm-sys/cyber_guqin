@@ -1,0 +1,133 @@
+{
+  "task_id": "CG-LXY-136-DOC-REGISTRATION-AND-GATE-v0.1",
+  "source_files": [
+    {
+      "path": "/Users/chenyulin/Downloads/CG_LXY_136_Phase_Build_Requirements_v0.1.md",
+      "visible": true,
+      "role": "user_provided_requirements_markdown",
+      "sha256": "62acf0188408093d6c7c299eedac70153ba3a23249526553c70a14360ede35ff"
+    },
+    {
+      "path": "/Users/chenyulin/Downloads/CG_LXY_136_Flow_Design_v0.1.svg",
+      "visible": true,
+      "role": "user_provided_flow_design_svg",
+      "sha256": "7925bf392b375ec774aa995b32e86d5468893cb0aabb3e2feaaddaf49676d302"
+    },
+    {
+      "path": "/Users/chenyulin/Downloads/CG_LXY_136_Flow_Design_v0.1.png",
+      "visible": false,
+      "role": "optional_user_provided_flow_design_png",
+      "resolution": "not present in Downloads; repo PNG generated from registered SVG"
+    }
+  ],
+  "written_files": [
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_136_Phase_Build_Requirements_v0.1.md",
+      "role": "registered_requirements_markdown",
+      "sha256": "62acf0188408093d6c7c299eedac70153ba3a23249526553c70a14360ede35ff"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_136_Flow_Design_v0.1.svg",
+      "role": "registered_flow_design_svg",
+      "sha256": "7925bf392b375ec774aa995b32e86d5468893cb0aabb3e2feaaddaf49676d302"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_136_Flow_Design_v0.1.png",
+      "role": "generated_flow_design_png_preview",
+      "generated_from": "reports/lxy_136_phase_build/CG_LXY_136_Flow_Design_v0.1.svg",
+      "sha256": "4b8b27a3a68a7c353bdfa720f07599a5a42f153d1ca400c8bfc322b6cb9cde49"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_136_codex_understanding_check.v0.1.md",
+      "role": "codex_understanding_check"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_136_mode_gate.v0.1.md",
+      "role": "generation_evaluation_learning_mode_gate"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_136_registration_manifest.v0.1.json",
+      "role": "registration_manifest"
+    }
+  ],
+  "repo_head": "e0745bdbae24f5f74b35479cde86ee280335c241",
+  "git_log_5": [
+    "e0745bd (HEAD -> main, origin/main, origin/HEAD) test(qxby): scope forbidden regression checks for reindexed atlas",
+    "09842a0 docs(qxby): reindex component atlas by category",
+    "cd4b563 docs(lxy): harden component-guided phrase6 regressions",
+    "08b2dff docs(qxby): register full component atlas reference",
+    "7d52ce6 docs(lxy): add phrase6 component-guided draft"
+  ],
+  "status_labels": [
+    "REPORT_REGISTRATION_ONLY",
+    "DESIGN_BASELINE",
+    "MODE_GATE_DESIGN_BASELINE",
+    "GPT_TRANSCRIPTION_DRAFT_BOUNDARY",
+    "REFERENCE_COMPONENT_ATLAS_GUIDED_BOUNDARY",
+    "NEEDS_HUMAN_REVIEW_BOUNDARY",
+    "NOT_REPO_CONTRACT",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "authority_boundary": {
+    "reports_role": "audit/status/design/validation evidence only",
+    "registered_docs_are_not": [
+      "runtime output",
+      "canonical score authority",
+      "Dapu IR authority",
+      "sample ingest authority",
+      "ML training data",
+      "render output",
+      "R0/R1/R2/E/F authorization"
+    ],
+    "generation_mode": {
+      "allowed": [
+        "D1 component reference layer",
+        "D2 construction grammar layer",
+        "D3 generation-safe guards"
+      ],
+      "forbidden": [
+        "phrase-level oracle",
+        "raw goldset expected readings",
+        "old reports/lxy_*",
+        "old candidates",
+        "evaluation or triage oracle"
+      ]
+    },
+    "evaluation_mode": {
+      "requires": [
+        "frozen prediction"
+      ],
+      "allowed": [
+        "oracle answers",
+        "exact/equivalent/partial/fail evaluation",
+        "diff output"
+      ],
+      "forbidden": [
+        "prediction mutation",
+        "oracle-based candidate backfill"
+      ]
+    },
+    "learning_mode": {
+      "allowed": [
+        "proposal report",
+        "component exemplar proposal",
+        "template proposal",
+        "guard proposal",
+        "regression case proposal"
+      ],
+      "forbidden_before_user_approval": [
+        "authority writes",
+        "Dapu IR writes",
+        "sample ingest writes",
+        "ML writes",
+        "render writes"
+      ]
+    }
+  },
+  "no_code_written": true,
+  "no_phase1_parser_implemented": true,
+  "forbidden_paths_untouched": true
+}
