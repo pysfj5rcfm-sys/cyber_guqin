@@ -1,0 +1,461 @@
+{
+  "schema_id": "CG_LXY_P1A_parse_output_contract",
+  "version": "v0.1",
+  "status_labels": [
+    "P1A_GRAMMAR_DESIGN_DRAFT",
+    "NEEDS_USER_REVIEW",
+    "NOT_EXECUTABLE_PARSER",
+    "NOT_RUNTIME_SCHEMA",
+    "NOT_REPO_CONTRACT",
+    "NOT_CANON_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "contract_purpose": "Field definition plus abstract contract example for a future P1 parser response. This is not an actual LXY parse result.",
+  "score_contract": {
+    "score_type": "HEURISTIC_GRAMMAR_SCORE",
+    "calibrated_probability": false,
+    "max_candidates_default": 5,
+    "score_fields": [
+      "grammar_score",
+      "specificity_score",
+      "completeness_score",
+      "guard_penalty",
+      "context_penalty",
+      "unresolved_penalty",
+      "ambiguity_penalty",
+      "final_score",
+      "score_explanation"
+    ],
+    "deterministic_ordering": [
+      "exclude invalid and hard guard rejected from accepted candidates",
+      "required slot completeness",
+      "specificity",
+      "fewer context dependencies",
+      "fewer unresolved tokens",
+      "higher consumed-token coverage",
+      "rule priority",
+      "candidate_id"
+    ]
+  },
+  "parser_status_model": [
+    "VALID_COMPLETE",
+    "VALID_WITH_CONTEXT",
+    "VALID_AMBIGUOUS",
+    "INCOMPLETE",
+    "UNRESOLVED",
+    "UNSUPPORTED",
+    "INVALID_ORDER",
+    "INVALID_TYPE_COMBINATION",
+    "FORBIDDEN_GUARD_REJECTED",
+    "COMPONENT_ID_NORMALIZATION_GAP",
+    "INPUT_CONTRACT_INVALID"
+  ],
+  "top_level_fields": {
+    "parser_contract_version": {
+      "required": true,
+      "type": "string"
+    },
+    "input_tokens": {
+      "required": true,
+      "type": "array[token]"
+    },
+    "normalization_summary": {
+      "required": true,
+      "type": "object"
+    },
+    "parse_status": {
+      "required": true,
+      "type": "status"
+    },
+    "accepted_candidates": {
+      "required": true,
+      "type": "array[accepted_candidate]"
+    },
+    "rejected_candidates": {
+      "required": true,
+      "type": "array[rejected_candidate]"
+    },
+    "unconsumed_tokens": {
+      "required": true,
+      "type": "array[token_id]"
+    },
+    "context_requirements": {
+      "required": true,
+      "type": "array[context_requirement]"
+    },
+    "guard_summary": {
+      "required": true,
+      "type": "object"
+    },
+    "authority_flags": {
+      "required": true,
+      "type": "authority_flags"
+    },
+    "input_contract_errors": {
+      "required": true,
+      "type": "array[input_contract_error]"
+    }
+  },
+  "accepted_candidate_fields": {
+    "candidate_id": "string required",
+    "rank": "integer required",
+    "reading_candidate": "deprecated compatibility alias; must be derived from structured_parse and must not overwrite slots",
+    "parse_type": "string required",
+    "status": "status required",
+    "consumed_token_ids": "array[string] required",
+    "unconsumed_token_ids": "array[string] required",
+    "slots": "object required",
+    "applied_rule_ids": "array[string] required",
+    "applied_guard_ids": "array[string] required",
+    "context_requirements": "array[object] required",
+    "unresolved_items": "array[object] required",
+    "score": "number required",
+    "score_type": "HEURISTIC_GRAMMAR_SCORE required",
+    "score_breakdown": "object required",
+    "reason": "string required",
+    "authority_flags": "authority_flags required",
+    "structured_parse": "object required; primary semantic slot result",
+    "surface_reading_candidate": "string required; derived non-authority display text from structured_parse",
+    "literal_component_gloss": "array[object] required; direct gloss of input components before semantic slot resolution",
+    "sound_type_candidate": "散 | 按 | 泛 | null required when relevant",
+    "sound_type_resolution_status": "RESOLVED | AMBIGUOUS | CONTEXT_REQUIRED | UNRESOLVED required when relevant; not a sound type"
+  },
+  "rejected_candidate_fields": {
+    "candidate_id": "string required",
+    "attempted_rule_id": "string required",
+    "consumed_token_ids": "array[string] required",
+    "rejection_status": "status required",
+    "rejection_reason": "string required",
+    "guard_ids": "array[string] required",
+    "recoverable": "boolean required",
+    "suggested_next_action": "string required"
+  },
+  "authority_flags_definition": {
+    "not_repo_contract": true,
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "not_score_event_authority": true,
+    "not_sample_ingest": true,
+    "not_ml_training_data": true,
+    "not_render_output": true,
+    "needs_human_review": true
+  },
+  "contract_example": {
+    "parser_contract_version": "CG_LXY_P1A_parse_output_contract.v0.1",
+    "input_tokens": [
+      {
+        "token_id": "tok_001",
+        "sequence_index": 0,
+        "component_id_v0_2": "COMP-RH-ACTION",
+        "label_zh": "<右手动作>",
+        "lexical_component_type": "RIGHT_HAND_ACTION_COMPONENT",
+        "source_category": "abstract_example",
+        "normalization_status": "NORMALIZED_V0_2_PRIMARY",
+        "source_component_id": null,
+        "legacy_component_id": null,
+        "semantic_role_hint": null,
+        "relation_to_previous": "sequence_start",
+        "relation_to_next": "adjacent",
+        "confidence_input": {
+          "source": "grammar_fixture_or_manual_token_sequence",
+          "value": null,
+          "calibrated_probability": false
+        },
+        "metadata": {
+          "example_is_abstract_only": true
+        }
+      },
+      {
+        "token_id": "tok_002",
+        "sequence_index": 1,
+        "component_id_v0_2": "COMP-NUMERIC",
+        "label_zh": "<数字>",
+        "lexical_component_type": "NUMERIC_COMPONENT",
+        "source_category": "abstract_example",
+        "normalization_status": "NORMALIZED_V0_2_PRIMARY",
+        "source_component_id": null,
+        "legacy_component_id": null,
+        "semantic_role_hint": null,
+        "relation_to_previous": "adjacent",
+        "relation_to_next": "sequence_end",
+        "confidence_input": {
+          "source": "grammar_fixture_or_manual_token_sequence",
+          "value": null,
+          "calibrated_probability": false
+        },
+        "metadata": {
+          "example_is_abstract_only": true,
+          "numeric_role_not_fixed_at_tokenization": true
+        }
+      }
+    ],
+    "normalization_summary": {
+      "all_primary_ids_v0_2": true,
+      "legacy_ids_seen": 0,
+      "source_v0_1_ids_seen": 0,
+      "normalization_gaps": [],
+      "normalization_status": "NORMALIZED_V0_2_PRIMARY"
+    },
+    "parse_status": "VALID_AMBIGUOUS",
+    "accepted_candidates": [
+      {
+        "candidate_id": "cand_0001",
+        "rank": 1,
+        "reading_candidate": "<RIGHT_HAND_ACTION><STRING_NUMBER>",
+        "surface_reading_candidate": "<RIGHT_HAND_ACTION><STRING_NUMBER>",
+        "literal_component_gloss": [
+          {
+            "token_id": "tok_001",
+            "literal_gloss": "<右手动作>"
+          },
+          {
+            "token_id": "tok_002",
+            "literal_gloss": "<数字>"
+          }
+        ],
+        "parse_type": "right_hand_string_ambiguous_or_resolved_unit",
+        "status": "VALID_AMBIGUOUS",
+        "consumed_token_ids": [
+          "tok_001",
+          "tok_002"
+        ],
+        "unconsumed_token_ids": [],
+        "structured_parse": {
+          "slots": {
+            "RIGHT_HAND_ACTION": {
+              "token_ids": [
+                "tok_001"
+              ],
+              "value": "<右手动作>",
+              "context_inherited": false
+            },
+            "STRING_NUMBER": {
+              "token_ids": [
+                "tok_002"
+              ],
+              "value": "<弦数>",
+              "context_inherited": false,
+              "numeric_role_assigned_by_rule": true
+            },
+            "SOUND_STATE": {
+              "value": null,
+              "sound_type_candidate": null,
+              "sound_type_resolution_status": "AMBIGUOUS"
+            }
+          },
+          "interpretation_options": [
+            {
+              "option_id": "open_string_candidate",
+              "sound_type_candidate": "散",
+              "sound_type_resolution_status": "AMBIGUOUS",
+              "requires_no_inherited_context_or_open_evidence_to_resolve": true
+            },
+            {
+              "option_id": "inherited_context_candidate",
+              "sound_type_candidate": null,
+              "sound_type_resolution_status": "CONTEXT_REQUIRED",
+              "requires_context_ref_or_inherited_context": true
+            }
+          ],
+          "surface_reading_derivation": "surface_reading_candidate is derived from structured_parse after semantic resolution and cannot overwrite slots"
+        },
+        "slots": {
+          "RIGHT_HAND_ACTION": {
+            "token_ids": [
+              "tok_001"
+            ],
+            "value": "<右手动作>",
+            "context_inherited": false
+          },
+          "STRING_NUMBER": {
+            "token_ids": [
+              "tok_002"
+            ],
+            "value": "<弦数>",
+            "context_inherited": false,
+            "numeric_role_assigned_by_rule": true
+          },
+          "SOUND_STATE": {
+            "value": null,
+            "sound_type_candidate": null,
+            "sound_type_resolution_status": "AMBIGUOUS"
+          }
+        },
+        "sound_type_candidate": null,
+        "sound_type_resolution_status": "AMBIGUOUS",
+        "applied_rule_ids": [
+          "PR-RH-STRING"
+        ],
+        "applied_guard_ids": [],
+        "context_requirements": [
+          {
+            "requirement_id": "ctx_req_001",
+            "required_for": "inherited-context interpretation candidate",
+            "accepted_input_fields": [
+              "context_ref",
+              "inherited_context"
+            ],
+            "implicit_backward_scan_depth": 0,
+            "status_if_declared_required_but_missing": "INCOMPLETE"
+          }
+        ],
+        "unresolved_items": [],
+        "score": 0.86,
+        "score_type": "HEURISTIC_GRAMMAR_SCORE",
+        "score_breakdown": {
+          "grammar_score": 0.32,
+          "specificity_score": 0.16,
+          "completeness_score": 0.2,
+          "guard_penalty": 0.0,
+          "context_penalty": 0.05,
+          "unresolved_penalty": 0.0,
+          "ambiguity_penalty": 0.05,
+          "final_score": 0.86,
+          "score_explanation": "Abstract RH plus string production is locally legal but sound type and inherited/open interpretation are ambiguous without explicit open evidence or inherited_context."
+        },
+        "reason": "RH_ACTION + STRING_NUMBER yields VALID_AMBIGUOUS unless explicit open-string evidence, no_inherited_context, or explicit inherited_context resolves the interpretation.",
+        "authority_flags": {
+          "not_repo_contract": true,
+          "not_canon_authority": true,
+          "not_dapu_ir_authority": true,
+          "not_score_event_authority": true,
+          "not_sample_ingest": true,
+          "not_ml_training_data": true,
+          "not_render_output": true,
+          "needs_human_review": true
+        }
+      }
+    ],
+    "rejected_candidates": [
+      {
+        "candidate_id": "reject_0001",
+        "attempted_rule_id": "PR-LF-HUI-RH-STRING",
+        "consumed_token_ids": [
+          "tok_001",
+          "tok_002"
+        ],
+        "rejection_status": "INCOMPLETE",
+        "rejection_reason": "Required LEFT_FINGER and HUI_POSITION slots are absent for pressed_sounding_unit.",
+        "guard_ids": [],
+        "recoverable": true,
+        "suggested_next_action": "provide_explicit_left_finger_and_hui_or_caller_provided_inherited_context"
+      }
+    ],
+    "unconsumed_tokens": [],
+    "context_requirements": [
+      {
+        "requirement_id": "ctx_req_001",
+        "required_for": "inherited-context interpretation candidate",
+        "accepted_input_fields": [
+          "context_ref",
+          "inherited_context"
+        ],
+        "implicit_backward_scan_depth": 0,
+        "status_if_declared_required_but_missing": "INCOMPLETE"
+      }
+    ],
+    "guard_summary": {
+      "guards_checked": [],
+      "guards_applied": [],
+      "guards_rejected": [],
+      "scope_mismatch_guards": [],
+      "literal_global_ban_used": false,
+      "guard_action_enum": [
+        "HARD_REJECT",
+        "SOFT_PENALTY",
+        "FORCE_UNRESOLVED",
+        "NEEDS_CONTEXT",
+        "NEEDS_HUMAN_REVIEW",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "authority_flags": {
+      "not_repo_contract": true,
+      "not_canon_authority": true,
+      "not_dapu_ir_authority": true,
+      "not_score_event_authority": true,
+      "not_sample_ingest": true,
+      "not_ml_training_data": true,
+      "not_render_output": true,
+      "needs_human_review": true
+    },
+    "input_contract_errors": []
+  },
+  "output_lifecycle": [
+    "input tokens",
+    "normalized tokens",
+    "structured slots",
+    "semantic resolution",
+    "surface reading candidate"
+  ],
+  "dual_output_policy": {
+    "structured_parse_primary": true,
+    "surface_reading_candidate_is_derived": true,
+    "surface_reading_must_not_overwrite_slots": true,
+    "literal_component_gloss_required": true
+  },
+  "guard_action_contract": {
+    "guard_action_enum": [
+      "HARD_REJECT",
+      "SOFT_PENALTY",
+      "FORCE_UNRESOLVED",
+      "NEEDS_CONTEXT",
+      "NEEDS_HUMAN_REVIEW",
+      "NOT_APPLICABLE"
+    ],
+    "default_action_mapping": [
+      {
+        "condition": "impossible lexical-type/slot binding",
+        "guard_action": "HARD_REJECT"
+      },
+      {
+        "condition": "marker-as-sounding",
+        "guard_action": "HARD_REJECT"
+      },
+      {
+        "condition": "scoped forbidden parse with complete scope match",
+        "guard_action": "HARD_REJECT"
+      },
+      {
+        "condition": "known confusable component but legal interpretation remains",
+        "guard_action": "SOFT_PENALTY"
+      },
+      {
+        "condition": "component conflict or insufficient evidence",
+        "guard_action": "FORCE_UNRESOLVED"
+      },
+      {
+        "condition": "missing inherited context",
+        "guard_action": "NEEDS_CONTEXT"
+      },
+      {
+        "condition": "human confirmation required only",
+        "guard_action": "NEEDS_HUMAN_REVIEW"
+      },
+      {
+        "condition": "guard scope mismatch",
+        "guard_action": "NOT_APPLICABLE"
+      }
+    ],
+    "literal_forbidden_string_is_not_global_ban": true
+  },
+  "decision_lock": {
+    "design_decisions_locked": true,
+    "decision_ids": [
+      "P1A-DEC-001-DUAL-OUTPUT",
+      "P1A-DEC-002-RH-STRING-AMBIGUITY",
+      "P1A-DEC-003-EXPLICIT-CONTEXT-ONLY",
+      "P1A-DEC-004-D3A-GUARD-ACTIONS",
+      "P1A-DEC-005-DUAL-FIXTURE-STRATEGY"
+    ],
+    "correction_ids": [
+      "P1A-COR-001-INPUT-CONTRACT-INVALID",
+      "P1A-COR-002-UNKNOWN-FALLBACK-ONLY",
+      "P1A-COR-003-GENERIC-MARKER-WHITELIST"
+    ]
+  }
+}

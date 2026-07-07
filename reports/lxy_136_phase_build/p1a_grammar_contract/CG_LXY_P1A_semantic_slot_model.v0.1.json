@@ -1,0 +1,379 @@
+{
+  "schema_id": "CG_LXY_P1A_semantic_slot_model",
+  "version": "v0.1",
+  "status_labels": [
+    "P1A_GRAMMAR_DESIGN_DRAFT",
+    "NEEDS_USER_REVIEW",
+    "NOT_EXECUTABLE_PARSER",
+    "NOT_RUNTIME_SCHEMA",
+    "NOT_REPO_CONTRACT",
+    "NOT_CANON_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "slots": [
+    {
+      "slot_id": "LEFT_FINGER",
+      "slot_name": "left_finger",
+      "allowed_lexical_types": [
+        "LEFT_FINGER_NAME_COMPONENT"
+      ],
+      "required_or_optional": "required_for_pressed_sounding_unit_optional_for_open_or_context_unit",
+      "single_or_multiple": "single",
+      "inheritance_policy": "may_inherit_only_from_caller_provided_context_ref_or_inherited_context",
+      "default_policy": "no_default",
+      "validation_rule": "Must be explicit or context-inherited; never inferred from numeric component.",
+      "rendering_rule": "{left_finger}",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "HUI_POSITION",
+      "slot_name": "hui_position",
+      "allowed_lexical_types": [
+        "NUMERIC_COMPONENT",
+        "POSITION_COMPONENT"
+      ],
+      "required_or_optional": "required_for_pressed_sounding_unit_optional_for_context_unit",
+      "single_or_multiple": "single_or_compound_numeric_cluster",
+      "inheritance_policy": "may_inherit_only_from_caller_provided_context_ref_or_inherited_context",
+      "default_policy": "no_default",
+      "validation_rule": "Numeric tokens become hui only through grammar slot assignment or context.",
+      "rendering_rule": "{hui_position}徽",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "RIGHT_HAND_ACTION",
+      "slot_name": "right_hand_action",
+      "allowed_lexical_types": [
+        "RIGHT_HAND_ACTION_COMPONENT"
+      ],
+      "required_or_optional": "required_for_sounding_unit",
+      "single_or_multiple": "single_or_compound",
+      "inheritance_policy": "must_be_visible_or_explicitly_supplied_by_rule",
+      "default_policy": "no_default",
+      "validation_rule": "A sounding unit requires a right-hand action unless a later approved special technique rule explicitly supplies attack behavior.",
+      "rendering_rule": "{right_hand_action}",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "STRING_NUMBER",
+      "slot_name": "string_number",
+      "allowed_lexical_types": [
+        "NUMERIC_COMPONENT"
+      ],
+      "required_or_optional": "required_for_basic_sounding_unit",
+      "single_or_multiple": "single_or_range_for_compound_action",
+      "inheritance_policy": "do_not_inherit_by_default",
+      "default_policy": "no_default",
+      "validation_rule": "Numeric tokens become string numbers only through right-hand/string production or explicit rule context.",
+      "rendering_rule": "{string_number}弦",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "LEFT_HAND_ACTION",
+      "slot_name": "left_hand_action",
+      "allowed_lexical_types": [
+        "LEFT_HAND_ACTION_COMPONENT"
+      ],
+      "required_or_optional": "optional",
+      "single_or_multiple": "single_or_attached_sequence",
+      "inheritance_policy": "may_attach_to_host_or_prior_position",
+      "default_policy": "no_default",
+      "validation_rule": "Left-hand motion cannot be an independent sounding unit without host evidence.",
+      "rendering_rule": "{left_hand_action}",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "PRE_SOUND_MOTION",
+      "slot_name": "pre_sound_motion",
+      "allowed_lexical_types": [
+        "LEFT_HAND_ACTION_COMPONENT"
+      ],
+      "required_or_optional": "optional",
+      "single_or_multiple": "single_or_sequence",
+      "inheritance_policy": "attach_to_following_pressed_sounding_unit",
+      "default_policy": "no_default",
+      "validation_rule": "Chuo and zhu-style approach motions are pre-sound motions when grammar context supports them.",
+      "rendering_rule": "{pre_sound_motion}+{host_unit}",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "POST_SOUND_MOTION",
+      "slot_name": "post_sound_motion",
+      "allowed_lexical_types": [
+        "LEFT_HAND_ACTION_COMPONENT"
+      ],
+      "required_or_optional": "optional",
+      "single_or_multiple": "single_or_sequence",
+      "inheritance_policy": "attach_to_preceding_sounding_unit",
+      "default_policy": "no_default",
+      "validation_rule": "Up/down-style continuing motions attach after a sounding unit and cannot stand alone in P1.",
+      "rendering_rule": "{host_unit}+{post_sound_motion}",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "STATE_START",
+      "slot_name": "state_start",
+      "allowed_lexical_types": [
+        "STATE_MARKER_COMPONENT"
+      ],
+      "required_or_optional": "optional_marker",
+      "single_or_multiple": "single",
+      "inheritance_policy": "creates_context_requirement_for_later_phase",
+      "default_policy": "non_sounding",
+      "validation_rule": "State start is non-sounding by default and does not create a full span in P1.",
+      "rendering_rule": "{state_start}",
+      "authority_boundary": "draft_marker_only"
+    },
+    {
+      "slot_id": "STATE_END",
+      "slot_name": "state_end",
+      "allowed_lexical_types": [
+        "STATE_MARKER_COMPONENT"
+      ],
+      "required_or_optional": "optional_marker",
+      "single_or_multiple": "single",
+      "inheritance_policy": "closes_state_only_when_p5_span_context_confirms",
+      "default_policy": "non_sounding",
+      "validation_rule": "State end is non-sounding by default and does not reconstruct a span in P1.",
+      "rendering_rule": "{state_end}",
+      "authority_boundary": "draft_marker_only"
+    },
+    {
+      "slot_id": "SOUND_STATE",
+      "slot_name": "sound_type_candidate",
+      "allowed_lexical_types": [
+        "STATE_MARKER_COMPONENT"
+      ],
+      "required_or_optional": "optional",
+      "single_or_multiple": "single",
+      "inheritance_policy": "may_use_caller_provided_inherited_context_only; no implicit backward scan in P1",
+      "default_policy": "unknown_until_context_or_rule",
+      "validation_rule": "sound_type_candidate may be 散, 按, 泛, or null; resolution status is metadata and is not a fourth sound type.",
+      "rendering_rule": "{sound_state}",
+      "authority_boundary": "draft_slot_only",
+      "allowed_values": [
+        "散",
+        "按",
+        "泛",
+        null
+      ],
+      "resolution_status_values": [
+        "RESOLVED",
+        "AMBIGUOUS",
+        "CONTEXT_REQUIRED",
+        "UNRESOLVED"
+      ]
+    },
+    {
+      "slot_id": "TIMING_MARKER",
+      "slot_name": "timing_marker",
+      "allowed_lexical_types": [
+        "TIMING_MARKER_COMPONENT"
+      ],
+      "required_or_optional": "optional_marker",
+      "single_or_multiple": "single_or_sequence",
+      "inheritance_policy": "does_not_create_sounding_context",
+      "default_policy": "non_sounding",
+      "validation_rule": "Timing markers do not mix into sounding slots.",
+      "rendering_rule": "{timing_marker}",
+      "authority_boundary": "draft_marker_only"
+    },
+    {
+      "slot_id": "SPECIAL_TECHNIQUE",
+      "slot_name": "special_technique",
+      "allowed_lexical_types": [
+        "SPECIAL_TECHNIQUE_COMPONENT",
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "LEFT_HAND_ACTION_COMPONENT"
+      ],
+      "required_or_optional": "optional_or_rule_required",
+      "single_or_multiple": "single_or_compound",
+      "inheritance_policy": "must_attach_to_explicit_or_inherited_host_when_needed",
+      "default_policy": "needs_human_review",
+      "validation_rule": "Special techniques such as cuo, qiaqi, pola, and qiacuo-sansheng remain techniques and do not create a fourth sound type.",
+      "rendering_rule": "{special_technique}",
+      "authority_boundary": "draft_slot_only"
+    },
+    {
+      "slot_id": "GENERIC_MARKER",
+      "slot_name": "generic_marker",
+      "allowed_lexical_types": [
+        "GENERIC_MARKER_COMPONENT"
+      ],
+      "required_or_optional": "optional_marker",
+      "single_or_multiple": "single_or_sequence",
+      "inheritance_policy": "may_mark_context_but_not_sounding",
+      "default_policy": "non_sounding",
+      "validation_rule": "Generic markers must not be rendered as independent sounding units.",
+      "rendering_rule": "{generic_marker}",
+      "authority_boundary": "draft_marker_only"
+    },
+    {
+      "slot_id": "CONTEXT_SOURCE",
+      "slot_name": "context_ref_or_inherited_context",
+      "allowed_lexical_types": [
+        "LEFT_FINGER_NAME_COMPONENT",
+        "NUMERIC_COMPONENT",
+        "STATE_MARKER_COMPONENT",
+        "GENERIC_MARKER_COMPONENT"
+      ],
+      "required_or_optional": "required_when_context_inherited",
+      "single_or_multiple": "single_or_reference_list",
+      "inheritance_policy": "records caller-provided context only; P1 implicit_backward_scan_depth=0",
+      "default_policy": "missing_context_is_unresolved",
+      "validation_rule": "P1 may validate compatibility of caller-provided context but must not search previous unit, phrase, line, or history.",
+      "rendering_rule": "context({context_source})",
+      "authority_boundary": "draft_traceability_only",
+      "allowed_input_fields": [
+        "context_ref",
+        "inherited_context"
+      ]
+    },
+    {
+      "slot_id": "UNRESOLVED",
+      "slot_name": "unresolved",
+      "allowed_lexical_types": [
+        "UNKNOWN_COMPONENT",
+        "NUMERIC_COMPONENT",
+        "LEFT_HAND_ACTION_COMPONENT",
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "STATE_MARKER_COMPONENT",
+        "TIMING_MARKER_COMPONENT",
+        "GENERIC_MARKER_COMPONENT",
+        "POSITION_COMPONENT",
+        "SPECIAL_TECHNIQUE_COMPONENT",
+        "LEFT_FINGER_NAME_COMPONENT"
+      ],
+      "required_or_optional": "fallback",
+      "single_or_multiple": "multiple",
+      "inheritance_policy": "no_inheritance",
+      "default_policy": "preserve_unresolved",
+      "validation_rule": "Unresolved items must be recorded rather than guessed.",
+      "rendering_rule": "<UNRESOLVED>",
+      "authority_boundary": "draft_unresolved_only"
+    }
+  ],
+  "slot_compatibility": {
+    "sounding_unit_minimum_required_slots": [
+      "RIGHT_HAND_ACTION",
+      "STRING_NUMBER"
+    ],
+    "pressed_sounding_unit_required_slots": [
+      "LEFT_FINGER",
+      "HUI_POSITION",
+      "RIGHT_HAND_ACTION",
+      "STRING_NUMBER"
+    ],
+    "context_inherited_unit_required_slots": [
+      "RIGHT_HAND_ACTION",
+      "STRING_NUMBER",
+      "CONTEXT_SOURCE"
+    ],
+    "non_sounding_slots": [
+      "STATE_START",
+      "STATE_END",
+      "TIMING_MARKER",
+      "GENERIC_MARKER"
+    ],
+    "motion_slots_not_independent_sounding": [
+      "PRE_SOUND_MOTION",
+      "POST_SOUND_MOTION",
+      "LEFT_HAND_ACTION"
+    ]
+  },
+  "inheritance_rules": {
+    "implicit_backward_scan_depth": 0,
+    "accepted_context_inputs": [
+      "context_ref",
+      "inherited_context"
+    ],
+    "p1_may_validate_context_compatibility": true,
+    "p1_may_discover_context_by_scanning_history": false,
+    "phrase_level_context_discovery_owner": "P5",
+    "allowed_to_inherit_when_explicit": [
+      "LEFT_FINGER",
+      "HUI_POSITION",
+      "SOUND_STATE"
+    ],
+    "not_inherited_by_default": [
+      "RIGHT_HAND_ACTION",
+      "STRING_NUMBER",
+      "TIMING_MARKER"
+    ],
+    "missing_declared_context_status": "INCOMPLETE"
+  },
+  "sounding_vs_non_sounding_rules": {
+    "sounding_requires_visible_or_rule_supplied_attack": true,
+    "marker_is_non_sounding_by_default": true,
+    "pre_sound_motion_requires_host": true,
+    "post_sound_motion_requires_preceding_host": true,
+    "state_marker_span_reconstruction_phase": "P5"
+  },
+  "special_technique_boundary": {
+    "kept_as_special_technique": [
+      "撮",
+      "掐起",
+      "泼剌",
+      "掐撮三声",
+      "双弹",
+      "如一声"
+    ],
+    "does_not_create_sound_type": true,
+    "requires_human_review_when_expansion_uncertain": true
+  },
+  "sound_type_boundary": {
+    "allowed_sound_types_for_later_promotion": [
+      "散",
+      "按",
+      "泛"
+    ],
+    "fourth_sound_type_allowed": false,
+    "special_technique_is_orthogonal_to_sound_type": true,
+    "sound_type_resolution_status_is_not_sound_type": true
+  },
+  "authority_boundary": {
+    "not_repo_contract": true,
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "not_score_event_authority": true,
+    "not_sample_ingest": true,
+    "not_ml_training_data": true,
+    "not_render_output": true,
+    "needs_human_review": true
+  },
+  "sound_type_resolution_model": {
+    "sound_type_candidate_values": [
+      "散",
+      "按",
+      "泛",
+      null
+    ],
+    "sound_type_resolution_status_values": [
+      "RESOLVED",
+      "AMBIGUOUS",
+      "CONTEXT_REQUIRED",
+      "UNRESOLVED"
+    ],
+    "resolution_status_is_not_sound_type": true,
+    "do_not_default_rh_string_to_san": true
+  },
+  "decision_lock": {
+    "design_decisions_locked": true,
+    "decision_ids": [
+      "P1A-DEC-001-DUAL-OUTPUT",
+      "P1A-DEC-002-RH-STRING-AMBIGUITY",
+      "P1A-DEC-003-EXPLICIT-CONTEXT-ONLY",
+      "P1A-DEC-004-D3A-GUARD-ACTIONS",
+      "P1A-DEC-005-DUAL-FIXTURE-STRATEGY"
+    ],
+    "correction_ids": [
+      "P1A-COR-001-INPUT-CONTRACT-INVALID",
+      "P1A-COR-002-UNKNOWN-FALLBACK-ONLY",
+      "P1A-COR-003-GENERIC-MARKER-WHITELIST"
+    ]
+  }
+}

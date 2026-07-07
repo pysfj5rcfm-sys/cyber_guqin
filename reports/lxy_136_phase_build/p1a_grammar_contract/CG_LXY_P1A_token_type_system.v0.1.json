@@ -1,0 +1,287 @@
+{
+  "schema_id": "CG_LXY_P1A_token_type_system",
+  "version": "v0.1",
+  "status_labels": [
+    "P1A_GRAMMAR_DESIGN_DRAFT",
+    "NEEDS_USER_REVIEW",
+    "NOT_EXECUTABLE_PARSER",
+    "NOT_RUNTIME_SCHEMA",
+    "NOT_REPO_CONTRACT",
+    "NOT_CANON_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "parser_status_model": [
+    {
+      "status": "VALID_COMPLETE",
+      "meaning": "All required slots for the matched local production are filled without unresolved or missing context.",
+      "candidate_reading_allowed": true
+    },
+    {
+      "status": "VALID_WITH_CONTEXT",
+      "meaning": "The local construction is legal with caller-provided context_ref or inherited_context; P1 does not discover that context by scanning history.",
+      "candidate_reading_allowed": true
+    },
+    {
+      "status": "VALID_AMBIGUOUS",
+      "meaning": "Two or more legal parses remain after local grammar matching and deterministic ranking.",
+      "candidate_reading_allowed": true
+    },
+    {
+      "status": "INCOMPLETE",
+      "meaning": "The sequence can be a legal fragment, but required slots are missing.",
+      "candidate_reading_allowed": false
+    },
+    {
+      "status": "UNRESOLVED",
+      "meaning": "The parser cannot safely assign one or more roles, but the sequence is not proven illegal.",
+      "candidate_reading_allowed": false
+    },
+    {
+      "status": "UNSUPPORTED",
+      "meaning": "The sequence is outside the P1 local grammar scope.",
+      "candidate_reading_allowed": false
+    },
+    {
+      "status": "INVALID_ORDER",
+      "meaning": "The token order violates every applicable production family.",
+      "candidate_reading_allowed": false
+    },
+    {
+      "status": "INVALID_TYPE_COMBINATION",
+      "meaning": "The lexical type combination cannot satisfy any production family after input contract validation has already passed.",
+      "candidate_reading_allowed": false
+    },
+    {
+      "status": "FORBIDDEN_GUARD_REJECTED",
+      "meaning": "A grammar-plausible parse hit a scoped D3A guard with hard reject effect.",
+      "candidate_reading_allowed": false
+    },
+    {
+      "status": "COMPONENT_ID_NORMALIZATION_GAP",
+      "meaning": "A legacy or v0.1 source id could not be normalized to the v0.2 primary id system.",
+      "candidate_reading_allowed": false
+    },
+    {
+      "status": "INPUT_CONTRACT_INVALID",
+      "meaning": "The parser input violates the schema-level contract before grammar matching, such as empty input, required field missing, duplicate token_id, duplicate or invalid sequence_index, invalid field type, or malformed component ID.",
+      "candidate_reading_allowed": false
+    }
+  ],
+  "lexical_types": [
+    {
+      "lexical_type_id": "NUMERIC_COMPONENT",
+      "label": "numeric component",
+      "source_component_family": "numeric_component_family",
+      "phase1_semantic_policy": "May become hui_position, string_number, range_start, range_end, count, or unknown_numeric_role only after grammar parse.",
+      "must_not_decide_slot_during_tokenization": true
+    },
+    {
+      "lexical_type_id": "LEFT_FINGER_NAME_COMPONENT",
+      "label": "left finger name component",
+      "source_component_family": "left_finger_name_family",
+      "phase1_semantic_policy": "May fill left_finger when a production requires an explicit left finger."
+    },
+    {
+      "lexical_type_id": "RIGHT_HAND_ACTION_COMPONENT",
+      "label": "right hand action component",
+      "source_component_family": [
+        "right_hand_single_string_family",
+        "right_hand_two_string_family",
+        "right_hand_multi_string_family"
+      ],
+      "phase1_semantic_policy": "May fill right_hand_action or special_technique depending on grammar family."
+    },
+    {
+      "lexical_type_id": "LEFT_HAND_ACTION_COMPONENT",
+      "label": "left hand action component",
+      "source_component_family": [
+        "left_hand_base_position_family",
+        "left_hand_interval_position_family",
+        "left_hand_open_string_family"
+      ],
+      "phase1_semantic_policy": "May fill left_hand_action, pre_sound_motion, post_sound_motion, or special_technique."
+    },
+    {
+      "lexical_type_id": "STATE_MARKER_COMPONENT",
+      "label": "state marker component",
+      "source_component_family": "sound_position_marker_family",
+      "phase1_semantic_policy": "May fill state_start, state_end, or sound_state; non-sounding by default."
+    },
+    {
+      "lexical_type_id": "TIMING_MARKER_COMPONENT",
+      "label": "timing marker component",
+      "source_component_family": "rhythm_marker_family",
+      "phase1_semantic_policy": "May fill timing_marker; non-sounding by default."
+    },
+    {
+      "lexical_type_id": "GENERIC_MARKER_COMPONENT",
+      "label": "generic marker component",
+      "source_component_family": "generic_score_marker_family",
+      "phase1_semantic_policy": "May fill generic_marker or context marker; non-sounding by default."
+    },
+    {
+      "lexical_type_id": "SPECIAL_TECHNIQUE_COMPONENT",
+      "label": "special technique component",
+      "source_component_family": [
+        "right_hand_two_string_family",
+        "left_hand_interval_position_family",
+        "left_hand_open_string_family"
+      ],
+      "phase1_semantic_policy": "May fill special_technique only when the matched production treats the component as special technique. It must not create a fourth sound type."
+    },
+    {
+      "lexical_type_id": "POSITION_COMPONENT",
+      "label": "position component",
+      "source_component_family": [
+        "sound_position_marker_family",
+        "left_hand_interval_position_family"
+      ],
+      "phase1_semantic_policy": "May support hui_position, state marker, or motion target only after grammar parse."
+    },
+    {
+      "lexical_type_id": "UNKNOWN_COMPONENT",
+      "label": "unknown component",
+      "source_component_family": "unknown_or_unmapped",
+      "phase1_semantic_policy": "May produce unresolved parse candidates but must not be force-matched."
+    }
+  ],
+  "token_input_contract": {
+    "required_fields": [
+      "token_id",
+      "sequence_index",
+      "component_id_v0_2",
+      "label_zh",
+      "lexical_component_type",
+      "source_category",
+      "normalization_status",
+      "confidence_input"
+    ],
+    "optional_fields": [
+      "source_component_id",
+      "legacy_component_id",
+      "semantic_role_hint",
+      "relation_to_previous",
+      "relation_to_next",
+      "metadata"
+    ],
+    "forbidden_in_phase1": [
+      "final_semantic_role",
+      "score_event_id",
+      "dapu_ir_event_id",
+      "phrase_oracle_ref",
+      "render_ref",
+      "sample_asset_ref"
+    ],
+    "reserved_for_phase2_or_phase3": [
+      "bbox",
+      "image_path",
+      "visual_similarity",
+      "pixel_coordinates",
+      "component_top_k",
+      "visual_confidence"
+    ]
+  },
+  "normalization_rules": {
+    "primary_component_id_system": "category_based_v0_2",
+    "legacy_id_policy": "Legacy COMP-001..038 ids are allowed only as input traceability and must be normalized before grammar parse.",
+    "source_v0_1_id_policy": "Source COMP-100..273 ids are allowed only as input traceability and must be normalized before grammar parse.",
+    "normalization_status_values": [
+      "NORMALIZED_V0_2_PRIMARY",
+      "NORMALIZED_FROM_LEGACY_ID",
+      "NORMALIZED_FROM_SOURCE_V0_1_ID",
+      "UNKNOWN_COMPONENT",
+      "COMPONENT_ID_NORMALIZATION_GAP"
+    ],
+    "gap_status": "COMPONENT_ID_NORMALIZATION_GAP",
+    "semantic_hint_policy": "semantic_role_hint may bias ambiguity ordering only when it does not contradict lexical type, production rule, or guard boundary."
+  },
+  "reserved_future_fields": {
+    "phase2_visual_candidate_fields": [
+      "bbox",
+      "image_path",
+      "visual_similarity",
+      "pixel_coordinates"
+    ],
+    "phase3_lattice_fields": [
+      "component_top_k",
+      "candidate_component_rank",
+      "visual_confidence"
+    ],
+    "phase4_line_fields": [
+      "line_id",
+      "notation_unit_id",
+      "coverage_ledger_ref"
+    ],
+    "phase5_phrase_fields": [
+      "phrase_id",
+      "phrase_boundary_candidate_id",
+      "state_span_candidate_id"
+    ]
+  },
+  "forbidden_assumptions": [
+    "A numeric lexical component is not automatically hui_position.",
+    "A numeric lexical component is not automatically string_number.",
+    "A marker lexical component is not automatically a sounding unit.",
+    "A special technique is not a fourth sound type.",
+    "A legacy id is not a primary id.",
+    "A v0.1 source id is not a primary id.",
+    "P1 does not require visual fields."
+  ],
+  "authority_boundary": {
+    "not_repo_contract": true,
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "not_score_event_authority": true,
+    "not_sample_ingest": true,
+    "not_ml_training_data": true,
+    "not_render_output": true,
+    "needs_human_review": true
+  },
+  "input_contract_validation": {
+    "pre_grammar_validation_required": true,
+    "input_contract_invalid_status": "INPUT_CONTRACT_INVALID",
+    "invalid_cases": [
+      "empty input",
+      "required field missing",
+      "duplicate token_id",
+      "duplicate sequence_index",
+      "invalid sequence_index",
+      "invalid field type",
+      "malformed component ID"
+    ],
+    "not_invalid_type_combination": true
+  },
+  "sound_type_resolution_status": {
+    "values": [
+      "RESOLVED",
+      "AMBIGUOUS",
+      "CONTEXT_REQUIRED",
+      "UNRESOLVED"
+    ],
+    "not_sound_type": true,
+    "sound_types_remain": [
+      "散",
+      "按",
+      "泛"
+    ]
+  },
+  "decision_lock": {
+    "design_decisions_locked": true,
+    "decision_ids": [
+      "P1A-DEC-001-DUAL-OUTPUT",
+      "P1A-DEC-002-RH-STRING-AMBIGUITY",
+      "P1A-DEC-003-EXPLICIT-CONTEXT-ONLY",
+      "P1A-DEC-004-D3A-GUARD-ACTIONS",
+      "P1A-DEC-005-DUAL-FIXTURE-STRATEGY"
+    ],
+    "correction_ids": [
+      "P1A-COR-001-INPUT-CONTRACT-INVALID",
+      "P1A-COR-002-UNKNOWN-FALLBACK-ONLY",
+      "P1A-COR-003-GENERIC-MARKER-WHITELIST"
+    ]
+  }
+}

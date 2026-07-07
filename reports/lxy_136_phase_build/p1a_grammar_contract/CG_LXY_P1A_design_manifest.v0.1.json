@@ -1,0 +1,186 @@
+{
+  "task_id": "CG-LXY-136-P1A-DESIGN-DECISION-LOCK-v0.1",
+  "repo_head": "6a0e304dd0bff998652d22520da49018687d279b",
+  "git_log_5": [
+    "6a0e304 docs(lxy): register 1-3-6 phase build design",
+    "e0745bd test(qxby): scope forbidden regression checks for reindexed atlas",
+    "09842a0 docs(qxby): reindex component atlas by category",
+    "cd4b563 docs(lxy): harden component-guided phrase6 regressions",
+    "08b2dff docs(qxby): register full component atlas reference"
+  ],
+  "source_files_read": [
+    "README.md",
+    "06_docs/PROJECT_STRUCTURE.md",
+    "reports/REPORTS_INDEX.md",
+    "reports/repo_hygiene_inventory.latest.v0.1.json",
+    "reports/repo_entrypoint_map.latest.v0.1.md",
+    "reports/repo_archive_r2b_reference_matrix.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_136_Phase_Build_Requirements_v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_136_Flow_Design_v0.1.svg",
+    "reports/lxy_136_phase_build/CG_LXY_136_codex_understanding_check.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_136_mode_gate.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_136_registration_manifest.v0.1.json",
+    ".agents/skills/cyber_guqin_component_guided_transcription/SKILL.md",
+    ".agents/skills/cyber_guqin_mvp_workflow/SKILL.md",
+    "references/qxby_component_atlas/component_registry.reindexed.v0.2.json",
+    "references/qxby_component_atlas/component_legacy_alias_map.reindexed.v0.2.json",
+    "references/qxby_component_atlas/component_to_canon_crosswalk.seed.reindexed.v0.2.json",
+    "references/qxby_component_atlas/construction_templates.reindexed.v0.2.json",
+    "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_forbidden_outputs.reindexed.v0.2.json"
+  ],
+  "forbidden_files_not_read": [
+    "D3B phrase-level goldset oracle file",
+    "old LXY phrase candidate or correction reports",
+    "LXY score page images and phrase crops",
+    "Dapu IR or existing piece facts",
+    "runtime output folders",
+    "archive folders"
+  ],
+  "written_files": [
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_grammar_contract.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_token_type_system.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_semantic_slot_model.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_production_rules.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_invalid_combination_matrix.v0.1.csv",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_parse_output_contract.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_d3a_guard_boundary.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_design_review_checklist.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_design_manifest.v0.1.json"
+  ],
+  "status_labels": [
+    "P1A_GRAMMAR_DESIGN_DRAFT",
+    "NEEDS_USER_REVIEW",
+    "NOT_EXECUTABLE_PARSER",
+    "NOT_RUNTIME_SCHEMA",
+    "NOT_REPO_CONTRACT",
+    "NOT_CANON_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "no_parser_code_written": true,
+  "no_test_fixture_written": true,
+  "no_image_read": true,
+  "no_score_or_phrase_image_read": true,
+  "required_flow_svg_read": true,
+  "no_goldset_oracle_read": true,
+  "no_old_reports_read": true,
+  "forbidden_paths_untouched": {
+    "README.md": true,
+    "06_docs": true,
+    "docs": true,
+    "examples": true,
+    "templates": true,
+    ".agents": true,
+    "canon": true,
+    "references": true,
+    "schemas": true,
+    "tests": true,
+    "sources": true,
+    "00_global": true,
+    "01_pieces": true,
+    "02_recordings": true,
+    "03_samples": true,
+    "04_outputs": true,
+    "05_scripts": true,
+    "scripts": true,
+    "tools": true,
+    "archive": true,
+    "reports/archive": true,
+    "existing_lxy_136_baseline_files": true,
+    "accepted_f_final_reviewed": true,
+    "baiya_recording_plan_script": true
+  },
+  "unresolved_user_decisions": [],
+  "validation_results": {
+    "json_tool": "PASS",
+    "decision_lock_integrity": "PASS",
+    "reference_integrity": "PASS",
+    "oracle_leakage_check": "PASS",
+    "file_count_check": "PASS_EXACTLY_9_P1A_FILES",
+    "status_count": 11,
+    "invalid_matrix_rows": 24,
+    "git_diff_check": "PASS_NO_OUTPUT",
+    "git_diff_name_status": "NO_OUTPUT_BECAUSE_FILES_ARE_UNTRACKED",
+    "git_status": "PASS_EXPECTED_9_UNTRACKED_P1A_FILES_ONLY",
+    "generated_files_trailing_whitespace": "PASS"
+  },
+  "commit_recommendation": {
+    "status": "RECOMMENDED",
+    "recommended": true,
+    "reason": "Decision lock validation, JSON validation, reference integrity, oracle leakage check, file count check, and final git checks passed. Only the original nine P1-A files are untracked."
+  },
+  "authority_boundary": {
+    "not_repo_contract": true,
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "not_score_event_authority": true,
+    "not_sample_ingest": true,
+    "not_ml_training_data": true,
+    "not_render_output": true,
+    "needs_human_review": true
+  },
+  "base_design_task_id": "CG-LXY-136-P1A-GRAMMAR-CONTRACT-AND-PRODUCTION-RULE-DESIGN-v0.1",
+  "decision_lock_source_files_read": [
+    "reports/lxy_136_phase_build/CG_LXY_136_Phase_Build_Requirements_v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_136_mode_gate.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_grammar_contract.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_token_type_system.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_semantic_slot_model.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_production_rules.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_invalid_combination_matrix.v0.1.csv",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_parse_output_contract.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_d3a_guard_boundary.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_design_review_checklist.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_design_manifest.v0.1.json"
+  ],
+  "design_decisions_locked": true,
+  "ready_for_p1b_design": true,
+  "ready_for_p1c_implementation": false,
+  "locked_decisions": [
+    {
+      "decision_id": "P1A-DEC-001-DUAL-OUTPUT",
+      "title": "dual output tracks",
+      "decision": "Parser output must include structured_parse / semantic slots and surface_reading_candidate. structured_parse is primary; surface_reading_candidate is derived display text and must never overwrite slots. literal_component_gloss preserves direct component gloss. Lifecycle is input tokens -> normalized tokens -> structured slots -> semantic resolution -> surface reading candidate."
+    },
+    {
+      "decision_id": "P1A-DEC-002-RH-STRING-AMBIGUITY",
+      "title": "RH_ACTION plus STRING_NUMBER ambiguity",
+      "decision": "RH_ACTION + STRING_NUMBER does not default to VALID_COMPLETE. Without explicit sound-state evidence and without explicit context it is VALID_AMBIGUOUS, carrying open-string and inherited-context interpretation candidates. With explicit open-string evidence or caller no_inherited_context it is VALID_COMPLETE. With valid explicit inherited_context it is VALID_WITH_CONTEXT. If caller declares context_required but does not provide context, the stable status is INCOMPLETE with a missing context requirement."
+    },
+    {
+      "decision_id": "P1A-DEC-003-EXPLICIT-CONTEXT-ONLY",
+      "title": "explicit context only",
+      "decision": "P1 implicit_backward_scan_depth is 0. P1 accepts only caller-provided context_ref and inherited_context. P1 may validate compatibility but must not scan previous unit, phrase, line, or arbitrary history. Phrase-level discovery belongs to P5."
+    },
+    {
+      "decision_id": "P1A-DEC-004-D3A-GUARD-ACTIONS",
+      "title": "D3A guard action enum",
+      "decision": "Guard actions are HARD_REJECT, SOFT_PENALTY, FORCE_UNRESOLVED, NEEDS_CONTEXT, NEEDS_HUMAN_REVIEW, and NOT_APPLICABLE. Literal forbidden strings are not global bans."
+    },
+    {
+      "decision_id": "P1A-DEC-005-DUAL-FIXTURE-STRATEGY",
+      "title": "P1-B dual fixture strategy",
+      "decision": "P1-B must use abstract fixtures for grammar logic and sanitized real-ID fixtures for D1/D2/normalization integration. Sanitized real-ID fixtures may use atlas component ids but must not carry LXY phrase id, complete reading, source_report, or oracle. P1-A records this handoff only."
+    }
+  ],
+  "corrections_locked": [
+    {
+      "correction_id": "P1A-COR-001-INPUT-CONTRACT-INVALID",
+      "title": "input contract invalid status",
+      "decision": "INPUT_CONTRACT_INVALID is reserved for schema-level input failures: empty input, required field missing, duplicate token_id, duplicate or invalid sequence_index, invalid field type, malformed component ID, and equivalent contract failures."
+    },
+    {
+      "correction_id": "P1A-COR-002-UNKNOWN-FALLBACK-ONLY",
+      "title": "unknown fallback only",
+      "decision": "PR-UNKNOWN is fallback-only, not eligible for accepted candidates, and UNKNOWN_COMPONENT yields UNRESOLVED review output rather than VALID accepted parse."
+    },
+    {
+      "correction_id": "P1A-COR-003-GENERIC-MARKER-WHITELIST",
+      "title": "generic marker whitelist",
+      "decision": "PR-GENERIC-MARKER accepts only registered generic markers with known subtype and explicit behavior. Unknown or semantically unclear generic markers are UNSUPPORTED or UNRESOLVED."
+    }
+  ]
+}

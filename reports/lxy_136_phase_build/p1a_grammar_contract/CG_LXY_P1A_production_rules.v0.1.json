@@ -1,0 +1,611 @@
+{
+  "grammar_id": "CG_LXY_P1A_production_rules",
+  "version": "v0.1",
+  "grammar_scope": {
+    "phase": "P1-A",
+    "unit_scope": "single_notation_unit_and_local_marker_sequence",
+    "does_not_touch_images": true,
+    "does_not_reconstruct_phrase_span": true,
+    "state_span_reconstruction_owner": "P5",
+    "parser_implementation_authorized": false
+  },
+  "status_labels": [
+    "P1A_GRAMMAR_DESIGN_DRAFT",
+    "NEEDS_USER_REVIEW",
+    "NOT_EXECUTABLE_PARSER",
+    "NOT_RUNTIME_SCHEMA",
+    "NOT_REPO_CONTRACT",
+    "NOT_CANON_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "production_families": [
+    {
+      "rule_id": "PR-RH-STRING",
+      "rule_name": "right hand action plus string number",
+      "input_pattern": [
+        "RH_ACTION",
+        "STRING_NO"
+      ],
+      "input_lexical_types": [
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "NUMERIC_COMPONENT"
+      ],
+      "required_slots": [
+        "RIGHT_HAND_ACTION",
+        "STRING_NUMBER"
+      ],
+      "optional_slots": [
+        "SOUND_STATE",
+        "CONTEXT_SOURCE"
+      ],
+      "output_parse_type": "right_hand_string_ambiguous_or_resolved_unit",
+      "output_reading_template": "{RIGHT_HAND_ACTION}{STRING_NUMBER}",
+      "context_inheritance_policy": "Uses only caller-provided context_ref or inherited_context. P1 does not scan backwards. Without explicit sound state and without explicit context, emit VALID_AMBIGUOUS with open-string and inherited-context interpretations.",
+      "priority": 100,
+      "specificity": 40,
+      "guard_requirements": [
+        "scoped_right_hand_string_guard"
+      ],
+      "rejection_conditions": [
+        "missing_string_number",
+        "numeric_role_conflict",
+        "marker_mixed_into_sounding_slot"
+      ],
+      "ambiguity_policy": "May compete with context-inherited or special-technique rules; prefer more specific host context when present.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only",
+      "status_resolution_policy": {
+        "no_explicit_sound_state_and_no_explicit_context": "VALID_AMBIGUOUS",
+        "interpretation_candidates": [
+          "open-string interpretation candidate",
+          "inherited-context interpretation candidate"
+        ],
+        "explicit_open_string_evidence_or_no_inherited_context": "VALID_COMPLETE",
+        "explicit_inherited_context": "VALID_WITH_CONTEXT",
+        "declared_context_required_but_missing": "INCOMPLETE"
+      },
+      "sound_type_policy": {
+        "sound_type_candidate_values": [
+          "散",
+          "按",
+          "泛",
+          null
+        ],
+        "resolution_status_values": [
+          "RESOLVED",
+          "AMBIGUOUS",
+          "CONTEXT_REQUIRED",
+          "UNRESOLVED"
+        ],
+        "do_not_default_to_san": true
+      }
+    },
+    {
+      "rule_id": "PR-LF-HUI-RH-STRING",
+      "rule_name": "left finger plus hui plus right hand plus string",
+      "input_pattern": [
+        "LEFT_FINGER",
+        "HUI_NUMERIC",
+        "RH_ACTION",
+        "STRING_NO"
+      ],
+      "input_lexical_types": [
+        "LEFT_FINGER_NAME_COMPONENT",
+        "NUMERIC_COMPONENT",
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "NUMERIC_COMPONENT"
+      ],
+      "required_slots": [
+        "LEFT_FINGER",
+        "HUI_POSITION",
+        "RIGHT_HAND_ACTION",
+        "STRING_NUMBER"
+      ],
+      "optional_slots": [
+        "SOUND_STATE",
+        "PRE_SOUND_MOTION",
+        "POST_SOUND_MOTION"
+      ],
+      "output_parse_type": "pressed_sounding_unit",
+      "output_reading_template": "{LEFT_FINGER}{HUI_POSITION}{RIGHT_HAND_ACTION}{STRING_NUMBER}",
+      "context_inheritance_policy": "No silent inheritance when left finger and hui are explicit.",
+      "priority": 90,
+      "specificity": 90,
+      "guard_requirements": [
+        "numeric_slot_role_guard",
+        "scoped_component_or_template_guard"
+      ],
+      "rejection_conditions": [
+        "missing_right_hand_action",
+        "missing_string_number",
+        "left_finger_without_hui_when_required",
+        "invalid_order"
+      ],
+      "ambiguity_policy": "Prefer this rule over bare RH+STRING when all four slots are consumed.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-RH-STRING-CONTEXT",
+      "rule_name": "right hand plus string with inherited left hand or hui context",
+      "input_pattern": [
+        "RH_ACTION",
+        "STRING_NO",
+        "INHERITED_LEFT_HAND_OR_HUI_CONTEXT"
+      ],
+      "input_lexical_types": [
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "NUMERIC_COMPONENT"
+      ],
+      "required_slots": [
+        "RIGHT_HAND_ACTION",
+        "STRING_NUMBER",
+        "CONTEXT_SOURCE"
+      ],
+      "optional_slots": [
+        "LEFT_FINGER",
+        "HUI_POSITION",
+        "SOUND_STATE"
+      ],
+      "output_parse_type": "context_inherited_sounding_unit",
+      "output_reading_template": "{CONTEXT_SOURCE}->{RIGHT_HAND_ACTION}{STRING_NUMBER}",
+      "context_inheritance_policy": "Requires caller-provided inherited_context or context_ref. P1 validates compatibility only; missing declared context yields INCOMPLETE.",
+      "priority": 80,
+      "specificity": 70,
+      "guard_requirements": [
+        "context_source_required",
+        "scoped_context_guard"
+      ],
+      "rejection_conditions": [
+        "context_source_missing",
+        "implicit_context_scan_required",
+        "inherited_string_number",
+        "inherited_right_hand_action"
+      ],
+      "ambiguity_policy": "Ranks below explicit LF+HUI+RH+STRING and above generic unresolved.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-STATE-START",
+      "rule_name": "state start marker",
+      "input_pattern": [
+        "STATE_START_MARKER"
+      ],
+      "input_lexical_types": [
+        "STATE_MARKER_COMPONENT"
+      ],
+      "required_slots": [
+        "STATE_START"
+      ],
+      "optional_slots": [
+        "SOUND_STATE"
+      ],
+      "output_parse_type": "non_sounding_state_start_marker",
+      "output_reading_template": "{STATE_START}",
+      "context_inheritance_policy": "Creates local state-context requirement only; full state span belongs to P5.",
+      "priority": 70,
+      "specificity": 60,
+      "guard_requirements": [
+        "marker_not_sounding_guard"
+      ],
+      "rejection_conditions": [
+        "treated_as_independent_sounding_unit"
+      ],
+      "ambiguity_policy": "If marker could be generic, keep ambiguous marker candidates rather than force sound.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-STATE-END",
+      "rule_name": "state end marker",
+      "input_pattern": [
+        "STATE_END_MARKER"
+      ],
+      "input_lexical_types": [
+        "STATE_MARKER_COMPONENT"
+      ],
+      "required_slots": [
+        "STATE_END"
+      ],
+      "optional_slots": [
+        "SOUND_STATE"
+      ],
+      "output_parse_type": "non_sounding_state_end_marker",
+      "output_reading_template": "{STATE_END}",
+      "context_inheritance_policy": "May close a state only in later phrase or line context; P1 records marker only.",
+      "priority": 70,
+      "specificity": 60,
+      "guard_requirements": [
+        "marker_not_sounding_guard"
+      ],
+      "rejection_conditions": [
+        "treated_as_independent_sounding_unit"
+      ],
+      "ambiguity_policy": "Preserve marker parse even when span target is unknown.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-TIMING",
+      "rule_name": "timing marker",
+      "input_pattern": [
+        "TIMING_MARKER"
+      ],
+      "input_lexical_types": [
+        "TIMING_MARKER_COMPONENT"
+      ],
+      "required_slots": [
+        "TIMING_MARKER"
+      ],
+      "optional_slots": [],
+      "output_parse_type": "non_sounding_timing_marker",
+      "output_reading_template": "{TIMING_MARKER}",
+      "context_inheritance_policy": "Does not create or reset sounding slot context in P1.",
+      "priority": 60,
+      "specificity": 60,
+      "guard_requirements": [
+        "marker_not_sounding_guard"
+      ],
+      "rejection_conditions": [
+        "mixed_with_sounding_slots_without_separator",
+        "treated_as_right_hand_action"
+      ],
+      "ambiguity_policy": "If confused with generic marker, rank timing marker by lexical type.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-PRE-MOTION",
+      "rule_name": "pre-sound motion attached to pressed sounding unit",
+      "input_pattern": [
+        "PRE_SOUND_MOTION",
+        "PRESSED_SOUNDING_UNIT"
+      ],
+      "input_lexical_types": [
+        "LEFT_HAND_ACTION_COMPONENT",
+        "LEFT_FINGER_NAME_COMPONENT",
+        "NUMERIC_COMPONENT",
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "NUMERIC_COMPONENT"
+      ],
+      "required_slots": [
+        "PRE_SOUND_MOTION",
+        "LEFT_FINGER",
+        "HUI_POSITION",
+        "RIGHT_HAND_ACTION",
+        "STRING_NUMBER"
+      ],
+      "optional_slots": [
+        "SOUND_STATE"
+      ],
+      "output_parse_type": "ornamented_attack",
+      "output_reading_template": "{PRE_SOUND_MOTION}+{LEFT_FINGER}{HUI_POSITION}{RIGHT_HAND_ACTION}{STRING_NUMBER}",
+      "context_inheritance_policy": "Pre-sound motion attaches to the following host unit; it cannot stand alone.",
+      "priority": 75,
+      "specificity": 85,
+      "guard_requirements": [
+        "motion_requires_host_guard",
+        "pre_motion_order_guard"
+      ],
+      "rejection_conditions": [
+        "pre_motion_without_host",
+        "pre_motion_after_host"
+      ],
+      "ambiguity_policy": "Ranks above plain pressed unit only when motion token is consumed and host remains valid.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-POST-MOTION",
+      "rule_name": "post-sound motion attached to preceding sounding unit",
+      "input_pattern": [
+        "SOUNDING_UNIT",
+        "POST_SOUND_MOTION"
+      ],
+      "input_lexical_types": [
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "NUMERIC_COMPONENT",
+        "LEFT_HAND_ACTION_COMPONENT"
+      ],
+      "required_slots": [
+        "RIGHT_HAND_ACTION",
+        "STRING_NUMBER",
+        "POST_SOUND_MOTION"
+      ],
+      "optional_slots": [
+        "LEFT_FINGER",
+        "HUI_POSITION",
+        "CONTEXT_SOURCE",
+        "SOUND_STATE"
+      ],
+      "output_parse_type": "post_sound_motion_unit",
+      "output_reading_template": "{RIGHT_HAND_ACTION}{STRING_NUMBER}+{POST_SOUND_MOTION}",
+      "context_inheritance_policy": "Post-sound motion attaches to the preceding host unit; missing host yields INCOMPLETE or UNRESOLVED.",
+      "priority": 74,
+      "specificity": 80,
+      "guard_requirements": [
+        "motion_requires_host_guard",
+        "post_motion_order_guard"
+      ],
+      "rejection_conditions": [
+        "post_motion_without_preceding_host",
+        "post_motion_before_host"
+      ],
+      "ambiguity_policy": "Ranks above plain host unit only when motion token is consumed without invalidating the host.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-SPECIAL-TECHNIQUE",
+      "rule_name": "special technique with required attachment slots",
+      "input_pattern": [
+        "SPECIAL_TECHNIQUE",
+        "REQUIRED_ATTACHMENT_OR_STRING_SLOTS"
+      ],
+      "input_lexical_types": [
+        "SPECIAL_TECHNIQUE_COMPONENT",
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "LEFT_HAND_ACTION_COMPONENT",
+        "NUMERIC_COMPONENT",
+        "LEFT_FINGER_NAME_COMPONENT"
+      ],
+      "required_slots": [
+        "SPECIAL_TECHNIQUE"
+      ],
+      "optional_slots": [
+        "LEFT_FINGER",
+        "HUI_POSITION",
+        "STRING_NUMBER",
+        "CONTEXT_SOURCE",
+        "SOUND_STATE"
+      ],
+      "output_parse_type": "special_technique_unit",
+      "output_reading_template": "{SPECIAL_TECHNIQUE}({attachment_slots})",
+      "context_inheritance_policy": "Technique attachment may use explicit or inherited host context, but expansion remains reviewable.",
+      "priority": 72,
+      "specificity": 75,
+      "guard_requirements": [
+        "special_technique_not_fourth_sound_type_guard",
+        "attachment_required_when_declared"
+      ],
+      "rejection_conditions": [
+        "special_technique_as_fourth_sound_type",
+        "independent_special_technique_without_required_attachment"
+      ],
+      "ambiguity_policy": "May remain VALID_WITH_CONTEXT or UNRESOLVED when sounding policy is unclear.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only"
+    },
+    {
+      "rule_id": "PR-GENERIC-MARKER",
+      "rule_name": "generic marker",
+      "input_pattern": [
+        "GENERIC_MARKER"
+      ],
+      "input_lexical_types": [
+        "GENERIC_MARKER_COMPONENT"
+      ],
+      "required_slots": [
+        "GENERIC_MARKER"
+      ],
+      "optional_slots": [
+        "CONTEXT_SOURCE"
+      ],
+      "output_parse_type": "non_sounding_or_context_marker",
+      "output_reading_template": "{GENERIC_MARKER}",
+      "context_inheritance_policy": "May mark context behavior but does not itself supply sounding slots unless later approved.",
+      "priority": 50,
+      "specificity": 45,
+      "guard_requirements": [
+        "marker_not_sounding_guard"
+      ],
+      "rejection_conditions": [
+        "generic_marker_as_right_hand_action",
+        "generic_marker_as_string_number",
+        "unregistered_generic_marker",
+        "unknown_generic_marker_subtype"
+      ],
+      "ambiguity_policy": "Only registered generic markers with known subtype and explicit behavior may become legal marker parse; otherwise return UNSUPPORTED or UNRESOLVED.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only",
+      "registered_subtype_required": true,
+      "behavior_whitelist_required": true,
+      "allowed_generic_marker_subtypes": [
+        "punctuation",
+        "context_marker",
+        "repeat_marker",
+        "section_marker"
+      ],
+      "unknown_generic_marker_policy": {
+        "status_if_unregistered": "UNSUPPORTED",
+        "status_if_registered_but_semantics_unclear": "UNRESOLVED",
+        "eligible_for_valid_marker_parse_only_when_subtype_known": true
+      }
+    },
+    {
+      "rule_id": "PR-UNKNOWN",
+      "rule_name": "unknown or unresolved sequence",
+      "input_pattern": [
+        "UNKNOWN_COMPONENT_OR_UNRESOLVED_SEQUENCE"
+      ],
+      "input_lexical_types": [
+        "UNKNOWN_COMPONENT",
+        "NUMERIC_COMPONENT",
+        "LEFT_FINGER_NAME_COMPONENT",
+        "RIGHT_HAND_ACTION_COMPONENT",
+        "LEFT_HAND_ACTION_COMPONENT",
+        "STATE_MARKER_COMPONENT",
+        "TIMING_MARKER_COMPONENT",
+        "GENERIC_MARKER_COMPONENT",
+        "SPECIAL_TECHNIQUE_COMPONENT",
+        "POSITION_COMPONENT"
+      ],
+      "required_slots": [
+        "UNRESOLVED"
+      ],
+      "optional_slots": [
+        "CONTEXT_SOURCE"
+      ],
+      "output_parse_type": "unresolved_parse_candidate",
+      "output_reading_template": "<UNRESOLVED>",
+      "context_inheritance_policy": "Do not infer missing context; request review or future phase handling.",
+      "priority": 10,
+      "specificity": 1,
+      "guard_requirements": [],
+      "rejection_conditions": [
+        "fallback_not_allowed_as_valid_parse"
+      ],
+      "ambiguity_policy": "Last-resort unresolved review output only; not an accepted candidate.",
+      "examples_are_abstract_only": true,
+      "authority_boundary": "draft_rule_only",
+      "fallback_only": true,
+      "eligible_for_accepted_candidates": false,
+      "unknown_component_status": "UNRESOLVED",
+      "output_channel_policy": "May appear in unresolved_items, rejected_candidates, or review output, but not as VALID accepted parse."
+    }
+  ],
+  "rule_ordering": {
+    "recursive_rules_allowed": false,
+    "state_span_reconstruction_in_p1": false,
+    "marker_sequence_allowed": "local_only",
+    "prevent_exponential_combination": [
+      "max_window_size_for_p1_local_parse",
+      "consume_each_token_at_most_once_per_candidate",
+      "cap_candidate_count_before_scoring",
+      "reject_invalid_type_combinations_before expansion",
+      "prefer more specific productions before generic unresolved fallback"
+    ],
+    "specificity_then_priority": true,
+    "deterministic_tie_break": "candidate_id"
+  },
+  "ambiguity_policy": {
+    "max_candidates_default": 5,
+    "score_type": "HEURISTIC_GRAMMAR_SCORE",
+    "calibrated_probability": false,
+    "accepted_candidate_rules": [
+      "Invalid and guard-rejected candidates are excluded from accepted_candidates.",
+      "Required slot completeness ranks first.",
+      "Specificity ranks before generic fallback.",
+      "Fewer context dependencies rank higher.",
+      "Fewer unresolved items rank higher.",
+      "Higher consumed-token coverage ranks higher.",
+      "Rule priority is a stable late tie-break.",
+      "candidate_id is the final deterministic tie-break."
+    ]
+  },
+  "partial_consumption_policy": {
+    "partial_consumption_allowed": true,
+    "must_record_unconsumed_tokens": true,
+    "unconsumed_token_policy": "If unconsumed tokens remain after an accepted local parse, response status is VALID_AMBIGUOUS, VALID_WITH_CONTEXT, or UNRESOLVED depending on coverage and role safety.",
+    "same_token_multiple_candidates": "A single candidate may not consume the same token twice. Different n-best candidates may propose alternative consumptions."
+  },
+  "context_policy": {
+    "implicit_backward_scan_depth": 0,
+    "accepted_context_inputs": [
+      "context_ref",
+      "inherited_context"
+    ],
+    "p1_may_validate_context_compatibility": true,
+    "p1_may_search_previous_unit_phrase_line_or_history": false,
+    "allowed_context_inheritance_slots": [
+      "LEFT_FINGER",
+      "HUI_POSITION",
+      "SOUND_STATE"
+    ],
+    "context_source_required": true,
+    "silent_inheritance_allowed": false,
+    "declared_context_required_but_missing_status": "INCOMPLETE",
+    "phrase_crossing_context_owner": "P5"
+  },
+  "guard_policy": {
+    "guard_action_enum": [
+      "HARD_REJECT",
+      "SOFT_PENALTY",
+      "FORCE_UNRESOLVED",
+      "NEEDS_CONTEXT",
+      "NEEDS_HUMAN_REVIEW",
+      "NOT_APPLICABLE"
+    ],
+    "default_action_mapping": [
+      {
+        "condition": "impossible lexical-type/slot binding",
+        "guard_action": "HARD_REJECT"
+      },
+      {
+        "condition": "marker-as-sounding",
+        "guard_action": "HARD_REJECT"
+      },
+      {
+        "condition": "scoped forbidden parse with complete scope match",
+        "guard_action": "HARD_REJECT"
+      },
+      {
+        "condition": "known confusable component but legal interpretation remains",
+        "guard_action": "SOFT_PENALTY"
+      },
+      {
+        "condition": "component conflict or insufficient evidence",
+        "guard_action": "FORCE_UNRESOLVED"
+      },
+      {
+        "condition": "missing inherited context",
+        "guard_action": "NEEDS_CONTEXT"
+      },
+      {
+        "condition": "human confirmation required only",
+        "guard_action": "NEEDS_HUMAN_REVIEW"
+      },
+      {
+        "condition": "guard scope mismatch",
+        "guard_action": "NOT_APPLICABLE"
+      }
+    ],
+    "d3a_scope_required": true,
+    "literal_global_ban_allowed": false,
+    "scope_mismatch_effect": "NOT_APPLICABLE",
+    "hard_reject_status": "FORBIDDEN_GUARD_REJECTED",
+    "soft_penalty_allowed": true,
+    "force_unresolved_allowed": true,
+    "needs_context_allowed": true,
+    "needs_human_review_allowed": true
+  },
+  "future_phase_handoffs": {
+    "P1B": "Use both abstract fixtures for grammar logic and sanitized real-ID fixtures for D1 registry, alias normalization, and D2 integration. Do not include LXY phrase id, complete reading, source_report, or oracle. P1-A creates no fixtures.",
+    "P1C": "Not authorized. Future implementation must preserve structured_parse as primary and surface_reading_candidate as derived display only.",
+    "P2": "Visual fields and component top-k are reserved.",
+    "P3": "Lattice integration and visual confidence belong to parser plus lattice.",
+    "P4": "Line unit segmentation and coverage ledger belong to line-level context.",
+    "P5": "Phrase boundary, state spans, and cross-unit context belong to phrase reconstruction.",
+    "P6": "Human review creates proposal material only."
+  },
+  "authority_boundary": {
+    "not_repo_contract": true,
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "not_score_event_authority": true,
+    "not_sample_ingest": true,
+    "not_ml_training_data": true,
+    "not_render_output": true,
+    "needs_human_review": true
+  },
+  "decision_lock": {
+    "design_decisions_locked": true,
+    "decision_ids": [
+      "P1A-DEC-001-DUAL-OUTPUT",
+      "P1A-DEC-002-RH-STRING-AMBIGUITY",
+      "P1A-DEC-003-EXPLICIT-CONTEXT-ONLY",
+      "P1A-DEC-004-D3A-GUARD-ACTIONS",
+      "P1A-DEC-005-DUAL-FIXTURE-STRATEGY"
+    ],
+    "correction_ids": [
+      "P1A-COR-001-INPUT-CONTRACT-INVALID",
+      "P1A-COR-002-UNKNOWN-FALLBACK-ONLY",
+      "P1A-COR-003-GENERIC-MARKER-WHITELIST"
+    ]
+  }
+}
