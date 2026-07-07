@@ -1,0 +1,630 @@
+{
+  "guard_projection_id": "P1_GENERATION_SAFE_GUARDS_v0.1",
+  "version": "CG-LXY-136-P1C-v0.1",
+  "status_labels": [
+    "DERIVED_EXECUTABLE_REFERENCE",
+    "GENERATION_SAFE_GUARD_PROJECTION",
+    "NOT_CANON_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "source_file": "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_forbidden_outputs.reindexed.v0.2.json",
+  "source_sha256": "1f5c5855138e5cb0ccccf40ced03f94d4f7f851109a391b26ee9502079e4f679",
+  "projection_field_allowlist": [
+    "guard_id",
+    "case_id",
+    "applies_to_component_ids",
+    "applies_to_labels",
+    "forbidden_output",
+    "forbidden_reason",
+    "expected_guard",
+    "allowed_elsewhere",
+    "authority_boundary",
+    "evaluation_rule",
+    "primary_component_refs_v0_2"
+  ],
+  "excluded_fields": [
+    "applies_to_phrase_ids",
+    "phrase_id",
+    "source_report",
+    "source_phrase_reports",
+    "expected_continuous_reading",
+    "must_include",
+    "phrase_integration_cases",
+    "old_report_paths",
+    "complete_lxy_reading"
+  ],
+  "guards": [
+    {
+      "guard_id": "FORBID-RH-ACTION-STRING-BARE-GOU",
+      "case_id": "FORBID-RH-ACTION-STRING-BARE-GOU",
+      "applies_to_component_ids": [
+        "COMP-103"
+      ],
+      "applies_to_labels": [
+        "勾"
+      ],
+      "forbidden_output": "勾？",
+      "forbidden_reason": "右手动作 + 数字必须先尝试合读。",
+      "expected_guard": "If matched component/template scope is 勾 plus visible string number, output 勾一/勾二/勾三/勾四 etc. instead of 勾？.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-103"
+      ]
+    },
+    {
+      "guard_id": "FORBID-RH-ACTION-STRING-BARE-TIAO",
+      "case_id": "FORBID-RH-ACTION-STRING-BARE-TIAO",
+      "applies_to_component_ids": [
+        "COMP-116"
+      ],
+      "applies_to_labels": [
+        "挑"
+      ],
+      "forbidden_output": "裸弦数 / omitted 挑",
+      "forbidden_reason": "挑的乙形下承结构不得漏读。",
+      "expected_guard": "If matched component is 挑 / COMP-116 with visible string number, preserve 挑 and read the scoped construction as 挑六/挑四/挑七.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-116"
+      ]
+    },
+    {
+      "guard_id": "FORBID-SHAOXI-AS-JIU",
+      "case_id": "FORBID-SHAOXI-AS-JIU",
+      "applies_to_component_ids": [
+        "COMP-806"
+      ],
+      "applies_to_labels": [
+        "少息"
+      ],
+      "forbidden_output": "就",
+      "forbidden_reason": "少息和就语义不同。",
+      "expected_guard": "If matched component is 少息 / COMP-806, do not output 就.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-806"
+      ]
+    },
+    {
+      "guard_id": "FORBID-JIU-AS-SHAOXI",
+      "case_id": "FORBID-JIU-AS-SHAOXI",
+      "applies_to_component_ids": [
+        "COMP-907"
+      ],
+      "applies_to_labels": [
+        "就"
+      ],
+      "forbidden_output": "少息",
+      "forbidden_reason": "就是承前 marker，不是 timing marker。",
+      "expected_guard": "If matched component is 就 / COMP-907, do not output 少息.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-907"
+      ]
+    },
+    {
+      "guard_id": "FORBID-COMP027-AS-LEFT-HAND-HUI",
+      "case_id": "FORBID-COMP027-AS-LEFT-HAND-HUI",
+      "applies_to_component_ids": [
+        "COMP-705"
+      ],
+      "applies_to_labels": [
+        "散音起始",
+        "散"
+      ],
+      "forbidden_output": "大指 / hui-position from connected 散音起始 shape",
+      "forbidden_reason": "散音起始不可误拆。",
+      "expected_guard": "If matched component is COMP-705 散音起始, read it as an open-string state layer before any local numeric matching.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-705"
+      ]
+    },
+    {
+      "guard_id": "FORBID-COMP027-LOCAL-NUMERIC-SPLIT",
+      "case_id": "FORBID-COMP027-LOCAL-NUMERIC-SPLIT",
+      "applies_to_component_ids": [
+        "COMP-705",
+        "COMP-103",
+        "COMP-081"
+      ],
+      "applies_to_labels": [
+        "散音起始",
+        "散",
+        "勾",
+        "一"
+      ],
+      "forbidden_output": "split as 五/六, 勾五, or local numeric fragments",
+      "forbidden_reason": "COMP-705 的整体状态层优先级高于局部数字匹配。",
+      "expected_guard": "If matched context contains connected COMP-705 plus 勾/一 construction, preserve 散音起始 and read 散音，勾一弦.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-081",
+        "COMP-103",
+        "COMP-705"
+      ]
+    },
+    {
+      "guard_id": "FORBID-MING-7-6-GOU-4-AS-GOU-5-6",
+      "case_id": "FORBID-MING-7-6-GOU-4-AS-GOU-5-6",
+      "applies_to_component_ids": [
+        "COMP-094",
+        "COMP-087",
+        "COMP-086",
+        "COMP-103",
+        "COMP-084"
+      ],
+      "applies_to_labels": [
+        "名指",
+        "七",
+        "六",
+        "勾",
+        "四"
+      ],
+      "forbidden_output": "勾五六？ / bare 五六",
+      "forbidden_reason": "名指 + 右上徽位 + 勾四 必须先按复合减字合读，不得退化成裸数字串。",
+      "expected_guard": "If matched template is TEMPLATE-MING-7-6-GOU-4, output 名指七六徽，勾四弦.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-084",
+        "COMP-086",
+        "COMP-087",
+        "COMP-094",
+        "COMP-103"
+      ]
+    },
+    {
+      "guard_id": "FORBID-ZHUXIA-TIAO-AS-MO",
+      "case_id": "FORBID-ZHUXIA-TIAO-AS-MO",
+      "applies_to_component_ids": [
+        "COMP-116"
+      ],
+      "applies_to_labels": [
+        "挑"
+      ],
+      "forbidden_output": "大指注下七徽，抹七弦",
+      "forbidden_reason": "不能从邻近模板复制抹。",
+      "expected_guard": "If matched component/template scope is 注下 + 挑七, output 大指注下七徽，挑七弦.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-116"
+      ]
+    },
+    {
+      "guard_id": "FORBID-P4-MISSING-PRE-JI-JINFU-PLUCK",
+      "case_id": "FORBID-P4-MISSING-PRE-JI-JINFU-PLUCK",
+      "applies_to_component_ids": [
+        "COMP-116",
+        "COMP-807",
+        "COMP-527"
+      ],
+      "applies_to_labels": [
+        "挑",
+        "急",
+        "进复"
+      ],
+      "forbidden_output": "撞；急进复",
+      "forbidden_reason": "急进复前的发声构字不得漏掉。",
+      "expected_guard": "If P4 context has visible 大指注下七徽，挑七弦 before 急进复, preserve that construction.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-116",
+        "COMP-807",
+        "COMP-527"
+      ]
+    },
+    {
+      "guard_id": "FORBID-P3-G09-UNKNOWN",
+      "case_id": "FORBID-P3-G09-UNKNOWN",
+      "applies_to_component_ids": [
+        "COMP-094",
+        "COMP-087",
+        "COMP-116",
+        "COMP-086"
+      ],
+      "applies_to_labels": [
+        "名指",
+        "七",
+        "挑",
+        "六"
+      ],
+      "forbidden_output": "G09未定 / 下部六？",
+      "forbidden_reason": "P3-G09 已由用户确认。",
+      "expected_guard": "If matched context is 名指 + 七九徽 + 挑 + 六, output 名指七九徽，挑六弦.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-116"
+      ]
+    },
+    {
+      "guard_id": "FORBID-P3P4-SAN-TIAO5-UNKNOWN",
+      "case_id": "FORBID-P3P4-SAN-TIAO5-UNKNOWN",
+      "applies_to_component_ids": [
+        "COMP-705",
+        "COMP-116",
+        "COMP-085"
+      ],
+      "applies_to_labels": [
+        "散音起始",
+        "散",
+        "挑",
+        "五"
+      ],
+      "forbidden_output": "散音起始，下部未定",
+      "forbidden_reason": "P3/P4 尾部已确认。",
+      "expected_guard": "If matched context is COMP-705 + COMP-116 + 五, output 散音，挑五弦.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-116",
+        "COMP-705"
+      ]
+    },
+    {
+      "guard_id": "FORBID-LUN-ZHUANG-SWAP",
+      "case_id": "FORBID-LUN-ZHUANG-SWAP",
+      "applies_to_component_ids": [
+        "COMP-121",
+        "COMP-416"
+      ],
+      "applies_to_labels": [
+        "轮",
+        "撞"
+      ],
+      "forbidden_output": "轮/撞 swapped via raw fallback",
+      "forbidden_reason": "禁止回退旧 raw mapping。",
+      "expected_guard": "If matched component is COMP-416 output 撞; if matched component is COMP-121 output 轮.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-121",
+        "COMP-416"
+      ]
+    },
+    {
+      "guard_id": "FORBID-MARKER-SOUNDING-UNIT",
+      "case_id": "FORBID-MARKER-SOUNDING-UNIT",
+      "applies_to_component_ids": [
+        "COMP-708",
+        "COMP-707",
+        "COMP-806",
+        "COMP-906",
+        "COMP-907"
+      ],
+      "applies_to_labels": [
+        "泛起",
+        "泛止",
+        "少息",
+        "句号",
+        "就"
+      ],
+      "forbidden_output": "independent sounding_unit",
+      "forbidden_reason": "非发声 marker 默认不生成 sounding_unit。",
+      "expected_guard": "If matched component/template is a non-sounding marker, keep it non-sounding unless later human review authorizes parser-layer expansion.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-708",
+        "COMP-707",
+        "COMP-806",
+        "COMP-906",
+        "COMP-907"
+      ]
+    },
+    {
+      "guard_id": "FORBID-JIANPU-AUTHORITY",
+      "case_id": "FORBID-JIANPU-AUTHORITY",
+      "applies_to_component_ids": [],
+      "applies_to_labels": [
+        "jianpu",
+        "old OCR",
+        "old CSV",
+        "page layout"
+      ],
+      "forbidden_output": "score_fact_authority_from_jianpu_or_old_ocr_or_csv_or_layout",
+      "forbidden_reason": "硬边界。",
+      "expected_guard": "If crop evidence is uncertain, mark unknown_from_crop / NEEDS_HUMAN_REVIEW instead of deriving score facts from forbidden authority sources.",
+      "allowed_elsewhere": false,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": []
+    },
+    {
+      "guard_id": "FORBID-QIAQI-INDEPENDENT",
+      "case_id": "FORBID-QIAQI-INDEPENDENT",
+      "applies_to_component_ids": [
+        "COMP-515"
+      ],
+      "applies_to_labels": [
+        "掐起"
+      ],
+      "forbidden_output": "independent sounding_unit with no left-hand/hui attachment",
+      "forbidden_reason": "掐起需与名指/跪指等按位绑定，发声策略需审阅。",
+      "expected_guard": "If matched component is COMP-515 / 掐起, attach it to scoped position evidence and keep sounding policy NEEDS_HUMAN_REVIEW.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-515"
+      ]
+    },
+    {
+      "guard_id": "FORBID-GOU-4-AS-UNKNOWN",
+      "case_id": "FORBID-GOU-4-AS-UNKNOWN",
+      "applies_to_component_ids": [
+        "COMP-103",
+        "COMP-084"
+      ],
+      "applies_to_labels": [
+        "勾",
+        "四"
+      ],
+      "forbidden_output": "勾？",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "If matched component/template scope is 勾四, output 勾四弦 or 承前勾四弦 as context supports.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-103",
+        "COMP-084"
+      ]
+    },
+    {
+      "guard_id": "FORBID-TI-4-AS-UNKNOWN",
+      "case_id": "FORBID-TI-4-AS-UNKNOWN",
+      "applies_to_component_ids": [
+        "COMP-102",
+        "COMP-084"
+      ],
+      "applies_to_labels": [
+        "剔",
+        "四"
+      ],
+      "forbidden_output": "剔？",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "If matched component/template scope is 剔四, output 剔四弦 and keep later expansion reviewable.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-102",
+        "COMP-084"
+      ]
+    },
+    {
+      "guard_id": "FORBID-TIAO-4-AS-BARE",
+      "case_id": "FORBID-TIAO-4-AS-BARE",
+      "applies_to_component_ids": [
+        "COMP-116",
+        "COMP-084"
+      ],
+      "applies_to_labels": [
+        "挑",
+        "四"
+      ],
+      "forbidden_output": "裸挑？",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "If matched component/template scope is 挑四, output 挑四弦 or 承前挑四弦 as context supports.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-116",
+        "COMP-084"
+      ]
+    },
+    {
+      "guard_id": "FORBID-ZHUXIA-TIAO-7-DROP-CONTEXT",
+      "case_id": "FORBID-ZHUXIA-TIAO-7-DROP-CONTEXT",
+      "applies_to_component_ids": [
+        "COMP-418",
+        "COMP-116",
+        "COMP-087"
+      ],
+      "applies_to_labels": [
+        "注",
+        "挑",
+        "七"
+      ],
+      "forbidden_output": "空上部 注下挑七 loses prior 大指七徽",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "If scoped context supports inheritance, preserve 大指七徽 and mark context_inherited=true.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-418",
+        "COMP-116",
+        "COMP-087"
+      ]
+    },
+    {
+      "guard_id": "FORBID-MOTIAO-AS-YAN",
+      "case_id": "FORBID-MOTIAO-AS-YAN",
+      "applies_to_component_ids": [
+        "COMP-115"
+      ],
+      "applies_to_labels": [
+        "抹挑"
+      ],
+      "forbidden_output": "掩",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "If matched component is 抹挑 / COMP-115, do not output 掩.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-115"
+      ]
+    },
+    {
+      "guard_id": "FORBID-RUYISHENG-AS-DAPU-IR",
+      "case_id": "FORBID-RUYISHENG-AS-DAPU-IR",
+      "applies_to_component_ids": [
+        "COMP-209"
+      ],
+      "applies_to_labels": [
+        "如一声",
+        "如一"
+      ],
+      "forbidden_output": "direct Dapu IR expansion",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "If matched component/template is 如一声 / COMP-209, keep it NEEDS_HUMAN_REVIEW and not_dapu_ir_authority=true.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-209"
+      ]
+    },
+    {
+      "guard_id": "FORBID-SHUANGTAN-AS-SHUANGYIN-RUYI",
+      "case_id": "FORBID-SHUANGTAN-AS-SHUANGYIN-RUYI",
+      "applies_to_component_ids": [
+        "COMP-206"
+      ],
+      "applies_to_labels": [
+        "双弹"
+      ],
+      "forbidden_output": "双吟 / 如一声",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "If matched component is 双弹 / COMP-206, do not output 双吟 or 如一声.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": [
+        "COMP-206"
+      ]
+    },
+    {
+      "guard_id": "FORBID-REINDEXED-PRIMARY-ID-DRIFT",
+      "case_id": "FORBID-REINDEXED-PRIMARY-ID-DRIFT",
+      "applies_to_component_ids": [],
+      "applies_to_labels": [
+        "primary matched_components",
+        "component_sequence"
+      ],
+      "forbidden_output": "legacy/source IDs in primary fields",
+      "forbidden_reason": "v0.2 reindexed regression guardrail; report-only and not Dapu IR authority.",
+      "expected_guard": "Normalize primary fields to category_based_v0_2 IDs and keep old IDs only as traceability.",
+      "allowed_elsewhere": true,
+      "authority_boundary": {
+        "not_score_event_authority": true,
+        "not_dapu_ir_authority": true
+      },
+      "evaluation_rule": "Evaluate forbidden_output only when matched component, template, or phrase context intersects this scope. Do not run global literal forbidden scans.",
+      "primary_component_refs_v0_2": []
+    }
+  ],
+  "projection_validation": {
+    "guard_count": 23,
+    "contains_phrase_ids": false,
+    "contains_source_report": false,
+    "contains_complete_lxy_reading": false,
+    "literal_global_ban_used": false
+  },
+  "authority_boundary": {
+    "not_repo_contract": true,
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "not_score_event_authority": true,
+    "not_sample_ingest": true,
+    "not_ml_training_data": true,
+    "not_render_output": true,
+    "needs_human_review": true
+  }
+}

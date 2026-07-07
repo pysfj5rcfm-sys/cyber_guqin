@@ -1,0 +1,164 @@
+{
+  "task_id": "CG-LXY-136-P1C-EXECUTABLE-GRAMMAR-PARSER-MVP-v0.1",
+  "repo_branch": "main",
+  "repo_head": "a71f7e69d71a6f3df35e13b30ed87f724603c933",
+  "git_log_5": [
+    "a71f7e6 test(lxy): define phase1 grammar fixture matrix",
+    "3a4084a docs(lxy): define phase1 grammar parser contract",
+    "6a0e304 docs(lxy): register 1-3-6 phase build design",
+    "e0745bd test(qxby): scope forbidden regression checks for reindexed atlas",
+    "09842a0 docs(qxby): reindex component atlas by category"
+  ],
+  "source_files_read": [
+    "README.md",
+    "06_docs/PROJECT_STRUCTURE.md",
+    "reports/REPORTS_INDEX.md",
+    "reports/repo_hygiene_inventory.latest.v0.1.json",
+    "reports/repo_entrypoint_map.latest.v0.1.md",
+    "reports/repo_archive_r2b_reference_matrix.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_136_Phase_Build_Requirements_v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_136_mode_gate.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_136_registration_manifest.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_grammar_contract.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_token_type_system.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_semantic_slot_model.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_production_rules.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_invalid_combination_matrix.v0.1.csv",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_parse_output_contract.v0.1.json",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_d3a_guard_boundary.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_design_review_checklist.v0.1.md",
+    "reports/lxy_136_phase_build/p1a_grammar_contract/CG_LXY_P1A_design_manifest.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_P1B_fixture_and_acceptance_design.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_P1B_acceptance_matrix.v0.1.csv",
+    "reports/lxy_136_phase_build/CG_LXY_P1B_design_review_checklist.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_P1B_fixture_manifest.v0.1.json",
+    "tests/fixtures/cyber_guqin/component_guided_transcription/p1b_abstract_grammar_fixtures.v0.1.json",
+    "tests/fixtures/cyber_guqin/component_guided_transcription/p1b_sanitized_real_id_fixtures.v0.1.json",
+    "tests/fixtures/cyber_guqin/component_guided_transcription/p1b_guard_action_fixtures.v0.1.json",
+    "tests/fixtures/cyber_guqin/component_guided_transcription/p1b_deterministic_ranking_fixtures.v0.1.json",
+    "references/qxby_component_atlas/component_registry.reindexed.v0.2.json",
+    "references/qxby_component_atlas/component_legacy_alias_map.reindexed.v0.2.json",
+    "references/qxby_component_atlas/component_to_canon_crosswalk.seed.reindexed.v0.2.json",
+    "references/qxby_component_atlas/construction_templates.reindexed.v0.2.json",
+    "tests/fixtures/cyber_guqin/component_guided_transcription/lxy_p1_p6_forbidden_outputs.reindexed.v0.2.json",
+    "scripts/cyber_guqin_reproduction_lib.py",
+    "tests/test_self_contained_reproduction_toolchain.py",
+    "scripts/validate_dapu_ir.py"
+  ],
+  "forbidden_files_not_read": [
+    "lxy_p1_p6_goldset.reindexed.v0.2.json",
+    "reports/lxy_first_two_phrases_component_guided_candidates*",
+    "reports/lxy_phrase3_component_guided_candidates*",
+    "reports/lxy_phrase4_component_guided_candidates*",
+    "reports/lxy_phrase5_component_guided_candidates*",
+    "reports/lxy_phrase6_component_guided_candidates*",
+    "sources/lxy*",
+    "01_pieces/",
+    "04_outputs/",
+    "archive/"
+  ],
+  "written_files": [
+    "scripts/cyber_guqin_grammar_parser.py",
+    "scripts/run_cyber_guqin_grammar_fixtures.py",
+    "references/qxby_component_atlas/p1_grammar_runtime_contract.v0.1.json",
+    "references/qxby_component_atlas/p1_generation_safe_guards.v0.1.json",
+    "tests/test_cyber_guqin_grammar_parser.py",
+    "tests/test_cyber_guqin_grammar_parser_properties.py",
+    "tests/test_cyber_guqin_grammar_parser_metamorphic.py",
+    "reports/lxy_136_phase_build/CG_LXY_P1C_implementation_report.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_P1C_fixture_results.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_P1C_implementation_manifest.v0.1.json"
+  ],
+  "runtime_contract_hash": "b838347cc570095a01eeac18d07bc5ce9380d566c3c0622d4e115f7b6ab7d21d",
+  "guard_projection_hash": "d27f2aed92e630bde1ed37d1c8225f5381a00a0acb039f5e74927b1ec25d2e50",
+  "parser_module_hash": "d98eb21e06bb7107c6db64840020c9208fd74eabb7ec742e1e9fa171191284e2",
+  "test_file_hashes": {
+    "tests/test_cyber_guqin_grammar_parser.py": "53a6dfa01adaa575a8b40df53bc92498f9edb6808f3dcbe433109cdc905e3042",
+    "tests/test_cyber_guqin_grammar_parser_properties.py": "191db5c33aa8a6e682a8bf0b5d7d659bca9626470946f027e23ab712cd5740eb",
+    "tests/test_cyber_guqin_grammar_parser_metamorphic.py": "e55331a59d5de75f476c473f050058faa61701603252b2b07eba992959743a66"
+  },
+  "fixture_discovery_policy": "dynamic glob p1b_*_fixtures.v*.json; no fixed file count, no fixed case count, no case-id dispatch",
+  "baseline_discovered_case_count": 75,
+  "baseline_discovered_fixture_count": 4,
+  "no_fixed_case_count": true,
+  "no_case_id_dispatch": true,
+  "no_expected_field_inference": true,
+  "no_oracle_read": true,
+  "no_image_read": true,
+  "no_old_lxy_reports_read": true,
+  "no_existing_fixture_modified": true,
+  "no_p1a_p1b_modified": true,
+  "property_test_summary": {
+    "status": "PASS",
+    "test_module": "tests.test_cyber_guqin_grammar_parser_properties",
+    "invariants": 10
+  },
+  "metamorphic_test_summary": {
+    "status": "PASS",
+    "test_module": "tests.test_cyber_guqin_grammar_parser_metamorphic",
+    "metamorphic_tests": 8
+  },
+  "combinatorial_test_summary": {
+    "generated_case_count": 19,
+    "lexical_type_coverage": [
+      "GENERIC_MARKER_COMPONENT",
+      "LEFT_FINGER_NAME_COMPONENT",
+      "LEFT_HAND_ACTION_COMPONENT",
+      "NUMERIC_COMPONENT",
+      "RIGHT_HAND_ACTION_COMPONENT",
+      "STATE_MARKER_COMPONENT",
+      "TIMING_MARKER_COMPONENT"
+    ],
+    "rule_family_coverage": [
+      "PR-GENERIC-MARKER",
+      "PR-LF-HUI-RH-STRING",
+      "PR-PRE-MOTION",
+      "PR-RH-STRING",
+      "PR-RH-STRING-CONTEXT",
+      "PR-STATE-START",
+      "PR-TIMING"
+    ],
+    "invariant_failures": []
+  },
+  "targeted_unittest_summary": {
+    "status": "PASS",
+    "command": "python3 -m unittest tests.test_cyber_guqin_grammar_parser tests.test_cyber_guqin_grammar_parser_properties tests.test_cyber_guqin_grammar_parser_metamorphic",
+    "tests_run": 25
+  },
+  "compileall_summary": {
+    "status": "PASS",
+    "command": "PYTHONPYCACHEPREFIX=/tmp/cyber_guqin_p1c_pycache python3 -m compileall ...",
+    "note": "Initial default-cache compileall hit sandbox PermissionError; rerun with tmp pycache passed."
+  },
+  "json_validation_summary": {
+    "runtime_contract": "PASS",
+    "guard_projection": "PASS",
+    "fixture_results": "PASS",
+    "manifest": "PASS"
+  },
+  "git_diff_check": "PASS",
+  "source_scan": {
+    "parser_contains_literal_75": false,
+    "parser_contains_case_id_prefix": false,
+    "parser_contains_expected_field_token": false,
+    "parser_contains_acceptance_matrix": false,
+    "parser_contains_tests_fixtures_path": false,
+    "parser_contains_reports_path": false
+  },
+  "forbidden_paths_untouched": true,
+  "authority_boundary": {
+    "GPT_TRANSCRIPTION_DRAFT": true,
+    "REFERENCE_COMPONENT_ATLAS_GUIDED": true,
+    "NEEDS_HUMAN_REVIEW": true,
+    "NOT_REPO_CONTRACT": true,
+    "NOT_CANON_AUTHORITY": true,
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_SCORE_EVENT_AUTHORITY": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_ML_TRAINING_DATA": true,
+    "NOT_RENDER_OUTPUT": true
+  },
+  "ready_for_p2_design": true,
+  "ready_for_p2_code": false,
+  "implementation_report_hash": "b178bcda7af6638078f65643aeb0fc3935dcd9744e1ab95cf5d194a74ea55325"
+}

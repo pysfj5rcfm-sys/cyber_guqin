@@ -1,0 +1,695 @@
+{
+  "discovered_fixture_files": [
+    "p1b_abstract_grammar_fixtures.v0.1.json",
+    "p1b_deterministic_ranking_fixtures.v0.1.json",
+    "p1b_guard_action_fixtures.v0.1.json",
+    "p1b_sanitized_real_id_fixtures.v0.1.json"
+  ],
+  "discovered_fixture_count": 4,
+  "discovered_case_count": 75,
+  "executed_case_ids": [
+    "P1B-ABS-001",
+    "P1B-ABS-002",
+    "P1B-ABS-003",
+    "P1B-ABS-004",
+    "P1B-ABS-005",
+    "P1B-ABS-006",
+    "P1B-ABS-007",
+    "P1B-ABS-008",
+    "P1B-ABS-009",
+    "P1B-ABS-010",
+    "P1B-ABS-011",
+    "P1B-ABS-012",
+    "P1B-ABS-013",
+    "P1B-ABS-014",
+    "P1B-ABS-015",
+    "P1B-ABS-016",
+    "P1B-ABS-017",
+    "P1B-ABS-018",
+    "P1B-ABS-019",
+    "P1B-ABS-020",
+    "P1B-ABS-021",
+    "P1B-ABS-022",
+    "P1B-ABS-023",
+    "P1B-ABS-024",
+    "P1B-ABS-025",
+    "P1B-ABS-026",
+    "P1B-ABS-027",
+    "P1B-ABS-028",
+    "P1B-ABS-029",
+    "P1B-ABS-030",
+    "P1B-ABS-031",
+    "P1B-ABS-032",
+    "P1B-ABS-033",
+    "P1B-ABS-034",
+    "P1B-ABS-035",
+    "P1B-ABS-036",
+    "P1B-ABS-037",
+    "P1B-ABS-038",
+    "P1B-ABS-039",
+    "P1B-ABS-040",
+    "P1B-ABS-041",
+    "P1B-ABS-042",
+    "P1B-ABS-043",
+    "P1B-RANK-001",
+    "P1B-RANK-002",
+    "P1B-RANK-003",
+    "P1B-RANK-004",
+    "P1B-RANK-005",
+    "P1B-RANK-006",
+    "P1B-RANK-007",
+    "P1B-RANK-008",
+    "P1B-GUARD-001",
+    "P1B-GUARD-002",
+    "P1B-GUARD-003",
+    "P1B-GUARD-004",
+    "P1B-GUARD-005",
+    "P1B-GUARD-006",
+    "P1B-GUARD-007",
+    "P1B-GUARD-008",
+    "P1B-GUARD-009",
+    "P1B-GUARD-010",
+    "P1B-GUARD-011",
+    "P1B-GUARD-012",
+    "P1B-REAL-001",
+    "P1B-REAL-002",
+    "P1B-REAL-003",
+    "P1B-REAL-004",
+    "P1B-REAL-005",
+    "P1B-REAL-006",
+    "P1B-REAL-007",
+    "P1B-REAL-008",
+    "P1B-REAL-009",
+    "P1B-REAL-010",
+    "P1B-REAL-011",
+    "P1B-REAL-012"
+  ],
+  "pass_count": 75,
+  "fail_count": 0,
+  "failed_case_ids": [],
+  "case_results": [
+    {
+      "case_id": "P1B-ABS-001",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-002",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-003",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-004",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-005",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-006",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-007",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-008",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INPUT_CONTRACT_INVALID",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-009",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-010",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-011",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-012",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_WITH_CONTEXT",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-013",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-014",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-015",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNSUPPORTED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-016",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-017",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-018",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-019",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-020",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-021",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INVALID_ORDER",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-022",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INVALID_TYPE_COMBINATION",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-023",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-024",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-025",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-026",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-027",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_WITH_CONTEXT",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-028",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-029",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-030",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNSUPPORTED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-031",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-032",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_WITH_CONTEXT",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-033",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-034",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "INVALID_TYPE_COMBINATION",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-035",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-036",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-037",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNSUPPORTED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-038",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-039",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-040",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-041",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-042",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "COMPONENT_ID_NORMALIZATION_GAP",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-ABS-043",
+      "fixture_file": "p1b_abstract_grammar_fixtures.v0.1.json",
+      "parse_status": "FORBIDDEN_GUARD_REJECTED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-001",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-002",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-003",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-004",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-005",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-006",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-007",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-RANK-008",
+      "fixture_file": "p1b_deterministic_ranking_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-001",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "FORBIDDEN_GUARD_REJECTED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-002",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "FORBIDDEN_GUARD_REJECTED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-003",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-004",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-005",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-006",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-007",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-008",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "INCOMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-009",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "VALID_WITH_CONTEXT",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-010",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-011",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-GUARD-012",
+      "fixture_file": "p1b_guard_action_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-001",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-002",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_AMBIGUOUS",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-003",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_WITH_CONTEXT",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-004",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "COMPONENT_ID_NORMALIZATION_GAP",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-005",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-006",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-007",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-008",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-009",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_WITH_CONTEXT",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-010",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-011",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "VALID_COMPLETE",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "case_id": "P1B-REAL-012",
+      "fixture_file": "p1b_sanitized_real_id_fixtures.v0.1.json",
+      "parse_status": "UNRESOLVED",
+      "passed": true,
+      "failures": []
+    }
+  ],
+  "coverage_by_production": {
+    "PR-GENERIC-MARKER": 7,
+    "PR-LF-HUI-RH-STRING": 8,
+    "PR-POST-MOTION": 3,
+    "PR-PRE-MOTION": 3,
+    "PR-RH-STRING": 21,
+    "PR-RH-STRING-CONTEXT": 8,
+    "PR-SPECIAL-TECHNIQUE": 6,
+    "PR-STATE-END": 2,
+    "PR-STATE-START": 3,
+    "PR-TIMING": 6,
+    "PR-UNKNOWN": 9
+  },
+  "coverage_by_status": {
+    "COMPONENT_ID_NORMALIZATION_GAP": 2,
+    "FORBIDDEN_GUARD_REJECTED": 3,
+    "INCOMPLETE": 9,
+    "INPUT_CONTRACT_INVALID": 8,
+    "INVALID_ORDER": 1,
+    "INVALID_TYPE_COMBINATION": 2,
+    "UNRESOLVED": 11,
+    "UNSUPPORTED": 3,
+    "VALID_AMBIGUOUS": 8,
+    "VALID_COMPLETE": 22,
+    "VALID_WITH_CONTEXT": 6
+  },
+  "coverage_by_guard_action": {
+    "FORCE_UNRESOLVED": 8,
+    "HARD_REJECT": 8,
+    "NEEDS_CONTEXT": 10,
+    "NEEDS_HUMAN_REVIEW": 6,
+    "NOT_APPLICABLE": 40,
+    "SOFT_PENALTY": 3
+  },
+  "coverage_by_normalization": {
+    "COMPONENT_ID_NORMALIZATION_GAP": 2,
+    "NORMALIZED": 73
+  },
+  "property_results": {},
+  "metamorphic_results": {},
+  "combinatorial_results": {
+    "generated_case_count": 19,
+    "lexical_type_coverage": [
+      "GENERIC_MARKER_COMPONENT",
+      "LEFT_FINGER_NAME_COMPONENT",
+      "LEFT_HAND_ACTION_COMPONENT",
+      "NUMERIC_COMPONENT",
+      "RIGHT_HAND_ACTION_COMPONENT",
+      "STATE_MARKER_COMPONENT",
+      "TIMING_MARKER_COMPONENT"
+    ],
+    "rule_family_coverage": [
+      "PR-GENERIC-MARKER",
+      "PR-LF-HUI-RH-STRING",
+      "PR-PRE-MOTION",
+      "PR-RH-STRING",
+      "PR-RH-STRING-CONTEXT",
+      "PR-STATE-START",
+      "PR-TIMING"
+    ],
+    "invariant_failures": []
+  },
+  "extension_discovery_result": {
+    "dynamic_discovery": true
+  },
+  "fixed_case_count_detected": false,
+  "case_id_hardcoding_detected": false,
+  "oracle_leakage_detected": false,
+  "authority_boundary": {
+    "not_repo_contract": true,
+    "not_canon_authority": true,
+    "not_dapu_ir_authority": true,
+    "not_score_event_authority": true,
+    "not_sample_ingest": true,
+    "not_ml_training_data": true,
+    "not_render_output": true,
+    "needs_human_review": true
+  }
+}
