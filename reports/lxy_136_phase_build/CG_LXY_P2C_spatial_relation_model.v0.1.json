@@ -1,0 +1,233 @@
+{
+  "model_id": "CG_LXY_P2C_spatial_relation_model.v0.1",
+  "task_id": "CG-LXY-136-P2C-VISUAL-SLOT-LATTICE-DESIGN-v0.1",
+  "version": "v0.1",
+  "phase": "P2C_VISUAL_SLOT_LATTICE_DESIGN",
+  "status_labels": [
+    "P2C_SPATIAL_RELATION_MODEL",
+    "VISUAL_RELATION_ONLY",
+    "NON_LINEAR_NOTATION_UNIT_SUPPORT",
+    "NOT_GRAMMAR_PARSE",
+    "NOT_SCORE_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_ML_TRAINING_DATA"
+  ],
+  "purpose": "Define visual spatial relations among notation-unit region hypotheses before P3 grammar parsing.",
+  "coordinate_system": {
+    "origin": "top_left",
+    "bbox_format": [
+      "x",
+      "y",
+      "width",
+      "height"
+    ],
+    "units": "pixels_or_normalized_unit_coordinates",
+    "normalization_policy": "Implementation may normalize to [0, 1], but must preserve source crop dimensions and transformation trace.",
+    "rotation_policy": "Region bboxes are expressed in the preprocessed notation-unit crop coordinate space; deskew or rotation must be recorded in preprocessing_trace."
+  },
+  "region_hypothesis_schema": {
+    "required_fields": [
+      "region_id",
+      "bbox",
+      "ink_coverage",
+      "region_status",
+      "crop_reference"
+    ],
+    "region_status_enum": [
+      "REGION_CANDIDATE",
+      "LOW_CONFIDENCE_REGION",
+      "EXTRA_INK_REGION",
+      "MISSING_EXPECTED_REGION"
+    ],
+    "notes": [
+      "A region hypothesis is visual evidence only.",
+      "A region hypothesis is not a component identity until P2B returns component candidates.",
+      "A region hypothesis is not a semantic role."
+    ]
+  },
+  "relation_type_enum": [
+    "above",
+    "below",
+    "left_of",
+    "right_of",
+    "inside",
+    "attached"
+  ],
+  "relation_definitions": [
+    {
+      "relation_type": "above",
+      "visual_condition": "source region center is vertically above target region center with sufficient overlap or alignment evidence.",
+      "inverse_relation": "below",
+      "semantic_boundary": "Does not imply hui, finger, motion, or action role."
+    },
+    {
+      "relation_type": "below",
+      "visual_condition": "source region center is vertically below target region center with sufficient overlap or alignment evidence.",
+      "inverse_relation": "above",
+      "semantic_boundary": "Does not imply string or action role."
+    },
+    {
+      "relation_type": "left_of",
+      "visual_condition": "source region center is horizontally left of target region center with sufficient visual separation.",
+      "inverse_relation": "right_of",
+      "semantic_boundary": "Does not imply left-hand role."
+    },
+    {
+      "relation_type": "right_of",
+      "visual_condition": "source region center is horizontally right of target region center with sufficient visual separation.",
+      "inverse_relation": "left_of",
+      "semantic_boundary": "Does not imply right-hand role."
+    },
+    {
+      "relation_type": "inside",
+      "visual_condition": "source bbox is substantially contained by target bbox or by the target visual enclosure.",
+      "inverse_relation": null,
+      "semantic_boundary": "Does not imply embedded string or any final reading."
+    },
+    {
+      "relation_type": "attached",
+      "visual_condition": "source region touches or is close enough to target region to be treated as an attached visual mark candidate.",
+      "inverse_relation": null,
+      "semantic_boundary": "Does not imply pre-sound, post-sound, state, or timing semantics."
+    }
+  ],
+  "spatial_relation_schema": {
+    "required_fields": [
+      "relation_id",
+      "source_region_id",
+      "target_region_id",
+      "relation_type",
+      "geometry_evidence",
+      "confidence"
+    ],
+    "fields": {
+      "relation_id": {
+        "type": "string"
+      },
+      "source_region_id": {
+        "type": "string"
+      },
+      "target_region_id": {
+        "type": "string"
+      },
+      "relation_type": {
+        "enum": [
+          "above",
+          "below",
+          "left_of",
+          "right_of",
+          "inside",
+          "attached"
+        ]
+      },
+      "geometry_evidence": {
+        "type": "object",
+        "allowed_fields": [
+          "source_bbox",
+          "target_bbox",
+          "center_delta",
+          "overlap_ratio",
+          "containment_ratio",
+          "edge_distance",
+          "alignment_score",
+          "preprocessing_trace_ref"
+        ]
+      },
+      "confidence": {
+        "type": "object",
+        "required_fields": [
+          "value",
+          "bucket",
+          "score_type",
+          "calibrated_probability"
+        ],
+        "score_type": "HEURISTIC_VISUAL_CONFIDENCE",
+        "calibrated_probability": false
+      }
+    }
+  },
+  "relation_graph_policy": {
+    "graph_name": "NotationUnitSpatialGraph",
+    "nodes": "region hypotheses",
+    "edges": "spatial relation candidates",
+    "allows_multiple_relation_candidates_between_same_regions": true,
+    "allows_cycles": true,
+    "linear_order_is_not_required": true,
+    "p3_may_consume_graph": true,
+    "p2c_must_not_emit_grammar_parse": true
+  },
+  "slot_assignment_use": {
+    "allowed": [
+      "rank visual slot candidates",
+      "detect ambiguous slot placement",
+      "detect attached marks",
+      "detect extra ink or missing expected region evidence",
+      "provide spatial evidence to P3"
+    ],
+    "forbidden": [
+      "emit complete notation-unit reading",
+      "emit phrase reading",
+      "assign final semantic role",
+      "inherit context from previous unit",
+      "create Dapu IR",
+      "create score fact"
+    ]
+  },
+  "ambiguity_policy": {
+    "top_k_relations_allowed": true,
+    "ambiguous_relation_status": "AMBIGUOUS_SPATIAL_RELATION",
+    "ambiguous_slot_status": "AMBIGUOUS_SLOT",
+    "unknown_slot_status": "UNKNOWN_SLOT",
+    "unknown_component_status": "UNKNOWN_COMPONENT",
+    "must_not_force_single_layout": true
+  },
+  "example_relation_records_visual_only": [
+    {
+      "relation_id": "rel_001",
+      "source_region_id": "region_001",
+      "target_region_id": "region_003",
+      "relation_type": "above",
+      "geometry_evidence": {
+        "center_delta": [
+          0.02,
+          -0.41
+        ],
+        "alignment_score": 0.78
+      },
+      "confidence": {
+        "value": 0.78,
+        "bucket": "medium",
+        "score_type": "HEURISTIC_VISUAL_CONFIDENCE",
+        "calibrated_probability": false
+      }
+    },
+    {
+      "relation_id": "rel_002",
+      "source_region_id": "region_005",
+      "target_region_id": "region_004",
+      "relation_type": "attached",
+      "geometry_evidence": {
+        "edge_distance": 0.03,
+        "overlap_ratio": 0.12
+      },
+      "confidence": {
+        "value": 0.66,
+        "bucket": "medium",
+        "score_type": "HEURISTIC_VISUAL_CONFIDENCE",
+        "calibrated_probability": false
+      }
+    }
+  ],
+  "authority_flags": {
+    "NOT_SCORE_AUTHORITY": true,
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_SCORE_EVENT_AUTHORITY": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_ML_TRAINING_DATA": true
+  },
+  "readiness": {
+    "ready_for_P2C_implementation_design": true,
+    "ready_for_LXY_phrase_reading": false,
+    "ready_for_training_model": false
+  }
+}

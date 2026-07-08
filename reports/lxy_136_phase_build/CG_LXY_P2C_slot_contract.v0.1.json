@@ -1,0 +1,609 @@
+{
+  "contract_id": "CG_LXY_P2C_slot_contract.v0.1",
+  "task_id": "CG-LXY-136-P2C-VISUAL-SLOT-LATTICE-DESIGN-v0.1",
+  "version": "v0.1",
+  "phase": "P2C_VISUAL_SLOT_LATTICE_DESIGN",
+  "status_labels": [
+    "P2C_VISUAL_SLOT_LATTICE_DESIGN",
+    "NOTATION_UNIT_ANALYZER_DESIGN",
+    "COMPONENT_SLOT_LATTICE_ONLY",
+    "TOP_K_SLOT_CANDIDATES",
+    "UNKNOWN_COMPONENT_SUPPORTED",
+    "UNKNOWN_SLOT_SUPPORTED",
+    "AMBIGUOUS_SLOT_SUPPORTED",
+    "NEEDS_HUMAN_REVIEW",
+    "NOT_RUNTIME_CODE",
+    "NOT_PARSER_CODE",
+    "NOT_TEST_CODE",
+    "NOT_SCORE_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA"
+  ],
+  "authority_boundary": {
+    "component_reference": true,
+    "visual_slot_reference": true,
+    "candidate_generation_design": true,
+    "repo_contract": false,
+    "canon_authority": false,
+    "score_authority": false,
+    "score_event_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "render_output": false,
+    "needs_human_review": true
+  },
+  "input_boundary": {
+    "input_name": "NotationUnitCrop",
+    "definition": "A whole notation-unit image crop containing one or more visually arranged component regions.",
+    "required_fields": [
+      "notation_unit_id",
+      "crop_image_reference"
+    ],
+    "optional_fields": [
+      "bbox_in_parent_image",
+      "preprocessing_trace",
+      "analyzer_options",
+      "human_review_hint"
+    ],
+    "forbidden_fields": [
+      "phrase_id",
+      "phrase_reading",
+      "complete_reading",
+      "score_event",
+      "score_fact",
+      "dapu_ir",
+      "sample_asset_ref",
+      "training_label",
+      "gold_answer_ref",
+      "human_corrected_answer"
+    ]
+  },
+  "component_vs_notation_unit": {
+    "component": "One registry-backed visual component candidate returned by P2B from a suspected component crop.",
+    "notation_unit": "One whole visual unit crop composed of one or more component region hypotheses.",
+    "component_examples_visual_labels_only": [
+      "大",
+      "九",
+      "绰",
+      "勾",
+      "六"
+    ],
+    "notation_unit_example_visual_labels_only": [
+      "大",
+      "九",
+      "绰",
+      "勾",
+      "六"
+    ],
+    "non_output_policy": "Examples are visual labels only and MUST NOT be promoted to a complete notation reading in P2C."
+  },
+  "visual_slot_taxonomy": {
+    "slot_type_enum": [
+      "LEFT_UPPER",
+      "RIGHT_UPPER",
+      "MIDDLE",
+      "LOWER_OUTER",
+      "LOWER_INNER",
+      "ATTACHED_MARK"
+    ],
+    "slot_status_enum": [
+      "PRESENT",
+      "MISSING_COMPONENT",
+      "UNKNOWN_SLOT",
+      "UNKNOWN_COMPONENT",
+      "AMBIGUOUS_SLOT",
+      "EXTRA_INK"
+    ],
+    "slot_type_definitions": [
+      {
+        "slot_type": "LEFT_UPPER",
+        "visual_definition": "Upper-left visible region in the notation-unit crop.",
+        "semantic_role_boundary": "Not automatically LEFT_FINGER."
+      },
+      {
+        "slot_type": "RIGHT_UPPER",
+        "visual_definition": "Upper-right visible region in the notation-unit crop.",
+        "semantic_role_boundary": "Not automatically HUI_POSITION, PRE_SOUND_MOTION, or RIGHT_HAND_ACTION."
+      },
+      {
+        "slot_type": "MIDDLE",
+        "visual_definition": "Central visible region or visual host region.",
+        "semantic_role_boundary": "Not automatically the grammar host."
+      },
+      {
+        "slot_type": "LOWER_OUTER",
+        "visual_definition": "Lower exterior visible region.",
+        "semantic_role_boundary": "Not automatically RIGHT_HAND_ACTION or STRING_NUMBER."
+      },
+      {
+        "slot_type": "LOWER_INNER",
+        "visual_definition": "Lower nested or embedded visible region.",
+        "semantic_role_boundary": "Not automatically STRING_NUMBER."
+      },
+      {
+        "slot_type": "ATTACHED_MARK",
+        "visual_definition": "Small mark visually attached to a host region.",
+        "semantic_role_boundary": "Not automatically motion, state marker, or timing marker."
+      }
+    ]
+  },
+  "semantic_role_separation": {
+    "p2c_visual_slots_are_not_p1_semantic_slots": true,
+    "forbidden_semantic_slot_outputs": [
+      "LEFT_FINGER",
+      "HUI_POSITION",
+      "PRE_SOUND_MOTION",
+      "POST_SOUND_MOTION",
+      "RIGHT_HAND_ACTION",
+      "STRING_NUMBER",
+      "SOUND_STATE",
+      "SPECIAL_TECHNIQUE"
+    ],
+    "forbidden_promotions": [
+      {
+        "visual_label": "大",
+        "p2c_allowed": "component label candidate in a visual slot",
+        "p2c_forbidden": "final left-finger semantic role"
+      },
+      {
+        "visual_label": "九",
+        "p2c_allowed": "component label candidate in a visual slot",
+        "p2c_forbidden": "final hui or string semantic role"
+      },
+      {
+        "visual_label": "绰",
+        "p2c_allowed": "component label candidate in a visual slot",
+        "p2c_forbidden": "final motion reading with target"
+      },
+      {
+        "visual_label": "勾",
+        "p2c_allowed": "component label candidate in a visual slot",
+        "p2c_forbidden": "final attack semantic role"
+      },
+      {
+        "visual_label": "六",
+        "p2c_allowed": "component label candidate in a visual slot",
+        "p2c_forbidden": "final string semantic role"
+      }
+    ]
+  },
+  "p2b_interface": {
+    "caller": "NotationUnitAnalyzer",
+    "callee": "P2B ComponentMatcher",
+    "input_to_p2b": "component crop hypothesis",
+    "output_from_p2b": "ComponentCandidateSet",
+    "allowed_call_fields": [
+      "crop",
+      "crop_id",
+      "top_k"
+    ],
+    "forbidden_call_fields": [
+      "phrase_id",
+      "score_context",
+      "gold_answer",
+      "human_corrected_answer",
+      "complete_reading"
+    ],
+    "p2b_matcher_modification_required": false
+  },
+  "visual_slot_lattice_json_schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "VisualSlotLattice",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "contract_id",
+      "notation_unit_id",
+      "slots",
+      "spatial_relations",
+      "unresolved_slots",
+      "p3_handoff_projection",
+      "authority_flags",
+      "lattice_trace"
+    ],
+    "properties": {
+      "contract_id": {
+        "const": "CG_LXY_P2C_slot_contract.v0.1"
+      },
+      "notation_unit_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "slots": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/VisualSlot"
+        }
+      },
+      "spatial_relations": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/SpatialRelation"
+        }
+      },
+      "unresolved_slots": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/UnresolvedSlot"
+        }
+      },
+      "p3_handoff_projection": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slot_candidates",
+          "component_candidates",
+          "spatial_relations",
+          "confidence"
+        ],
+        "properties": {
+          "slot_candidates": {
+            "type": "array"
+          },
+          "component_candidates": {
+            "type": "array"
+          },
+          "spatial_relations": {
+            "type": "array"
+          },
+          "confidence": {
+            "$ref": "#/definitions/VisualConfidence"
+          }
+        }
+      },
+      "authority_flags": {
+        "$ref": "#/definitions/AuthorityFlags"
+      },
+      "lattice_trace": {
+        "type": "object"
+      }
+    },
+    "definitions": {
+      "VisualSlot": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slot_id",
+          "slot_type",
+          "slot_status",
+          "region_candidate_ids",
+          "candidates",
+          "slot_confidence",
+          "semantic_role_assigned"
+        ],
+        "properties": {
+          "slot_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "slot_type": {
+            "enum": [
+              "LEFT_UPPER",
+              "RIGHT_UPPER",
+              "MIDDLE",
+              "LOWER_OUTER",
+              "LOWER_INNER",
+              "ATTACHED_MARK"
+            ]
+          },
+          "slot_status": {
+            "enum": [
+              "PRESENT",
+              "MISSING_COMPONENT",
+              "UNKNOWN_SLOT",
+              "UNKNOWN_COMPONENT",
+              "AMBIGUOUS_SLOT",
+              "EXTRA_INK"
+            ]
+          },
+          "region_candidate_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/SlotComponentCandidate"
+            }
+          },
+          "slot_confidence": {
+            "$ref": "#/definitions/VisualConfidence"
+          },
+          "semantic_role_assigned": {
+            "const": false
+          }
+        }
+      },
+      "SlotComponentCandidate": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "component_id",
+          "label",
+          "visual_score",
+          "confidence",
+          "p2b_candidate_rank",
+          "source_region_id"
+        ],
+        "properties": {
+          "component_id": {
+            "type": "string",
+            "pattern": "^(COMP-[0-9]{3}|UNKNOWN_COMPONENT)$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "visual_score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "confidence": {
+            "$ref": "#/definitions/VisualConfidence"
+          },
+          "p2b_candidate_rank": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source_region_id": {
+            "type": "string"
+          }
+        }
+      },
+      "VisualConfidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "value",
+          "bucket",
+          "score_type",
+          "calibrated_probability"
+        ],
+        "properties": {
+          "value": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "bucket": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "very_low"
+            ]
+          },
+          "score_type": {
+            "const": "HEURISTIC_VISUAL_CONFIDENCE"
+          },
+          "calibrated_probability": {
+            "const": false
+          }
+        }
+      },
+      "SpatialRelation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relation_id",
+          "source_region_id",
+          "target_region_id",
+          "relation_type",
+          "confidence"
+        ],
+        "properties": {
+          "relation_id": {
+            "type": "string"
+          },
+          "source_region_id": {
+            "type": "string"
+          },
+          "target_region_id": {
+            "type": "string"
+          },
+          "relation_type": {
+            "enum": [
+              "above",
+              "below",
+              "left_of",
+              "right_of",
+              "inside",
+              "attached"
+            ]
+          },
+          "confidence": {
+            "$ref": "#/definitions/VisualConfidence"
+          }
+        }
+      },
+      "UnresolvedSlot": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "unresolved_id",
+          "status",
+          "reason",
+          "region_candidate_ids",
+          "needs_human_review"
+        ],
+        "properties": {
+          "unresolved_id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "UNKNOWN_SLOT",
+              "UNKNOWN_COMPONENT",
+              "AMBIGUOUS_SLOT",
+              "MISSING_COMPONENT",
+              "EXTRA_INK"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "region_candidate_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "needs_human_review": {
+            "const": true
+          }
+        }
+      },
+      "AuthorityFlags": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "NOT_SCORE_AUTHORITY",
+          "NOT_DAPU_IR_AUTHORITY",
+          "NOT_SCORE_EVENT_AUTHORITY",
+          "NOT_SAMPLE_INGEST",
+          "NOT_ML_TRAINING_DATA"
+        ],
+        "properties": {
+          "NOT_SCORE_AUTHORITY": {
+            "const": true
+          },
+          "NOT_DAPU_IR_AUTHORITY": {
+            "const": true
+          },
+          "NOT_SCORE_EVENT_AUTHORITY": {
+            "const": true
+          },
+          "NOT_SAMPLE_INGEST": {
+            "const": true
+          },
+          "NOT_ML_TRAINING_DATA": {
+            "const": true
+          }
+        }
+      }
+    }
+  },
+  "fixture_contract": {
+    "fixture_family": "P2C_VISUAL_SLOT_LATTICE_FIXTURES",
+    "future_fixture_location": "tests/fixtures/cyber_guqin/component_guided_transcription/p2c_visual_slot_lattice/",
+    "oracle_free": true,
+    "cases": [
+      {
+        "case_id": "P2C-FIX-001",
+        "case_name": "single component unit",
+        "must_assert": [
+          "one notation_unit_id",
+          "one or more slot candidates",
+          "P2B component candidates remain component-only"
+        ],
+        "must_not_assert": [
+          "phrase reading",
+          "score fact",
+          "Dapu IR"
+        ]
+      },
+      {
+        "case_id": "P2C-FIX-002",
+        "case_name": "two component unit",
+        "must_assert": [
+          "two visual region hypotheses",
+          "spatial relation present",
+          "component candidates remain independent"
+        ],
+        "must_not_assert": [
+          "linear reading"
+        ]
+      },
+      {
+        "case_id": "P2C-FIX-003",
+        "case_name": "multi component notation unit",
+        "must_assert": [
+          "three or more region hypotheses",
+          "slot lattice can hold multiple candidates per slot",
+          "spatial relation graph exists"
+        ],
+        "must_not_assert": [
+          "complete notation-unit reading"
+        ]
+      },
+      {
+        "case_id": "P2C-FIX-004",
+        "case_name": "ambiguous visual slot",
+        "must_assert": [
+          "AMBIGUOUS_SLOT is supported",
+          "multiple slot candidates may share one region"
+        ],
+        "must_not_assert": [
+          "forced single slot"
+        ]
+      },
+      {
+        "case_id": "P2C-FIX-005",
+        "case_name": "missing component",
+        "must_assert": [
+          "MISSING_COMPONENT is supported",
+          "no fabricated component id"
+        ],
+        "must_not_assert": [
+          "guessed component"
+        ]
+      },
+      {
+        "case_id": "P2C-FIX-006",
+        "case_name": "extra ink",
+        "must_assert": [
+          "EXTRA_INK is supported",
+          "unsupported ink remains unresolved"
+        ],
+        "must_not_assert": [
+          "forced registry identity"
+        ]
+      },
+      {
+        "case_id": "P2C-FIX-007",
+        "case_name": "component order variation",
+        "must_assert": [
+          "spatial graph preserves non-linear order",
+          "relation candidates are explicit"
+        ],
+        "must_not_assert": [
+          "sequence-only grammar parse"
+        ]
+      },
+      {
+        "case_id": "P2C-FIX-008",
+        "case_name": "same component different slot",
+        "must_assert": [
+          "same component candidate may appear under different visual slots",
+          "semantic role is not collapsed in P2C"
+        ],
+        "must_not_assert": [
+          "slot implies semantic role"
+        ]
+      }
+    ]
+  },
+  "extension_policy": {
+    "new_notation_unit_type_requires": [
+      "new P2C fixture",
+      "new visual slot rule"
+    ],
+    "must_not_require": [
+      "P2B matcher modification",
+      "P3 parser modification",
+      "phrase-specific branch",
+      "goldset dependency",
+      "ML training data"
+    ]
+  },
+  "readiness": {
+    "ready_for_P2C_implementation_design": true,
+    "ready_for_LXY_phrase_reading": false,
+    "ready_for_training_model": false
+  }
+}
