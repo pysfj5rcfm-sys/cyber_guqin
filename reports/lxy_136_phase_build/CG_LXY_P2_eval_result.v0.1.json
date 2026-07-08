@@ -1,0 +1,81 @@
+{
+  "eval_id": "CG_LXY_P2_eval_result.v0.1",
+  "task_id": "CG-LXY-136-P2-IMPLEMENTATION-MVP-v0.1",
+  "component_count": 186,
+  "image_index_count": 174,
+  "source_image_missing_count": 12,
+  "test_file": "tests/test_component_visual_layer.py",
+  "covered_requirements": {
+    "index_loading": true,
+    "image_reference_exists": true,
+    "same_crop_deterministic": true,
+    "top_k_ordering_stable": true,
+    "unknown_threshold": true,
+    "empty_crop": true,
+    "invalid_image": true,
+    "new_component_extension": true,
+    "candidate_lattice_deterministic": true,
+    "candidate_count_configurable": true
+  },
+  "boundary_checks": {
+    "no_phrase_reading": true,
+    "no_oracle_leakage": true,
+    "no_goldset_dependency": true,
+    "no_lxy_special_case": true,
+    "no_full_p1_parse_call": true,
+    "no_random_model": true,
+    "no_training": true,
+    "no_external_model_download": true
+  },
+  "validation_commands": [
+    {
+      "command": "python3 -m json.tool references/qxby_component_atlas/component_visual_runtime_index.v0.1.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m json.tool reports/lxy_136_phase_build/CG_LXY_P2_implementation_manifest.v0.1.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m json.tool reports/lxy_136_phase_build/CG_LXY_P2_eval_result.v0.1.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m compileall scripts/component_visual_index.py scripts/component_matcher_runtime.py scripts/component_candidate_lattice.py tests/test_component_visual_layer.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m unittest",
+      "exit_code": 0,
+      "tests_run": 0,
+      "note": "Bare unittest command discovers 0 tests in this repo layout."
+    },
+    {
+      "command": "python3 -m unittest tests.test_component_visual_layer",
+      "exit_code": 0,
+      "tests_run": 10,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "command": "python3 -m unittest tests.test_component_visual_layer tests.test_component_matcher tests.test_cyber_guqin_grammar_parser tests.test_cyber_guqin_grammar_parser_metamorphic tests.test_cyber_guqin_grammar_parser_properties",
+      "exit_code": 0,
+      "tests_run": 43,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test*.py'",
+      "exit_code": 1,
+      "tests_run": 59,
+      "failures": 1,
+      "errors": 0,
+      "failure_summary": "Pre-existing unrelated failure: test_self_contained_reproduction_toolchain expects BAIYA_PLAN_SCRIPT.exists() to be true."
+    }
+  ],
+  "readiness": {
+    "ready_for_P3_visual_grammar_fusion": true,
+    "ready_for_LXY_phrase_reading": false,
+    "ready_for_training_model": false
+  }
+}

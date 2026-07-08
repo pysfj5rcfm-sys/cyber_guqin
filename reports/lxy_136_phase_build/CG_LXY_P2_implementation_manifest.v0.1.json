@@ -1,0 +1,71 @@
+{
+  "manifest_id": "CG_LXY_P2_implementation_manifest.v0.1",
+  "task_id": "CG-LXY-136-P2-IMPLEMENTATION-MVP-v0.1",
+  "phase": "P2_VISUAL_COMPONENT_LAYER_MVP",
+  "repo_context_gate": {
+    "branch": "main",
+    "head": "ccc5377c75d56e9f8f013bf0c1cd1a914fb3f9c5",
+    "worktree_status_before": "clean",
+    "p1_c_committed": true,
+    "p2_b_committed": true,
+    "p2_design_committed": true
+  },
+  "runtime_boundary": {
+    "input": "single crop image",
+    "outputs": [
+      "ComponentCandidateSet",
+      "VisualCandidateLattice"
+    ],
+    "forbidden_outputs": [
+      "phrase",
+      "sentence",
+      "score_event",
+      "Dapu_IR"
+    ],
+    "calls_full_p1_parser": false
+  },
+  "written_artifacts": [
+    "scripts/component_visual_index.py",
+    "scripts/component_matcher_runtime.py",
+    "scripts/component_candidate_lattice.py",
+    "tests/test_component_visual_layer.py",
+    "references/qxby_component_atlas/component_visual_runtime_index.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_P2_implementation_report.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_P2_implementation_manifest.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_P2_eval_result.v0.1.json"
+  ],
+  "source_boundary": {
+    "phrase_reports_read": false,
+    "goldset_read": false,
+    "old_candidates_read": false,
+    "human_corrected_readings_read": false,
+    "score_image_answers_read": false,
+    "pieces_read": false,
+    "outputs_read": false,
+    "recording_read": false,
+    "sample_read": false,
+    "ml_read": false
+  },
+  "index_summary": {
+    "component_index_count": 186,
+    "image_reference_count": 174,
+    "source_image_missing_count": 12
+  },
+  "scoring": {
+    "formula": "0.68*visual + 0.18*lexical + 0.14*grammar - uncertainty_penalty",
+    "visual_score_source": "deterministic template similarity over registry images",
+    "lexical_compatibility_source": "component category to lexical type mapping",
+    "grammar_compatibility_source": "hook-level can_fit compatibility only",
+    "calibrated_probability": false
+  },
+  "extension_test": {
+    "new_component_id": "COMP-new",
+    "requires_matcher_code_change": false,
+    "requires_registry_and_image_plus_rebuild": true
+  },
+  "readiness": {
+    "ready_for_P3_visual_grammar_fusion": true,
+    "ready_for_LXY_phrase_reading": false,
+    "ready_for_training_model": false
+  }
+}
