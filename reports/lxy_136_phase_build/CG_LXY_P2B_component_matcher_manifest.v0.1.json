@@ -1,0 +1,120 @@
+{
+  "manifest_id": "CG_LXY_P2B_component_matcher_manifest.v0.1",
+  "task_id": "CG-LXY-136-P2B-COMPONENT-MATCHER-MVP-v0.1",
+  "status": "P2B_COMPONENT_MATCHER_MVP_COMPLETE",
+  "scope": {
+    "component_candidate_layer": true,
+    "phrase_reading": false,
+    "line_reading": false,
+    "context_reading": false,
+    "dapu_ir": false,
+    "score_fact": false,
+    "sample_ingest": false,
+    "ml_training": false
+  },
+  "generated_files": [
+    "scripts/component_matcher.py",
+    "scripts/build_component_visual_index.py",
+    "scripts/run_component_matcher_eval.py",
+    "tests/test_component_matcher.py",
+    "references/qxby_component_atlas/component_visual_index.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_P2B_component_matcher_report.v0.1.md",
+    "reports/lxy_136_phase_build/CG_LXY_P2B_component_matcher_manifest.v0.1.json",
+    "reports/lxy_136_phase_build/CG_LXY_P2B_eval_result.v0.1.json"
+  ],
+  "implementation": {
+    "matcher_class": "ComponentMatcher",
+    "index_class": "ComponentImageIndex",
+    "bound_backend": "TemplateMatcherBackend",
+    "replaceable_backend_slots": [
+      "EmbeddingMatcherBackend",
+      "VisionModelMatcherBackend"
+    ],
+    "third_party_ml_dependency_added": false,
+    "model_downloaded": false,
+    "model_trained": false
+  },
+  "component_visual_index": {
+    "path": "references/qxby_component_atlas/component_visual_index.v0.1.json",
+    "component_index_count": 186,
+    "registry_component_count": 174,
+    "auxiliary_component_count": 12,
+    "image_reference_count": 174,
+    "source_image_missing_count": 0,
+    "image_path_all_existing_for_matchable_entries": true,
+    "hash_mismatch_count": 0,
+    "source_images_copied": false,
+    "sources_modified": false
+  },
+  "component_candidate_set": {
+    "status_enum": [
+      "MATCHED",
+      "AMBIGUOUS",
+      "UNKNOWN_COMPONENT"
+    ],
+    "confidence_level_enum": [
+      "HIGH",
+      "MEDIUM",
+      "LOW"
+    ],
+    "confidence_is_probability": false,
+    "top_k_default": 5,
+    "top_k_max": 10
+  },
+  "unknown_policy": {
+    "supported": true,
+    "unknown_policy_status": "UNKNOWN_COMPONENT",
+    "unknown_component_id_minted": false,
+    "top1_below_threshold_forces_choice": false,
+    "failure_classification": "UNKNOWN_THRESHOLD_ERROR"
+  },
+  "eval": {
+    "path": "reports/lxy_136_phase_build/CG_LXY_P2B_eval_result.v0.1.json",
+    "evaluation_status": "UNLABELED_EVAL",
+    "total_crops": 174,
+    "matched": 174,
+    "ambiguous": 0,
+    "unknown": 0,
+    "top1_accuracy": null,
+    "topk_recall": null,
+    "accuracy_policy": "accuracy_not_computed_without_explicit_labels"
+  },
+  "validation": {
+    "determinism_status": "PASS",
+    "extension_test_status": "PASS",
+    "empty_image_handling": "PASS",
+    "invalid_image_handling": "PASS",
+    "unit_test_command": "python3 -m unittest tests.test_component_matcher",
+    "unit_test_result": "8 tests OK",
+    "compile_command": "PYTHONPYCACHEPREFIX=/tmp/cg_lxy_p2b_pycache python3 -m compileall scripts/component_matcher.py scripts/build_component_visual_index.py scripts/run_component_matcher_eval.py tests/test_component_matcher.py",
+    "compile_result": "PASS",
+    "unittest_command": "python3 -m unittest",
+    "unittest_result": "0 tests discovered, OK"
+  },
+  "failure_policy": {
+    "supported_failure_classes": [
+      "IMAGE_INDEX_ERROR",
+      "MATCHER_LOGIC_ERROR",
+      "REGISTRY_MAPPING_ERROR",
+      "INPUT_FORMAT_ERROR",
+      "UNKNOWN_THRESHOLD_ERROR"
+    ],
+    "registry_modified_for_accuracy": false,
+    "component_label_modified_for_accuracy": false,
+    "phrase_answer_added": false,
+    "lxy_case_special_branch_added": false
+  },
+  "authority_flags": {
+    "NOT_SCORE_AUTHORITY": true,
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_CANON_AUTHORITY": true,
+    "NOT_SCORE_EVENT_AUTHORITY": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_ML_TRAINING_DATA": true
+  },
+  "readiness": {
+    "ready_for_P2C_visual_lattice_design": true,
+    "ready_for_LXY_phrase_reading": false,
+    "ready_for_training_model": false
+  }
+}

@@ -1,0 +1,3522 @@
+{
+  "authority_flags": {
+    "NOT_CANON_AUTHORITY": true,
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_ML_TRAINING_DATA": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_SCORE_AUTHORITY": true,
+    "NOT_SCORE_EVENT_AUTHORITY": true
+  },
+  "component_index_count": 186,
+  "components": [
+    {
+      "category": "numeric_component_family",
+      "component_id": "COMP-081",
+      "image_dimensions": null,
+      "image_hash": null,
+      "image_path": null,
+      "label": "一",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "numeric_component_family",
+      "component_id": "COMP-082",
+      "image_dimensions": null,
+      "image_hash": null,
+      "image_path": null,
+      "label": "二",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "numeric_component_family",
+      "component_id": "COMP-083",
+      "image_dimensions": null,
+      "image_hash": null,
+      "image_path": null,
+      "label": "三",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "numeric_component_family",
+      "component_id": "COMP-084",
+      "image_dimensions": null,
+      "image_hash": null,
+      "image_path": null,
+      "label": "四",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "numeric_component_family",
+      "component_id": "COMP-085",
+      "image_dimensions": null,
+      "image_hash": null,
+      "image_path": null,
+      "label": "五",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "numeric_component_family",
+      "component_id": "COMP-086",
+      "image_dimensions": null,
+      "image_hash": null,
+      "image_path": null,
+      "label": "六",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "numeric_component_family",
+      "component_id": "COMP-087",
+      "image_dimensions": null,
+      "image_hash": null,
+      "image_path": null,
+      "label": "七",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "left_finger_name_family",
+      "component_id": "COMP-091",
+      "image_dimensions": null,
+      "image_hash": "f599e88afa1c4069e79986ec48c55889e9ec353eca91898fb90703810a4ab7e6",
+      "image_path": null,
+      "label": "大指",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "left_finger_name_family",
+      "component_id": "COMP-092",
+      "image_dimensions": null,
+      "image_hash": "84d72e387c23cc9c63060222225869623b33226d8ebf203b7cd2980470626580",
+      "image_path": null,
+      "label": "食指",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "left_finger_name_family",
+      "component_id": "COMP-093",
+      "image_dimensions": null,
+      "image_hash": "9d98528f89648628ed420d46cb77e9ddae1b58544938cadff4a87977181b7338",
+      "image_path": null,
+      "label": "中指",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "left_finger_name_family",
+      "component_id": "COMP-094",
+      "image_dimensions": null,
+      "image_hash": "c1a4897a563833077a0c4f4e4b8fb25ee7c4aea32f20eaa4fe67d396e3305575",
+      "image_path": null,
+      "label": "名指",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "left_finger_name_family",
+      "component_id": "COMP-095",
+      "image_dimensions": null,
+      "image_hash": "f57c83a6d2c91d2a784f22534b0437ae162348454765bf1cc16b5b0cb9d8a1fe",
+      "image_path": null,
+      "label": "跪指",
+      "normalized_reference": {
+        "image_hash_matches_registry": null,
+        "matchable": false,
+        "reason": "NO_REPO_SOURCE_IMAGE",
+        "reference_type": "registry_auxiliary_reference",
+        "registry_image_hash": null,
+        "source_registry": "auxiliary_components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-101",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e55b2ebd6d1fa436087d9d6b2f9d0c5ca8914bf226432f6422e13826d5a8b4a0",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-171_倒锁.png",
+      "label": "倒锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e55b2ebd6d1fa436087d9d6b2f9d0c5ca8914bf226432f6422e13826d5a8b4a0",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-102",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "55a2e33ae301f28040c1e5134212540a1a901b98b5b7cb5c5780cfc61aa8e5ef",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-172_剔.png",
+      "label": "剔",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "55a2e33ae301f28040c1e5134212540a1a901b98b5b7cb5c5780cfc61aa8e5ef",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-103",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c4e9fcc0e810c9655e2b8994015a7d53e60968a70303f573137fe771db1cffee",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-173_勾.png",
+      "label": "勾",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c4e9fcc0e810c9655e2b8994015a7d53e60968a70303f573137fe771db1cffee",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-104",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "d818c3b3eeab8e1f74d59f3bb106d6a784f82c3260d472e37befc5a934c54749",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-174_勾剔.png",
+      "label": "勾剔",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "d818c3b3eeab8e1f74d59f3bb106d6a784f82c3260d472e37befc5a934c54749",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-105",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e18095c5a199ca2e6366b602fdd0a48e507712a6e9fb3c5d88a7cc777a94a9d7",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-175_半轮.png",
+      "label": "半轮",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e18095c5a199ca2e6366b602fdd0a48e507712a6e9fb3c5d88a7cc777a94a9d7",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-106",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "7624e6a7b35fc551ab61a224eae2e1583d4c3dc9ec3f4dfb609666a5f1dab065",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-176_反锁.png",
+      "label": "反锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "7624e6a7b35fc551ab61a224eae2e1583d4c3dc9ec3f4dfb609666a5f1dab065",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-107",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "2c9d3055818db70cc4bcd6f37dcd0235d7b781500d3b1b8144feec61514860e4",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-177_叠涓.png",
+      "label": "叠涓",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "2c9d3055818db70cc4bcd6f37dcd0235d7b781500d3b1b8144feec61514860e4",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-108",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "69f74605125c5f51b7c9baf4764c16f3d1eb2298c8ff4facff3f6999a16367ad",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-178_大锁.png",
+      "label": "大锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "69f74605125c5f51b7c9baf4764c16f3d1eb2298c8ff4facff3f6999a16367ad",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-109",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "9bf9c443d2de8a30fb78756a441f93c385f3c76d44779ad37af2ebcfeafa915b",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-179_小锁.png",
+      "label": "小锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "9bf9c443d2de8a30fb78756a441f93c385f3c76d44779ad37af2ebcfeafa915b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-110",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "50ee366e8f8ab1e316eaa896ad823cfff21c91600d48c5f81a43cf276de37c9a",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-180_打.png",
+      "label": "打",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "50ee366e8f8ab1e316eaa896ad823cfff21c91600d48c5f81a43cf276de37c9a",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-111",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "0cd9c68f5f899765f7a4550dff7ed3e25bd7bfe65887c82467ad87437efd6a17",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-181_打摘.png",
+      "label": "打摘",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "0cd9c68f5f899765f7a4550dff7ed3e25bd7bfe65887c82467ad87437efd6a17",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-112",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "39fe37978e8f95dda19277638b3e77b079e6b6d38f5e9c46b12c0aea090e34ab",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-182_托.png",
+      "label": "托",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "39fe37978e8f95dda19277638b3e77b079e6b6d38f5e9c46b12c0aea090e34ab",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-113",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "dd1d03ec9174741ad45efd031bc80c7f05dd17d1c5a7327e0aa103c8a011df09",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-183_抹.png",
+      "label": "抹",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "dd1d03ec9174741ad45efd031bc80c7f05dd17d1c5a7327e0aa103c8a011df09",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-114",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b90ac71f8001224ebdbaeb064c87dc8ba2fbb9acb0e099b761c15f769d8edd5d",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-184_抹勾.png",
+      "label": "抹勾",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b90ac71f8001224ebdbaeb064c87dc8ba2fbb9acb0e099b761c15f769d8edd5d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-115",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "01e5026bc9c8fcf015def51bb9b6d56e3fadbf56d39866fb65e9a71ae8aa0ef0",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-185_抹挑.png",
+      "label": "抹挑",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "01e5026bc9c8fcf015def51bb9b6d56e3fadbf56d39866fb65e9a71ae8aa0ef0",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-116",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "bcd3687604321a8ec613f0a6ae810255bad48764d0c56194007491478455ae03",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-186_挑.png",
+      "label": "挑",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "bcd3687604321a8ec613f0a6ae810255bad48764d0c56194007491478455ae03",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-117",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e0c22195fccb92f3e28c12bf57a8be386473ade71615f09fb2a5d6167d5241e1",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-187_摘.png",
+      "label": "摘",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e0c22195fccb92f3e28c12bf57a8be386473ade71615f09fb2a5d6167d5241e1",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-118",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fd12f8307db4b6682ac2ddd3f03c74d195fa60ef3272b3422d68c59c8e851abb",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-188_擘.png",
+      "label": "擘",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fd12f8307db4b6682ac2ddd3f03c74d195fa60ef3272b3422d68c59c8e851abb",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-119",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "7f9c4654d034e25e7a4af717d77bf578d390e0a9559e20d5db1f5583a8b1adab",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-189_短锁.png",
+      "label": "短锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "7f9c4654d034e25e7a4af717d77bf578d390e0a9559e20d5db1f5583a8b1adab",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-120",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "2bdb709e48b6c0cf308b762de2abea142e34d047b399d27b137884817f4035a1",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-190_背锁.png",
+      "label": "背锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "2bdb709e48b6c0cf308b762de2abea142e34d047b399d27b137884817f4035a1",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-121",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "a1d25f7da9130b3d7ef164688c1dc7f83d587589d2626f75c0dff5750c79ff71",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-191_轮.png",
+      "label": "轮",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "a1d25f7da9130b3d7ef164688c1dc7f83d587589d2626f75c0dff5750c79ff71",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-122",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "ef45447037101dffbe7c4059565666ad261466773eb7137898223e3f4dc48387",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-192_锁.png",
+      "label": "锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "ef45447037101dffbe7c4059565666ad261466773eb7137898223e3f4dc48387",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_single_string_family",
+      "component_id": "COMP-123",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fba0cf1ec399204cfac4701da6a58b9b3d89a12036e8cea83c76b6760ccbbfa3",
+      "image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-193_长锁.png",
+      "label": "长锁",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fba0cf1ec399204cfac4701da6a58b9b3d89a12036e8cea83c76b6760ccbbfa3",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-201",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "62265668e22d64bfdfffd71deaccfbfbcf341e0289938ac73544535b53cfb0c1",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-145_三弹.png",
+      "label": "三弹",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "62265668e22d64bfdfffd71deaccfbfbcf341e0289938ac73544535b53cfb0c1",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-202",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "6589f19571f1d3bfde9d97b4844a4b829d4f1a12c246dd349db476dc4e7d6b21",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-146_伏.png",
+      "label": "伏",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "6589f19571f1d3bfde9d97b4844a4b829d4f1a12c246dd349db476dc4e7d6b21",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-203",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "d6626b4a8f9209ffdab2c08ca3604087057799992c9632218c0392865042975f",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-147_全扶.png",
+      "label": "全扶",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "d6626b4a8f9209ffdab2c08ca3604087057799992c9632218c0392865042975f",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-204",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e1cd062460aea7c59d57ba186cabc043b9fe4455fdd2d06a526e62c9fb6bd83d",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-148_剌.png",
+      "label": "剌",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e1cd062460aea7c59d57ba186cabc043b9fe4455fdd2d06a526e62c9fb6bd83d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-205",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "a56c31693f228e594dded8af541996921d3d6b9447345b2cde20c2ad070ad886",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-149_半扶.png",
+      "label": "半扶",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "a56c31693f228e594dded8af541996921d3d6b9447345b2cde20c2ad070ad886",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-206",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fbbded0ecdecaa48c946871952187b3a57bf89afea53cbf9514417c305d53296",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-150_双弹.png",
+      "label": "双弹",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fbbded0ecdecaa48c946871952187b3a57bf89afea53cbf9514417c305d53296",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-207",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "7c71d0904ad2a8876b91edb2e46d4ee5dfc0959c2736a4668a558b8912199770",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-151_反撮.png",
+      "label": "反撮",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "7c71d0904ad2a8876b91edb2e46d4ee5dfc0959c2736a4668a558b8912199770",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-208",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c63a5e2e02b151f1f82ec8ae60d164802ffadcb2b00a2f51bf63884af8681b2e",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-152_大撮.png",
+      "label": "大撮",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c63a5e2e02b151f1f82ec8ae60d164802ffadcb2b00a2f51bf63884af8681b2e",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-209",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "99cf400a43badc89750928f1dcc02fb41941370a36ad842fa6959923df72274f",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-153_如一.png",
+      "label": "如一",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "99cf400a43badc89750928f1dcc02fb41941370a36ad842fa6959923df72274f",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-210",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5898760cef10d804a116a06f9f557a966290e964044a7fb146c16c052af37721",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-154_弹.png",
+      "label": "弹",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5898760cef10d804a116a06f9f557a966290e964044a7fb146c16c052af37721",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-211",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "214e715e2676cefac2579c8af8ac1444a88caf11115f7e3fc3ede3314832ede7",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-155_掐撮三声.png",
+      "label": "掐撮三声",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "214e715e2676cefac2579c8af8ac1444a88caf11115f7e3fc3ede3314832ede7",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-212",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "6ffed26492e808bb314a8ade4b0f94aaa7cbe68621967952e2613470b0c03e82",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-156_掐泼剌三声.png",
+      "label": "掐泼剌三声",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "6ffed26492e808bb314a8ade4b0f94aaa7cbe68621967952e2613470b0c03e82",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-213",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "29c8d12771a535c586f2eb600bc3f0719e2ec8b61d9f41569e025c9c177e9c37",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-157_搂圆.png",
+      "label": "搂圆",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "29c8d12771a535c586f2eb600bc3f0719e2ec8b61d9f41569e025c9c177e9c37",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-214",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "dc4e3927e912f97c2de251802583462bc9f1fb87f666530a1ff3259cf8d0cc8b",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-158_摘泼剌.png",
+      "label": "摘泼剌",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "dc4e3927e912f97c2de251802583462bc9f1fb87f666530a1ff3259cf8d0cc8b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-215",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "19f386bd25498a5eb265a0f32bdfbb5d9a3b80ff5f460628368463d82c25f7b9",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-159_撮.png",
+      "label": "撮",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "19f386bd25498a5eb265a0f32bdfbb5d9a3b80ff5f460628368463d82c25f7b9",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-216",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "74f45109f4ca94fca8b83e16c6315fc6b80daf331941877ed35828806f6b12ef",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-160_泼.png",
+      "label": "泼",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "74f45109f4ca94fca8b83e16c6315fc6b80daf331941877ed35828806f6b12ef",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_two_string_family",
+      "component_id": "COMP-217",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1355629eb13a3ebf8d812010755b9df7a97d65c9e2c0f33c07b69e9f17c2e5b5",
+      "image_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-161_泼剌.png",
+      "label": "泼剌",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1355629eb13a3ebf8d812010755b9df7a97d65c9e2c0f33c07b69e9f17c2e5b5",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-301",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "540442b3dc7d1890417039c923e2c900ce3522016e995b26ba0fdcbc1c6eb65b",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-162_临.png",
+      "label": "临",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "540442b3dc7d1890417039c923e2c900ce3522016e995b26ba0fdcbc1c6eb65b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-302",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1abaec1222115f0bc0cefd17f5701becef1169275452d583c38874ae568a7fb0",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-163_历.png",
+      "label": "历",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1abaec1222115f0bc0cefd17f5701becef1169275452d583c38874ae568a7fb0",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-303",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "93422bab24bc879e146de13cc37b77719f31571e0c108cf3d947ca0f292ffdea",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-164_大间勾.png",
+      "label": "大间勾",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "93422bab24bc879e146de13cc37b77719f31571e0c108cf3d947ca0f292ffdea",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-304",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "ed7157e89e8661751cb818d26ddef102e08a76678acec3c049442e0e0eebff77",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-165_小间勾.png",
+      "label": "小间勾",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "ed7157e89e8661751cb818d26ddef102e08a76678acec3c049442e0e0eebff77",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-305",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c22837f94fe386229aa1b8924364c58ea163df903151f2e00b7ebc08ef256d0d",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-166_打圆.png",
+      "label": "打圆",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c22837f94fe386229aa1b8924364c58ea163df903151f2e00b7ebc08ef256d0d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-306",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "ce7238931cfec6b4be5abeef976c06d37b9c2a4fea3992f7f6c722c02be58c49",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-167_拂.png",
+      "label": "拂",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "ce7238931cfec6b4be5abeef976c06d37b9c2a4fea3992f7f6c722c02be58c49",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-307",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "ccf86546d9f2bff007f57dd419ced5bcfb7d38fd427abba72f0dfcc4eb10940d",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-168_滚.png",
+      "label": "滚",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "ccf86546d9f2bff007f57dd419ced5bcfb7d38fd427abba72f0dfcc4eb10940d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-308",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "f1d96d8d9099538de38d31d4643d6eacd06db7362544b086b8eeae0f9fd230dd",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-169_滚拂.png",
+      "label": "滚拂",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "f1d96d8d9099538de38d31d4643d6eacd06db7362544b086b8eeae0f9fd230dd",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "right_hand_multi_string_family",
+      "component_id": "COMP-309",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "8c7e96090483f82aa068c9659b6272639c748d669af16e38ecfc366c6ab7bb24",
+      "image_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-170_索铃.png",
+      "label": "索铃",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "8c7e96090483f82aa068c9659b6272639c748d669af16e38ecfc366c6ab7bb24",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-401",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fcb4f773f040080309ae1197fcc1ea100b4417299252c4c3ef89e5566c4bd7e8",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-194_双吟.png",
+      "label": "双吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fcb4f773f040080309ae1197fcc1ea100b4417299252c4c3ef89e5566c4bd7e8",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-402",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "25d2f81cef7927d876953d6442aeb46dab6596a1df9b88bb216468f9e899c0d2",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-195_双撞.png",
+      "label": "双撞",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "25d2f81cef7927d876953d6442aeb46dab6596a1df9b88bb216468f9e899c0d2",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-403",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "0d111c4b4908de07622f92daa0135acd96faff95f978678a02dbe695ea6be1df",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-196_双猱.png",
+      "label": "双猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "0d111c4b4908de07622f92daa0135acd96faff95f978678a02dbe695ea6be1df",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-404",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "24fe29dc8b550f2abc8b37755b0fcd3ef926f695463ed2c7a85c8b646a054124",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-197_反撞.png",
+      "label": "反撞",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "24fe29dc8b550f2abc8b37755b0fcd3ef926f695463ed2c7a85c8b646a054124",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-405",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c1827b9ad3747032789dfbd2efa6cf77da5276420a5e8f9c15e8e086b047f050",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-198_吟.png",
+      "label": "吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c1827b9ad3747032789dfbd2efa6cf77da5276420a5e8f9c15e8e086b047f050",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-406",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "cd66c27a86d0fb8d4ff9caa4235c4975de86490d13b57b39923eeede07dce100",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-199_大吟.png",
+      "label": "大吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "cd66c27a86d0fb8d4ff9caa4235c4975de86490d13b57b39923eeede07dce100",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-407",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "296e6619e7160e1085dfc18106f28590b980486cd205d65c4440950b9fff2d40",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-200_大撞.png",
+      "label": "大撞",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "296e6619e7160e1085dfc18106f28590b980486cd205d65c4440950b9fff2d40",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-408",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "154e3af4810770fc1c71655aedca7e7e9473b1c59d780376c19f5ad721923243",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-201_大猱.png",
+      "label": "大猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "154e3af4810770fc1c71655aedca7e7e9473b1c59d780376c19f5ad721923243",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-409",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "d1f7962063debe606f0aba2dc0b7b6d8c63bac0609bc62d195b8dabf6da740cd",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-202_定吟.png",
+      "label": "定吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "d1f7962063debe606f0aba2dc0b7b6d8c63bac0609bc62d195b8dabf6da740cd",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-410",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b2bce7094b61f79a2ac36aefa173c148f1a07952f070ddc686a2448692534633",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-203_定猱.png",
+      "label": "定猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b2bce7094b61f79a2ac36aefa173c148f1a07952f070ddc686a2448692534633",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-411",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b86d678a7ace1aa895c92d38de465226ada27c5166983bdfefed62b6ca1165d4",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-204_小撞.png",
+      "label": "小撞",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b86d678a7ace1aa895c92d38de465226ada27c5166983bdfefed62b6ca1165d4",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-412",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b968ca9e214fb77b53adc6cff2103f5098132ed64db3fdc4b7241f38eb82a068",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-205_少吟.png",
+      "label": "少吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b968ca9e214fb77b53adc6cff2103f5098132ed64db3fdc4b7241f38eb82a068",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-413",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "4cda24cb1c3e7a3cd0f6a292b65abda22dbc555fd82ae61522c9cfc6ac70f4cf",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-206_少猱.png",
+      "label": "少猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "4cda24cb1c3e7a3cd0f6a292b65abda22dbc555fd82ae61522c9cfc6ac70f4cf",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-414",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "15330f8c1db7c10fe685b8644c482cbc34f7595a9092a00e16a4032898bba602",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-207_急吟.png",
+      "label": "急吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "15330f8c1db7c10fe685b8644c482cbc34f7595a9092a00e16a4032898bba602",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-415",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "cada9c588d15fa63f1b8cfa5e58cb220465ad3cd288e5c7c5181969e296e3dd3",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-208_急猱.png",
+      "label": "急猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "cada9c588d15fa63f1b8cfa5e58cb220465ad3cd288e5c7c5181969e296e3dd3",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-416",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "34f9789aa7e299c2204886eeb06023957ad4d5f5a15ee11814c08bc255a527e4",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-209_撞.png",
+      "label": "撞",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "34f9789aa7e299c2204886eeb06023957ad4d5f5a15ee11814c08bc255a527e4",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-417",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b1ba10dd430ec5f5044c96e038f164adbeda6c3e4a7f9f85e585285ef683f842",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-210_撞猱.png",
+      "label": "撞猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b1ba10dd430ec5f5044c96e038f164adbeda6c3e4a7f9f85e585285ef683f842",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-418",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "0a4af267a550c8d126afe4ee8622f1c9ad31abf565ecd801f41e0787327baca6",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-211_注.png",
+      "label": "注",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "0a4af267a550c8d126afe4ee8622f1c9ad31abf565ecd801f41e0787327baca6",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-419",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b4a363c2f517df2f54aefcc6dd414d5b5a9a304c3563cd090225e3d929f322c3",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-212_注吟.png",
+      "label": "注吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b4a363c2f517df2f54aefcc6dd414d5b5a9a304c3563cd090225e3d929f322c3",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-420",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b67641b80e612a2fd84e95976cac12d72862f56be17d76485a0f4a52f523691d",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-213_注猱.png",
+      "label": "注猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b67641b80e612a2fd84e95976cac12d72862f56be17d76485a0f4a52f523691d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-421",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "f4c8352662e26d4363caa98c9715be351b56ab1e19449e3912ea6aea78cb95df",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-214_猱.png",
+      "label": "猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "f4c8352662e26d4363caa98c9715be351b56ab1e19449e3912ea6aea78cb95df",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-422",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "dc13e7d93d979d13d8095328208264989a2c335c0e7c9ca45d0161749d09255c",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-215_略吟.png",
+      "label": "略吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "dc13e7d93d979d13d8095328208264989a2c335c0e7c9ca45d0161749d09255c",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-423",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "d0a73117aa2fb6e15a7b7e2a66899af45d9bf94ac10bb019cb5a056c4be546d0",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-216_略猱.png",
+      "label": "略猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "d0a73117aa2fb6e15a7b7e2a66899af45d9bf94ac10bb019cb5a056c4be546d0",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-424",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1adca23807f14d0e2128975e112e80acf61ca17d6704ebb3eae2a9c5db6e6092",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-217_短吟.png",
+      "label": "短吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1adca23807f14d0e2128975e112e80acf61ca17d6704ebb3eae2a9c5db6e6092",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-425",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "81fdf4c2c5905a5956a0b0c9f2304fe01e8c83dc1891dfa5846a41c8b8283671",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-218_短猱.png",
+      "label": "短猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "81fdf4c2c5905a5956a0b0c9f2304fe01e8c83dc1891dfa5846a41c8b8283671",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-426",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "26d0a31b1cc1da59b92bfb60b5bc43843fb3eefdc9ee37f5bb592b7eec4e68a9",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-219_绰.png",
+      "label": "绰",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "26d0a31b1cc1da59b92bfb60b5bc43843fb3eefdc9ee37f5bb592b7eec4e68a9",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-427",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "f0a8272f7cb3066660e74a66a78e70aa05d51594e79a2260db038d5fb188702c",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-220_绰吟.png",
+      "label": "绰吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "f0a8272f7cb3066660e74a66a78e70aa05d51594e79a2260db038d5fb188702c",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-428",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "8ce8453a31637fabf49c377a6554ee8b82792499f58b553e34957cdec3b50771",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-221_绰猱.png",
+      "label": "绰猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "8ce8453a31637fabf49c377a6554ee8b82792499f58b553e34957cdec3b50771",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-429",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1bcd1a81b60d010ef4d3b25ca03da501aceedb6eebc1742c07329e4f0e9b4458",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-222_缓吟.png",
+      "label": "缓吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1bcd1a81b60d010ef4d3b25ca03da501aceedb6eebc1742c07329e4f0e9b4458",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-430",
+      "image_dimensions": {
+        "height": 162,
+        "width": 150
+      },
+      "image_hash": "b41381e1e86e62c757c820591ac233f6358e60ee25de4f11b7bf05af32a80c2f",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-223_缓急吟.png",
+      "label": "缓急吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b41381e1e86e62c757c820591ac233f6358e60ee25de4f11b7bf05af32a80c2f",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-431",
+      "image_dimensions": {
+        "height": 174,
+        "width": 144
+      },
+      "image_hash": "cfd723ab074d676edd4932fb1d16715a0de15bb902c3ab4c5363cb1c6dbc04f4",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-224_缓急猱.png",
+      "label": "缓急猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "cfd723ab074d676edd4932fb1d16715a0de15bb902c3ab4c5363cb1c6dbc04f4",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-432",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "cf55fc4a8a6c2cfc4292868c6a428640098883f8646059b7ee58b34bcf896e0c",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-225_缓猱.png",
+      "label": "缓猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "cf55fc4a8a6c2cfc4292868c6a428640098883f8646059b7ee58b34bcf896e0c",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-433",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "bfd3197abe50bc1cbdfbd9abbc5ca8f7502a9c1396b7c05514d3b4dba3761c23",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-226_落指吟.png",
+      "label": "落指吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "bfd3197abe50bc1cbdfbd9abbc5ca8f7502a9c1396b7c05514d3b4dba3761c23",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-434",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "63b39160825de25d68963ea656bb47474375d9b6430ab9084bc8c230d1e8b42d",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-227_落指猱.png",
+      "label": "落指猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "63b39160825de25d68963ea656bb47474375d9b6430ab9084bc8c230d1e8b42d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-435",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5ce31519375e53c5d4b5beb05666f9768eaf7cdd385a544512a010c4aaf05f37",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-228_迎猱.png",
+      "label": "迎猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5ce31519375e53c5d4b5beb05666f9768eaf7cdd385a544512a010c4aaf05f37",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-436",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "37be51a54df6c3c872ae8b1e7eef7779075160a39388bc672a281cf1bcabce2f",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-229_逗.png",
+      "label": "逗",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "37be51a54df6c3c872ae8b1e7eef7779075160a39388bc672a281cf1bcabce2f",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-437",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c44ff85517e1573c3f544140eb6c3e15d377955d6218857238caca808f56d9d2",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-230_长吟.png",
+      "label": "长吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c44ff85517e1573c3f544140eb6c3e15d377955d6218857238caca808f56d9d2",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_base_position_family",
+      "component_id": "COMP-438",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "8ba3858dd5925faa306c25172328569710dabbae44f9345759091549e83cf700",
+      "image_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-231_长猱.png",
+      "label": "长猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "8ba3858dd5925faa306c25172328569710dabbae44f9345759091549e83cf700",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-501",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5e81ba63d2f2689dc6c02665838c7ac2154916202edc1818f8ed7710c547c51c",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-232_上.png",
+      "label": "上",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5e81ba63d2f2689dc6c02665838c7ac2154916202edc1818f8ed7710c547c51c",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-502",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "a0291c15734457de5c7fd7e0c34b67c0152fb7ee4169fedc106fe1f6012674fb",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-233_下.png",
+      "label": "下",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "a0291c15734457de5c7fd7e0c34b67c0152fb7ee4169fedc106fe1f6012674fb",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-503",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "77bb5ea1a09e0976311400cae28845e4c6fa88e4bd7a86bebd22ba486c679bc7",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-234_使.png",
+      "label": "使",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "77bb5ea1a09e0976311400cae28845e4c6fa88e4bd7a86bebd22ba486c679bc7",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-504",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "9cebc3193339efad358563844c53c271d295ca5cc4860615929fb43394877d78",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-235_分开.png",
+      "label": "分开",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "9cebc3193339efad358563844c53c271d295ca5cc4860615929fb43394877d78",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-505",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "637f31216c0993aa5ae93071d0ad54b31a5bbe2f17ed6f79946a63cf1a627911",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-236_分开吟.png",
+      "label": "分开吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "637f31216c0993aa5ae93071d0ad54b31a5bbe2f17ed6f79946a63cf1a627911",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-506",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1b62e0b8a92268ff4943453207cbcf4e026d111c330894599eb06277a6ca7908",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-237_唤.png",
+      "label": "唤",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1b62e0b8a92268ff4943453207cbcf4e026d111c330894599eb06277a6ca7908",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-507",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "0481447e1484cc8e23894ecdc63d5ab8f360d0b808b6ff3538a002ffd4bdb06b",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-238_大往来.png",
+      "label": "大往来",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "0481447e1484cc8e23894ecdc63d5ab8f360d0b808b6ff3538a002ffd4bdb06b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-508",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "cd54cbeb833e47362fdac5bc238531a0facc1580a89cd09b18a1b4656692e8b9",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-239_对按.png",
+      "label": "对按",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "cd54cbeb833e47362fdac5bc238531a0facc1580a89cd09b18a1b4656692e8b9",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-509",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b60babdfa681ed8cb476e8641d8c751c5ac78b3481ec2eb457a25479cf8a189d",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-240_对起.png",
+      "label": "对起",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b60babdfa681ed8cb476e8641d8c751c5ac78b3481ec2eb457a25479cf8a189d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-510",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "53e7c7721c084aae5585bfa858f8a45334c19bb9337703dc18f0da7f777f3b67",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-241_小往来.png",
+      "label": "小往来",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "53e7c7721c084aae5585bfa858f8a45334c19bb9337703dc18f0da7f777f3b67",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-511",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "6adae49feb5ab4d959d480b0910c97092e05f3aba92cbf9f5686ee5a14bacfef",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-242_应合.png",
+      "label": "应合",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "6adae49feb5ab4d959d480b0910c97092e05f3aba92cbf9f5686ee5a14bacfef",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-512",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e366b52692f9929425935bf8662dfdd224799f72ef8522e3ff7aedec68104dd1",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-243_往来.png",
+      "label": "往来",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e366b52692f9929425935bf8662dfdd224799f72ef8522e3ff7aedec68104dd1",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-513",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5176a47ae8ce69ad5fa84d32b318ce01e70f61583b4c4d3bb9d1ba27aa9a6b33",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-244_往来吟.png",
+      "label": "往来吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5176a47ae8ce69ad5fa84d32b318ce01e70f61583b4c4d3bb9d1ba27aa9a6b33",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-514",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1f3f220d172e8768d04f74cff0ef74fa3da0059d48f28fa242bc053735f1e98b",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-245_拖.png",
+      "label": "拖",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1f3f220d172e8768d04f74cff0ef74fa3da0059d48f28fa242bc053735f1e98b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-515",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b0c5b2e9bd18f55e492ad343352802f0d2d1f4a82b13e0ff8676f2236f031520",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-246_掐起.png",
+      "label": "掐起",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b0c5b2e9bd18f55e492ad343352802f0d2d1f4a82b13e0ff8676f2236f031520",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-516",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "ca3603bcb397d9d68c8805eeef52fbef646ed191bb54f2224122187334d5e49d",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-247_掩.png",
+      "label": "掩",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "ca3603bcb397d9d68c8805eeef52fbef646ed191bb54f2224122187334d5e49d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-517",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "bbebbeb07df68b05aea8b31df33acb6d1242c74d0223384bb37e5848775e1a08",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-248_注下.png",
+      "label": "注下",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "bbebbeb07df68b05aea8b31df33acb6d1242c74d0223384bb37e5848775e1a08",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-518",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "4b74ae7c9d22dcf82c847321e4bf0e1503756a4c09244ef99d5fea3d2c16ae27",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-249_浒上.png",
+      "label": "浒上",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "4b74ae7c9d22dcf82c847321e4bf0e1503756a4c09244ef99d5fea3d2c16ae27",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-519",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "ac13ad7e88d2ccfc08cd6c510436c71a97c71ca214f424a92a54d17b5fc78452",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-250_淌下.png",
+      "label": "淌下",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "ac13ad7e88d2ccfc08cd6c510436c71a97c71ca214f424a92a54d17b5fc78452",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-520",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "de7b227ccff99631de7f5d4eca7766b77a5ecc80bba562524d29c46e26673b04",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-251_淌吟.png",
+      "label": "淌吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "de7b227ccff99631de7f5d4eca7766b77a5ecc80bba562524d29c46e26673b04",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-521",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "2ffcae07076ac58238aea228363fdc52bd69bcc75f09eb1d6c4efc38ed2d39d8",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-252_游吟.png",
+      "label": "游吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "2ffcae07076ac58238aea228363fdc52bd69bcc75f09eb1d6c4efc38ed2d39d8",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-522",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b58f254d85daa35fa931fa1af3e647d5ea02ffeb4c47cfba0f7fad26827a2df0",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-253_硬上.png",
+      "label": "硬上",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b58f254d85daa35fa931fa1af3e647d5ea02ffeb4c47cfba0f7fad26827a2df0",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-523",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e6d1745120d22a4357e3cbdb087e05dd7d7a7c279fe5ff210a5eebdb6eb50a50",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-254_绰上.png",
+      "label": "绰上",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e6d1745120d22a4357e3cbdb087e05dd7d7a7c279fe5ff210a5eebdb6eb50a50",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-524",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e74dc59a90651fd5be77e56db858ac25b7e943fff9bb3ab91816f89ee7f2a331",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-255_荡猱.png",
+      "label": "荡猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e74dc59a90651fd5be77e56db858ac25b7e943fff9bb3ab91816f89ee7f2a331",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-525",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "299d5ea7c94a3c28dc27a57a3742e7833743a3765e4e571df0e055878d4093dd",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-256_虚撞.png",
+      "label": "虚撞",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "299d5ea7c94a3c28dc27a57a3742e7833743a3765e4e571df0e055878d4093dd",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-526",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "4e9ac43badb93377b52e2f65ea37a3693aefc9e8d80f9306c0eb2caa864a4520",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-257_进吟.png",
+      "label": "进吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "4e9ac43badb93377b52e2f65ea37a3693aefc9e8d80f9306c0eb2caa864a4520",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-527",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "13eb862236e89ea3ae937833f15aca32603c6cdcf4d45c45979e7172c0fa8527",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-258_进复.png",
+      "label": "进复",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "13eb862236e89ea3ae937833f15aca32603c6cdcf4d45c45979e7172c0fa8527",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-528",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "01c529e28730c80142251c1a3b605cc4f26528e243320a64ae3110bd19528ee4",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-259_进猱.png",
+      "label": "进猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "01c529e28730c80142251c1a3b605cc4f26528e243320a64ae3110bd19528ee4",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-529",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "894b5b59e917835f63deece432668995faf639a108e0a0c7b58d434b47051346",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-260_退吟.png",
+      "label": "退吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "894b5b59e917835f63deece432668995faf639a108e0a0c7b58d434b47051346",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-530",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "417667e8ded8b5c67a99946de6f131c3a85093ff41e20bcd2d8ba4084dcc8b2f",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-261_退复.png",
+      "label": "退复",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "417667e8ded8b5c67a99946de6f131c3a85093ff41e20bcd2d8ba4084dcc8b2f",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-531",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1ce11c9a022008fa2850ee0e32cd68c11782482d62cbde577824fd3aae2d4bf8",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-262_退猱.png",
+      "label": "退猱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1ce11c9a022008fa2850ee0e32cd68c11782482d62cbde577824fd3aae2d4bf8",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-532",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "3e71326c63339d2aab0c4bf977d3d1d58ba16c524274c9595b1bde8ef9b61ea8",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-263_飞.png",
+      "label": "飞",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "3e71326c63339d2aab0c4bf977d3d1d58ba16c524274c9595b1bde8ef9b61ea8",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_interval_position_family",
+      "component_id": "COMP-533",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "35b94c9820ed04226cfa92840c558a28e23d6ac6a929b02748f7b9f6f32740e4",
+      "image_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-264_飞吟.png",
+      "label": "飞吟",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "35b94c9820ed04226cfa92840c558a28e23d6ac6a929b02748f7b9f6f32740e4",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-601",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5e6db21036cd402e46d9bea3a19bb5ff693990a44cda4ae02675db5efa238006",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-265_同声.png",
+      "label": "同声",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5e6db21036cd402e46d9bea3a19bb5ff693990a44cda4ae02675db5efa238006",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-602",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fdd211512677b5eccd56070a23be512ed411e0c0ea85c0b2433e0a85baf7d60e",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-266_同起.png",
+      "label": "同起",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fdd211512677b5eccd56070a23be512ed411e0c0ea85c0b2433e0a85baf7d60e",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-603",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1291111b58fac6541b00837eadc5424467e0d41d1088daaaef609732d944882d",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-267_带合.png",
+      "label": "带合",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1291111b58fac6541b00837eadc5424467e0d41d1088daaaef609732d944882d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-604",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "816944c325cc3d89c8edd439b7018c6693589963e7b5d3cf4a8241804969a40b",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-268_带起.png",
+      "label": "带起",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "816944c325cc3d89c8edd439b7018c6693589963e7b5d3cf4a8241804969a40b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-605",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b43190bfe4916f573b3a9b12da9a0af17d6f59fec62e037fe7587aa7d492a4d2",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-269_推出.png",
+      "label": "推出",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b43190bfe4916f573b3a9b12da9a0af17d6f59fec62e037fe7587aa7d492a4d2",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-606",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "dc8274e8cdeae05f36cfbf9123f1cc451ecde59316d65b56ab1a06b295a96d00",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-270_撇起.png",
+      "label": "撇起",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "dc8274e8cdeae05f36cfbf9123f1cc451ecde59316d65b56ab1a06b295a96d00",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-607",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5868808f5508f8688c8b2776145b642e4b0a704a89aea707feb6dcffb703cca5",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-271_放合.png",
+      "label": "放合",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5868808f5508f8688c8b2776145b642e4b0a704a89aea707feb6dcffb703cca5",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-608",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5223653d05af0eb82c09ec0c45d7d0461310acb78876321558089651f91cc871",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-272_爪合.png",
+      "label": "爪合",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5223653d05af0eb82c09ec0c45d7d0461310acb78876321558089651f91cc871",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "left_hand_open_string_family",
+      "component_id": "COMP-609",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "2a28adb8236e392c7ba212101dc8cc1ff02eb3848fef8abaddb7d316432adf82",
+      "image_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-273_爪起.png",
+      "label": "爪起",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "2a28adb8236e392c7ba212101dc8cc1ff02eb3848fef8abaddb7d316432adf82",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-701",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "97a5005beacf8bc786ac49c5220ad414b875c7c6daeabf9c332393a153752782",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-137_弦.png",
+      "label": "弦",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "97a5005beacf8bc786ac49c5220ad414b875c7c6daeabf9c332393a153752782",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-702",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5d7081786fae7408249cf74e2dd2cc7b2cfac97ac9417bb38b4d4d0c40884ef8",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-138_徽.png",
+      "label": "徽",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5d7081786fae7408249cf74e2dd2cc7b2cfac97ac9417bb38b4d4d0c40884ef8",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-703",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "a1463695bb7f8a995c2984e485830aad4ffa61af1732c45e5b3bd407d80c78c1",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-139_指.png",
+      "label": "指",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "a1463695bb7f8a995c2984e485830aad4ffa61af1732c45e5b3bd407d80c78c1",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-704",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "a1e62c02c374c1436b94f1fd6173865a3bb3056e48f602b7344ce7ef70be296b",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-140_按.png",
+      "label": "按",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "a1e62c02c374c1436b94f1fd6173865a3bb3056e48f602b7344ce7ef70be296b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-705",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b3744b8b17681086d4d483c5ed8ae257ece606a7453a7fe038ebe067a80107c3",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-141_散.png",
+      "label": "散",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b3744b8b17681086d4d483c5ed8ae257ece606a7453a7fe038ebe067a80107c3",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-706",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "aa40bf0d51fdf0bf7203d9c069d89472e331d4fea59fc9bf7f6bbf9c23959fe3",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-142_泛.png",
+      "label": "泛",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "aa40bf0d51fdf0bf7203d9c069d89472e331d4fea59fc9bf7f6bbf9c23959fe3",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-707",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "0faa6e1db489267fedfd03f919f23d62c14d88485df357f724222d4ec5a4ea15",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-143_泛止.png",
+      "label": "泛止",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "0faa6e1db489267fedfd03f919f23d62c14d88485df357f724222d4ec5a4ea15",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "sound_position_marker_family",
+      "component_id": "COMP-708",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "8f79631a0dbf6c0f306a6f5024aa6904612b7d0b0cee1ef8a5ec442f3a04babb",
+      "image_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-144_泛起.png",
+      "label": "泛起",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "8f79631a0dbf6c0f306a6f5024aa6904612b7d0b0cee1ef8a5ec442f3a04babb",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-801",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "789318c02a8d197d2d818099f3bc06896c4d3e689e319ece0871bbfc84e416bc",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-100_入乱.png",
+      "label": "入乱",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "789318c02a8d197d2d818099f3bc06896c4d3e689e319ece0871bbfc84e416bc",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-802",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5216075381431e8026a7a9fbd18c2e6e8a6e232cfab8ca4aed0bceb7c19ee008",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-101_入慢.png",
+      "label": "入慢",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5216075381431e8026a7a9fbd18c2e6e8a6e232cfab8ca4aed0bceb7c19ee008",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-803",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "7e05d77c60fb09632ddb320d9d5e7a34cf66e310587eed1bd75b10bc141377eb",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-102_入拍.png",
+      "label": "入拍",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "7e05d77c60fb09632ddb320d9d5e7a34cf66e310587eed1bd75b10bc141377eb",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-804",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "eaa5b879c59ab626a11501c387485b9d7cbb053a762a73b845922dcc2d78690b",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-103_大慢.png",
+      "label": "大慢",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "eaa5b879c59ab626a11501c387485b9d7cbb053a762a73b845922dcc2d78690b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-805",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "39ff255f83a06e1e262baede3755dd53e9c1035a82367a727604465457df3910",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-104_实.png",
+      "label": "实",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "39ff255f83a06e1e262baede3755dd53e9c1035a82367a727604465457df3910",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-806",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "4a19677be5e73e67b8daec6600532d86ca2786d5a8d750bb42db569fc7ff7cec",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-105_少息.png",
+      "label": "少息",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "4a19677be5e73e67b8daec6600532d86ca2786d5a8d750bb42db569fc7ff7cec",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-807",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c3ba68691768ab95f26ab908f7027eb6041576996ffb9b2d0f976d7d0bd2ec4d",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-106_急.png",
+      "label": "急",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c3ba68691768ab95f26ab908f7027eb6041576996ffb9b2d0f976d7d0bd2ec4d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-808",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fb2c23fe0245c2c7416438e3201e29936cab3cf3547f5638dbab943aa447f752",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-107_急作.png",
+      "label": "急作",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fb2c23fe0245c2c7416438e3201e29936cab3cf3547f5638dbab943aa447f752",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-809",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "f32c164436cc6a7ad9874becd92badb07150ee3f342647f23a2ac9bf7d5089c4",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-108_息.png",
+      "label": "息",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "f32c164436cc6a7ad9874becd92badb07150ee3f342647f23a2ac9bf7d5089c4",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-810",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "7e27f1a46c395a671fafc907a7bc5292857d795f0e6276c898cafec60a585624",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-109_慢.png",
+      "label": "慢",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "7e27f1a46c395a671fafc907a7bc5292857d795f0e6276c898cafec60a585624",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-811",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "1b3358ab9eca38a9c8e0774753584116bfca460336c6664571383df830d71d94",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-110_接.png",
+      "label": "接",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "1b3358ab9eca38a9c8e0774753584116bfca460336c6664571383df830d71d94",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-812",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5d5fb37d75bb756c85ab689adf1cf616492020860460786e09c66c49d292556d",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-111_渐慢.png",
+      "label": "渐慢",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5d5fb37d75bb756c85ab689adf1cf616492020860460786e09c66c49d292556d",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-813",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "0aaf05a7a53ebe900a4834b68548e9a54d6f41d508b8e7fd58e6bb5c08e23011",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-112_紧.png",
+      "label": "紧",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "0aaf05a7a53ebe900a4834b68548e9a54d6f41d508b8e7fd58e6bb5c08e23011",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-814",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "f17c9618d4d33a885f09ee32b0ba952496aafbda855d262a838078d7fdb33c11",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-113_缓.png",
+      "label": "缓",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "f17c9618d4d33a885f09ee32b0ba952496aafbda855d262a838078d7fdb33c11",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-815",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "85a8a621959e745daed86ef1749f6f2e26a6b8e48a636d96c965a0ae8f857794",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-114_缓作.png",
+      "label": "缓作",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "85a8a621959e745daed86ef1749f6f2e26a6b8e48a636d96c965a0ae8f857794",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-816",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e6ba6d57e5678d94a203ba087758c36ae8368910a3854d161638364f3f06e479",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-115_蓄.png",
+      "label": "蓄",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e6ba6d57e5678d94a203ba087758c36ae8368910a3854d161638364f3f06e479",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-817",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b44c132f10b8ac3af50e5ed991c0d2a3e3db9c7f3099f2bb87b959a53fc31035",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-116_虚.png",
+      "label": "虚",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b44c132f10b8ac3af50e5ed991c0d2a3e3db9c7f3099f2bb87b959a53fc31035",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-818",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "56f0da359591324cb306728c9cacb5b4a1f8da9271219bbd037e77d481847872",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-117_踢宕.png",
+      "label": "踢宕",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "56f0da359591324cb306728c9cacb5b4a1f8da9271219bbd037e77d481847872",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-819",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "9db21106960912ab67bfc840d04bed09ecc0fa4f772da5be2ac1a2f27554677a",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-118_轻.png",
+      "label": "轻",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "9db21106960912ab67bfc840d04bed09ecc0fa4f772da5be2ac1a2f27554677a",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-820",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fa8da0909bb6072e45203e229630260aafd0abcb0ff8721c82eec546bbf8ed93",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-119_连.png",
+      "label": "连",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fa8da0909bb6072e45203e229630260aafd0abcb0ff8721c82eec546bbf8ed93",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-821",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fa5ed7d8655c911a81cdbb3b3db694689fab298d6462e58b3b8893b80672d90e",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-120_重.png",
+      "label": "重",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fa5ed7d8655c911a81cdbb3b3db694689fab298d6462e58b3b8893b80672d90e",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "rhythm_marker_family",
+      "component_id": "COMP-822",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "55d99bf9d53b2f82d695fc3ab9a44591b79374d7bb5cd55c7d84ca279a45f3d1",
+      "image_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-121_顿.png",
+      "label": "顿",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "55d99bf9d53b2f82d695fc3ab9a44591b79374d7bb5cd55c7d84ca279a45f3d1",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-901",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "08c7fbbd8213f633fa277d0b5bbb02147fff912df51e783f515c7ef7ce7a1dde",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-122_不动.png",
+      "label": "不动",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "08c7fbbd8213f633fa277d0b5bbb02147fff912df51e783f515c7ef7ce7a1dde",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-902",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "e16beace7845cf0f28716a0b35e81784b25e011a7452839eddc5f2abf5daeaba",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-123_二作.png",
+      "label": "二作",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e16beace7845cf0f28716a0b35e81784b25e011a7452839eddc5f2abf5daeaba",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-903",
+      "image_dimensions": {
+        "height": 150,
+        "width": 220
+      },
+      "image_hash": "8f4e4a49b6af0eba56c11c40b235655884da1718dc266be499a3f4ddeb2cd755",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-124_从勾再作.png",
+      "label": "从勾再作",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "8f4e4a49b6af0eba56c11c40b235655884da1718dc266be499a3f4ddeb2cd755",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-904",
+      "image_dimensions": {
+        "height": 150,
+        "width": 220
+      },
+      "image_hash": "e4dabdb59e58dd40a686ad76922bf609d954b54d77594ca0f723f588672a142a",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-125_从头再作.png",
+      "label": "从头再作",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "e4dabdb59e58dd40a686ad76922bf609d954b54d77594ca0f723f588672a142a",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-905",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c352d0feed3627ce41c7b4f60c5e211c7bc03beff0fff5ce54a8e9702fb0b46a",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-126_再作.png",
+      "label": "再作",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c352d0feed3627ce41c7b4f60c5e211c7bc03beff0fff5ce54a8e9702fb0b46a",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-906",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "9aeefa601d1d74c4c796a7f7f44e8257664ef4407a170e4b306cf8b2bcd2bcce",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-127_句.png",
+      "label": "句",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "9aeefa601d1d74c4c796a7f7f44e8257664ef4407a170e4b306cf8b2bcd2bcce",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-907",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "c5c6ca396499df8c03ba7d817bd3694eeb3f2d15cdb9cd1826349b522f2a83e9",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-128_就.png",
+      "label": "就",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "c5c6ca396499df8c03ba7d817bd3694eeb3f2d15cdb9cd1826349b522f2a83e9",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-908",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "5bc363bad77b6b02e8482014742281040bc08288605ab3df1bcbf6b9eeb4eecc",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-129_换.png",
+      "label": "换",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "5bc363bad77b6b02e8482014742281040bc08288605ab3df1bcbf6b9eeb4eecc",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-909",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "8238de5691bea79b6e96f391b26ac2d23e2677266f26dd6a4e6d4eb13c2c4f29",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-130_操终.png",
+      "label": "操终",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "8238de5691bea79b6e96f391b26ac2d23e2677266f26dd6a4e6d4eb13c2c4f29",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-910",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "ab376873989a551682d84698a12af2e0d5b53116844fb74f9ab72ff32fe3b00b",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-131_曲终.png",
+      "label": "曲终",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "ab376873989a551682d84698a12af2e0d5b53116844fb74f9ab72ff32fe3b00b",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-911",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "b7af905828aa0836ab116ef81fe43c1144c1d407d6758a1893d8f37e17e8d0cb",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-132_末.png",
+      "label": "末",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "b7af905828aa0836ab116ef81fe43c1144c1d407d6758a1893d8f37e17e8d0cb",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-912",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "0a6fe3824ddfe46c93a034f0e3207753750093879c1e4bfd9e8525b5f20ea708",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-133_次.png",
+      "label": "次",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "0a6fe3824ddfe46c93a034f0e3207753750093879c1e4bfd9e8525b5f20ea708",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-913",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "374af508a453c233ef0f11f92aeb9880afc9789ba7c5cf15442021d5febb3bf0",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-134_段.png",
+      "label": "段",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "374af508a453c233ef0f11f92aeb9880afc9789ba7c5cf15442021d5febb3bf0",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-914",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "51a40a84bb0fd5998d27093f4dcb8e7ee0c2d084c1f69b9dcadbc403f7f829c8",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-135_至.png",
+      "label": "至",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "51a40a84bb0fd5998d27093f4dcb8e7ee0c2d084c1f69b9dcadbc403f7f829c8",
+        "source_registry": "components"
+      }
+    },
+    {
+      "category": "generic_score_marker_family",
+      "component_id": "COMP-915",
+      "image_dimensions": {
+        "height": 150,
+        "width": 144
+      },
+      "image_hash": "fe0e8dab97b3b58e47088f9a83f7aac14d9500a50f5a808c67c7b84d5097cb9d",
+      "image_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-136_调终.png",
+      "label": "调终",
+      "normalized_reference": {
+        "image_hash_matches_registry": true,
+        "matchable": true,
+        "reason": "REGISTRY_SOURCE_IMAGE_AVAILABLE",
+        "reference_type": "registry_component_image",
+        "registry_image_hash": "fe0e8dab97b3b58e47088f9a83f7aac14d9500a50f5a808c67c7b84d5097cb9d",
+        "source_registry": "components"
+      }
+    }
+  ],
+  "generated_at": "2026-07-08T01:11:51Z",
+  "image_reference_count": 174,
+  "index_id": "CG_LXY_P2B_component_visual_index.v0.1",
+  "missing_component_ids": [],
+  "readiness": {
+    "ready_for_LXY_phrase_reading": false,
+    "ready_for_P2C_visual_lattice_design": true,
+    "ready_for_training_model": false
+  },
+  "registry_path": "references/qxby_component_atlas/component_registry.reindexed.v0.2.json",
+  "source_image_missing_count": 0
+}

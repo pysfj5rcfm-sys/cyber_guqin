@@ -1,0 +1,2458 @@
+{
+  "accuracy_policy": "accuracy_not_computed_without_explicit_labels",
+  "ambiguous": 0,
+  "authority_flags": {
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_ML_TRAINING_DATA": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_SCORE_AUTHORITY": true
+  },
+  "crop_dir": "sources/qxby_component_atlas/images",
+  "eval_id": "CG_LXY_P2B_component_matcher_eval.v0.1",
+  "evaluation_status": "UNLABELED_EVAL",
+  "index_path": "references/qxby_component_atlas/component_visual_index.v0.1.json",
+  "labeled_crops": 0,
+  "matched": 174,
+  "rows": [
+    {
+      "crop_id": "COMP-100_入乱",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-100_入乱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-801",
+      "topk_component_ids": [
+        "COMP-801",
+        "COMP-105",
+        "COMP-422",
+        "COMP-522",
+        "COMP-401"
+      ]
+    },
+    {
+      "crop_id": "COMP-101_入慢",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-101_入慢.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-802",
+      "topk_component_ids": [
+        "COMP-802",
+        "COMP-403",
+        "COMP-816",
+        "COMP-803",
+        "COMP-105"
+      ]
+    },
+    {
+      "crop_id": "COMP-102_入拍",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-102_入拍.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-803",
+      "topk_component_ids": [
+        "COMP-803",
+        "COMP-802",
+        "COMP-703",
+        "COMP-608",
+        "COMP-206"
+      ]
+    },
+    {
+      "crop_id": "COMP-103_大慢",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-103_大慢.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-804",
+      "topk_component_ids": [
+        "COMP-804",
+        "COMP-108",
+        "COMP-408",
+        "COMP-407",
+        "COMP-802"
+      ]
+    },
+    {
+      "crop_id": "COMP-104_实",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-104_实.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-805",
+      "topk_component_ids": [
+        "COMP-805",
+        "COMP-410",
+        "COMP-811",
+        "COMP-520",
+        "COMP-306"
+      ]
+    },
+    {
+      "crop_id": "COMP-105_少息",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-105_少息.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-806",
+      "topk_component_ids": [
+        "COMP-806",
+        "COMP-811",
+        "COMP-522",
+        "COMP-822",
+        "COMP-422"
+      ]
+    },
+    {
+      "crop_id": "COMP-106_急",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-106_急.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-807",
+      "topk_component_ids": [
+        "COMP-807",
+        "COMP-809",
+        "COMP-811",
+        "COMP-522",
+        "COMP-404"
+      ]
+    },
+    {
+      "crop_id": "COMP-107_急作",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-107_急作.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-808",
+      "topk_component_ids": [
+        "COMP-808",
+        "COMP-414",
+        "COMP-432",
+        "COMP-417",
+        "COMP-429"
+      ]
+    },
+    {
+      "crop_id": "COMP-108_息",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-108_息.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-809",
+      "topk_component_ids": [
+        "COMP-809",
+        "COMP-807",
+        "COMP-906",
+        "COMP-523",
+        "COMP-119"
+      ]
+    },
+    {
+      "crop_id": "COMP-109_慢",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-109_慢.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-810",
+      "topk_component_ids": [
+        "COMP-810",
+        "COMP-811",
+        "COMP-201",
+        "COMP-107",
+        "COMP-522"
+      ]
+    },
+    {
+      "crop_id": "COMP-110_接",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-110_接.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-811",
+      "topk_component_ids": [
+        "COMP-811",
+        "COMP-509",
+        "COMP-107",
+        "COMP-806",
+        "COMP-301"
+      ]
+    },
+    {
+      "crop_id": "COMP-111_渐慢",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-111_渐慢.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-812",
+      "topk_component_ids": [
+        "COMP-812",
+        "COMP-423",
+        "COMP-703",
+        "COMP-417",
+        "COMP-523"
+      ]
+    },
+    {
+      "crop_id": "COMP-112_紧",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-112_紧.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-813",
+      "topk_component_ids": [
+        "COMP-813",
+        "COMP-425",
+        "COMP-424",
+        "COMP-901",
+        "COMP-915"
+      ]
+    },
+    {
+      "crop_id": "COMP-113_缓",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-113_缓.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-814",
+      "topk_component_ids": [
+        "COMP-814",
+        "COMP-522",
+        "COMP-404",
+        "COMP-523",
+        "COMP-912"
+      ]
+    },
+    {
+      "crop_id": "COMP-114_缓作",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-114_缓作.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-815",
+      "topk_component_ids": [
+        "COMP-815",
+        "COMP-429",
+        "COMP-808",
+        "COMP-522",
+        "COMP-432"
+      ]
+    },
+    {
+      "crop_id": "COMP-115_蓄",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-115_蓄.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-816",
+      "topk_component_ids": [
+        "COMP-816",
+        "COMP-701",
+        "COMP-209",
+        "COMP-416",
+        "COMP-307"
+      ]
+    },
+    {
+      "crop_id": "COMP-116_虚",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-116_虚.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-817",
+      "topk_component_ids": [
+        "COMP-817",
+        "COMP-701",
+        "COMP-820",
+        "COMP-525",
+        "COMP-821"
+      ]
+    },
+    {
+      "crop_id": "COMP-117_踢宕",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-117_踢宕.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-818",
+      "topk_component_ids": [
+        "COMP-818",
+        "COMP-530",
+        "COMP-417",
+        "COMP-808",
+        "COMP-432"
+      ]
+    },
+    {
+      "crop_id": "COMP-118_轻",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-118_轻.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-819",
+      "topk_component_ids": [
+        "COMP-819",
+        "COMP-523",
+        "COMP-522",
+        "COMP-436",
+        "COMP-703"
+      ]
+    },
+    {
+      "crop_id": "COMP-119_连",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-119_连.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-820",
+      "topk_component_ids": [
+        "COMP-820",
+        "COMP-523",
+        "COMP-414",
+        "COMP-808",
+        "COMP-417"
+      ]
+    },
+    {
+      "crop_id": "COMP-120_重",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-120_重.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-821",
+      "topk_component_ids": [
+        "COMP-821",
+        "COMP-701",
+        "COMP-816",
+        "COMP-308",
+        "COMP-306"
+      ]
+    },
+    {
+      "crop_id": "COMP-121_顿",
+      "crop_path": "sources/qxby_component_atlas/images/jiezou_puzi/COMP-121_顿.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-822",
+      "topk_component_ids": [
+        "COMP-822",
+        "COMP-811",
+        "COMP-519",
+        "COMP-417",
+        "COMP-701"
+      ]
+    },
+    {
+      "crop_id": "COMP-194_双吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-194_双吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-401",
+      "topk_component_ids": [
+        "COMP-401",
+        "COMP-801",
+        "COMP-422",
+        "COMP-412",
+        "COMP-902"
+      ]
+    },
+    {
+      "crop_id": "COMP-195_双撞",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-195_双撞.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-402",
+      "topk_component_ids": [
+        "COMP-402",
+        "COMP-403",
+        "COMP-802",
+        "COMP-217",
+        "COMP-436"
+      ]
+    },
+    {
+      "crop_id": "COMP-196_双猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-196_双猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-403",
+      "topk_component_ids": [
+        "COMP-403",
+        "COMP-802",
+        "COMP-402",
+        "COMP-504",
+        "COMP-217"
+      ]
+    },
+    {
+      "crop_id": "COMP-197_反撞",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-197_反撞.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-404",
+      "topk_component_ids": [
+        "COMP-404",
+        "COMP-522",
+        "COMP-432",
+        "COMP-807",
+        "COMP-708"
+      ]
+    },
+    {
+      "crop_id": "COMP-198_吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-198_吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-405",
+      "topk_component_ids": [
+        "COMP-405",
+        "COMP-703",
+        "COMP-417",
+        "COMP-436",
+        "COMP-204"
+      ]
+    },
+    {
+      "crop_id": "COMP-199_大吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-199_大吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-406",
+      "topk_component_ids": [
+        "COMP-406",
+        "COMP-408",
+        "COMP-434",
+        "COMP-306",
+        "COMP-804"
+      ]
+    },
+    {
+      "crop_id": "COMP-200_大撞",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-200_大撞.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-407",
+      "topk_component_ids": [
+        "COMP-407",
+        "COMP-408",
+        "COMP-804",
+        "COMP-108",
+        "COMP-910"
+      ]
+    },
+    {
+      "crop_id": "COMP-201_大猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-201_大猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-408",
+      "topk_component_ids": [
+        "COMP-408",
+        "COMP-406",
+        "COMP-804",
+        "COMP-407",
+        "COMP-108"
+      ]
+    },
+    {
+      "crop_id": "COMP-202_定吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-202_定吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-409",
+      "topk_component_ids": [
+        "COMP-409",
+        "COMP-410",
+        "COMP-806",
+        "COMP-204",
+        "COMP-805"
+      ]
+    },
+    {
+      "crop_id": "COMP-203_定猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-203_定猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-410",
+      "topk_component_ids": [
+        "COMP-410",
+        "COMP-409",
+        "COMP-805",
+        "COMP-434",
+        "COMP-413"
+      ]
+    },
+    {
+      "crop_id": "COMP-204_小撞",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-204_小撞.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-411",
+      "topk_component_ids": [
+        "COMP-411",
+        "COMP-413",
+        "COMP-811",
+        "COMP-708",
+        "COMP-423"
+      ]
+    },
+    {
+      "crop_id": "COMP-205_少吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-205_少吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-412",
+      "topk_component_ids": [
+        "COMP-412",
+        "COMP-422",
+        "COMP-413",
+        "COMP-811",
+        "COMP-401"
+      ]
+    },
+    {
+      "crop_id": "COMP-206_少猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-206_少猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-413",
+      "topk_component_ids": [
+        "COMP-413",
+        "COMP-423",
+        "COMP-417",
+        "COMP-432",
+        "COMP-422"
+      ]
+    },
+    {
+      "crop_id": "COMP-207_急吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-207_急吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-414",
+      "topk_component_ids": [
+        "COMP-414",
+        "COMP-429",
+        "COMP-808",
+        "COMP-820",
+        "COMP-505"
+      ]
+    },
+    {
+      "crop_id": "COMP-208_急猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-208_急猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-415",
+      "topk_component_ids": [
+        "COMP-415",
+        "COMP-808",
+        "COMP-414",
+        "COMP-432",
+        "COMP-429"
+      ]
+    },
+    {
+      "crop_id": "COMP-209_撞",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-209_撞.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-416",
+      "topk_component_ids": [
+        "COMP-416",
+        "COMP-816",
+        "COMP-701",
+        "COMP-209",
+        "COMP-907"
+      ]
+    },
+    {
+      "crop_id": "COMP-210_撞猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-210_撞猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-417",
+      "topk_component_ids": [
+        "COMP-417",
+        "COMP-423",
+        "COMP-413",
+        "COMP-703",
+        "COMP-808"
+      ]
+    },
+    {
+      "crop_id": "COMP-211_注",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-211_注.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-418",
+      "topk_component_ids": [
+        "COMP-418",
+        "COMP-818",
+        "COMP-808",
+        "COMP-415",
+        "COMP-414"
+      ]
+    },
+    {
+      "crop_id": "COMP-212_注吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-212_注吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-419",
+      "topk_component_ids": [
+        "COMP-419",
+        "COMP-807",
+        "COMP-215",
+        "COMP-820",
+        "COMP-432"
+      ]
+    },
+    {
+      "crop_id": "COMP-213_注猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-213_注猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-420",
+      "topk_component_ids": [
+        "COMP-420",
+        "COMP-517",
+        "COMP-811",
+        "COMP-104",
+        "COMP-914"
+      ]
+    },
+    {
+      "crop_id": "COMP-214_猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-214_猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-421",
+      "topk_component_ids": [
+        "COMP-421",
+        "COMP-423",
+        "COMP-417",
+        "COMP-438",
+        "COMP-413"
+      ]
+    },
+    {
+      "crop_id": "COMP-215_略吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-215_略吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-422",
+      "topk_component_ids": [
+        "COMP-422",
+        "COMP-522",
+        "COMP-432",
+        "COMP-910",
+        "COMP-413"
+      ]
+    },
+    {
+      "crop_id": "COMP-216_略猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-216_略猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-423",
+      "topk_component_ids": [
+        "COMP-423",
+        "COMP-417",
+        "COMP-413",
+        "COMP-432",
+        "COMP-421"
+      ]
+    },
+    {
+      "crop_id": "COMP-217_短吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-217_短吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-424",
+      "topk_component_ids": [
+        "COMP-424",
+        "COMP-813",
+        "COMP-915",
+        "COMP-517",
+        "COMP-705"
+      ]
+    },
+    {
+      "crop_id": "COMP-218_短猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-218_短猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-425",
+      "topk_component_ids": [
+        "COMP-425",
+        "COMP-813",
+        "COMP-601",
+        "COMP-915",
+        "COMP-914"
+      ]
+    },
+    {
+      "crop_id": "COMP-219_绰",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-219_绰.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-426",
+      "topk_component_ids": [
+        "COMP-426",
+        "COMP-120",
+        "COMP-912",
+        "COMP-813",
+        "COMP-436"
+      ]
+    },
+    {
+      "crop_id": "COMP-220_绰吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-220_绰吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-427",
+      "topk_component_ids": [
+        "COMP-427",
+        "COMP-808",
+        "COMP-428",
+        "COMP-306",
+        "COMP-417"
+      ]
+    },
+    {
+      "crop_id": "COMP-221_绰猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-221_绰猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-428",
+      "topk_component_ids": [
+        "COMP-428",
+        "COMP-423",
+        "COMP-427",
+        "COMP-417",
+        "COMP-421"
+      ]
+    },
+    {
+      "crop_id": "COMP-222_缓吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-222_缓吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-429",
+      "topk_component_ids": [
+        "COMP-429",
+        "COMP-432",
+        "COMP-414",
+        "COMP-430",
+        "COMP-808"
+      ]
+    },
+    {
+      "crop_id": "COMP-223_缓急吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-223_缓急吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-430",
+      "topk_component_ids": [
+        "COMP-430",
+        "COMP-431",
+        "COMP-429",
+        "COMP-432",
+        "COMP-423"
+      ]
+    },
+    {
+      "crop_id": "COMP-224_缓急猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-224_缓急猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-431",
+      "topk_component_ids": [
+        "COMP-431",
+        "COMP-430",
+        "COMP-432",
+        "COMP-531",
+        "COMP-429"
+      ]
+    },
+    {
+      "crop_id": "COMP-225_缓猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-225_缓猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-432",
+      "topk_component_ids": [
+        "COMP-432",
+        "COMP-429",
+        "COMP-423",
+        "COMP-808",
+        "COMP-413"
+      ]
+    },
+    {
+      "crop_id": "COMP-226_落指吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-226_落指吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-433",
+      "topk_component_ids": [
+        "COMP-433",
+        "COMP-434",
+        "COMP-808",
+        "COMP-432",
+        "COMP-429"
+      ]
+    },
+    {
+      "crop_id": "COMP-227_落指猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-227_落指猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-434",
+      "topk_component_ids": [
+        "COMP-434",
+        "COMP-433",
+        "COMP-406",
+        "COMP-808",
+        "COMP-422"
+      ]
+    },
+    {
+      "crop_id": "COMP-228_迎猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-228_迎猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-435",
+      "topk_component_ids": [
+        "COMP-435",
+        "COMP-423",
+        "COMP-417",
+        "COMP-808",
+        "COMP-910"
+      ]
+    },
+    {
+      "crop_id": "COMP-229_逗",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-229_逗.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-436",
+      "topk_component_ids": [
+        "COMP-436",
+        "COMP-703",
+        "COMP-417",
+        "COMP-523",
+        "COMP-707"
+      ]
+    },
+    {
+      "crop_id": "COMP-230_长吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-230_长吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-437",
+      "topk_component_ids": [
+        "COMP-437",
+        "COMP-438",
+        "COMP-509",
+        "COMP-820",
+        "COMP-413"
+      ]
+    },
+    {
+      "crop_id": "COMP-231_长猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_native_position/COMP-231_长猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-438",
+      "topk_component_ids": [
+        "COMP-438",
+        "COMP-437",
+        "COMP-432",
+        "COMP-417",
+        "COMP-423"
+      ]
+    },
+    {
+      "crop_id": "COMP-265_同声",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-265_同声.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-601",
+      "topk_component_ids": [
+        "COMP-601",
+        "COMP-602",
+        "COMP-425",
+        "COMP-516",
+        "COMP-915"
+      ]
+    },
+    {
+      "crop_id": "COMP-266_同起",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-266_同起.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-602",
+      "topk_component_ids": [
+        "COMP-602",
+        "COMP-601",
+        "COMP-425",
+        "COMP-201",
+        "COMP-516"
+      ]
+    },
+    {
+      "crop_id": "COMP-267_带合",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-267_带合.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-603",
+      "topk_component_ids": [
+        "COMP-603",
+        "COMP-417",
+        "COMP-911",
+        "COMP-808",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-268_带起",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-268_带起.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-604",
+      "topk_component_ids": [
+        "COMP-604",
+        "COMP-910",
+        "COMP-812",
+        "COMP-412",
+        "COMP-522"
+      ]
+    },
+    {
+      "crop_id": "COMP-269_推出",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-269_推出.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-605",
+      "topk_component_ids": [
+        "COMP-605",
+        "COMP-915",
+        "COMP-202",
+        "COMP-607",
+        "COMP-901"
+      ]
+    },
+    {
+      "crop_id": "COMP-270_撇起",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-270_撇起.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-606",
+      "topk_component_ids": [
+        "COMP-606",
+        "COMP-820",
+        "COMP-811",
+        "COMP-909",
+        "COMP-523"
+      ]
+    },
+    {
+      "crop_id": "COMP-271_放合",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-271_放合.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-607",
+      "topk_component_ids": [
+        "COMP-607",
+        "COMP-206",
+        "COMP-307",
+        "COMP-816",
+        "COMP-508"
+      ]
+    },
+    {
+      "crop_id": "COMP-272_爪合",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-272_爪合.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-608",
+      "topk_component_ids": [
+        "COMP-608",
+        "COMP-803",
+        "COMP-603",
+        "COMP-404",
+        "COMP-703"
+      ]
+    },
+    {
+      "crop_id": "COMP-273_爪起",
+      "crop_path": "sources/qxby_component_atlas/images/lh_open_string/COMP-273_爪起.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-609",
+      "topk_component_ids": [
+        "COMP-609",
+        "COMP-404",
+        "COMP-606",
+        "COMP-406",
+        "COMP-708"
+      ]
+    },
+    {
+      "crop_id": "COMP-232_上",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-232_上.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-501",
+      "topk_component_ids": [
+        "COMP-501",
+        "COMP-702",
+        "COMP-914",
+        "COMP-503",
+        "COMP-907"
+      ]
+    },
+    {
+      "crop_id": "COMP-233_下",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-233_下.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-502",
+      "topk_component_ids": [
+        "COMP-502",
+        "COMP-110",
+        "COMP-914",
+        "COMP-911",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-234_使",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-234_使.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-503",
+      "topk_component_ids": [
+        "COMP-503",
+        "COMP-907",
+        "COMP-501",
+        "COMP-908",
+        "COMP-913"
+      ]
+    },
+    {
+      "crop_id": "COMP-235_分开",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-235_分开.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-504",
+      "topk_component_ids": [
+        "COMP-504",
+        "COMP-403",
+        "COMP-802",
+        "COMP-816",
+        "COMP-217"
+      ]
+    },
+    {
+      "crop_id": "COMP-236_分开吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-236_分开吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-505",
+      "topk_component_ids": [
+        "COMP-505",
+        "COMP-414",
+        "COMP-429",
+        "COMP-808",
+        "COMP-433"
+      ]
+    },
+    {
+      "crop_id": "COMP-237_唤",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-237_唤.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-506",
+      "topk_component_ids": [
+        "COMP-506",
+        "COMP-906",
+        "COMP-914",
+        "COMP-807",
+        "COMP-802"
+      ]
+    },
+    {
+      "crop_id": "COMP-238_大往来",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-238_大往来.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-507",
+      "topk_component_ids": [
+        "COMP-507",
+        "COMP-510",
+        "COMP-417",
+        "COMP-436",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-239_对按",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-239_对按.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-508",
+      "topk_component_ids": [
+        "COMP-508",
+        "COMP-705",
+        "COMP-813",
+        "COMP-901",
+        "COMP-203"
+      ]
+    },
+    {
+      "crop_id": "COMP-240_对起",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-240_对起.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-509",
+      "topk_component_ids": [
+        "COMP-509",
+        "COMP-811",
+        "COMP-708",
+        "COMP-515",
+        "COMP-522"
+      ]
+    },
+    {
+      "crop_id": "COMP-241_小往来",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-241_小往来.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-510",
+      "topk_component_ids": [
+        "COMP-510",
+        "COMP-507",
+        "COMP-413",
+        "COMP-811",
+        "COMP-417"
+      ]
+    },
+    {
+      "crop_id": "COMP-242_应合",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-242_应合.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-511",
+      "topk_component_ids": [
+        "COMP-511",
+        "COMP-804",
+        "COMP-811",
+        "COMP-406",
+        "COMP-408"
+      ]
+    },
+    {
+      "crop_id": "COMP-243_往来",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-243_往来.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-512",
+      "topk_component_ids": [
+        "COMP-512",
+        "COMP-105",
+        "COMP-108",
+        "COMP-306",
+        "COMP-821"
+      ]
+    },
+    {
+      "crop_id": "COMP-244_往来吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-244_往来吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-513",
+      "topk_component_ids": [
+        "COMP-513",
+        "COMP-703",
+        "COMP-526",
+        "COMP-505",
+        "COMP-306"
+      ]
+    },
+    {
+      "crop_id": "COMP-245_拖",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-245_拖.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-514",
+      "topk_component_ids": [
+        "COMP-514",
+        "COMP-708",
+        "COMP-408",
+        "COMP-803",
+        "COMP-205"
+      ]
+    },
+    {
+      "crop_id": "COMP-246_掐起",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-246_掐起.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-515",
+      "topk_component_ids": [
+        "COMP-515",
+        "COMP-708",
+        "COMP-509",
+        "COMP-523",
+        "COMP-417"
+      ]
+    },
+    {
+      "crop_id": "COMP-247_掩",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-247_掩.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-516",
+      "topk_component_ids": [
+        "COMP-516",
+        "COMP-914",
+        "COMP-915",
+        "COMP-901",
+        "COMP-813"
+      ]
+    },
+    {
+      "crop_id": "COMP-248_注下",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-248_注下.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-517",
+      "topk_component_ids": [
+        "COMP-517",
+        "COMP-420",
+        "COMP-424",
+        "COMP-813",
+        "COMP-516"
+      ]
+    },
+    {
+      "crop_id": "COMP-249_浒上",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-249_浒上.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-518",
+      "topk_component_ids": [
+        "COMP-518",
+        "COMP-523",
+        "COMP-807",
+        "COMP-811",
+        "COMP-414"
+      ]
+    },
+    {
+      "crop_id": "COMP-250_淌下",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-250_淌下.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-519",
+      "topk_component_ids": [
+        "COMP-519",
+        "COMP-822",
+        "COMP-520",
+        "COMP-417",
+        "COMP-306"
+      ]
+    },
+    {
+      "crop_id": "COMP-251_淌吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-251_淌吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-520",
+      "topk_component_ids": [
+        "COMP-520",
+        "COMP-519",
+        "COMP-526",
+        "COMP-822",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-252_游吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-252_游吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-521",
+      "topk_component_ids": [
+        "COMP-521",
+        "COMP-110",
+        "COMP-911",
+        "COMP-907",
+        "COMP-816"
+      ]
+    },
+    {
+      "crop_id": "COMP-253_硬上",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-253_硬上.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-522",
+      "topk_component_ids": [
+        "COMP-522",
+        "COMP-422",
+        "COMP-404",
+        "COMP-432",
+        "COMP-523"
+      ]
+    },
+    {
+      "crop_id": "COMP-254_绰上",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-254_绰上.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-523",
+      "topk_component_ids": [
+        "COMP-523",
+        "COMP-820",
+        "COMP-518",
+        "COMP-522",
+        "COMP-417"
+      ]
+    },
+    {
+      "crop_id": "COMP-255_荡猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-255_荡猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-524",
+      "topk_component_ids": [
+        "COMP-524",
+        "COMP-527",
+        "COMP-522",
+        "COMP-432",
+        "COMP-429"
+      ]
+    },
+    {
+      "crop_id": "COMP-256_虚撞",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-256_虚撞.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-525",
+      "topk_component_ids": [
+        "COMP-525",
+        "COMP-820",
+        "COMP-817",
+        "COMP-523",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-257_进吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-257_进吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-526",
+      "topk_component_ids": [
+        "COMP-526",
+        "COMP-528",
+        "COMP-808",
+        "COMP-210",
+        "COMP-905"
+      ]
+    },
+    {
+      "crop_id": "COMP-258_进复",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-258_进复.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-527",
+      "topk_component_ids": [
+        "COMP-527",
+        "COMP-530",
+        "COMP-526",
+        "COMP-808",
+        "COMP-703"
+      ]
+    },
+    {
+      "crop_id": "COMP-259_进猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-259_进猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-528",
+      "topk_component_ids": [
+        "COMP-528",
+        "COMP-531",
+        "COMP-526",
+        "COMP-808",
+        "COMP-432"
+      ]
+    },
+    {
+      "crop_id": "COMP-260_退吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-260_退吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-529",
+      "topk_component_ids": [
+        "COMP-529",
+        "COMP-429",
+        "COMP-531",
+        "COMP-808",
+        "COMP-522"
+      ]
+    },
+    {
+      "crop_id": "COMP-261_退复",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-261_退复.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-530",
+      "topk_component_ids": [
+        "COMP-530",
+        "COMP-818",
+        "COMP-432",
+        "COMP-531",
+        "COMP-808"
+      ]
+    },
+    {
+      "crop_id": "COMP-262_退猱",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-262_退猱.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-531",
+      "topk_component_ids": [
+        "COMP-531",
+        "COMP-528",
+        "COMP-432",
+        "COMP-808",
+        "COMP-530"
+      ]
+    },
+    {
+      "crop_id": "COMP-263_飞",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-263_飞.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-532",
+      "topk_component_ids": [
+        "COMP-532",
+        "COMP-701",
+        "COMP-209",
+        "COMP-112",
+        "COMP-908"
+      ]
+    },
+    {
+      "crop_id": "COMP-264_飞吟",
+      "crop_path": "sources/qxby_component_atlas/images/lh_shifted_position/COMP-264_飞吟.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-533",
+      "topk_component_ids": [
+        "COMP-533",
+        "COMP-914",
+        "COMP-901",
+        "COMP-206",
+        "COMP-308"
+      ]
+    },
+    {
+      "crop_id": "COMP-162_临",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-162_临.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-301",
+      "topk_component_ids": [
+        "COMP-301",
+        "COMP-811",
+        "COMP-810",
+        "COMP-201",
+        "COMP-113"
+      ]
+    },
+    {
+      "crop_id": "COMP-163_历",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-163_历.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-302",
+      "topk_component_ids": [
+        "COMP-302",
+        "COMP-118",
+        "COMP-426",
+        "COMP-907",
+        "COMP-914"
+      ]
+    },
+    {
+      "crop_id": "COMP-164_大间勾",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-164_大间勾.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-303",
+      "topk_component_ids": [
+        "COMP-303",
+        "COMP-804",
+        "COMP-407",
+        "COMP-306",
+        "COMP-406"
+      ]
+    },
+    {
+      "crop_id": "COMP-165_小间勾",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-165_小间勾.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-304",
+      "topk_component_ids": [
+        "COMP-304",
+        "COMP-213",
+        "COMP-303",
+        "COMP-301",
+        "COMP-822"
+      ]
+    },
+    {
+      "crop_id": "COMP-166_打圆",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-166_打圆.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-305",
+      "topk_component_ids": [
+        "COMP-305",
+        "COMP-213",
+        "COMP-822",
+        "COMP-506",
+        "COMP-201"
+      ]
+    },
+    {
+      "crop_id": "COMP-167_拂",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-167_拂.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-306",
+      "topk_component_ids": [
+        "COMP-306",
+        "COMP-215",
+        "COMP-417",
+        "COMP-811",
+        "COMP-204"
+      ]
+    },
+    {
+      "crop_id": "COMP-168_滚",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-168_滚.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-307",
+      "topk_component_ids": [
+        "COMP-307",
+        "COMP-701",
+        "COMP-816",
+        "COMP-607",
+        "COMP-801"
+      ]
+    },
+    {
+      "crop_id": "COMP-169_滚拂",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-169_滚拂.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-308",
+      "topk_component_ids": [
+        "COMP-308",
+        "COMP-811",
+        "COMP-306",
+        "COMP-821",
+        "COMP-204"
+      ]
+    },
+    {
+      "crop_id": "COMP-170_索铃",
+      "crop_path": "sources/qxby_component_atlas/images/rh_multi_string_sequence/COMP-170_索铃.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-309",
+      "topk_component_ids": [
+        "COMP-309",
+        "COMP-105",
+        "COMP-802",
+        "COMP-811",
+        "COMP-214"
+      ]
+    },
+    {
+      "crop_id": "COMP-171_倒锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-171_倒锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-101",
+      "topk_component_ids": [
+        "COMP-101",
+        "COMP-120",
+        "COMP-436",
+        "COMP-213",
+        "COMP-522"
+      ]
+    },
+    {
+      "crop_id": "COMP-172_剔",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-172_剔.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-102",
+      "topk_component_ids": [
+        "COMP-102",
+        "COMP-117",
+        "COMP-215",
+        "COMP-810",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-173_勾",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-173_勾.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-103",
+      "topk_component_ids": [
+        "COMP-103",
+        "COMP-809",
+        "COMP-906",
+        "COMP-523",
+        "COMP-703"
+      ]
+    },
+    {
+      "crop_id": "COMP-174_勾剔",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-174_勾剔.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-104",
+      "topk_component_ids": [
+        "COMP-104",
+        "COMP-522",
+        "COMP-806",
+        "COMP-111",
+        "COMP-213"
+      ]
+    },
+    {
+      "crop_id": "COMP-175_半轮",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-175_半轮.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-105",
+      "topk_component_ids": [
+        "COMP-105",
+        "COMP-113",
+        "COMP-802",
+        "COMP-801",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-176_反锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-176_反锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-106",
+      "topk_component_ids": [
+        "COMP-106",
+        "COMP-404",
+        "COMP-522",
+        "COMP-105",
+        "COMP-810"
+      ]
+    },
+    {
+      "crop_id": "COMP-177_叠涓",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-177_叠涓.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-107",
+      "topk_component_ids": [
+        "COMP-107",
+        "COMP-811",
+        "COMP-810",
+        "COMP-404",
+        "COMP-909"
+      ]
+    },
+    {
+      "crop_id": "COMP-178_大锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-178_大锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-108",
+      "topk_component_ids": [
+        "COMP-108",
+        "COMP-804",
+        "COMP-408",
+        "COMP-120",
+        "COMP-406"
+      ]
+    },
+    {
+      "crop_id": "COMP-179_小锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-179_小锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-109",
+      "topk_component_ids": [
+        "COMP-109",
+        "COMP-822",
+        "COMP-510",
+        "COMP-213",
+        "COMP-304"
+      ]
+    },
+    {
+      "crop_id": "COMP-180_打",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-180_打.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-110",
+      "topk_component_ids": [
+        "COMP-110",
+        "COMP-502",
+        "COMP-911",
+        "COMP-914",
+        "COMP-521"
+      ]
+    },
+    {
+      "crop_id": "COMP-181_打摘",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-181_打摘.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-111",
+      "topk_component_ids": [
+        "COMP-111",
+        "COMP-104",
+        "COMP-905",
+        "COMP-118",
+        "COMP-906"
+      ]
+    },
+    {
+      "crop_id": "COMP-182_托",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-182_托.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-112",
+      "topk_component_ids": [
+        "COMP-112",
+        "COMP-907",
+        "COMP-503",
+        "COMP-514",
+        "COMP-701"
+      ]
+    },
+    {
+      "crop_id": "COMP-183_抹",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-183_抹.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-113",
+      "topk_component_ids": [
+        "COMP-113",
+        "COMP-105",
+        "COMP-301",
+        "COMP-422",
+        "COMP-801"
+      ]
+    },
+    {
+      "crop_id": "COMP-184_抹勾",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-184_抹勾.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-114",
+      "topk_component_ids": [
+        "COMP-114",
+        "COMP-208",
+        "COMP-406",
+        "COMP-308",
+        "COMP-806"
+      ]
+    },
+    {
+      "crop_id": "COMP-185_抹挑",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-185_抹挑.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-115",
+      "topk_component_ids": [
+        "COMP-115",
+        "COMP-509",
+        "COMP-810",
+        "COMP-811",
+        "COMP-113"
+      ]
+    },
+    {
+      "crop_id": "COMP-186_挑",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-186_挑.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-116",
+      "topk_component_ids": [
+        "COMP-116",
+        "COMP-702",
+        "COMP-516",
+        "COMP-813",
+        "COMP-904"
+      ]
+    },
+    {
+      "crop_id": "COMP-187_摘",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-187_摘.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-117",
+      "topk_component_ids": [
+        "COMP-117",
+        "COMP-102",
+        "COMP-810",
+        "COMP-304",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-188_擘",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-188_擘.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-118",
+      "topk_component_ids": [
+        "COMP-118",
+        "COMP-302",
+        "COMP-914",
+        "COMP-907",
+        "COMP-706"
+      ]
+    },
+    {
+      "crop_id": "COMP-189_短锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-189_短锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-119",
+      "topk_component_ids": [
+        "COMP-119",
+        "COMP-811",
+        "COMP-809",
+        "COMP-807",
+        "COMP-804"
+      ]
+    },
+    {
+      "crop_id": "COMP-190_背锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-190_背锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-120",
+      "topk_component_ids": [
+        "COMP-120",
+        "COMP-101",
+        "COMP-108",
+        "COMP-426",
+        "COMP-522"
+      ]
+    },
+    {
+      "crop_id": "COMP-191_轮",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-191_轮.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-121",
+      "topk_component_ids": [
+        "COMP-121",
+        "COMP-206",
+        "COMP-804",
+        "COMP-503",
+        "COMP-705"
+      ]
+    },
+    {
+      "crop_id": "COMP-192_锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-192_锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-122",
+      "topk_component_ids": [
+        "COMP-122",
+        "COMP-914",
+        "COMP-822",
+        "COMP-304",
+        "COMP-213"
+      ]
+    },
+    {
+      "crop_id": "COMP-193_长锁",
+      "crop_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-193_长锁.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-123",
+      "topk_component_ids": [
+        "COMP-123",
+        "COMP-215",
+        "COMP-908",
+        "COMP-306",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-145_三弹",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-145_三弹.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-201",
+      "topk_component_ids": [
+        "COMP-201",
+        "COMP-810",
+        "COMP-301",
+        "COMP-811",
+        "COMP-436"
+      ]
+    },
+    {
+      "crop_id": "COMP-146_伏",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-146_伏.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-202",
+      "topk_component_ids": [
+        "COMP-202",
+        "COMP-512",
+        "COMP-206",
+        "COMP-501",
+        "COMP-508"
+      ]
+    },
+    {
+      "crop_id": "COMP-147_全扶",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-147_全扶.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-203",
+      "topk_component_ids": [
+        "COMP-203",
+        "COMP-802",
+        "COMP-816",
+        "COMP-705",
+        "COMP-803"
+      ]
+    },
+    {
+      "crop_id": "COMP-148_剌",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-148_剌.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-204",
+      "topk_component_ids": [
+        "COMP-204",
+        "COMP-306",
+        "COMP-820",
+        "COMP-417",
+        "COMP-215"
+      ]
+    },
+    {
+      "crop_id": "COMP-149_半扶",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-149_半扶.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-205",
+      "topk_component_ids": [
+        "COMP-205",
+        "COMP-912",
+        "COMP-522",
+        "COMP-804",
+        "COMP-913"
+      ]
+    },
+    {
+      "crop_id": "COMP-150_双弹",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-150_双弹.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-206",
+      "topk_component_ids": [
+        "COMP-206",
+        "COMP-705",
+        "COMP-607",
+        "COMP-306",
+        "COMP-803"
+      ]
+    },
+    {
+      "crop_id": "COMP-151_反撮",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-151_反撮.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-207",
+      "topk_component_ids": [
+        "COMP-207",
+        "COMP-417",
+        "COMP-306",
+        "COMP-526",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-152_大撮",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-152_大撮.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-208",
+      "topk_component_ids": [
+        "COMP-208",
+        "COMP-306",
+        "COMP-433",
+        "COMP-434",
+        "COMP-114"
+      ]
+    },
+    {
+      "crop_id": "COMP-153_如一",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-153_如一.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-209",
+      "topk_component_ids": [
+        "COMP-209",
+        "COMP-816",
+        "COMP-701",
+        "COMP-416",
+        "COMP-705"
+      ]
+    },
+    {
+      "crop_id": "COMP-154_弹",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-154_弹.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-210",
+      "topk_component_ids": [
+        "COMP-210",
+        "COMP-526",
+        "COMP-905",
+        "COMP-207",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-155_掐撮三声",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-155_掐撮三声.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-211",
+      "topk_component_ids": [
+        "COMP-211",
+        "COMP-423",
+        "COMP-811",
+        "COMP-207",
+        "COMP-417"
+      ]
+    },
+    {
+      "crop_id": "COMP-156_掐泼剌三声",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-156_掐泼剌三声.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-212",
+      "topk_component_ids": [
+        "COMP-212",
+        "COMP-306",
+        "COMP-820",
+        "COMP-308",
+        "COMP-909"
+      ]
+    },
+    {
+      "crop_id": "COMP-157_搂圆",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-157_搂圆.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-213",
+      "topk_component_ids": [
+        "COMP-213",
+        "COMP-305",
+        "COMP-810",
+        "COMP-822",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-158_摘泼剌",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-158_摘泼剌.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-214",
+      "topk_component_ids": [
+        "COMP-214",
+        "COMP-911",
+        "COMP-105",
+        "COMP-309",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-159_撮",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-159_撮.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-215",
+      "topk_component_ids": [
+        "COMP-215",
+        "COMP-306",
+        "COMP-423",
+        "COMP-204",
+        "COMP-821"
+      ]
+    },
+    {
+      "crop_id": "COMP-160_泼",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-160_泼.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-216",
+      "topk_component_ids": [
+        "COMP-216",
+        "COMP-705",
+        "COMP-214",
+        "COMP-607",
+        "COMP-813"
+      ]
+    },
+    {
+      "crop_id": "COMP-161_泼剌",
+      "crop_path": "sources/qxby_component_atlas/images/rh_two_string_double_pluck/COMP-161_泼剌.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-217",
+      "topk_component_ids": [
+        "COMP-217",
+        "COMP-402",
+        "COMP-306",
+        "COMP-403",
+        "COMP-705"
+      ]
+    },
+    {
+      "crop_id": "COMP-122_不动",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-122_不动.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-901",
+      "topk_component_ids": [
+        "COMP-901",
+        "COMP-813",
+        "COMP-516",
+        "COMP-705",
+        "COMP-533"
+      ]
+    },
+    {
+      "crop_id": "COMP-123_二作",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-123_二作.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-902",
+      "topk_component_ids": [
+        "COMP-902",
+        "COMP-423",
+        "COMP-429",
+        "COMP-909",
+        "COMP-432"
+      ]
+    },
+    {
+      "crop_id": "COMP-124_从勾再作",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-124_从勾再作.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-903",
+      "topk_component_ids": [
+        "COMP-903",
+        "COMP-813",
+        "COMP-904",
+        "COMP-901",
+        "COMP-705"
+      ]
+    },
+    {
+      "crop_id": "COMP-125_从头再作",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-125_从头再作.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-904",
+      "topk_component_ids": [
+        "COMP-904",
+        "COMP-813",
+        "COMP-901",
+        "COMP-508",
+        "COMP-903"
+      ]
+    },
+    {
+      "crop_id": "COMP-126_再作",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-126_再作.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-905",
+      "topk_component_ids": [
+        "COMP-905",
+        "COMP-808",
+        "COMP-526",
+        "COMP-423",
+        "COMP-210"
+      ]
+    },
+    {
+      "crop_id": "COMP-127_句",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-127_句.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-906",
+      "topk_component_ids": [
+        "COMP-906",
+        "COMP-506",
+        "COMP-809",
+        "COMP-912",
+        "COMP-822"
+      ]
+    },
+    {
+      "crop_id": "COMP-128_就",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-128_就.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-907",
+      "topk_component_ids": [
+        "COMP-907",
+        "COMP-503",
+        "COMP-914",
+        "COMP-501",
+        "COMP-416"
+      ]
+    },
+    {
+      "crop_id": "COMP-129_换",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-129_换.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-908",
+      "topk_component_ids": [
+        "COMP-908",
+        "COMP-506",
+        "COMP-503",
+        "COMP-802",
+        "COMP-803"
+      ]
+    },
+    {
+      "crop_id": "COMP-130_操终",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-130_操终.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-909",
+      "topk_component_ids": [
+        "COMP-909",
+        "COMP-910",
+        "COMP-523",
+        "COMP-703",
+        "COMP-422"
+      ]
+    },
+    {
+      "crop_id": "COMP-131_曲终",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-131_曲终.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-910",
+      "topk_component_ids": [
+        "COMP-910",
+        "COMP-909",
+        "COMP-808",
+        "COMP-429",
+        "COMP-422"
+      ]
+    },
+    {
+      "crop_id": "COMP-132_末",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-132_末.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-911",
+      "topk_component_ids": [
+        "COMP-911",
+        "COMP-808",
+        "COMP-811",
+        "COMP-706",
+        "COMP-701"
+      ]
+    },
+    {
+      "crop_id": "COMP-133_次",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-133_次.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-912",
+      "topk_component_ids": [
+        "COMP-912",
+        "COMP-205",
+        "COMP-913",
+        "COMP-906",
+        "COMP-814"
+      ]
+    },
+    {
+      "crop_id": "COMP-134_段",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-134_段.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-913",
+      "topk_component_ids": [
+        "COMP-913",
+        "COMP-912",
+        "COMP-503",
+        "COMP-436",
+        "COMP-205"
+      ]
+    },
+    {
+      "crop_id": "COMP-135_至",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-135_至.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-914",
+      "topk_component_ids": [
+        "COMP-914",
+        "COMP-516",
+        "COMP-501",
+        "COMP-811",
+        "COMP-506"
+      ]
+    },
+    {
+      "crop_id": "COMP-136_调终",
+      "crop_path": "sources/qxby_component_atlas/images/tongyong_puzi/COMP-136_调终.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-915",
+      "topk_component_ids": [
+        "COMP-915",
+        "COMP-813",
+        "COMP-516",
+        "COMP-425",
+        "COMP-424"
+      ]
+    },
+    {
+      "crop_id": "COMP-137_弦",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-137_弦.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-701",
+      "topk_component_ids": [
+        "COMP-701",
+        "COMP-816",
+        "COMP-307",
+        "COMP-209",
+        "COMP-821"
+      ]
+    },
+    {
+      "crop_id": "COMP-138_徽",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-138_徽.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-702",
+      "topk_component_ids": [
+        "COMP-702",
+        "COMP-501",
+        "COMP-914",
+        "COMP-105",
+        "COMP-907"
+      ]
+    },
+    {
+      "crop_id": "COMP-139_指",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-139_指.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-703",
+      "topk_component_ids": [
+        "COMP-703",
+        "COMP-436",
+        "COMP-417",
+        "COMP-812",
+        "COMP-909"
+      ]
+    },
+    {
+      "crop_id": "COMP-140_按",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-140_按.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-704",
+      "topk_component_ids": [
+        "COMP-704",
+        "COMP-705",
+        "COMP-216",
+        "COMP-121",
+        "COMP-813"
+      ]
+    },
+    {
+      "crop_id": "COMP-141_散",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-141_散.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-705",
+      "topk_component_ids": [
+        "COMP-705",
+        "COMP-206",
+        "COMP-508",
+        "COMP-203",
+        "COMP-217"
+      ]
+    },
+    {
+      "crop_id": "COMP-142_泛",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-142_泛.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-706",
+      "topk_component_ids": [
+        "COMP-706",
+        "COMP-911",
+        "COMP-914",
+        "COMP-701",
+        "COMP-501"
+      ]
+    },
+    {
+      "crop_id": "COMP-143_泛止",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-143_泛止.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-707",
+      "topk_component_ids": [
+        "COMP-707",
+        "COMP-436",
+        "COMP-708",
+        "COMP-510",
+        "COMP-811"
+      ]
+    },
+    {
+      "crop_id": "COMP-144_泛起",
+      "crop_path": "sources/qxby_component_atlas/images/yinwei_puzi/COMP-144_泛起.png",
+      "label_component_id": null,
+      "status": "MATCHED",
+      "top1_component_id": "COMP-708",
+      "topk_component_ids": [
+        "COMP-708",
+        "COMP-515",
+        "COMP-509",
+        "COMP-821",
+        "COMP-404"
+      ]
+    }
+  ],
+  "top1_accuracy": null,
+  "topk_recall": null,
+  "total_crops": 174,
+  "unknown": 0
+}
