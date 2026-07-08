@@ -57,10 +57,10 @@ The runtime does not call P1, does not produce phrase reading, does not inherit 
 P2D keeps visual slots separate from semantic roles:
 
 - slot types are loaded from the P2-C slot contract;
-- candidates preserve P2B component labels and lexical component types only;
-- every component candidate has `semantic_role: "unknown"`;
-- every slot has `semantic_role_assigned: false`;
-- numeric components such as `九` remain component/lexical candidates, not hui or string assignments.
+- P2D slot candidates carry component identity fields only: `component_id`, confidence, visual score, candidate rank, and region trace;
+- P2D does not output `semantic_role`, `semantic_role_assigned`, `reading`, `surface_reading`, or `surface_reading_candidate`;
+- display/debug fields from P2B such as label/name/category/lexical type are not included in the P3 handoff projection;
+- numeric components such as `九` remain component identities such as `NUM-009` or registry-backed component ids, not hui or string assignments.
 
 The analyzer does not hardcode component IDs. New component IDs returned by the registry/image-index-backed matcher pass through the lattice without slot analyzer changes.
 

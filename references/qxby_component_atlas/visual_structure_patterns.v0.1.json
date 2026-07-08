@@ -1,0 +1,143 @@
+{
+  "registry_id": "CG_LXY_P2G_visual_structure_patterns.v0.1",
+  "task_id": "CG-LXY-136-P2G-VISUAL-DECOMPOSITION-v0.1",
+  "version": "v0.1",
+  "status_labels": [
+    "P2G_VISUAL_DECOMPOSITION",
+    "VISUAL_STRUCTURE_PATTERN_REGISTRY",
+    "VISUAL_ONLY",
+    "HUMAN_REVIEW_EXTENSIBLE",
+    "NOT_COMPONENT_ID_AUTHORITY",
+    "NOT_GRAMMAR_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NEEDS_HUMAN_REVIEW"
+  ],
+  "authority_boundary": {
+    "visual_structure_reference": true,
+    "component_identity_authority": false,
+    "grammar_authority": false,
+    "score_authority": false,
+    "score_event_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "needs_human_review": true
+  },
+  "extension_lifecycle": [
+    "UNKNOWN_STRUCTURE_CANDIDATE",
+    "HUMAN_BOX_REVIEWED",
+    "STRUCTURE_PATTERN_DRAFT",
+    "FIXTURE_VALIDATED",
+    "HUMAN_REVIEWED_ACTIVE",
+    "DEPRECATED",
+    "SUPERSEDED"
+  ],
+  "patterns": [
+    {
+      "pattern_id": "VSP-UPPER-LOWER-001",
+      "status": "HUMAN_REVIEWED_ACTIVE",
+      "layout_family": "UPPER_LOWER",
+      "visual_only": true,
+      "allowed_roles": [
+        "upper_band",
+        "lower_band",
+        "upper_left_region",
+        "upper_right_region",
+        "lower_left_region",
+        "lower_inner_region",
+        "lower_outer_region",
+        "attached_mark",
+        "bridge_or_overlap_region"
+      ],
+      "decomposition_rules": [
+        "root_may_split_into_upper_and_lower_bands",
+        "upper_band_may_split_left_right",
+        "lower_band_may_split_left_right_or_outer_inner",
+        "component_identity_must_not_be_assigned"
+      ],
+      "quality_metrics": {
+        "min_coverage_ratio": 0.95,
+        "max_unassigned_ink_ratio": 0.05
+      },
+      "forbidden": [
+        "OVER_MERGED_REGION",
+        "ATTACHED_MARK_DROPPED"
+      ],
+      "authority_flags": {
+        "NOT_COMPONENT_ID_AUTHORITY": true,
+        "NOT_GRAMMAR_AUTHORITY": true,
+        "NOT_DAPU_IR_AUTHORITY": true
+      }
+    },
+    {
+      "pattern_id": "VSP-UPPER-MIDDLE-LOWER-001",
+      "status": "HUMAN_REVIEWED_ACTIVE",
+      "layout_family": "UPPER_MIDDLE_LOWER",
+      "visual_only": true,
+      "allowed_roles": [
+        "upper_band",
+        "middle_band",
+        "lower_band",
+        "upper_left_region",
+        "upper_right_region",
+        "middle_region",
+        "middle_left_region",
+        "middle_right_region",
+        "lower_left_region",
+        "lower_inner_region",
+        "lower_outer_region",
+        "attached_mark",
+        "bridge_or_overlap_region"
+      ],
+      "decomposition_rules": [
+        "root_may_split_into_upper_middle_and_lower_bands",
+        "middle_band_may_be_attachment_or_bridge",
+        "lower_band_may_split_recursively",
+        "component_identity_must_not_be_assigned"
+      ],
+      "quality_metrics": {
+        "min_coverage_ratio": 0.95,
+        "max_unassigned_ink_ratio": 0.05
+      },
+      "forbidden": [
+        "OVER_MERGED_REGION",
+        "BRIDGE_REGION_UNRESOLVED"
+      ],
+      "authority_flags": {
+        "NOT_COMPONENT_ID_AUTHORITY": true,
+        "NOT_GRAMMAR_AUTHORITY": true,
+        "NOT_DAPU_IR_AUTHORITY": true
+      }
+    },
+    {
+      "pattern_id": "VSP-ENCLOSURE-INNER-001",
+      "status": "HUMAN_REVIEWED_ACTIVE",
+      "layout_family": "ENCLOSURE_WITH_INNER",
+      "visual_only": true,
+      "allowed_roles": [
+        "lower_outer_region",
+        "lower_inner_region",
+        "attached_mark"
+      ],
+      "decomposition_rules": [
+        "outer_bbox_contains_inner_bbox",
+        "inner_bbox_area_ratio_between_0_03_and_0_35",
+        "outer_region_may_be_open_on_top_or_left",
+        "component_identity_must_not_be_assigned"
+      ],
+      "quality_metrics": {
+        "min_coverage_ratio": 0.95,
+        "max_unassigned_ink_ratio": 0.05
+      },
+      "forbidden": [
+        "INNER_COMPONENT_OUTSIDE_PARENT",
+        "ENCLOSURE_LOST"
+      ],
+      "authority_flags": {
+        "NOT_COMPONENT_ID_AUTHORITY": true,
+        "NOT_GRAMMAR_AUTHORITY": true,
+        "NOT_DAPU_IR_AUTHORITY": true
+      }
+    }
+  ]
+}

@@ -236,13 +236,15 @@ Minimum shape:
       "candidates": [
         {
           "component_id": "COMP-091",
-          "label": "大",
           "visual_score": 0.82,
           "confidence": {
+            "value": 0.82,
             "bucket": "high",
             "score_type": "HEURISTIC_VISUAL_CONFIDENCE",
             "calibrated_probability": false
-          }
+          },
+          "candidate_rank": 0,
+          "source_region_id": "region_001"
         }
       ]
     }

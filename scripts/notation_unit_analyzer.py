@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 import tempfile
 from dataclasses import dataclass
@@ -76,8 +77,19 @@ FORBIDDEN_INPUT_FIELDS = {
     "gold_answer_ref",
     "human_corrected_answer",
 }
+FORBIDDEN_OUTPUT_FIELDS = FORBIDDEN_INPUT_FIELDS | {
+    "semantic_role",
+    "semantic_role_assigned",
+    "reading",
+    "surface_reading",
+    "surface_reading_candidate",
+    "canonical_reading",
+    "slot_meaning",
+    "Dapu_IR",
+}
 RELATION_TYPES = ["ABOVE", "BELOW", "LEFT_OF", "RIGHT_OF", "INSIDE", "ATTACHED"]
 RELATION_ORDER = {name: index for index, name in enumerate(RELATION_TYPES)}
+COMPONENT_ID_RE = re.compile(r"^(COMP-[0-9]{3}|NUM-[0-9]{3}|UNKNOWN_COMPONENT)$")
 
 
 try:  # pragma: no cover - exercised only when Pillow exists in the local env.
@@ -199,7 +211,6 @@ class NotationUnitAnalyzer:
                     "region_candidate_ids": [region["region_id"]],
                     "candidates": candidates,
                     "slot_confidence": _confidence(slot_confidence),
-                    "semantic_role_assigned": False,
                 }
                 slots.append(slot)
 
@@ -230,7 +241,7 @@ class NotationUnitAnalyzer:
             "lattice_trace": {
                 "runtime_layer": RUNTIME_LAYER,
                 "p1_parse_called": False,
-                "phrase_reading_generated": False,
+                "notation_text_generated": False,
                 "context_inheritance_used": False,
                 "dapu_ir_generated": False,
                 "sample_ingest_used": False,
@@ -306,7 +317,6 @@ class NotationUnitAnalyzer:
                     "region_candidate_ids": [],
                     "candidates": [],
                     "slot_confidence": _confidence(0.0),
-                    "semantic_role_assigned": False,
                 }
             )
             unresolved.append(
@@ -334,7 +344,6 @@ class NotationUnitAnalyzer:
                         "region_candidate_ids": [],
                         "candidates": [],
                         "slot_confidence": _confidence(0.0),
-                        "semantic_role_assigned": False,
                     }
                 )
                 unresolved.append(
@@ -355,7 +364,6 @@ class NotationUnitAnalyzer:
                     "region_candidate_ids": [],
                     "candidates": [],
                     "slot_confidence": _confidence(0.0),
-                    "semantic_role_assigned": False,
                 }
             )
             unresolved.append(
@@ -378,7 +386,7 @@ class NotationUnitAnalyzer:
             "lattice_trace": {
                 "runtime_layer": RUNTIME_LAYER,
                 "p1_parse_called": False,
-                "phrase_reading_generated": False,
+                "notation_text_generated": False,
                 "context_inheritance_used": False,
                 "dapu_ir_generated": False,
                 "sample_ingest_used": False,
@@ -406,7 +414,6 @@ class NotationUnitAnalyzer:
                 "region_candidate_ids": [],
                 "candidates": [],
                 "slot_confidence": _confidence(0.0),
-                "semantic_role_assigned": False,
             }
         ]
         unresolved = [
@@ -429,7 +436,7 @@ class NotationUnitAnalyzer:
             "lattice_trace": {
                 "runtime_layer": RUNTIME_LAYER,
                 "p1_parse_called": False,
-                "phrase_reading_generated": False,
+                "notation_text_generated": False,
                 "context_inheritance_used": False,
                 "dapu_ir_generated": False,
                 "sample_ingest_used": False,
@@ -470,14 +477,16 @@ def validate_visual_slot_lattice(lattice: dict[str, Any], *, return_errors: bool
         slot_type = slot.get("slot_type")
         if slot_type in FORBIDDEN_SEMANTIC_SLOT_TYPES:
             errors.append(f"semantic slot leaked into P2D output: {slot_type}")
-        if slot.get("semantic_role_assigned") is not False:
-            errors.append(f"slot assigned semantic role: {slot.get('slot_id')}")
+        if "semantic_role_assigned" in slot:
+            errors.append(f"slot semantic-role field leaked into P2D output: {slot.get('slot_id')}")
         if slot.get("slot_status") not in set(DEFAULT_SLOT_STATUSES):
             errors.append(f"unsupported slot status: {slot.get('slot_status')}")
         for candidate in slot.get("candidates") or []:
-            if candidate.get("semantic_role") != "unknown":
-                errors.append(f"component semantic role is not unknown: {candidate.get('component_id')}")
-            if not str(candidate.get("component_id", "")).startswith("COMP-") and candidate.get("component_id") != "UNKNOWN_COMPONENT":
+            if "semantic_role" in candidate:
+                errors.append(f"component semantic-role field leaked into P2D output: {candidate.get('component_id')}")
+            if "label" in candidate or "lexical_component_type" in candidate:
+                errors.append(f"display/debug field leaked into P2D candidate: {candidate.get('component_id')}")
+            if not COMPONENT_ID_RE.match(str(candidate.get("component_id", ""))):
                 errors.append(f"unsupported component id shape: {candidate.get('component_id')}")
 
     for relation in lattice.get("spatial_relations") or []:
@@ -755,18 +764,10 @@ def _slot_component_candidates(matcher_result: dict[str, Any], region_id: str) -
         normalized.append(
             {
                 "component_id": str(item.get("component_id") or "UNKNOWN_COMPONENT"),
-                "label": str(item.get("label") or ""),
-                "lexical_component_type": str(item.get("lexical_component_type") or "UNKNOWN_COMPONENT"),
                 "visual_score": visual_score,
                 "confidence": _confidence(visual_score),
-                "p2b_candidate_rank": int(item.get("rank", 0)),
+                "candidate_rank": int(item.get("rank", 0)),
                 "source_region_id": region_id,
-                "semantic_role": "unknown",
-                "evidence": {
-                    "p2b_status": matcher_result.get("status"),
-                    "p2b_evidence": dict(item.get("evidence") or {}),
-                    "score_breakdown": dict(item.get("score_breakdown") or {}),
-                },
             }
         )
     return normalized
@@ -975,7 +976,6 @@ def _p3_handoff_projection(slots: list[dict[str, Any]], spatial_relations: list[
             "slot_type_candidates": list(slot.get("slot_type_candidates") or []),
             "slot_status": slot.get("slot_status"),
             "region_candidate_ids": list(slot.get("region_candidate_ids") or []),
-            "semantic_role_assigned": False,
         }
         for slot in slots
     ]
@@ -987,9 +987,7 @@ def _p3_handoff_projection(slots: list[dict[str, Any]], spatial_relations: list[
                     "slot_id": slot.get("slot_id"),
                     "source_region_id": candidate.get("source_region_id"),
                     "component_id": candidate.get("component_id"),
-                    "label": candidate.get("label"),
-                    "lexical_component_type": candidate.get("lexical_component_type"),
-                    "semantic_role": "unknown",
+                    "confidence": dict(candidate.get("confidence") or {}),
                     "visual_score": candidate.get("visual_score"),
                 }
             )
@@ -1016,7 +1014,7 @@ def _find_forbidden_keys(value: Any, path: str = "$") -> list[str]:
     if isinstance(value, dict):
         for key, child in value.items():
             child_path = f"{path}.{key}"
-            if key in FORBIDDEN_INPUT_FIELDS:
+            if key in FORBIDDEN_OUTPUT_FIELDS:
                 found.append(child_path)
             found.extend(_find_forbidden_keys(child, child_path))
     elif isinstance(value, list):

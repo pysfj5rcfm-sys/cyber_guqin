@@ -115,9 +115,10 @@ class NotationUnitAnalyzerTests(unittest.TestCase):
         self.assertEqual(lattice["status"], "RESOLVED")
         self.assertEqual(len(lattice["slots"]), 1)
         self.assertEqual(lattice["slots"][0]["slot_type"], "MIDDLE")
-        self.assertFalse(lattice["slots"][0]["semantic_role_assigned"])
-        self.assertEqual(lattice["slots"][0]["candidates"][0]["label"], "大")
-        self.assertEqual(lattice["slots"][0]["candidates"][0]["semantic_role"], "unknown")
+        self.assertNotIn("semantic_role_assigned", lattice["slots"][0])
+        self.assertEqual(lattice["slots"][0]["candidates"][0]["component_id"], "COMP-777")
+        self.assertNotIn("label", lattice["slots"][0]["candidates"][0])
+        self.assertNotIn("semantic_role", lattice["slots"][0]["candidates"][0])
         self.assertTrue(lattice["authority_flags"]["NOT_SCORE_AUTHORITY"])
         self.assertTrue(lattice["authority_flags"]["NOT_DAPU_IR_AUTHORITY"])
         self.assertIsNone(matcher.calls[0]["grammar_context"])
@@ -158,7 +159,7 @@ class NotationUnitAnalyzerTests(unittest.TestCase):
         self.assertEqual(lattice["status"], "RESOLVED")
         self.assertEqual(len(lattice["slots"]), 3)
         self.assertGreaterEqual(len(lattice["spatial_relations"]), 4)
-        self.assertFalse(any(slot["semantic_role_assigned"] for slot in lattice["slots"]))
+        self.assertFalse(any("semantic_role_assigned" in slot for slot in lattice["slots"]))
 
     def test_missing_component(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -190,8 +191,9 @@ class NotationUnitAnalyzerTests(unittest.TestCase):
         self.assertEqual(lattice["status"], "AMBIGUOUS")
         self.assertEqual(lattice["slots"][0]["slot_status"], "AMBIGUOUS_SLOT")
         self.assertEqual(lattice["slots"][0]["slot_type_candidates"], ["LEFT_UPPER", "RIGHT_UPPER"])
-        self.assertEqual(lattice["slots"][0]["candidates"][0]["lexical_component_type"], "NUMERIC_COMPONENT")
-        self.assertEqual(lattice["slots"][0]["candidates"][0]["semantic_role"], "unknown")
+        self.assertEqual(lattice["slots"][0]["candidates"][0]["component_id"], "COMP-089")
+        self.assertNotIn("lexical_component_type", lattice["slots"][0]["candidates"][0])
+        self.assertNotIn("semantic_role", lattice["slots"][0]["candidates"][0])
 
     def test_spatial_relation_deterministic(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -265,8 +267,8 @@ class NotationUnitAnalyzerTests(unittest.TestCase):
 
         candidate = lattice["slots"][0]["candidates"][0]
         self.assertEqual(candidate["component_id"], "COMP-999")
-        self.assertEqual(candidate["label"], "新")
-        self.assertEqual(candidate["semantic_role"], "unknown")
+        self.assertNotIn("label", candidate)
+        self.assertNotIn("semantic_role", candidate)
         self.assertTrue(validate_visual_slot_lattice(lattice))
 
 

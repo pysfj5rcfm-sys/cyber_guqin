@@ -271,8 +271,7 @@
           "slot_status",
           "region_candidate_ids",
           "candidates",
-          "slot_confidence",
-          "semantic_role_assigned"
+          "slot_confidence"
         ],
         "properties": {
           "slot_id": {
@@ -313,9 +312,6 @@
           },
           "slot_confidence": {
             "$ref": "#/definitions/VisualConfidence"
-          },
-          "semantic_role_assigned": {
-            "const": false
           }
         }
       },
@@ -324,19 +320,15 @@
         "additionalProperties": false,
         "required": [
           "component_id",
-          "label",
           "visual_score",
           "confidence",
-          "p2b_candidate_rank",
+          "candidate_rank",
           "source_region_id"
         ],
         "properties": {
           "component_id": {
             "type": "string",
-            "pattern": "^(COMP-[0-9]{3}|UNKNOWN_COMPONENT)$"
-          },
-          "label": {
-            "type": "string"
+            "pattern": "^(COMP-[0-9]{3}|NUM-[0-9]{3}|UNKNOWN_COMPONENT)$"
           },
           "visual_score": {
             "type": "number",
@@ -346,7 +338,7 @@
           "confidence": {
             "$ref": "#/definitions/VisualConfidence"
           },
-          "p2b_candidate_rank": {
+          "candidate_rank": {
             "type": "integer",
             "minimum": 0
           },
