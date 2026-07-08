@@ -1,0 +1,51 @@
+{
+  "component_slot_separation": "PASS",
+  "coverage": {
+    "ambiguous_slot": "PASS",
+    "extension_with_new_component": "PASS",
+    "missing_component": "PASS",
+    "multi_component_unit": "PASS",
+    "required_spatial_relation_types": "PASS",
+    "same_image_deterministic": "PASS",
+    "single_component_unit": "PASS",
+    "spatial_relation_deterministic": "PASS",
+    "two_component_unit": "PASS"
+  },
+  "readiness": {
+    "ready_for_LXY_phrase_reading": false,
+    "ready_for_P3_visual_grammar_fusion": true,
+    "ready_for_training_model": false
+  },
+  "semantic_separation": "PASS",
+  "slot_lattice_schema": "PASS",
+  "spatial_relation_stability": "PASS",
+  "task_id": "CG-LXY-136-P2D-VISUAL-SLOT-LATTICE-IMPLEMENTATION-v0.1",
+  "unknown_handling": "PASS",
+  "validation_commands": [
+    {
+      "command": "python3 -m json.tool reports/lxy_136_phase_build/CG_LXY_P2D_implementation_manifest.v0.1.json",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 -m json.tool reports/lxy_136_phase_build/CG_LXY_P2D_eval_result.v0.1.json",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 -m unittest tests/test_notation_unit_analyzer.py",
+      "result": "9 tests OK"
+    },
+    {
+      "command": "python3 -m compileall scripts/notation_unit_analyzer.py tests/test_notation_unit_analyzer.py",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 -m unittest",
+      "result": "0 tests discovered, OK"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests",
+      "result": "FAIL: existing non-P2D reproduction toolchain test expects missing BAIYA_PLAN_SCRIPT"
+    }
+  ],
+  "version": "v0.1"
+}

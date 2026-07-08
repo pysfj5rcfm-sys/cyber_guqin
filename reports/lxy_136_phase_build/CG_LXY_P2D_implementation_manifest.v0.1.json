@@ -1,0 +1,58 @@
+{
+  "authority_flags": {
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_ML_TRAINING_DATA": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_SCORE_AUTHORITY": true,
+    "NOT_SCORE_EVENT_AUTHORITY": true
+  },
+  "deliverables": [
+    {
+      "path": "scripts/notation_unit_analyzer.py",
+      "purpose": "Visual Slot Lattice Runtime MVP and NotationUnitAnalyzer interface"
+    },
+    {
+      "path": "tests/test_notation_unit_analyzer.py",
+      "purpose": "P2D unittest coverage for slot, component, unknown, deterministic, and extension behavior"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_P2D_implementation_report.v0.1.md",
+      "purpose": "Human-readable P2D implementation report"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_P2D_implementation_manifest.v0.1.json",
+      "purpose": "Machine-readable P2D deliverable manifest"
+    },
+    {
+      "path": "reports/lxy_136_phase_build/CG_LXY_P2D_eval_result.v0.1.json",
+      "purpose": "Machine-readable P2D validation and readiness result"
+    }
+  ],
+  "forbidden_scope_not_performed": [
+    "phrase reading",
+    "score reading",
+    "context inheritance",
+    "Dapu IR",
+    "sample ingest",
+    "ML training",
+    "parser modification",
+    "goldset modification"
+  ],
+  "input": "notation unit image crop",
+  "output": "Visual Slot Lattice",
+  "repo_context_gate": {
+    "branch": "main",
+    "head": "1649defb8be163ee4ead749a539ae242b5c6efe8",
+    "recent_head_subject": "docs(lxy): define phase2 visual slot lattice design",
+    "status_before_p2d": "clean"
+  },
+  "runtime": {
+    "class": "NotationUnitAnalyzer",
+    "method": "analyze(image_crop)",
+    "component_matcher_source": "P2B ComponentMatcher injection or default runtime matcher",
+    "slot_taxonomy_source": "reports/lxy_136_phase_build/CG_LXY_P2C_slot_contract.v0.1.json",
+    "trained_model_used": false
+  },
+  "task_id": "CG-LXY-136-P2D-VISUAL-SLOT-LATTICE-IMPLEMENTATION-v0.1",
+  "version": "v0.1"
+}
