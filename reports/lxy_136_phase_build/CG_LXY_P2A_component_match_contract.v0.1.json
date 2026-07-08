@@ -1,0 +1,473 @@
+{
+  "contract_id": "CG_LXY_P2A_component_match_contract.v0.1",
+  "task_id": "CG-LXY-136-P2A-VISUAL-COMPONENT-CANDIDATE-DESIGN-v0.1",
+  "version": "v0.1",
+  "phase": "P2A_VISUAL_COMPONENT_CANDIDATE_DESIGN",
+  "status_labels": [
+    "P2A_VISUAL_COMPONENT_CANDIDATE_DESIGN",
+    "REFERENCE_COMPONENT_ATLAS_GUIDED",
+    "COMPONENT_CANDIDATE_ONLY",
+    "TOP_K_LATTICE_DESIGN",
+    "NEEDS_HUMAN_REVIEW",
+    "NOT_REPO_CONTRACT",
+    "NOT_CANON_AUTHORITY",
+    "NOT_DAPU_IR_AUTHORITY",
+    "NOT_SCORE_EVENT_AUTHORITY",
+    "NOT_SAMPLE_INGEST",
+    "NOT_ML_TRAINING_DATA",
+    "NOT_RENDER_OUTPUT"
+  ],
+  "authority_boundary": {
+    "component_reference": true,
+    "source_reference_image": true,
+    "candidate_generation_design": true,
+    "repo_contract": false,
+    "canon_authority": false,
+    "score_event_authority": false,
+    "dapu_ir_authority": false,
+    "sample_ingest": false,
+    "ml_training_data": false,
+    "render_output": false,
+    "recording_plan": false,
+    "needs_human_review": true
+  },
+  "allowed_sources": {
+    "component_registry": "references/qxby_component_atlas/component_registry.reindexed.v0.2.json",
+    "alias_map": "references/qxby_component_atlas/component_legacy_alias_map.reindexed.v0.2.json",
+    "component_images": "sources/qxby_component_atlas/images/",
+    "p1a_contract": "reports/lxy_136_phase_build/p1a_grammar_contract/",
+    "p1b_fixtures": "tests/fixtures/cyber_guqin/component_guided_transcription/p1b_*",
+    "p1c_parser_reference": "scripts/cyber_guqin_grammar_parser.py"
+  },
+  "forbidden_sources": [
+    "reports/lxy_phrase*",
+    "lxy_p1_p6_goldset*",
+    "goldset oracle",
+    "complete phrase reading",
+    "human-corrected answer reports",
+    "01_pieces/",
+    "04_outputs/",
+    "sample ingest",
+    "recording data",
+    "ML data"
+  ],
+  "registry_authority": {
+    "primary_id_field": "component_id",
+    "candidate_output_id_field": "component_id_v0_2",
+    "registry_component_sets": [
+      "components",
+      "auxiliary_components"
+    ],
+    "candidate_id_rule": "Every registry-backed ComponentCandidate.component_id_v0_2 MUST be present in component_registry.reindexed.v0.2.json components or auxiliary_components.",
+    "unknown_id_rule": "Unknown components MUST NOT mint a COMP-* id and MUST NOT appear as registry-backed ComponentCandidate rows.",
+    "alias_rule": "Legacy or source IDs may be used only as normalization trace and must be converted to primary v0.2 ids before candidate output."
+  },
+  "input_schema": {
+    "schema_name": "SingleComponentCrop",
+    "required_fields": {
+      "crop_id": {
+        "type": "string",
+        "description": "Stable id for one suspected component crop."
+      },
+      "crop_image_reference": {
+        "type": "object",
+        "required": [
+          "path_or_uri",
+          "reference_type"
+        ],
+        "description": "Reference to the crop image supplied to the matcher."
+      }
+    },
+    "optional_fields": {
+      "bbox_in_parent_image": {
+        "type": "array",
+        "items": "number",
+        "description": "Optional [x, y, width, height] trace when crop came from a larger image."
+      },
+      "preprocessing_trace": {
+        "type": "object",
+        "description": "Normalization, thresholding, deskew, or resize notes."
+      },
+      "ocr_hint": {
+        "type": "object",
+        "description": "OCR text proposal used only as a candidate hint."
+      },
+      "human_feedback_hint": {
+        "type": "object",
+        "description": "Optional review correction evidence, not authority and not training data."
+      },
+      "matcher_options": {
+        "type": "object",
+        "description": "top_k, thresholds, and channel enable flags."
+      }
+    },
+    "forbidden_fields": [
+      "phrase_id",
+      "phrase_reading",
+      "continuous_reading",
+      "score_event",
+      "dapu_ir",
+      "parser_slots",
+      "line_context"
+    ]
+  },
+  "output_schema": {
+    "schema_name": "ComponentCandidateLattice",
+    "required_fields": [
+      "contract_id",
+      "crop_id",
+      "crop_scope_status",
+      "top_k",
+      "component_candidates",
+      "unknown_component_state",
+      "coverage_ledger",
+      "matcher_trace",
+      "authority_flags"
+    ],
+    "crop_scope_status_enum": [
+      "SINGLE_COMPONENT_CROP",
+      "LOW_CONFIDENCE_SINGLE_COMPONENT_CROP",
+      "NEEDS_COMPONENT_SEGMENTATION",
+      "REJECTED_NOT_SINGLE_COMPONENT_SCOPE"
+    ],
+    "component_candidates": {
+      "type": "array",
+      "items": "ComponentCandidate",
+      "cardinality": "0..top_k"
+    },
+    "unknown_component_state": {
+      "type": "object",
+      "required_fields": [
+        "status",
+        "unresolved_reason",
+        "needs_human_review"
+      ],
+      "status_enum": [
+        "NOT_UNKNOWN",
+        "UNKNOWN_COMPONENT",
+        "INSUFFICIENT_VISUAL_EVIDENCE",
+        "CONFLICTING_VISUAL_EVIDENCE"
+      ]
+    }
+  },
+  "component_candidate_schema": {
+    "schema_name": "ComponentCandidate",
+    "required_fields": [
+      "component_id_v0_2",
+      "label",
+      "category",
+      "confidence",
+      "visual_match_reason",
+      "source_image_reference",
+      "candidate_rank"
+    ],
+    "fields": {
+      "component_id_v0_2": {
+        "type": "string",
+        "pattern": "^COMP-[0-9]{3}$",
+        "registry_required": true
+      },
+      "label": {
+        "type": "string",
+        "source": "component_registry label_zh"
+      },
+      "category": {
+        "type": "string",
+        "source": "component_family or category from registry"
+      },
+      "confidence": {
+        "type": "object",
+        "required_fields": [
+          "value",
+          "bucket",
+          "score_type",
+          "calibrated_probability"
+        ],
+        "value_range": [
+          0.0,
+          1.0
+        ],
+        "bucket_enum": [
+          "high",
+          "medium",
+          "low",
+          "very_low"
+        ],
+        "score_type_enum": [
+          "HEURISTIC_VISUAL_CONFIDENCE"
+        ],
+        "calibrated_probability": false
+      },
+      "visual_match_reason": {
+        "type": "array",
+        "items": "string",
+        "description": "Short evidence statements such as template contour agreement or embedding neighbor agreement."
+      },
+      "source_image_reference": {
+        "type": "object",
+        "required_fields": [
+          "reference_type",
+          "source_image_path",
+          "registry_source"
+        ],
+        "reference_type_enum": [
+          "registry_component_image",
+          "registry_auxiliary_reference",
+          "external_auxiliary_zip_reference"
+        ],
+        "source_image_path": "string_or_null",
+        "registry_source": "components_or_auxiliary_components"
+      },
+      "candidate_rank": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Unique deterministic rank inside one crop lattice."
+      }
+    },
+    "forbidden_fields": [
+      "reading",
+      "surface_reading_candidate",
+      "structured_parse",
+      "score_event_candidate",
+      "dapu_ir",
+      "phrase_boundary",
+      "sounding_unit"
+    ]
+  },
+  "model_adapter_contract": {
+    "adapter_input": "SingleComponentCrop",
+    "adapter_output": "ComponentCandidateEvidence[]",
+    "supported_channels": [
+      {
+        "channel_id": "template_matching",
+        "required_output_fields": [
+          "component_id_v0_2",
+          "raw_score",
+          "raw_score_type",
+          "source_image_reference",
+          "visual_match_reason"
+        ]
+      },
+      {
+        "channel_id": "visual_embedding",
+        "required_output_fields": [
+          "component_id_v0_2",
+          "raw_score",
+          "raw_score_type",
+          "source_image_reference",
+          "visual_match_reason"
+        ]
+      },
+      {
+        "channel_id": "ocr_assisted_candidate_proposal",
+        "required_output_fields": [
+          "candidate_hint_text",
+          "component_id_v0_2_or_null",
+          "raw_score",
+          "raw_score_type",
+          "visual_match_reason"
+        ],
+        "hard_rule": "OCR text is a hint only and cannot create final label or component id without registry-backed candidate evidence."
+      },
+      {
+        "channel_id": "human_feedback_correction",
+        "required_output_fields": [
+          "component_id_v0_2_or_null",
+          "feedback_action",
+          "review_note",
+          "visual_match_reason"
+        ],
+        "hard_rule": "Human feedback is review evidence in P2A and is not model training data."
+      }
+    ],
+    "fusion_required_output": "ComponentCandidate[]"
+  },
+  "top_k_policy": {
+    "default_top_k": 5,
+    "minimum_top_k": 1,
+    "maximum_top_k": 10,
+    "rank_sort_order": [
+      "confidence.bucket descending",
+      "confidence.value descending",
+      "independent_visual_channel_agreement descending",
+      "registry_component_image_before_hint_only",
+      "evidence_quality_warning_count ascending",
+      "component_id_v0_2 ascending"
+    ],
+    "rank_is_probability": false
+  },
+  "unknown_policy": {
+    "unknown_is_supported": true,
+    "unknown_component_id": null,
+    "unknown_output_location": "unknown_component_state",
+    "unknown_must_not_appear_in_component_candidates": true,
+    "needs_human_review": true,
+    "allowed_unresolved_reasons": [
+      "UNKNOWN_COMPONENT",
+      "INSUFFICIENT_VISUAL_EVIDENCE",
+      "CONFLICTING_VISUAL_EVIDENCE",
+      "CROP_NOT_SINGLE_COMPONENT",
+      "SOURCE_REFERENCE_GAP"
+    ]
+  },
+  "coverage_ledger_schema": {
+    "required_fields": [
+      "crop_id",
+      "matched_components",
+      "unresolved_reason",
+      "needs_human_review"
+    ],
+    "matched_components": {
+      "type": "array",
+      "items": "component_id_v0_2",
+      "description": "Registry-backed candidate ids that survived validation."
+    },
+    "unresolved_reason": {
+      "type": "string_or_null",
+      "allowed_values": [
+        null,
+        "UNKNOWN_COMPONENT",
+        "INSUFFICIENT_VISUAL_EVIDENCE",
+        "CONFLICTING_VISUAL_EVIDENCE",
+        "CROP_NOT_SINGLE_COMPONENT",
+        "SOURCE_REFERENCE_GAP"
+      ]
+    },
+    "needs_human_review": {
+      "type": "boolean",
+      "required_value": true
+    }
+  },
+  "validation_rules": [
+    "All ComponentCandidate.component_id_v0_2 values must exist in component_registry.reindexed.v0.2.json components or auxiliary_components.",
+    "unknown_component_state.status != NOT_UNKNOWN implies component_candidates may be empty or low-confidence only, and no fake component id may be minted.",
+    "confidence.calibrated_probability must be false for every candidate.",
+    "candidate_rank values must be unique, contiguous, and sorted according to top_k_policy.",
+    "All model adapters must normalize to ComponentCandidateEvidence before fusion.",
+    "No output field may contain phrase reading, score event, Dapu IR, parser structured_parse, or surface_reading_candidate."
+  ],
+  "example_outputs": {
+    "matched_crop": {
+      "contract_id": "CG_LXY_P2A_component_match_contract.v0.1",
+      "crop_id": "crop_001",
+      "crop_scope_status": "SINGLE_COMPONENT_CROP",
+      "top_k": 2,
+      "component_candidates": [
+        {
+          "component_id_v0_2": "COMP-103",
+          "label": "勾",
+          "category": "right_hand_single_string_family",
+          "confidence": {
+            "value": 0.82,
+            "bucket": "high",
+            "score_type": "HEURISTIC_VISUAL_CONFIDENCE",
+            "calibrated_probability": false
+          },
+          "visual_match_reason": [
+            "template contour agrees with registry source image",
+            "embedding nearest neighbor agrees with template proposal"
+          ],
+          "source_image_reference": {
+            "reference_type": "registry_component_image",
+            "source_image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-173_勾.png",
+            "registry_source": "components"
+          },
+          "candidate_rank": 1
+        },
+        {
+          "component_id_v0_2": "COMP-116",
+          "label": "挑",
+          "category": "right_hand_single_string_family",
+          "confidence": {
+            "value": 0.37,
+            "bucket": "low",
+            "score_type": "HEURISTIC_VISUAL_CONFIDENCE",
+            "calibrated_probability": false
+          },
+          "visual_match_reason": [
+            "some lower-stroke similarity remains but channel agreement is weak"
+          ],
+          "source_image_reference": {
+            "reference_type": "registry_component_image",
+            "source_image_path": "sources/qxby_component_atlas/images/rh_single_string_pluck/COMP-186_挑.png",
+            "registry_source": "components"
+          },
+          "candidate_rank": 2
+        }
+      ],
+      "unknown_component_state": {
+        "status": "NOT_UNKNOWN",
+        "unresolved_reason": null,
+        "needs_human_review": true
+      },
+      "coverage_ledger": {
+        "crop_id": "crop_001",
+        "matched_components": [
+          "COMP-103",
+          "COMP-116"
+        ],
+        "unresolved_reason": null,
+        "needs_human_review": true
+      },
+      "matcher_trace": {
+        "channels_used": [
+          "template_matching",
+          "visual_embedding"
+        ],
+        "ocr_used_as_hint_only": false
+      },
+      "authority_flags": {
+        "not_repo_contract": true,
+        "not_canon_authority": true,
+        "not_dapu_ir_authority": true,
+        "not_score_event_authority": true,
+        "not_sample_ingest": true,
+        "not_ml_training_data": true,
+        "not_render_output": true,
+        "needs_human_review": true
+      }
+    },
+    "unknown_crop": {
+      "contract_id": "CG_LXY_P2A_component_match_contract.v0.1",
+      "crop_id": "crop_002",
+      "crop_scope_status": "LOW_CONFIDENCE_SINGLE_COMPONENT_CROP",
+      "top_k": 5,
+      "component_candidates": [],
+      "unknown_component_state": {
+        "status": "UNKNOWN_COMPONENT",
+        "unresolved_reason": "no registry-backed candidate passed minimum visual evidence gate",
+        "needs_human_review": true
+      },
+      "coverage_ledger": {
+        "crop_id": "crop_002",
+        "matched_components": [],
+        "unresolved_reason": "UNKNOWN_COMPONENT",
+        "needs_human_review": true
+      },
+      "matcher_trace": {
+        "channels_used": [
+          "template_matching",
+          "visual_embedding",
+          "ocr_assisted_candidate_proposal"
+        ],
+        "ocr_used_as_hint_only": true
+      },
+      "authority_flags": {
+        "not_repo_contract": true,
+        "not_canon_authority": true,
+        "not_dapu_ir_authority": true,
+        "not_score_event_authority": true,
+        "not_sample_ingest": true,
+        "not_ml_training_data": true,
+        "not_render_output": true,
+        "needs_human_review": true
+      }
+    }
+  },
+  "readiness": {
+    "ready_for_P2B_implementation_design": true,
+    "ready_for_visual_model_training": false,
+    "ready_for_LXY_phrase_reading": false
+  }
+}
+
