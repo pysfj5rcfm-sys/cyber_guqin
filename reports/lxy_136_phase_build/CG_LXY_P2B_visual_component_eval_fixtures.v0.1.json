@@ -1,0 +1,95 @@
+{
+  "fixture_schema_id": "CG_LXY_P2B_visual_component_eval_fixtures.v0.1",
+  "scope": "P2G_P2B_VISUAL_COMPONENT_EVAL_ONLY",
+  "authority_flags": {
+    "VISUAL_COMPONENT_EVAL_ONLY": true,
+    "NOT_PHRASE_READING_AUTHORITY": true,
+    "NOT_GRAMMAR_AUTHORITY": true,
+    "NOT_SCORE_AUTHORITY": true,
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_SCORE_EVENT_AUTHORITY": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_ML_TRAINING_DATA": true,
+    "NEEDS_HUMAN_REVIEW": true
+  },
+  "forbidden_fields_absent": [
+    "phrase_reading",
+    "surface_reading",
+    "canonical_reading",
+    "complete_reading",
+    "grammar_candidate",
+    "grammar_parse",
+    "score_fact",
+    "score_event",
+    "dapu_ir",
+    "piece_title",
+    "phrase_id"
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "P2B-VISUAL-EVAL-REAL-001",
+      "notation_unit_id": "NU_REALITY_CHECK_001",
+      "image_reference": {
+        "path_or_uri": "/Users/chenyulin/Desktop/截屏2026-07-08 11.48.59.png",
+        "reference_type": "notation_unit_crop_with_review_overlay"
+      },
+      "cross_validation_role": "COMPONENT_RECALL_EVAL",
+      "expected_regions": [
+        {
+          "region_id": "V002",
+          "visual_role": "upper_left_region",
+          "bbox": [25, 21, 44, 47],
+          "reviewed_component_id": "COMP-091",
+          "reviewed_component_label": "大指",
+          "atlas_status": "HAS_COMPONENT_ID",
+          "review_purpose": "P2G_P2B_VISUAL_EVAL_ONLY"
+        },
+        {
+          "region_id": "V001",
+          "visual_role": "upper_right_region",
+          "bbox": [65, 11, 62, 55],
+          "reviewed_component_label": "九",
+          "atlas_status": "NO_INDEPENDENT_COMPONENT_ID",
+          "review_purpose": "P2G_P2B_VISUAL_EVAL_ONLY"
+        },
+        {
+          "region_id": "V003",
+          "visual_role": "middle_region",
+          "bbox": [67, 62, 49, 45],
+          "reviewed_component_id": "COMP-087",
+          "reviewed_component_label": "七",
+          "atlas_status": "HAS_COMPONENT_ID",
+          "review_purpose": "P2G_P2B_VISUAL_EVAL_ONLY"
+        },
+        {
+          "region_id": "V004",
+          "visual_role": "lower_left_region",
+          "bbox": [17, 77, 32, 57],
+          "reviewed_component_id": "COMP-418",
+          "reviewed_component_label": "注",
+          "atlas_status": "HAS_COMPONENT_ID",
+          "review_purpose": "P2G_P2B_VISUAL_EVAL_ONLY"
+        },
+        {
+          "region_id": "V005",
+          "visual_role": "lower_right_region",
+          "bbox": [54, 78, 88, 55],
+          "reviewed_component_id": "COMP-116",
+          "reviewed_component_label": "挑",
+          "atlas_status": "HAS_COMPONENT_ID",
+          "review_purpose": "P2G_P2B_VISUAL_EVAL_ONLY"
+        }
+      ]
+    },
+    {
+      "fixture_id": "P2B-VISUAL-CROSS-UNLABELED-001",
+      "notation_unit_id": "NU_CROSS_VALIDATION_001",
+      "image_reference": {
+        "path_or_uri": "/Users/chenyulin/Desktop/截屏2026-07-08 10.51.51.png",
+        "reference_type": "notation_unit_crop_with_review_overlay"
+      },
+      "cross_validation_role": "VISUAL_SANITY_ONLY",
+      "expected_regions": []
+    }
+  ]
+}

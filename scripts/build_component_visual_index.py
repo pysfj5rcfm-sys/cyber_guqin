@@ -76,6 +76,7 @@ def build_component_visual_index(
 
 def _entry_from_component(component: dict[str, Any], repo_root: Path, *, source_registry: str) -> dict[str, Any]:
     image_path = component.get("source_image_path_v0_1")
+    reference_evidence = dict(component.get("reference_evidence") or {})
     image_hash = None
     image_dimensions = None
     matchable = False
@@ -96,8 +97,29 @@ def _entry_from_component(component: dict[str, Any], repo_root: Path, *, source_
         else:
             reason = "MISSING_REPO_SOURCE_IMAGE"
     elif source_registry == "auxiliary_components":
-        ref = component.get("reference_evidence") or {}
-        image_hash = ref.get("image_sha256")
+        image_hash = reference_evidence.get("image_sha256")
+
+    reference_type = (
+        reference_evidence.get("runtime_reference_type")
+        or ("registry_component_image" if source_registry == "components" else "registry_auxiliary_reference")
+    )
+    normalized_reference = {
+        "reference_type": reference_type,
+        "source_registry": source_registry,
+        "matchable": matchable,
+        "reason": reference_evidence.get("runtime_reason") or reason,
+        "registry_image_hash": component.get("image_sha256"),
+        "image_hash_matches_registry": hash_matches_registry,
+    }
+    for key in (
+        "provisional_reference",
+        "equivalence_scope",
+        "not_covered",
+        "future_completion_required",
+        "review_note",
+    ):
+        if key in reference_evidence:
+            normalized_reference[key] = reference_evidence[key]
 
     return {
         "component_id": component.get("component_id"),
@@ -106,14 +128,7 @@ def _entry_from_component(component: dict[str, Any], repo_root: Path, *, source_
         "image_path": image_path,
         "image_hash": image_hash,
         "image_dimensions": image_dimensions,
-        "normalized_reference": {
-            "reference_type": "registry_component_image" if source_registry == "components" else "registry_auxiliary_reference",
-            "source_registry": source_registry,
-            "matchable": matchable,
-            "reason": reason,
-            "registry_image_hash": component.get("image_sha256"),
-            "image_hash_matches_registry": hash_matches_registry,
-        },
+        "normalized_reference": normalized_reference,
     }
 
 

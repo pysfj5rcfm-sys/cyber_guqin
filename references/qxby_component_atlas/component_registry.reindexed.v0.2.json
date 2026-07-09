@@ -5392,7 +5392,7 @@
       "component_family": "numeric_component_family",
       "category": "auxiliary_numeric_components",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-081_一_provisional_equivalence.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-009",
@@ -5405,13 +5405,41 @@
       "source": "auxiliary_normalized_component",
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "42573d52d2d2ae8f5577fe2f45fee7da7201c899769e6f75e826be3f17b23e02",
+      "image_dimensions": {
+        "width": 144,
+        "height": 150
+      },
+      "reference_evidence": {
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-081_一_provisional_equivalence.png",
+        "repo_reference_image_sha256": "42573d52d2d2ae8f5577fe2f45fee7da7201c899769e6f75e826be3f17b23e02",
+        "repo_reference_image_dimensions": {
+          "width": 144,
+          "height": 150
+        },
+        "reference_image_not_copied_to_repo": false,
+        "runtime_reference_type": "provisional_numeric_equivalence_reference",
+        "runtime_reason": "PROVISIONAL_ONE_TO_SEVEN_EQUIVALENCE_REFERENCE",
+        "provisional_reference": true,
+        "equivalence_scope": "ONE_TO_SEVEN_ONLY",
+        "not_covered": [
+          "八",
+          "九",
+          "十",
+          "十一",
+          "十二",
+          "十三"
+        ],
+        "future_completion_required": "Register independent Chinese numeric hui-position references for 八, 九, 十, 十一, 十二, 十三 after one-to-seven validation stabilizes.",
+        "review_note": "Temporary numeric reference for component-level visual matching only; not phrase reading, grammar, score fact, or Dapu IR authority."
       }
     },
     {
@@ -5420,7 +5448,7 @@
       "component_family": "numeric_component_family",
       "category": "auxiliary_numeric_components",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-082_二_provisional_equivalence.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-015",
@@ -5433,13 +5461,41 @@
       "source": "auxiliary_normalized_component",
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "5ea44735f7e11e90088a7e1fb98d338f94f6dbb6bf9d18b7bee00f7eb67f3445",
+      "image_dimensions": {
+        "width": 144,
+        "height": 150
+      },
+      "reference_evidence": {
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-082_二_provisional_equivalence.png",
+        "repo_reference_image_sha256": "5ea44735f7e11e90088a7e1fb98d338f94f6dbb6bf9d18b7bee00f7eb67f3445",
+        "repo_reference_image_dimensions": {
+          "width": 144,
+          "height": 150
+        },
+        "reference_image_not_copied_to_repo": false,
+        "runtime_reference_type": "provisional_numeric_equivalence_reference",
+        "runtime_reason": "PROVISIONAL_ONE_TO_SEVEN_EQUIVALENCE_REFERENCE",
+        "provisional_reference": true,
+        "equivalence_scope": "ONE_TO_SEVEN_ONLY",
+        "not_covered": [
+          "八",
+          "九",
+          "十",
+          "十一",
+          "十二",
+          "十三"
+        ],
+        "future_completion_required": "Register independent Chinese numeric hui-position references for 八, 九, 十, 十一, 十二, 十三 after one-to-seven validation stabilizes.",
+        "review_note": "Temporary numeric reference for component-level visual matching only; not phrase reading, grammar, score fact, or Dapu IR authority."
       }
     },
     {
@@ -5448,7 +5504,7 @@
       "component_family": "numeric_component_family",
       "category": "auxiliary_numeric_components",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-083_三_provisional_equivalence.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-016",
@@ -5461,13 +5517,41 @@
       "source": "auxiliary_normalized_component",
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "3e47e621912a7936795bc82cd140de74ef98c4560c7b8919f6dc43fe30cca9ff",
+      "image_dimensions": {
+        "width": 144,
+        "height": 150
+      },
+      "reference_evidence": {
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-083_三_provisional_equivalence.png",
+        "repo_reference_image_sha256": "3e47e621912a7936795bc82cd140de74ef98c4560c7b8919f6dc43fe30cca9ff",
+        "repo_reference_image_dimensions": {
+          "width": 144,
+          "height": 150
+        },
+        "reference_image_not_copied_to_repo": false,
+        "runtime_reference_type": "provisional_numeric_equivalence_reference",
+        "runtime_reason": "PROVISIONAL_ONE_TO_SEVEN_EQUIVALENCE_REFERENCE",
+        "provisional_reference": true,
+        "equivalence_scope": "ONE_TO_SEVEN_ONLY",
+        "not_covered": [
+          "八",
+          "九",
+          "十",
+          "十一",
+          "十二",
+          "十三"
+        ],
+        "future_completion_required": "Register independent Chinese numeric hui-position references for 八, 九, 十, 十一, 十二, 十三 after one-to-seven validation stabilizes.",
+        "review_note": "Temporary numeric reference for component-level visual matching only; not phrase reading, grammar, score fact, or Dapu IR authority."
       }
     },
     {
@@ -5476,7 +5560,7 @@
       "component_family": "numeric_component_family",
       "category": "auxiliary_numeric_components",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-084_四_provisional_equivalence.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-011",
@@ -5489,13 +5573,41 @@
       "source": "auxiliary_normalized_component",
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "f14ed712f0fc2b98de1ac3d41bfec3cfdd86f48fdcd9e31bfc2b5ec16834be82",
+      "image_dimensions": {
+        "width": 144,
+        "height": 150
+      },
+      "reference_evidence": {
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-084_四_provisional_equivalence.png",
+        "repo_reference_image_sha256": "f14ed712f0fc2b98de1ac3d41bfec3cfdd86f48fdcd9e31bfc2b5ec16834be82",
+        "repo_reference_image_dimensions": {
+          "width": 144,
+          "height": 150
+        },
+        "reference_image_not_copied_to_repo": false,
+        "runtime_reference_type": "provisional_numeric_equivalence_reference",
+        "runtime_reason": "PROVISIONAL_ONE_TO_SEVEN_EQUIVALENCE_REFERENCE",
+        "provisional_reference": true,
+        "equivalence_scope": "ONE_TO_SEVEN_ONLY",
+        "not_covered": [
+          "八",
+          "九",
+          "十",
+          "十一",
+          "十二",
+          "十三"
+        ],
+        "future_completion_required": "Register independent Chinese numeric hui-position references for 八, 九, 十, 十一, 十二, 十三 after one-to-seven validation stabilizes.",
+        "review_note": "Temporary numeric reference for component-level visual matching only; not phrase reading, grammar, score fact, or Dapu IR authority."
       }
     },
     {
@@ -5504,7 +5616,7 @@
       "component_family": "numeric_component_family",
       "category": "auxiliary_numeric_components",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-085_五_provisional_equivalence.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-004",
@@ -5517,13 +5629,41 @@
       "source": "auxiliary_normalized_component",
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "ad31c071ac7665e36923f1f8d521a725325cf7aa7b106ece7a12c9d2c1039d2f",
+      "image_dimensions": {
+        "width": 144,
+        "height": 150
+      },
+      "reference_evidence": {
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-085_五_provisional_equivalence.png",
+        "repo_reference_image_sha256": "ad31c071ac7665e36923f1f8d521a725325cf7aa7b106ece7a12c9d2c1039d2f",
+        "repo_reference_image_dimensions": {
+          "width": 144,
+          "height": 150
+        },
+        "reference_image_not_copied_to_repo": false,
+        "runtime_reference_type": "provisional_numeric_equivalence_reference",
+        "runtime_reason": "PROVISIONAL_ONE_TO_SEVEN_EQUIVALENCE_REFERENCE",
+        "provisional_reference": true,
+        "equivalence_scope": "ONE_TO_SEVEN_ONLY",
+        "not_covered": [
+          "八",
+          "九",
+          "十",
+          "十一",
+          "十二",
+          "十三"
+        ],
+        "future_completion_required": "Register independent Chinese numeric hui-position references for 八, 九, 十, 十一, 十二, 十三 after one-to-seven validation stabilizes.",
+        "review_note": "Temporary numeric reference for component-level visual matching only; not phrase reading, grammar, score fact, or Dapu IR authority."
       }
     },
     {
@@ -5532,7 +5672,7 @@
       "component_family": "numeric_component_family",
       "category": "auxiliary_numeric_components",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-086_六_provisional_equivalence.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-006",
@@ -5545,13 +5685,41 @@
       "source": "auxiliary_normalized_component",
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "c89f1a49e51e10ae757de1cc11f4c51e9d692923f44ed18a0a36df0bc71c14d6",
+      "image_dimensions": {
+        "width": 144,
+        "height": 150
+      },
+      "reference_evidence": {
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-086_六_provisional_equivalence.png",
+        "repo_reference_image_sha256": "c89f1a49e51e10ae757de1cc11f4c51e9d692923f44ed18a0a36df0bc71c14d6",
+        "repo_reference_image_dimensions": {
+          "width": 144,
+          "height": 150
+        },
+        "reference_image_not_copied_to_repo": false,
+        "runtime_reference_type": "provisional_numeric_equivalence_reference",
+        "runtime_reason": "PROVISIONAL_ONE_TO_SEVEN_EQUIVALENCE_REFERENCE",
+        "provisional_reference": true,
+        "equivalence_scope": "ONE_TO_SEVEN_ONLY",
+        "not_covered": [
+          "八",
+          "九",
+          "十",
+          "十一",
+          "十二",
+          "十三"
+        ],
+        "future_completion_required": "Register independent Chinese numeric hui-position references for 八, 九, 十, 十一, 十二, 十三 after one-to-seven validation stabilizes.",
+        "review_note": "Temporary numeric reference for component-level visual matching only; not phrase reading, grammar, score fact, or Dapu IR authority."
       }
     },
     {
@@ -5560,7 +5728,7 @@
       "component_family": "numeric_component_family",
       "category": "auxiliary_numeric_components",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-087_七_provisional_equivalence.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-007",
@@ -5573,13 +5741,41 @@
       "source": "auxiliary_normalized_component",
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "fbd0e3afde30d6da701d8d35a2d04a63e008f9ef9f3d86d46d52fe2962cf11a5",
+      "image_dimensions": {
+        "width": 144,
+        "height": 150
+      },
+      "reference_evidence": {
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_numeric/COMP-087_七_provisional_equivalence.png",
+        "repo_reference_image_sha256": "fbd0e3afde30d6da701d8d35a2d04a63e008f9ef9f3d86d46d52fe2962cf11a5",
+        "repo_reference_image_dimensions": {
+          "width": 144,
+          "height": 150
+        },
+        "reference_image_not_copied_to_repo": false,
+        "runtime_reference_type": "provisional_numeric_equivalence_reference",
+        "runtime_reason": "PROVISIONAL_ONE_TO_SEVEN_EQUIVALENCE_REFERENCE",
+        "provisional_reference": true,
+        "equivalence_scope": "ONE_TO_SEVEN_ONLY",
+        "not_covered": [
+          "八",
+          "九",
+          "十",
+          "十一",
+          "十二",
+          "十三"
+        ],
+        "future_completion_required": "Register independent Chinese numeric hui-position references for 八, 九, 十, 十一, 十二, 十三 after one-to-seven validation stabilizes.",
+        "review_note": "Temporary numeric reference for component-level visual matching only; not phrase reading, grammar, score fact, or Dapu IR authority."
       }
     },
     {
@@ -5588,7 +5784,7 @@
       "component_family": "left_finger_name_family",
       "category": "auxiliary_left_finger_names",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-091_大指.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-012",
@@ -5605,17 +5801,33 @@
         "original_internal_path": "左手指名/大指.png",
         "file_ext": ".png",
         "image_sha256": "f599e88afa1c4069e79986ec48c55889e9ec353eca91898fb90703810a4ab7e6",
-        "reference_image_not_copied_to_repo": true
+        "reference_image_not_copied_to_repo": false,
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-091_大指.png",
+        "repo_reference_image_sha256": "1681cbb2c98f72eaa46ca801b73e96b59a456e5aa41a5959a41a05eb83351ec9",
+        "repo_reference_image_dimensions": {
+          "width": 1017,
+          "height": 763
+        },
+        "source_reference_jpeg_path": "sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_003_thumb_大指_ref.jpeg",
+        "source_reference_jpeg_sha256": "98aa042b4e731c2f24c6aad5d71d4c96d646a7bedbc740a225839b6fa03f1ba1",
+        "runtime_reference_type": "registry_auxiliary_reference",
+        "runtime_reason": "AUXILIARY_REPO_REFERENCE_IMAGE_AVAILABLE",
+        "review_note": "Left-finger auxiliary component bound to repo PNG converted from QXBY_BATCH_002 reference image."
       },
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "1681cbb2c98f72eaa46ca801b73e96b59a456e5aa41a5959a41a05eb83351ec9",
+      "image_dimensions": {
+        "width": 1017,
+        "height": 763
       }
     },
     {
@@ -5624,7 +5836,7 @@
       "component_family": "left_finger_name_family",
       "category": "auxiliary_left_finger_names",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-092_食指.png",
       "legacy_refs": [],
       "semantic_alias_refs": [],
       "source": "auxiliary_normalized_component",
@@ -5634,17 +5846,33 @@
         "original_internal_path": "左手指名/食指.png",
         "file_ext": ".png",
         "image_sha256": "84d72e387c23cc9c63060222225869623b33226d8ebf203b7cd2980470626580",
-        "reference_image_not_copied_to_repo": true
+        "reference_image_not_copied_to_repo": false,
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-092_食指.png",
+        "repo_reference_image_sha256": "bdab105cfa488fa2c6b966f4c1131124111942e4c8977036acfc3ffb0681e94d",
+        "repo_reference_image_dimensions": {
+          "width": 998,
+          "height": 228
+        },
+        "source_reference_jpeg_path": "sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_004_index_食指_ref.jpeg",
+        "source_reference_jpeg_sha256": "cdee596d75b7b0ffa02b24c5bb3b5499bc71b658f41513ce0f2065188076a38e",
+        "runtime_reference_type": "registry_auxiliary_reference",
+        "runtime_reason": "AUXILIARY_REPO_REFERENCE_IMAGE_AVAILABLE",
+        "review_note": "Left-finger auxiliary component bound to repo PNG converted from QXBY_BATCH_002 reference image."
       },
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "bdab105cfa488fa2c6b966f4c1131124111942e4c8977036acfc3ffb0681e94d",
+      "image_dimensions": {
+        "width": 998,
+        "height": 228
       }
     },
     {
@@ -5653,7 +5881,7 @@
       "component_family": "left_finger_name_family",
       "category": "auxiliary_left_finger_names",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-093_中指.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-013",
@@ -5670,17 +5898,33 @@
         "original_internal_path": "左手指名/中指.png",
         "file_ext": ".png",
         "image_sha256": "9d98528f89648628ed420d46cb77e9ddae1b58544938cadff4a87977181b7338",
-        "reference_image_not_copied_to_repo": true
+        "reference_image_not_copied_to_repo": false,
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-093_中指.png",
+        "repo_reference_image_sha256": "ac10934875e79d3fbb67d3875ad56045ad3744e544b72c2ea3533bb12fd2af0e",
+        "repo_reference_image_dimensions": {
+          "width": 998,
+          "height": 224
+        },
+        "source_reference_jpeg_path": "sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_005_middle_中指_ref.jpeg",
+        "source_reference_jpeg_sha256": "da8c9650ec927f1b1b6a69eb045e053d6869a03597007a3d275af2e423e0fc1f",
+        "runtime_reference_type": "registry_auxiliary_reference",
+        "runtime_reason": "AUXILIARY_REPO_REFERENCE_IMAGE_AVAILABLE",
+        "review_note": "Left-finger auxiliary component bound to repo PNG converted from QXBY_BATCH_002 reference image."
       },
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "ac10934875e79d3fbb67d3875ad56045ad3744e544b72c2ea3533bb12fd2af0e",
+      "image_dimensions": {
+        "width": 998,
+        "height": 224
       }
     },
     {
@@ -5689,7 +5933,7 @@
       "component_family": "left_finger_name_family",
       "category": "auxiliary_left_finger_names",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-094_名指.png",
       "legacy_refs": [
         {
           "legacy_component_id": "COMP-008",
@@ -5706,17 +5950,33 @@
         "original_internal_path": "左手指名/名指.png",
         "file_ext": ".png",
         "image_sha256": "c1a4897a563833077a0c4f4e4b8fb25ee7c4aea32f20eaa4fe67d396e3305575",
-        "reference_image_not_copied_to_repo": true
+        "reference_image_not_copied_to_repo": false,
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-094_名指.png",
+        "repo_reference_image_sha256": "1ef8e856556380073fdf35bedee8d658568a326564e3520588dd6226f931d691",
+        "repo_reference_image_dimensions": {
+          "width": 993,
+          "height": 288
+        },
+        "source_reference_jpeg_path": "sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_006_ring_名指_ref.jpeg",
+        "source_reference_jpeg_sha256": "655bcc1ed0458890ed53e3598bbb5d4347cdc32470fb5a2379414b040327226d",
+        "runtime_reference_type": "registry_auxiliary_reference",
+        "runtime_reason": "AUXILIARY_REPO_REFERENCE_IMAGE_AVAILABLE",
+        "review_note": "Left-finger auxiliary component bound to repo PNG converted from QXBY_BATCH_002 reference image."
       },
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "1ef8e856556380073fdf35bedee8d658568a326564e3520588dd6226f931d691",
+      "image_dimensions": {
+        "width": 993,
+        "height": 288
       }
     },
     {
@@ -5725,7 +5985,7 @@
       "component_family": "left_finger_name_family",
       "category": "auxiliary_left_finger_names",
       "source_component_id_v0_1": null,
-      "source_image_path_v0_1": null,
+      "source_image_path_v0_1": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-095_跪指.png",
       "legacy_refs": [],
       "semantic_alias_refs": [],
       "source": "auxiliary_normalized_component",
@@ -5735,17 +5995,33 @@
         "original_internal_path": "左手指名/跪指.png",
         "file_ext": ".png",
         "image_sha256": "f57c83a6d2c91d2a784f22534b0437ae162348454765bf1cc16b5b0cb9d8a1fe",
-        "reference_image_not_copied_to_repo": true
+        "reference_image_not_copied_to_repo": false,
+        "repo_reference_image_path": "sources/qxby_component_atlas/images/auxiliary_left_finger_names/COMP-095_跪指.png",
+        "repo_reference_image_sha256": "caeede5fecdd9483416c979e6484e9bba4b316062c7de4e07a18f9df3f20b768",
+        "repo_reference_image_dimensions": {
+          "width": 1005,
+          "height": 878
+        },
+        "source_reference_jpeg_path": "sources/qinxue_beiyao/QXBY_BATCH_002/images/QXBY_B002_007_gui_跪指_ref.jpeg",
+        "source_reference_jpeg_sha256": "9af8bdaf8cfe70d31cb4e4a48f85345b0a3b39fe94fb7c42a4bfa0e93d7f706d",
+        "runtime_reference_type": "registry_auxiliary_reference",
+        "runtime_reason": "AUXILIARY_REPO_REFERENCE_IMAGE_AVAILABLE",
+        "review_note": "Left-finger auxiliary component bound to repo PNG converted from QXBY_BATCH_002 reference image."
       },
       "authority_status": {
         "component_reference": true,
-        "source_image_reference": false,
+        "source_image_reference": true,
         "canon_term_authority": false,
         "score_event_authority": false,
         "dapu_ir_authority": false,
         "sample_ingest": false,
         "ml_training_data": false,
         "render_output": false
+      },
+      "image_sha256": "caeede5fecdd9483416c979e6484e9bba4b316062c7de4e07a18f9df3f20b768",
+      "image_dimensions": {
+        "width": 1005,
+        "height": 878
       }
     }
   ],

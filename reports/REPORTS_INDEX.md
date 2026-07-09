@@ -89,6 +89,18 @@ CG-VARW chronological docs are indexed separately in `tools/cg-varw/docs/INDEX.m
 
 Validator runs may recreate JSON reports in `reports/` root. Generated validator reports can be archived again under `reports/archive/` in a separate cleanup/archive task.
 
+## CG-LXY-136 Phase Build Reports
+
+| File or Pattern | Role |
+| --- | --- |
+| `lxy_136_phase_build/CG_LXY_P1_P2_handoff_to_P3.v0.1.md` | Current P1/P2 handoff and P3 visual-grammar fusion recommendations. |
+| `lxy_136_phase_build/CG_LXY_P2G_visual_decomposition_design.v0.1.md` | P2G visual-only decomposition design and runtime boundary. |
+| `lxy_136_phase_build/CG_LXY_P2H_p2g_p2b_bridge_report.v0.1.md` | P2G-to-P2B component candidate lattice bridge evidence. |
+| `lxy_136_phase_build/CG_LXY_P2I_component_ranking_audit_report.v0.1.md` | Component-level P2B ranking audit and cross-validation boundary. |
+| `lxy_136_phase_build/CG_LXY_P2J_auxiliary_matchability_update_report.v0.1.md` | Auxiliary component matchability update and numeric one-to-seven provisional coverage. |
+
+These reports are review and implementation evidence only. They do not authorize phrase reading, score facts, Dapu IR, sample ingest, or ML training.
+
 ## Archive Layout
 
 - `reports/archive/2026-06/`: Historical audit reports, old batch reports, generated validation outputs, cleanup plans, retrospective reports, and completed staging artifacts from June 2026.

@@ -1,0 +1,723 @@
+{
+  "authority_flags": {
+    "NEEDS_HUMAN_REVIEW": true,
+    "NOT_DAPU_IR_AUTHORITY": true,
+    "NOT_GRAMMAR_AUTHORITY": true,
+    "NOT_ML_TRAINING_DATA": true,
+    "NOT_PHRASE_READING_AUTHORITY": true,
+    "NOT_SAMPLE_INGEST": true,
+    "NOT_SCORE_AUTHORITY": true,
+    "NOT_SCORE_EVENT_AUTHORITY": true,
+    "VISUAL_COMPONENT_EVAL_ONLY": true
+  },
+  "contract_id": "CG_LXY_P2B_component_ranking_audit_batch.v0.1",
+  "fixture_count": 2,
+  "reports": [
+    {
+      "audit_trace": {
+        "component_level_review_only": true,
+        "p1_parse_called": false,
+        "p3_grammar_called": false,
+        "phrase_oracle_used": false,
+        "runtime_layer": "P2B_COMPONENT_RANKING_AUDIT"
+      },
+      "authority_flags": {
+        "NEEDS_HUMAN_REVIEW": true,
+        "NOT_DAPU_IR_AUTHORITY": true,
+        "NOT_GRAMMAR_AUTHORITY": true,
+        "NOT_ML_TRAINING_DATA": true,
+        "NOT_PHRASE_READING_AUTHORITY": true,
+        "NOT_SAMPLE_INGEST": true,
+        "NOT_SCORE_AUTHORITY": true,
+        "NOT_SCORE_EVENT_AUTHORITY": true,
+        "VISUAL_COMPONENT_EVAL_ONLY": true
+      },
+      "bridge_summary": {
+        "component_candidate_set_count": 5,
+        "failure_flags": [],
+        "status": "MATCHED"
+      },
+      "contract_id": "CG_LXY_P2B_component_ranking_audit.v0.1",
+      "failure_flags": [
+        "P2B_RECALL_MISS",
+        "COMPONENT_ATLAS_GAP"
+      ],
+      "fixture_id": "P2B-VISUAL-EVAL-REAL-001",
+      "image_reference": {
+        "path_or_uri": "/Users/chenyulin/Desktop/截屏2026-07-08 11.48.59.png",
+        "reference_type": "notation_unit_crop_with_review_overlay"
+      },
+      "mode": "COMPONENT_RECALL_EVAL",
+      "notation_unit_id": "NU_REALITY_CHECK_001",
+      "observed_unreviewed_regions": [],
+      "p2g_summary": {
+        "failure_flags": [],
+        "layout_candidates": [
+          {
+            "evidence": {
+              "lower_count": 2,
+              "middle_count": 1,
+              "region_count": 5,
+              "upper_count": 2
+            },
+            "layout_family": "UPPER_MIDDLE_LOWER",
+            "visual_score": 0.88
+          }
+        ],
+        "quality_metrics": {
+          "coverage_ratio": 1.0,
+          "ink_region_count": 5,
+          "notation_unit_bbox": {
+            "height": 123,
+            "width": 125,
+            "x": 17,
+            "y": 11
+          },
+          "notation_unit_bbox_area_ratio": 0.722,
+          "raw_ink_region_count": 34,
+          "segmentation_confidence": 0.88,
+          "unassigned_ink_ratio": 0.0,
+          "visual_unit_count": 5
+        }
+      },
+      "region_results": [
+        {
+          "atlas_status": "HAS_COMPONENT_ID",
+          "bbox": [
+            25,
+            21,
+            44,
+            47
+          ],
+          "evaluation_status": "EVALUATED",
+          "pass_level": "MISS",
+          "rank_1_based": null,
+          "region_id": "V002",
+          "reviewed_component_id": "COMP-091",
+          "reviewed_component_label": "大指",
+          "score_gap_to_top": null,
+          "top_candidates": [
+            {
+              "component_id": "COMP-802",
+              "confidence": 0.767,
+              "label": "入慢",
+              "rank_1_based": 1,
+              "visual_score": 0.74
+            },
+            {
+              "component_id": "COMP-501",
+              "confidence": 0.739,
+              "label": "上",
+              "rank_1_based": 2,
+              "visual_score": 0.698
+            },
+            {
+              "component_id": "COMP-816",
+              "confidence": 0.728,
+              "label": "蓄",
+              "rank_1_based": 3,
+              "visual_score": 0.683
+            },
+            {
+              "component_id": "COMP-822",
+              "confidence": 0.726,
+              "label": "顿",
+              "rank_1_based": 4,
+              "visual_score": 0.68
+            },
+            {
+              "component_id": "COMP-105",
+              "confidence": 0.725,
+              "label": "半轮",
+              "rank_1_based": 5,
+              "visual_score": 0.678
+            }
+          ],
+          "visual_role": "upper_left_region"
+        },
+        {
+          "atlas_status": "NO_INDEPENDENT_COMPONENT_ID",
+          "bbox": [
+            65,
+            11,
+            62,
+            55
+          ],
+          "evaluation_status": "ATLAS_GAP",
+          "pass_level": "ATLAS_GAP",
+          "rank_1_based": null,
+          "region_id": "V001",
+          "reviewed_component_id": null,
+          "reviewed_component_label": "九",
+          "top_candidates": [
+            {
+              "component_id": "COMP-503",
+              "confidence": 0.604,
+              "label": "使",
+              "rank_1_based": 1,
+              "visual_score": 0.618
+            },
+            {
+              "component_id": "COMP-907",
+              "confidence": 0.594,
+              "label": "就",
+              "rank_1_based": 2,
+              "visual_score": 0.603
+            },
+            {
+              "component_id": "COMP-105",
+              "confidence": 0.589,
+              "label": "半轮",
+              "rank_1_based": 3,
+              "visual_score": 0.595
+            },
+            {
+              "component_id": "COMP-501",
+              "confidence": 0.585,
+              "label": "上",
+              "rank_1_based": 4,
+              "visual_score": 0.589
+            },
+            {
+              "component_id": "COMP-514",
+              "confidence": 0.579,
+              "label": "拖",
+              "rank_1_based": 5,
+              "visual_score": 0.581
+            }
+          ],
+          "visual_role": "upper_right_region"
+        },
+        {
+          "atlas_status": "HAS_COMPONENT_ID",
+          "bbox": [
+            67,
+            62,
+            49,
+            45
+          ],
+          "evaluation_status": "EVALUATED",
+          "pass_level": "MISS",
+          "rank_1_based": null,
+          "region_id": "V003",
+          "reviewed_component_id": "COMP-087",
+          "reviewed_component_label": "七",
+          "score_gap_to_top": null,
+          "top_candidates": [
+            {
+              "component_id": "COMP-822",
+              "confidence": 0.724,
+              "label": "顿",
+              "rank_1_based": 1,
+              "visual_score": 0.677
+            },
+            {
+              "component_id": "COMP-501",
+              "confidence": 0.718,
+              "label": "上",
+              "rank_1_based": 2,
+              "visual_score": 0.668
+            },
+            {
+              "component_id": "COMP-811",
+              "confidence": 0.715,
+              "label": "接",
+              "rank_1_based": 3,
+              "visual_score": 0.663
+            },
+            {
+              "component_id": "COMP-802",
+              "confidence": 0.709,
+              "label": "入慢",
+              "rank_1_based": 4,
+              "visual_score": 0.655
+            },
+            {
+              "component_id": "COMP-804",
+              "confidence": 0.614,
+              "label": "大慢",
+              "rank_1_based": 5,
+              "visual_score": 0.632
+            }
+          ],
+          "visual_role": "middle_region"
+        },
+        {
+          "atlas_status": "HAS_COMPONENT_ID",
+          "bbox": [
+            17,
+            77,
+            32,
+            57
+          ],
+          "evaluation_status": "EVALUATED",
+          "pass_level": "PASS_TOP1",
+          "rank_1_based": 1,
+          "region_id": "V004",
+          "reviewed_component_id": "COMP-418",
+          "reviewed_component_label": "注",
+          "score_gap_to_top": 0.0,
+          "top_candidates": [
+            {
+              "component_id": "COMP-418",
+              "confidence": 0.595,
+              "label": "注",
+              "rank_1_based": 1,
+              "visual_score": 0.604
+            },
+            {
+              "component_id": "COMP-818",
+              "confidence": 0.582,
+              "label": "踢宕",
+              "rank_1_based": 2,
+              "visual_score": 0.586
+            },
+            {
+              "component_id": "COMP-430",
+              "confidence": 0.572,
+              "label": "缓急吟",
+              "rank_1_based": 3,
+              "visual_score": 0.571
+            },
+            {
+              "component_id": "COMP-429",
+              "confidence": 0.562,
+              "label": "缓吟",
+              "rank_1_based": 4,
+              "visual_score": 0.556
+            },
+            {
+              "component_id": "COMP-815",
+              "confidence": 0.555,
+              "label": "缓作",
+              "rank_1_based": 5,
+              "visual_score": 0.545
+            }
+          ],
+          "visual_role": "lower_left_region"
+        },
+        {
+          "atlas_status": "HAS_COMPONENT_ID",
+          "bbox": [
+            54,
+            78,
+            88,
+            55
+          ],
+          "evaluation_status": "EVALUATED",
+          "pass_level": "PASS_TOP3",
+          "rank_1_based": 2,
+          "region_id": "V005",
+          "reviewed_component_id": "COMP-116",
+          "reviewed_component_label": "挑",
+          "score_gap_to_top": 0.002,
+          "top_candidates": [
+            {
+              "component_id": "COMP-702",
+              "confidence": 0.587,
+              "label": "徽",
+              "rank_1_based": 1,
+              "visual_score": 0.592
+            },
+            {
+              "component_id": "COMP-116",
+              "confidence": 0.585,
+              "label": "挑",
+              "rank_1_based": 2,
+              "visual_score": 0.589
+            },
+            {
+              "component_id": "COMP-516",
+              "confidence": 0.585,
+              "label": "掩",
+              "rank_1_based": 3,
+              "visual_score": 0.589
+            },
+            {
+              "component_id": "COMP-813",
+              "confidence": 0.563,
+              "label": "紧",
+              "rank_1_based": 4,
+              "visual_score": 0.558
+            },
+            {
+              "component_id": "COMP-082",
+              "confidence": 0.562,
+              "label": "二",
+              "rank_1_based": 5,
+              "visual_score": 0.556
+            }
+          ],
+          "visual_role": "lower_right_region"
+        }
+      ],
+      "summary": {
+        "atlas_gap_count": 1,
+        "missing_count": 2,
+        "observed_region_count": 5,
+        "reviewed_region_count": 4,
+        "top1_hit_count": 1,
+        "top3_hit_count": 2,
+        "top5_hit_count": 2
+      }
+    },
+    {
+      "audit_trace": {
+        "component_level_review_only": true,
+        "p1_parse_called": false,
+        "p3_grammar_called": false,
+        "phrase_oracle_used": false,
+        "runtime_layer": "P2B_COMPONENT_RANKING_AUDIT"
+      },
+      "authority_flags": {
+        "NEEDS_HUMAN_REVIEW": true,
+        "NOT_DAPU_IR_AUTHORITY": true,
+        "NOT_GRAMMAR_AUTHORITY": true,
+        "NOT_ML_TRAINING_DATA": true,
+        "NOT_PHRASE_READING_AUTHORITY": true,
+        "NOT_SAMPLE_INGEST": true,
+        "NOT_SCORE_AUTHORITY": true,
+        "NOT_SCORE_EVENT_AUTHORITY": true,
+        "VISUAL_COMPONENT_EVAL_ONLY": true
+      },
+      "bridge_summary": {
+        "component_candidate_set_count": 6,
+        "failure_flags": [],
+        "status": "MATCHED"
+      },
+      "contract_id": "CG_LXY_P2B_component_ranking_audit.v0.1",
+      "failure_flags": [],
+      "fixture_id": "P2B-VISUAL-CROSS-UNLABELED-001",
+      "image_reference": {
+        "path_or_uri": "/Users/chenyulin/Desktop/截屏2026-07-08 10.51.51.png",
+        "reference_type": "notation_unit_crop_with_review_overlay"
+      },
+      "mode": "VISUAL_SANITY_ONLY",
+      "notation_unit_id": "NU_CROSS_VALIDATION_001",
+      "observed_unreviewed_regions": [
+        {
+          "bbox": [
+            13,
+            17,
+            46,
+            54
+          ],
+          "region_id": "V002",
+          "top_candidates": [
+            {
+              "component_id": "COMP-811",
+              "confidence": 0.722,
+              "label": "接",
+              "rank_1_based": 1,
+              "visual_score": 0.673
+            },
+            {
+              "component_id": "COMP-509",
+              "confidence": 0.718,
+              "label": "对起",
+              "rank_1_based": 2,
+              "visual_score": 0.668
+            },
+            {
+              "component_id": "COMP-821",
+              "confidence": 0.618,
+              "label": "重",
+              "rank_1_based": 3,
+              "visual_score": 0.638
+            },
+            {
+              "component_id": "COMP-523",
+              "confidence": 0.612,
+              "label": "绰上",
+              "rank_1_based": 4,
+              "visual_score": 0.629
+            },
+            {
+              "component_id": "COMP-816",
+              "confidence": 0.608,
+              "label": "蓄",
+              "rank_1_based": 5,
+              "visual_score": 0.623
+            }
+          ],
+          "visual_role": "upper_left_region"
+        },
+        {
+          "bbox": [
+            58,
+            16,
+            60,
+            46
+          ],
+          "region_id": "V001",
+          "top_candidates": [
+            {
+              "component_id": "COMP-503",
+              "confidence": 0.713,
+              "label": "使",
+              "rank_1_based": 1,
+              "visual_score": 0.66
+            },
+            {
+              "component_id": "COMP-907",
+              "confidence": 0.604,
+              "label": "就",
+              "rank_1_based": 2,
+              "visual_score": 0.618
+            },
+            {
+              "component_id": "COMP-203",
+              "confidence": 0.595,
+              "label": "全扶",
+              "rank_1_based": 3,
+              "visual_score": 0.605
+            },
+            {
+              "component_id": "COMP-506",
+              "confidence": 0.58,
+              "label": "唤",
+              "rank_1_based": 4,
+              "visual_score": 0.582
+            },
+            {
+              "component_id": "COMP-705",
+              "confidence": 0.579,
+              "label": "散",
+              "rank_1_based": 5,
+              "visual_score": 0.581
+            }
+          ],
+          "visual_role": "upper_right_region"
+        },
+        {
+          "bbox": [
+            51,
+            58,
+            41,
+            22
+          ],
+          "region_id": "V003",
+          "top_candidates": [
+            {
+              "component_id": "COMP-607",
+              "confidence": 0.713,
+              "label": "放合",
+              "rank_1_based": 1,
+              "visual_score": 0.66
+            },
+            {
+              "component_id": "COMP-508",
+              "confidence": 0.595,
+              "label": "对按",
+              "rank_1_based": 2,
+              "visual_score": 0.605
+            },
+            {
+              "component_id": "COMP-206",
+              "confidence": 0.584,
+              "label": "双弹",
+              "rank_1_based": 3,
+              "visual_score": 0.588
+            },
+            {
+              "component_id": "COMP-813",
+              "confidence": 0.582,
+              "label": "紧",
+              "rank_1_based": 4,
+              "visual_score": 0.585
+            },
+            {
+              "component_id": "COMP-705",
+              "confidence": 0.57,
+              "label": "散",
+              "rank_1_based": 5,
+              "visual_score": 0.568
+            }
+          ],
+          "visual_role": "middle_region"
+        },
+        {
+          "bbox": [
+            8,
+            94,
+            89,
+            42
+          ],
+          "region_id": "V005",
+          "top_candidates": [
+            {
+              "component_id": "COMP-705",
+              "confidence": 0.577,
+              "label": "散",
+              "rank_1_based": 1,
+              "visual_score": 0.578
+            },
+            {
+              "component_id": "COMP-508",
+              "confidence": 0.561,
+              "label": "对按",
+              "rank_1_based": 2,
+              "visual_score": 0.555
+            },
+            {
+              "component_id": "COMP-901",
+              "confidence": 0.544,
+              "label": "不动",
+              "rank_1_based": 3,
+              "visual_score": 0.529
+            },
+            {
+              "component_id": "COMP-704",
+              "confidence": 0.536,
+              "label": "按",
+              "rank_1_based": 4,
+              "visual_score": 0.518
+            },
+            {
+              "component_id": "COMP-501",
+              "confidence": 0.536,
+              "label": "上",
+              "rank_1_based": 5,
+              "visual_score": 0.517
+            }
+          ],
+          "visual_role": "lower_left_region"
+        },
+        {
+          "bbox": [
+            28,
+            79,
+            87,
+            71
+          ],
+          "region_id": "V004",
+          "top_candidates": [
+            {
+              "component_id": "COMP-813",
+              "confidence": 0.589,
+              "label": "紧",
+              "rank_1_based": 1,
+              "visual_score": 0.596
+            },
+            {
+              "component_id": "COMP-305",
+              "confidence": 0.556,
+              "label": "打圆",
+              "rank_1_based": 2,
+              "visual_score": 0.547
+            },
+            {
+              "component_id": "COMP-705",
+              "confidence": 0.555,
+              "label": "散",
+              "rank_1_based": 3,
+              "visual_score": 0.546
+            },
+            {
+              "component_id": "COMP-701",
+              "confidence": 0.553,
+              "label": "弦",
+              "rank_1_based": 4,
+              "visual_score": 0.542
+            },
+            {
+              "component_id": "COMP-424",
+              "confidence": 0.551,
+              "label": "短吟",
+              "rank_1_based": 5,
+              "visual_score": 0.539
+            }
+          ],
+          "visual_role": "lower_outer_region"
+        },
+        {
+          "bbox": [
+            65,
+            111,
+            16,
+            16
+          ],
+          "region_id": "V006",
+          "top_candidates": [
+            {
+              "component_id": "COMP-811",
+              "confidence": 0.772,
+              "label": "接",
+              "rank_1_based": 1,
+              "visual_score": 0.747
+            },
+            {
+              "component_id": "COMP-308",
+              "confidence": 0.743,
+              "label": "滚拂",
+              "rank_1_based": 2,
+              "visual_score": 0.704
+            },
+            {
+              "component_id": "COMP-105",
+              "confidence": 0.735,
+              "label": "半轮",
+              "rank_1_based": 3,
+              "visual_score": 0.693
+            },
+            {
+              "component_id": "COMP-306",
+              "confidence": 0.735,
+              "label": "拂",
+              "rank_1_based": 4,
+              "visual_score": 0.692
+            },
+            {
+              "component_id": "COMP-911",
+              "confidence": 0.727,
+              "label": "末",
+              "rank_1_based": 5,
+              "visual_score": 0.681
+            }
+          ],
+          "visual_role": "lower_inner_region"
+        }
+      ],
+      "p2g_summary": {
+        "failure_flags": [],
+        "layout_candidates": [
+          {
+            "evidence": {
+              "lower_count": 3,
+              "middle_count": 1,
+              "region_count": 6,
+              "upper_count": 2
+            },
+            "layout_family": "UPPER_MIDDLE_LOWER",
+            "visual_score": 0.88
+          }
+        ],
+        "quality_metrics": {
+          "coverage_ratio": 1.0,
+          "ink_region_count": 6,
+          "notation_unit_bbox": {
+            "height": 134,
+            "width": 110,
+            "x": 8,
+            "y": 16
+          },
+          "notation_unit_bbox_area_ratio": 0.692,
+          "raw_ink_region_count": 24,
+          "segmentation_confidence": 0.88,
+          "unassigned_ink_ratio": 0.0,
+          "visual_unit_count": 6
+        }
+      },
+      "region_results": [],
+      "summary": {
+        "atlas_gap_count": 0,
+        "missing_count": 0,
+        "observed_region_count": 6,
+        "reviewed_region_count": 0,
+        "top1_hit_count": 0,
+        "top3_hit_count": 0,
+        "top5_hit_count": 0
+      }
+    }
+  ]
+}

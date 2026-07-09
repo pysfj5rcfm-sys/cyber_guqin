@@ -47,10 +47,14 @@ P2G must not call P2B, P1, or P3 while generating visual decomposition candidate
 ## Runtime Files
 
 - Runtime: `scripts/visual_decomposition_runtime.py`
+- P2B bridge runtime: `scripts/p2g_component_lattice_runtime.py`
 - Tests: `tests/test_visual_decomposition_runtime.py`
+- P2B bridge tests: `tests/test_p2g_component_lattice_runtime.py`
 - Pattern registry: `references/qxby_component_atlas/visual_structure_patterns.v0.1.json`
 
 The first runtime is intentionally independent from the existing P2D `NotationUnitAnalyzer` so current P2C/P2D worktree edits are not overwritten. A later compatibility task can project P2G trees into the old flat P2D slot lattice.
+
+The bridge runtime is downstream of P2G. It consumes `component_region_candidates`, writes visual-region crops, calls P2B, and builds a component candidate lattice. It does not change P2G segmentation and does not feed grammar validity back into the visual split.
 
 ## Output Contract
 
@@ -194,21 +198,40 @@ Current tests verify:
 - fragmented ink regions are grouped into visual units before P2B;
 - PNG input is supported without requiring Pillow;
 - red human-review marks are ignored as score ink;
+- P2G visual regions can be cropped and sent through P2B into a component candidate lattice;
 - default visual patterns load as visual-only and contain no semantic patterns.
 
 Validation commands:
 
 ```bash
 python3 -m unittest tests.test_visual_decomposition_runtime -v
+python3 -m unittest tests.test_p2g_component_lattice_runtime -v
 python3 -m json.tool references/qxby_component_atlas/visual_structure_patterns.v0.1.json
 ```
 
-## Next Step
+## P2G To P2B Bridge
 
-The next integration task should project P2G `component_region_candidates` into P2B crop calls and keep the results in a separate component candidate lattice. That integration must preserve the scoring separation:
+Implemented bridge:
+
+```text
+P2G component_region_candidates
+-> region crop PNGs
+-> P2B ComponentMatcher
+-> component_candidate_sets
+-> component_candidate_lattice
+-> narrow P3 handoff projection
+```
+
+It preserves the scoring separation:
 
 ```text
 P2G visual score
 P2B component score
 P3 grammar score
 ```
+
+The bridge output remains draft evidence. It is not component canon authority, not grammar authority, not score authority, and not Dapu IR authority.
+
+## Next Step
+
+The next integration task should improve component ranking for visually fragmented and auxiliary components while keeping P2G segmentation, P2B visual similarity, and P3 grammar validation as separate score stages.
